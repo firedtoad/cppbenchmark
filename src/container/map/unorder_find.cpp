@@ -112,6 +112,5 @@ BENCHMARK_TEMPLATE(BenchCharKeyMap,tsl::array_map<char,int>);
 int main(int argc, char **argv) {
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
-    tsl::array_map<char,int> m;
     return 0;
 }

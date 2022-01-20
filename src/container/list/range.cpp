@@ -18,7 +18,7 @@ static void BenchListRange(benchmark::State &state) {
     }
     int r = 0;
     for (auto _ : state) {
-        for (auto it:v) {
+        for (auto &it:v) {
             r++;
         }
     }
@@ -29,14 +29,14 @@ BENCHMARK(BenchListRange);
 
 
 static void BenchIntrusiveListRange(benchmark::State &state) {
-    boost::intrusive::list<SList> v;
     SList lists[1024];
+    boost::intrusive::list<SList> v;
     for (auto i = 0; i < 1024; i++) {
         v.push_back(lists[i]);
     }
     int r = 0;
     for (auto _ : state) {
-        for (auto it:v) {
+        for (auto &it:v) {
             r++;
         }
     }

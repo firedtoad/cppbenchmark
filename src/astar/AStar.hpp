@@ -10,6 +10,7 @@
 #include <functional>
 #include "flat_hash_map.hpp"
 #include "unordered_map.hpp"
+#include <unordered_map>
 namespace AStar
 {
     struct Vec2i

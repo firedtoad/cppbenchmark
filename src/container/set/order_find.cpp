@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include <benchmark/benchmark.h>
-#include <map>
 #include "tsl/ordered_set.h"
 
 static inline uint64_t xor_shift96() { /* A George Marsaglia generator, period 2^96-1 */

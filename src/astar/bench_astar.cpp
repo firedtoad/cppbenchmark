@@ -7,15 +7,10 @@
 #include <thread>
 #include <benchmark/benchmark.h>
 
-static AStar::Generator generator;
+
 
 void BenchmarkAstar(benchmark::State &state) {
-    for (auto _ : state) {
-        generator.findPath({1, 1}, {499, 499});
-    }
-}
-BENCHMARK(BenchmarkAstar);
-int main(int argc, char **argv) {
+    static AStar::Generator generator;
     generator.setWorldSize({500, 500});
     std::random_device rd;
     std::mt19937_64 gen(rd());
@@ -36,6 +31,13 @@ int main(int argc, char **argv) {
     });
 
     generator.setHeuristic(AStar::Heuristic::octagonal);
+    for (auto _ : state) {
+        generator.findPath({1, 1}, {499, 499});
+    }
+}
+BENCHMARK(BenchmarkAstar);
+int main(int argc, char **argv) {
+
     ::benchmark::Initialize(&argc, argv);
     if (::benchmark::ReportUnrecognizedArguments(argc, argv)) return 1;
     ::benchmark::RunSpecifiedBenchmarks();

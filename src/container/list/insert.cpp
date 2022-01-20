@@ -21,9 +21,10 @@ static void BenchListInsert(benchmark::State &state) {
 BENCHMARK(BenchListInsert);
 
 static void BenchIntrusiveListInsert(benchmark::State &state) {
+
     for (auto _ : state) {
+        SList lists[1024]{};
         boost::intrusive::list<SList> v;
-        SList lists[1024];
         for (auto i = 0; i < 1024; i++) {
             v.push_back(lists[i]);
         }
