@@ -1,7 +1,6 @@
 cmake_minimum_required (VERSION 3.16)
 project(bench C CXX)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ")
 link_libraries(benchmark pthread)
 
 include_directories(
@@ -19,5 +18,6 @@ add_subdirectory(src/astar)
 add_subdirectory(src/container)
 add_subdirectory(src/cpu)
 add_subdirectory(src/handler)
+add_subdirectory(src/polymorphism)
 add_subdirectory(src/mutex)
 add_subdirectory(src/ub)

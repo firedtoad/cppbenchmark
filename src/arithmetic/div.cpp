@@ -5,65 +5,92 @@
 #include<benchmark/benchmark.h>
 #include<stdint.h>
 
-float calc32(float x, float y) {
-    return x / y;
-}
-
+const double bp_double = 1000000;
+const int32_t bp_int32 = 1000000;
+const int64_t bp_int64 = 1000000;
+__attribute__((noinline))
 double calc(double x, double y) {
-    return x / y;
+  return x / bp_double - y / bp_double;
+}
+__attribute__((noinline))
+double calc1(double x, double y) {
+  return (x - y) / bp_double;
+}
+__attribute__((noinline))
+int calc_32(int x, int y) {
+  return x / bp_int32 - y / bp_int32;
+}
+__attribute__((noinline))
+int calc1_32(int x, int y) {
+  return (x - y) / bp_int32;
+}
+__attribute__((noinline))
+int64_t calc_64(int64_t x, int64_t y) {
+  return x / bp_int64 - y / bp_int64;
+}
+__attribute__((noinline))
+int64_t calc1_64(int64_t x, int64_t y) {
+  return (x - y) / bp_int64;
 }
 
-uint32_t calc_int32(uint32_t x, uint32_t y) {
-    return x / y;
+static void calc(benchmark::State &state) {
+  double d = 1;
+  for (auto _ : state) {
+    benchmark::DoNotOptimize(calc(d + 100000, d));
+    d++;
+  }
 }
 
-int64_t calc_64(uint64_t x, uint64_t y) {
-    return x / y;
+BENCHMARK(calc);
+
+static void calc1(benchmark::State &state) {
+  double d = 1;
+  for (auto _ : state) {
+    benchmark::DoNotOptimize(calc1(d + 100000, d));
+    d++;
+  }
 }
 
-static void calc_float(benchmark::State &state) {
-    float p = state.range(0);
-    for (auto _ : state) {
-        for (float d = 1; d < p; d++) {
-            benchmark::DoNotOptimize(calc32(p, d));
-        }
-    }
+BENCHMARK(calc1);
+
+static void calc_int(benchmark::State &state) {
+  int d = 1;
+  for (auto _ : state) {
+    benchmark::DoNotOptimize(calc_32(d + 100000, d));
+    d++;
+  }
 }
 
-BENCHMARK(calc_float)->Range(10000, 10000);
+BENCHMARK(calc_int);
 
-static void calc_double(benchmark::State &state) {
-    double p = state.range(0);
-    for (auto _ : state) {
-        for (double d = 1; d < p; d++) {
-            benchmark::DoNotOptimize(calc(p, d));
-        }
-    }
+static void calc1_int(benchmark::State &state) {
+  int d = 1;
+  for (auto _ : state) {
+    benchmark::DoNotOptimize(calc1_32(d + 100000, d));
+    d++;
+  }
 }
 
-BENCHMARK(calc_double)->Range(10000, 10000);
+BENCHMARK(calc1_int);
 
-
-static void calc_uint32(benchmark::State &state) {
-    uint32_t p = state.range(0);
-    for (auto _ : state) {
-        for (uint32_t d = 1; d < p; d++) {
-            benchmark::DoNotOptimize(calc_int32(p, d));
-        }
-    }
+static void calc_int64(benchmark::State &state) {
+  int64_t d = 1;
+  for (auto _ : state) {
+    benchmark::DoNotOptimize(calc_64(d + 100000, d));
+    d++;
+  }
 }
 
-BENCHMARK(calc_uint32)->Range(10000, 10000);
+BENCHMARK(calc_int64);
 
-static void calc_uint64(benchmark::State &state) {
-    uint64_t p = state.range(0);
-    for (auto _ : state) {
-        for (uint64_t d = 1; d < p; d++) {
-            benchmark::DoNotOptimize(calc_64(p, d));
-        }
-    }
+static void calc1_int64(benchmark::State &state) {
+  int64_t d = 1;
+  for (auto _ : state) {
+    benchmark::DoNotOptimize(calc1_64(d + 100000, d));
+    d++;
+  }
 }
 
-BENCHMARK(calc_uint64)->Range(10000, 10000);
+BENCHMARK(calc1_int64);
 
 BENCHMARK_MAIN();
