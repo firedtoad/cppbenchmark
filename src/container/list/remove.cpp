@@ -6,7 +6,10 @@
 #include <list>
 #include <boost/intrusive/list.hpp>
 
-struct SList : public boost::intrusive::list_base_hook<> {
+using mode = boost::intrusive::link_mode<boost::intrusive::safe_link>;
+using constant_time_size = boost::intrusive::constant_time_size<true>;
+
+struct SList :public boost::intrusive::list_base_hook<mode>{
 
 };
 
@@ -21,7 +24,8 @@ static void BenchListRemove(benchmark::State &state) {
         }
         state.ResumeTiming();
         while (v.size()) {
-            v.pop_front();
+          benchmark::DoNotOptimize(v.front());
+          v.pop_front();
         }
     }
 }
@@ -33,15 +37,15 @@ static void BenchIntrusiveListRemove(benchmark::State &state) {
 
     for (auto _ : state) {
         state.PauseTiming();
-        SList lists[1024];
-        boost::intrusive::list<SList> v;
-
+        boost::intrusive::list<SList,constant_time_size> v;
+        SList lst[1024];
         for (auto i = 0; i < 1024; i++) {
-            v.push_back(lists[i]);
+          v.push_back(lst[i]);
         }
         state.ResumeTiming();
         while (v.size()) {
-            v.pop_front();
+          benchmark::DoNotOptimize(v.front());
+          v.pop_front();
         }
     }
 }
