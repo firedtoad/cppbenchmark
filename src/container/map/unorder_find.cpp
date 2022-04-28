@@ -4,6 +4,7 @@
 #include <iostream>
 #include <benchmark/benchmark.h>
 #include <unordered_map>
+#include <boost/container/flat_map.hpp>
 #include "parallel_hashmap/phmap.h"
 #include "flat_hash_map.hpp"
 #include "unordered_map.hpp"
@@ -51,6 +52,7 @@ static void BenchUnOrderMapInt(benchmark::State &state) {
 }
 
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, std::unordered_map<int, int>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapInt, boost::container::flat_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, ska::unordered_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, ska::flat_hash_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, ska::bytell_hash_map<int, int>);
@@ -96,6 +98,7 @@ static void BenchCharKeyMap(benchmark::State &state) {
 }
 
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, std::unordered_map<std::string, int>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapString, boost::container::flat_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, ska::unordered_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, ska::flat_hash_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, ska::bytell_hash_map<std::string, int>);
