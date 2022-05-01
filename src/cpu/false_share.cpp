@@ -4,7 +4,6 @@
 
 #include<benchmark/benchmark.h>
 #include <vector>
-#include <algorithm>
 #include <iostream>
 
 struct alignas(8) cache_unaligned {
@@ -18,8 +17,8 @@ struct alignas(64) cache_aligned {
 template<typename T>
 static void BenchShare(benchmark::State &state) {
     static std::vector<T> data;
-    data.resize(state.threads);
-    auto idx = state.thread_index;
+    data.resize(state.threads());
+    auto idx = state.thread_index();
     for (auto _:state) {
         for (auto i = 0; i < state.range(0); i++) {
             benchmark::DoNotOptimize(data[idx].n++);
@@ -31,8 +30,8 @@ static void BenchShare(benchmark::State &state) {
 template<typename T>
 static void BenchNoShare(benchmark::State &state) {
     std::vector<T> data;
-    data.resize(state.threads);
-    auto idx = state.thread_index;
+    data.resize(state.threads());
+    auto idx = state.thread_index();
     for (auto _:state) {
         for (auto i = 0; i < state.range(0); i++) {
             benchmark::DoNotOptimize(data[idx].n++);

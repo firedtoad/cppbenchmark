@@ -7,7 +7,6 @@
 #include <list>
 #include <memory>
 #include <functional>
-#include "my_init_list.h"
 #include <initializer_list>
 struct A {
     virtual void f() {

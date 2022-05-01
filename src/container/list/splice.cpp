@@ -8,8 +8,10 @@
 
 #include<benchmark/benchmark.h>
 #include <list>
+#include <deque>
 #include <boost/intrusive/list.hpp>
 #include <boost/intrusive/list_hook.hpp>
+#include "plf_list.h"
 
 using mode = boost::intrusive::link_mode<boost::intrusive::auto_unlink>;
 using constant_time_size = boost::intrusive::constant_time_size<false>;
@@ -19,7 +21,6 @@ struct SList : public boost::intrusive::list_base_hook<mode> {
 };
 
 static void BenchListSplice(benchmark::State &state) {
-
     int r = 0;
     for (auto _ : state) {
         state.PauseTiming();
@@ -38,7 +39,6 @@ static void BenchListSplice(benchmark::State &state) {
 BENCHMARK(BenchListSplice);
 
 static void BenchListSwap(benchmark::State &state) {
-
     int r = 0;
     for (auto _ : state) {
         state.PauseTiming();
@@ -55,6 +55,23 @@ static void BenchListSwap(benchmark::State &state) {
 
 BENCHMARK(BenchListSwap);
 
+static void BenchDequeSwap(benchmark::State &state) {
+
+    int r = 0;
+    for (auto _ : state) {
+        state.PauseTiming();
+        std::deque<SList> v;
+        std::deque<SList> v1;
+        for (auto i = 0; i < 1024; i++) {
+            v1.push_back({});
+        }
+        state.ResumeTiming();
+        v.swap(v1);
+    }
+    benchmark::DoNotOptimize(r);
+}
+
+BENCHMARK(BenchDequeSwap);
 
 static void BenchIntrusiveListSplice(benchmark::State &state) {
 
@@ -68,7 +85,7 @@ static void BenchIntrusiveListSplice(benchmark::State &state) {
             v.push_back(lst[i]);
         }
         state.ResumeTiming();
-        vt.splice(vt.end(),v);
+        vt.splice(vt.end(), v);
     }
     benchmark::DoNotOptimize(r);
 }
@@ -93,6 +110,42 @@ static void BenchIntrusiveListSwap(benchmark::State &state) {
 }
 
 BENCHMARK(BenchIntrusiveListSwap);
+
+static void BenchPlfListSplice(benchmark::State &state) {
+    int r = 0;
+    for (auto _ : state) {
+        state.PauseTiming();
+        plf::list<SList> v;
+        plf::list<SList> v1;
+        for (auto i = 0; i < 1024; i++) {
+            v1.push_back({});
+        }
+        state.ResumeTiming();
+        v.splice(v.end(), v1);
+        r += v.size();
+    }
+    benchmark::DoNotOptimize(r);
+
+}
+
+BENCHMARK(BenchPlfListSplice);
+
+static void BenchPlfListSwap(benchmark::State &state) {
+    int r = 0;
+    for (auto _ : state) {
+        state.PauseTiming();
+        plf::list<SList> v;
+        plf::list<SList> v1;
+        for (auto i = 0; i < 1024; i++) {
+            v1.push_back({});
+        }
+        state.ResumeTiming();
+        v.swap(v1);
+    }
+    benchmark::DoNotOptimize(r);
+}
+
+BENCHMARK(BenchPlfListSwap);
 
 int main(int argc, char **argv) {
     benchmark::Initialize(&argc, argv);

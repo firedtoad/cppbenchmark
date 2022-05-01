@@ -3,6 +3,7 @@ add_executable(list_remove list/remove.cpp)
 add_executable(list_range  list/range.cpp)
 add_executable(list_splice list/splice.cpp)
 
+add_executable(map_find_hetero map/find_hetero.cpp)
 add_executable(map_find_order map/order_find.cpp)
 add_executable(map_range_order map/order_range.cpp)
 add_executable(map_find_unorder map/unorder_find.cpp)
