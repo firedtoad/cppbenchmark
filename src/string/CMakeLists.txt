@@ -1,4 +1,10 @@
 add_executable(string_view string_view.cpp)
 add_executable(string_split string_split.cpp)
-
+add_executable(string_from string_from.cpp)
+add_executable(string_to string_to.cpp)
+add_executable(string_format string_format.cpp)
 target_link_libraries(string_split PRIVATE absl_strings)
+target_link_libraries(string_from PRIVATE absl_strings absl_str_format_internal)
+target_link_libraries(string_to PRIVATE absl_strings)
+target_compile_features(string_format PRIVATE cxx_std_20)
+target_link_libraries(string_format PRIVATE absl_strings absl_str_format_internal fmt)
