@@ -7,10 +7,8 @@
 #include <iostream>
 #include <memory>
 #include <unordered_map>
-#include <sstream>
 #include <absl/strings/str_split.h>
 #include <boost/algorithm/string.hpp>
-#include <ranges>
 
 void StringSplit(const std::string &str, const std::string &delimiters, std::vector<std::string> &elems) {
     std::string::size_type pos, prev = 0;
@@ -26,10 +24,12 @@ void StringSplit(const std::string &str, const std::string &delimiters, std::vec
 }
 
 auto StringSplitStream(const std::string &str, const char &delim) {
-    static  std::istringstream ss;
+    thread_local auto ss=std::make_unique<std::istringstream>();
+    ss->clear();
+    ss->str(str);
     std::string token;
     std::vector<std::string> ret;
-    while (std::getline(ss, token, delim)) {
+    while (std::getline(*ss, token, delim)) {
         ret.push_back(token);
     }
     return ret;
@@ -48,7 +48,7 @@ static void BenchStringSplit(benchmark::State &state) {
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchStringSplit);
+BENCHMARK(BenchStringSplit)->ThreadRange(1, 8);
 
 static void BenchStringSplitStream(benchmark::State &state) {
     std::string tag = "1,2,3,4,5,6,7,8,9,0,1,2,3,4,6,1,2,3,4,56,7,8,9,09,12";
@@ -62,8 +62,7 @@ static void BenchStringSplitStream(benchmark::State &state) {
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchStringSplitStream);
-
+BENCHMARK(BenchStringSplitStream)->ThreadRange(1, 8);
 
 static void BenchBoostSplit(benchmark::State &state) {
     std::string tag = "1,2,3,4,5,6,7,8,9,0,1,2,3,4,6,1,2,3,4,56,7,8,9,09,12";
@@ -78,7 +77,7 @@ static void BenchBoostSplit(benchmark::State &state) {
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchBoostSplit);
+BENCHMARK(BenchBoostSplit)->ThreadRange(1, 8);
 
 static void BenchABSplit(benchmark::State &state) {
     std::string tag = "1,2,3,4,5,6,7,8,9,0,1,2,3,4,6,1,2,3,4,56,7,8,9,09,12";
@@ -92,7 +91,7 @@ static void BenchABSplit(benchmark::State &state) {
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchABSplit);
+BENCHMARK(BenchABSplit)->ThreadRange(1, 8);
 
 int main(int argc, char **argv) {
     benchmark::Initialize(&argc, argv);
