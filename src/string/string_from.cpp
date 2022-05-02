@@ -158,7 +158,7 @@ BENCHMARK_TEMPLATE(BenchAbStrFormat, uint64_t);
 template<typename T>
 static void BenchAbStrFormatF(benchmark::State &state) {
     for (auto _ : state) {
-        auto r=absl::StrFormat("%f",tag);
+        auto r=absl::StrFormat("%f",tagf);
         benchmark::DoNotOptimize(r);
     }
 }
