@@ -8,6 +8,7 @@
 #include <boost/intrusive/list.hpp>
 #include <boost/intrusive/list_hook.hpp>
 #include "plf_list.h"
+#include "linked_list.h"
 
 using mode = boost::intrusive::link_mode<boost::intrusive::safe_link>;
 using constant_time_size = boost::intrusive::constant_time_size<true>;
@@ -48,6 +49,24 @@ static void BenchDequeRange(benchmark::State &state) {
 
 BENCHMARK(BenchDequeRange);
 
+static void BenchBUListRange(benchmark::State &state) {
+    butil::LinkedList<SList> v;
+    std::vector<butil::LinkNode<SList>> vs;
+    vs.resize(1024);
+    for (auto i = 0; i < 1024; i++) {
+        v.Append(&vs[i]);
+    }
+    int r = 0;
+    for (auto _ : state) {
+        for (auto it = v.head(); it != v.end(); it = it->next()) {
+            r++;
+        }
+    }
+    benchmark::DoNotOptimize(r);
+}
+
+BENCHMARK(BenchBUListRange);
+
 static void BenchIntrusiveListRange(benchmark::State &state) {
     SList lst[1024];
     boost::intrusive::list<SList, constant_time_size> v;
@@ -82,7 +101,6 @@ static void BenchPlfListRange(benchmark::State &state) {
 }
 
 BENCHMARK(BenchPlfListRange);
-
 
 int main(int argc, char **argv) {
     benchmark::Initialize(&argc, argv);

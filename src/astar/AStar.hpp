@@ -58,7 +58,7 @@ namespace AStar
         void setWorldSize(const Vec2i &worldSize_);
         void setDiagonalMovement(bool enable_);
         void setWeight(float epsilon_);
-        void setRelaxFuncion(RelaxFuncion relaxer_);
+        void setRelaxFunction(RelaxFuncion relaxer_);
         void setHeuristic(HeuristicFunction heuristic_);
         template<typename F>
         void SetCollision(F &&collison_)

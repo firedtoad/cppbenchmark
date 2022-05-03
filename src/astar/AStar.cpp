@@ -20,8 +20,8 @@ AStar::Node::Node(const Vec2i &coordinates_, Node *parent_) {
     coordinates = coordinates_;
     G = H = 0;
 }
-auto comp=[](const AStar::Node &pNode1,const AStar::Node &pNode2){
-    return pNode1.getScore()>pNode2.getScore();
+auto comp = [](const AStar::Node &pNode1, const AStar::Node &pNode2) {
+    return pNode1.getScore() > pNode2.getScore();
 };
 
 AStar::uint AStar::Node::getScore() const {
@@ -31,17 +31,17 @@ AStar::uint AStar::Node::getScore() const {
 AStar::Generator::Generator() : collision(nullptr) {
     setDiagonalMovement(true);
     setHeuristic(&Heuristic::octagonal);
-    setRelaxFuncion(&Relaxer::static_weight);
+    setRelaxFunction(&Relaxer::static_weight);
     setWeight(2.0f);
     direction = {
-            {0,  1},
-            {1,  0},
-            {0,  -1},
-            {-1, 0},
-            {-1, -1},
-            {1,  1},
-            {-1, 1},
-            {1,  -1}
+        {0, 1},
+        {1, 0},
+        {0, -1},
+        {-1, 0},
+        {-1, -1},
+        {1, 1},
+        {-1, 1},
+        {1, -1}
     };
 }
 
@@ -81,10 +81,10 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
     Node *current = nullptr;
     ska::flat_hash_set<Vec2i, CoordHash> openSet;
     std::vector<Node> openHeap;
-    openHeap.reserve(dist*4);
+    openHeap.reserve(dist * 4);
     CoordMap closedMap;
-    openSet.reserve(dist*4);
-    closedMap.reserve(dist*4);
+    openSet.reserve(dist * 4);
+    closedMap.reserve(dist * 4);
     openHeap.emplace_back(source_);
     std::push_heap(openHeap.begin(), openHeap.end(), comp);
     openSet.emplace(source_);
@@ -128,6 +128,7 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
     }
 
     CoordinateList path;
+    path.reserve(dist * 2);
     bool reverse = false;
     if (current->coordinates == target_) {
         reverse = true;
@@ -156,13 +157,13 @@ bool AStar::Generator::detectCollision(const Vec2i &coordinates_) {
         coordinates_.y < 0 || coordinates_.y >= worldSize.y ||
         std::find(walls.begin(), walls.end(), coordinates_) != walls.end()
         || (collision && collision(coordinates_))
-            ) {
+        ) {
         return true;
     }
     return false;
 }
 
-void AStar::Generator::setRelaxFuncion(AStar::RelaxFuncion relaxer_) {
+void AStar::Generator::setRelaxFunction(AStar::RelaxFuncion relaxer_) {
     relaxer = relaxer_;
 }
 

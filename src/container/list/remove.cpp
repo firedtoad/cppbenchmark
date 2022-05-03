@@ -7,6 +7,8 @@
 #include <deque>
 #include <boost/intrusive/list.hpp>
 #include "plf_list.h"
+#include "linked_list.h"
+
 using mode = boost::intrusive::link_mode<boost::intrusive::safe_link>;
 using constant_time_size = boost::intrusive::constant_time_size<true>;
 
@@ -47,6 +49,26 @@ static void BenchDequeRemove(benchmark::State &state) {
 }
 
 BENCHMARK(BenchDequeRemove);
+
+
+static void BenchBUListRemove(benchmark::State &state) {
+    for (auto _ : state) {
+        state.PauseTiming();
+        butil::LinkedList<SList> v;
+        std::vector<butil::LinkNode<SList>> vs;
+        vs.resize(1024);
+        for (auto i = 0; i < 1024; i++) {
+            v.Append(&vs[i]);
+        }
+        state.ResumeTiming();
+        while (!v.empty()) {
+            benchmark::DoNotOptimize(v.head());
+            v.head()->RemoveFromList();
+        }
+    }
+}
+
+BENCHMARK(BenchBUListRemove);
 
 
 static void BenchIntrusiveListRemove(benchmark::State &state) {
