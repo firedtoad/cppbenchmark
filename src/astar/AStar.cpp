@@ -1,8 +1,8 @@
 #include "AStar.hpp"
-#include "memorypool.h"
 #include <cmath>
 #include <algorithm>
 #include <ostream>
+#include "memorypool.h"
 
 bool AStar::Vec2i::operator==(const Vec2i &coordinates_) const {
     return (x == coordinates_.x && y == coordinates_.y);
@@ -23,7 +23,11 @@ AStar::Node::Node(const Vec2i &coordinates_, Node *parent_) {
 }
 
 AStar::uint AStar::Node::getScore() const {
-    return G + H;
+    return S;
+}
+
+void AStar::Node::updateScore() {
+    S = G + H;
 }
 
 AStar::Generator::Generator() : collision(nullptr) {
@@ -55,26 +59,9 @@ void AStar::Generator::setHeuristic(HeuristicFunction heuristic_) {
     heuristic = heuristic_;
 }
 
-void AStar::Generator::addCollision(const Vec2i &coordinates_) {
-    walls.push_back(coordinates_);
-}
-
-void AStar::Generator::removeCollision(const Vec2i &coordinates_) {
-    auto it = std::find(walls.begin(), walls.end(), coordinates_);
-    if (it != walls.end()) {
-        walls.erase(it);
-    }
-}
-
-void AStar::Generator::clearCollisions() {
-    walls.clear();
-}
-
 auto comp = [](const AStar::Node *pNode1, const AStar::Node *pNode2) {
     return pNode1->getScore() > pNode2->getScore();
 };
-
-
 
 AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec2i &target_) {
     if (detectCollision(source_) || detectCollision(target_)) {
@@ -84,7 +71,7 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
     auto delta = Heuristic::getDelta(source_, target_);
     auto dist = std::max(delta.x, delta.y) + 1;
     Node *current = nullptr;
-    ska::flat_hash_set<Vec2i, CoordHash> openSet;
+    CordSet openSet;
     NodeHeap openHeap;
     openHeap.reserve(dist * 4);
     CoordMap closedMap;
@@ -109,8 +96,9 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
         openSet.erase(coord);
         current = closedMap[coord];
         float weight = relaxer(epsilon, ++n, N);
+        Vec2i newCoordinates{};
         for (uint i = 0; i < directions; ++i) {
-            Vec2i newCoordinates(current->coordinates + direction[i]);
+            newCoordinates = current->coordinates + direction[i];
             if (openSet.find(newCoordinates) != openSet.end()) {
                 continue;
             }
@@ -125,11 +113,13 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
                 auto &ref = openHeap.back();
                 ref->G = totalCost;
                 ref->H = weight * heuristic(ref->coordinates, target_);
+                ref->updateScore();
                 std::push_heap(openHeap.begin(), openHeap.end(), comp);
                 openSet.emplace(std::move(newCoordinates));
             } else if (totalCost < successor->G) {
                 successor->parent = current;
                 successor->G = totalCost;
+                successor->updateScore();
             }
         }
     }
@@ -146,6 +136,7 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
     if (reverse) {
         std::reverse(path.begin(), path.end());
     }
+    openHeap.clear();
     return path;
 }
 
@@ -158,9 +149,10 @@ AStar::Node *AStar::Generator::findNodeOnMap(CoordMap &nodes_, const Vec2i &coor
 }
 
 bool AStar::Generator::detectCollision(const Vec2i &coordinates_) {
-    if (coordinates_.x < 0 || coordinates_.x >= worldSize.x ||
-        coordinates_.y < 0 || coordinates_.y >= worldSize.y ||
-        std::find(walls.begin(), walls.end(), coordinates_) != walls.end()
+    int x = coordinates_.x;
+    int y = coordinates_.y;
+    if (x < 0 || x >= worldSize.x ||
+        y < 0 || y >= worldSize.y
         || (collision && collision(coordinates_))
         ) {
         return true;

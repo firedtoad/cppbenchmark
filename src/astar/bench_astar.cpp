@@ -21,12 +21,14 @@ BENCHMARK(BenchmarkAstar);
 int main(int argc, char **argv) {
     generator.setWorldSize({WIDTH, HEIGHT});
     std::random_device rd;
-    std::default_random_engine gen{rd()};
+    std::default_random_engine gen{};
     std::uniform_int_distribution<> dis(0, 10000);
-    std::array<std::array<char, WIDTH>, HEIGHT> cc;
+    std::array <std::array<char, WIDTH>, HEIGHT> cc;
     generator.SetCollision([&cc](const AStar::Vec2i &cord) {
-        if (cord.x < WIDTH && cord.y < HEIGHT) {
-            return cc[cord.x][cord.y] > 0;
+        int x = cord.x;
+        int y = cord.y;
+        if (x < WIDTH && y < HEIGHT) {
+            return cc[x][y] > 0;
         }
         return false;
     });
@@ -51,10 +53,7 @@ int main(int argc, char **argv) {
             break;
         }
     } while (1);
-    ::benchmark::Initialize(&argc, argv);
-    if (::benchmark::ReportUnrecognizedArguments(argc, argv))
-        return 1;
-    ::benchmark::RunSpecifiedBenchmarks();
-    ::benchmark::Shutdown();
+    benchmark::Initialize(&argc, argv);
+    benchmark::RunSpecifiedBenchmarks();
     return 0;
 }

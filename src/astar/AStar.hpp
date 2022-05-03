@@ -8,15 +8,15 @@
 
 #include <vector>
 #include <functional>
-#include "unordered_map.hpp"
-#include "flat_hash_map.hpp"
+#include "tsl/robin_map.h"
+#include "tsl/robin_set.h"
 
 namespace AStar {
+
 struct Vec2i {
-    int x, y;
+    int32_t x, y;
     bool operator==(const Vec2i &coordinates_) const;
 };
-
 using uint = uint32_t;
 using HeuristicFunction = uint (*)(const Vec2i &, const Vec2i &);
 using RelaxFunction = float (*)(float e, int n, int len);
@@ -25,22 +25,25 @@ using CoordinateList = std::vector<Vec2i>;
 
 struct Node {
     uint G = 0, H = 0;
+    uint S = 0;
     Vec2i coordinates;
     Node *parent = nullptr;
 
     Node(const Vec2i &coord_, Node *parent_ = nullptr);
     Node() = default;
     uint getScore() const;
+    void updateScore();
 };
 
 struct CoordHash {
     size_t operator()(const Vec2i &coord) const {
-        return coord.x * 100000 + coord.y;
+        return (coord.x * 100000) + coord.y;
     }
 };
 
-using NodeHeap = std::vector<Node*>;
-using CoordMap = ska::flat_hash_map<Vec2i, Node*, CoordHash>;
+using NodeHeap = std::vector<Node *>;
+using CoordMap = tsl::robin_map<Vec2i, Node *, CoordHash>;
+using CordSet  = tsl::robin_set<Vec2i, CoordHash>;
 class Generator {
     bool detectCollision(const Vec2i &coordinates_);
     Node *findNodeOnMap(CoordMap &nodes_, const Vec2i &coordinates_);
@@ -56,15 +59,11 @@ public:
         collision = std::forward<F>(collision_);
     }
     CoordinateList findPath(const Vec2i &source_, const Vec2i &target_);
-    void addCollision(const Vec2i &coordinates_);
-    void removeCollision(const Vec2i &coordinates_);
-    void clearCollisions();
-
 private:
     HeuristicFunction heuristic;
     CollisionFunction collision;
     RelaxFunction relaxer;
-    CoordinateList direction, walls;
+    CoordinateList direction;
     Vec2i worldSize;
     float epsilon;
     uint directions;
