@@ -21,7 +21,7 @@ BENCHMARK(BenchmarkAstar);
 int main(int argc, char **argv) {
     generator.setWorldSize({WIDTH, HEIGHT});
     std::random_device rd;
-    std::default_random_engine gen(rd());
+    std::default_random_engine gen{rd()};
     std::uniform_int_distribution<> dis(0, 10000);
     std::array<std::array<char, WIDTH>, HEIGHT> cc;
     generator.SetCollision([&cc](const AStar::Vec2i &cord) {

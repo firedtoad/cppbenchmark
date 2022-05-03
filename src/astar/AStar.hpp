@@ -14,11 +14,10 @@
 namespace AStar {
 struct Vec2i {
     int x, y;
-
     bool operator==(const Vec2i &coordinates_) const;
 };
 
-using uint = unsigned int;
+using uint = uint32_t;
 using HeuristicFunction = uint (*)(const Vec2i &, const Vec2i &);
 using RelaxFunction = float (*)(float e, int n, int len);
 using CollisionFunction = std::function<bool(const Vec2i &)>;
@@ -36,12 +35,12 @@ struct Node {
 
 struct CoordHash {
     size_t operator()(const Vec2i &coord) const {
-        return coord.x * 65536 + coord.y;
+        return coord.x * 100000 + coord.y;
     }
 };
 
-using NodeHeap = std::vector<Node>;
-using CoordMap = ska::unordered_map<Vec2i, Node, CoordHash>;
+using NodeHeap = std::vector<Node*>;
+using CoordMap = ska::flat_hash_map<Vec2i, Node*, CoordHash>;
 class Generator {
     bool detectCollision(const Vec2i &coordinates_);
     Node *findNodeOnMap(CoordMap &nodes_, const Vec2i &coordinates_);
