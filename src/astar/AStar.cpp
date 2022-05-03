@@ -20,9 +20,6 @@ AStar::Node::Node(const Vec2i &coordinates_, Node *parent_) {
     coordinates = coordinates_;
     G = H = 0;
 }
-auto comp = [](const AStar::Node &pNode1, const AStar::Node &pNode2) {
-    return pNode1.getScore() > pNode2.getScore();
-};
 
 AStar::uint AStar::Node::getScore() const {
     return G + H;
@@ -72,6 +69,10 @@ void AStar::Generator::clearCollisions() {
     walls.clear();
 }
 
+auto comp = [](const AStar::Node &pNode1, const AStar::Node &pNode2) {
+    return pNode1.getScore() > pNode2.getScore();
+};
+
 AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec2i &target_) {
     if (detectCollision(source_) || detectCollision(target_)) {
         return {};
@@ -80,7 +81,7 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
     auto dist = std::max(delta.x, delta.y) + 1;
     Node *current = nullptr;
     ska::flat_hash_set<Vec2i, CoordHash> openSet;
-    std::vector<Node> openHeap;
+    NodeHeap openHeap;
     openHeap.reserve(dist * 4);
     CoordMap closedMap;
     openSet.reserve(dist * 4);
@@ -128,7 +129,6 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
     }
 
     CoordinateList path;
-    path.reserve(dist * 2);
     bool reverse = false;
     if (current->coordinates == target_) {
         reverse = true;
@@ -163,7 +163,7 @@ bool AStar::Generator::detectCollision(const Vec2i &coordinates_) {
     return false;
 }
 
-void AStar::Generator::setRelaxFunction(AStar::RelaxFuncion relaxer_) {
+void AStar::Generator::setRelaxFunction(AStar::RelaxFunction relaxer_) {
     relaxer = relaxer_;
 }
 
