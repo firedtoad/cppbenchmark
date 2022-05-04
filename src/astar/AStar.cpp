@@ -8,7 +8,7 @@ bool AStar::Vec2i::operator==(const Vec2i &coordinates_) const {
     return (x == coordinates_.x && y == coordinates_.y);
 }
 
-std::ostream &operator<<(std::ostream &os, const AStar::Vec2i &coord_) {
+inline std::ostream &operator<<(std::ostream &os, const AStar::Vec2i &coord_) {
     return os << coord_.x << " " << coord_.y;
 }
 
@@ -67,7 +67,7 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
     if (detectCollision(source_) || detectCollision(target_)) {
         return {};
     }
-    MemoryPool<AStar::Node> pool;
+    MemoryPool<AStar::Node > pool;
     auto delta = Heuristic::getDelta(source_, target_);
     auto dist = std::max(delta.x, delta.y) + 1;
     Node *current = nullptr;
