@@ -7,13 +7,15 @@
 #include <absl/strings/numbers.h>
 #include <absl/strings/str_format.h>
 #include <boost/lexical_cast.hpp>
+#include <google/protobuf/stubs/strutil.h>
 
 uint64_t tag = 1234567890123456;
 float tagf = M_PI;
 
 template<typename S, typename T>
 void NumberToString(T &t, std::string &str) {
-    S oss(str);
+    thread_local static S oss;
+    oss.str("");
     oss << t;
     str = oss.str();
 }
@@ -149,7 +151,7 @@ BENCHMARK_TEMPLATE(BenchAbSixDigitsToBuffer, float);
 template<typename T>
 static void BenchAbStrFormat(benchmark::State &state) {
     for (auto _ : state) {
-        auto r=absl::StrFormat("%d",tag);
+        auto r = absl::StrFormat("%d", tag);
         benchmark::DoNotOptimize(r);
     }
 }
@@ -158,11 +160,22 @@ BENCHMARK_TEMPLATE(BenchAbStrFormat, uint64_t);
 template<typename T>
 static void BenchAbStrFormatF(benchmark::State &state) {
     for (auto _ : state) {
-        auto r=absl::StrFormat("%f",tagf);
+        auto r = absl::StrFormat("%f", tagf);
         benchmark::DoNotOptimize(r);
     }
 }
 BENCHMARK_TEMPLATE(BenchAbStrFormatF, float);
+
+template<typename T>
+static void BenchPBSimpleItoa(benchmark::State &state) {
+    T r = 0;
+    for (auto _ : state) {
+        char buf[64]{};
+        auto r = google::protobuf::FastUInt64ToBuffer(tag, buf);
+        benchmark::DoNotOptimize(r);
+    }
+}
+BENCHMARK_TEMPLATE(BenchPBSimpleItoa, uint64_t);
 
 int main(int argc, char **argv) {
 

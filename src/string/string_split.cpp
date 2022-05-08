@@ -8,6 +8,7 @@
 #include <sstream>
 #include <memory>
 #include <unordered_map>
+#include <google/protobuf/stubs/strutil.h>
 #include <absl/strings/str_split.h>
 #include <boost/algorithm/string.hpp>
 
@@ -87,7 +88,7 @@ static void BenchABSplit(benchmark::State &state) {
     std::string tag = "1,2,3,4,5,6,7,8,9,0,1,2,3,4,6,1,2,3,4,56,7,8,9,09,12";
     int r = 0;
     for (auto _ : state) {
-       auto vec = absl::StrSplit(tag, ",");
+        auto vec = absl::StrSplit(tag, ",");
         for (auto &i : vec) {
             r += i.size();
         }
@@ -96,6 +97,22 @@ static void BenchABSplit(benchmark::State &state) {
 }
 
 BENCHMARK(BenchABSplit)->ThreadRange(1, 8);
+
+static void BenchPBSplit(benchmark::State &state) {
+    std::string tag = "1,2,3,4,5,6,7,8,9,0,1,2,3,4,6,1,2,3,4,56,7,8,9,09,12";
+    int r = 0;
+    std::vector<std::string> vec;
+    for (auto _ : state) {
+        google::protobuf::SplitStringAllowEmpty(tag, ",", &vec);
+        for (auto &i : vec) {
+            r += i.size();
+        }
+        vec.clear();
+    }
+    benchmark::DoNotOptimize(r);
+}
+
+BENCHMARK(BenchPBSplit)->ThreadRange(1, 8);
 
 int main(int argc, char **argv) {
     benchmark::Initialize(&argc, argv);

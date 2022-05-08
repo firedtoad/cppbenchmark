@@ -7,8 +7,8 @@
 #include <thread>
 #include <benchmark/benchmark.h>
 
-const int WIDTH = 500;
-const int HEIGHT = 500;
+const int WIDTH = 499;
+const int HEIGHT = 499;
 const bool rand_pos = false;
 static AStar::Generator generator;
 static AStar::Vec2i start_pos = {0, 0};
@@ -19,7 +19,7 @@ void BenchmarkAstar(benchmark::State &state) {
     for (auto _ : state) {
         generator.findPath(start_pos, end_pos);
     }
-    state.SetItemsProcessed(state.iterations() );
+    state.SetItemsProcessed(state.iterations());
 }
 BENCHMARK(BenchmarkAstar);
 
@@ -32,7 +32,10 @@ int main(int argc, char **argv) {
     std::random_device rd;
     std::default_random_engine gen{rd()};
     std::uniform_int_distribution<> dis(0, 10000);
-    std::array<std::array<char, WIDTH>, HEIGHT> cc;
+    std::vector<std::vector<char>> cc(WIDTH);
+    for (auto &it : cc) {
+        it.resize(HEIGHT);
+    }
     generator.SetCollision([&cc](const AStar::Vec2i &cord) {
         int x = cord.x;
         int y = cord.y;
@@ -45,7 +48,9 @@ int main(int argc, char **argv) {
     generator.setHeuristic(AStar::Heuristic::octagonal);
     const int prob = 2000;
     auto c_gen = [&cc, &dis, &gen]() {
-        cc.fill({});
+        for (auto &it : cc) {
+            std::fill(it.begin(), it.end(), 0);
+        }
         for (auto &it : cc) {
             for (auto &cit : it) {
                 if (dis(gen) < prob) {
@@ -60,7 +65,7 @@ int main(int argc, char **argv) {
         start_pos = {dis(gen), dis(gen)};
         end_pos = {dis(gen), dis(gen)};
     }
-    std::cout << start_pos <<" : "<< end_pos << '\n';
+    std::cout << start_pos << " : " << end_pos << '\n';
     do {
         c_gen();
 

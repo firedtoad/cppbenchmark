@@ -4,7 +4,9 @@
 #include <cmath>
 #include <charconv>
 #include <absl/strings/numbers.h>
+#include <absl/strings/charconv.h>
 #include <boost/lexical_cast.hpp>
+#include <google/protobuf/stubs/strutil.h>
 
 std::string tag = "1234567890123456";
 std::string tagf = std::to_string(M_PI);
@@ -87,6 +89,17 @@ static void BenchStdCharConvInt(benchmark::State &state) {
 BENCHMARK_TEMPLATE(BenchStdCharConvInt, uint64_t);
 
 template<typename T>
+static void BenchABCharConvIntF(benchmark::State &state) {
+    for (auto _ : state) {
+        T r{};
+        absl::from_chars(tagf.data(), tagf.data() + tagf.size(), r);
+        benchmark::DoNotOptimize(r);
+    }
+}
+
+BENCHMARK_TEMPLATE(BenchABCharConvIntF, float);
+
+template<typename T>
 static void BenchBoostStringTo(benchmark::State &state) {
     for (auto _ : state) {
         T r = boost::lexical_cast<T>(tag);
@@ -127,6 +140,26 @@ static void BenchAbSimpleToFloat(benchmark::State &state) {
     }
 }
 BENCHMARK_TEMPLATE(BenchAbSimpleToFloat, float);
+
+template<typename T>
+static void BenchPBStrAppend(benchmark::State &state) {
+    for (auto _ : state) {
+        std::string s;
+        google::protobuf::StrAppend(&s, tag);
+        benchmark::DoNotOptimize(s);
+    }
+}
+BENCHMARK_TEMPLATE(BenchPBStrAppend, uint64_t);
+
+template<typename T>
+static void BenchPBStrAppendF(benchmark::State &state) {
+    for (auto _ : state) {
+        std::string s;
+        google::protobuf::StrAppend(&s, tagf);
+        benchmark::DoNotOptimize(s);
+    }
+}
+BENCHMARK_TEMPLATE(BenchPBStrAppendF, float);
 
 int main(int argc, char **argv) {
 
