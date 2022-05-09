@@ -7,21 +7,30 @@
 #include <thread>
 #include <benchmark/benchmark.h>
 
-const int WIDTH = 499;
-const int HEIGHT = 499;
+const int WIDTH = 500;
+const int HEIGHT = 500;
 const bool rand_pos = false;
 static AStar::Generator generator;
 static AStar::Vec2i start_pos = {0, 0};
 static AStar::Vec2i end_pos = {WIDTH - 1, HEIGHT - 1};
 
-void BenchmarkAstar(benchmark::State &state) {
+void BenchmarkAStar(benchmark::State &state) {
 
     for (auto _ : state) {
         generator.findPath(start_pos, end_pos);
     }
     state.SetItemsProcessed(state.iterations());
 }
-BENCHMARK(BenchmarkAstar);
+BENCHMARK(BenchmarkAStar);
+
+void BenchmarkAStarStack(benchmark::State &state) {
+
+    for (auto _ : state) {
+        generator.findPathStack(start_pos, end_pos);
+    }
+    state.SetItemsProcessed(state.iterations());
+}
+BENCHMARK(BenchmarkAStarStack);
 
 inline std::ostream &operator<<(std::ostream &os, const AStar::Vec2i &coord_) {
     return os << coord_.x << "," << coord_.y;

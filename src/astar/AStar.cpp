@@ -1,7 +1,9 @@
 #include "AStar.hpp"
 #include <cmath>
 #include <algorithm>
+#include <random>
 #include <ostream>
+#include <stack>
 #include "memorypool.h"
 
 bool AStar::Vec2i::operator==(const Vec2i &coordinates_) const {
@@ -67,7 +69,7 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
     if (detectCollision(source_) || detectCollision(target_)) {
         return {};
     }
-    MemoryPool<AStar::Node > pool;
+    MemoryPool<AStar::Node> pool;
     auto delta = Heuristic::getDelta(source_, target_);
     auto dist = std::max(delta.x, delta.y) + 1;
     Node *current = nullptr;
@@ -77,15 +79,15 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
     CoordMap closedMap;
     openSet.reserve(dist * 4);
     closedMap.reserve(dist * 4);
-    openHeap.emplace_back(pool.newElement(source_));
+    openHeap.emplace_back(pool.newElement(target_));
     std::push_heap(openHeap.begin(), openHeap.end(), comp);
-    openSet.emplace(source_);
+    openSet.emplace(target_);
     int n = 0;
     int N = worldSize.x * worldSize.y;
     bool reach_target = false;
     while (!openHeap.empty()) {
         current = openHeap.front();
-        if (current->coordinates == target_) {
+        if (current->coordinates == source_) {
             reach_target = true;
             break;
         }
@@ -112,10 +114,10 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
                 openHeap.emplace_back(pool.newElement(newCoordinates, current));
                 auto &ref = openHeap.back();
                 ref->G = totalCost;
-                ref->H = weight * heuristic(ref->coordinates, target_);
+                ref->H = weight * heuristic(ref->coordinates, source_);
                 ref->updateScore();
                 std::push_heap(openHeap.begin(), openHeap.end(), comp);
-                openSet.emplace(std::move(newCoordinates));
+                openSet.emplace(newCoordinates);
             } else if (totalCost < successor->G) {
                 successor->parent = current;
                 successor->G = totalCost;
@@ -125,19 +127,70 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
     }
 
     CoordinateList path;
-    bool reverse = false;
-    if (current->coordinates == target_) {
-        reverse = true;
-    }
     while (current != nullptr && reach_target) {
         path.emplace_back(current->coordinates);
         current = current->parent;
     }
-    if (reverse) {
-        std::reverse(path.begin(), path.end());
-    }
-    openHeap.clear();
     return path;
+}
+
+AStar::CoordinateList AStar::Generator::findPathStack(const Vec2i &source_, const Vec2i &target_) {
+    if (detectCollision(source_) || detectCollision(target_)) {
+        return {};
+    }
+    MemoryPool<AStar::Node> pool;
+
+    auto delta = Heuristic::getDelta(source_, target_);
+    auto dist = std::max(delta.x, delta.y) + 1;
+
+    CordSet closedSet;
+    closedSet.reserve(dist * 4);
+    std::vector<Vec2i> openStack;
+    openStack.reserve(dist);
+    openStack.push_back(source_);
+    Vec2i newPoint{};
+    int n = 0;
+    int N = worldSize.x * worldSize.y;
+    auto dirs = direction;
+    bool reach_target = false;
+    while (!openStack.empty()) {
+        auto point = openStack.back();
+        if (point == target_) {
+            reach_target = true;
+            break;
+        }
+        closedSet.emplace(point);
+        //是否发现新节点
+        bool bFound = false;
+        auto min_score = UINT_MAX;
+        n++;
+        float wh = relaxer(epsilon, ++n, N);
+        for (uint i = 0; i < directions; ++i) {
+            auto nPoint = point + dirs[i];
+            //已经探测过跳过
+            if (closedSet.find(nPoint) != closedSet.end()) {
+                continue;
+            }
+            if (detectCollision(nPoint)) {
+                continue;
+            }
+            auto score = (uint) (wh * heuristic(nPoint, target_));
+            if (score < min_score) {
+                min_score = score;
+                newPoint = nPoint;
+                bFound = true;
+            }
+        }
+        if (bFound) {
+            openStack.push_back(newPoint);
+        } else {
+            openStack.pop_back();
+        }
+    }
+    if (reach_target) {
+        return openStack;
+    }
+    return {};
 }
 
 AStar::Node *AStar::Generator::findNodeOnMap(CoordMap &nodes_, const Vec2i &coordinates_) {

@@ -59,6 +59,7 @@ public:
         collision = std::forward<F>(collision_);
     }
     CoordinateList findPath(const Vec2i &source_, const Vec2i &target_);
+    CoordinateList findPathStack(const Vec2i &source_, const Vec2i &target_);
 private:
     HeuristicFunction heuristic;
     CollisionFunction collision;
