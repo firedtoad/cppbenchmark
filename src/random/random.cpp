@@ -1,6 +1,5 @@
 #include <benchmark/benchmark.h>
 #include <functional>
-#include <iostream>
 #include <random>
 #include <unordered_map>
 #include <absl/random/random.h>
@@ -61,32 +60,32 @@ static void BenchBoostRandom(benchmark::State &state) {
     }
 }
 
-//BENCHMARK_TEMPLATE(BenchBoostRandom, boost::minstd_rand0, boost::random::uniform_int_distribution<>);
-//BENCHMARK_TEMPLATE(BenchBoostRandom, boost::minstd_rand0, boost::random::uniform_real_distribution<>);
-//BENCHMARK_TEMPLATE(BenchBoostRandom, boost::minstd_rand0, boost::random::normal_distribution<>);
-//
-//BENCHMARK_TEMPLATE(BenchBoostRandom, boost::minstd_rand, boost::random::uniform_int_distribution<>);
-//BENCHMARK_TEMPLATE(BenchBoostRandom, boost::minstd_rand, boost::random::uniform_real_distribution<>);
-//BENCHMARK_TEMPLATE(BenchBoostRandom, boost::minstd_rand, boost::random::normal_distribution<>);
-//
-//
-//BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt19937, boost::random::uniform_int_distribution<>);
-//BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt19937, boost::random::uniform_real_distribution<>);
-//BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt19937, boost::random::normal_distribution<>);
-//
-//BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt19937_64, boost::random::uniform_int_distribution<>);
-//BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt19937_64, boost::random::uniform_real_distribution<>);
-//BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt19937_64, boost::random::normal_distribution<>);
-//
-//BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt11213b, boost::random::uniform_int_distribution<>);
-//BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt11213b, boost::random::uniform_real_distribution<>);
-//BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt11213b, boost::random::normal_distribution<>);
+BENCHMARK_TEMPLATE(BenchBoostRandom, boost::minstd_rand0, boost::random::uniform_int_distribution<>);
+BENCHMARK_TEMPLATE(BenchBoostRandom, boost::minstd_rand0, boost::random::uniform_real_distribution<>);
+BENCHMARK_TEMPLATE(BenchBoostRandom, boost::minstd_rand0, boost::random::normal_distribution<>);
+
+BENCHMARK_TEMPLATE(BenchBoostRandom, boost::minstd_rand, boost::random::uniform_int_distribution<>);
+BENCHMARK_TEMPLATE(BenchBoostRandom, boost::minstd_rand, boost::random::uniform_real_distribution<>);
+BENCHMARK_TEMPLATE(BenchBoostRandom, boost::minstd_rand, boost::random::normal_distribution<>);
+
+
+BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt19937, boost::random::uniform_int_distribution<>);
+BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt19937, boost::random::uniform_real_distribution<>);
+BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt19937, boost::random::normal_distribution<>);
+
+BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt19937_64, boost::random::uniform_int_distribution<>);
+BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt19937_64, boost::random::uniform_real_distribution<>);
+BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt19937_64, boost::random::normal_distribution<>);
+
+BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt11213b, boost::random::uniform_int_distribution<>);
+BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt11213b, boost::random::uniform_real_distribution<>);
+BENCHMARK_TEMPLATE(BenchBoostRandom, boost::mt11213b, boost::random::normal_distribution<>);
 
 template<typename P, typename D>
 static void BenchAbRandom(benchmark::State &state) {
     P p{std::random_device{}()};
-    D dis(INT_MIN,INT_MAX);
     for (auto _ : state) {
+        D dis(INT_MIN,INT_MAX);
         benchmark::DoNotOptimize(dis(p));
     }
 }

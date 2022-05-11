@@ -6,6 +6,17 @@
 #include "pcg_random.hpp"
 #include "pcg_uint128.hpp"
 
+
+template<typename G>
+static void BenchSeed(benchmark::State &state) {
+    for (auto _ : state) {
+        std::random_device rd;
+        benchmark::DoNotOptimize(rd());
+    }
+}
+
+BENCHMARK_TEMPLATE(BenchSeed, std::random_device);
+
 template<typename G>
 static void BenchEngine(benchmark::State &state) {
     for (auto _ : state) {

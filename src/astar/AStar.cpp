@@ -138,7 +138,6 @@ AStar::CoordinateList AStar::Generator::findPathStack(const Vec2i &source_, cons
     if (detectCollision(source_) || detectCollision(target_)) {
         return {};
     }
-    MemoryPool<AStar::Node> pool;
 
     auto delta = Heuristic::getDelta(source_, target_);
     auto dist = std::max(delta.x, delta.y) + 1;
