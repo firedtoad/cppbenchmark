@@ -9,8 +9,9 @@
 
 template<typename G>
 static void BenchSeed(benchmark::State &state) {
+    std::random_device rd;
     for (auto _ : state) {
-        std::random_device rd;
+
         benchmark::DoNotOptimize(rd());
     }
 }
@@ -130,6 +131,5 @@ BENCHMARK_TEMPLATE(BenchABEngine, absl::random_internal::NonsecureURBGBase<absl:
 int main(int argc, char **argv) {
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
-    benchmark::Shutdown();
     return 0;
 }
