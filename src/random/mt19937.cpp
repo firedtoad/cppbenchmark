@@ -5,7 +5,7 @@
 
 template<typename G>
 static void BenchEngine(benchmark::State &state) {
-    G mt{std::random_device{}()};
+    static G mt{std::random_device{}()};
     for (auto _ : state) {
         benchmark::DoNotOptimize(mt());
     }
@@ -23,7 +23,7 @@ BENCHMARK_TEMPLATE(BenchEngine, std::default_random_engine
 static void BenchSFMT(benchmark::State &state) {
 
     sfmt_t _state;
-    std::random_device dev;
+    static std::random_device dev;
 //    if (dev.entropy() > 0) {
     std::array<uint32_t, SFMT_N32> seed;
     std::generate(seed.begin(), seed.end(), std::ref(dev));

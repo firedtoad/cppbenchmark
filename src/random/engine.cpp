@@ -19,6 +19,17 @@ static void BenchSeed(benchmark::State &state) {
 BENCHMARK_TEMPLATE(BenchSeed, std::random_device);
 
 template<typename G>
+static void BenchSeedStatic(benchmark::State &state) {
+
+    for (auto _ : state) {
+        thread_local static std::random_device rd;
+        benchmark::DoNotOptimize(rd());
+    }
+}
+
+BENCHMARK_TEMPLATE(BenchSeedStatic, std::random_device);
+
+template<typename G>
 static void BenchEngine(benchmark::State &state) {
     for (auto _ : state) {
         G gen{};
