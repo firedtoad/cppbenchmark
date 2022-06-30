@@ -21,5 +21,9 @@ add_executable(vec_vectors vector/vectors.cpp)
 add_executable(vec_remove vector/remove.cpp)
 add_executable(vec_reserve vector/reserve.cpp)
 
+aux_source_directory(hash/internal HASH_SRC)
 
-add_compile_options(-std=c++17)
+add_executable(hash hash/hash.cpp ${HASH_SRC})
+target_link_libraries(hash PRIVATE glog gflags   brpc)
+
+add_compile_options(-std=c++17 -fno-omit-frame-pointer)

@@ -1,803 +1,803 @@
 #include<benchmark/benchmark.h>
 
 struct MyData0 {
-    ~MyData0() = default;
+
 };
 
 struct MyData1 {
-    ~MyData1() = default;
+
 };
 
 struct MyData2 {
-    ~MyData2() = default;
+
 };
 
 struct MyData3 {
-    ~MyData3() = default;
+
 };
 
 struct MyData4 {
-    ~MyData4() = default;
+
 };
 
 struct MyData5 {
-    ~MyData5() = default;
+
 };
 
 struct MyData6 {
-    ~MyData6() = default;
+
 };
 
 struct MyData7 {
-    ~MyData7() = default;
+
 };
 
 struct MyData8 {
-    ~MyData8() = default;
+
 };
 
 struct MyData9 {
-    ~MyData9() = default;
+
 };
 
 struct MyData10 {
-    ~MyData10() = default;
+
 };
 
 struct MyData11 {
-    ~MyData11() = default;
+
 };
 
 struct MyData12 {
-    ~MyData12() = default;
+
 };
 
 struct MyData13 {
-    ~MyData13() = default;
+
 };
 
 struct MyData14 {
-    ~MyData14() = default;
+
 };
 
 struct MyData15 {
-    ~MyData15() = default;
+
 };
 
 struct MyData16 {
-    ~MyData16() = default;
+
 };
 
 struct MyData17 {
-    ~MyData17() = default;
+
 };
 
 struct MyData18 {
-    ~MyData18() = default;
+
 };
 
 struct MyData19 {
-    ~MyData19() = default;
+
 };
 
 struct MyData20 {
-    ~MyData20() = default;
+
 };
 
 struct MyData21 {
-    ~MyData21() = default;
+
 };
 
 struct MyData22 {
-    ~MyData22() = default;
+
 };
 
 struct MyData23 {
-    ~MyData23() = default;
+
 };
 
 struct MyData24 {
-    ~MyData24() = default;
+
 };
 
 struct MyData25 {
-    ~MyData25() = default;
+
 };
 
 struct MyData26 {
-    ~MyData26() = default;
+
 };
 
 struct MyData27 {
-    ~MyData27() = default;
+
 };
 
 struct MyData28 {
-    ~MyData28() = default;
+
 };
 
 struct MyData29 {
-    ~MyData29() = default;
+
 };
 
 struct MyData30 {
-    ~MyData30() = default;
+
 };
 
 struct MyData31 {
-    ~MyData31() = default;
+
 };
 
 struct MyData32 {
-    ~MyData32() = default;
+
 };
 
 struct MyData33 {
-    ~MyData33() = default;
+
 };
 
 struct MyData34 {
-    ~MyData34() = default;
+
 };
 
 struct MyData35 {
-    ~MyData35() = default;
+
 };
 
 struct MyData36 {
-    ~MyData36() = default;
+
 };
 
 struct MyData37 {
-    ~MyData37() = default;
+
 };
 
 struct MyData38 {
-    ~MyData38() = default;
+
 };
 
 struct MyData39 {
-    ~MyData39() = default;
+
 };
 
 struct MyData40 {
-    ~MyData40() = default;
+
 };
 
 struct MyData41 {
-    ~MyData41() = default;
+
 };
 
 struct MyData42 {
-    ~MyData42() = default;
+
 };
 
 struct MyData43 {
-    ~MyData43() = default;
+
 };
 
 struct MyData44 {
-    ~MyData44() = default;
+
 };
 
 struct MyData45 {
-    ~MyData45() = default;
+
 };
 
 struct MyData46 {
-    ~MyData46() = default;
+
 };
 
 struct MyData47 {
-    ~MyData47() = default;
+
 };
 
 struct MyData48 {
-    ~MyData48() = default;
+
 };
 
 struct MyData49 {
-    ~MyData49() = default;
+
 };
 
 struct MyData50 {
-    ~MyData50() = default;
+
 };
 
 struct MyData51 {
-    ~MyData51() = default;
+
 };
 
 struct MyData52 {
-    ~MyData52() = default;
+
 };
 
 struct MyData53 {
-    ~MyData53() = default;
+
 };
 
 struct MyData54 {
-    ~MyData54() = default;
+
 };
 
 struct MyData55 {
-    ~MyData55() = default;
+
 };
 
 struct MyData56 {
-    ~MyData56() = default;
+
 };
 
 struct MyData57 {
-    ~MyData57() = default;
+
 };
 
 struct MyData58 {
-    ~MyData58() = default;
+
 };
 
 struct MyData59 {
-    ~MyData59() = default;
+
 };
 
 struct MyData60 {
-    ~MyData60() = default;
+
 };
 
 struct MyData61 {
-    ~MyData61() = default;
+
 };
 
 struct MyData62 {
-    ~MyData62() = default;
+
 };
 
 struct MyData63 {
-    ~MyData63() = default;
+
 };
 
 struct MyData64 {
-    ~MyData64() = default;
+
 };
 
 struct MyData65 {
-    ~MyData65() = default;
+
 };
 
 struct MyData66 {
-    ~MyData66() = default;
+
 };
 
 struct MyData67 {
-    ~MyData67() = default;
+
 };
 
 struct MyData68 {
-    ~MyData68() = default;
+
 };
 
 struct MyData69 {
-    ~MyData69() = default;
+
 };
 
 struct MyData70 {
-    ~MyData70() = default;
+
 };
 
 struct MyData71 {
-    ~MyData71() = default;
+
 };
 
 struct MyData72 {
-    ~MyData72() = default;
+
 };
 
 struct MyData73 {
-    ~MyData73() = default;
+
 };
 
 struct MyData74 {
-    ~MyData74() = default;
+
 };
 
 struct MyData75 {
-    ~MyData75() = default;
+
 };
 
 struct MyData76 {
-    ~MyData76() = default;
+
 };
 
 struct MyData77 {
-    ~MyData77() = default;
+
 };
 
 struct MyData78 {
-    ~MyData78() = default;
+
 };
 
 struct MyData79 {
-    ~MyData79() = default;
+
 };
 
 struct MyData80 {
-    ~MyData80() = default;
+
 };
 
 struct MyData81 {
-    ~MyData81() = default;
+
 };
 
 struct MyData82 {
-    ~MyData82() = default;
+
 };
 
 struct MyData83 {
-    ~MyData83() = default;
+
 };
 
 struct MyData84 {
-    ~MyData84() = default;
+
 };
 
 struct MyData85 {
-    ~MyData85() = default;
+
 };
 
 struct MyData86 {
-    ~MyData86() = default;
+
 };
 
 struct MyData87 {
-    ~MyData87() = default;
+
 };
 
 struct MyData88 {
-    ~MyData88() = default;
+
 };
 
 struct MyData89 {
-    ~MyData89() = default;
+
 };
 
 struct MyData90 {
-    ~MyData90() = default;
+
 };
 
 struct MyData91 {
-    ~MyData91() = default;
+
 };
 
 struct MyData92 {
-    ~MyData92() = default;
+
 };
 
 struct MyData93 {
-    ~MyData93() = default;
+
 };
 
 struct MyData94 {
-    ~MyData94() = default;
+
 };
 
 struct MyData95 {
-    ~MyData95() = default;
+
 };
 
 struct MyData96 {
-    ~MyData96() = default;
+
 };
 
 struct MyData97 {
-    ~MyData97() = default;
+
 };
 
 struct MyData98 {
-    ~MyData98() = default;
+
 };
 
 struct MyData99 {
-    ~MyData99() = default;
+
 };
 
 struct MyData100 {
-    ~MyData100() = default;
+
 };
 
 struct MyData101 {
-    ~MyData101() = default;
+
 };
 
 struct MyData102 {
-    ~MyData102() = default;
+
 };
 
 struct MyData103 {
-    ~MyData103() = default;
+
 };
 
 struct MyData104 {
-    ~MyData104() = default;
+
 };
 
 struct MyData105 {
-    ~MyData105() = default;
+
 };
 
 struct MyData106 {
-    ~MyData106() = default;
+
 };
 
 struct MyData107 {
-    ~MyData107() = default;
+
 };
 
 struct MyData108 {
-    ~MyData108() = default;
+
 };
 
 struct MyData109 {
-    ~MyData109() = default;
+
 };
 
 struct MyData110 {
-    ~MyData110() = default;
+
 };
 
 struct MyData111 {
-    ~MyData111() = default;
+
 };
 
 struct MyData112 {
-    ~MyData112() = default;
+
 };
 
 struct MyData113 {
-    ~MyData113() = default;
+
 };
 
 struct MyData114 {
-    ~MyData114() = default;
+
 };
 
 struct MyData115 {
-    ~MyData115() = default;
+
 };
 
 struct MyData116 {
-    ~MyData116() = default;
+
 };
 
 struct MyData117 {
-    ~MyData117() = default;
+
 };
 
 struct MyData118 {
-    ~MyData118() = default;
+
 };
 
 struct MyData119 {
-    ~MyData119() = default;
+
 };
 
 struct MyData120 {
-    ~MyData120() = default;
+
 };
 
 struct MyData121 {
-    ~MyData121() = default;
+
 };
 
 struct MyData122 {
-    ~MyData122() = default;
+
 };
 
 struct MyData123 {
-    ~MyData123() = default;
+
 };
 
 struct MyData124 {
-    ~MyData124() = default;
+
 };
 
 struct MyData125 {
-    ~MyData125() = default;
+
 };
 
 struct MyData126 {
-    ~MyData126() = default;
+
 };
 
 struct MyData127 {
-    ~MyData127() = default;
+
 };
 
 struct MyData128 {
-    ~MyData128() = default;
+
 };
 
 struct MyData129 {
-    ~MyData129() = default;
+
 };
 
 struct MyData130 {
-    ~MyData130() = default;
+
 };
 
 struct MyData131 {
-    ~MyData131() = default;
+
 };
 
 struct MyData132 {
-    ~MyData132() = default;
+
 };
 
 struct MyData133 {
-    ~MyData133() = default;
+
 };
 
 struct MyData134 {
-    ~MyData134() = default;
+
 };
 
 struct MyData135 {
-    ~MyData135() = default;
+
 };
 
 struct MyData136 {
-    ~MyData136() = default;
+
 };
 
 struct MyData137 {
-    ~MyData137() = default;
+
 };
 
 struct MyData138 {
-    ~MyData138() = default;
+
 };
 
 struct MyData139 {
-    ~MyData139() = default;
+
 };
 
 struct MyData140 {
-    ~MyData140() = default;
+
 };
 
 struct MyData141 {
-    ~MyData141() = default;
+
 };
 
 struct MyData142 {
-    ~MyData142() = default;
+
 };
 
 struct MyData143 {
-    ~MyData143() = default;
+
 };
 
 struct MyData144 {
-    ~MyData144() = default;
+
 };
 
 struct MyData145 {
-    ~MyData145() = default;
+
 };
 
 struct MyData146 {
-    ~MyData146() = default;
+
 };
 
 struct MyData147 {
-    ~MyData147() = default;
+
 };
 
 struct MyData148 {
-    ~MyData148() = default;
+
 };
 
 struct MyData149 {
-    ~MyData149() = default;
+
 };
 
 struct MyData150 {
-    ~MyData150() = default;
+
 };
 
 struct MyData151 {
-    ~MyData151() = default;
+
 };
 
 struct MyData152 {
-    ~MyData152() = default;
+
 };
 
 struct MyData153 {
-    ~MyData153() = default;
+
 };
 
 struct MyData154 {
-    ~MyData154() = default;
+
 };
 
 struct MyData155 {
-    ~MyData155() = default;
+
 };
 
 struct MyData156 {
-    ~MyData156() = default;
+
 };
 
 struct MyData157 {
-    ~MyData157() = default;
+
 };
 
 struct MyData158 {
-    ~MyData158() = default;
+
 };
 
 struct MyData159 {
-    ~MyData159() = default;
+
 };
 
 struct MyData160 {
-    ~MyData160() = default;
+
 };
 
 struct MyData161 {
-    ~MyData161() = default;
+
 };
 
 struct MyData162 {
-    ~MyData162() = default;
+
 };
 
 struct MyData163 {
-    ~MyData163() = default;
+
 };
 
 struct MyData164 {
-    ~MyData164() = default;
+
 };
 
 struct MyData165 {
-    ~MyData165() = default;
+
 };
 
 struct MyData166 {
-    ~MyData166() = default;
+
 };
 
 struct MyData167 {
-    ~MyData167() = default;
+
 };
 
 struct MyData168 {
-    ~MyData168() = default;
+
 };
 
 struct MyData169 {
-    ~MyData169() = default;
+
 };
 
 struct MyData170 {
-    ~MyData170() = default;
+
 };
 
 struct MyData171 {
-    ~MyData171() = default;
+
 };
 
 struct MyData172 {
-    ~MyData172() = default;
+
 };
 
 struct MyData173 {
-    ~MyData173() = default;
+
 };
 
 struct MyData174 {
-    ~MyData174() = default;
+
 };
 
 struct MyData175 {
-    ~MyData175() = default;
+
 };
 
 struct MyData176 {
-    ~MyData176() = default;
+
 };
 
 struct MyData177 {
-    ~MyData177() = default;
+
 };
 
 struct MyData178 {
-    ~MyData178() = default;
+
 };
 
 struct MyData179 {
-    ~MyData179() = default;
+
 };
 
 struct MyData180 {
-    ~MyData180() = default;
+
 };
 
 struct MyData181 {
-    ~MyData181() = default;
+
 };
 
 struct MyData182 {
-    ~MyData182() = default;
+
 };
 
 struct MyData183 {
-    ~MyData183() = default;
+
 };
 
 struct MyData184 {
-    ~MyData184() = default;
+
 };
 
 struct MyData185 {
-    ~MyData185() = default;
+
 };
 
 struct MyData186 {
-    ~MyData186() = default;
+
 };
 
 struct MyData187 {
-    ~MyData187() = default;
+
 };
 
 struct MyData188 {
-    ~MyData188() = default;
+
 };
 
 struct MyData189 {
-    ~MyData189() = default;
+
 };
 
 struct MyData190 {
-    ~MyData190() = default;
+
 };
 
 struct MyData191 {
-    ~MyData191() = default;
+
 };
 
 struct MyData192 {
-    ~MyData192() = default;
+
 };
 
 struct MyData193 {
-    ~MyData193() = default;
+
 };
 
 struct MyData194 {
-    ~MyData194() = default;
+
 };
 
 struct MyData195 {
-    ~MyData195() = default;
+
 };
 
 struct MyData196 {
-    ~MyData196() = default;
+
 };
 
 struct MyData197 {
-    ~MyData197() = default;
+
 };
 
 struct MyData198 {
-    ~MyData198() = default;
+
 };
 
 struct MyData199 {
-    ~MyData199() = default;
+
 };
 
 struct Pointer {
@@ -1004,8 +1004,7 @@ struct Pointer {
     MyData199 *mData199{};
 };
 
-Pointer::~Pointer()
-{
+Pointer::~Pointer() {
     delete mData0;
     delete mData1;
     delete mData2;
@@ -1208,7 +1207,6 @@ Pointer::~Pointer()
     delete mData199;
 }
 
-
 static void BM_DeleteNullptr(benchmark::State &state) {
     for (auto _ : state) {
         Pointer p{};
@@ -1216,7 +1214,17 @@ static void BM_DeleteNullptr(benchmark::State &state) {
     }
 }
 
+static void BM_DeleteVecNullptr(benchmark::State &state) {
+    std::array<MyData1 *, 200> vec{};
+    for (auto _ : state) {
+        for (auto &it : vec) {
+            delete it;
+        }
+    }
+}
+
 BENCHMARK(BM_DeleteNullptr);
+BENCHMARK(BM_DeleteVecNullptr);
 
 int main(int argc, char **argv) {
     benchmark::Initialize(&argc, argv);

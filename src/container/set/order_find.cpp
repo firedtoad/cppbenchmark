@@ -40,6 +40,7 @@ static void BenchOrderSetInt(benchmark::State &state) {
 }
 
 BENCHMARK_TEMPLATE(BenchOrderSetInt, std::set<int>);
+BENCHMARK_TEMPLATE(BenchOrderSetInt, std::set<int,std::less<>>);
 BENCHMARK_TEMPLATE(BenchOrderSetInt, tsl::ordered_set<int>);
 
 template<class M>
@@ -59,6 +60,7 @@ static void BenchOrderSetString(benchmark::State &state) {
 }
 
 BENCHMARK_TEMPLATE(BenchOrderSetString, std::set<std::string>);
+BENCHMARK_TEMPLATE(BenchOrderSetString, std::set<std::string,std::less<>>);
 BENCHMARK_TEMPLATE(BenchOrderSetString, tsl::ordered_set<std::string>);
 
 
