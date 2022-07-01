@@ -55,7 +55,7 @@ static void VYQueue(benchmark::State &state) {
 BENCHMARK(VYQueue)->DenseThreadRange(1, 8);
 
 static void TBBQueue(benchmark::State &state) {
-    static tbb::detail::d2::concurrent_queue<S> tbbQueue;
+    static tbb::strict_ppl::concurrent_queue<S> tbbQueue;
     for (auto _ : state) {
         S s;
         tbbQueue.push(s);
@@ -70,6 +70,5 @@ BENCHMARK(TBBQueue)->DenseThreadRange(1, 8);
 int main(int argc, char **argv) {
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
-    benchmark::Shutdown();
     return 0;
 }

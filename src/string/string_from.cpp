@@ -183,6 +183,5 @@ int main(int argc, char **argv) {
     tagf = std::mt19937_64{std::random_device{}()}();
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
-    benchmark::Shutdown();
     return 0;
 }

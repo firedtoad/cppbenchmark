@@ -60,6 +60,5 @@ BENCHMARK(BenchAddRValue);
  {
      benchmark::Initialize(&argc, argv);
      benchmark::RunSpecifiedBenchmarks();
-     benchmark::Shutdown();
      return 0;
  }

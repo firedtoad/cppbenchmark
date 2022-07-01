@@ -117,6 +117,5 @@ BENCHMARK(BenchPBSplit)->ThreadRange(1, 8);
 int main(int argc, char **argv) {
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
-    benchmark::Shutdown();
     return 0;
 }

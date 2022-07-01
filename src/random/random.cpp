@@ -119,6 +119,5 @@ BENCHMARK_TEMPLATE(BenchAbRandom,pcg64_fast,absl::log_uniform_int_distribution<>
 int main(int argc, char **argv) {
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
-    benchmark::Shutdown();
     return 0;
 }
