@@ -6,6 +6,8 @@
 #include <tbb/concurrent_queue.h>
 #include "SPSCQueue.h"
 #include "readerwriterqueue.h"
+#include <boost/smart_ptr/detail/spinlock.hpp>
+#include <boost/smart_ptr/detail/spinlock_std_atomic.hpp>
 
 struct S {
     char c[128];

@@ -12,7 +12,7 @@
 #include<string>
 #include<iostream>
 
-constexpr int N = 100;
+constexpr int N = 1000;
 
 
 void init(std::vector<std::string> &v1) {

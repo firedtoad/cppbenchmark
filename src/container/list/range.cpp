@@ -14,7 +14,7 @@ using mode = boost::intrusive::link_mode<boost::intrusive::safe_link>;
 using constant_time_size = boost::intrusive::constant_time_size<true>;
 
 struct SList : public boost::intrusive::list_base_hook<mode> {
-
+  int i;
 };
 
 static void BenchListRange(benchmark::State &state) {
@@ -48,6 +48,22 @@ static void BenchDequeRange(benchmark::State &state) {
 }
 
 BENCHMARK(BenchDequeRange);
+
+static void BenchVectorRange(benchmark::State &state) {
+  std::vector<SList> v;
+  for (auto i = 0; i < 1024; i++) {
+    v.push_back({});
+  }
+  int r = 0;
+  for (auto _ : state) {
+    for (auto &it : v) {
+      r+=it.i;
+    }
+  }
+  benchmark::DoNotOptimize(r);
+}
+
+BENCHMARK(BenchVectorRange);
 
 static void BenchBUListRange(benchmark::State &state) {
     butil::LinkedList<SList> v;

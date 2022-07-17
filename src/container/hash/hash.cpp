@@ -7,7 +7,6 @@
 #include "internal/wyhash.h"
 #include "internal/xxhash.h"
 #include <benchmark/benchmark.h>
-#include <map>
 #include <string>
 #include <vector>
 #include "flat_hash_map.hpp"
@@ -143,8 +142,8 @@ static void BenchUnOrderMapString(benchmark::State &state) {
   std::vector<std::string> keys(65536);
   for (auto i = 0; i < 65536; i++) {
     keys[i] = std::to_string(random_() );
-    auto sKey = std::to_string(i);
-    m[sKey] = i;
+//    auto sKey = std::to_string(i);
+    m[keys[i]] = i;
   }
   for (auto _ : state) {
     auto kIndex = random_() % 65536;
@@ -163,8 +162,8 @@ static void BenchFlatMapString(benchmark::State &state) {
   std::vector<std::string> keys(65536);
   for (auto i = 0; i < 65536; i++) {
     keys[i] = std::to_string(random_() );
-    auto sKey = std::to_string(i);
-    m[sKey] = i;
+//    auto sKey = std::to_string(i);
+    m[keys[i]] = i;
   }
   for (auto _ : state) {
     auto kIndex = random_() % 65536;
@@ -181,8 +180,8 @@ static void BenchFlatMapStringStandHash(benchmark::State &state) {
   std::vector<std::string> keys(65536);
   for (auto i = 0; i < 65536; i++) {
     keys[i] = std::to_string(random_() );
-    auto sKey = std::to_string(i);
-    m[sKey] = i;
+//    auto sKey = std::to_string(i);
+    m[keys[i]] = i;
   }
   for (auto _ : state) {
     auto kIndex = random_() % 65536;

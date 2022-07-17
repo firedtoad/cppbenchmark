@@ -1,6 +1,7 @@
 #include <benchmark/benchmark.h>
 #include <iostream>
 #include <map>
+#include <unordered_map>
 
 static inline uint64_t
 xor_shift96() { /* A George Marsaglia generator, period 2^96-1 */
@@ -51,8 +52,9 @@ BENCHMARK(BenchStringCompare);
 template <class M> static void BenchOrderMapStringSSO(benchmark::State &state) {
   M m;
   std::vector<std::string> keys(65536);
+  int k = 1000000;
   for (auto i = 0; i < 65536; i++) {
-    keys[i] = std::to_string(i % 65536);
+    keys[i] = std::to_string(k++);
     m[keys[i]] = i;
   }
   for (auto _ : state) {
@@ -70,8 +72,9 @@ template <class M>
 static void BenchOrderMapStringNoSSO(benchmark::State &state) {
   M m;
   std::vector<std::string> keys(65536);
+  int k = 1000000;
   for (auto i = 0; i < 65536; i++) {
-    keys[i] = "12345678901234561234567890123456" + std::to_string(i % 65536);
+    keys[i] = "12345678901234561234567890123456" + std::to_string(k++);
     m[keys[i]] = i;
   }
 
@@ -85,7 +88,6 @@ static void BenchOrderMapStringNoSSO(benchmark::State &state) {
 BENCHMARK_TEMPLATE(BenchOrderMapStringNoSSO, std::map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchOrderMapStringNoSSO,
                    std::map<std::string, int, std::less<>>);
-
 int main(int argc, char **argv) {
   benchmark::Initialize(&argc, argv);
   benchmark::RunSpecifiedBenchmarks();

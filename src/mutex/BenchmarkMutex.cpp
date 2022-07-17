@@ -27,6 +27,7 @@
 #include <linux/futex.h>
 #include <pthread.h>
 #endif
+#include <boost/smart_ptr/detail/spinlock.hpp>
 
 // todo: try WTF lock (aka parking lot)
 
@@ -730,6 +731,7 @@ void benchmark_mutex_lock_unlock(benchmark::State &state)
     BENCHMARK_TEMPLATE(benchmark, spinlock_compare_exchange) __VA_ARGS__;\
     BENCHMARK_TEMPLATE(benchmark, spinlock_compare_exchange_only) __VA_ARGS__;\
     BENCHMARK_TEMPLATE(benchmark, terrible_spinlock) __VA_ARGS__;\
+    BENCHMARK_TEMPLATE(benchmark, boost::detail::spinlock) __VA_ARGS__;\
     /*BENCHMARK_TEMPLATE(benchmark, parameterized_spinlock<0, 0>) __VA_ARGS__;\
     BENCHMARK_TEMPLATE(benchmark, parameterized_spinlock<0, 1>) __VA_ARGS__;\
     BENCHMARK_TEMPLATE(benchmark, parameterized_spinlock<0, 4>) __VA_ARGS__;\
@@ -1759,4 +1761,5 @@ int main(int argc, char *argv[])
 {
     ::benchmark::Initialize(&argc, argv);
     ::benchmark::RunSpecifiedBenchmarks();
+    return 0;
 }
