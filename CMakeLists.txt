@@ -3,12 +3,15 @@ project(bench C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 link_libraries(benchmark pthread)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -Wextra -march=native -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-qualifiers -fdiagnostics-color=auto ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -Wextra  -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-qualifiers -fdiagnostics-color=auto ")
 
-if (CMAKE_CXX_COMPILER MATCHES "clang")
-    #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -fsanitize=address -fno-omit-frame-pointer")
+if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+#    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -fsanitize=address -fno-omit-frame-pointer")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-limit-debug-info")
+    set(CMAKE_CXX_FLAGS_RELEASE  "-O2 -DNDEBUG")
 endif ()
+set(CMAKE_VERBOSE_MAKEFILE ON)
+#set(CMAKE_EXE_LINKER_FLAGS "-fuse-ld=gold")
 
 find_program(CCACHE_PROGRAM ccache)
 if (CCACHE_PROGRAM)
@@ -19,6 +22,7 @@ else ()
 endif ()
 
 include_directories(
+        /usr/local/include
         ${CMAKE_CURRENT_SOURCE_DIR}/lib3rd/
         ${CMAKE_CURRENT_SOURCE_DIR}/lib3rd/flat_hash_map
         ${CMAKE_CURRENT_SOURCE_DIR}/lib3rd/llvm
@@ -27,6 +31,7 @@ include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/lib3rd/robin_hood
 )
 
+link_directories(/usr/local/lib)
 
 add_subdirectory(src/string)
 add_subdirectory(src/allocator)
@@ -35,6 +40,7 @@ add_subdirectory(src/astar)
 add_subdirectory(src/container)
 add_subdirectory(src/coroutine)
 add_subdirectory(src/branch)
+add_subdirectory(src/logging)
 add_subdirectory(src/compiler)
 add_subdirectory(src/lockfree)
 add_subdirectory(src/cpu)

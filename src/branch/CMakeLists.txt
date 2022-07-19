@@ -1,2 +1,2 @@
-add_executable(delete delete.cpp )
-target_compile_options(delete PRIVATE -fno-omit-frame-pointer)
+add_executable(branch delete.cpp )
+target_compile_options(branch PRIVATE -fno-omit-frame-pointer)

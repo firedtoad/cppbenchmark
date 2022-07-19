@@ -46,7 +46,8 @@ static void BenchUnOrderMapInt(benchmark::State &state) {
     }
     for (auto _ : state) {
         auto c = m.find(_random() % 65536);
-        benchmark::DoNotOptimize(c);
+        auto v=c->second;
+        benchmark::DoNotOptimize(v);
     }
 }
 
@@ -64,6 +65,8 @@ BENCHMARK_TEMPLATE(BenchUnOrderMapInt, tsl::hopscotch_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, tsl::robin_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, tsl::sparse_map<int, int>);
 
+
+
 template<class M>
 static void BenchUnOrderMapString(benchmark::State &state) {
     M m;
@@ -80,6 +83,7 @@ static void BenchUnOrderMapString(benchmark::State &state) {
         benchmark::DoNotOptimize(c);
     }
 }
+
 template<class M>
 static void BenchCharKeyMap(benchmark::State &state) {
      M m;
@@ -97,7 +101,6 @@ static void BenchCharKeyMap(benchmark::State &state) {
 }
 
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, std::unordered_map<std::string, int>);
-
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, ska::unordered_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, ska::flat_hash_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, ska::bytell_hash_map<std::string, int>);

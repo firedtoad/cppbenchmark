@@ -8,6 +8,7 @@ add_executable(map_find_order map/order_find.cpp)
 add_executable(map_range_order map/order_range.cpp)
 add_executable(map_find_unorder map/unorder_find.cpp)
 add_executable(map_range_unorder map/unorder_range.cpp)
+add_executable(map_erase_unorder map/unorder_erase.cpp)
 add_executable(map_decay map/decay.cpp)
 add_executable(map_reserve map/reserve.cpp)
 
@@ -23,10 +24,11 @@ add_executable(vec_vectors vector/vectors.cpp)
 add_executable(vec_sorted vector/sorted.cpp)
 add_executable(vec_remove vector/remove.cpp)
 add_executable(vec_reserve vector/reserve.cpp)
+add_executable(vec_pod vector/pod.cpp)
 
 aux_source_directory(hash/internal HASH_SRC)
 
 add_executable(hash hash/hash.cpp ${HASH_SRC})
 target_link_libraries(hash PRIVATE glog gflags   brpc)
 
-add_compile_options(-std=c++17 -fno-omit-frame-pointer)
+add_compile_options(-std=c++17 -g -fno-omit-frame-pointer)

@@ -2,54 +2,13 @@
 // Created by Administrator on 2022/07/19.
 //
 
+#include "SortedVector.h"
 #include <algorithm>
 #include <benchmark/benchmark.h>
-#include <numeric>
 #include <set>
-#include <vector>
-
-template <class T, class Compare = std::less<T>> struct sorted_vector {
-  typedef typename std::vector<T>::iterator iterator;
-  typedef typename std::vector<T>::const_iterator const_iterator;
-  iterator begin() { return V.begin(); }
-  iterator end() { return V.end(); }
-  const_iterator begin() const { return V.begin(); }
-  const_iterator end() const { return V.end(); }
-  sorted_vector(const Compare &c = Compare()) : V(), cmp(c) {}
-  template <class InputIterator>
-  sorted_vector(InputIterator first, InputIterator last,
-                const Compare &c = Compare())
-      : V(first, last), cmp(c) {
-    std::sort(begin(), end(), cmp);
-  }
-  iterator insert(const T &t) {
-    iterator it = lower_bound(begin(), end(), t, cmp);
-    if (it == end() || cmp(t, *it))
-      V.insert(it, t);
-    return it;
-  }
-  const_iterator find(const T &t) const {
-    const_iterator it = lower_bound(begin(), end(), t, cmp);
-    return it == end() || cmp(t, *it) ? end() : it;
-  }
-
-  size_t erase(const T &t) {
-    iterator it = lower_bound(begin(), end(), t, cmp);
-    if (it != end()) {
-      V.erase(it);
-      return 1;
-    }
-    return 0;
-  }
-
-private:
-  std::vector<T> V;
-  Compare cmp;
-};
-
 static unsigned long
 xorshf96() { /* A George Marsaglia generator, period 2^96-1 */
-  static unsigned long x = 123456789, y = 362436069, z = 521288629;
+  static unsigned long x = 103456789, y = 362436069, z = 521088629;
   unsigned long t;
 
   x ^= x << 16;
@@ -70,34 +29,78 @@ template <typename V> static void BenchInsert(benchmark::State &state) {
   for (auto _ : state) {
     V v;
     for (auto i = 0; i < state.range(0); i++) {
-      v.insert(i % state.range(0));
+      v.insert(_random());
     }
   }
 }
-BENCHMARK_TEMPLATE(BenchInsert, sorted_vector<int>)->Range(2, 1024);
-BENCHMARK_TEMPLATE(BenchInsert, std::set<int>)->Range(2, 1024);
+BENCHMARK_TEMPLATE(BenchInsert, sorted_vector<uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsert, std::set<uint64_t>)->Range(1, 1 << 10);
+
+struct Pod {
+  uint64_t i;
+  Pod() noexcept = default;
+  Pod(uint64_t i_) : i(i_) {}
+  Pod(const Pod &pod) noexcept = default;
+  Pod(Pod &&pod) noexcept = default;
+  Pod &operator=(const Pod &pod) noexcept = default;
+  Pod &operator=(Pod &&pod) noexcept = default;
+  bool operator<(const Pod &p) const { return i < p.i; }
+};
+
+struct NonPod {
+  uint64_t i = 0;
+  NonPod() noexcept = default;
+  NonPod(uint64_t i_) : i(i_) {}
+  NonPod(const NonPod &p) noexcept = default;
+  NonPod(NonPod &&p) noexcept = default;
+  NonPod &operator=(const NonPod &p) noexcept = default;
+  NonPod &operator=(NonPod &&p) noexcept = default;
+  bool operator<(const NonPod &p) const { return i < p.i; }
+};
+
+template <typename V> static void BenchInsertPod(benchmark::State &state) {
+  for (auto _ : state) {
+    V v;
+    for (auto i = 0; i < state.range(0); i++) {
+      Pod pod{_random() % 65536};
+      v.insert(pod);
+    }
+  }
+}
+template <typename V> static void BenchInsertNonPod(benchmark::State &state) {
+  for (auto _ : state) {
+    V v;
+    for (auto i = 0; i < state.range(0); i++) {
+      NonPod pod{_random() % 65536};
+      v.insert(pod);
+    }
+  }
+}
+
+BENCHMARK_TEMPLATE(BenchInsertPod, sorted_vector<Pod>)->Range(1<<10, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsertNonPod, sorted_vector<NonPod>)->Range(1<<10, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsertPod, std::set<Pod>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchFind(benchmark::State &state) {
   V v;
   for (auto i = 0; i < state.range(0); i++) {
-    v.insert(i);
+    v.insert(_random());
   }
-  auto sz = state.range(0);
   for (auto _ : state) {
-    auto it = v.find(_random() % sz);
+    auto it = v.find(_random());
     benchmark::DoNotOptimize(it);
   }
 }
 
-BENCHMARK_TEMPLATE(BenchFind, sorted_vector<int>)->Range(2, 1024);
-BENCHMARK_TEMPLATE(BenchFind, std::set<int>)->Range(2, 1024);
+BENCHMARK_TEMPLATE(BenchFind, sorted_vector<uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchFind, std::set<uint64_t>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchRange(benchmark::State &state) {
   V v;
   for (auto i = 0; i < state.range(0); i++) {
-    v.insert(i);
+    v.insert(_random());
   }
-
+  auto sum = 0;
   for (auto _ : state) {
     for (auto &it : v) {
       sum += it;
@@ -106,17 +109,16 @@ template <typename V> static void BenchRange(benchmark::State &state) {
   benchmark::DoNotOptimize(sum);
 }
 
-BENCHMARK_TEMPLATE(BenchRange, sorted_vector<int>)->Range(2, 1024);
-BENCHMARK_TEMPLATE(BenchRange, std::set<int>)->Range(2, 1024);
+BENCHMARK_TEMPLATE(BenchRange, sorted_vector<uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchRange, std::set<uint64_t>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchErase(benchmark::State &state) {
   V v;
   for (auto i = 0; i < state.range(0); i++) {
-    v.insert(i);
+    v.insert(_random());
   }
-  auto sz = state.range(0);
   for (auto _ : state) {
-    auto r = _random() % sz;
+    auto r = _random();
     auto it = v.erase(r);
     if (it > 0) {
       v.insert(r);
@@ -124,8 +126,8 @@ template <typename V> static void BenchErase(benchmark::State &state) {
   }
 }
 
-BENCHMARK_TEMPLATE(BenchErase, sorted_vector<int>)->Range(2, 1024);
-BENCHMARK_TEMPLATE(BenchErase, std::set<int>)->Range(2, 1024);
+BENCHMARK_TEMPLATE(BenchErase, sorted_vector<uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchErase, std::set<uint64_t>)->Range(1, 1 << 10);
 
 int main(int argc, char **argv) {
   benchmark::Initialize(&argc, argv);
