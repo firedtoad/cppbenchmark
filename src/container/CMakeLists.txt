@@ -13,11 +13,14 @@ add_executable(map_reserve map/reserve.cpp)
 
 add_executable(set_find_order set/order_find.cpp)
 add_executable(set_range_order set/order_range.cpp)
+add_executable(set_erase_order set/order_erase.cpp)
 add_executable(set_find_unorder set/unorder_find.cpp)
 add_executable(set_range_unorder set/unorder_range.cpp)
+add_executable(set_erase_unorder set/unorder_erase.cpp)
 add_executable(set_reserve set/reserve.cpp)
 
 add_executable(vec_vectors vector/vectors.cpp)
+add_executable(vec_sorted vector/sorted.cpp)
 add_executable(vec_remove vector/remove.cpp)
 add_executable(vec_reserve vector/reserve.cpp)
 

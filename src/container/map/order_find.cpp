@@ -3,7 +3,10 @@
 //
 
 #include "absl/container/btree_map.h"
+#include "absl/container/node_hash_map.h"
 #include "tsl/ordered_map.h"
+#include <boost/container/flat_map.hpp>
+#include <boost/container/small_vector.hpp>
 #include <benchmark/benchmark.h>
 #include <iostream>
 #include <map>
@@ -46,6 +49,7 @@ BENCHMARK_TEMPLATE(
                      std::allocator<std::pair<int, int>>,
                      std::vector<std::pair<int, int>>>);
 BENCHMARK_TEMPLATE(BenchOrderMapInt, absl::btree_map<int, int>);
+BENCHMARK_TEMPLATE(BenchOrderMapInt,boost::container::small_flat_map<int, int,65536>);
 
 template <class M> static void BenchOrderMapString(benchmark::State &state) {
   M m;
@@ -70,7 +74,7 @@ BENCHMARK_TEMPLATE(BenchOrderMapString,
                                     std::allocator<std::pair<std::string, int>>,
                                     std::vector<std::pair<std::string, int>>>);
 BENCHMARK_TEMPLATE(BenchOrderMapString, absl::btree_map<std::string, int>);
-
+BENCHMARK_TEMPLATE(BenchOrderMapString, boost::container::small_flat_map<std::string, int,1024>);
 int main(int argc, char **argv) {
 
   tsl::ordered_map<std::string, int> m;
