@@ -21,9 +21,10 @@ add_executable(set_erase_unorder set/unorder_erase.cpp)
 add_executable(set_reserve set/reserve.cpp)
 
 add_executable(vec_vectors vector/vectors.cpp)
-
 add_executable(vec_remove vector/remove.cpp)
 add_executable(vec_reserve vector/reserve.cpp)
+add_executable(vec_push_pop vector/push_pop.cpp)
+
 add_executable(sorted_pod sorted/pod.cpp)
 add_executable(sorted_set sorted/sorted_set.cpp)
 add_executable(sorted_map sorted/sorted_map.cpp)

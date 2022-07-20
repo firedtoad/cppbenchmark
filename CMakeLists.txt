@@ -3,7 +3,7 @@ project(bench C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 link_libraries(benchmark pthread)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -Wextra  -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-qualifiers -fdiagnostics-color=auto ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -Wextra -march=native  -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-qualifiers -fdiagnostics-color=auto ")
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 #    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -fsanitize=address -fno-omit-frame-pointer")
