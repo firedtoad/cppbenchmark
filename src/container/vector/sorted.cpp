@@ -37,7 +37,7 @@ BENCHMARK_TEMPLATE(BenchInsert, sorted_vector<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsert, std::set<uint64_t>)->Range(1, 1 << 10);
 
 struct Pod {
-  uint64_t i;
+  int i;
   Pod() noexcept = default;
   Pod(uint64_t i_) : i(i_) {}
   Pod(const Pod &pod) noexcept = default;
@@ -48,7 +48,7 @@ struct Pod {
 };
 
 struct NonPod {
-  uint64_t i = 0;
+  int i = 0;
   NonPod() noexcept = default;
   NonPod(uint64_t i_) : i(i_) {}
   NonPod(const NonPod &p) noexcept = default;
@@ -62,7 +62,7 @@ template <typename V> static void BenchInsertPod(benchmark::State &state) {
   for (auto _ : state) {
     V v;
     for (auto i = 0; i < state.range(0); i++) {
-      Pod pod{_random() % 65536};
+      Pod pod{_random()};
       v.insert(pod);
     }
   }
@@ -71,23 +71,23 @@ template <typename V> static void BenchInsertNonPod(benchmark::State &state) {
   for (auto _ : state) {
     V v;
     for (auto i = 0; i < state.range(0); i++) {
-      NonPod pod{_random() % 65536};
+      NonPod pod{_random()};
       v.insert(pod);
     }
   }
 }
 
-BENCHMARK_TEMPLATE(BenchInsertPod, sorted_vector<Pod>)->Range(1<<10, 1 << 10);
-BENCHMARK_TEMPLATE(BenchInsertNonPod, sorted_vector<NonPod>)->Range(1<<10, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsertPod, sorted_vector<Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsertNonPod, sorted_vector<NonPod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsertPod, std::set<Pod>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchFind(benchmark::State &state) {
   V v;
   for (auto i = 0; i < state.range(0); i++) {
-    v.insert(_random());
+    v.insert(_random() % 65536);
   }
   for (auto _ : state) {
-    auto it = v.find(_random());
+    auto it = v.find(_random() % 65536);
     benchmark::DoNotOptimize(it);
   }
 }
@@ -115,10 +115,10 @@ BENCHMARK_TEMPLATE(BenchRange, std::set<uint64_t>)->Range(1, 1 << 10);
 template <typename V> static void BenchErase(benchmark::State &state) {
   V v;
   for (auto i = 0; i < state.range(0); i++) {
-    v.insert(_random());
+    v.insert(_random() % 65536);
   }
   for (auto _ : state) {
-    auto r = _random();
+    auto r = _random() % 65536;
     auto it = v.erase(r);
     if (it > 0) {
       v.insert(r);

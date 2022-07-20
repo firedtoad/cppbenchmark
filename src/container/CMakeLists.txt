@@ -25,6 +25,7 @@ add_executable(vec_sorted vector/sorted.cpp)
 add_executable(vec_remove vector/remove.cpp)
 add_executable(vec_reserve vector/reserve.cpp)
 add_executable(vec_pod vector/pod.cpp)
+add_executable(vec_sorted_map vector/sorted_map.cpp)
 
 aux_source_directory(hash/internal HASH_SRC)
 
