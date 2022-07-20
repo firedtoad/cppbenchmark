@@ -21,11 +21,14 @@ add_executable(set_erase_unorder set/unorder_erase.cpp)
 add_executable(set_reserve set/reserve.cpp)
 
 add_executable(vec_vectors vector/vectors.cpp)
-add_executable(vec_sorted vector/sorted.cpp)
+
 add_executable(vec_remove vector/remove.cpp)
 add_executable(vec_reserve vector/reserve.cpp)
-add_executable(vec_pod vector/pod.cpp)
-add_executable(vec_sorted_map vector/sorted_map.cpp)
+add_executable(sorted_pod sorted/pod.cpp)
+add_executable(sorted_set sorted/sorted_set.cpp)
+add_executable(sorted_map sorted/sorted_map.cpp)
+add_executable(sorted_unset sorted/sorted_unset.cpp)
+add_executable(sorted_unmap sorted/sorted_unmap.cpp)
 
 aux_source_directory(hash/internal HASH_SRC)
 

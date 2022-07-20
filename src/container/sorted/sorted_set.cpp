@@ -3,6 +3,7 @@
 //
 
 #include "SortedVector.h"
+#include "tsl/ordered_set.h"
 #include <algorithm>
 #include <benchmark/benchmark.h>
 #include <set>
@@ -35,51 +36,35 @@ template <typename V> static void BenchInsert(benchmark::State &state) {
 }
 BENCHMARK_TEMPLATE(BenchInsert, sorted_vector<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsert, std::set<uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsert, tsl::ordered_set<uint64_t>)->Range(1, 1 << 10);
 
 struct Pod {
   int i;
-  Pod() noexcept = default;
-  Pod(uint64_t i_) : i(i_) {}
-  Pod(const Pod &pod) noexcept = default;
-  Pod(Pod &&pod) noexcept = default;
-  Pod &operator=(const Pod &pod) noexcept = default;
-  Pod &operator=(Pod &&pod) noexcept = default;
   bool operator<(const Pod &p) const { return i < p.i; }
 };
 
-struct NonPod {
-  int i = 0;
-  NonPod() noexcept = default;
-  NonPod(uint64_t i_) : i(i_) {}
-  NonPod(const NonPod &p) noexcept = default;
-  NonPod(NonPod &&p) noexcept = default;
-  NonPod &operator=(const NonPod &p) noexcept = default;
-  NonPod &operator=(NonPod &&p) noexcept = default;
-  bool operator<(const NonPod &p) const { return i < p.i; }
+struct PodHash {
+  size_t operator()(const Pod &p) const { return p.i; }
+};
+
+struct PodEqual {
+  size_t operator()(const Pod &p1, const Pod &p2) const { return p1.i == p2.i; }
 };
 
 template <typename V> static void BenchInsertPod(benchmark::State &state) {
   for (auto _ : state) {
     V v;
     for (auto i = 0; i < state.range(0); i++) {
-      Pod pod{_random()};
-      v.insert(pod);
-    }
-  }
-}
-template <typename V> static void BenchInsertNonPod(benchmark::State &state) {
-  for (auto _ : state) {
-    V v;
-    for (auto i = 0; i < state.range(0); i++) {
-      NonPod pod{_random()};
+      Pod pod{static_cast<int>(_random())};
       v.insert(pod);
     }
   }
 }
 
 BENCHMARK_TEMPLATE(BenchInsertPod, sorted_vector<Pod>)->Range(1, 1 << 10);
-BENCHMARK_TEMPLATE(BenchInsertNonPod, sorted_vector<NonPod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsertPod, std::set<Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsertPod, tsl::ordered_set<Pod, PodHash, PodEqual>)
+    ->Range(1, 1 << 10);
 
 template <typename V> static void BenchFind(benchmark::State &state) {
   V v;
@@ -94,6 +79,7 @@ template <typename V> static void BenchFind(benchmark::State &state) {
 
 BENCHMARK_TEMPLATE(BenchFind, sorted_vector<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFind, std::set<uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchFind, tsl::ordered_set<uint64_t>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchRange(benchmark::State &state) {
   V v;
@@ -111,6 +97,7 @@ template <typename V> static void BenchRange(benchmark::State &state) {
 
 BENCHMARK_TEMPLATE(BenchRange, sorted_vector<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRange, std::set<uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchRange, tsl::ordered_set<uint64_t>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchErase(benchmark::State &state) {
   V v;
@@ -128,6 +115,7 @@ template <typename V> static void BenchErase(benchmark::State &state) {
 
 BENCHMARK_TEMPLATE(BenchErase, sorted_vector<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchErase, std::set<uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchErase, tsl::ordered_set<uint64_t>)->Range(1, 1 << 10);
 
 int main(int argc, char **argv) {
   benchmark::Initialize(&argc, argv);
