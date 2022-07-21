@@ -38,6 +38,7 @@ inline std::ostream &operator<<(std::ostream &os, const AStar::Vec2i &coord_) {
 
 int main(int argc, char **argv) {
     generator.setWorldSize({WIDTH, HEIGHT});
+    generator.setStep(2);
     std::random_device rd;
     std::default_random_engine gen{rd()};
     std::uniform_int_distribution<> dis(0, 10000);
@@ -80,6 +81,10 @@ int main(int argc, char **argv) {
 
         auto p = generator.findPath(start_pos, end_pos);
         if (!p.empty()) {
+            for(auto &it:p)
+            {
+              std::cout<<it.x<<","<<it.y<<'\n';
+            }
             break;
         }
     } while (1);

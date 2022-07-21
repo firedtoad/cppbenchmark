@@ -5,6 +5,7 @@
 #include<benchmark/benchmark.h>
 #include <list>
 #include <deque>
+#include <vector>
 #include <boost/intrusive/list.hpp>
 #include <boost/intrusive/list_hook.hpp>
 #include "plf_list.h"
@@ -20,62 +21,74 @@ struct SList : public boost::intrusive::list_base_hook<mode> {
 static void BenchListInsert(benchmark::State &state) {
     for (auto _ : state) {
         std::list<SList> v;
-        for (auto i = 0; i < 1024; i++) {
+        for (auto i = 0; i < state.range(0); i++) {
             v.push_back({});
         }
     }
 }
 
-BENCHMARK(BenchListInsert);
+BENCHMARK(BenchListInsert)->Range(1,1024);
 
 static void BenchDequeInsert(benchmark::State &state) {
     for (auto _ : state) {
         std::deque<SList> v;
-        for (auto i = 0; i < 1024; i++) {
+        for (auto i = 0; i < state.range(0); i++) {
             v.push_back({});
         }
     }
 }
 
-BENCHMARK(BenchDequeInsert);
+BENCHMARK(BenchDequeInsert)->Range(1,1024);
+
+static void BenchVectorInsert(benchmark::State &state) {
+  for (auto _ : state) {
+    std::vector<SList> v;
+    v.reserve(state.range(0));
+    for (auto i = 0; i < state.range(0); i++) {
+      v.push_back({});
+    }
+  }
+}
+
+BENCHMARK(BenchVectorInsert)->Range(1,1024);
 
 static void BenchBUListInsert(benchmark::State &state) {
     for (auto _ : state) {
         butil::LinkedList<SList> v;
         std::vector<butil::LinkNode<SList>> vs;
-        vs.resize(1024);
-        for (auto i = 0; i < 1024; i++) {
+        vs.resize(state.range(0));
+        for (auto i = 0; i < state.range(0); i++) {
             v.Append(&vs[i]);
         }
     }
 }
 
-BENCHMARK(BenchBUListInsert);
+BENCHMARK(BenchBUListInsert)->Range(1,1024);
 
 static void BenchIntrusiveListInsert(benchmark::State &state) {
 
     for (auto _ : state) {
-        SList lst[1024];
+        std::vector<SList> lst(state.range(0));
         boost::intrusive::list<SList, constant_time_size> v;
-        for (auto i = 0; i < 1024; i++) {
+        for (auto i = 0; i < state.range(0); i++) {
             v.push_back(lst[i]);
         }
     }
 }
 
-BENCHMARK(BenchIntrusiveListInsert);
+BENCHMARK(BenchIntrusiveListInsert)->Range(1,1024);
 
 static void BenchPlfListInsert(benchmark::State &state) {
 
     for (auto _ : state) {
         plf::list<SList> v;
-        for (auto i = 0; i < 1024; i++) {
+        for (auto i = 0; i < state.range(0); i++) {
             v.push_back({});
         }
     }
 }
 
-BENCHMARK(BenchPlfListInsert);
+BENCHMARK(BenchPlfListInsert)->Range(1,1024);
 
 int main(int argc, char **argv) {
     benchmark::Initialize(&argc, argv);

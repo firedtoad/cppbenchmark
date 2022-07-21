@@ -4,6 +4,7 @@ add_executable(string_from string_from.cpp)
 add_executable(string_to string_to.cpp)
 add_executable(string_format string_format.cpp)
 add_executable(string_cat string_cat.cpp)
+add_executable(string_move string_move.cpp)
 
 target_compile_features(string_format PRIVATE cxx_std_20)
 

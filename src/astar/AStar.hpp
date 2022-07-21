@@ -52,6 +52,7 @@ public:
     void setWorldSize(const Vec2i &worldSize_);
     void setDiagonalMovement(bool enable_);
     void setWeight(float epsilon_);
+    void setStep(int32_t step_);
     void setRelaxFunction(RelaxFunction relaxer_);
     void setHeuristic(HeuristicFunction heuristic_);
     template<typename F>
@@ -67,6 +68,7 @@ private:
     CoordinateList direction;
     Vec2i worldSize;
     float epsilon;
+    int32_t step;
     uint directions;
 };
 class Relaxer {

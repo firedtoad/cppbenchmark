@@ -4,6 +4,7 @@
 
 #include<benchmark/benchmark.h>
 #include <list>
+#include <forward_list>
 #include <deque>
 #include <boost/intrusive/list.hpp>
 #include <boost/intrusive/list_hook.hpp>
@@ -19,7 +20,7 @@ struct SList : public boost::intrusive::list_base_hook<mode> {
 
 static void BenchListRange(benchmark::State &state) {
     std::list<SList> v;
-    for (auto i = 0; i < 1024; i++) {
+    for (auto i = 0; i < state.range(0); i++) {
         v.push_back({});
     }
     int r = 0;
@@ -31,11 +32,27 @@ static void BenchListRange(benchmark::State &state) {
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchListRange);
+BENCHMARK(BenchListRange)->Range(1,1024);
+
+static void BenchForwardListRange(benchmark::State &state) {
+  std::forward_list<SList> v;
+  for (auto i = 0; i < state.range(0); i++) {
+    v.push_front({});
+  }
+  int r = 0;
+  for (auto _ : state) {
+    for (auto &it : v) {
+      r++;
+    }
+  }
+  benchmark::DoNotOptimize(r);
+}
+
+BENCHMARK(BenchForwardListRange)->Range(1,1024);
 
 static void BenchDequeRange(benchmark::State &state) {
     std::deque<SList> v;
-    for (auto i = 0; i < 1024; i++) {
+    for (auto i = 0; i < state.range(0); i++) {
         v.push_back({});
     }
     int r = 0;
@@ -47,11 +64,11 @@ static void BenchDequeRange(benchmark::State &state) {
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchDequeRange);
+BENCHMARK(BenchDequeRange)->Range(1,1024);
 
 static void BenchVectorRange(benchmark::State &state) {
   std::vector<SList> v;
-  for (auto i = 0; i < 1024; i++) {
+  for (auto i = 0; i < state.range(0); i++) {
     v.push_back({});
   }
   int r = 0;
@@ -63,13 +80,13 @@ static void BenchVectorRange(benchmark::State &state) {
   benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchVectorRange);
+BENCHMARK(BenchVectorRange)->Range(1,1024);
 
 static void BenchBUListRange(benchmark::State &state) {
     butil::LinkedList<SList> v;
     std::vector<butil::LinkNode<SList>> vs;
-    vs.resize(1024);
-    for (auto i = 0; i < 1024; i++) {
+    vs.resize(state.range(0));
+    for (auto i = 0; i < state.range(0); i++) {
         v.Append(&vs[i]);
     }
     int r = 0;
@@ -81,12 +98,12 @@ static void BenchBUListRange(benchmark::State &state) {
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchBUListRange);
+BENCHMARK(BenchBUListRange)->Range(1,1024);
 
 static void BenchIntrusiveListRange(benchmark::State &state) {
-    SList lst[1024];
+    std::vector<SList> lst(state.range(0));
     boost::intrusive::list<SList, constant_time_size> v;
-    for (auto i = 0; i < 1024; i++) {
+    for (auto i = 0; i < state.range(0); i++) {
         v.push_back(lst[i]);
     }
     int r = 0;
@@ -98,11 +115,11 @@ static void BenchIntrusiveListRange(benchmark::State &state) {
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchIntrusiveListRange);
+BENCHMARK(BenchIntrusiveListRange)->Range(1,1024);
 
 static void BenchPlfListRange(benchmark::State &state) {
     plf::list<SList> v;
-    for (auto i = 0; i < 1024; i++) {
+    for (auto i = 0; i < state.range(0); i++) {
         v.push_back({});
     }
     int r = 0;
@@ -116,7 +133,7 @@ static void BenchPlfListRange(benchmark::State &state) {
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchPlfListRange);
+BENCHMARK(BenchPlfListRange)->Range(1,1024);
 
 int main(int argc, char **argv) {
     benchmark::Initialize(&argc, argv);

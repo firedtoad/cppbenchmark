@@ -40,7 +40,7 @@ static void BenchListRemove(benchmark::State &state) {
   for (auto _ : state) {
     state.PauseTiming();
     std::list<SList> v;
-    for (auto i = 0; i < 1024; i++) {
+    for (auto i = 0; i < state.range(0); i++) {
       v.push_back({});
     }
     state.ResumeTiming();
@@ -52,12 +52,12 @@ static void BenchListRemove(benchmark::State &state) {
   }
 }
 
-BENCHMARK(BenchListRemove);
+BENCHMARK(BenchListRemove)->Range(1,1024);
 static void BenchForwardListRemove(benchmark::State &state) {
   for (auto _ : state) {
     state.PauseTiming();
     std::forward_list<SList> v;
-    for (auto i = 0; i < 1024; i++) {
+    for (auto i = 0; i < state.range(0); i++) {
       v.push_front({});
     }
     state.ResumeTiming();
@@ -68,13 +68,13 @@ static void BenchForwardListRemove(benchmark::State &state) {
   }
 }
 
-BENCHMARK(BenchForwardListRemove);
+BENCHMARK(BenchForwardListRemove)->Range(1,1024);
 
 static void BenchDequeRemove(benchmark::State &state) {
   for (auto _ : state) {
     state.PauseTiming();
     std::deque<SList> v;
-    for (auto i = 0; i < 1024; i++) {
+    for (auto i = 0; i < state.range(0); i++) {
       v.push_back({});
     }
     state.ResumeTiming();
@@ -86,14 +86,14 @@ static void BenchDequeRemove(benchmark::State &state) {
   }
 }
 
-BENCHMARK(BenchDequeRemove);
+BENCHMARK(BenchDequeRemove)->Range(1,1024);
 
 static void BenchVectorRemove(benchmark::State &state) {
 
   for (auto _ : state) {
     state.PauseTiming();
     std::vector<SList> v;
-    for (auto i = 0; i < 1024; i++) {
+    for (auto i = 0; i < state.range(0); i++) {
       v.push_back({});
     }
     state.ResumeTiming();
@@ -105,15 +105,15 @@ static void BenchVectorRemove(benchmark::State &state) {
   }
 }
 
-BENCHMARK(BenchVectorRemove);
+BENCHMARK(BenchVectorRemove)->Range(1,1024);
 
 static void BenchBUListRemove(benchmark::State &state) {
   for (auto _ : state) {
     state.PauseTiming();
     butil::LinkedList<SList> v;
     std::vector<butil::LinkNode<SList>> vs;
-    vs.resize(1024);
-    for (auto i = 0; i < 1024; i++) {
+    vs.resize(state.range(0));
+    for (auto i = 0; i < state.range(0); i++) {
       v.Append(&vs[i]);
     }
     state.ResumeTiming();
@@ -124,15 +124,15 @@ static void BenchBUListRemove(benchmark::State &state) {
   }
 }
 
-BENCHMARK(BenchBUListRemove);
+BENCHMARK(BenchBUListRemove)->Range(1,1024);
 
 static void BenchIntrusiveListRemove(benchmark::State &state) {
 
   for (auto _ : state) {
     state.PauseTiming();
-    SList lst[1024];
+    std::vector<SList> lst(state.range(0));
     boost::intrusive::list<SList, constant_time_size> v;
-    for (auto i = 0; i < 1024; i++) {
+    for (auto i = 0; i < state.range(0); i++) {
       v.push_back(lst[i]);
     }
     state.ResumeTiming();
@@ -144,13 +144,13 @@ static void BenchIntrusiveListRemove(benchmark::State &state) {
   }
 }
 
-BENCHMARK(BenchIntrusiveListRemove);
+BENCHMARK(BenchIntrusiveListRemove)->Range(1,1024);
 
 static void BenchPlfListRemove(benchmark::State &state) {
   for (auto _ : state) {
     state.PauseTiming();
     plf::list<SList> v;
-    for (auto i = 0; i < 1024; i++) {
+    for (auto i = 0; i < state.range(0); i++) {
       v.push_back({});
     }
     state.ResumeTiming();
@@ -162,14 +162,14 @@ static void BenchPlfListRemove(benchmark::State &state) {
   }
 }
 
-BENCHMARK(BenchPlfListRemove);
+BENCHMARK(BenchPlfListRemove)->Range(1,1024);
 
 int main(int argc, char **argv) {
 
   std::vector<int> v = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
   for (auto it = v.begin(); it != v.end();) {
     if (*it < 6) {
-      v.erase(it++);
+      it=v.erase(it);
       continue;
     }
     it++;
