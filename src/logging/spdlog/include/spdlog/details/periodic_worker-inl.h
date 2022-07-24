@@ -4,11 +4,13 @@
 #pragma once
 
 #ifndef SPDLOG_HEADER_ONLY
-#    include <spdlog/details/periodic_worker.h>
+#include <spdlog/details/periodic_worker.h>
 #endif
 
-namespace spdlog {
-namespace details {
+namespace spdlog
+{
+namespace details
+{
 
 SPDLOG_INLINE periodic_worker::periodic_worker(const std::function<void()> &callback_fun, std::chrono::seconds interval)
 {
@@ -18,17 +20,19 @@ SPDLOG_INLINE periodic_worker::periodic_worker(const std::function<void()> &call
         return;
     }
 
-    worker_thread_ = std::thread([this, callback_fun, interval]() {
-        for (;;)
+    worker_thread_ = std::thread(
+        [this, callback_fun, interval]()
         {
-            std::unique_lock<std::mutex> lock(this->mutex_);
-            if (this->cv_.wait_for(lock, interval, [this] { return !this->active_; }))
+            for (;;)
             {
-                return; // active_ == false, so exit this thread
+                std::unique_lock<std::mutex> lock(this->mutex_);
+                if (this->cv_.wait_for(lock, interval, [this] { return !this->active_; }))
+                {
+                    return; // active_ == false, so exit this thread
+                }
+                callback_fun();
             }
-            callback_fun();
-        }
-    });
+        });
 }
 
 // stop the worker thread and join it

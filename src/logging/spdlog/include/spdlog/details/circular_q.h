@@ -4,21 +4,22 @@
 // circular q view of std::vector.
 #pragma once
 
-#include <vector>
 #include <cassert>
+#include <vector>
 
-namespace spdlog {
-namespace details {
-template<typename T>
-class circular_q
+namespace spdlog
 {
-    size_t max_items_ = 0;
+namespace details
+{
+template <typename T> class circular_q
+{
+    size_t max_items_                        = 0;
     typename std::vector<T>::size_type head_ = 0;
     typename std::vector<T>::size_type tail_ = 0;
-    size_t overrun_counter_ = 0;
+    size_t overrun_counter_                  = 0;
     std::vector<T> v_;
 
-public:
+  public:
     using value_type = T;
 
     // empty ctor - create a disabled queue with no elements allocated at all
@@ -26,10 +27,12 @@ public:
 
     explicit circular_q(size_t max_items)
         : max_items_(max_items + 1) // one item is reserved as marker for full q
-        , v_(max_items_)
-    {}
+          ,
+          v_(max_items_)
+    {
+    }
 
-    circular_q(const circular_q &) = default;
+    circular_q(const circular_q &)            = default;
     circular_q &operator=(const circular_q &) = default;
 
     // move cannot be default,
@@ -51,7 +54,7 @@ public:
         if (max_items_ > 0)
         {
             v_[tail_] = std::move(item);
-            tail_ = (tail_ + 1) % max_items_;
+            tail_     = (tail_ + 1) % max_items_;
 
             if (tail_ == head_) // overrun last item if full
             {
@@ -126,20 +129,20 @@ public:
         overrun_counter_ = 0;
     }
 
-private:
+  private:
     // copy from other&& and reset it to disabled state
     void copy_moveable(circular_q &&other) SPDLOG_NOEXCEPT
     {
-        max_items_ = other.max_items_;
-        head_ = other.head_;
-        tail_ = other.tail_;
+        max_items_       = other.max_items_;
+        head_            = other.head_;
+        tail_            = other.tail_;
         overrun_counter_ = other.overrun_counter_;
-        v_ = std::move(other.v_);
+        v_               = std::move(other.v_);
 
         // put &&other in disabled, but valid state
         other.max_items_ = 0;
         other.head_ = other.tail_ = 0;
-        other.overrun_counter_ = 0;
+        other.overrun_counter_    = 0;
     }
 };
 } // namespace details

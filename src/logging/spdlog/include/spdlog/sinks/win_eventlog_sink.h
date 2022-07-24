@@ -40,12 +40,16 @@ Windows Registry Editor Version 5.00
 #include <string>
 #include <vector>
 
-namespace spdlog {
-namespace sinks {
+namespace spdlog
+{
+namespace sinks
+{
 
-namespace win_eventlog {
+namespace win_eventlog
+{
 
-namespace internal {
+namespace internal
+{
 
 struct local_alloc_t
 {
@@ -53,7 +57,7 @@ struct local_alloc_t
 
     SPDLOG_CONSTEXPR local_alloc_t() SPDLOG_NOEXCEPT : hlocal_(nullptr) {}
 
-    local_alloc_t(local_alloc_t const &) = delete;
+    local_alloc_t(local_alloc_t const &)            = delete;
     local_alloc_t &operator=(local_alloc_t const &) = delete;
 
     ~local_alloc_t() SPDLOG_NOEXCEPT
@@ -75,8 +79,8 @@ struct win32_error : public spdlog_ex
 
         local_alloc_t format_message_result{};
         auto format_message_succeeded =
-            ::FormatMessageA(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, nullptr,
-                error_code, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPSTR)&format_message_result.hlocal_, 0, nullptr);
+            ::FormatMessageA(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, nullptr, error_code,
+                             MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPSTR)&format_message_result.hlocal_, 0, nullptr);
 
         if (format_message_succeeded && format_message_result.hlocal_)
         {
@@ -86,9 +90,7 @@ struct win32_error : public spdlog_ex
         return fmt_lib::format("{}: {}{}", user_message, error_code, system_message);
     }
 
-    explicit win32_error(std::string const &func_name, DWORD error = GetLastError())
-        : spdlog_ex(format(func_name, error))
-    {}
+    explicit win32_error(std::string const &func_name, DWORD error = GetLastError()) : spdlog_ex(format(func_name, error)) {}
 };
 
 /** Wrapper for security identifiers (SID) on Windows */
@@ -96,7 +98,7 @@ struct sid_t
 {
     std::vector<char> buffer_;
 
-public:
+  public:
     sid_t() {}
 
     /** creates a wrapped SID copy */
@@ -203,10 +205,9 @@ struct eventlog
 /*
  * Windows Event Log sink
  */
-template<typename Mutex>
-class win_eventlog_sink : public base_sink<Mutex>
+template <typename Mutex> class win_eventlog_sink : public base_sink<Mutex>
 {
-private:
+  private:
     HANDLE hEventLog_{NULL};
     internal::sid_t current_user_sid_;
     std::string source_;
@@ -226,7 +227,7 @@ private:
         return hEventLog_;
     }
 
-protected:
+  protected:
     void sink_it_(const details::log_msg &msg) override
     {
         using namespace internal;
@@ -241,12 +242,12 @@ protected:
         details::os::utf8_to_wstrbuf(string_view_t(formatted.data(), formatted.size()), buf);
 
         LPCWSTR lp_wstr = buf.data();
-        succeeded = ::ReportEventW(event_log_handle(), eventlog::get_event_type(msg), eventlog::get_event_category(msg), event_id_,
-            current_user_sid_.as_sid(), 1, 0, &lp_wstr, nullptr);
+        succeeded       = ::ReportEventW(event_log_handle(), eventlog::get_event_type(msg), eventlog::get_event_category(msg), event_id_,
+                                         current_user_sid_.as_sid(), 1, 0, &lp_wstr, nullptr);
 #else
         LPCSTR lp_str = formatted.data();
-        succeeded = ::ReportEventA(event_log_handle(), eventlog::get_event_type(msg), eventlog::get_event_category(msg), event_id_,
-            current_user_sid_.as_sid(), 1, 0, &lp_str, nullptr);
+        succeeded     = ::ReportEventA(event_log_handle(), eventlog::get_event_type(msg), eventlog::get_event_category(msg), event_id_,
+                                       current_user_sid_.as_sid(), 1, 0, &lp_str, nullptr);
 #endif
 
         if (!succeeded)
@@ -257,10 +258,8 @@ protected:
 
     void flush_() override {}
 
-public:
-    win_eventlog_sink(std::string const &source, WORD event_id = 1000 /* according to mscoree.dll */)
-        : source_(source)
-        , event_id_(event_id)
+  public:
+    win_eventlog_sink(std::string const &source, WORD event_id = 1000 /* according to mscoree.dll */) : source_(source), event_id_(event_id)
     {
         try
         {

@@ -1,28 +1,28 @@
-#include <iostream>
 #include <cstddef>
+#include <iostream>
 #include <vector>
 
-#include "Benchmark.h"
 #include "Allocator.h"
-#include "StackAllocator.h"
+#include "Benchmark.h"
 #include "CAllocator.h"
+#include "FreeListAllocator.h"
 #include "LinearAllocator.h"
 #include "PoolAllocator.h"
-#include "FreeListAllocator.h"
+#include "StackAllocator.h"
 
 int main()
 {
     const std::size_t A = static_cast<std::size_t>(1e9);
     const std::size_t B = static_cast<std::size_t>(1e8);
 
-    const std::vector<std::size_t> ALLOCATION_SIZES {32, 64, 256, 512, 1024, 2048, 4096};
-    const std::vector<std::size_t> ALIGNMENTS {8, 8, 8, 8, 8, 8, 8};
+    const std::vector<std::size_t> ALLOCATION_SIZES{32, 64, 256, 512, 1024, 2048, 4096};
+    const std::vector<std::size_t> ALIGNMENTS{8, 8, 8, 8, 8, 8, 8};
 
-    Allocator * cAllocator = new CAllocator();
-    Allocator * linearAllocator = new LinearAllocator(A);
-    Allocator * stackAllocator = new StackAllocator(A);
-    Allocator * poolAllocator = new PoolAllocator(16777216, 4096);
-    Allocator * freeListAllocator = new FreeListAllocator(B, FreeListAllocator::PlacementPolicy::FIND_FIRST);
+    Allocator *cAllocator        = new CAllocator();
+    Allocator *linearAllocator   = new LinearAllocator(A);
+    Allocator *stackAllocator    = new StackAllocator(A);
+    Allocator *poolAllocator     = new PoolAllocator(16777216, 4096);
+    Allocator *freeListAllocator = new FreeListAllocator(B, FreeListAllocator::PlacementPolicy::FIND_FIRST);
 
     Benchmark benchmark(OPERATIONS);
 
@@ -30,7 +30,7 @@ int main()
     benchmark.MultipleAllocation(cAllocator, ALLOCATION_SIZES, ALIGNMENTS);
     benchmark.MultipleFree(cAllocator, ALLOCATION_SIZES, ALIGNMENTS);
     benchmark.RandomAllocation(cAllocator, ALLOCATION_SIZES, ALIGNMENTS);
-    benchmark.RandomFree(cAllocator, ALLOCATION_SIZES, ALIGNMENTS); 
+    benchmark.RandomFree(cAllocator, ALLOCATION_SIZES, ALIGNMENTS);
 
     std::cout << "LINEAR" << std::endl;
     benchmark.MultipleAllocation(linearAllocator, ALLOCATION_SIZES, ALIGNMENTS);
@@ -51,15 +51,11 @@ int main()
     benchmark.MultipleFree(freeListAllocator, ALLOCATION_SIZES, ALIGNMENTS);
     benchmark.RandomAllocation(freeListAllocator, ALLOCATION_SIZES, ALIGNMENTS);
     benchmark.RandomFree(freeListAllocator, ALLOCATION_SIZES, ALIGNMENTS);
-    
+
     delete cAllocator;
     delete linearAllocator;
     delete stackAllocator;
     delete poolAllocator;
-    
+
     return 1;
 }
-
-
-
-

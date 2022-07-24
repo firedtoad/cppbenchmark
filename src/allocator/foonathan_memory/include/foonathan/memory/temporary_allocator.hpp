@@ -195,7 +195,7 @@ namespace foonathan
             /// \effects Destroys the per-thread stack if it isn't already destroyed.
             ~temporary_stack_initializer() noexcept;
 
-            temporary_stack_initializer(temporary_stack_initializer&&) = delete;
+            temporary_stack_initializer(temporary_stack_initializer&&)            = delete;
             temporary_stack_initializer& operator=(temporary_stack_initializer&&) = delete;
         };
 
@@ -229,7 +229,7 @@ namespace foonathan
 
             ~temporary_allocator() noexcept;
 
-            temporary_allocator(temporary_allocator&&) = delete;
+            temporary_allocator(temporary_allocator&&)            = delete;
             temporary_allocator& operator=(temporary_allocator&&) = delete;
 
             /// \effects Allocates memory from the internal \ref memory_stack by forwarding to it.

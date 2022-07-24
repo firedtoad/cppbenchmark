@@ -3,8 +3,8 @@
 
 #pragma once
 #include <spdlog/cfg/helpers.h>
-#include <spdlog/details/registry.h>
 #include <spdlog/details/os.h>
+#include <spdlog/details/registry.h>
 
 //
 // Init levels and patterns from env variables SPDLOG_LEVEL
@@ -23,8 +23,10 @@
 // turn off all logging except for logger1 and logger2:
 // export SPDLOG_LEVEL="off,logger1=debug,logger2=info"
 
-namespace spdlog {
-namespace cfg {
+namespace spdlog
+{
+namespace cfg
+{
 inline void load_env_levels()
 {
     auto env_val = details::os::getenv("SPDLOG_LEVEL");

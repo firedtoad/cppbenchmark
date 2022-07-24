@@ -3,12 +3,15 @@
 
 #pragma once
 
-#include <spdlog/common.h>
 #include <ctime> // std::time_t
+#include <spdlog/common.h>
 
-namespace spdlog {
-namespace details {
-namespace os {
+namespace spdlog
+{
+namespace details
+{
+namespace os
+{
 
 SPDLOG_API spdlog::log_clock::time_point now() SPDLOG_NOEXCEPT;
 
@@ -22,25 +25,25 @@ SPDLOG_API std::tm gmtime() SPDLOG_NOEXCEPT;
 
 // eol definition
 #if !defined(SPDLOG_EOL)
-#    ifdef _WIN32
-#        define SPDLOG_EOL "\r\n"
-#    else
-#        define SPDLOG_EOL "\n"
-#    endif
+#ifdef _WIN32
+#define SPDLOG_EOL "\r\n"
+#else
+#define SPDLOG_EOL "\n"
+#endif
 #endif
 
 SPDLOG_CONSTEXPR static const char *default_eol = SPDLOG_EOL;
 
 // folder separator
 #if !defined(SPDLOG_FOLDER_SEPS)
-#    ifdef _WIN32
-#        define SPDLOG_FOLDER_SEPS "\\/"
-#    else
-#        define SPDLOG_FOLDER_SEPS "/"
-#    endif
+#ifdef _WIN32
+#define SPDLOG_FOLDER_SEPS "\\/"
+#else
+#define SPDLOG_FOLDER_SEPS "/"
+#endif
 #endif
 
-SPDLOG_CONSTEXPR static const char folder_seps[] = SPDLOG_FOLDER_SEPS;
+SPDLOG_CONSTEXPR static const char folder_seps[]                            = SPDLOG_FOLDER_SEPS;
 SPDLOG_CONSTEXPR static const filename_t::value_type folder_seps_filename[] = SPDLOG_FILENAME_T(SPDLOG_FOLDER_SEPS);
 
 // fopen_s on non windows for writing
@@ -114,5 +117,5 @@ SPDLOG_API std::string getenv(const char *field);
 } // namespace spdlog
 
 #ifdef SPDLOG_HEADER_ONLY
-#    include "os-inl.h"
+#include "os-inl.h"
 #endif

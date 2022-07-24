@@ -5,27 +5,28 @@
 
 #if defined(_WIN32)
 
-#    include <spdlog/details/null_mutex.h>
-#    include <spdlog/sinks/base_sink.h>
+#include <spdlog/details/null_mutex.h>
+#include <spdlog/sinks/base_sink.h>
 
-#    include <mutex>
-#    include <string>
+#include <mutex>
+#include <string>
 
 // Avoid including windows.h (https://stackoverflow.com/a/30741042)
 extern "C" __declspec(dllimport) void __stdcall OutputDebugStringA(const char *lpOutputString);
 
-namespace spdlog {
-namespace sinks {
+namespace spdlog
+{
+namespace sinks
+{
 /*
  * MSVC sink (logging using OutputDebugStringA)
  */
-template<typename Mutex>
-class msvc_sink : public base_sink<Mutex>
+template <typename Mutex> class msvc_sink : public base_sink<Mutex>
 {
-public:
+  public:
     msvc_sink() = default;
 
-protected:
+  protected:
     void sink_it_(const details::log_msg &msg) override
     {
         memory_buf_t formatted;

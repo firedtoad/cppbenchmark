@@ -5,8 +5,7 @@
 #include <unordered_map>
 #include <utility>
 
-
-const auto& AddTag(const std::string_view &strTag)
+const auto &AddTag(const std::string_view &strTag)
 {
     static std::vector<std::string> vecTags;
     vecTags.clear();
@@ -21,7 +20,6 @@ std::string &AddTag(std::string &&strTag)
     vecTags.push_back(std::move(strTag));
     return strTag;
 }
-
 
 static void BenchAddConst(benchmark::State &state)
 {
@@ -56,9 +54,9 @@ static void BenchAddRValue(benchmark::State &state)
 
 BENCHMARK(BenchAddRValue);
 
- int main(int argc, char **argv)
- {
-     benchmark::Initialize(&argc, argv);
-     benchmark::RunSpecifiedBenchmarks();
-     return 0;
- }
+int main(int argc, char **argv)
+{
+    benchmark::Initialize(&argc, argv);
+    benchmark::RunSpecifiedBenchmarks();
+    return 0;
+}

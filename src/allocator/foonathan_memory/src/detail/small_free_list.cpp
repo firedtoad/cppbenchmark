@@ -162,10 +162,7 @@ constexpr std::size_t small_free_memory_list::min_element_size;
 constexpr std::size_t small_free_memory_list::min_element_alignment;
 
 small_free_memory_list::small_free_memory_list(std::size_t node_size) noexcept
-: node_size_(node_size),
-  capacity_(0u),
-  alloc_chunk_(&base_),
-  dealloc_chunk_(&base_)
+: node_size_(node_size), capacity_(0u), alloc_chunk_(&base_), dealloc_chunk_(&base_)
 {
 }
 
@@ -201,8 +198,7 @@ small_free_memory_list::small_free_memory_list(small_free_memory_list&& other) n
     }
 }
 
-void foonathan::memory::detail::swap(small_free_memory_list& a,
-                                     small_free_memory_list& b) noexcept
+void foonathan::memory::detail::swap(small_free_memory_list& a, small_free_memory_list& b) noexcept
 {
     auto b_next = b.base_.next;
     auto b_prev = b.base_.prev;
@@ -255,7 +251,8 @@ void small_free_memory_list::insert(void* mem, std::size_t size) noexcept
     auto remainder = size % (total_chunk_size + align_buffer);
 
     auto memory          = static_cast<char*>(mem);
-    auto construct_chunk = [&](std::size_t total_memory, std::size_t node_size) {
+    auto construct_chunk = [&](std::size_t total_memory, std::size_t node_size)
+    {
         FOONATHAN_MEMORY_ASSERT(align_offset(memory, alignof(chunk)) == 0);
         return ::new (static_cast<void*>(memory)) chunk(total_memory, node_size);
     };

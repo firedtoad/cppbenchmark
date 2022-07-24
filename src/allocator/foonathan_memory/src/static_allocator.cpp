@@ -38,9 +38,9 @@ memory_block static_block_allocator::allocate_block()
 
 void static_block_allocator::deallocate_block(memory_block block) noexcept
 {
-    detail::
-        debug_check_pointer([&] { return static_cast<char*>(block.memory) + block.size == cur_; },
-                            info(), block.memory);
+    detail::debug_check_pointer([&]
+                                { return static_cast<char*>(block.memory) + block.size == cur_; },
+                                info(), block.memory);
     cur_ -= block_size_;
 }
 

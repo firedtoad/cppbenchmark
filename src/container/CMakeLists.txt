@@ -1,6 +1,6 @@
 add_executable(list_insert list/insert.cpp)
 add_executable(list_remove list/remove.cpp)
-add_executable(list_range  list/range.cpp)
+add_executable(list_range list/range.cpp)
 add_executable(list_splice list/splice.cpp)
 
 add_executable(map_find_hetero map/find_hetero.cpp)
@@ -31,9 +31,14 @@ add_executable(sorted_map sorted/sorted_map.cpp)
 add_executable(sorted_unset sorted/sorted_unset.cpp)
 add_executable(sorted_unmap sorted/sorted_unmap.cpp)
 
+add_executable(fast_set vfast/fast_set.cpp)
+add_executable(fast_map vfast/fast_map.cpp)
+add_executable(fast_unset vfast/fast_unset.cpp)
+add_executable(fast_unmap vfast/fast_unmap.cpp)
+
 aux_source_directory(hash/internal HASH_SRC)
 
 add_executable(hash hash/hash.cpp ${HASH_SRC})
-target_link_libraries(hash PRIVATE glog gflags   brpc)
+target_link_libraries(hash PRIVATE glog gflags brpc)
 
 add_compile_options(-std=c++17 -g -fno-omit-frame-pointer)

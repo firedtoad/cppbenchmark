@@ -9,20 +9,18 @@
 #include <mutex>
 #include <ostream>
 
-namespace spdlog {
-namespace sinks {
-template<typename Mutex>
-class ostream_sink final : public base_sink<Mutex>
+namespace spdlog
 {
-public:
-    explicit ostream_sink(std::ostream &os, bool force_flush = false)
-        : ostream_(os)
-        , force_flush_(force_flush)
-    {}
-    ostream_sink(const ostream_sink &) = delete;
+namespace sinks
+{
+template <typename Mutex> class ostream_sink final : public base_sink<Mutex>
+{
+  public:
+    explicit ostream_sink(std::ostream &os, bool force_flush = false) : ostream_(os), force_flush_(force_flush) {}
+    ostream_sink(const ostream_sink &)            = delete;
     ostream_sink &operator=(const ostream_sink &) = delete;
 
-protected:
+  protected:
     void sink_it_(const details::log_msg &msg) override
     {
         memory_buf_t formatted;

@@ -4,28 +4,30 @@
 #pragma once
 
 #ifdef _WIN32
-#    error include tcp_client-windows.h instead
+#error include tcp_client-windows.h instead
 #endif
 
 // tcp client helper
 #include <spdlog/common.h>
 #include <spdlog/details/os.h>
 
-#include <sys/socket.h>
 #include <arpa/inet.h>
-#include <unistd.h>
 #include <netdb.h>
 #include <netinet/tcp.h>
+#include <sys/socket.h>
+#include <unistd.h>
 
 #include <string>
 
-namespace spdlog {
-namespace details {
+namespace spdlog
+{
+namespace details
+{
 class tcp_client
 {
     int socket_ = -1;
 
-public:
+  public:
     bool is_connected() const
     {
         return socket_ != -1;
@@ -55,11 +57,12 @@ public:
     {
         close();
         struct addrinfo hints
-        {};
+        {
+        };
         memset(&hints, 0, sizeof(struct addrinfo));
-        hints.ai_family = AF_INET;       // IPv4
-        hints.ai_socktype = SOCK_STREAM; // TCP
-        hints.ai_flags = AI_NUMERICSERV; // port passed as as numeric value
+        hints.ai_family   = AF_INET;        // IPv4
+        hints.ai_socktype = SOCK_STREAM;    // TCP
+        hints.ai_flags    = AI_NUMERICSERV; // port passed as as numeric value
         hints.ai_protocol = 0;
 
         auto port_str = std::to_string(port);
@@ -77,7 +80,7 @@ public:
 #if defined(SOCK_CLOEXEC)
             const int flags = SOCK_CLOEXEC;
 #else
-            const int flags = 0;
+            const int flags      = 0;
 #endif
             socket_ = ::socket(rp->ai_family, rp->ai_socktype | flags, rp->ai_protocol);
             if (socket_ == -1)
@@ -110,7 +113,7 @@ public:
 #endif
 
 #if !defined(SO_NOSIGPIPE) && !defined(MSG_NOSIGNAL)
-#    error "tcp_sink would raise SIGPIPE since niether SO_NOSIGPIPE nor MSG_NOSIGNAL are available"
+#error "tcp_sink would raise SIGPIPE since niether SO_NOSIGPIPE nor MSG_NOSIGNAL are available"
 #endif
     }
 

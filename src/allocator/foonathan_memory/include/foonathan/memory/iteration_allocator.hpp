@@ -77,8 +77,8 @@ namespace foonathan
             iteration_allocator& operator=(iteration_allocator&& other) noexcept
             {
                 allocator_type::operator=(detail::move(other));
-                block_                  = other.block_;
-                cur_                    = other.cur_;
+                block_ = other.block_;
+                cur_   = other.cur_;
 
                 for (auto i = 0u; i != N; ++i)
                     stacks_[i] = detail::move(other.stacks_[i]);

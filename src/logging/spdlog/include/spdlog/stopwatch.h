@@ -24,16 +24,15 @@
 // using std::chrono::milliseconds;
 // spdlog::info("Elapsed {}", duration_cast<milliseconds>(sw.elapsed())); => "Elapsed 5ms"
 
-namespace spdlog {
+namespace spdlog
+{
 class stopwatch
 {
     using clock = std::chrono::steady_clock;
     std::chrono::time_point<clock> start_tp_;
 
-public:
-    stopwatch()
-        : start_tp_{clock::now()}
-    {}
+  public:
+    stopwatch() : start_tp_{clock::now()} {}
 
     std::chrono::duration<double> elapsed() const
     {
@@ -56,11 +55,9 @@ namespace
 #endif
 {
 
-template<>
-struct formatter<spdlog::stopwatch> : formatter<double>
+template <> struct formatter<spdlog::stopwatch> : formatter<double>
 {
-    template<typename FormatContext>
-    auto format(const spdlog::stopwatch &sw, FormatContext &ctx) -> decltype(ctx.out())
+    template <typename FormatContext> auto format(const spdlog::stopwatch &sw, FormatContext &ctx) -> decltype(ctx.out())
     {
         return formatter<double>::format(sw.elapsed().count(), ctx);
     }

@@ -4,13 +4,13 @@
 #pragma once
 
 #include "dist_sink.h"
-#include <spdlog/details/null_mutex.h>
 #include <spdlog/details/log_msg.h>
+#include <spdlog/details/null_mutex.h>
 
+#include <chrono>
 #include <cstdio>
 #include <mutex>
 #include <string>
-#include <chrono>
 
 // Duplicate message removal sink.
 // Skip the message if previous one is identical and less than "max_skip_duration" have passed
@@ -34,18 +34,19 @@
 //       [2019-06-25 17:50:56.512] [logger] [info] Skipped 3 duplicate messages..
 //       [2019-06-25 17:50:56.512] [logger] [info] Different Hello
 
-namespace spdlog {
-namespace sinks {
-template<typename Mutex>
-class dup_filter_sink : public dist_sink<Mutex>
+namespace spdlog
 {
-public:
-    template<class Rep, class Period>
-    explicit dup_filter_sink(std::chrono::duration<Rep, Period> max_skip_duration)
-        : max_skip_duration_{max_skip_duration}
-    {}
+namespace sinks
+{
+template <typename Mutex> class dup_filter_sink : public dist_sink<Mutex>
+{
+  public:
+    template <class Rep, class Period>
+    explicit dup_filter_sink(std::chrono::duration<Rep, Period> max_skip_duration) : max_skip_duration_{max_skip_duration}
+    {
+    }
 
-protected:
+  protected:
     std::chrono::microseconds max_skip_duration_;
     log_clock::time_point last_msg_time_;
     std::string last_msg_payload_;
@@ -75,7 +76,7 @@ protected:
         // log current message
         dist_sink<Mutex>::sink_it_(msg);
         last_msg_time_ = msg.time;
-        skip_counter_ = 0;
+        skip_counter_  = 0;
         last_msg_payload_.assign(msg.payload.data(), msg.payload.data() + msg.payload.size());
     }
 

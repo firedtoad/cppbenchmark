@@ -103,8 +103,8 @@ namespace foonathan
             memory_pool& operator=(memory_pool&& other) noexcept
             {
                 leak_checker::operator=(detail::move(other));
-                arena_                = detail::move(other.arena_);
-                free_list_            = detail::move(other.free_list_);
+                arena_     = detail::move(other.arena_);
+                free_list_ = detail::move(other.free_list_);
                 return *this;
             }
             /// @}

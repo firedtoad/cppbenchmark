@@ -13,22 +13,24 @@
 #include <chrono>
 #include <functional>
 #include <memory>
+#include <mutex>
 #include <string>
 #include <unordered_map>
-#include <mutex>
 
-namespace spdlog {
+namespace spdlog
+{
 class logger;
 
-namespace details {
+namespace details
+{
 class thread_pool;
 class periodic_worker;
 
 class SPDLOG_API registry
 {
-public:
-    using log_levels = std::unordered_map<std::string, level::level_enum>;
-    registry(const registry &) = delete;
+  public:
+    using log_levels                      = std::unordered_map<std::string, level::level_enum>;
+    registry(const registry &)            = delete;
     registry &operator=(const registry &) = delete;
 
     void register_logger(std::shared_ptr<logger> new_logger);
@@ -85,7 +87,7 @@ public:
 
     static registry &instance();
 
-private:
+  private:
     registry();
     ~registry();
 
@@ -98,7 +100,7 @@ private:
     log_levels log_levels_;
     std::unique_ptr<formatter> formatter_;
     spdlog::level::level_enum global_log_level_ = level::info;
-    level::level_enum flush_level_ = level::off;
+    level::level_enum flush_level_              = level::off;
     err_handler err_handler_;
     std::shared_ptr<thread_pool> tp_;
     std::unique_ptr<periodic_worker> periodic_flusher_;
@@ -111,5 +113,5 @@ private:
 } // namespace spdlog
 
 #ifdef SPDLOG_HEADER_ONLY
-#    include "registry-inl.h"
+#include "registry-inl.h"
 #endif

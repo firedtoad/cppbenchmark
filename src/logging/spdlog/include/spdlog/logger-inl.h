@@ -4,26 +4,24 @@
 #pragma once
 
 #ifndef SPDLOG_HEADER_ONLY
-#    include <spdlog/logger.h>
+#include <spdlog/logger.h>
 #endif
 
-#include <spdlog/sinks/sink.h>
 #include <spdlog/details/backtracer.h>
 #include <spdlog/pattern_formatter.h>
+#include <spdlog/sinks/sink.h>
 
 #include <cstdio>
 
-namespace spdlog {
+namespace spdlog
+{
 
 // public methods
 SPDLOG_INLINE logger::logger(const logger &other)
-    : name_(other.name_)
-    , sinks_(other.sinks_)
-    , level_(other.level_.load(std::memory_order_relaxed))
-    , flush_level_(other.flush_level_.load(std::memory_order_relaxed))
-    , custom_err_handler_(other.custom_err_handler_)
-    , tracer_(other.tracer_)
-{}
+    : name_(other.name_), sinks_(other.sinks_), level_(other.level_.load(std::memory_order_relaxed)),
+      flush_level_(other.flush_level_.load(std::memory_order_relaxed)), custom_err_handler_(other.custom_err_handler_), tracer_(other.tracer_)
+{
+}
 
 SPDLOG_INLINE logger::logger(logger &&other) SPDLOG_NOEXCEPT : name_(std::move(other.name_)),
                                                                sinks_(std::move(other.sinks_)),
@@ -32,7 +30,8 @@ SPDLOG_INLINE logger::logger(logger &&other) SPDLOG_NOEXCEPT : name_(std::move(o
                                                                custom_err_handler_(std::move(other.custom_err_handler_)),
                                                                tracer_(std::move(other.tracer_))
 
-{}
+{
+}
 
 SPDLOG_INLINE logger &logger::operator=(logger other) SPDLOG_NOEXCEPT
 {
@@ -47,12 +46,12 @@ SPDLOG_INLINE void logger::swap(spdlog::logger &other) SPDLOG_NOEXCEPT
 
     // swap level_
     auto other_level = other.level_.load();
-    auto my_level = level_.exchange(other_level);
+    auto my_level    = level_.exchange(other_level);
     other.level_.store(my_level);
 
     // swap flush level_
     other_level = other.flush_level_.load();
-    my_level = flush_level_.exchange(other_level);
+    my_level    = flush_level_.exchange(other_level);
     other.flush_level_.store(my_level);
 
     custom_err_handler_.swap(other.custom_err_handler_);
@@ -157,7 +156,7 @@ SPDLOG_INLINE void logger::set_error_handler(err_handler handler)
 // create new logger with same sinks and configuration.
 SPDLOG_INLINE std::shared_ptr<logger> logger::clone(std::string logger_name)
 {
-    auto cloned = std::make_shared<logger>(*this);
+    auto cloned   = std::make_shared<logger>(*this);
     cloned->name_ = std::move(logger_name);
     return cloned;
 }
@@ -244,7 +243,7 @@ SPDLOG_INLINE void logger::err_handler_(const std::string &msg)
             return;
         }
         last_report_time = now;
-        auto tm_time = details::os::localtime(system_clock::to_time_t(now));
+        auto tm_time     = details::os::localtime(system_clock::to_time_t(now));
         char date_buf[64];
         std::strftime(date_buf, sizeof(date_buf), "%Y-%m-%d %H:%M:%S", &tm_time);
 #if defined(USING_R) && defined(R_R_H) // if in R environment

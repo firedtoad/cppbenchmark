@@ -515,7 +515,7 @@ namespace foonathan
             {
             }
 
-            joint_allocator(const joint_allocator& other) noexcept = default;
+            joint_allocator(const joint_allocator& other) noexcept            = default;
             joint_allocator& operator=(const joint_allocator& other) noexcept = default;
 
             /// \effects Allocates a node with given properties.
@@ -709,7 +709,7 @@ namespace foonathan
             }
 
             joint_array& operator=(const joint_array&) = delete;
-            joint_array& operator=(joint_array&&) = delete;
+            joint_array& operator=(joint_array&&)      = delete;
 
             //=== accessors ===//
             /// @{
@@ -810,7 +810,7 @@ namespace foonathan
                         stack_->unwind(objects_);
                 }
 
-                builder(builder&&) = delete;
+                builder(builder&&)            = delete;
                 builder& operator=(builder&&) = delete;
 
                 template <typename... Args>

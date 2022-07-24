@@ -4,13 +4,14 @@
 #pragma once
 
 #ifndef SPDLOG_HEADER_ONLY
-#    include <spdlog/spdlog.h>
+#include <spdlog/spdlog.h>
 #endif
 
 #include <spdlog/common.h>
 #include <spdlog/pattern_formatter.h>
 
-namespace spdlog {
+namespace spdlog
+{
 
 SPDLOG_INLINE void initialize_logger(std::shared_ptr<logger> logger)
 {

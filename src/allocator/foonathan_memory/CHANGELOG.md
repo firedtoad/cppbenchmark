@@ -2,20 +2,24 @@
 
 # 0.7
 
-BREAKING: Removed the use of the compatibility library to automatically generate macros and workaround for older compilers.
-The important compatibility workarounds like the `__builtin_clz` extension are still used, but workarounds for missing C++11 library features have been removed.
+BREAKING: Removed the use of the compatibility library to automatically generate macros and workaround for older
+compilers.
+The important compatibility workarounds like the `__builtin_clz` extension are still used, but workarounds for missing
+C++11 library features have been removed.
 In particular, the library now requires compiler support for `noexcept`, `constexpr`, `alignof` and `thread_local`.
 This means that GCC 4.8 and Visual Studio version 12.0 (both released in 2013), are now longer supported.
 
 ## Adapter
 
-BREAKING: Remove `Mutex` support from `allocator_reference` and consequently from `std_allocator`, `allocator_deleter`, ...
+BREAKING: Remove `Mutex` support from `allocator_reference` and consequently from `std_allocator`, `allocator_deleter`,
+...
 Embedding the `Mutex` with the reference was *fundamentally* broken and unusable to ensure thread safety.
 Use a reference to a `thread_safe_allocator` instead, which actually guarantees thread safety.
 
 ## Allocator
 
-Add ability to query the minimal block size required by a `memory_pool` or `memory_stack` that should contain the given memory.
+Add ability to query the minimal block size required by a `memory_pool` or `memory_stack` that should contain the given
+memory.
 Due to internal data structures and debug fences this is more than the naive memory request, so it can be computed now.
 
 ## Bugfixes
@@ -84,12 +88,14 @@ Most notable changes:
 ---
 
 # 0.5
+
 * improved CMake build system, now supports cmake installation and `find_package()`
 * improved low-level allocators and added `malloc_allocator`
 * add virtual memory interface and allocators
 * add allocators using a fixed-sized storage block
 * introduced `BlockAllocator` concept and various implementations
-* new class template `memory_arena` that is used inside the higher level allocators, allows more control over the internal allocations
+* new class template `memory_arena` that is used inside the higher level allocators, allows more control over the
+  internal allocations
 * add wrappers/adapters for the polymorphic memory resource TS
 * improved tracking classes
 * other improvements like concept checks and more exception classes

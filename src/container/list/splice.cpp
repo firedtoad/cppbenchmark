@@ -6,27 +6,30 @@
 // Created by Administrator on 2022/01/16.
 //
 
-#include<benchmark/benchmark.h>
-#include <list>
-#include <deque>
+#include "plf_list.h"
+#include <benchmark/benchmark.h>
 #include <boost/intrusive/list.hpp>
 #include <boost/intrusive/list_hook.hpp>
-#include "plf_list.h"
+#include <deque>
+#include <list>
 
-using mode = boost::intrusive::link_mode<boost::intrusive::auto_unlink>;
+using mode               = boost::intrusive::link_mode<boost::intrusive::auto_unlink>;
 using constant_time_size = boost::intrusive::constant_time_size<false>;
 
-struct SList : public boost::intrusive::list_base_hook<mode> {
-
+struct SList : public boost::intrusive::list_base_hook<mode>
+{
 };
 
-static void BenchListSplice(benchmark::State &state) {
+static void BenchListSplice(benchmark::State &state)
+{
     int r = 0;
-    for (auto _ : state) {
+    for (auto _ : state)
+    {
         state.PauseTiming();
         std::list<SList> v;
         std::list<SList> v1;
-        for (auto i = 0; i < state.range(0); i++) {
+        for (auto i = 0; i < state.range(0); i++)
+        {
             v1.push_back({});
         }
         state.ResumeTiming();
@@ -36,15 +39,18 @@ static void BenchListSplice(benchmark::State &state) {
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchListSplice)->Range(1,1024);
+BENCHMARK(BenchListSplice)->Range(1, 1024);
 
-static void BenchListSwap(benchmark::State &state) {
+static void BenchListSwap(benchmark::State &state)
+{
     int r = 0;
-    for (auto _ : state) {
+    for (auto _ : state)
+    {
         state.PauseTiming();
         std::list<SList> v;
         std::list<SList> v1;
-        for (auto i = 0; i < state.range(0); i++) {
+        for (auto i = 0; i < state.range(0); i++)
+        {
             v1.push_back({});
         }
         state.ResumeTiming();
@@ -53,16 +59,19 @@ static void BenchListSwap(benchmark::State &state) {
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchListSwap)->Range(1,1024);
+BENCHMARK(BenchListSwap)->Range(1, 1024);
 
-static void BenchDequeSwap(benchmark::State &state) {
+static void BenchDequeSwap(benchmark::State &state)
+{
 
     int r = 0;
-    for (auto _ : state) {
+    for (auto _ : state)
+    {
         state.PauseTiming();
         std::deque<SList> v;
         std::deque<SList> v1;
-        for (auto i = 0; i < state.range(0); i++) {
+        for (auto i = 0; i < state.range(0); i++)
+        {
             v1.push_back({});
         }
         state.ResumeTiming();
@@ -71,17 +80,20 @@ static void BenchDequeSwap(benchmark::State &state) {
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchDequeSwap)->Range(1,1024);
+BENCHMARK(BenchDequeSwap)->Range(1, 1024);
 
-static void BenchIntrusiveListSplice(benchmark::State &state) {
+static void BenchIntrusiveListSplice(benchmark::State &state)
+{
 
     int r = 0;
-    for (auto _ : state) {
+    for (auto _ : state)
+    {
         state.PauseTiming();
         boost::intrusive::list<SList, constant_time_size> vt;
         boost::intrusive::list<SList, constant_time_size> v;
         std::vector<SList> lst(state.range(0));
-        for (auto i = 0; i < state.range(0); i++) {
+        for (auto i = 0; i < state.range(0); i++)
+        {
             v.push_back(lst[i]);
         }
         state.ResumeTiming();
@@ -90,17 +102,20 @@ static void BenchIntrusiveListSplice(benchmark::State &state) {
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchIntrusiveListSplice)->Range(1,1024);
+BENCHMARK(BenchIntrusiveListSplice)->Range(1, 1024);
 
-static void BenchIntrusiveListSwap(benchmark::State &state) {
+static void BenchIntrusiveListSwap(benchmark::State &state)
+{
 
     int r = 0;
-    for (auto _ : state) {
+    for (auto _ : state)
+    {
         state.PauseTiming();
         boost::intrusive::list<SList, constant_time_size> vt;
         boost::intrusive::list<SList, constant_time_size> v;
         SList lst[state.range(0)];
-        for (auto i = 0; i < state.range(0); i++) {
+        for (auto i = 0; i < state.range(0); i++)
+        {
             v.push_back(lst[i]);
         }
         state.ResumeTiming();
@@ -109,15 +124,18 @@ static void BenchIntrusiveListSwap(benchmark::State &state) {
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchIntrusiveListSwap)->Range(1,1024);
+BENCHMARK(BenchIntrusiveListSwap)->Range(1, 1024);
 
-static void BenchPlfListSplice(benchmark::State &state) {
+static void BenchPlfListSplice(benchmark::State &state)
+{
     int r = 0;
-    for (auto _ : state) {
+    for (auto _ : state)
+    {
         state.PauseTiming();
         plf::list<SList> v;
         plf::list<SList> v1;
-        for (auto i = 0; i < state.range(0); i++) {
+        for (auto i = 0; i < state.range(0); i++)
+        {
             v1.push_back({});
         }
         state.ResumeTiming();
@@ -125,18 +143,20 @@ static void BenchPlfListSplice(benchmark::State &state) {
         r += v.size();
     }
     benchmark::DoNotOptimize(r);
-
 }
 
-BENCHMARK(BenchPlfListSplice)->Range(1,1024);
+BENCHMARK(BenchPlfListSplice)->Range(1, 1024);
 
-static void BenchPlfListSwap(benchmark::State &state) {
+static void BenchPlfListSwap(benchmark::State &state)
+{
     int r = 0;
-    for (auto _ : state) {
+    for (auto _ : state)
+    {
         state.PauseTiming();
         plf::list<SList> v;
         plf::list<SList> v1;
-        for (auto i = 0; i < state.range(0); i++) {
+        for (auto i = 0; i < state.range(0); i++)
+        {
             v1.push_back({});
         }
         state.ResumeTiming();
@@ -145,9 +165,10 @@ static void BenchPlfListSwap(benchmark::State &state) {
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchPlfListSwap)->Range(1,1024);
+BENCHMARK(BenchPlfListSwap)->Range(1, 1024);
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

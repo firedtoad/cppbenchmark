@@ -10,7 +10,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -27,7 +27,7 @@
 
 void set_enomem(void);
 
-#define __thread__ __thread __attribute__ ((tls_model ("initial-exec"))) 
+#define __thread__ __thread __attribute__((tls_model("initial-exec")))
 
 /* #define HAVE_PTHREADS */
 /* #define HAVE_SYS_SELECT */
@@ -38,9 +38,9 @@ void set_enomem(void);
 #define cache_align __attribute__((aligned(64)))
 #define noinline __attribute__((__noinline__))
 #define prefetch(x) __builtin_prefetch(x)
-#define barrier() asm volatile("": : :"memory")
-#define forget(v) asm volatile("": "=m"(v) :"m"(v))
-#define cpu_relax() asm volatile("rep; nop\n": : :"memory")
+#define barrier() asm volatile("" : : : "memory")
+#define forget(v) asm volatile("" : "=m"(v) : "m"(v))
+#define cpu_relax() asm volatile("rep; nop\n" : : : "memory")
 #define likely(x) __builtin_expect(!!(x), 1)
 #define unlikely(x) __builtin_expect(!!(x), 0)
 #define gcc_used __attribute__((used))
@@ -53,8 +53,8 @@ void set_enomem(void);
 
 struct iovec
 {
-	void *iov_base;
-	size_t iov_len;
+    void *iov_base;
+    size_t iov_len;
 };
 
 #ifndef EBUSY
@@ -65,7 +65,7 @@ struct iovec
 #define pthread_mutex_t CRITICAL_SECTION
 static inline int pthread_mutex_trylock(pthread_mutex_t *m)
 {
-	return TryEnterCriticalSection(m) ? 0 : EBUSY;
+    return TryEnterCriticalSection(m) ? 0 : EBUSY;
 }
 #define pthread_mutex_init(L, A) InitializeCriticalSection(L)
 #define pthread_mutex_destroy(L) DeleteCriticalSection(L)
@@ -76,28 +76,28 @@ static inline int pthread_mutex_trylock(pthread_mutex_t *m)
 #define pthread_cond_t CONDITION_VARIABLE
 #define pthread_key_create 1
 
-#define MAP_FAILED	NULL
+#define MAP_FAILED NULL
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-static __attribute__((format (ms_printf, 2, 3))) inline void errx(int ret, const char *fmt, ...)
+static __attribute__((format(ms_printf, 2, 3))) inline void errx(int ret, const char *fmt, ...)
 {
-	va_list va;
+    va_list va;
 
-	/* Get args */
-	va_start(va, fmt);
+    /* Get args */
+    va_start(va, fmt);
 
-	/* Print it */
-	vfprintf(stderr, fmt, va);
+    /* Print it */
+    vfprintf(stderr, fmt, va);
 
-	/* Make sure it is printed */
-	fflush(NULL);
+    /* Make sure it is printed */
+    fflush(NULL);
 
-	/* Done */
-	va_end(va);
+    /* Done */
+    va_end(va);
 
-	exit(ret);
+    exit(ret);
 }
 
 #ifndef _CRT_ERRNO_DEFINED

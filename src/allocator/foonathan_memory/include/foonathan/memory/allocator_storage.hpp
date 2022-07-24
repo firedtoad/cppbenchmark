@@ -165,7 +165,7 @@ namespace foonathan
             /// @{
             /// \effects Copies the \c allocator_storage object.
             /// \requires The \c StoragePolicy must be copyable.
-            allocator_storage(const allocator_storage&) = default;
+            allocator_storage(const allocator_storage&)            = default;
             allocator_storage& operator=(const allocator_storage&) = default;
             /// @}
 
@@ -296,9 +296,9 @@ namespace foonathan
                 return detail::lock_allocator(get_allocator(), static_cast<actual_mutex&>(*this));
             }
 
-            auto lock() const noexcept -> FOONATHAN_IMPL_DEFINED(decltype(
-                detail::lock_allocator(std::declval<const storage_policy>().get_allocator(),
-                                       std::declval<actual_mutex&>())))
+            auto lock() const noexcept -> FOONATHAN_IMPL_DEFINED(decltype(detail::lock_allocator(
+                std::declval<const storage_policy>().get_allocator(),
+                std::declval<actual_mutex&>())))
             {
                 return detail::lock_allocator(get_allocator(), static_cast<actual_mutex&>(*this));
             }
@@ -552,9 +552,9 @@ namespace foonathan
         {
             using storage = detail::reference_storage_impl<
                 typename allocator_traits<RawAllocator>::allocator_type,
-                decltype(
-                    detail::reference_type(typename allocator_traits<RawAllocator>::is_stateful{},
-                                           is_shared_allocator<RawAllocator>{}))>;
+                decltype(detail::reference_type(typename allocator_traits<
+                                                    RawAllocator>::is_stateful{},
+                                                is_shared_allocator<RawAllocator>{}))>;
 
         public:
             using allocator_type = typename allocator_traits<RawAllocator>::allocator_type;
@@ -580,7 +580,7 @@ namespace foonathan
             /// @{
             /// \effects Copies the \c allocator_reference object.
             /// Only copies the pointer to it in the stateful case.
-            reference_storage(const reference_storage&) noexcept = default;
+            reference_storage(const reference_storage&) noexcept            = default;
             reference_storage& operator=(const reference_storage&) noexcept = default;
             /// @}
 
@@ -787,9 +787,9 @@ namespace foonathan
             : public base_allocator,
               private detail::reference_storage_impl<
                   typename allocator_traits<RawAllocator>::allocator_type,
-                  decltype(
-                      detail::reference_type(typename allocator_traits<RawAllocator>::is_stateful{},
-                                             is_shared_allocator<RawAllocator>{}))>
+                  decltype(detail::reference_type(typename allocator_traits<
+                                                      RawAllocator>::is_stateful{},
+                                                  is_shared_allocator<RawAllocator>{}))>
             {
                 using traits     = allocator_traits<RawAllocator>;
                 using composable = is_composable_allocator<typename traits::allocator_type>;
@@ -797,7 +797,7 @@ namespace foonathan
                     typename allocator_traits<RawAllocator>::allocator_type,
                     decltype(detail::reference_type(typename allocator_traits<
                                                         RawAllocator>::is_stateful{},
-                                                    is_shared_allocator<RawAllocator>{}))>;
+                                                       is_shared_allocator<RawAllocator>{}))>;
 
             public:
                 // non stateful

@@ -8,19 +8,21 @@
 #include <spdlog/common.h>
 #include <spdlog/details/os.h>
 
-#include <winsock2.h>
-#include <windows.h>
-#include <ws2tcpip.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string>
+#include <windows.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
 
 #pragma comment(lib, "Ws2_32.lib")
 #pragma comment(lib, "Mswsock.lib")
 #pragma comment(lib, "AdvApi32.lib")
 
-namespace spdlog {
-namespace details {
+namespace spdlog
+{
+namespace details
+{
 class tcp_client
 {
     SOCKET socket_ = INVALID_SOCKET;
@@ -38,13 +40,13 @@ class tcp_client
     static void throw_winsock_error_(const std::string &msg, int last_error)
     {
         char buf[512];
-        ::FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, last_error,
-            MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), buf, (sizeof(buf) / sizeof(char)), NULL);
+        ::FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, last_error, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), buf,
+                         (sizeof(buf) / sizeof(char)), NULL);
 
         throw_spdlog_ex(fmt_lib::format("tcp_sink - {}: {}", msg, buf));
     }
 
-public:
+  public:
     tcp_client()
     {
         init_winsock_();
@@ -80,17 +82,18 @@ public:
             close();
         }
         struct addrinfo hints
-        {};
+        {
+        };
         ZeroMemory(&hints, sizeof(hints));
 
-        hints.ai_family = AF_INET;       // IPv4
-        hints.ai_socktype = SOCK_STREAM; // TCP
-        hints.ai_flags = AI_NUMERICSERV; // port passed as as numeric value
+        hints.ai_family   = AF_INET;        // IPv4
+        hints.ai_socktype = SOCK_STREAM;    // TCP
+        hints.ai_flags    = AI_NUMERICSERV; // port passed as as numeric value
         hints.ai_protocol = 0;
 
         auto port_str = std::to_string(port);
         struct addrinfo *addrinfo_result;
-        auto rv = ::getaddrinfo(host.c_str(), port_str.c_str(), &hints, &addrinfo_result);
+        auto rv        = ::getaddrinfo(host.c_str(), port_str.c_str(), &hints, &addrinfo_result);
         int last_error = 0;
         if (rv != 0)
         {
@@ -140,7 +143,7 @@ public:
         while (bytes_sent < n_bytes)
         {
             const int send_flags = 0;
-            auto write_result = ::send(socket_, data + bytes_sent, (int)(n_bytes - bytes_sent), send_flags);
+            auto write_result    = ::send(socket_, data + bytes_sent, (int)(n_bytes - bytes_sent), send_flags);
             if (write_result == SOCKET_ERROR)
             {
                 int last_error = ::WSAGetLastError();

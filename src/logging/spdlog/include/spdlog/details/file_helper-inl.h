@@ -4,11 +4,11 @@
 #pragma once
 
 #ifndef SPDLOG_HEADER_ONLY
-#    include <spdlog/details/file_helper.h>
+#include <spdlog/details/file_helper.h>
 #endif
 
-#include <spdlog/details/os.h>
 #include <spdlog/common.h>
+#include <spdlog/details/os.h>
 
 #include <cerrno>
 #include <chrono>
@@ -17,12 +17,12 @@
 #include <thread>
 #include <tuple>
 
-namespace spdlog {
-namespace details {
+namespace spdlog
+{
+namespace details
+{
 
-SPDLOG_INLINE file_helper::file_helper(const file_event_handlers &event_handlers)
-    : event_handlers_(event_handlers)
-{}
+SPDLOG_INLINE file_helper::file_helper(const file_event_handlers &event_handlers) : event_handlers_(event_handlers) {}
 
 SPDLOG_INLINE file_helper::~file_helper()
 {
@@ -34,7 +34,7 @@ SPDLOG_INLINE void file_helper::open(const filename_t &fname, bool truncate)
     close();
     filename_ = fname;
 
-    auto *mode = SPDLOG_FILENAME_T("ab");
+    auto *mode       = SPDLOG_FILENAME_T("ab");
     auto *trunc_mode = SPDLOG_FILENAME_T("wb");
 
     if (event_handlers_.before_open)
@@ -112,7 +112,7 @@ SPDLOG_INLINE void file_helper::close()
 SPDLOG_INLINE void file_helper::write(const memory_buf_t &buf)
 {
     size_t msg_size = buf.size();
-    auto data = buf.data();
+    auto data       = buf.data();
     if (std::fwrite(data, 1, msg_size, fd_) != msg_size)
     {
         throw_spdlog_ex("Failed writing to file " + os::filename_to_str(filename_), errno);

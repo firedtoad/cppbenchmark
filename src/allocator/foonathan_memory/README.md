@@ -4,8 +4,12 @@
 ![Build Status](https://github.com/foonathan/memory/workflows/Main%20CI/badge.svg)
 [![Code Coverage](https://codecov.io/gh/foonathan/memory/branch/master/graph/badge.svg?token=U6wnInlamY)](https://codecov.io/gh/foonathan/memory)
 
-The C++ STL allocator model has various flaws. For example, they are fixed to a certain type, because they are almost necessarily required to be templates. So you can't easily share a single allocator for multiple types. In addition, you can only get a copy from the containers and not the original allocator object. At least with C++11 they are allowed to be stateful and so can be made object not instance based. But still, the model has many flaws.
-Over the course of the years many solutions have been proposed, for example [EASTL]. This library is another. But instead of trying to change the STL, it works with the current implementation.
+The C++ STL allocator model has various flaws. For example, they are fixed to a certain type, because they are almost
+necessarily required to be templates. So you can't easily share a single allocator for multiple types. In addition, you
+can only get a copy from the containers and not the original allocator object. At least with C++11 they are allowed to
+be stateful and so can be made object not instance based. But still, the model has many flaws.
+Over the course of the years many solutions have been proposed, for example [EASTL]. This library is another. But
+instead of trying to change the STL, it works with the current implementation.
 
 If you like this project, consider [supporting me](https://jonathanmueller.dev/support-me/).
 It would really help!
@@ -26,7 +30,7 @@ Several implementations:
 * different memory pools
 * a portable, improved `alloca()` in the form of `temporary_allocator`
 * facilities for joint memory allocations: share a big memory block for the object
-and all dynamic memory allocations for its members
+  and all dynamic memory allocations for its members
 
 Adapters, wrappers and storage classes:
 
@@ -39,7 +43,8 @@ Adapters, wrappers and storage classes:
 
 In addition:
 
-* container node size debuggers that obtain information about the node size of an STL container at compile-time to specify node sizes for pools
+* container node size debuggers that obtain information about the node size of an STL container at compile-time to
+  specify node sizes for pools
 * debugging options for leak checking, double-free checks or buffer overflows
 * customizable error handling routines that can work with exceptions disabled
 * everything except the STL adapters works on a freestanding environment
@@ -158,26 +163,31 @@ See `example/` for more.
 This library can be used as [CMake] subdirectory.
 It is tested on GCC 4.8-5.0, Clang 3.5 and Visual Studio 2013. Newer versions should work too.
 
-1. Fetch it, e.g. using [git submodules] `git submodule add https://github.com/foonathan/memory ext/memory` and `git submodule update --init --recursive`.
+1. Fetch it, e.g. using [git submodules] `git submodule add https://github.com/foonathan/memory ext/memory`
+   and `git submodule update --init --recursive`.
 
 2. Call `add_subdirectory(ext/memory)` or whatever your local path is to make it available in CMake.
 
-3. Simply call `target_link_libraries(your_target PUBLIC foonathan_memory)` to link this library and setups the include search path and compilation options.
+3. Simply call `target_link_libraries(your_target PUBLIC foonathan_memory)` to link this library and setups the include
+   search path and compilation options.
 
 You can also install the library:
 
-1. Run `cmake -DCMAKE_BUILD_TYPE="buildtype" -DFOONATHAN_MEMORY_BUILD_EXAMPLES=OFF -DFOONATHAN_MEMORY_BUILD_TESTS=OFF .` inside the library sources.
+1. Run `cmake -DCMAKE_BUILD_TYPE="buildtype" -DFOONATHAN_MEMORY_BUILD_EXAMPLES=OFF -DFOONATHAN_MEMORY_BUILD_TESTS=OFF .`
+   inside the library sources.
 
 2. Run `cmake --build . -- install` to install the library under `${CMAKE_INSTALL_PREFIX}`.
 
-3. Repeat 1 and 2 for each build type/configuration you want to have (like `Debug`, `RelWithDebInfo` and `Release` or custom names).
+3. Repeat 1 and 2 for each build type/configuration you want to have (like `Debug`, `RelWithDebInfo` and `Release` or
+   custom names).
 
 To use an installed library:
 
 4. Call `find_package(foonathan_memory major.minor REQUIRED)` to find the library.
 
-5. Call `target_link_libraries(your_target PUBLIC foonathan_memory)` to link to the library and setup all required options.
-  
+5. Call `target_link_libraries(your_target PUBLIC foonathan_memory)` to link to the library and setup all required
+   options.
+
 See https://foonathan.net/memory/md_doc_installation.html for a detailed guide.
 
 ## Documentation
@@ -208,7 +218,9 @@ struct raw_allocator
 ```
 
 A `RawAllocator` only needs to be moveable, all `Allocator` classes are `RawAllocators` too.
-Classes not providing the interface can specialize the `allocator_traits`, read more about [writing allocators here](https://foonathan.net/memory/md_doc_writing_allocators.html) or about the technical details of the [concept here](https://foonathan.net/memory/md_doc_concepts.html).
+Classes not providing the interface can specialize the `allocator_traits`, read more
+about [writing allocators here](https://foonathan.net/memory/md_doc_writing_allocators.html) or about the technical
+details of the [concept here](https://foonathan.net/memory/md_doc_concepts.html).
 
 ## Acknowledgements
 
@@ -241,6 +253,9 @@ And big thanks to the contributors as well:
 * @zhouchengming1
 
 [EASTL]: http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2271.html
+
 [CMake]: www.cmake.org
+
 [git submodules]: http://git-scm.com/docs/git-submodule
+
 [foonathan/compatibility]: hptts://github.com/foonathan/compatibility

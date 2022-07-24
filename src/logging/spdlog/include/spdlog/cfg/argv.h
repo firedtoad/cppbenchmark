@@ -17,8 +17,10 @@
 // turn off all logging except for logger1 and logger2:
 // example.exe "SPDLOG_LEVEL=off,logger1=debug,logger2=info"
 
-namespace spdlog {
-namespace cfg {
+namespace spdlog
+{
+namespace cfg
+{
 
 // search for SPDLOG_LEVEL= in the args and use it to init the levels
 inline void load_argv_levels(int argc, const char **argv)

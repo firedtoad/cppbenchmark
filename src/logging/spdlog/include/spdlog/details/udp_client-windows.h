@@ -9,23 +9,25 @@
 #include <spdlog/common.h>
 #include <spdlog/details/os.h>
 #include <spdlog/details/windows_include.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string>
 #include <winsock2.h>
 #include <ws2tcpip.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string>
 
 #pragma comment(lib, "Ws2_32.lib")
 #pragma comment(lib, "Mswsock.lib")
 #pragma comment(lib, "AdvApi32.lib")
 
-namespace spdlog {
-namespace details {
+namespace spdlog
+{
+namespace details
+{
 class udp_client
 {
     static constexpr int TX_BUFFER_SIZE = 1024 * 10;
-    SOCKET socket_ = INVALID_SOCKET;
-    sockaddr_in addr_ = {0};
+    SOCKET socket_                      = INVALID_SOCKET;
+    sockaddr_in addr_                   = {0};
 
     static void init_winsock_()
     {
@@ -40,8 +42,8 @@ class udp_client
     static void throw_winsock_error_(const std::string &msg, int last_error)
     {
         char buf[512];
-        ::FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, last_error,
-            MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), buf, (sizeof(buf) / sizeof(char)), NULL);
+        ::FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, last_error, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), buf,
+                         (sizeof(buf) / sizeof(char)), NULL);
 
         throw_spdlog_ex(fmt_lib::format("udp_sink - {}: {}", msg, buf));
     }
@@ -56,13 +58,13 @@ class udp_client
         ::WSACleanup();
     }
 
-public:
+  public:
     udp_client(const std::string &host, uint16_t port)
     {
         init_winsock_();
 
-        addr_.sin_family = PF_INET;
-        addr_.sin_port = htons(port);
+        addr_.sin_family      = PF_INET;
+        addr_.sin_port        = htons(port);
         addr_.sin_addr.s_addr = INADDR_ANY;
         if (InetPtonA(PF_INET, host.c_str(), &addr_.sin_addr.s_addr) != 1)
         {

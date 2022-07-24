@@ -8,26 +8,27 @@
 #include <spdlog/details/null_mutex.h>
 #include <spdlog/sinks/sink.h>
 
+#include <array>
+#include <cstdint>
 #include <memory>
 #include <mutex>
 #include <string>
-#include <array>
-#include <cstdint>
 
-namespace spdlog {
-namespace sinks {
+namespace spdlog
+{
+namespace sinks
+{
 /*
  * Windows color console sink. Uses WriteConsoleA to write to the console with
  * colors
  */
-template<typename ConsoleMutex>
-class wincolor_sink : public sink
+template <typename ConsoleMutex> class wincolor_sink : public sink
 {
-public:
+  public:
     wincolor_sink(void *out_handle, color_mode mode);
     ~wincolor_sink() override;
 
-    wincolor_sink(const wincolor_sink &other) = delete;
+    wincolor_sink(const wincolor_sink &other)            = delete;
     wincolor_sink &operator=(const wincolor_sink &other) = delete;
 
     // change the color for the given level
@@ -38,7 +39,7 @@ public:
     void set_formatter(std::unique_ptr<spdlog::formatter> sink_formatter) override final;
     void set_color_mode(color_mode mode);
 
-protected:
+  protected:
     using mutex_t = typename ConsoleMutex::mutex_t;
     void *out_handle_;
     mutex_t &mutex_;
@@ -58,17 +59,15 @@ protected:
     void set_color_mode_impl(color_mode mode);
 };
 
-template<typename ConsoleMutex>
-class wincolor_stdout_sink : public wincolor_sink<ConsoleMutex>
+template <typename ConsoleMutex> class wincolor_stdout_sink : public wincolor_sink<ConsoleMutex>
 {
-public:
+  public:
     explicit wincolor_stdout_sink(color_mode mode = color_mode::automatic);
 };
 
-template<typename ConsoleMutex>
-class wincolor_stderr_sink : public wincolor_sink<ConsoleMutex>
+template <typename ConsoleMutex> class wincolor_stderr_sink : public wincolor_sink<ConsoleMutex>
 {
-public:
+  public:
     explicit wincolor_stderr_sink(color_mode mode = color_mode::automatic);
 };
 
@@ -81,5 +80,5 @@ using wincolor_stderr_sink_st = wincolor_stderr_sink<details::console_nullmutex>
 } // namespace spdlog
 
 #ifdef SPDLOG_HEADER_ONLY
-#    include "wincolor_sink-inl.h"
+#include "wincolor_sink-inl.h"
 #endif

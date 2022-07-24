@@ -54,4 +54,3 @@ namespace foonathan
 } // namespace foonathan
 
 #endif // FOONATHAN_MEMORY_DETAIL_ASSERT_HPP_INCLUDED
-

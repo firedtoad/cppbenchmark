@@ -1,806 +1,807 @@
-#include<benchmark/benchmark.h>
+#include <benchmark/benchmark.h>
 
-struct MyData0 {
-
+struct MyData0
+{
 };
 
-struct MyData1 {
-
+struct MyData1
+{
 };
-
-struct MyData2 {
 
+struct MyData2
+{
 };
 
-struct MyData3 {
-
+struct MyData3
+{
 };
 
-struct MyData4 {
-
+struct MyData4
+{
 };
-
-struct MyData5 {
 
+struct MyData5
+{
 };
 
-struct MyData6 {
-
+struct MyData6
+{
 };
 
-struct MyData7 {
-
+struct MyData7
+{
 };
-
-struct MyData8 {
 
+struct MyData8
+{
 };
 
-struct MyData9 {
-
+struct MyData9
+{
 };
 
-struct MyData10 {
-
+struct MyData10
+{
 };
-
-struct MyData11 {
 
+struct MyData11
+{
 };
 
-struct MyData12 {
-
+struct MyData12
+{
 };
 
-struct MyData13 {
-
+struct MyData13
+{
 };
-
-struct MyData14 {
 
+struct MyData14
+{
 };
 
-struct MyData15 {
-
+struct MyData15
+{
 };
 
-struct MyData16 {
-
+struct MyData16
+{
 };
-
-struct MyData17 {
 
+struct MyData17
+{
 };
 
-struct MyData18 {
-
+struct MyData18
+{
 };
 
-struct MyData19 {
-
+struct MyData19
+{
 };
-
-struct MyData20 {
 
+struct MyData20
+{
 };
 
-struct MyData21 {
-
+struct MyData21
+{
 };
-
-struct MyData22 {
 
+struct MyData22
+{
 };
 
-struct MyData23 {
-
+struct MyData23
+{
 };
-
-struct MyData24 {
 
+struct MyData24
+{
 };
 
-struct MyData25 {
-
+struct MyData25
+{
 };
 
-struct MyData26 {
-
+struct MyData26
+{
 };
-
-struct MyData27 {
 
+struct MyData27
+{
 };
 
-struct MyData28 {
-
+struct MyData28
+{
 };
 
-struct MyData29 {
-
+struct MyData29
+{
 };
-
-struct MyData30 {
 
+struct MyData30
+{
 };
 
-struct MyData31 {
-
+struct MyData31
+{
 };
 
-struct MyData32 {
-
+struct MyData32
+{
 };
-
-struct MyData33 {
 
+struct MyData33
+{
 };
 
-struct MyData34 {
-
+struct MyData34
+{
 };
 
-struct MyData35 {
-
+struct MyData35
+{
 };
-
-struct MyData36 {
 
+struct MyData36
+{
 };
 
-struct MyData37 {
-
+struct MyData37
+{
 };
 
-struct MyData38 {
-
+struct MyData38
+{
 };
-
-struct MyData39 {
 
+struct MyData39
+{
 };
 
-struct MyData40 {
-
+struct MyData40
+{
 };
 
-struct MyData41 {
-
+struct MyData41
+{
 };
-
-struct MyData42 {
 
+struct MyData42
+{
 };
 
-struct MyData43 {
-
+struct MyData43
+{
 };
 
-struct MyData44 {
-
+struct MyData44
+{
 };
-
-struct MyData45 {
 
+struct MyData45
+{
 };
 
-struct MyData46 {
-
+struct MyData46
+{
 };
-
-struct MyData47 {
 
+struct MyData47
+{
 };
 
-struct MyData48 {
-
+struct MyData48
+{
 };
-
-struct MyData49 {
 
+struct MyData49
+{
 };
 
-struct MyData50 {
-
+struct MyData50
+{
 };
 
-struct MyData51 {
-
+struct MyData51
+{
 };
-
-struct MyData52 {
 
+struct MyData52
+{
 };
 
-struct MyData53 {
-
+struct MyData53
+{
 };
 
-struct MyData54 {
-
+struct MyData54
+{
 };
-
-struct MyData55 {
 
+struct MyData55
+{
 };
 
-struct MyData56 {
-
+struct MyData56
+{
 };
 
-struct MyData57 {
-
+struct MyData57
+{
 };
-
-struct MyData58 {
 
+struct MyData58
+{
 };
 
-struct MyData59 {
-
+struct MyData59
+{
 };
 
-struct MyData60 {
-
+struct MyData60
+{
 };
-
-struct MyData61 {
 
+struct MyData61
+{
 };
 
-struct MyData62 {
-
+struct MyData62
+{
 };
 
-struct MyData63 {
-
+struct MyData63
+{
 };
-
-struct MyData64 {
 
+struct MyData64
+{
 };
 
-struct MyData65 {
-
+struct MyData65
+{
 };
 
-struct MyData66 {
-
+struct MyData66
+{
 };
-
-struct MyData67 {
 
+struct MyData67
+{
 };
 
-struct MyData68 {
-
+struct MyData68
+{
 };
 
-struct MyData69 {
-
+struct MyData69
+{
 };
-
-struct MyData70 {
 
+struct MyData70
+{
 };
 
-struct MyData71 {
-
+struct MyData71
+{
 };
-
-struct MyData72 {
 
+struct MyData72
+{
 };
 
-struct MyData73 {
-
+struct MyData73
+{
 };
-
-struct MyData74 {
 
+struct MyData74
+{
 };
 
-struct MyData75 {
-
+struct MyData75
+{
 };
 
-struct MyData76 {
-
+struct MyData76
+{
 };
-
-struct MyData77 {
 
+struct MyData77
+{
 };
 
-struct MyData78 {
-
+struct MyData78
+{
 };
 
-struct MyData79 {
-
+struct MyData79
+{
 };
-
-struct MyData80 {
 
+struct MyData80
+{
 };
 
-struct MyData81 {
-
+struct MyData81
+{
 };
 
-struct MyData82 {
-
+struct MyData82
+{
 };
-
-struct MyData83 {
 
+struct MyData83
+{
 };
 
-struct MyData84 {
-
+struct MyData84
+{
 };
 
-struct MyData85 {
-
+struct MyData85
+{
 };
-
-struct MyData86 {
 
+struct MyData86
+{
 };
 
-struct MyData87 {
-
+struct MyData87
+{
 };
 
-struct MyData88 {
-
+struct MyData88
+{
 };
-
-struct MyData89 {
 
+struct MyData89
+{
 };
 
-struct MyData90 {
-
+struct MyData90
+{
 };
 
-struct MyData91 {
-
+struct MyData91
+{
 };
-
-struct MyData92 {
 
+struct MyData92
+{
 };
 
-struct MyData93 {
-
+struct MyData93
+{
 };
 
-struct MyData94 {
-
+struct MyData94
+{
 };
-
-struct MyData95 {
 
+struct MyData95
+{
 };
 
-struct MyData96 {
-
+struct MyData96
+{
 };
-
-struct MyData97 {
 
+struct MyData97
+{
 };
 
-struct MyData98 {
-
+struct MyData98
+{
 };
-
-struct MyData99 {
 
+struct MyData99
+{
 };
 
-struct MyData100 {
-
+struct MyData100
+{
 };
 
-struct MyData101 {
-
+struct MyData101
+{
 };
-
-struct MyData102 {
 
+struct MyData102
+{
 };
 
-struct MyData103 {
-
+struct MyData103
+{
 };
 
-struct MyData104 {
-
+struct MyData104
+{
 };
-
-struct MyData105 {
 
+struct MyData105
+{
 };
 
-struct MyData106 {
-
+struct MyData106
+{
 };
 
-struct MyData107 {
-
+struct MyData107
+{
 };
-
-struct MyData108 {
 
+struct MyData108
+{
 };
 
-struct MyData109 {
-
+struct MyData109
+{
 };
 
-struct MyData110 {
-
+struct MyData110
+{
 };
-
-struct MyData111 {
 
+struct MyData111
+{
 };
 
-struct MyData112 {
-
+struct MyData112
+{
 };
 
-struct MyData113 {
-
+struct MyData113
+{
 };
-
-struct MyData114 {
 
+struct MyData114
+{
 };
 
-struct MyData115 {
-
+struct MyData115
+{
 };
 
-struct MyData116 {
-
+struct MyData116
+{
 };
-
-struct MyData117 {
 
+struct MyData117
+{
 };
 
-struct MyData118 {
-
+struct MyData118
+{
 };
 
-struct MyData119 {
-
+struct MyData119
+{
 };
-
-struct MyData120 {
 
+struct MyData120
+{
 };
 
-struct MyData121 {
-
+struct MyData121
+{
 };
-
-struct MyData122 {
 
+struct MyData122
+{
 };
 
-struct MyData123 {
-
+struct MyData123
+{
 };
-
-struct MyData124 {
 
+struct MyData124
+{
 };
 
-struct MyData125 {
-
+struct MyData125
+{
 };
 
-struct MyData126 {
-
+struct MyData126
+{
 };
-
-struct MyData127 {
 
+struct MyData127
+{
 };
 
-struct MyData128 {
-
+struct MyData128
+{
 };
 
-struct MyData129 {
-
+struct MyData129
+{
 };
-
-struct MyData130 {
 
+struct MyData130
+{
 };
 
-struct MyData131 {
-
+struct MyData131
+{
 };
 
-struct MyData132 {
-
+struct MyData132
+{
 };
-
-struct MyData133 {
 
+struct MyData133
+{
 };
 
-struct MyData134 {
-
+struct MyData134
+{
 };
 
-struct MyData135 {
-
+struct MyData135
+{
 };
-
-struct MyData136 {
 
+struct MyData136
+{
 };
 
-struct MyData137 {
-
+struct MyData137
+{
 };
 
-struct MyData138 {
-
+struct MyData138
+{
 };
-
-struct MyData139 {
 
+struct MyData139
+{
 };
 
-struct MyData140 {
-
+struct MyData140
+{
 };
 
-struct MyData141 {
-
+struct MyData141
+{
 };
-
-struct MyData142 {
 
+struct MyData142
+{
 };
 
-struct MyData143 {
-
+struct MyData143
+{
 };
 
-struct MyData144 {
-
+struct MyData144
+{
 };
-
-struct MyData145 {
 
+struct MyData145
+{
 };
 
-struct MyData146 {
-
+struct MyData146
+{
 };
-
-struct MyData147 {
 
+struct MyData147
+{
 };
 
-struct MyData148 {
-
+struct MyData148
+{
 };
-
-struct MyData149 {
 
+struct MyData149
+{
 };
 
-struct MyData150 {
-
+struct MyData150
+{
 };
 
-struct MyData151 {
-
+struct MyData151
+{
 };
-
-struct MyData152 {
 
+struct MyData152
+{
 };
 
-struct MyData153 {
-
+struct MyData153
+{
 };
 
-struct MyData154 {
-
+struct MyData154
+{
 };
-
-struct MyData155 {
 
+struct MyData155
+{
 };
 
-struct MyData156 {
-
+struct MyData156
+{
 };
 
-struct MyData157 {
-
+struct MyData157
+{
 };
-
-struct MyData158 {
 
+struct MyData158
+{
 };
 
-struct MyData159 {
-
+struct MyData159
+{
 };
 
-struct MyData160 {
-
+struct MyData160
+{
 };
-
-struct MyData161 {
 
+struct MyData161
+{
 };
 
-struct MyData162 {
-
+struct MyData162
+{
 };
 
-struct MyData163 {
-
+struct MyData163
+{
 };
-
-struct MyData164 {
 
+struct MyData164
+{
 };
 
-struct MyData165 {
-
+struct MyData165
+{
 };
 
-struct MyData166 {
-
+struct MyData166
+{
 };
-
-struct MyData167 {
 
+struct MyData167
+{
 };
 
-struct MyData168 {
-
+struct MyData168
+{
 };
 
-struct MyData169 {
-
+struct MyData169
+{
 };
-
-struct MyData170 {
 
+struct MyData170
+{
 };
 
-struct MyData171 {
-
+struct MyData171
+{
 };
-
-struct MyData172 {
 
+struct MyData172
+{
 };
 
-struct MyData173 {
-
+struct MyData173
+{
 };
-
-struct MyData174 {
 
+struct MyData174
+{
 };
 
-struct MyData175 {
-
+struct MyData175
+{
 };
 
-struct MyData176 {
-
+struct MyData176
+{
 };
-
-struct MyData177 {
 
+struct MyData177
+{
 };
 
-struct MyData178 {
-
+struct MyData178
+{
 };
 
-struct MyData179 {
-
+struct MyData179
+{
 };
-
-struct MyData180 {
 
+struct MyData180
+{
 };
 
-struct MyData181 {
-
+struct MyData181
+{
 };
 
-struct MyData182 {
-
+struct MyData182
+{
 };
-
-struct MyData183 {
 
+struct MyData183
+{
 };
 
-struct MyData184 {
-
+struct MyData184
+{
 };
 
-struct MyData185 {
-
+struct MyData185
+{
 };
-
-struct MyData186 {
 
+struct MyData186
+{
 };
 
-struct MyData187 {
-
+struct MyData187
+{
 };
 
-struct MyData188 {
-
+struct MyData188
+{
 };
-
-struct MyData189 {
 
+struct MyData189
+{
 };
 
-struct MyData190 {
-
+struct MyData190
+{
 };
 
-struct MyData191 {
-
+struct MyData191
+{
 };
-
-struct MyData192 {
 
+struct MyData192
+{
 };
 
-struct MyData193 {
-
+struct MyData193
+{
 };
 
-struct MyData194 {
-
+struct MyData194
+{
 };
-
-struct MyData195 {
 
+struct MyData195
+{
 };
 
-struct MyData196 {
-
+struct MyData196
+{
 };
-
-struct MyData197 {
 
+struct MyData197
+{
 };
 
-struct MyData198 {
-
+struct MyData198
+{
 };
-
-struct MyData199 {
 
+struct MyData199
+{
 };
 
-struct Pointer {
+struct Pointer
+{
     ~Pointer();
     MyData0 *mData0{};
     MyData1 *mData1{};
@@ -1004,7 +1005,8 @@ struct Pointer {
     MyData199 *mData199{};
 };
 
-Pointer::~Pointer() {
+Pointer::~Pointer()
+{
     delete mData0;
     delete mData1;
     delete mData2;
@@ -1207,17 +1209,22 @@ Pointer::~Pointer() {
     delete mData199;
 }
 
-static void BM_DeleteNullptr(benchmark::State &state) {
-    for (auto _ : state) {
+static void BM_DeleteNullptr(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
         Pointer p{};
         benchmark::DoNotOptimize(p);
     }
 }
 
-static void BM_DeleteVecNullptr(benchmark::State &state) {
+static void BM_DeleteVecNullptr(benchmark::State &state)
+{
     std::array<MyData1 *, 200> vec{};
-    for (auto _ : state) {
-        for (auto &it : vec) {
+    for (auto _ : state)
+    {
+        for (auto &it : vec)
+        {
             delete it;
         }
     }
@@ -1226,7 +1233,8 @@ static void BM_DeleteVecNullptr(benchmark::State &state) {
 BENCHMARK(BM_DeleteNullptr);
 BENCHMARK(BM_DeleteVecNullptr);
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

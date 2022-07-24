@@ -131,17 +131,14 @@ free_memory_list::free_memory_list(std::size_t node_size) noexcept
 {
 }
 
-free_memory_list::free_memory_list(std::size_t node_size, void* mem,
-                                   std::size_t size) noexcept
+free_memory_list::free_memory_list(std::size_t node_size, void* mem, std::size_t size) noexcept
 : free_memory_list(node_size)
 {
     insert(mem, size);
 }
 
 free_memory_list::free_memory_list(free_memory_list&& other) noexcept
-: first_(other.first_),
-  node_size_(other.node_size_),
-  capacity_(other.capacity_)
+: first_(other.first_), node_size_(other.node_size_), capacity_(other.capacity_)
 {
     other.first_    = nullptr;
     other.capacity_ = 0u;
@@ -300,8 +297,9 @@ namespace
             else if (less(cur_backward, memory))
                 // the next position is the previous backwards pointer
                 return {cur_backward, prev_backward};
-            debug_check_double_dealloc(
-                [&] { return cur_forward != memory && cur_backward != memory; }, info, memory);
+            debug_check_double_dealloc([&]
+                                       { return cur_forward != memory && cur_backward != memory; },
+                                       info, memory);
             xor_list_iter_next(cur_forward, prev_forward);
             xor_list_iter_next(cur_backward, prev_backward);
         } while (less(prev_forward, prev_backward));
@@ -353,9 +351,8 @@ ordered_free_memory_list::ordered_free_memory_list(std::size_t node_size) noexce
     xor_list_set(end_node(), begin_node(), nullptr);
 }
 
-ordered_free_memory_list::ordered_free_memory_list(ordered_free_memory_list&& other)
-    noexcept : node_size_(other.node_size_),
-                         capacity_(other.capacity_)
+ordered_free_memory_list::ordered_free_memory_list(ordered_free_memory_list&& other) noexcept
+: node_size_(other.node_size_), capacity_(other.capacity_)
 {
     if (!other.empty())
     {

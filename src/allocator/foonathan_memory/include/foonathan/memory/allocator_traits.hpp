@@ -375,12 +375,12 @@ namespace foonathan
 
             template <typename T>
             struct has_invalid_alloc_function
-            : std::is_same<decltype(
-                               traits_detail::allocate_node(traits_detail::full_concept{},
-                                                            std::declval<typename allocator_traits<
-                                                                T>::allocator_type&>(),
-                                                            0, 0)),
-                           traits_detail::error>
+            : std::is_same<
+                  decltype(traits_detail::allocate_node(traits_detail::full_concept{},
+                                                        std::declval<typename allocator_traits<
+                                                            T>::allocator_type&>(),
+                                                        0, 0)),
+                  traits_detail::error>
             {
             };
 
@@ -564,13 +564,12 @@ namespace foonathan
 
             template <typename T>
             struct has_invalid_try_dealloc_function
-            : std::is_same<
-                  decltype(
-                      traits_detail::try_deallocate_node(traits_detail::full_concept{},
-                                                         std::declval<typename allocator_traits<
-                                                             T>::allocator_type&>(),
-                                                         nullptr, 0, 0)),
-                  traits_detail::error>
+            : std::is_same<decltype(traits_detail::
+                                        try_deallocate_node(traits_detail::full_concept{},
+                                                            std::declval<typename allocator_traits<
+                                                                T>::allocator_type&>(),
+                                                            nullptr, 0, 0)),
+                           traits_detail::error>
             {
             };
 

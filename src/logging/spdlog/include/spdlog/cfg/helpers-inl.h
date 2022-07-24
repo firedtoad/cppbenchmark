@@ -4,27 +4,29 @@
 #pragma once
 
 #ifndef SPDLOG_HEADER_ONLY
-#    include <spdlog/cfg/helpers.h>
+#include <spdlog/cfg/helpers.h>
 #endif
 
-#include <spdlog/spdlog.h>
 #include <spdlog/details/os.h>
 #include <spdlog/details/registry.h>
+#include <spdlog/spdlog.h>
 
 #include <algorithm>
+#include <sstream>
 #include <string>
 #include <utility>
-#include <sstream>
 
-namespace spdlog {
-namespace cfg {
-namespace helpers {
+namespace spdlog
+{
+namespace cfg
+{
+namespace helpers
+{
 
 // inplace convert to lowercase
 inline std::string &to_lower_(std::string &str)
 {
-    std::transform(
-        str.begin(), str.end(), str.begin(), [](char ch) { return static_cast<char>((ch >= 'A' && ch <= 'Z') ? ch + ('a' - 'A') : ch); });
+    std::transform(str.begin(), str.end(), str.begin(), [](char ch) { return static_cast<char>((ch >= 'A' && ch <= 'Z') ? ch + ('a' - 'A') : ch); });
     return str;
 }
 
@@ -73,7 +75,7 @@ inline std::unordered_map<std::string, std::string> extract_key_vals_(const std:
         {
             continue;
         }
-        auto kv = extract_kv_('=', token);
+        auto kv      = extract_kv_('=', token);
         rv[kv.first] = kv.second;
     }
     return rv;
@@ -89,13 +91,13 @@ SPDLOG_INLINE void load_levels(const std::string &input)
     auto key_vals = extract_key_vals_(input);
     std::unordered_map<std::string, level::level_enum> levels;
     level::level_enum global_level = level::info;
-    bool global_level_found = false;
+    bool global_level_found        = false;
 
     for (auto &name_level : key_vals)
     {
         auto &logger_name = name_level.first;
-        auto level_name = to_lower_(name_level.second);
-        auto level = level::from_str(level_name);
+        auto level_name   = to_lower_(name_level.second);
+        auto level        = level::from_str(level_name);
         // ignore unrecognized level names
         if (level == level::off && level_name != "off")
         {
@@ -104,7 +106,7 @@ SPDLOG_INLINE void load_levels(const std::string &input)
         if (logger_name.empty()) // no logger name indicate global level
         {
             global_level_found = true;
-            global_level = level;
+            global_level       = level;
         }
         else
         {

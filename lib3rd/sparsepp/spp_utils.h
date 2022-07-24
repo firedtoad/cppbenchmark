@@ -69,78 +69,83 @@
 #define spp_utils_h_guard_
 
 #if defined(_MSC_VER)
-    #if (_MSC_VER >= 1600 )                      // vs2010 (1900 is vs2015)
-        #include <functional>
-        #define SPP_HASH_CLASS std::hash
-    #else
-        #include  <hash_map>
-        #define SPP_HASH_CLASS stdext::hash_compare
-    #endif
-    #if (_MSC_FULL_VER < 190021730)
-        #define SPP_NO_CXX11_NOEXCEPT
-    #endif
-#elif defined __clang__
-    #if __has_feature(cxx_noexcept) || defined(SPP_CXX11) // define SPP_CXX11 if your compiler has <functional>
-       #include <functional>
-       #define SPP_HASH_CLASS  std::hash
-    #else
-       #include <tr1/functional>
-       #define SPP_HASH_CLASS std::tr1::hash
-    #endif
-
-    #if !__has_feature(cxx_noexcept)
-        #define SPP_NO_CXX11_NOEXCEPT
-    #endif
-#elif defined(__GNUC__)
-    #if defined(__GXX_EXPERIMENTAL_CXX0X__) || (__cplusplus >= 201103L)
-        #include <functional>
-        #define SPP_HASH_CLASS std::hash
-
-        #if (__GNUC__ * 10000 + __GNUC_MINOR__ * 100) < 40600
-            #define SPP_NO_CXX11_NOEXCEPT
-        #endif
-    #else
-        #include <tr1/unordered_map>
-        #define SPP_HASH_CLASS std::tr1::hash
-        #define SPP_NO_CXX11_NOEXCEPT
-    #endif
+#if (_MSC_VER >= 1600) // vs2010 (1900 is vs2015)
+#include <functional>
+#define SPP_HASH_CLASS std::hash
 #else
-    #include <functional>
-    #define SPP_HASH_CLASS  std::hash
+#include <hash_map>
+#define SPP_HASH_CLASS stdext::hash_compare
+#endif
+#if (_MSC_FULL_VER < 190021730)
+#define SPP_NO_CXX11_NOEXCEPT
+#endif
+#elif defined __clang__
+#if __has_feature(cxx_noexcept) || defined(SPP_CXX11) // define SPP_CXX11 if your compiler has <functional>
+#include <functional>
+#define SPP_HASH_CLASS std::hash
+#else
+#include <tr1/functional>
+#define SPP_HASH_CLASS std::tr1::hash
+#endif
+
+#if !__has_feature(cxx_noexcept)
+#define SPP_NO_CXX11_NOEXCEPT
+#endif
+#elif defined(__GNUC__)
+#if defined(__GXX_EXPERIMENTAL_CXX0X__) || (__cplusplus >= 201103L)
+#include <functional>
+#define SPP_HASH_CLASS std::hash
+
+#if (__GNUC__ * 10000 + __GNUC_MINOR__ * 100) < 40600
+#define SPP_NO_CXX11_NOEXCEPT
+#endif
+#else
+#include <tr1/unordered_map>
+#define SPP_HASH_CLASS std::tr1::hash
+#define SPP_NO_CXX11_NOEXCEPT
+#endif
+#else
+#include <functional>
+#define SPP_HASH_CLASS std::hash
 #endif
 
 #ifdef SPP_NO_CXX11_NOEXCEPT
-    #define SPP_NOEXCEPT
+#define SPP_NOEXCEPT
 #else
-    #define SPP_NOEXCEPT noexcept
+#define SPP_NOEXCEPT noexcept
 #endif
 
 #ifdef SPP_NO_CXX11_CONSTEXPR
-    #define SPP_CONSTEXPR
+#define SPP_CONSTEXPR
 #else
-    #define SPP_CONSTEXPR constexpr
+#define SPP_CONSTEXPR constexpr
 #endif
 
 #ifdef SPP_NO_CXX14_CONSTEXPR
-    #define SPP_CXX14_CONSTEXPR
+#define SPP_CXX14_CONSTEXPR
 #else
-    #define SPP_CXX14_CONSTEXPR constexpr
+#define SPP_CXX14_CONSTEXPR constexpr
 #endif
 
 #define SPP_INLINE
 
 #ifndef spp_
-    #define spp_ spp
+#define spp_ spp
 #endif
 
 namespace spp_
 {
 
-template <class T>  T spp_min(T a, T b) { return a < b  ? a : b; }
-template <class T>  T spp_max(T a, T b) { return a >= b ? a : b; }
+template <class T> T spp_min(T a, T b)
+{
+    return a < b ? a : b;
+}
+template <class T> T spp_max(T a, T b)
+{
+    return a >= b ? a : b;
+}
 
-template <class T>
-struct spp_hash
+template <class T> struct spp_hash
 {
     SPP_INLINE size_t operator()(const T &__v) const SPP_NOEXCEPT
     {
@@ -149,10 +154,9 @@ struct spp_hash
     }
 };
 
-template <class T>
-struct spp_hash<T *>
+template <class T> struct spp_hash<T *>
 {
-    static size_t spp_log2 (size_t val) SPP_NOEXCEPT
+    static size_t spp_log2(size_t val) SPP_NOEXCEPT
     {
         size_t res = 0;
         while (val > 1)
@@ -166,7 +170,7 @@ struct spp_hash<T *>
     SPP_INLINE size_t operator()(const T *__v) const SPP_NOEXCEPT
     {
         static const size_t shift = 3; // spp_log2(1 + sizeof(T)); // T might be incomplete!
-        const uintptr_t i = (const uintptr_t)__v;
+        const uintptr_t i         = (const uintptr_t)__v;
         return static_cast<size_t>(i >> shift);
     }
 };
@@ -198,92 +202,101 @@ inline size_t spp_mix_64(uint64_t a)
     return static_cast<size_t>(a);
 }
 
-template<class ArgumentType, class ResultType>
-struct spp_unary_function
+template <class ArgumentType, class ResultType> struct spp_unary_function
 {
     typedef ArgumentType argument_type;
     typedef ResultType result_type;
 };
 
-template <>
-struct spp_hash<bool> : public spp_unary_function<bool, size_t>
+template <> struct spp_hash<bool> : public spp_unary_function<bool, size_t>
 {
     SPP_INLINE size_t operator()(bool __v) const SPP_NOEXCEPT
-    { return static_cast<size_t>(__v); }
+    {
+        return static_cast<size_t>(__v);
+    }
 };
 
-template <>
-struct spp_hash<char> : public spp_unary_function<char, size_t>
+template <> struct spp_hash<char> : public spp_unary_function<char, size_t>
 {
     SPP_INLINE size_t operator()(char __v) const SPP_NOEXCEPT
-    { return static_cast<size_t>(__v); }
+    {
+        return static_cast<size_t>(__v);
+    }
 };
 
-template <>
-struct spp_hash<signed char> : public spp_unary_function<signed char, size_t>
+template <> struct spp_hash<signed char> : public spp_unary_function<signed char, size_t>
 {
     SPP_INLINE size_t operator()(signed char __v) const SPP_NOEXCEPT
-    { return static_cast<size_t>(__v); }
+    {
+        return static_cast<size_t>(__v);
+    }
 };
 
-template <>
-struct spp_hash<unsigned char> : public spp_unary_function<unsigned char, size_t>
+template <> struct spp_hash<unsigned char> : public spp_unary_function<unsigned char, size_t>
 {
     SPP_INLINE size_t operator()(unsigned char __v) const SPP_NOEXCEPT
-    { return static_cast<size_t>(__v); }
+    {
+        return static_cast<size_t>(__v);
+    }
 };
 
-template <>
-struct spp_hash<wchar_t> : public spp_unary_function<wchar_t, size_t>
+template <> struct spp_hash<wchar_t> : public spp_unary_function<wchar_t, size_t>
 {
     SPP_INLINE size_t operator()(wchar_t __v) const SPP_NOEXCEPT
-    { return static_cast<size_t>(__v); }
+    {
+        return static_cast<size_t>(__v);
+    }
 };
 
-template <>
-struct spp_hash<int16_t> : public spp_unary_function<int16_t, size_t>
+template <> struct spp_hash<int16_t> : public spp_unary_function<int16_t, size_t>
 {
     SPP_INLINE size_t operator()(int16_t __v) const SPP_NOEXCEPT
-    { return spp_mix_32(static_cast<uint32_t>(__v)); }
+    {
+        return spp_mix_32(static_cast<uint32_t>(__v));
+    }
 };
 
-template <>
-struct spp_hash<uint16_t> : public spp_unary_function<uint16_t, size_t>
+template <> struct spp_hash<uint16_t> : public spp_unary_function<uint16_t, size_t>
 {
     SPP_INLINE size_t operator()(uint16_t __v) const SPP_NOEXCEPT
-    { return spp_mix_32(static_cast<uint32_t>(__v)); }
+    {
+        return spp_mix_32(static_cast<uint32_t>(__v));
+    }
 };
 
-template <>
-struct spp_hash<int32_t> : public spp_unary_function<int32_t, size_t>
+template <> struct spp_hash<int32_t> : public spp_unary_function<int32_t, size_t>
 {
     SPP_INLINE size_t operator()(int32_t __v) const SPP_NOEXCEPT
-    { return spp_mix_32(static_cast<uint32_t>(__v)); }
+    {
+        return spp_mix_32(static_cast<uint32_t>(__v));
+    }
 };
 
-template <>
-struct spp_hash<uint32_t> : public spp_unary_function<uint32_t, size_t>
+template <> struct spp_hash<uint32_t> : public spp_unary_function<uint32_t, size_t>
 {
     SPP_INLINE size_t operator()(uint32_t __v) const SPP_NOEXCEPT
-    { return spp_mix_32(static_cast<uint32_t>(__v)); }
+    {
+        return spp_mix_32(static_cast<uint32_t>(__v));
+    }
 };
 
-template <>
-struct spp_hash<int64_t> : public spp_unary_function<int64_t, size_t>
+template <> struct spp_hash<int64_t> : public spp_unary_function<int64_t, size_t>
 {
     SPP_INLINE size_t operator()(int64_t __v) const SPP_NOEXCEPT
-    { return spp_mix_64(static_cast<uint64_t>(__v)); }
+    {
+        return spp_mix_64(static_cast<uint64_t>(__v));
+    }
 };
 
-template <>
-struct spp_hash<uint64_t> : public spp_unary_function<uint64_t, size_t>
+template <> struct spp_hash<uint64_t> : public spp_unary_function<uint64_t, size_t>
 {
     SPP_INLINE size_t operator()(uint64_t __v) const SPP_NOEXCEPT
-    { return spp_mix_64(static_cast<uint64_t>(__v)); }
+    {
+        return spp_mix_64(static_cast<uint64_t>(__v));
+    }
 };
 
-template <>
-struct spp_hash<float> : public spp_unary_function<float, size_t>
+template <> struct spp_hash<float> : public spp_unary_function<float, size_t>
 {
     SPP_INLINE size_t operator()(float __v) const SPP_NOEXCEPT
     {
@@ -293,8 +306,7 @@ struct spp_hash<float> : public spp_unary_function<float, size_t>
     }
 };
 
-template <>
-struct spp_hash<double> : public spp_unary_function<double, size_t>
+template <> struct spp_hash<double> : public spp_unary_function<double, size_t>
 {
     SPP_INLINE size_t operator()(double __v) const SPP_NOEXCEPT
     {
@@ -306,12 +318,12 @@ struct spp_hash<double> : public spp_unary_function<double, size_t>
 
 template <class T, int sz> struct Combiner
 {
-    inline void operator()(T& seed, T value);
+    inline void operator()(T &seed, T value);
 };
 
 template <class T> struct Combiner<T, 4>
 {
-    inline void  operator()(T& seed, T value)
+    inline void operator()(T &seed, T value)
     {
         seed ^= value + 0x9e3779b9 + (seed << 6) + (seed >> 2);
     }
@@ -319,14 +331,13 @@ template <class T> struct Combiner<T, 4>
 
 template <class T> struct Combiner<T, 8>
 {
-    inline void  operator()(T& seed, T value)
+    inline void operator()(T &seed, T value)
     {
         seed ^= value + T(0xc6a4a7935bd1e995) + (seed << 6) + (seed >> 2);
     }
 };
 
-template <class T>
-inline void hash_combine(std::size_t& seed, T const& v)
+template <class T> inline void hash_combine(std::size_t &seed, T const &v)
 {
     spp_::spp_hash<T> hasher;
     Combiner<std::size_t, sizeof(std::size_t)> combiner;
@@ -349,65 +360,71 @@ static inline uint32_t s_spp_popcount_default(uint64_t x) SPP_NOEXCEPT
     const uint64_t h01 = uint64_t(0x0101010101010101); // the sum of 256 to the power of 0,1,2,3...
 
     x -= (x >> 1) & m1;             // put count of each 2 bits into those 2 bits
-    x = (x & m2) + ((x >> 2) & m2); // put count of each 4 bits into those 4 bits 
-    x = (x + (x >> 4)) & m4;        // put count of each 8 bits into those 8 bits 
-    return (x * h01)>>56;           // returns left 8 bits of x + (x<<8) + (x<<16) + (x<<24)+...
+    x = (x & m2) + ((x >> 2) & m2); // put count of each 4 bits into those 4 bits
+    x = (x + (x >> 4)) & m4;        // put count of each 8 bits into those 8 bits
+    return (x * h01) >> 56;         // returns left 8 bits of x + (x<<8) + (x<<16) + (x<<24)+...
 }
 
 #ifdef __APPLE__
-    static inline uint32_t count_trailing_zeroes(size_t v) SPP_NOEXCEPT
-    {
-        size_t x = (v & -v) - 1;
-        // sadly sizeof() required to build on macos 
-        return sizeof(size_t) == 8 ? s_spp_popcount_default((uint64_t)x) : s_spp_popcount_default((uint32_t)x);
-    }
+static inline uint32_t count_trailing_zeroes(size_t v) SPP_NOEXCEPT
+{
+    size_t x = (v & -v) - 1;
+    // sadly sizeof() required to build on macos
+    return sizeof(size_t) == 8 ? s_spp_popcount_default((uint64_t)x) : s_spp_popcount_default((uint32_t)x);
+}
 
-    static inline uint32_t s_popcount(size_t v) SPP_NOEXCEPT
-    {
-        // sadly sizeof() required to build on macos 
-        return sizeof(size_t) == 8 ? s_spp_popcount_default((uint64_t)v) : s_spp_popcount_default((uint32_t)v);
-    }
+static inline uint32_t s_popcount(size_t v) SPP_NOEXCEPT
+{
+    // sadly sizeof() required to build on macos
+    return sizeof(size_t) == 8 ? s_spp_popcount_default((uint64_t)v) : s_spp_popcount_default((uint32_t)v);
+}
 #else
-    static inline uint32_t count_trailing_zeroes(size_t v) SPP_NOEXCEPT
-    {
-        return s_spp_popcount_default((v & -(intptr_t)v) - 1);
-    }
+static inline uint32_t count_trailing_zeroes(size_t v) SPP_NOEXCEPT
+{
+    return s_spp_popcount_default((v & -(intptr_t)v) - 1);
+}
 
-    static inline uint32_t s_popcount(size_t v) SPP_NOEXCEPT
-    {
-        return s_spp_popcount_default(v);
-    }
+static inline uint32_t s_popcount(size_t v) SPP_NOEXCEPT
+{
+    return s_spp_popcount_default(v);
+}
 #endif
 
 // -----------------------------------------------------------
 // -----------------------------------------------------------
-template<class T>
-class libc_allocator
+template <class T> class libc_allocator
 {
-public:
-    typedef T         value_type;
-    typedef T*        pointer;
+  public:
+    typedef T value_type;
+    typedef T *pointer;
     typedef ptrdiff_t difference_type;
-    typedef const T*  const_pointer;
-    typedef size_t    size_type;
+    typedef const T *const_pointer;
+    typedef size_t size_type;
 
     libc_allocator() {}
-    libc_allocator(const libc_allocator&) {}
+    libc_allocator(const libc_allocator &) {}
 
-    template<class U>
-    libc_allocator(const libc_allocator<U> &) {}
+    template <class U> libc_allocator(const libc_allocator<U> &) {}
 
-    libc_allocator& operator=(const libc_allocator &) { return *this; }
+    libc_allocator &operator=(const libc_allocator &)
+    {
+        return *this;
+    }
 
-    template<class U>
-    libc_allocator& operator=(const libc_allocator<U> &) { return *this; }
+    template <class U> libc_allocator &operator=(const libc_allocator<U> &)
+    {
+        return *this;
+    }
 
-#ifndef SPP_NO_CXX11_RVALUE_REFERENCES    
+#ifndef SPP_NO_CXX11_RVALUE_REFERENCES
     libc_allocator(libc_allocator &&) {}
-    libc_allocator& operator=(libc_allocator &&) { return *this; }
+    libc_allocator &operator=(libc_allocator &&)
+    {
+        return *this;
+    }
 #endif
 
-    pointer allocate(size_t n, const_pointer  /* unused */= 0) 
+    pointer allocate(size_t n, const_pointer /* unused */ = 0)
     {
         pointer res = static_cast<pointer>(malloc(n * sizeof(T)));
         if (!res)
@@ -415,12 +432,12 @@ public:
         return res;
     }
 
-    void deallocate(pointer p, size_t /* unused */) 
+    void deallocate(pointer p, size_t /* unused */)
     {
         free(p);
     }
 
-    pointer reallocate(pointer p, size_t new_size) 
+    pointer reallocate(pointer p, size_t new_size)
     {
         pointer res = static_cast<pointer>(realloc(p, new_size * sizeof(T)));
         if (!res)
@@ -429,7 +446,7 @@ public:
     }
 
     // extra API to match spp_allocator interface
-    pointer reallocate(pointer p, size_t /* old_size */, size_t new_size) 
+    pointer reallocate(pointer p, size_t /* old_size */, size_t new_size)
     {
         return static_cast<pointer>(realloc(p, new_size * sizeof(T)));
     }
@@ -439,39 +456,36 @@ public:
         return static_cast<size_type>(-1) / sizeof(value_type);
     }
 
-    void construct(pointer p, const value_type& val)
+    void construct(pointer p, const value_type &val)
     {
-        new(p) value_type(val);
+        new (p) value_type(val);
     }
 
-    void destroy(pointer p) { p->~value_type(); }
+    void destroy(pointer p)
+    {
+        p->~value_type();
+    }
 
-    template<class U>
-    struct rebind
+    template <class U> struct rebind
     {
         typedef spp_::libc_allocator<U> other;
     };
-
 };
 
 // forward declaration
 // -------------------
-template<class T>
-class spp_allocator;
+template <class T> class spp_allocator;
 
-}
+} // namespace spp_
 
-template<class T>
-inline bool operator==(const spp_::libc_allocator<T> &, const spp_::libc_allocator<T> &)
+template <class T> inline bool operator==(const spp_::libc_allocator<T> &, const spp_::libc_allocator<T> &)
 {
     return true;
 }
 
-template<class T>
-inline bool operator!=(const spp_::libc_allocator<T> &, const spp_::libc_allocator<T> &)
+template <class T> inline bool operator!=(const spp_::libc_allocator<T> &, const spp_::libc_allocator<T> &)
 {
     return false;
 }
 
 #endif // spp_utils_h_guard_
-

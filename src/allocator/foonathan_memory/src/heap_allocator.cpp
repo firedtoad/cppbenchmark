@@ -24,7 +24,7 @@ namespace
     {
         return _HEAP_MAXREQ;
     }
-}
+} // namespace
 
 void* foonathan::memory::heap_alloc(std::size_t size) noexcept
 {
@@ -56,7 +56,7 @@ namespace
     {
         return std::allocator_traits<std::allocator<char>>::max_size({});
     }
-}
+} // namespace
 #else
 // no implementation for heap_alloc/heap_dealloc
 
@@ -66,7 +66,7 @@ namespace
     {
         return std::size_t(-1);
     }
-}
+} // namespace
 #endif
 
 allocator_info detail::heap_allocator_impl::info() noexcept

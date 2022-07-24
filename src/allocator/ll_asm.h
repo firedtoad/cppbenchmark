@@ -10,7 +10,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -33,245 +33,211 @@
 
 static inline int bts(volatile void *mem, size_t offset)
 {
-	asm goto (
-		"lock; bts %0, (%1)\n"
-		"jc %l[carry]\n"
-		:
-		: "r" (offset), "r" (mem)
-		: "memory", "cc"
-		: carry);
-	return 0;
+    asm goto("lock; bts %0, (%1)\n"
+             "jc %l[carry]\n"
+             :
+             : "r"(offset), "r"(mem)
+             : "memory", "cc"
+             : carry);
+    return 0;
 
-	carry:
-	return 1;
+carry:
+    return 1;
 }
 
 static inline int btr(volatile void *mem, size_t offset)
 {
-	asm goto (
-		"lock; btr %0, (%1)\n"
-		"jnc %l[ncarry]\n"
-		:
-		: "r" (offset), "r" (mem)
-		: "memory", "cc"
-		: ncarry);
-	return 1;
+    asm goto("lock; btr %0, (%1)\n"
+             "jnc %l[ncarry]\n"
+             :
+             : "r"(offset), "r"(mem)
+             : "memory", "cc"
+             : ncarry);
+    return 1;
 
-	ncarry:
-	return 0;
+ncarry:
+    return 0;
 }
 
 static inline int ffsu(unsigned x)
 {
-	int result;
+    int result;
 
-	asm ("bsf %[x], %[result]"
-		: [result] "=r" (result)
-		: [x] "mr" (x)
-		:"cc");
+    asm("bsf %[x], %[result]" : [result] "=r"(result) : [x] "mr"(x) : "cc");
 
-	return result;
+    return result;
 }
 
 static inline size_t flsu(unsigned x)
 {
-	size_t result;
+    size_t result;
 
-	asm ("bsr %[x], %[result]"
-		: [result] "=r" (result)
-		: [x] "mr" (x)
-		:"cc");
+    asm("bsr %[x], %[result]" : [result] "=r"(result) : [x] "mr"(x) : "cc");
 
-	return result;
+    return result;
 }
 
 #ifdef __x86_64__
 static inline size_t ffsq(size_t x)
 {
-	size_t result;
+    size_t result;
 
-	asm ("bsfq %[x], %[result]"
-		: [result] "=r" (result)
-		: [x] "mr" (x)
-		:"cc");
+    asm("bsfq %[x], %[result]" : [result] "=r"(result) : [x] "mr"(x) : "cc");
 
-	return result;
+    return result;
 }
 
 static inline size_t flsq(size_t x)
 {
-	size_t result;
+    size_t result;
 
-	asm ("bsrq %[x], %[result]"
-		: [result] "=r" (result)
-		: [x] "mr" (x)
-		:"cc");
+    asm("bsrq %[x], %[result]" : [result] "=r"(result) : [x] "mr"(x) : "cc");
 
-	return result;
+    return result;
 }
 
 #else
 static inline size_t ffsq(unsigned long long x)
 {
-	size_t result;
+    size_t result;
 
-	unsigned xlo = x & 0xffffffff;
-	unsigned xhi = x >> 32;
+    unsigned xlo = x & 0xffffffff;
+    unsigned xhi = x >> 32;
 
-	unsigned tmp;
+    unsigned tmp;
 
-	asm ("bsfl %[xhi], %[tmp]\n"
-		 "addl $0x20, %[tmp]\n"
-		 "bsfl %[xlo], %[result]\n"
-		 "cmove %[tmp], %[result]\n"
-		 :[result] "=r" (result), [tmp] "=&r" (tmp)
-		 :[xlo] "rm" (xlo), [xhi] "rm" (xhi)
-		 :"cc");
+    asm("bsfl %[xhi], %[tmp]\n"
+        "addl $0x20, %[tmp]\n"
+        "bsfl %[xlo], %[result]\n"
+        "cmove %[tmp], %[result]\n"
+        : [result] "=r"(result), [tmp] "=&r"(tmp)
+        : [xlo] "rm"(xlo), [xhi] "rm"(xhi)
+        : "cc");
 
-	return result;
+    return result;
 }
 
 static inline size_t flsq(unsigned long long x)
 {
-	size_t result;
+    size_t result;
 
-	unsigned xlo = x & 0xffffffff;
-	unsigned xhi = x >> 32;
-	unsigned tmp;
+    unsigned xlo = x & 0xffffffff;
+    unsigned xhi = x >> 32;
+    unsigned tmp;
 
-	asm ("bsrl %[xlo], %[tmp]\n"
-		 "addl $-0x20, %[tmp]\n"
-		 "bsrl %[xhi], %[result]\n"
-		 "cmove %[tmp], %[result]\n"
-		 "addl $0x20, %[result]\n"
-		 :[result] "=r" (result), [tmp] "=&r" (tmp)
-		 :[xlo] "rm" (xlo), [xhi] "rm" (xhi)
-		 :"cc");
+    asm("bsrl %[xlo], %[tmp]\n"
+        "addl $-0x20, %[tmp]\n"
+        "bsrl %[xhi], %[result]\n"
+        "cmove %[tmp], %[result]\n"
+        "addl $0x20, %[result]\n"
+        : [result] "=r"(result), [tmp] "=&r"(tmp)
+        : [xlo] "rm"(xlo), [xhi] "rm"(xhi)
+        : "cc");
 
-	return result;
+    return result;
 }
 
 #endif
 
 static inline unsigned char xchg_8(void *ptr, unsigned char x)
 {
-	asm volatile("xchgb %0,%1"
-				:"=r" ((unsigned char) x)
-				:"m" (*(volatile unsigned char *)ptr), "0" (x)
-				:"memory");
+    asm volatile("xchgb %0,%1" : "=r"((unsigned char)x) : "m"(*(volatile unsigned char *)ptr), "0"(x) : "memory");
 
-	return x;
+    return x;
 }
 
 static inline unsigned short xchg_16(void *ptr, unsigned short x)
 {
-	asm volatile("xchgw %0,%1"
-				:"=r" ((unsigned short) x)
-				:"m" (*(volatile unsigned short *)ptr), "0" (x)
-				:"memory");
+    asm volatile("xchgw %0,%1" : "=r"((unsigned short)x) : "m"(*(volatile unsigned short *)ptr), "0"(x) : "memory");
 
-	return x;
+    return x;
 }
-
 
 static inline unsigned xchg_32(void *ptr, unsigned x)
 {
-	asm volatile("xchgl %0,%1"
-				:"=r" ((unsigned) x)
-				:"m" (*(volatile unsigned *)ptr), "0" (x)
-				:"memory");
+    asm volatile("xchgl %0,%1" : "=r"((unsigned)x) : "m"(*(volatile unsigned *)ptr), "0"(x) : "memory");
 
-	return x;
+    return x;
 }
 
 #ifdef __x86_64__
 static inline unsigned long long xchg_64(void *ptr, unsigned long long x)
 {
-	asm volatile("xchgq %0,%1"
-				:"=r" ((unsigned long long) x)
-				:"m" (*(volatile unsigned long long *)ptr), "0" (x)
-				:"memory");
+    asm volatile("xchgq %0,%1" : "=r"((unsigned long long)x) : "m"(*(volatile unsigned long long *)ptr), "0"(x) : "memory");
 
-	return x;
+    return x;
 }
 
 static inline void *xchg_ptr(void *ptr, void *x)
 {
-	__asm__ __volatile__("xchgq %0,%1"
-				:"=r" ((uintptr_t) x)
-				:"m" (*(volatile uintptr_t *)ptr), "0" ((uintptr_t) x)
-				:"memory");
+    __asm__ __volatile__("xchgq %0,%1" : "=r"((uintptr_t)x) : "m"(*(volatile uintptr_t *)ptr), "0"((uintptr_t)x) : "memory");
 
-	return x;
+    return x;
 }
 #else
 static inline void *xchg_ptr(void *ptr, void *x)
 {
-	__asm__ __volatile__("xchgl %k0,%1"
-				:"=r" ((uintptr_t) x)
-				:"m" (*(volatile uintptr_t *)ptr), "0" ((uintptr_t) x)
-				:"memory");
-	return x;
+    __asm__ __volatile__("xchgl %k0,%1" : "=r"((uintptr_t)x) : "m"(*(volatile uintptr_t *)ptr), "0"((uintptr_t)x) : "memory");
+    return x;
 }
 #endif
 
 static inline unsigned long long rdtsc(void)
 {
-	unsigned hi, lo;
-	asm volatile ("rdtsc" : "=a"(lo), "=d"(hi));
-	return lo + ((unsigned long long)hi << 32);
+    unsigned hi, lo;
+    asm volatile("rdtsc" : "=a"(lo), "=d"(hi));
+    return lo + ((unsigned long long)hi << 32);
 }
 
 #else /* GCC_ASM */
 
 static inline int ffsu(unsigned x)
 {
-	unsigned long result;
-	__assume(x);
-	_BitScanForward(&result, x);
+    unsigned long result;
+    __assume(x);
+    _BitScanForward(&result, x);
 
-	return result;
+    return result;
 }
 
 static inline int flsu(unsigned x)
 {
-	unsigned long result;
-	__assume(x);
-	_BitScanReverse(&result, x);
+    unsigned long result;
+    __assume(x);
+    _BitScanReverse(&result, x);
 
-	return result;
+    return result;
 }
 
 static inline size_t ffsq(unsigned long long x)
 {
-	unsigned long result;
-	__assume(x);
-	_BitScanForward64(&result, x);
+    unsigned long result;
+    __assume(x);
+    _BitScanForward64(&result, x);
 
-	return result;
+    return result;
 }
 
 static inline size_t fflq(unsigned long long x)
 {
-	unsigned long result;
-	__assume(x);
-	_BitScanReverse64(&result, x);
+    unsigned long result;
+    __assume(x);
+    _BitScanReverse64(&result, x);
 
-	return result;
+    return result;
 }
 
 #ifdef __x86_64__
 static inline void *xchg_ptr(void *ptr, void *x)
 {
-	return (void *) _InterlockedExchange64(ptr, (__int64) x);
+    return (void *)_InterlockedExchange64(ptr, (__int64)x);
 }
 #else
 static inline void *xchg_ptr(void *ptr, void *x)
 {
-	return (void *) _InterlockedExchange(ptr, (long) x);
+    return (void *)_InterlockedExchange(ptr, (long)x);
 }
 #endif
-
 
 #endif /* GCC_ASM */
 

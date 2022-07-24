@@ -4,7 +4,7 @@
 #pragma once
 
 #ifndef SPDLOG_HEADER_ONLY
-#    include <spdlog/sinks/rotating_file_sink.h>
+#include <spdlog/sinks/rotating_file_sink.h>
 #endif
 
 #include <spdlog/common.h>
@@ -20,16 +20,15 @@
 #include <string>
 #include <tuple>
 
-namespace spdlog {
-namespace sinks {
+namespace spdlog
+{
+namespace sinks
+{
 
-template<typename Mutex>
-SPDLOG_INLINE rotating_file_sink<Mutex>::rotating_file_sink(
-    filename_t base_filename, std::size_t max_size, std::size_t max_files, bool rotate_on_open, const file_event_handlers &event_handlers)
-    : base_filename_(std::move(base_filename))
-    , max_size_(max_size)
-    , max_files_(max_files)
-    , file_helper_{event_handlers}
+template <typename Mutex>
+SPDLOG_INLINE rotating_file_sink<Mutex>::rotating_file_sink(filename_t base_filename, std::size_t max_size, std::size_t max_files,
+                                                            bool rotate_on_open, const file_event_handlers &event_handlers)
+    : base_filename_(std::move(base_filename)), max_size_(max_size), max_files_(max_files), file_helper_{event_handlers}
 {
     if (max_size == 0)
     {
@@ -51,8 +50,7 @@ SPDLOG_INLINE rotating_file_sink<Mutex>::rotating_file_sink(
 
 // calc filename according to index and file extension if exists.
 // e.g. calc_filename("logs/mylog.txt, 3) => "logs/mylog.3.txt".
-template<typename Mutex>
-SPDLOG_INLINE filename_t rotating_file_sink<Mutex>::calc_filename(const filename_t &filename, std::size_t index)
+template <typename Mutex> SPDLOG_INLINE filename_t rotating_file_sink<Mutex>::calc_filename(const filename_t &filename, std::size_t index)
 {
     if (index == 0u)
     {
@@ -64,15 +62,13 @@ SPDLOG_INLINE filename_t rotating_file_sink<Mutex>::calc_filename(const filename
     return fmt_lib::format(SPDLOG_FILENAME_T("{}.{}{}"), basename, index, ext);
 }
 
-template<typename Mutex>
-SPDLOG_INLINE filename_t rotating_file_sink<Mutex>::filename()
+template <typename Mutex> SPDLOG_INLINE filename_t rotating_file_sink<Mutex>::filename()
 {
     std::lock_guard<Mutex> lock(base_sink<Mutex>::mutex_);
     return file_helper_.filename();
 }
 
-template<typename Mutex>
-SPDLOG_INLINE void rotating_file_sink<Mutex>::sink_it_(const details::log_msg &msg)
+template <typename Mutex> SPDLOG_INLINE void rotating_file_sink<Mutex>::sink_it_(const details::log_msg &msg)
 {
     memory_buf_t formatted;
     base_sink<Mutex>::formatter_->format(msg, formatted);
@@ -94,8 +90,7 @@ SPDLOG_INLINE void rotating_file_sink<Mutex>::sink_it_(const details::log_msg &m
     current_size_ = new_size;
 }
 
-template<typename Mutex>
-SPDLOG_INLINE void rotating_file_sink<Mutex>::flush_()
+template <typename Mutex> SPDLOG_INLINE void rotating_file_sink<Mutex>::flush_()
 {
     file_helper_.flush();
 }
@@ -105,8 +100,7 @@ SPDLOG_INLINE void rotating_file_sink<Mutex>::flush_()
 // log.1.txt -> log.2.txt
 // log.2.txt -> log.3.txt
 // log.3.txt -> delete
-template<typename Mutex>
-SPDLOG_INLINE void rotating_file_sink<Mutex>::rotate_()
+template <typename Mutex> SPDLOG_INLINE void rotating_file_sink<Mutex>::rotate_()
 {
     using details::os::filename_to_str;
     using details::os::path_exists;
@@ -140,7 +134,7 @@ SPDLOG_INLINE void rotating_file_sink<Mutex>::rotate_()
 
 // delete the target if exists, and rename the src file  to target
 // return true on success, false otherwise.
-template<typename Mutex>
+template <typename Mutex>
 SPDLOG_INLINE bool rotating_file_sink<Mutex>::rename_file_(const filename_t &src_filename, const filename_t &target_filename)
 {
     // try to delete the target file in case it already exists.

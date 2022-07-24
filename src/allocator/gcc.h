@@ -10,7 +10,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -21,7 +21,7 @@
 #define _GNU_SOURCE
 #include <pthread.h>
 
-#define __thread__ __thread __attribute__ ((tls_model ("initial-exec"))) 
+#define __thread__ __thread __attribute__((tls_model("initial-exec")))
 
 #define HAVE_PTHREADS
 #define HAVE_SYS_SELECT
@@ -32,10 +32,10 @@
 #define cache_align __attribute__((aligned(64)))
 #define noinline __attribute__((__noinline__))
 #define prefetch(x) __builtin_prefetch(x)
-#define barrier() asm volatile("": : :"memory")
-#define forget(v) asm volatile("": "=m"(v) :"m"(v))
-#define mfence(v) asm volatile("mfence\n": : :"memory")
-#define cpu_relax() asm volatile("rep; nop\n": : :"memory")
+#define barrier() asm volatile("" : : : "memory")
+#define forget(v) asm volatile("" : "=m"(v) : "m"(v))
+#define mfence(v) asm volatile("mfence\n" : : : "memory")
+#define cpu_relax() asm volatile("rep; nop\n" : : : "memory")
 #define likely(x) __builtin_expect(!!(x), 1)
 #define unlikely(x) __builtin_expect(!!(x), 0)
 #define gcc_used __attribute__((used))

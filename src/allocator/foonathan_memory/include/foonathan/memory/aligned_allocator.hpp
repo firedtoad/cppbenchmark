@@ -52,7 +52,7 @@ namespace foonathan
             aligned_allocator& operator=(aligned_allocator&& other) noexcept
             {
                 allocator_type::operator=(detail::move(other));
-                min_alignment_          = other.min_alignment_;
+                min_alignment_ = other.min_alignment_;
                 return *this;
             }
             /// @}

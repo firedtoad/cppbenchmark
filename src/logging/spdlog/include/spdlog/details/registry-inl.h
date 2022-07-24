@@ -4,7 +4,7 @@
 #pragma once
 
 #ifndef SPDLOG_HEADER_ONLY
-#    include <spdlog/details/registry.h>
+#include <spdlog/details/registry.h>
 #endif
 
 #include <spdlog/common.h>
@@ -14,11 +14,11 @@
 
 #ifndef SPDLOG_DISABLE_DEFAULT_LOGGER
 // support for the default stdout color logger
-#    ifdef _WIN32
-#        include <spdlog/sinks/wincolor_sink.h>
-#    else
-#        include <spdlog/sinks/ansicolor_sink.h>
-#    endif
+#ifdef _WIN32
+#include <spdlog/sinks/wincolor_sink.h>
+#else
+#include <spdlog/sinks/ansicolor_sink.h>
+#endif
 #endif // SPDLOG_DISABLE_DEFAULT_LOGGER
 
 #include <chrono>
@@ -27,24 +27,25 @@
 #include <string>
 #include <unordered_map>
 
-namespace spdlog {
-namespace details {
+namespace spdlog
+{
+namespace details
+{
 
-SPDLOG_INLINE registry::registry()
-    : formatter_(new pattern_formatter())
+SPDLOG_INLINE registry::registry() : formatter_(new pattern_formatter())
 {
 
 #ifndef SPDLOG_DISABLE_DEFAULT_LOGGER
     // create default logger (ansicolor_stdout_sink_mt or wincolor_stdout_sink_mt in windows).
-#    ifdef _WIN32
+#ifdef _WIN32
     auto color_sink = std::make_shared<sinks::wincolor_stdout_sink_mt>();
-#    else
+#else
     auto color_sink = std::make_shared<sinks::ansicolor_stdout_sink_mt>();
-#    endif
+#endif
 
     const char *default_logger_name = "";
-    default_logger_ = std::make_shared<spdlog::logger>(default_logger_name, std::move(color_sink));
-    loggers_[default_logger_name] = default_logger_;
+    default_logger_                 = std::make_shared<spdlog::logger>(default_logger_name, std::move(color_sink));
+    loggers_[default_logger_name]   = default_logger_;
 
 #endif // SPDLOG_DISABLE_DEFAULT_LOGGER
 }
@@ -68,7 +69,7 @@ SPDLOG_INLINE void registry::initialize_logger(std::shared_ptr<logger> new_logge
     }
 
     // set new level according to previously configured level or default level
-    auto it = log_levels_.find(new_logger->name());
+    auto it        = log_levels_.find(new_logger->name());
     auto new_level = it != log_levels_.end() ? it->second : global_log_level_;
     new_logger->set_level(new_level);
 
@@ -191,7 +192,7 @@ SPDLOG_INLINE void registry::flush_on(level::level_enum log_level)
 SPDLOG_INLINE void registry::flush_every(std::chrono::seconds interval)
 {
     std::lock_guard<std::mutex> lock(flusher_mutex_);
-    auto clbk = [this]() { this->flush_all(); };
+    auto clbk         = [this]() { this->flush_all(); };
     periodic_flusher_ = details::make_unique<periodic_worker>(clbk, interval);
 }
 
@@ -270,9 +271,9 @@ SPDLOG_INLINE void registry::set_automatic_registration(bool automatic_registrat
 SPDLOG_INLINE void registry::set_levels(log_levels levels, level::level_enum *global_level)
 {
     std::lock_guard<std::mutex> lock(logger_map_mutex_);
-    log_levels_ = std::move(levels);
+    log_levels_                 = std::move(levels);
     auto global_level_requested = global_level != nullptr;
-    global_log_level_ = global_level_requested ? *global_level : global_log_level_;
+    global_log_level_           = global_level_requested ? *global_level : global_log_level_;
 
     for (auto &logger : loggers_)
     {

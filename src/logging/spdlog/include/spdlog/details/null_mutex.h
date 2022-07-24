@@ -7,8 +7,10 @@
 #include <utility>
 // null, no cost dummy "mutex" and dummy "atomic" int
 
-namespace spdlog {
-namespace details {
+namespace spdlog
+{
+namespace details
+{
 struct null_mutex
 {
     void lock() const {}
@@ -20,9 +22,7 @@ struct null_atomic_int
     int value;
     null_atomic_int() = default;
 
-    explicit null_atomic_int(int new_value)
-        : value(new_value)
-    {}
+    explicit null_atomic_int(int new_value) : value(new_value) {}
 
     int load(std::memory_order = std::memory_order_relaxed) const
     {

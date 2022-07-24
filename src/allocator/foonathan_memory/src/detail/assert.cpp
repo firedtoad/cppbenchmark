@@ -25,8 +25,7 @@ void detail::handle_failed_assert(const char* msg, const char* file, int line,
     std::abort();
 }
 
-void detail::handle_warning(const char* msg, const char* file, int line,
-                            const char* fnc) noexcept
+void detail::handle_warning(const char* msg, const char* file, int line, const char* fnc) noexcept
 {
 #if FOONATHAN_HOSTED_IMPLEMENTATION
     std::fprintf(stderr, "[%s] Warning triggered in function %s (%s:%d): %s.\n",

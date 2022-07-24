@@ -1,14 +1,14 @@
-cmake_minimum_required (VERSION 3.16)
-project (memory-allocators LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.16)
+project(memory-allocators LANGUAGES CXX)
 
 set(SOURCES src/Allocator.cpp
-   	src/CAllocator.cpp
-   	src/LinearAllocator.cpp
-   	src/StackAllocator.cpp
-   	src/PoolAllocator.cpp
-   	src/FreeListAllocator.cpp
-   	src/Benchmark.cpp 
-	src/main.cpp)
+        src/CAllocator.cpp
+        src/LinearAllocator.cpp
+        src/StackAllocator.cpp
+        src/PoolAllocator.cpp
+        src/FreeListAllocator.cpp
+        src/Benchmark.cpp
+        src/main.cpp)
 
 add_library(allocators ${SOURCES})
 

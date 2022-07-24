@@ -1,8 +1,6 @@
 add_subdirectory(foonathan_memory)
 add_subdirectory(memory-allocators)
 add_executable(allocator main.cpp
-        ll_alloc.c
-        win_stub.cc
         )
 
 target_compile_features(allocator PRIVATE cxx_std_17)

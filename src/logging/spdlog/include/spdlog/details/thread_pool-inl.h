@@ -4,17 +4,19 @@
 #pragma once
 
 #ifndef SPDLOG_HEADER_ONLY
-#    include <spdlog/details/thread_pool.h>
+#include <spdlog/details/thread_pool.h>
 #endif
 
-#include <spdlog/common.h>
 #include <cassert>
+#include <spdlog/common.h>
 
-namespace spdlog {
-namespace details {
+namespace spdlog
+{
+namespace details
+{
 
-SPDLOG_INLINE thread_pool::thread_pool(
-    size_t q_max_items, size_t threads_n, std::function<void()> on_thread_start, std::function<void()> on_thread_stop)
+SPDLOG_INLINE thread_pool::thread_pool(size_t q_max_items, size_t threads_n, std::function<void()> on_thread_start,
+                                       std::function<void()> on_thread_stop)
     : q_(q_max_items)
 {
     if (threads_n == 0 || threads_n > 1000)
@@ -24,22 +26,26 @@ SPDLOG_INLINE thread_pool::thread_pool(
     }
     for (size_t i = 0; i < threads_n; i++)
     {
-        threads_.emplace_back([this, on_thread_start, on_thread_stop] {
-            on_thread_start();
-            this->thread_pool::worker_loop_();
-            on_thread_stop();
-        });
+        threads_.emplace_back(
+            [this, on_thread_start, on_thread_stop]
+            {
+                on_thread_start();
+                this->thread_pool::worker_loop_();
+                on_thread_stop();
+            });
     }
 }
 
 SPDLOG_INLINE thread_pool::thread_pool(size_t q_max_items, size_t threads_n, std::function<void()> on_thread_start)
     : thread_pool(q_max_items, threads_n, on_thread_start, [] {})
-{}
+{
+}
 
 SPDLOG_INLINE thread_pool::thread_pool(size_t q_max_items, size_t threads_n)
     : thread_pool(
           q_max_items, threads_n, [] {}, [] {})
-{}
+{
+}
 
 // message all threads to terminate gracefully join them
 SPDLOG_INLINE thread_pool::~thread_pool()
@@ -99,7 +105,9 @@ void SPDLOG_INLINE thread_pool::post_async_msg_(async_msg &&new_msg, async_overf
 
 void SPDLOG_INLINE thread_pool::worker_loop_()
 {
-    while (process_next_msg_()) {}
+    while (process_next_msg_())
+    {
+    }
 }
 
 // process next message in the queue
@@ -116,20 +124,24 @@ bool SPDLOG_INLINE thread_pool::process_next_msg_()
 
     switch (incoming_async_msg.msg_type)
     {
-    case async_msg_type::log: {
+    case async_msg_type::log:
+    {
         incoming_async_msg.worker_ptr->backend_sink_it_(incoming_async_msg);
         return true;
     }
-    case async_msg_type::flush: {
+    case async_msg_type::flush:
+    {
         incoming_async_msg.worker_ptr->backend_flush_();
         return true;
     }
 
-    case async_msg_type::terminate: {
+    case async_msg_type::terminate:
+    {
         return false;
     }
 
-    default: {
+    default:
+    {
         assert(false);
     }
     }

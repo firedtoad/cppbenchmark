@@ -1,16 +1,16 @@
-#include <benchmark/benchmark.h>
-#include <random>
-#include <unordered_map>
-#include <absl/random/random.h>
-#include <boost/random.hpp>
 #include "pcg_random.hpp"
 #include "pcg_uint128.hpp"
+#include <absl/random/random.h>
+#include <benchmark/benchmark.h>
+#include <boost/random.hpp>
+#include <random>
+#include <unordered_map>
 
-
-template<typename G>
-static void BenchSeed(benchmark::State &state) {
+template <typename G> static void BenchSeed(benchmark::State &state)
+{
     std::random_device rd;
-    for (auto _ : state) {
+    for (auto _ : state)
+    {
 
         benchmark::DoNotOptimize(rd());
     }
@@ -18,10 +18,11 @@ static void BenchSeed(benchmark::State &state) {
 
 BENCHMARK_TEMPLATE(BenchSeed, std::random_device);
 
-template<typename G>
-static void BenchSeedStatic(benchmark::State &state) {
+template <typename G> static void BenchSeedStatic(benchmark::State &state)
+{
 
-    for (auto _ : state) {
+    for (auto _ : state)
+    {
         thread_local static std::random_device rd;
         benchmark::DoNotOptimize(rd());
     }
@@ -29,9 +30,10 @@ static void BenchSeedStatic(benchmark::State &state) {
 
 BENCHMARK_TEMPLATE(BenchSeedStatic, std::random_device);
 
-template<typename G>
-static void BenchEngine(benchmark::State &state) {
-    for (auto _ : state) {
+template <typename G> static void BenchEngine(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
         G gen{};
         benchmark::DoNotOptimize(gen());
     }
@@ -54,10 +56,11 @@ BENCHMARK_TEMPLATE(BenchEngine, boost::mt19937);
 BENCHMARK_TEMPLATE(BenchEngine, boost::mt19937_64);
 BENCHMARK_TEMPLATE(BenchEngine, boost::mt11213b);
 
-template<typename P>
-static void BenchPCG(benchmark::State &state) {
+template <typename P> static void BenchPCG(benchmark::State &state)
+{
 
-    for (auto _ : state) {
+    for (auto _ : state)
+    {
         P p;
         //    p.seed(pcg_extras::seed_seq_from<std::random_device>());
         benchmark::DoNotOptimize(p());
@@ -118,10 +121,11 @@ BENCHMARK_TEMPLATE(BenchPCG, pcg64_c1024_fast);
 BENCHMARK_TEMPLATE(BenchPCG, pcg32_k16384);
 BENCHMARK_TEMPLATE(BenchPCG, pcg32_k16384_fast);
 
-template<typename P>
-static void BenchABEngine(benchmark::State &state) {
+template <typename P> static void BenchABEngine(benchmark::State &state)
+{
     P pcg;
-    for (auto _ : state) {
+    for (auto _ : state)
+    {
         benchmark::DoNotOptimize(pcg());
     }
 }
@@ -139,7 +143,8 @@ BENCHMARK_TEMPLATE(BenchABEngine, absl::random_internal::NonsecureURBGBase<absl:
 BENCHMARK_TEMPLATE(BenchABEngine, absl::random_internal::NonsecureURBGBase<absl::random_internal::randen_engine<uint32_t>>);
 BENCHMARK_TEMPLATE(BenchABEngine, absl::random_internal::NonsecureURBGBase<absl::random_internal::randen_engine<uint64_t>>);
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

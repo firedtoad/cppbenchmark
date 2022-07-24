@@ -15,17 +15,16 @@
 #include <condition_variable>
 #include <mutex>
 
-namespace spdlog {
-namespace details {
-
-template<typename T>
-class mpmc_blocking_queue
+namespace spdlog
 {
-public:
+namespace details
+{
+
+template <typename T> class mpmc_blocking_queue
+{
+  public:
     using item_type = T;
-    explicit mpmc_blocking_queue(size_t max_items)
-        : q_(max_items)
-    {}
+    explicit mpmc_blocking_queue(size_t max_items) : q_(max_items) {}
 
 #ifndef __MINGW32__
     // try to enqueue and block if no room left
@@ -122,7 +121,7 @@ public:
         q_.reset_overrun_counter();
     }
 
-private:
+  private:
     std::mutex queue_mutex_;
     std::condition_variable push_cv_;
     std::condition_variable pop_cv_;

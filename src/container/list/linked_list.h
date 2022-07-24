@@ -77,116 +77,130 @@
 //    needs to glue on the "next" and "previous" pointers using
 //    some internal node type.
 
-namespace butil {
+namespace butil
+{
 
-template <typename T>
-class LinkNode {
- public:
-  // LinkNode are self-referential as default.
-  LinkNode() : previous_(this), next_(this) {}
-    
-  LinkNode(LinkNode<T>* previous, LinkNode<T>* next)
-      : previous_(previous), next_(next) {}
+template <typename T> class LinkNode
+{
+  public:
+    // LinkNode are self-referential as default.
+    LinkNode() : previous_(this), next_(this) {}
 
-  // Insert |this| into the linked list, before |e|.
-  void InsertBefore(LinkNode<T>* e) {
-    this->next_ = e;
-    this->previous_ = e->previous_;
-    e->previous_->next_ = this;
-    e->previous_ = this;
-  }
+    LinkNode(LinkNode<T> *previous, LinkNode<T> *next) : previous_(previous), next_(next) {}
 
-  // Insert |this| as a circular linked list into the linked list, before |e|.
-  void InsertBeforeAsList(LinkNode<T>* e) {
-    LinkNode<T>* prev = this->previous_;
-    prev->next_ = e;
-    this->previous_ = e->previous_;
-    e->previous_->next_ = this;
-    e->previous_ = prev;
-  }
-    
-  // Insert |this| into the linked list, after |e|.
-  void InsertAfter(LinkNode<T>* e) {
-    this->next_ = e->next_;
-    this->previous_ = e;
-    e->next_->previous_ = this;
-    e->next_ = this;
-  }
+    // Insert |this| into the linked list, before |e|.
+    void InsertBefore(LinkNode<T> *e)
+    {
+        this->next_         = e;
+        this->previous_     = e->previous_;
+        e->previous_->next_ = this;
+        e->previous_        = this;
+    }
 
-  // Insert |this| as a circular list into the linked list, after |e|.
-  void InsertAfterAsList(LinkNode<T>* e) {
-    LinkNode<T>* prev = this->previous_;
-    prev->next_ = e->next_;
-    this->previous_ = e;
-    e->next_->previous_ = prev;
-    e->next_ = this;
-  }
+    // Insert |this| as a circular linked list into the linked list, before |e|.
+    void InsertBeforeAsList(LinkNode<T> *e)
+    {
+        LinkNode<T> *prev   = this->previous_;
+        prev->next_         = e;
+        this->previous_     = e->previous_;
+        e->previous_->next_ = this;
+        e->previous_        = prev;
+    }
 
-  // Remove |this| from the linked list.
-  void RemoveFromList() {
-    this->previous_->next_ = this->next_;
-    this->next_->previous_ = this->previous_;
-    // next() and previous() return non-NULL if and only this node is not in any
-    // list.
-    this->next_ = this;
-    this->previous_ = this;
-  }
+    // Insert |this| into the linked list, after |e|.
+    void InsertAfter(LinkNode<T> *e)
+    {
+        this->next_         = e->next_;
+        this->previous_     = e;
+        e->next_->previous_ = this;
+        e->next_            = this;
+    }
 
-  LinkNode<T>* previous() const {
-    return previous_;
-  }
+    // Insert |this| as a circular list into the linked list, after |e|.
+    void InsertAfterAsList(LinkNode<T> *e)
+    {
+        LinkNode<T> *prev   = this->previous_;
+        prev->next_         = e->next_;
+        this->previous_     = e;
+        e->next_->previous_ = prev;
+        e->next_            = this;
+    }
 
-  LinkNode<T>* next() const {
-    return next_;
-  }
+    // Remove |this| from the linked list.
+    void RemoveFromList()
+    {
+        this->previous_->next_ = this->next_;
+        this->next_->previous_ = this->previous_;
+        // next() and previous() return non-NULL if and only this node is not in any
+        // list.
+        this->next_     = this;
+        this->previous_ = this;
+    }
 
-  // Cast from the node-type to the value type.
-  const T* value() const {
-    return static_cast<const T*>(this);
-  }
+    LinkNode<T> *previous() const
+    {
+        return previous_;
+    }
 
-  T* value() {
-    return static_cast<T*>(this);
-  }
+    LinkNode<T> *next() const
+    {
+        return next_;
+    }
 
- private:
-  LinkNode<T>* previous_;
-  LinkNode<T>* next_;
+    // Cast from the node-type to the value type.
+    const T *value() const
+    {
+        return static_cast<const T *>(this);
+    }
 
+    T *value()
+    {
+        return static_cast<T *>(this);
+    }
+
+  private:
+    LinkNode<T> *previous_;
+    LinkNode<T> *next_;
 };
 
-template <typename T>
-class LinkedList {
- public:
-  // The "root" node is self-referential, and forms the basis of a circular
-  // list (root_.next() will point back to the start of the list,
-  // and root_->previous() wraps around to the end of the list).
-  LinkedList() {}
+template <typename T> class LinkedList
+{
+  public:
+    // The "root" node is self-referential, and forms the basis of a circular
+    // list (root_.next() will point back to the start of the list,
+    // and root_->previous() wraps around to the end of the list).
+    LinkedList() {}
 
-  // Appends |e| to the end of the linked list.
-  void Append(LinkNode<T>* e) {
-    e->InsertBefore(&root_);
-  }
+    // Appends |e| to the end of the linked list.
+    void Append(LinkNode<T> *e)
+    {
+        e->InsertBefore(&root_);
+    }
 
-  LinkNode<T>* head() const {
-    return root_.next();
-  }
+    LinkNode<T> *head() const
+    {
+        return root_.next();
+    }
 
-  LinkNode<T>* tail() const {
-    return root_.previous();
-  }
+    LinkNode<T> *tail() const
+    {
+        return root_.previous();
+    }
 
-  const LinkNode<T>* end() const {
-    return &root_;
-  }
+    const LinkNode<T> *end() const
+    {
+        return &root_;
+    }
 
-  bool empty() const { return head() == end(); }
+    bool empty() const
+    {
+        return head() == end();
+    }
 
- private:
-  LinkNode<T> root_;
-
+  private:
+    LinkNode<T> root_;
 };
 
-}  // namespace butil
+} // namespace butil
 
-#endif  // BUTIL_CONTAINERS_LINKED_LIST_H_
+#endif // BUTIL_CONTAINERS_LINKED_LIST_H_

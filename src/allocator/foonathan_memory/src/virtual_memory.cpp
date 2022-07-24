@@ -221,9 +221,9 @@ memory_block virtual_block_allocator::allocate_block()
 
 void virtual_block_allocator::deallocate_block(memory_block block) noexcept
 {
-    detail::
-        debug_check_pointer([&] { return static_cast<char*>(block.memory) == cur_ - block_size_; },
-                            info(), block.memory);
+    detail::debug_check_pointer([&]
+                                { return static_cast<char*>(block.memory) == cur_ - block_size_; },
+                                info(), block.memory);
     cur_ -= block_size_;
     virtual_memory_decommit(cur_, block_size_);
 }

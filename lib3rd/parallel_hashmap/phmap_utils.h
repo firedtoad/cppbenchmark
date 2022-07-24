@@ -22,22 +22,25 @@
 // ---------------------------------------------------------------------------
 
 #ifdef _MSC_VER
-    #pragma warning(push)  
-    #pragma warning(disable : 4514) // unreferenced inline function has been removed
-    #pragma warning(disable : 4710) // function not inlined
-    #pragma warning(disable : 4711) // selected for automatic inline expansion
+#pragma warning(push)
+#pragma warning(disable : 4514) // unreferenced inline function has been removed
+#pragma warning(disable : 4710) // function not inlined
+#pragma warning(disable : 4711) // selected for automatic inline expansion
 #endif
 
+#include "phmap_bits.h"
 #include <cstdint>
 #include <functional>
 #include <tuple>
-#include "phmap_bits.h"
 
 // ---------------------------------------------------------------
 // Absl forward declaration requires global scope.
 // ---------------------------------------------------------------
 #if defined(PHMAP_USE_ABSL_HASH) && !defined(phmap_fwd_decl_h_guard_) && !defined(ABSL_HASH_HASH_H_)
-    namespace absl { template <class T> struct Hash; };
+namespace absl
+{
+template <class T> struct Hash;
+};
 #endif
 
 namespace phmap
@@ -45,14 +48,12 @@ namespace phmap
 
 // ---------------------------------------------------------------
 // ---------------------------------------------------------------
-template<int n> 
-struct phmap_mix
+template <int n> struct phmap_mix
 {
     inline size_t operator()(size_t) const;
 };
 
-template<>
-struct phmap_mix<4>
+template <> struct phmap_mix<4>
 {
     inline size_t operator()(size_t a) const
     {
@@ -64,46 +65,42 @@ struct phmap_mix<4>
 };
 
 #if defined(PHMAP_HAS_UMUL128)
-    template<>
-    struct phmap_mix<8>
+template <> struct phmap_mix<8>
+{
+    // Very fast mixing (similar to Abseil)
+    inline size_t operator()(size_t a) const
     {
-        // Very fast mixing (similar to Abseil)
-        inline size_t operator()(size_t a) const
-        {
-            static constexpr uint64_t k = 0xde5fb9d2630458e9ULL;
-            // static constexpr uint64_t k = 0x7C9D0BF0567102A5ULL; // [greg] my own random prime
-            uint64_t h;
-            uint64_t l = umul128(a, k, &h);
-            return static_cast<size_t>(h + l);
-        }
-    };
+        static constexpr uint64_t k = 0xde5fb9d2630458e9ULL;
+        // static constexpr uint64_t k = 0x7C9D0BF0567102A5ULL; // [greg] my own random prime
+        uint64_t h;
+        uint64_t l = umul128(a, k, &h);
+        return static_cast<size_t>(h + l);
+    }
+};
 #else
-    template<>
-    struct phmap_mix<8>
+template <> struct phmap_mix<8>
+{
+    inline size_t operator()(size_t a) const
     {
-        inline size_t operator()(size_t a) const
-        {
-            a = (~a) + (a << 21); // a = (a << 21) - a - 1;
-            a = a ^ (a >> 24);
-            a = (a + (a << 3)) + (a << 8); // a * 265
-            a = a ^ (a >> 14);
-            a = (a + (a << 2)) + (a << 4); // a * 21
-            a = a ^ (a >> 28);
-            a = a + (a << 31);
-            return static_cast<size_t>(a);
-        }
-    };
+        a = (~a) + (a << 21); // a = (a << 21) - a - 1;
+        a = a ^ (a >> 24);
+        a = (a + (a << 3)) + (a << 8); // a * 265
+        a = a ^ (a >> 14);
+        a = (a + (a << 2)) + (a << 4); // a * 21
+        a = a ^ (a >> 28);
+        a = a + (a << 31);
+        return static_cast<size_t>(a);
+    }
+};
 #endif
 
 // --------------------------------------------
-template<int n> 
-struct fold_if_needed
+template <int n> struct fold_if_needed
 {
     inline size_t operator()(uint64_t) const;
 };
 
-template<>
-struct fold_if_needed<4>
+template <> struct fold_if_needed<4>
 {
     inline size_t operator()(uint64_t a) const
     {
@@ -111,8 +108,7 @@ struct fold_if_needed<4>
     }
 };
 
-template<>
-struct fold_if_needed<8>
+template <> struct fold_if_needed<8>
 {
     inline size_t operator()(uint64_t a) const
     {
@@ -123,164 +119,165 @@ struct fold_if_needed<8>
 // ---------------------------------------------------------------
 // see if class T has a hash_value() friend method
 // ---------------------------------------------------------------
-template<typename T>
-struct has_hash_value
+template <typename T> struct has_hash_value
 {
-private:
+  private:
     typedef std::true_type yes;
     typedef std::false_type no;
 
-    template<typename U> static auto test(int) -> decltype(hash_value(std::declval<const U&>()) == 1, yes());
+    template <typename U> static auto test(int) -> decltype(hash_value(std::declval<const U &>()) == 1, yes());
 
-    template<typename> static no test(...);
+    template <typename> static no test(...);
 
-public:
+  public:
     static constexpr bool value = std::is_same<decltype(test<T>(0)), yes>::value;
 };
 
 #if defined(PHMAP_USE_ABSL_HASH) && !defined(phmap_fwd_decl_h_guard_)
-    template <class T> using Hash = ::absl::Hash<T>;
+template <class T> using Hash = ::absl::Hash<T>;
 #elif !defined(PHMAP_USE_ABSL_HASH)
 // ---------------------------------------------------------------
 //               phmap::Hash
 // ---------------------------------------------------------------
-template <class T>
-struct Hash
+template <class T> struct Hash
 {
-    template <class U, typename std::enable_if<has_hash_value<U>::value, int>::type = 0>
-    size_t _hash(const T& val) const
+    template <class U, typename std::enable_if<has_hash_value<U>::value, int>::type = 0> size_t _hash(const T &val) const
     {
         return hash_value(val);
     }
- 
-    template <class U, typename std::enable_if<!has_hash_value<U>::value, int>::type = 0>
-    size_t _hash(const T& val) const
+
+    template <class U, typename std::enable_if<!has_hash_value<U>::value, int>::type = 0> size_t _hash(const T &val) const
     {
         return std::hash<T>()(val);
     }
- 
-    inline size_t operator()(const T& val) const
+
+    inline size_t operator()(const T &val) const
     {
         return _hash<T>(val);
     }
 };
 
-template <class T>
-struct Hash<T *>
+template <class T> struct Hash<T *>
 {
     inline size_t operator()(const T *val) const noexcept
     {
-        return static_cast<size_t>(reinterpret_cast<const uintptr_t>(val)); 
+        return static_cast<size_t>(reinterpret_cast<const uintptr_t>(val));
     }
 };
 
-template<class ArgumentType, class ResultType>
-struct phmap_unary_function
+template <class ArgumentType, class ResultType> struct phmap_unary_function
 {
     typedef ArgumentType argument_type;
     typedef ResultType result_type;
 };
 
-template <>
-struct Hash<bool> : public phmap_unary_function<bool, size_t>
+template <> struct Hash<bool> : public phmap_unary_function<bool, size_t>
 {
     inline size_t operator()(bool val) const noexcept
-    { return static_cast<size_t>(val); }
+    {
+        return static_cast<size_t>(val);
+    }
 };
 
-template <>
-struct Hash<char> : public phmap_unary_function<char, size_t>
+template <> struct Hash<char> : public phmap_unary_function<char, size_t>
 {
     inline size_t operator()(char val) const noexcept
-    { return static_cast<size_t>(val); }
+    {
+        return static_cast<size_t>(val);
+    }
 };
 
-template <>
-struct Hash<signed char> : public phmap_unary_function<signed char, size_t>
+template <> struct Hash<signed char> : public phmap_unary_function<signed char, size_t>
 {
     inline size_t operator()(signed char val) const noexcept
-    { return static_cast<size_t>(val); }
+    {
+        return static_cast<size_t>(val);
+    }
 };
 
-template <>
-struct Hash<unsigned char> : public phmap_unary_function<unsigned char, size_t>
+template <> struct Hash<unsigned char> : public phmap_unary_function<unsigned char, size_t>
 {
     inline size_t operator()(unsigned char val) const noexcept
-    { return static_cast<size_t>(val); }
+    {
+        return static_cast<size_t>(val);
+    }
 };
 
 #ifdef PHMAP_HAS_NATIVE_WCHAR_T
-template <>
-struct Hash<wchar_t> : public phmap_unary_function<wchar_t, size_t>
+template <> struct Hash<wchar_t> : public phmap_unary_function<wchar_t, size_t>
 {
     inline size_t operator()(wchar_t val) const noexcept
-    { return static_cast<size_t>(val); }
+    {
+        return static_cast<size_t>(val);
+    }
 };
 #endif
 
-template <>
-struct Hash<int16_t> : public phmap_unary_function<int16_t, size_t>
+template <> struct Hash<int16_t> : public phmap_unary_function<int16_t, size_t>
 {
     inline size_t operator()(int16_t val) const noexcept
-    { return static_cast<size_t>(val); }
+    {
+        return static_cast<size_t>(val);
+    }
 };
 
-template <>
-struct Hash<uint16_t> : public phmap_unary_function<uint16_t, size_t>
+template <> struct Hash<uint16_t> : public phmap_unary_function<uint16_t, size_t>
 {
     inline size_t operator()(uint16_t val) const noexcept
-    { return static_cast<size_t>(val); }
+    {
+        return static_cast<size_t>(val);
+    }
 };
 
-template <>
-struct Hash<int32_t> : public phmap_unary_function<int32_t, size_t>
+template <> struct Hash<int32_t> : public phmap_unary_function<int32_t, size_t>
 {
     inline size_t operator()(int32_t val) const noexcept
-    { return static_cast<size_t>(val); }
+    {
+        return static_cast<size_t>(val);
+    }
 };
 
-template <>
-struct Hash<uint32_t> : public phmap_unary_function<uint32_t, size_t>
+template <> struct Hash<uint32_t> : public phmap_unary_function<uint32_t, size_t>
 {
     inline size_t operator()(uint32_t val) const noexcept
-    { return static_cast<size_t>(val); }
+    {
+        return static_cast<size_t>(val);
+    }
 };
 
-template <>
-struct Hash<int64_t> : public phmap_unary_function<int64_t, size_t>
+template <> struct Hash<int64_t> : public phmap_unary_function<int64_t, size_t>
 {
     inline size_t operator()(int64_t val) const noexcept
-    { return fold_if_needed<sizeof(size_t)>()(static_cast<uint64_t>(val)); }
+    {
+        return fold_if_needed<sizeof(size_t)>()(static_cast<uint64_t>(val));
+    }
 };
 
-template <>
-struct Hash<uint64_t> : public phmap_unary_function<uint64_t, size_t>
+template <> struct Hash<uint64_t> : public phmap_unary_function<uint64_t, size_t>
 {
     inline size_t operator()(uint64_t val) const noexcept
-    { return fold_if_needed<sizeof(size_t)>()(val); }
+    {
+        return fold_if_needed<sizeof(size_t)>()(val);
+    }
 };
 
-template <>
-struct Hash<float> : public phmap_unary_function<float, size_t>
+template <> struct Hash<float> : public phmap_unary_function<float, size_t>
 {
     inline size_t operator()(float val) const noexcept
     {
         // -0.0 and 0.0 should return same hash
         uint32_t *as_int = reinterpret_cast<uint32_t *>(&val);
-        return (val == 0) ? static_cast<size_t>(0) : 
-                            static_cast<size_t>(*as_int);
+        return (val == 0) ? static_cast<size_t>(0) : static_cast<size_t>(*as_int);
     }
 };
 
-template <>
-struct Hash<double> : public phmap_unary_function<double, size_t>
+template <> struct Hash<double> : public phmap_unary_function<double, size_t>
 {
     inline size_t operator()(double val) const noexcept
     {
         // -0.0 and 0.0 should return same hash
         uint64_t *as_int = reinterpret_cast<uint64_t *>(&val);
-        return (val == 0) ? static_cast<size_t>(0) : 
-                            fold_if_needed<sizeof(size_t)>()(*as_int);
+        return (val == 0) ? static_cast<size_t>(0) : fold_if_needed<sizeof(size_t)>()(*as_int);
     }
 };
 
@@ -309,22 +306,20 @@ template <class H> struct Combiner<H, 8>
 
 // define HashState to combine member hashes... see example below
 // -----------------------------------------------------------------------------
-template <typename H>
-class HashStateBase {
-public:
-    template <typename T, typename... Ts>
-    static H combine(H state, const T& value, const Ts&... values);
+template <typename H> class HashStateBase
+{
+  public:
+    template <typename T, typename... Ts> static H combine(H state, const T &value, const Ts &...values);
 
-    static H combine(H state) { return state; }
+    static H combine(H state)
+    {
+        return state;
+    }
 };
 
-template <typename H>
-template <typename T, typename... Ts>
-H HashStateBase<H>::combine(H seed, const T& v, const Ts&... vs)
+template <typename H> template <typename T, typename... Ts> H HashStateBase<H>::combine(H seed, const T &v, const Ts &...vs)
 {
-    return HashStateBase<H>::combine(Combiner<H, sizeof(H)>()(
-                                         seed, phmap::Hash<T>()(v)), 
-                                     vs...);
+    return HashStateBase<H>::combine(Combiner<H, sizeof(H)>()(seed, phmap::Hash<T>()(v)), vs...);
 }
 
 using HashState = HashStateBase<size_t>;
@@ -335,44 +330,43 @@ using HashState = HashStateBase<size_t>;
 
 // define Hash for std::pair
 // -------------------------
-template<class T1, class T2> 
-struct Hash<std::pair<T1, T2>> {
-    size_t operator()(std::pair<T1, T2> const& p) const noexcept {
+template <class T1, class T2> struct Hash<std::pair<T1, T2>>
+{
+    size_t operator()(std::pair<T1, T2> const &p) const noexcept
+    {
         return phmap::HashState().combine(phmap::Hash<T1>()(p.first), p.second);
     }
 };
 
 // define Hash for std::tuple
 // --------------------------
-template<class... T> 
-struct Hash<std::tuple<T...>> {
-    size_t operator()(std::tuple<T...> const& t) const noexcept {
+template <class... T> struct Hash<std::tuple<T...>>
+{
+    size_t operator()(std::tuple<T...> const &t) const noexcept
+    {
         return _hash_helper(t);
     }
 
-private:
-    template<size_t I = 0, class ...P>
-        typename std::enable_if<I == sizeof...(P), size_t>::type
-        _hash_helper(const std::tuple<P...> &) const noexcept { return 0; }
+  private:
+    template <size_t I = 0, class... P> typename std::enable_if<I == sizeof...(P), size_t>::type _hash_helper(const std::tuple<P...> &) const noexcept
+    {
+        return 0;
+    }
 
-    template<size_t I = 0, class ...P>
-    typename std::enable_if<I < sizeof...(P), size_t>::type
-    _hash_helper(const std::tuple<P...> &t) const noexcept {
+    template <size_t I = 0, class... P> typename std::enable_if < I<sizeof...(P), size_t>::type _hash_helper(const std::tuple<P...> &t) const noexcept
+    {
         const auto &el = std::get<I>(t);
-        using el_type = typename std::remove_cv<typename std::remove_reference<decltype(el)>::type>::type;
-        return Combiner<size_t, sizeof(size_t)>()(
-            phmap::Hash<el_type>()(el),  _hash_helper<I + 1>(t));
+        using el_type  = typename std::remove_cv<typename std::remove_reference<decltype(el)>::type>::type;
+        return Combiner<size_t, sizeof(size_t)>()(phmap::Hash<el_type>()(el), _hash_helper<I + 1>(t));
     }
 };
 
-
 #endif
 
-
-}  // namespace phmap
+} // namespace phmap
 
 #ifdef _MSC_VER
-     #pragma warning(pop)  
+#pragma warning(pop)
 #endif
 
 #endif // phmap_utils_h_guard_

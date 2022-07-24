@@ -202,7 +202,8 @@ namespace foonathan
                         arena_.deallocate_block();
 
                     detail::debug_check_pointer(
-                        [&] {
+                        [&]
+                        {
                             auto cur = arena_.current_block();
                             return m.end == static_cast<char*>(cur.memory) + cur.size;
                         },

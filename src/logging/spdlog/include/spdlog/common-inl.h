@@ -4,14 +4,16 @@
 #pragma once
 
 #ifndef SPDLOG_HEADER_ONLY
-#    include <spdlog/common.h>
+#include <spdlog/common.h>
 #endif
 
 #include <algorithm>
 #include <iterator>
 
-namespace spdlog {
-namespace level {
+namespace spdlog
+{
+namespace level
+{
 
 #if __cplusplus >= 201703L
 constexpr
@@ -49,9 +51,7 @@ SPDLOG_INLINE spdlog::level::level_enum from_str(const std::string &name) SPDLOG
 }
 } // namespace level
 
-SPDLOG_INLINE spdlog_ex::spdlog_ex(std::string msg)
-    : msg_(std::move(msg))
-{}
+SPDLOG_INLINE spdlog_ex::spdlog_ex(std::string msg) : msg_(std::move(msg)) {}
 
 SPDLOG_INLINE spdlog_ex::spdlog_ex(const std::string &msg, int last_errno)
 {

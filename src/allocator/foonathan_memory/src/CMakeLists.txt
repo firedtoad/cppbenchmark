@@ -78,77 +78,77 @@ configure_file("config.hpp.in" "${CMAKE_CURRENT_BINARY_DIR}/config_impl.hpp")
 
 # generate container_node_sizes.hpp
 # don't run it while cross-compiling and CMAKE_CROSSCOMPILING_EMULATOR is not defined
-if(FOONATHAN_MEMORY_BUILD_TOOLS)
-  if(NOT CMAKE_CROSSCOMPILING)
-    add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/container_node_sizes_impl.hpp
-            COMMAND $<TARGET_FILE:foonathan_memory_node_size_debugger> --code ${CMAKE_CURRENT_BINARY_DIR}/container_node_sizes_impl.hpp
-            DEPENDS foonathan_memory_node_size_debugger
-            VERBATIM)
-  elseif(DEFINED CMAKE_CROSSCOMPILING_EMULATOR)
-    add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/container_node_sizes_impl.hpp
-            COMMAND ${CMAKE_CROSSCOMPILING_EMULATOR} $<TARGET_FILE:foonathan_memory_node_size_debugger> --code ${CMAKE_CURRENT_BINARY_DIR}/container_node_sizes_impl.hpp
-            DEPENDS foonathan_memory_node_size_debugger
-            VERBATIM)
-  elseif(QNX OR QNXNTO)
-    if(EXISTS "${FOONATHAN_MEMORY_CONTAINER_NODE_SIZES_IMPL}")
-      message("-- Using the pre-generated file: ${FOONATHAN_MEMORY_CONTAINER_NODE_SIZES_IMPL}")
-      add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/container_node_sizes_impl.hpp
-            COMMAND cp ${FOONATHAN_MEMORY_CONTAINER_NODE_SIZES_IMPL} ${CMAKE_CURRENT_BINARY_DIR}/container_node_sizes_impl.hpp )
-    else()
-      message(FATAL_ERROR "\nError: Cannot find pre-generated file container_node_sizes_impl.hpp\n"
-                            "Please pre-generate the header file container_node_sizes_impl.hpp by following the steps below:\n"
-                            "- Build nodesize_dbg from source:\n"
-                            "	${PROJECT_SOURCE_DIR}/tool/node_size_debugger.cpp \n"
-                            "- Transfer nodesize_dbg to QNX target and execute:\n"
-                            "	nodesize_dbg --code container_node_sizes_impl.hpp \n"
-                            "- Transfer generated header file back to your development system \n" 
-                            "- Set FOONATHAN_MEMORY_CONTAINER_NODE_SIZES_IMPL to the path of the pre-generated file and pass it to cmake as an argument\n")
-    endif()
-  else()
-    message(WARNING "cross-compiling, but emulator is not defined, "
-                    "cannot generate container_node_sizes_impl.hpp, node size information will be unavailable")
-    file(WRITE  ${CMAKE_CURRENT_BINARY_DIR}/container_node_sizes_impl.hpp "#define FOONATHAN_MEMORY_NO_NODE_SIZE")
-    set(FOONATHAN_MEMORY_NO_NODE_SIZE 1 PARENT_SCOPE)
-  endif()
-else()
+if (FOONATHAN_MEMORY_BUILD_TOOLS)
+    if (NOT CMAKE_CROSSCOMPILING)
+        add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/container_node_sizes_impl.hpp
+                COMMAND $<TARGET_FILE:foonathan_memory_node_size_debugger> --code ${CMAKE_CURRENT_BINARY_DIR}/container_node_sizes_impl.hpp
+                DEPENDS foonathan_memory_node_size_debugger
+                VERBATIM)
+    elseif (DEFINED CMAKE_CROSSCOMPILING_EMULATOR)
+        add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/container_node_sizes_impl.hpp
+                COMMAND ${CMAKE_CROSSCOMPILING_EMULATOR} $<TARGET_FILE:foonathan_memory_node_size_debugger> --code ${CMAKE_CURRENT_BINARY_DIR}/container_node_sizes_impl.hpp
+                DEPENDS foonathan_memory_node_size_debugger
+                VERBATIM)
+    elseif (QNX OR QNXNTO)
+        if (EXISTS "${FOONATHAN_MEMORY_CONTAINER_NODE_SIZES_IMPL}")
+            message("-- Using the pre-generated file: ${FOONATHAN_MEMORY_CONTAINER_NODE_SIZES_IMPL}")
+            add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/container_node_sizes_impl.hpp
+                    COMMAND cp ${FOONATHAN_MEMORY_CONTAINER_NODE_SIZES_IMPL} ${CMAKE_CURRENT_BINARY_DIR}/container_node_sizes_impl.hpp)
+        else ()
+            message(FATAL_ERROR "\nError: Cannot find pre-generated file container_node_sizes_impl.hpp\n"
+                    "Please pre-generate the header file container_node_sizes_impl.hpp by following the steps below:\n"
+                    "- Build nodesize_dbg from source:\n"
+                    "	${PROJECT_SOURCE_DIR}/tool/node_size_debugger.cpp \n"
+                    "- Transfer nodesize_dbg to QNX target and execute:\n"
+                    "	nodesize_dbg --code container_node_sizes_impl.hpp \n"
+                    "- Transfer generated header file back to your development system \n"
+                    "- Set FOONATHAN_MEMORY_CONTAINER_NODE_SIZES_IMPL to the path of the pre-generated file and pass it to cmake as an argument\n")
+        endif ()
+    else ()
+        message(WARNING "cross-compiling, but emulator is not defined, "
+                "cannot generate container_node_sizes_impl.hpp, node size information will be unavailable")
+        file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/container_node_sizes_impl.hpp "#define FOONATHAN_MEMORY_NO_NODE_SIZE")
+        set(FOONATHAN_MEMORY_NO_NODE_SIZE 1 PARENT_SCOPE)
+    endif ()
+else ()
     message(WARNING "cannot generate container_node_sizes_impl.hpp, node size information will be unavailable")
-    file(WRITE  ${CMAKE_CURRENT_BINARY_DIR}/container_node_sizes_impl.hpp "#define FOONATHAN_MEMORY_NO_NODE_SIZE")
+    file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/container_node_sizes_impl.hpp "#define FOONATHAN_MEMORY_NO_NODE_SIZE")
     set(FOONATHAN_MEMORY_NO_NODE_SIZE 1 PARENT_SCOPE)
-endif()
+endif ()
 
 add_library(foonathan_memory ${detail_header} ${header} ${src})
 target_include_directories(foonathan_memory PUBLIC $<BUILD_INTERFACE:${FOONATHAN_MEMORY_SOURCE_DIR}/include/> # for client in subdirectory
-                                                   $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}> # for generated files in build mode
-                                                   $<INSTALL_INTERFACE:${FOONATHAN_MEMORY_INC_INSTALL_DIR}> # for client in install mode
-                                            PRIVATE ${header_path}) # for source files
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}> # for generated files in build mode
+        $<INSTALL_INTERFACE:${FOONATHAN_MEMORY_INC_INSTALL_DIR}> # for client in install mode
+        PRIVATE ${header_path}) # for source files
 target_compile_definitions(foonathan_memory PUBLIC
-                            FOONATHAN_MEMORY=1
-                            FOONATHAN_MEMORY_VERSION_MAJOR=${FOONATHAN_MEMORY_VERSION_MAJOR}
-                            FOONATHAN_MEMORY_VERSION_MINOR=${FOONATHAN_MEMORY_VERSION_MINOR}
-                            FOONATHAN_MEMORY_VERSION_PATCH=${FOONATHAN_MEMORY_VERSION_PATCH})
-if(NOT MSVC)
-target_compile_features(foonathan_memory PUBLIC cxx_constexpr)
-endif()
+        FOONATHAN_MEMORY=1
+        FOONATHAN_MEMORY_VERSION_MAJOR=${FOONATHAN_MEMORY_VERSION_MAJOR}
+        FOONATHAN_MEMORY_VERSION_MINOR=${FOONATHAN_MEMORY_VERSION_MINOR}
+        FOONATHAN_MEMORY_VERSION_PATCH=${FOONATHAN_MEMORY_VERSION_PATCH})
+if (NOT MSVC)
+    target_compile_features(foonathan_memory PUBLIC cxx_constexpr)
+endif ()
 
 set_target_properties(foonathan_memory PROPERTIES
-                                       OUTPUT_NAME "foonathan_memory-${FOONATHAN_MEMORY_VERSION}"
-                                       POSITION_INDEPENDENT_CODE ON)
+        OUTPUT_NAME "foonathan_memory-${FOONATHAN_MEMORY_VERSION}"
+        POSITION_INDEPENDENT_CODE ON)
 
 install(TARGETS foonathan_memory EXPORT foonathan_memoryTargets
-        RUNTIME       DESTINATION ${FOONATHAN_MEMORY_RUNTIME_INSTALL_DIR}
-        LIBRARY       DESTINATION ${FOONATHAN_MEMORY_LIBRARY_INSTALL_DIR}
-        ARCHIVE       DESTINATION ${FOONATHAN_MEMORY_ARCHIVE_INSTALL_DIR}
-        FRAMEWORK     DESTINATION ${FOONATHAN_MEMORY_FRAMEWORK_INSTALL_DIR})
+        RUNTIME DESTINATION ${FOONATHAN_MEMORY_RUNTIME_INSTALL_DIR}
+        LIBRARY DESTINATION ${FOONATHAN_MEMORY_LIBRARY_INSTALL_DIR}
+        ARCHIVE DESTINATION ${FOONATHAN_MEMORY_ARCHIVE_INSTALL_DIR}
+        FRAMEWORK DESTINATION ${FOONATHAN_MEMORY_FRAMEWORK_INSTALL_DIR})
 
 # Write/install version file
 include(CMakePackageConfigHelpers)
 set(version_file "${CMAKE_CURRENT_BINARY_DIR}/cmake/foonathan_memory-config-version.cmake")
 write_basic_package_version_file(${version_file}
-                                 VERSION ${FOONATHAN_MEMORY_VERSION}
-                                 COMPATIBILITY AnyNewerVersion)
+        VERSION ${FOONATHAN_MEMORY_VERSION}
+        COMPATIBILITY AnyNewerVersion)
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/config_impl.hpp DESTINATION ${FOONATHAN_MEMORY_INC_INSTALL_DIR})
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/container_node_sizes_impl.hpp DESTINATION ${FOONATHAN_MEMORY_INC_INSTALL_DIR}/foonathan/memory/detail)
-install(FILES ${header}                                   DESTINATION ${FOONATHAN_MEMORY_INC_INSTALL_DIR}/foonathan/memory)
-install(FILES ${detail_header}                            DESTINATION ${FOONATHAN_MEMORY_INC_INSTALL_DIR}/foonathan/memory/detail)
-install(FILES ${version_file}                             DESTINATION ${FOONATHAN_MEMORY_CMAKE_CONFIG_INSTALL_DIR})
+install(FILES ${header} DESTINATION ${FOONATHAN_MEMORY_INC_INSTALL_DIR}/foonathan/memory)
+install(FILES ${detail_header} DESTINATION ${FOONATHAN_MEMORY_INC_INSTALL_DIR}/foonathan/memory/detail)
+install(FILES ${version_file} DESTINATION ${FOONATHAN_MEMORY_CMAKE_CONFIG_INSTALL_DIR})
