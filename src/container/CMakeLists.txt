@@ -41,4 +41,3 @@ aux_source_directory(hash/internal HASH_SRC)
 add_executable(hash hash/hash.cpp ${HASH_SRC})
 target_link_libraries(hash PRIVATE glog gflags brpc)
 
-add_compile_options(-std=c++17 -g -fno-omit-frame-pointer)

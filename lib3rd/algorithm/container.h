@@ -714,7 +714,7 @@ container_algorithm_internal::ContainerIter<C> c_generate_n(C& c, Size n,
 // c_remove()
 // Container-based version of the <algorithm> `std::remove()` function to
 template <typename C, typename T>
-container_algorithm_internal::ContainerIter<C> c_remove(const C& c, T&& value) {
+container_algorithm_internal::ContainerIter<C> c_remove(C&& c, T&& value) {
   return std::remove(container_algorithm_internal::c_begin(c),
                      container_algorithm_internal::c_end(c),
                      std::forward<T>(value));
@@ -722,8 +722,7 @@ container_algorithm_internal::ContainerIter<C> c_remove(const C& c, T&& value) {
 // c_remove_if()
 // Container-based version of the <algorithm> `std::remove_if()` function to
 template <typename C, typename T>
-container_algorithm_internal::ContainerIter<C> c_remove_if(const C& c,
-                                                           T&& value) {
+container_algorithm_internal::ContainerIter<C> c_remove_if(C&& c, T&& value) {
   return std::remove_if(container_algorithm_internal::c_begin(c),
                         container_algorithm_internal::c_end(c),
                         std::forward<T>(value));
@@ -731,9 +730,9 @@ container_algorithm_internal::ContainerIter<C> c_remove_if(const C& c,
 
 // c_erase()
 // Container-based version of the <algorithm> `std::c_erase_if()` function to
-template <typename C, typename OutputIterator, typename T>
-size_t c_erase(const C& c, OutputIterator result, T&& value) {
-  auto it = c_remove(c, std::forward<T>(value));
+template <typename C, typename T>
+size_t c_erase(C&& c, T&& value) {
+  auto it = c_remove(std::forward<C>(c), std::forward<T>(value));
   auto r = std::distance(container_algorithm_internal::c_begin(c), it);
   c.erase(it, container_algorithm_internal::c_end(c));
   return r;
@@ -741,9 +740,9 @@ size_t c_erase(const C& c, OutputIterator result, T&& value) {
 
 // c_remove_if()
 // c_erase_if-based version of the <algorithm> `std::c_erase_if()` function to
-template <typename C, typename OutputIterator, typename T>
-size_t c_erase_if(const C& c, OutputIterator result, T&& value) {
-  auto it = c_remove_if(c, std::forward<T>(value));
+template <typename C, typename T>
+size_t c_erase_if(C&& c, T&& value) {
+  auto it = c_remove_if(std::forward<C>(c), std::forward<T>(value));
   auto r = std::distance(container_algorithm_internal::c_begin(c), it);
   c.erase(it, container_algorithm_internal::c_end(c));
   return r;

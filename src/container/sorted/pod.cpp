@@ -49,8 +49,8 @@ template <typename V, typename P> static void BenchInsertPod(benchmark::State &s
     }
 }
 
-// BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<NonPod>, NonPod)->Range(2, 65536)->MeasureProcessCPUTime();
-// BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<Pod>, Pod)->Range(2, 65536)->MeasureProcessCPUTime();
+BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<NonPod>, NonPod)->Range(2, 65536)->MeasureProcessCPUTime();
+BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<Pod>, Pod)->Range(2, 65536)->MeasureProcessCPUTime();
 
 template <typename P> static void BenchUninitializedCopy(benchmark::State &state)
 {
@@ -63,51 +63,13 @@ template <typename P> static void BenchUninitializedCopy(benchmark::State &state
     }
 }
 
-// BENCHMARK_TEMPLATE(BenchUninitializedCopy, NonPod)->Range(2, 65536)->MeasureProcessCPUTime();
-// BENCHMARK_TEMPLATE(BenchUninitializedCopy, Pod)->Range(2, 65536)->MeasureProcessCPUTime();
-
-template <typename T> void test()
-{
-    T s;
-    s.insert('1');
-    s.find('1');
-    for (auto &it : s)
-    {
-        std::cout << it << '\n';
-    }
-    s.erase('1');
-    for (auto &it : s)
-    {
-        std::cout << it << '\n';
-    }
-}
+BENCHMARK_TEMPLATE(BenchUninitializedCopy, NonPod)->Range(2, 65536)->MeasureProcessCPUTime();
+BENCHMARK_TEMPLATE(BenchUninitializedCopy, Pod)->Range(2, 65536)->MeasureProcessCPUTime();
 
 int main(int argc, char **argv)
 {
 
-    {
-//        test < sorted_vector<int8_t>>();
-//        test < sorted_vector<int16_t>>();
-//        test < sorted_vector<int32_t>>();
-//        test < sorted_vector<int64_t>>();
-//        test < sorted_vector<uint8_t>>();
-//        test < sorted_vector<uint16_t>>();
-//        test < sorted_vector<uint32_t>>();
-//        test < sorted_vector<uint64_t>>();
-    }
-
-    {
-        test < sorted_vector_char<int8_t>>();
-        test < sorted_vector_char<int16_t>>();
-        test < sorted_vector_char<int32_t>>();
-        test < sorted_vector_char<int64_t>>();
-        test < sorted_vector_char<uint8_t>>();
-        test < sorted_vector_char<uint16_t>>();
-        test < sorted_vector_char<uint32_t>>();
-        test < sorted_vector_char<uint64_t>>();
-    }
-
-//    benchmark::Initialize(&argc, argv);
-//    benchmark::RunSpecifiedBenchmarks();
+    benchmark::Initialize(&argc, argv);
+    benchmark::RunSpecifiedBenchmarks();
     return 0;
 }

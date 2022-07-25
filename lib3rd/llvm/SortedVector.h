@@ -6,6 +6,7 @@
 #define LLVM_SORTED_VECTOR_H
 #include "SmallVector.h"
 #include <algorithm>
+#include <ext/pool_allocator.h>
 #include <functional>
 #include <vector>
 
@@ -137,23 +138,26 @@ template <class T, class Compare = std::less<T>> struct sorted_vector
 
 template <class T, class Compare = std::less<T>> struct sorted_vector_char
 {
-    using VectorChar = std::vector<uint8_t>;
+    static_assert(std::is_trivially_copyable<T>::value, "T must be trivially_copyable");
+    using VectorChar    = std::vector<uint8_t>;
+    using pointer       = T *;
+    using const_pointer = const T *;
 
-    T *begin()
+    pointer begin()
     {
-        return reinterpret_cast<T *>(m_data.begin().base());
+        return reinterpret_cast<pointer>(m_data.begin().base());
     }
-    T *end()
+    pointer end()
     {
-        return reinterpret_cast<T *>(m_data.end().base());
+        return reinterpret_cast<pointer>(m_data.end().base());
     }
-    const T *begin() const
+    const_pointer begin() const
     {
-        return reinterpret_cast<const T *>(m_data.begin().base());
+        return reinterpret_cast<const_pointer>(m_data.begin().base());
     }
-    const T *end() const
+    const_pointer end() const
     {
-        return reinterpret_cast<const T *>(m_data.end().base());
+        return reinterpret_cast<const_pointer>(m_data.end().base());
     }
     size_t empty()
     {
@@ -173,38 +177,48 @@ template <class T, class Compare = std::less<T>> struct sorted_vector_char
     {
         std::sort(begin(), end(), cmp);
     }
-
-    T *insert(const T &key)
+    ~sorted_vector_char()
+    {
+        for (auto &it : *this)
+        {
+            it.~T();
+        }
+    }
+    pointer insert(const T &key)
     {
         auto it = std::lower_bound(begin(), end(), key, cmp);
         if (it == end() || cmp(key, *it))
         {
-            auto dist = std::distance(begin(), it);
-            auto ret  = m_data.insert(m_data.begin() + dist, (uint8_t *)&key, ((uint8_t *)&key + sizeof(key)));
-            return reinterpret_cast<T *>(ret.base());
+            auto    dist = std::distance(begin(), it);
+            uint8_t buff[sizeof(T)]{};
+            auto    ret = m_data.insert(m_data.begin() + (dist * sizeof(T)), buff, buff + sizeof(T));
+            new (ret.base()) T{key};
+            return reinterpret_cast<pointer>(ret.base());
         }
         return it;
     }
 
-    T *insert(T &&key)
+    pointer insert(T &&key)
     {
         auto it = std::lower_bound(begin(), end(), std::forward<T>(key), cmp);
         if (it == end() || cmp(key, *it))
         {
-            auto dist = std::distance(begin(), it);
-            auto ret  = m_data.insert(m_data.begin() + dist, (uint8_t *)&key, ((uint8_t *)&key + sizeof(key)));
-            return reinterpret_cast<T *>(ret.base());
+            auto    dist = std::distance(begin(), it);
+            uint8_t buff[sizeof(T)]{};
+            auto    ret = m_data.insert(m_data.begin() + (dist * sizeof(T)), buff, buff + sizeof(T));
+            new (ret.base()) T(std::forward<T>(key));
+            return reinterpret_cast<pointer>(ret.base());
         }
         return it;
     }
 
-    T *find(const T &key) const
+    pointer find(const T &key)
     {
         auto it = std::lower_bound(begin(), end(), key, cmp);
         return it == end() || cmp(key, *it) ? end() : it;
     }
 
-    T *find(T &&key)
+    pointer find(T &&key)
     {
         auto it = std::lower_bound(begin(), end(), std::forward<T>(key), cmp);
         return it == end() || cmp(std::forward<T>(key), *it) ? end() : it;
@@ -226,7 +240,9 @@ template <class T, class Compare = std::less<T>> struct sorted_vector_char
         if (it != end())
         {
             auto dist = std::distance(begin(), it);
-            m_data.erase(m_data.begin() + dist, m_data.begin() + dist + sizeof(T));
+            auto rit  = m_data.begin() + (dist * sizeof(T));
+            reinterpret_cast<pointer>(rit.base())->~T();
+            m_data.erase(rit, rit + sizeof(T));
             return 1;
         }
         return 0;
@@ -238,32 +254,42 @@ template <class T, class Compare = std::less<T>> struct sorted_vector_char
         if (it != end())
         {
             auto dist = std::distance(begin(), it);
-            m_data.erase(m_data.begin() + dist, m_data.begin() + dist + sizeof(T));
+            auto rit  = m_data.begin() + (dist * sizeof(T));
+            reinterpret_cast<pointer>(rit.base())->~T();
+            m_data.erase(rit, rit + sizeof(T));
             return 1;
         }
         return 0;
     }
 
-    const T *erase(const T *it)
+    pointer erase(pointer p)
     {
-        if (it != end())
+        if (p != end())
         {
-            auto dist = std::distance(begin(), it);
-            auto ret  = m_data.erase(m_data.begin() + dist, m_data.begin() + dist + sizeof(T));
-            return reinterpret_cast<T *>(ret.base());
+            auto dist = std::distance(begin(), p);
+            auto rit  = m_data.begin() + (dist * sizeof(T));
+            reinterpret_cast<pointer>(rit.base())->~T();
+            auto ret = m_data.erase(rit, rit + sizeof(T));
+            return reinterpret_cast<pointer>(ret.base());
         }
         return end();
     }
 
-    template <typename F> const T *erase_if(F &&f)
+    template <typename F> pointer erase_if(F &&f)
     {
         auto it = std::remove_if(begin(), end(), std::forward<F>(f));
         if (it != end())
         {
             auto dist = std::distance(begin(), it);
-            auto ret  = m_data.erase(m_data.begin() + dist, m_data.end());
-            return reinterpret_cast<T *>(ret.base());
+            for (; it != end(); it++)
+            {
+                it->~T();
+            }
+            auto rit = m_data.begin() + (dist * sizeof(T));
+            auto ret = m_data.erase(rit, m_data.end());
+            return reinterpret_cast<pointer>(ret.base());
         }
+        return end();
     }
 
   private:
