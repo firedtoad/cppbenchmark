@@ -4,17 +4,18 @@
 
 #include <benchmark/benchmark.h>
 #include <iostream>
+
 #include <vector>
 
 struct S
 {
-    uint64_t s ;
-    uint64_t c[3];
+    uint64_t s;
+    char     c[50];
 };
 
 static void BM_IntervalPtr(benchmark::State &state)
 {
-    int      row = state.range(0) ;
+    int              row = state.range(0);
     std::vector<S *> cache;
     cache.reserve(row);
     for (auto i = 0; i < row; i++)
@@ -38,10 +39,10 @@ static void BM_IntervalPtr(benchmark::State &state)
 
 static void BM_LinearPtr(benchmark::State &state)
 {
-    int      row = state.range(0) ;
+    int              row = state.range(0);
     std::vector<S *> cache;
     cache.reserve(row);
-    S   *ss = new S[row]{};
+    S *ss = new S[row]{};
     for (auto i = 0; i < row; i++)
     {
         cache.emplace_back(&ss[i]);
@@ -60,7 +61,7 @@ static void BM_LinearPtr(benchmark::State &state)
 
 static void BM_LinearVal(benchmark::State &state)
 {
-    int      row = state.range(0) ;
+    int            row = state.range(0);
     std::vector<S> cache;
     cache.reserve(row);
     for (auto i = 0; i < row; i++)
@@ -79,14 +80,16 @@ static void BM_LinearVal(benchmark::State &state)
     benchmark::DoNotOptimize(sum);
 }
 
+BENCHMARK(BM_IntervalPtr)->Range(1, 1 << 20);
+BENCHMARK(BM_LinearPtr)->Range(1, 1 << 20);
+BENCHMARK(BM_LinearVal)->Range(1, 1 << 20);
 
-BENCHMARK(BM_IntervalPtr)->Range(1,1<<20);
-BENCHMARK(BM_LinearPtr)->Range(1,1<<20);
-BENCHMARK(BM_LinearVal)->Range(1,1<<20);
+
+
+
 
 int main(int argc, char **argv)
 {
-
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;
