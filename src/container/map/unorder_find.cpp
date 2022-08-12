@@ -20,7 +20,7 @@
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
     static unsigned long x = 123456789, y = 362436069, z = 521288629;
-    unsigned long t;
+    unsigned long        t;
 
     x ^= x << 16;
     x ^= x >> 5;
@@ -41,16 +41,21 @@ static inline unsigned long _random()
 
 template <class M> static void BenchUnOrderMapInt(benchmark::State &state)
 {
-    M m;
+    M                m;
+    std::vector<int> keys;
     m.reserve(65536);
+    keys.reserve(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        m[i] = i;
+        auto r = _random();
+        keys.push_back(r);
+        m[r] = i;
     }
     for (auto _ : state)
     {
-        auto c = m.find(_random() % 65536);
-        auto v = c->second;
+        auto idx = keys[_random() % 65536];
+        auto c   = m.find(idx);
+        auto v   = c->second;
         benchmark::DoNotOptimize(v);
     }
 }
@@ -90,7 +95,7 @@ template <class M> static void BenchUnOrderMapString(benchmark::State &state)
 
 template <class M> static void BenchCharKeyMap(benchmark::State &state)
 {
-    M m;
+    M                        m;
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {

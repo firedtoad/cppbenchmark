@@ -33,6 +33,7 @@ include_directories(
 
 link_directories(/usr/local/lib)
 
+add_subdirectory(src/adt)
 add_subdirectory(src/string)
 add_subdirectory(src/allocator)
 add_subdirectory(src/arithmetic)

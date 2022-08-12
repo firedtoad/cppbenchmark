@@ -50,81 +50,88 @@
 #include <utility>
 #include <vector>
 
-namespace absl {
-namespace container_algorithm_internal {
 
-// NOTE: it is important to defer to ADL lookup for building with C++ modules,
-// especially for headers like <valarray> which are not visible from this file
-// but specialize std::begin and std::end.
-using std::begin;
-using std::end;
 
-// The type of the iterator given by begin(c) (possibly std::begin(c)).
-// ContainerIter<const vector<T>> gives vector<T>::const_iterator,
-// while ContainerIter<vector<T>> gives vector<T>::iterator.
-template <typename C>
-using ContainerIter = decltype(begin(std::declval<C&>()));
+namespace container_algorithm_internal
+{
 
-// An MSVC bug involving template parameter substitution requires us to use
-// decltype() here instead of just std::pair.
-template <typename C1, typename C2>
-using ContainerIterPairType =
-    decltype(std::make_pair(ContainerIter<C1>(), ContainerIter<C2>()));
+    // NOTE: it is important to defer to ADL lookup for building with C++ modules,
+    // especially for headers like <valarray> which are not visible from this file
+    // but specialize std::begin and std::end.
+    using std::begin;
+    using std::end;
 
-template <typename C>
-using ContainerDifferenceType = decltype(std::distance(
-    std::declval<ContainerIter<C>>(), std::declval<ContainerIter<C>>()));
+    // The type of the iterator given by begin(c) (possibly std::begin(c)).
+    // ContainerIter<const vector<T>> gives vector<T>::const_iterator,
+    // while ContainerIter<vector<T>> gives vector<T>::iterator.
+    template <typename C>
+    using ContainerIter = decltype(begin(std::declval<C&>()));
 
-template <typename C>
-using ContainerPointerType =
-    typename std::iterator_traits<ContainerIter<C>>::pointer;
+    // An MSVC bug involving template parameter substitution requires us to use
+    // decltype() here instead of just std::pair.
+    template <typename C1, typename C2>
+    using ContainerIterPairType =
+        decltype(std::make_pair(ContainerIter<C1>(), ContainerIter<C2>()));
 
-// container_algorithm_internal::c_begin and
-// container_algorithm_internal::c_end are abbreviations for proper ADL
-// lookup of std::begin and std::end, i.e.
-//   using std::begin;
-//   using std::end;
-//   std::foo(begin(c), end(c);
-// becomes
-//   std::foo(container_algorithm_internal::begin(c),
-//   container_algorithm_internal::end(c));
-// These are meant for internal use only.
+    template <typename C>
+    using ContainerDifferenceType =
+        decltype(std::distance(std::declval<ContainerIter<C>>(),
+                               std::declval<ContainerIter<C>>()));
 
-template <typename C>
-ContainerIter<C> c_begin(C& c) {
-  return begin(c);
-}
+    template <typename C>
+    using ContainerPointerType =
+        typename std::iterator_traits<ContainerIter<C>>::pointer;
 
-template <typename C>
-ContainerIter<C> c_end(C& c) {
-  return end(c);
-}
+    // container_algorithm_internal::c_begin and
+    // container_algorithm_internal::c_end are abbreviations for proper ADL
+    // lookup of std::begin and std::end, i.e.
+    //   using std::begin;
+    //   using std::end;
+    //   std::foo(begin(c), end(c));
+    // becomes
+    //   std::foo(container_algorithm_internal::begin(c),
+    //            container_algorithm_internal::end(c));
+    // These are meant for internal use only.
 
-template <typename T>
-struct IsUnorderedContainer : std::false_type {};
+    template <typename C>
+    ContainerIter<C> c_begin(C& c)
+    {
+        return begin(c);
+    }
 
-template <class Key, class T, class Hash, class KeyEqual, class Allocator>
-struct IsUnorderedContainer<
-    std::unordered_map<Key, T, Hash, KeyEqual, Allocator>> : std::true_type {};
+    template <typename C>
+    ContainerIter<C> c_end(C& c)
+    {
+        return end(c);
+    }
 
-template <class Key, class Hash, class KeyEqual, class Allocator>
-struct IsUnorderedContainer<std::unordered_set<Key, Hash, KeyEqual, Allocator>>
-    : std::true_type {};
+    template <typename T>
+    struct IsUnorderedContainer : std::false_type {};
 
-// container_algorithm_internal::c_size. It is meant for internal use only.
+    template <class Key, class T, class Hash, class KeyEqual, class Allocator>
+    struct IsUnorderedContainer <
+        std::unordered_map<Key, T, Hash, KeyEqual, Allocator >> : std::true_type {};
 
-template <class C>
-auto c_size(C& c) -> decltype(c.size()) {
-  return c.size();
-}
+    template <class Key, class Hash, class KeyEqual, class Allocator>
+    struct IsUnorderedContainer<std::unordered_set<Key, Hash, KeyEqual, Allocator>>
+                : std::true_type {};
 
-template <class T, std::size_t N>
-constexpr std::size_t c_size(T (&)[N]) {
-  return N;
-}
-template <class T>
+    // container_algorithm_internal::c_size. It is meant for internal use only.
 
-using decay_t = typename std::decay<T>::type;
+    template <class C>
+    auto c_size(C& c) -> decltype(c.size())
+    {
+        return c.size();
+    }
+
+    template <class T, std::size_t N>
+    constexpr std::size_t c_size(T (&)[N])
+    {
+        return N;
+    }
+
+    template<typename _Tp>
+    using decay_t = typename std::decay<_Tp>::type;
 
 }  // namespace container_algorithm_internal
 
@@ -139,10 +146,11 @@ using decay_t = typename std::decay<T>::type;
 // Container-based version of absl::linear_search() for performing a linear
 // search within a container.
 template <typename C, typename EqualityComparable>
-bool c_linear_search(const C& c, EqualityComparable&& value) {
-  return linear_search(container_algorithm_internal::c_begin(c),
-                       container_algorithm_internal::c_end(c),
-                       std::forward<EqualityComparable>(value));
+bool c_linear_search(const C& c, EqualityComparable&& value)
+{
+    return linear_search(container_algorithm_internal::c_begin(c),
+                         container_algorithm_internal::c_end(c),
+                         std::forward<EqualityComparable>(value));
 }
 
 //------------------------------------------------------------------------------
@@ -155,9 +163,10 @@ bool c_linear_search(const C& c, EqualityComparable&& value) {
 // return the number of elements within a container.
 template <typename C>
 container_algorithm_internal::ContainerDifferenceType<const C> c_distance(
-    const C& c) {
-  return std::distance(container_algorithm_internal::c_begin(c),
-                       container_algorithm_internal::c_end(c));
+    const C& c)
+{
+    return std::distance(container_algorithm_internal::c_begin(c),
+                         container_algorithm_internal::c_end(c));
 }
 
 //------------------------------------------------------------------------------
@@ -167,12 +176,13 @@ container_algorithm_internal::ContainerDifferenceType<const C> c_distance(
 // c_all_of()
 //
 // Container-based version of the <algorithm> `std::all_of()` function to
-// test a condition on all elements within a container.
+// test if all elements within a container satisfy a condition.
 template <typename C, typename Pred>
-bool c_all_of(const C& c, Pred&& pred) {
-  return std::all_of(container_algorithm_internal::c_begin(c),
-                     container_algorithm_internal::c_end(c),
-                     std::forward<Pred>(pred));
+bool c_all_of(const C& c, Pred&& pred)
+{
+    return std::all_of(container_algorithm_internal::c_begin(c),
+                       container_algorithm_internal::c_end(c),
+                       std::forward<Pred>(pred));
 }
 
 // c_any_of()
@@ -180,21 +190,23 @@ bool c_all_of(const C& c, Pred&& pred) {
 // Container-based version of the <algorithm> `std::any_of()` function to
 // test if any element in a container fulfills a condition.
 template <typename C, typename Pred>
-bool c_any_of(const C& c, Pred&& pred) {
-  return std::any_of(container_algorithm_internal::c_begin(c),
-                     container_algorithm_internal::c_end(c),
-                     std::forward<Pred>(pred));
+bool c_any_of(const C& c, Pred&& pred)
+{
+    return std::any_of(container_algorithm_internal::c_begin(c),
+                       container_algorithm_internal::c_end(c),
+                       std::forward<Pred>(pred));
 }
 
 // c_none_of()
 //
 // Container-based version of the <algorithm> `std::none_of()` function to
-// test if no elements in a container fulfil a condition.
+// test if no elements in a container fulfill a condition.
 template <typename C, typename Pred>
-bool c_none_of(const C& c, Pred&& pred) {
-  return std::none_of(container_algorithm_internal::c_begin(c),
-                      container_algorithm_internal::c_end(c),
-                      std::forward<Pred>(pred));
+bool c_none_of(const C& c, Pred&& pred)
+{
+    return std::none_of(container_algorithm_internal::c_begin(c),
+                        container_algorithm_internal::c_end(c),
+                        std::forward<Pred>(pred));
 }
 
 // c_for_each()
@@ -202,10 +214,11 @@ bool c_none_of(const C& c, Pred&& pred) {
 // Container-based version of the <algorithm> `std::for_each()` function to
 // apply a function to a container's elements.
 template <typename C, typename Function>
-std::decay_t<Function> c_for_each(C&& c, Function&& f) {
-  return std::for_each(container_algorithm_internal::c_begin(c),
-                       container_algorithm_internal::c_end(c),
-                       std::forward<Function>(f));
+container_algorithm_internal::decay_t<Function> c_for_each(C&& c, Function&& f)
+{
+    return std::for_each(container_algorithm_internal::c_begin(c),
+                         container_algorithm_internal::c_end(c),
+                         std::forward<Function>(f));
 }
 
 // c_find()
@@ -213,10 +226,11 @@ std::decay_t<Function> c_for_each(C&& c, Function&& f) {
 // Container-based version of the <algorithm> `std::find()` function to find
 // the first element containing the passed value within a container value.
 template <typename C, typename T>
-container_algorithm_internal::ContainerIter<C> c_find(C& c, T&& value) {
-  return std::find(container_algorithm_internal::c_begin(c),
-                   container_algorithm_internal::c_end(c),
-                   std::forward<T>(value));
+container_algorithm_internal::ContainerIter<C> c_find(C& c, T&& value)
+{
+    return std::find(container_algorithm_internal::c_begin(c),
+                     container_algorithm_internal::c_end(c),
+                     std::forward<T>(value));
 }
 
 // c_find_if()
@@ -224,10 +238,11 @@ container_algorithm_internal::ContainerIter<C> c_find(C& c, T&& value) {
 // Container-based version of the <algorithm> `std::find_if()` function to find
 // the first element in a container matching the given condition.
 template <typename C, typename Pred>
-container_algorithm_internal::ContainerIter<C> c_find_if(C& c, Pred&& pred) {
-  return std::find_if(container_algorithm_internal::c_begin(c),
-                      container_algorithm_internal::c_end(c),
-                      std::forward<Pred>(pred));
+container_algorithm_internal::ContainerIter<C> c_find_if(C& c, Pred&& pred)
+{
+    return std::find_if(container_algorithm_internal::c_begin(c),
+                        container_algorithm_internal::c_end(c),
+                        std::forward<Pred>(pred));
 }
 
 // c_find_if_not()
@@ -236,10 +251,11 @@ container_algorithm_internal::ContainerIter<C> c_find_if(C& c, Pred&& pred) {
 // find the first element in a container not matching the given condition.
 template <typename C, typename Pred>
 container_algorithm_internal::ContainerIter<C> c_find_if_not(C& c,
-                                                             Pred&& pred) {
-  return std::find_if_not(container_algorithm_internal::c_begin(c),
-                          container_algorithm_internal::c_end(c),
-                          std::forward<Pred>(pred));
+        Pred&& pred)
+{
+    return std::find_if_not(container_algorithm_internal::c_begin(c),
+                            container_algorithm_internal::c_end(c),
+                            std::forward<Pred>(pred));
 }
 
 // c_find_end()
@@ -248,23 +264,25 @@ container_algorithm_internal::ContainerIter<C> c_find_if_not(C& c,
 // find the last subsequence within a container.
 template <typename Sequence1, typename Sequence2>
 container_algorithm_internal::ContainerIter<Sequence1> c_find_end(
-    Sequence1& sequence, Sequence2& subsequence) {
-  return std::find_end(container_algorithm_internal::c_begin(sequence),
-                       container_algorithm_internal::c_end(sequence),
-                       container_algorithm_internal::c_begin(subsequence),
-                       container_algorithm_internal::c_end(subsequence));
+    Sequence1& sequence, Sequence2& subsequence)
+{
+    return std::find_end(container_algorithm_internal::c_begin(sequence),
+                         container_algorithm_internal::c_end(sequence),
+                         container_algorithm_internal::c_begin(subsequence),
+                         container_algorithm_internal::c_end(subsequence));
 }
 
 // Overload of c_find_end() for using a predicate evaluation other than `==` as
 // the function's test condition.
 template <typename Sequence1, typename Sequence2, typename BinaryPredicate>
 container_algorithm_internal::ContainerIter<Sequence1> c_find_end(
-    Sequence1& sequence, Sequence2& subsequence, BinaryPredicate&& pred) {
-  return std::find_end(container_algorithm_internal::c_begin(sequence),
-                       container_algorithm_internal::c_end(sequence),
-                       container_algorithm_internal::c_begin(subsequence),
-                       container_algorithm_internal::c_end(subsequence),
-                       std::forward<BinaryPredicate>(pred));
+    Sequence1& sequence, Sequence2& subsequence, BinaryPredicate&& pred)
+{
+    return std::find_end(container_algorithm_internal::c_begin(sequence),
+                         container_algorithm_internal::c_end(sequence),
+                         container_algorithm_internal::c_begin(subsequence),
+                         container_algorithm_internal::c_end(subsequence),
+                         std::forward<BinaryPredicate>(pred));
 }
 
 // c_find_first_of()
@@ -274,23 +292,25 @@ container_algorithm_internal::ContainerIter<Sequence1> c_find_end(
 // container.
 template <typename C1, typename C2>
 container_algorithm_internal::ContainerIter<C1> c_find_first_of(C1& container,
-                                                                C2& options) {
-  return std::find_first_of(container_algorithm_internal::c_begin(container),
-                            container_algorithm_internal::c_end(container),
-                            container_algorithm_internal::c_begin(options),
-                            container_algorithm_internal::c_end(options));
+        C2& options)
+{
+    return std::find_first_of(container_algorithm_internal::c_begin(container),
+                              container_algorithm_internal::c_end(container),
+                              container_algorithm_internal::c_begin(options),
+                              container_algorithm_internal::c_end(options));
 }
 
 // Overload of c_find_first_of() for using a predicate evaluation other than
 // `==` as the function's test condition.
 template <typename C1, typename C2, typename BinaryPredicate>
 container_algorithm_internal::ContainerIter<C1> c_find_first_of(
-    C1& container, C2& options, BinaryPredicate&& pred) {
-  return std::find_first_of(container_algorithm_internal::c_begin(container),
-                            container_algorithm_internal::c_end(container),
-                            container_algorithm_internal::c_begin(options),
-                            container_algorithm_internal::c_end(options),
-                            std::forward<BinaryPredicate>(pred));
+    C1& container, C2& options, BinaryPredicate&& pred)
+{
+    return std::find_first_of(container_algorithm_internal::c_begin(container),
+                              container_algorithm_internal::c_end(container),
+                              container_algorithm_internal::c_begin(options),
+                              container_algorithm_internal::c_end(options),
+                              std::forward<BinaryPredicate>(pred));
 }
 
 // c_adjacent_find()
@@ -299,19 +319,21 @@ container_algorithm_internal::ContainerIter<C1> c_find_first_of(
 // find equal adjacent elements within a container.
 template <typename Sequence>
 container_algorithm_internal::ContainerIter<Sequence> c_adjacent_find(
-    Sequence& sequence) {
-  return std::adjacent_find(container_algorithm_internal::c_begin(sequence),
-                            container_algorithm_internal::c_end(sequence));
+    Sequence& sequence)
+{
+    return std::adjacent_find(container_algorithm_internal::c_begin(sequence),
+                              container_algorithm_internal::c_end(sequence));
 }
 
 // Overload of c_adjacent_find() for using a predicate evaluation other than
 // `==` as the function's test condition.
 template <typename Sequence, typename BinaryPredicate>
 container_algorithm_internal::ContainerIter<Sequence> c_adjacent_find(
-    Sequence& sequence, BinaryPredicate&& pred) {
-  return std::adjacent_find(container_algorithm_internal::c_begin(sequence),
-                            container_algorithm_internal::c_end(sequence),
-                            std::forward<BinaryPredicate>(pred));
+    Sequence& sequence, BinaryPredicate&& pred)
+{
+    return std::adjacent_find(container_algorithm_internal::c_begin(sequence),
+                              container_algorithm_internal::c_end(sequence),
+                              std::forward<BinaryPredicate>(pred));
 }
 
 // c_count()
@@ -320,10 +342,11 @@ container_algorithm_internal::ContainerIter<Sequence> c_adjacent_find(
 // values that match within a container.
 template <typename C, typename T>
 container_algorithm_internal::ContainerDifferenceType<const C> c_count(
-    const C& c, T&& value) {
-  return std::count(container_algorithm_internal::c_begin(c),
-                    container_algorithm_internal::c_end(c),
-                    std::forward<T>(value));
+    const C& c, T&& value)
+{
+    return std::count(container_algorithm_internal::c_begin(c),
+                      container_algorithm_internal::c_end(c),
+                      std::forward<T>(value));
 }
 
 // c_count_if()
@@ -332,10 +355,11 @@ container_algorithm_internal::ContainerDifferenceType<const C> c_count(
 // count values matching a condition within a container.
 template <typename C, typename Pred>
 container_algorithm_internal::ContainerDifferenceType<const C> c_count_if(
-    const C& c, Pred&& pred) {
-  return std::count_if(container_algorithm_internal::c_begin(c),
-                       container_algorithm_internal::c_end(c),
-                       std::forward<Pred>(pred));
+    const C& c, Pred&& pred)
+{
+    return std::count_if(container_algorithm_internal::c_begin(c),
+                         container_algorithm_internal::c_end(c),
+                         std::forward<Pred>(pred));
 }
 
 // c_mismatch()
@@ -344,42 +368,48 @@ container_algorithm_internal::ContainerDifferenceType<const C> c_count_if(
 // return the first element where two ordered containers differ. Applies `==` to
 // the first N elements of `c1` and `c2`, where N = min(size(c1), size(c2)).
 template <typename C1, typename C2>
-container_algorithm_internal::ContainerIterPairType<C1, C2> c_mismatch(C1& c1,
-                                                                       C2& c2) {
-  auto first1 = container_algorithm_internal::c_begin(c1);
-  auto last1 = container_algorithm_internal::c_end(c1);
-  auto first2 = container_algorithm_internal::c_begin(c2);
-  auto last2 = container_algorithm_internal::c_end(c2);
+container_algorithm_internal::ContainerIterPairType<C1, C2>
+c_mismatch(C1& c1, C2& c2)
+{
+    auto first1 = container_algorithm_internal::c_begin(c1);
+    auto last1 = container_algorithm_internal::c_end(c1);
+    auto first2 = container_algorithm_internal::c_begin(c2);
+    auto last2 = container_algorithm_internal::c_end(c2);
 
-  for (; first1 != last1 && first2 != last2; ++first1, (void)++first2) {
-    // Negates equality because Cpp17EqualityComparable doesn't require clients
-    // to overload both `operator==` and `operator!=`.
-    if (!(*first1 == *first2)) {
-      break;
+    for (; first1 != last1 && first2 != last2; ++first1, (void)++first2)
+    {
+        // Negates equality because Cpp17EqualityComparable doesn't require clients
+        // to overload both `operator==` and `operator!=`.
+        if (!(*first1 == *first2))
+        {
+            break;
+        }
     }
-  }
 
-  return std::make_pair(first1, first2);
+    return std::make_pair(first1, first2);
 }
 
 // Overload of c_mismatch() for using a predicate evaluation other than `==` as
 // the function's test condition. Applies `pred`to the first N elements of `c1`
 // and `c2`, where N = min(size(c1), size(c2)).
 template <typename C1, typename C2, typename BinaryPredicate>
-container_algorithm_internal::ContainerIterPairType<C1, C2> c_mismatch(
-    C1& c1, C2& c2, BinaryPredicate pred) {
-  auto first1 = container_algorithm_internal::c_begin(c1);
-  auto last1 = container_algorithm_internal::c_end(c1);
-  auto first2 = container_algorithm_internal::c_begin(c2);
-  auto last2 = container_algorithm_internal::c_end(c2);
+container_algorithm_internal::ContainerIterPairType<C1, C2>
+c_mismatch(C1& c1, C2& c2, BinaryPredicate pred)
+{
+    auto first1 = container_algorithm_internal::c_begin(c1);
+    auto last1 = container_algorithm_internal::c_end(c1);
+    auto first2 = container_algorithm_internal::c_begin(c2);
+    auto last2 = container_algorithm_internal::c_end(c2);
 
-  for (; first1 != last1 && first2 != last2; ++first1, (void)++first2) {
-    if (!pred(*first1, *first2)) {
-      break;
+    for (; first1 != last1 && first2 != last2; ++first1, (void)++first2)
+    {
+        if (!pred(*first1, *first2))
+        {
+            break;
+        }
     }
-  }
 
-  return std::make_pair(first1, first2);
+    return std::make_pair(first1, first2);
 }
 
 // c_equal()
@@ -400,24 +430,26 @@ container_algorithm_internal::ContainerIterPairType<C1, C2> c_mismatch(
 //   c_equal(v1, v2) returns false
 
 template <typename C1, typename C2>
-bool c_equal(const C1& c1, const C2& c2) {
-  return ((container_algorithm_internal::c_size(c1) ==
-           container_algorithm_internal::c_size(c2)) &&
-          std::equal(container_algorithm_internal::c_begin(c1),
-                     container_algorithm_internal::c_end(c1),
-                     container_algorithm_internal::c_begin(c2)));
+bool c_equal(const C1& c1, const C2& c2)
+{
+    return ((container_algorithm_internal::c_size(c1) ==
+             container_algorithm_internal::c_size(c2)) &&
+            std::equal(container_algorithm_internal::c_begin(c1),
+                       container_algorithm_internal::c_end(c1),
+                       container_algorithm_internal::c_begin(c2)));
 }
 
 // Overload of c_equal() for using a predicate evaluation other than `==` as
 // the function's test condition.
 template <typename C1, typename C2, typename BinaryPredicate>
-bool c_equal(const C1& c1, const C2& c2, BinaryPredicate&& pred) {
-  return ((container_algorithm_internal::c_size(c1) ==
-           container_algorithm_internal::c_size(c2)) &&
-          std::equal(container_algorithm_internal::c_begin(c1),
-                     container_algorithm_internal::c_end(c1),
-                     container_algorithm_internal::c_begin(c2),
-                     std::forward<BinaryPredicate>(pred)));
+bool c_equal(const C1& c1, const C2& c2, BinaryPredicate&& pred)
+{
+    return ((container_algorithm_internal::c_size(c1) ==
+             container_algorithm_internal::c_size(c2)) &&
+            std::equal(container_algorithm_internal::c_begin(c1),
+                       container_algorithm_internal::c_end(c1),
+                       container_algorithm_internal::c_begin(c2),
+                       std::forward<BinaryPredicate>(pred)));
 }
 
 // c_is_permutation()
@@ -425,22 +457,24 @@ bool c_equal(const C1& c1, const C2& c2, BinaryPredicate&& pred) {
 // Container-based version of the <algorithm> `std::is_permutation()` function
 // to test whether a container is a permutation of another.
 template <typename C1, typename C2>
-bool c_is_permutation(const C1& c1, const C2& c2) {
-  using std::begin;
-  using std::end;
-  return c1.size() == c2.size() &&
-         std::is_permutation(begin(c1), end(c1), begin(c2));
+bool c_is_permutation(const C1& c1, const C2& c2)
+{
+    using std::begin;
+    using std::end;
+    return c1.size() == c2.size() &&
+           std::is_permutation(begin(c1), end(c1), begin(c2));
 }
 
 // Overload of c_is_permutation() for using a predicate evaluation other than
 // `==` as the function's test condition.
 template <typename C1, typename C2, typename BinaryPredicate>
-bool c_is_permutation(const C1& c1, const C2& c2, BinaryPredicate&& pred) {
-  using std::begin;
-  using std::end;
-  return c1.size() == c2.size() &&
-         std::is_permutation(begin(c1), end(c1), begin(c2),
-                             std::forward<BinaryPredicate>(pred));
+bool c_is_permutation(const C1& c1, const C2& c2, BinaryPredicate&& pred)
+{
+    using std::begin;
+    using std::end;
+    return c1.size() == c2.size() &&
+           std::is_permutation(begin(c1), end(c1), begin(c2),
+                               std::forward<BinaryPredicate>(pred));
 }
 
 // c_search()
@@ -449,23 +483,25 @@ bool c_is_permutation(const C1& c1, const C2& c2, BinaryPredicate&& pred) {
 // a container for a subsequence.
 template <typename Sequence1, typename Sequence2>
 container_algorithm_internal::ContainerIter<Sequence1> c_search(
-    Sequence1& sequence, Sequence2& subsequence) {
-  return std::search(container_algorithm_internal::c_begin(sequence),
-                     container_algorithm_internal::c_end(sequence),
-                     container_algorithm_internal::c_begin(subsequence),
-                     container_algorithm_internal::c_end(subsequence));
+    Sequence1& sequence, Sequence2& subsequence)
+{
+    return std::search(container_algorithm_internal::c_begin(sequence),
+                       container_algorithm_internal::c_end(sequence),
+                       container_algorithm_internal::c_begin(subsequence),
+                       container_algorithm_internal::c_end(subsequence));
 }
 
 // Overload of c_search() for using a predicate evaluation other than
 // `==` as the function's test condition.
 template <typename Sequence1, typename Sequence2, typename BinaryPredicate>
 container_algorithm_internal::ContainerIter<Sequence1> c_search(
-    Sequence1& sequence, Sequence2& subsequence, BinaryPredicate&& pred) {
-  return std::search(container_algorithm_internal::c_begin(sequence),
-                     container_algorithm_internal::c_end(sequence),
-                     container_algorithm_internal::c_begin(subsequence),
-                     container_algorithm_internal::c_end(subsequence),
-                     std::forward<BinaryPredicate>(pred));
+    Sequence1& sequence, Sequence2& subsequence, BinaryPredicate&& pred)
+{
+    return std::search(container_algorithm_internal::c_begin(sequence),
+                       container_algorithm_internal::c_end(sequence),
+                       container_algorithm_internal::c_begin(subsequence),
+                       container_algorithm_internal::c_end(subsequence),
+                       std::forward<BinaryPredicate>(pred));
 }
 
 // c_search_n()
@@ -474,10 +510,11 @@ container_algorithm_internal::ContainerIter<Sequence1> c_search(
 // search a container for the first sequence of N elements.
 template <typename Sequence, typename Size, typename T>
 container_algorithm_internal::ContainerIter<Sequence> c_search_n(
-    Sequence& sequence, Size count, T&& value) {
-  return std::search_n(container_algorithm_internal::c_begin(sequence),
-                       container_algorithm_internal::c_end(sequence), count,
-                       std::forward<T>(value));
+    Sequence& sequence, Size count, T&& value)
+{
+    return std::search_n(container_algorithm_internal::c_begin(sequence),
+                         container_algorithm_internal::c_end(sequence), count,
+                         std::forward<T>(value));
 }
 
 // Overload of c_search_n() for using a predicate evaluation other than
@@ -485,11 +522,12 @@ container_algorithm_internal::ContainerIter<Sequence> c_search_n(
 template <typename Sequence, typename Size, typename T,
           typename BinaryPredicate>
 container_algorithm_internal::ContainerIter<Sequence> c_search_n(
-    Sequence& sequence, Size count, T&& value, BinaryPredicate&& pred) {
-  return std::search_n(container_algorithm_internal::c_begin(sequence),
-                       container_algorithm_internal::c_end(sequence), count,
-                       std::forward<T>(value),
-                       std::forward<BinaryPredicate>(pred));
+    Sequence& sequence, Size count, T&& value, BinaryPredicate&& pred)
+{
+    return std::search_n(container_algorithm_internal::c_begin(sequence),
+                         container_algorithm_internal::c_end(sequence), count,
+                         std::forward<T>(value),
+                         std::forward<BinaryPredicate>(pred));
 }
 
 //------------------------------------------------------------------------------
@@ -501,9 +539,10 @@ container_algorithm_internal::ContainerIter<Sequence> c_search_n(
 // Container-based version of the <algorithm> `std::copy()` function to copy a
 // container's elements into an iterator.
 template <typename InputSequence, typename OutputIterator>
-OutputIterator c_copy(const InputSequence& input, OutputIterator output) {
-  return std::copy(container_algorithm_internal::c_begin(input),
-                   container_algorithm_internal::c_end(input), output);
+OutputIterator c_copy(const InputSequence& input, OutputIterator output)
+{
+    return std::copy(container_algorithm_internal::c_begin(input),
+                     container_algorithm_internal::c_end(input), output);
 }
 
 // c_copy_n()
@@ -511,8 +550,9 @@ OutputIterator c_copy(const InputSequence& input, OutputIterator output) {
 // Container-based version of the <algorithm> `std::copy_n()` function to copy a
 // container's first N elements into an iterator.
 template <typename C, typename Size, typename OutputIterator>
-OutputIterator c_copy_n(const C& input, Size n, OutputIterator output) {
-  return std::copy_n(container_algorithm_internal::c_begin(input), n, output);
+OutputIterator c_copy_n(const C& input, Size n, OutputIterator output)
+{
+    return std::copy_n(container_algorithm_internal::c_begin(input), n, output);
 }
 
 // c_copy_if()
@@ -521,10 +561,11 @@ OutputIterator c_copy_n(const C& input, Size n, OutputIterator output) {
 // a container's elements satisfying some condition into an iterator.
 template <typename InputSequence, typename OutputIterator, typename Pred>
 OutputIterator c_copy_if(const InputSequence& input, OutputIterator output,
-                         Pred&& pred) {
-  return std::copy_if(container_algorithm_internal::c_begin(input),
-                      container_algorithm_internal::c_end(input), output,
-                      std::forward<Pred>(pred));
+                         Pred&& pred)
+{
+    return std::copy_if(container_algorithm_internal::c_begin(input),
+                        container_algorithm_internal::c_end(input), output,
+                        std::forward<Pred>(pred));
 }
 
 // c_copy_backward()
@@ -533,9 +574,10 @@ OutputIterator c_copy_if(const InputSequence& input, OutputIterator output,
 // copy a container's elements in reverse order into an iterator.
 template <typename C, typename BidirectionalIterator>
 BidirectionalIterator c_copy_backward(const C& src,
-                                      BidirectionalIterator dest) {
-  return std::copy_backward(container_algorithm_internal::c_begin(src),
-                            container_algorithm_internal::c_end(src), dest);
+                                      BidirectionalIterator dest)
+{
+    return std::copy_backward(container_algorithm_internal::c_begin(src),
+                              container_algorithm_internal::c_end(src), dest);
 }
 
 // c_move()
@@ -543,9 +585,10 @@ BidirectionalIterator c_copy_backward(const C& src,
 // Container-based version of the <algorithm> `std::move()` function to move
 // a container's elements into an iterator.
 template <typename C, typename OutputIterator>
-OutputIterator c_move(C&& src, OutputIterator dest) {
-  return std::move(container_algorithm_internal::c_begin(src),
-                   container_algorithm_internal::c_end(src), dest);
+OutputIterator c_move(C&& src, OutputIterator dest)
+{
+    return std::move(container_algorithm_internal::c_begin(src),
+                     container_algorithm_internal::c_end(src), dest);
 }
 
 // c_move_backward()
@@ -553,9 +596,10 @@ OutputIterator c_move(C&& src, OutputIterator dest) {
 // Container-based version of the <algorithm> `std::move_backward()` function to
 // move a container's elements into an iterator in reverse order.
 template <typename C, typename BidirectionalIterator>
-BidirectionalIterator c_move_backward(C&& src, BidirectionalIterator dest) {
-  return std::move_backward(container_algorithm_internal::c_begin(src),
-                            container_algorithm_internal::c_end(src), dest);
+BidirectionalIterator c_move_backward(C&& src, BidirectionalIterator dest)
+{
+    return std::move_backward(container_algorithm_internal::c_begin(src),
+                              container_algorithm_internal::c_end(src), dest);
 }
 
 // c_swap_ranges()
@@ -564,17 +608,19 @@ BidirectionalIterator c_move_backward(C&& src, BidirectionalIterator dest) {
 // swap a container's elements with another container's elements. Swaps the
 // first N elements of `c1` and `c2`, where N = min(size(c1), size(c2)).
 template <typename C1, typename C2>
-container_algorithm_internal::ContainerIter<C2> c_swap_ranges(C1& c1, C2& c2) {
-  auto first1 = container_algorithm_internal::c_begin(c1);
-  auto last1 = container_algorithm_internal::c_end(c1);
-  auto first2 = container_algorithm_internal::c_begin(c2);
-  auto last2 = container_algorithm_internal::c_end(c2);
+container_algorithm_internal::ContainerIter<C2> c_swap_ranges(C1& c1, C2& c2)
+{
+    auto first1 = container_algorithm_internal::c_begin(c1);
+    auto last1 = container_algorithm_internal::c_end(c1);
+    auto first2 = container_algorithm_internal::c_begin(c2);
+    auto last2 = container_algorithm_internal::c_end(c2);
 
-  using std::swap;
-  for (; first1 != last1 && first2 != last2; ++first1, (void)++first2) {
-    swap(*first1, *first2);
-  }
-  return first2;
+    using std::swap;
+    for (; first1 != last1 && first2 != last2; ++first1, (void)++first2)
+    {
+        swap(*first1, *first2);
+    }
+    return first2;
 }
 
 // c_transform()
@@ -585,10 +631,11 @@ container_algorithm_internal::ContainerIter<C2> c_swap_ranges(C1& c1, C2& c2) {
 // range.
 template <typename InputSequence, typename OutputIterator, typename UnaryOp>
 OutputIterator c_transform(const InputSequence& input, OutputIterator output,
-                           UnaryOp&& unary_op) {
-  return std::transform(container_algorithm_internal::c_begin(input),
-                        container_algorithm_internal::c_end(input), output,
-                        std::forward<UnaryOp>(unary_op));
+                           UnaryOp&& unary_op)
+{
+    return std::transform(container_algorithm_internal::c_begin(input),
+                          container_algorithm_internal::c_end(input), output,
+                          std::forward<UnaryOp>(unary_op));
 }
 
 // Overload of c_transform() for performing a transformation using a binary
@@ -598,17 +645,19 @@ template <typename InputSequence1, typename InputSequence2,
           typename OutputIterator, typename BinaryOp>
 OutputIterator c_transform(const InputSequence1& input1,
                            const InputSequence2& input2, OutputIterator output,
-                           BinaryOp&& binary_op) {
-  auto first1 = container_algorithm_internal::c_begin(input1);
-  auto last1 = container_algorithm_internal::c_end(input1);
-  auto first2 = container_algorithm_internal::c_begin(input2);
-  auto last2 = container_algorithm_internal::c_end(input2);
-  for (; first1 != last1 && first2 != last2;
-       ++first1, (void)++first2, ++output) {
-    *output = binary_op(*first1, *first2);
-  }
+                           BinaryOp&& binary_op)
+{
+    auto first1 = container_algorithm_internal::c_begin(input1);
+    auto last1 = container_algorithm_internal::c_end(input1);
+    auto first2 = container_algorithm_internal::c_begin(input2);
+    auto last2 = container_algorithm_internal::c_end(input2);
+    for (; first1 != last1 && first2 != last2;
+            ++first1, (void)++first2, ++output)
+    {
+        *output = binary_op(*first1, *first2);
+    }
 
-  return output;
+    return output;
 }
 
 // c_replace()
@@ -617,10 +666,11 @@ OutputIterator c_transform(const InputSequence1& input1,
 // replace a container's elements of some value with a new value. The container
 // is modified in place.
 template <typename Sequence, typename T>
-void c_replace(Sequence& sequence, const T& old_value, const T& new_value) {
-  std::replace(container_algorithm_internal::c_begin(sequence),
-               container_algorithm_internal::c_end(sequence), old_value,
-               new_value);
+void c_replace(Sequence& sequence, const T& old_value, const T& new_value)
+{
+    std::replace(container_algorithm_internal::c_begin(sequence),
+                 container_algorithm_internal::c_end(sequence), old_value,
+                 new_value);
 }
 
 // c_replace_if()
@@ -629,10 +679,11 @@ void c_replace(Sequence& sequence, const T& old_value, const T& new_value) {
 // replace a container's elements of some value with a new value based on some
 // condition. The container is modified in place.
 template <typename C, typename Pred, typename T>
-void c_replace_if(C& c, Pred&& pred, T&& new_value) {
-  std::replace_if(container_algorithm_internal::c_begin(c),
-                  container_algorithm_internal::c_end(c),
-                  std::forward<Pred>(pred), std::forward<T>(new_value));
+void c_replace_if(C& c, Pred&& pred, T&& new_value)
+{
+    std::replace_if(container_algorithm_internal::c_begin(c),
+                    container_algorithm_internal::c_end(c),
+                    std::forward<Pred>(pred), std::forward<T>(new_value));
 }
 
 // c_replace_copy()
@@ -642,11 +693,12 @@ void c_replace_if(C& c, Pred&& pred, T&& new_value) {
 // results within an iterator.
 template <typename C, typename OutputIterator, typename T>
 OutputIterator c_replace_copy(const C& c, OutputIterator result, T&& old_value,
-                              T&& new_value) {
-  return std::replace_copy(container_algorithm_internal::c_begin(c),
-                           container_algorithm_internal::c_end(c), result,
-                           std::forward<T>(old_value),
-                           std::forward<T>(new_value));
+                              T&& new_value)
+{
+    return std::replace_copy(container_algorithm_internal::c_begin(c),
+                             container_algorithm_internal::c_end(c), result,
+                             std::forward<T>(old_value),
+                             std::forward<T>(new_value));
 }
 
 // c_replace_copy_if()
@@ -656,11 +708,12 @@ OutputIterator c_replace_copy(const C& c, OutputIterator result, T&& old_value,
 // some condition, and return the results within an iterator.
 template <typename C, typename OutputIterator, typename Pred, typename T>
 OutputIterator c_replace_copy_if(const C& c, OutputIterator result, Pred&& pred,
-                                 T&& new_value) {
-  return std::replace_copy_if(container_algorithm_internal::c_begin(c),
-                              container_algorithm_internal::c_end(c), result,
-                              std::forward<Pred>(pred),
-                              std::forward<T>(new_value));
+                                 T&& new_value)
+{
+    return std::replace_copy_if(container_algorithm_internal::c_begin(c),
+                                container_algorithm_internal::c_end(c), result,
+                                std::forward<Pred>(pred),
+                                std::forward<T>(new_value));
 }
 
 // c_fill()
@@ -668,9 +721,10 @@ OutputIterator c_replace_copy_if(const C& c, OutputIterator result, Pred&& pred,
 // Container-based version of the <algorithm> `std::fill()` function to fill a
 // container with some value.
 template <typename C, typename T>
-void c_fill(C& c, T&& value) {
-  std::fill(container_algorithm_internal::c_begin(c),
-            container_algorithm_internal::c_end(c), std::forward<T>(value));
+void c_fill(C& c, T&& value)
+{
+    std::fill(container_algorithm_internal::c_begin(c),
+              container_algorithm_internal::c_end(c), std::forward<T>(value));
 }
 
 // c_fill_n()
@@ -678,9 +732,10 @@ void c_fill(C& c, T&& value) {
 // Container-based version of the <algorithm> `std::fill_n()` function to fill
 // the first N elements in a container with some value.
 template <typename C, typename Size, typename T>
-void c_fill_n(C& c, Size n, T&& value) {
-  std::fill_n(container_algorithm_internal::c_begin(c), n,
-              std::forward<T>(value));
+void c_fill_n(C& c, Size n, T&& value)
+{
+    std::fill_n(container_algorithm_internal::c_begin(c), n,
+                std::forward<T>(value));
 }
 
 // c_generate()
@@ -688,10 +743,11 @@ void c_fill_n(C& c, Size n, T&& value) {
 // Container-based version of the <algorithm> `std::generate()` function to
 // assign a container's elements to the values provided by the given generator.
 template <typename C, typename Generator>
-void c_generate(C& c, Generator&& gen) {
-  std::generate(container_algorithm_internal::c_begin(c),
-                container_algorithm_internal::c_end(c),
-                std::forward<Generator>(gen));
+void c_generate(C& c, Generator&& gen)
+{
+    std::generate(container_algorithm_internal::c_begin(c),
+                  container_algorithm_internal::c_end(c),
+                  std::forward<Generator>(gen));
 }
 
 // c_generate_n()
@@ -701,51 +757,99 @@ void c_generate(C& c, Generator&& gen) {
 // generator.
 template <typename C, typename Size, typename Generator>
 container_algorithm_internal::ContainerIter<C> c_generate_n(C& c, Size n,
-                                                            Generator&& gen) {
-  return std::generate_n(container_algorithm_internal::c_begin(c), n,
-                         std::forward<Generator>(gen));
+        Generator&& gen)
+{
+    return std::generate_n(container_algorithm_internal::c_begin(c), n,
+                           std::forward<Generator>(gen));
 }
-
-// Note: `c_xx()` <algorithm> container versions for `remove()`, `remove_if()`,
-// and `unique()` are omitted, because it's not clear whether or not such
-// functions should call erase on their supplied sequences afterwards. Either
-// behavior would be surprising for a different set of users.
 
 // c_remove()
-// Container-based version of the <algorithm> `std::remove()` function to
-template <typename C, typename T>
-container_algorithm_internal::ContainerIter<C> c_remove(C&& c, T&& value) {
-  return std::remove(container_algorithm_internal::c_begin(c),
-                     container_algorithm_internal::c_end(c),
-                     std::forward<T>(value));
+//
+// Container-based version of the <algorithm> `std::erase()` function to
+// copy a container's elements while removing any elements matching the given
+// Elements between the end of the resulting sequence and @p __last
+// are still present, but their value is unspecified.
+
+template<typename C, typename T>
+container_algorithm_internal::ContainerIter<C> c_remove(C&& c, T&& value)
+{
+    return std::remove(container_algorithm_internal::c_begin(std::forward<C>(c)),
+                       container_algorithm_internal::c_end(std::forward<C>(c)),
+                       std::forward<T>(value));
 }
+
 // c_remove_if()
+//
 // Container-based version of the <algorithm> `std::remove_if()` function to
-template <typename C, typename T>
-container_algorithm_internal::ContainerIter<C> c_remove_if(C&& c, T&& value) {
-  return std::remove_if(container_algorithm_internal::c_begin(c),
-                        container_algorithm_internal::c_end(c),
-                        std::forward<T>(value));
+// Elements between the end of the resulting sequence and @p __last
+// are still present, but their value is unspecified.
+
+template<typename C, typename Pred>
+container_algorithm_internal::ContainerIter<C> c_remove_if(C&& c, Pred&& pred)
+{
+    return std::remove_if(container_algorithm_internal::c_begin(std::forward<C>(c)),
+                          container_algorithm_internal::c_end(std::forward<C>(c)),
+                          std::forward<Pred>(pred));
 }
 
 // c_erase()
-// Container-based version of the <algorithm> `std::c_erase_if()` function to
-template <typename C, typename T>
-size_t c_erase(C&& c, T&& value) {
-  auto it = c_remove(std::forward<C>(c), std::forward<T>(value));
-  auto r = std::distance(container_algorithm_internal::c_begin(c), it);
-  c.erase(it, container_algorithm_internal::c_end(c));
-  return r;
+//
+// Container-based version of the c++20 <algorithm> `std::erase()` function
+
+template<typename C, typename T>
+container_algorithm_internal::ContainerDifferenceType<const C> c_erase(C&& c, T&& value)
+{
+    auto it = c_remove(std::forward<C>(c), std::forward<T>(value));
+    auto num = std::distance(it, c.end());
+    c.erase(it, container_algorithm_internal::c_end(c));
+    return num;
 }
 
-// c_remove_if()
-// c_erase_if-based version of the <algorithm> `std::c_erase_if()` function to
-template <typename C, typename T>
-size_t c_erase_if(C&& c, T&& value) {
-  auto it = c_remove_if(std::forward<C>(c), std::forward<T>(value));
-  auto r = std::distance(container_algorithm_internal::c_begin(c), it);
-  c.erase(it, container_algorithm_internal::c_end(c));
-  return r;
+// c_erase_if()
+//
+// Container-based version of the c++20 <algorithm>  `std::erase_if()` function
+
+template<typename C, typename Pred>
+container_algorithm_internal::ContainerDifferenceType<const C> c_erase_if(C&& c, Pred&& pred)
+{
+    auto it = c_remove_if(std::forward<C>(c), std::forward<Pred>(pred));
+    auto num = std::distance(it, c.end());
+    c.erase(it, container_algorithm_internal::c_end(c));
+    return num;
+}
+
+// c_delete_subrange_if()
+
+template<typename C, typename Pred>
+container_algorithm_internal::ContainerDifferenceType<const C> c_delete_subrange_if(C&& c, Pred&& pred)
+{
+    auto it = c_remove_if(std::forward<C>(c), std::forward<Pred>(pred));
+    if (it != c.end())
+    {
+        auto start = std::distance(c.begin(), it );
+        auto num = std::distance(it, c.end());
+        c.DeleteSubrange(start, num);
+        return num;
+    }
+    return 0;
+}
+
+// c_unique()
+template<typename C>
+container_algorithm_internal::ContainerIter<C> c_unique(C&& c)
+{
+    return std::unique(container_algorithm_internal::c_begin(c), container_algorithm_internal::c_end(c));
+}
+
+// c_erase_unique()
+//
+template<typename C>
+container_algorithm_internal::ContainerDifferenceType<const C> c_erase_unique(C&& c)
+{
+    auto it = c_unique(std::forward<C>(c));
+    auto num = std::distance(it, c.end());
+    c.erase(it, container_algorithm_internal::c_end(c));
+    return num;
 }
 
 // c_remove_copy()
@@ -754,10 +858,11 @@ size_t c_erase_if(C&& c, T&& value) {
 // copy a container's elements while removing any elements matching the given
 // `value`.
 template <typename C, typename OutputIterator, typename T>
-OutputIterator c_remove_copy(const C& c, OutputIterator result, T&& value) {
-  return std::remove_copy(container_algorithm_internal::c_begin(c),
-                          container_algorithm_internal::c_end(c), result,
-                          std::forward<T>(value));
+OutputIterator c_remove_copy(const C& c, OutputIterator result, T&& value)
+{
+    return std::remove_copy(container_algorithm_internal::c_begin(c),
+                            container_algorithm_internal::c_end(c), result,
+                            std::forward<T>(value));
 }
 
 // c_remove_copy_if()
@@ -767,10 +872,11 @@ OutputIterator c_remove_copy(const C& c, OutputIterator result, T&& value) {
 // condition.
 template <typename C, typename OutputIterator, typename Pred>
 OutputIterator c_remove_copy_if(const C& c, OutputIterator result,
-                                Pred&& pred) {
-  return std::remove_copy_if(container_algorithm_internal::c_begin(c),
-                             container_algorithm_internal::c_end(c), result,
-                             std::forward<Pred>(pred));
+                                Pred&& pred)
+{
+    return std::remove_copy_if(container_algorithm_internal::c_begin(c),
+                               container_algorithm_internal::c_end(c), result,
+                               std::forward<Pred>(pred));
 }
 
 // c_unique_copy()
@@ -779,19 +885,21 @@ OutputIterator c_remove_copy_if(const C& c, OutputIterator result,
 // copy a container's elements while removing any elements containing duplicate
 // values.
 template <typename C, typename OutputIterator>
-OutputIterator c_unique_copy(const C& c, OutputIterator result) {
-  return std::unique_copy(container_algorithm_internal::c_begin(c),
-                          container_algorithm_internal::c_end(c), result);
+OutputIterator c_unique_copy(const C& c, OutputIterator result)
+{
+    return std::unique_copy(container_algorithm_internal::c_begin(c),
+                            container_algorithm_internal::c_end(c), result);
 }
 
 // Overload of c_unique_copy() for using a predicate evaluation other than
 // `==` for comparing uniqueness of the element values.
 template <typename C, typename OutputIterator, typename BinaryPredicate>
 OutputIterator c_unique_copy(const C& c, OutputIterator result,
-                             BinaryPredicate&& pred) {
-  return std::unique_copy(container_algorithm_internal::c_begin(c),
-                          container_algorithm_internal::c_end(c), result,
-                          std::forward<BinaryPredicate>(pred));
+                             BinaryPredicate&& pred)
+{
+    return std::unique_copy(container_algorithm_internal::c_begin(c),
+                            container_algorithm_internal::c_end(c), result,
+                            std::forward<BinaryPredicate>(pred));
 }
 
 // c_reverse()
@@ -799,9 +907,10 @@ OutputIterator c_unique_copy(const C& c, OutputIterator result,
 // Container-based version of the <algorithm> `std::reverse()` function to
 // reverse a container's elements.
 template <typename Sequence>
-void c_reverse(Sequence& sequence) {
-  std::reverse(container_algorithm_internal::c_begin(sequence),
-               container_algorithm_internal::c_end(sequence));
+void c_reverse(Sequence& sequence)
+{
+    std::reverse(container_algorithm_internal::c_begin(sequence),
+                 container_algorithm_internal::c_end(sequence));
 }
 
 // c_reverse_copy()
@@ -809,10 +918,11 @@ void c_reverse(Sequence& sequence) {
 // Container-based version of the <algorithm> `std::reverse()` function to
 // reverse a container's elements and write them to an iterator range.
 template <typename C, typename OutputIterator>
-OutputIterator c_reverse_copy(const C& sequence, OutputIterator result) {
-  return std::reverse_copy(container_algorithm_internal::c_begin(sequence),
-                           container_algorithm_internal::c_end(sequence),
-                           result);
+OutputIterator c_reverse_copy(const C& sequence, OutputIterator result)
+{
+    return std::reverse_copy(container_algorithm_internal::c_begin(sequence),
+                             container_algorithm_internal::c_end(sequence),
+                             result);
 }
 
 // c_rotate()
@@ -822,9 +932,10 @@ OutputIterator c_reverse_copy(const C& sequence, OutputIterator result) {
 // the first element in the container.
 template <typename C,
           typename Iterator = container_algorithm_internal::ContainerIter<C>>
-Iterator c_rotate(C& sequence, Iterator middle) {
-  return std::rotate(container_algorithm_internal::c_begin(sequence), middle,
-                     container_algorithm_internal::c_end(sequence));
+Iterator c_rotate(C& sequence, Iterator middle)
+{
+    return std::rotate(container_algorithm_internal::c_begin(sequence), middle,
+                       container_algorithm_internal::c_end(sequence));
 }
 
 // c_rotate_copy()
@@ -836,10 +947,11 @@ template <typename C, typename OutputIterator>
 OutputIterator c_rotate_copy(
     const C& sequence,
     container_algorithm_internal::ContainerIter<const C> middle,
-    OutputIterator result) {
-  return std::rotate_copy(container_algorithm_internal::c_begin(sequence),
-                          middle, container_algorithm_internal::c_end(sequence),
-                          result);
+    OutputIterator result)
+{
+    return std::rotate_copy(container_algorithm_internal::c_begin(sequence),
+                            middle, container_algorithm_internal::c_end(sequence),
+                            result);
 }
 
 // c_shuffle()
@@ -848,10 +960,11 @@ OutputIterator c_rotate_copy(
 // randomly shuffle elements within the container using a `gen()` uniform random
 // number generator.
 template <typename RandomAccessContainer, typename UniformRandomBitGenerator>
-void c_shuffle(RandomAccessContainer& c, UniformRandomBitGenerator&& gen) {
-  std::shuffle(container_algorithm_internal::c_begin(c),
-               container_algorithm_internal::c_end(c),
-               std::forward<UniformRandomBitGenerator>(gen));
+void c_shuffle(RandomAccessContainer& c, UniformRandomBitGenerator&& gen)
+{
+    std::shuffle(container_algorithm_internal::c_begin(c),
+                 container_algorithm_internal::c_end(c),
+                 std::forward<UniformRandomBitGenerator>(gen));
 }
 
 //------------------------------------------------------------------------------
@@ -864,10 +977,11 @@ void c_shuffle(RandomAccessContainer& c, UniformRandomBitGenerator&& gen) {
 // to test whether all elements in the container for which `pred` returns `true`
 // precede those for which `pred` is `false`.
 template <typename C, typename Pred>
-bool c_is_partitioned(const C& c, Pred&& pred) {
-  return std::is_partitioned(container_algorithm_internal::c_begin(c),
-                             container_algorithm_internal::c_end(c),
-                             std::forward<Pred>(pred));
+bool c_is_partitioned(const C& c, Pred&& pred)
+{
+    return std::is_partitioned(container_algorithm_internal::c_begin(c),
+                               container_algorithm_internal::c_end(c),
+                               std::forward<Pred>(pred));
 }
 
 // c_partition()
@@ -877,10 +991,11 @@ bool c_is_partitioned(const C& c, Pred&& pred) {
 // which `pred` returns `true` precede all those for which it returns `false`,
 // returning an iterator to the first element of the second group.
 template <typename C, typename Pred>
-container_algorithm_internal::ContainerIter<C> c_partition(C& c, Pred&& pred) {
-  return std::partition(container_algorithm_internal::c_begin(c),
-                        container_algorithm_internal::c_end(c),
-                        std::forward<Pred>(pred));
+container_algorithm_internal::ContainerIter<C> c_partition(C& c, Pred&& pred)
+{
+    return std::partition(container_algorithm_internal::c_begin(c),
+                          container_algorithm_internal::c_end(c),
+                          std::forward<Pred>(pred));
 }
 
 // c_stable_partition()
@@ -892,10 +1007,11 @@ container_algorithm_internal::ContainerIter<C> c_partition(C& c, Pred&& pred) {
 // an iterator to the first element of the second group.
 template <typename C, typename Pred>
 container_algorithm_internal::ContainerIter<C> c_stable_partition(C& c,
-                                                                  Pred&& pred) {
-  return std::stable_partition(container_algorithm_internal::c_begin(c),
-                               container_algorithm_internal::c_end(c),
-                               std::forward<Pred>(pred));
+        Pred&& pred)
+{
+    return std::stable_partition(container_algorithm_internal::c_begin(c),
+                                 container_algorithm_internal::c_end(c),
+                                 std::forward<Pred>(pred));
 }
 
 // c_partition_copy()
@@ -908,10 +1024,11 @@ template <typename C, typename OutputIterator1, typename OutputIterator2,
           typename Pred>
 std::pair<OutputIterator1, OutputIterator2> c_partition_copy(
     const C& c, OutputIterator1 out_true, OutputIterator2 out_false,
-    Pred&& pred) {
-  return std::partition_copy(container_algorithm_internal::c_begin(c),
-                             container_algorithm_internal::c_end(c), out_true,
-                             out_false, std::forward<Pred>(pred));
+    Pred&& pred)
+{
+    return std::partition_copy(container_algorithm_internal::c_begin(c),
+                               container_algorithm_internal::c_end(c), out_true,
+                               out_false, std::forward<Pred>(pred));
 }
 
 // c_partition_point()
@@ -921,10 +1038,11 @@ std::pair<OutputIterator1, OutputIterator2> c_partition_copy(
 // the given `pred` is not `true`.
 template <typename C, typename Pred>
 container_algorithm_internal::ContainerIter<C> c_partition_point(C& c,
-                                                                 Pred&& pred) {
-  return std::partition_point(container_algorithm_internal::c_begin(c),
-                              container_algorithm_internal::c_end(c),
-                              std::forward<Pred>(pred));
+        Pred&& pred)
+{
+    return std::partition_point(container_algorithm_internal::c_begin(c),
+                                container_algorithm_internal::c_end(c),
+                                std::forward<Pred>(pred));
 }
 
 //------------------------------------------------------------------------------
@@ -936,18 +1054,20 @@ container_algorithm_internal::ContainerIter<C> c_partition_point(C& c,
 // Container-based version of the <algorithm> `std::sort()` function
 // to sort elements in ascending order of their values.
 template <typename C>
-void c_sort(C& c) {
-  std::sort(container_algorithm_internal::c_begin(c),
-            container_algorithm_internal::c_end(c));
+void c_sort(C& c)
+{
+    std::sort(container_algorithm_internal::c_begin(c),
+              container_algorithm_internal::c_end(c));
 }
 
 // Overload of c_sort() for performing a `comp` comparison other than the
 // default `operator<`.
-template <typename C, typename Compare>
-void c_sort(C& c, Compare&& comp) {
-  std::sort(container_algorithm_internal::c_begin(c),
-            container_algorithm_internal::c_end(c),
-            std::forward<Compare>(comp));
+template <typename C, typename LessThan>
+void c_sort(C& c, LessThan&& comp)
+{
+    std::sort(container_algorithm_internal::c_begin(c),
+              container_algorithm_internal::c_end(c),
+              std::forward<LessThan>(comp));
 }
 
 // c_stable_sort()
@@ -956,18 +1076,20 @@ void c_sort(C& c, Compare&& comp) {
 // to sort elements in ascending order of their values, preserving the order
 // of equivalents.
 template <typename C>
-void c_stable_sort(C& c) {
-  std::stable_sort(container_algorithm_internal::c_begin(c),
-                   container_algorithm_internal::c_end(c));
+void c_stable_sort(C& c)
+{
+    std::stable_sort(container_algorithm_internal::c_begin(c),
+                     container_algorithm_internal::c_end(c));
 }
 
 // Overload of c_stable_sort() for performing a `comp` comparison other than the
 // default `operator<`.
-template <typename C, typename Compare>
-void c_stable_sort(C& c, Compare&& comp) {
-  std::stable_sort(container_algorithm_internal::c_begin(c),
-                   container_algorithm_internal::c_end(c),
-                   std::forward<Compare>(comp));
+template <typename C, typename LessThan>
+void c_stable_sort(C& c, LessThan&& comp)
+{
+    std::stable_sort(container_algorithm_internal::c_begin(c),
+                     container_algorithm_internal::c_end(c),
+                     std::forward<LessThan>(comp));
 }
 
 // c_is_sorted()
@@ -975,18 +1097,20 @@ void c_stable_sort(C& c, Compare&& comp) {
 // Container-based version of the <algorithm> `std::is_sorted()` function
 // to evaluate whether the given container is sorted in ascending order.
 template <typename C>
-bool c_is_sorted(const C& c) {
-  return std::is_sorted(container_algorithm_internal::c_begin(c),
-                        container_algorithm_internal::c_end(c));
+bool c_is_sorted(const C& c)
+{
+    return std::is_sorted(container_algorithm_internal::c_begin(c),
+                          container_algorithm_internal::c_end(c));
 }
 
 // c_is_sorted() overload for performing a `comp` comparison other than the
 // default `operator<`.
-template <typename C, typename Compare>
-bool c_is_sorted(const C& c, Compare&& comp) {
-  return std::is_sorted(container_algorithm_internal::c_begin(c),
-                        container_algorithm_internal::c_end(c),
-                        std::forward<Compare>(comp));
+template <typename C, typename LessThan>
+bool c_is_sorted(const C& c, LessThan&& comp)
+{
+    return std::is_sorted(container_algorithm_internal::c_begin(c),
+                          container_algorithm_internal::c_end(c),
+                          std::forward<LessThan>(comp));
 }
 
 // c_partial_sort()
@@ -997,21 +1121,23 @@ bool c_is_sorted(const C& c, Compare&& comp) {
 template <typename RandomAccessContainer>
 void c_partial_sort(
     RandomAccessContainer& sequence,
-    container_algorithm_internal::ContainerIter<RandomAccessContainer> middle) {
-  std::partial_sort(container_algorithm_internal::c_begin(sequence), middle,
-                    container_algorithm_internal::c_end(sequence));
+    container_algorithm_internal::ContainerIter<RandomAccessContainer> middle)
+{
+    std::partial_sort(container_algorithm_internal::c_begin(sequence), middle,
+                      container_algorithm_internal::c_end(sequence));
 }
 
 // Overload of c_partial_sort() for performing a `comp` comparison other than
 // the default `operator<`.
-template <typename RandomAccessContainer, typename Compare>
+template <typename RandomAccessContainer, typename LessThan>
 void c_partial_sort(
     RandomAccessContainer& sequence,
     container_algorithm_internal::ContainerIter<RandomAccessContainer> middle,
-    Compare&& comp) {
-  std::partial_sort(container_algorithm_internal::c_begin(sequence), middle,
-                    container_algorithm_internal::c_end(sequence),
-                    std::forward<Compare>(comp));
+    LessThan&& comp)
+{
+    std::partial_sort(container_algorithm_internal::c_begin(sequence), middle,
+                      container_algorithm_internal::c_end(sequence),
+                      std::forward<LessThan>(comp));
 }
 
 // c_partial_sort_copy()
@@ -1023,24 +1149,26 @@ void c_partial_sort(
 // elements from the sequence will be stored in the result.
 template <typename C, typename RandomAccessContainer>
 container_algorithm_internal::ContainerIter<RandomAccessContainer>
-c_partial_sort_copy(const C& sequence, RandomAccessContainer& result) {
-  return std::partial_sort_copy(container_algorithm_internal::c_begin(sequence),
-                                container_algorithm_internal::c_end(sequence),
-                                container_algorithm_internal::c_begin(result),
-                                container_algorithm_internal::c_end(result));
+c_partial_sort_copy(const C& sequence, RandomAccessContainer& result)
+{
+    return std::partial_sort_copy(container_algorithm_internal::c_begin(sequence),
+                                  container_algorithm_internal::c_end(sequence),
+                                  container_algorithm_internal::c_begin(result),
+                                  container_algorithm_internal::c_end(result));
 }
 
 // Overload of c_partial_sort_copy() for performing a `comp` comparison other
 // than the default `operator<`.
-template <typename C, typename RandomAccessContainer, typename Compare>
+template <typename C, typename RandomAccessContainer, typename LessThan>
 container_algorithm_internal::ContainerIter<RandomAccessContainer>
 c_partial_sort_copy(const C& sequence, RandomAccessContainer& result,
-                    Compare&& comp) {
-  return std::partial_sort_copy(container_algorithm_internal::c_begin(sequence),
-                                container_algorithm_internal::c_end(sequence),
-                                container_algorithm_internal::c_begin(result),
-                                container_algorithm_internal::c_end(result),
-                                std::forward<Compare>(comp));
+                    LessThan&& comp)
+{
+    return std::partial_sort_copy(container_algorithm_internal::c_begin(sequence),
+                                  container_algorithm_internal::c_end(sequence),
+                                  container_algorithm_internal::c_begin(result),
+                                  container_algorithm_internal::c_end(result),
+                                  std::forward<LessThan>(comp));
 }
 
 // c_is_sorted_until()
@@ -1049,19 +1177,21 @@ c_partial_sort_copy(const C& sequence, RandomAccessContainer& result,
 // to return the first element within a container that is not sorted in
 // ascending order as an iterator.
 template <typename C>
-container_algorithm_internal::ContainerIter<C> c_is_sorted_until(C& c) {
-  return std::is_sorted_until(container_algorithm_internal::c_begin(c),
-                              container_algorithm_internal::c_end(c));
+container_algorithm_internal::ContainerIter<C> c_is_sorted_until(C& c)
+{
+    return std::is_sorted_until(container_algorithm_internal::c_begin(c),
+                                container_algorithm_internal::c_end(c));
 }
 
 // Overload of c_is_sorted_until() for performing a `comp` comparison other than
 // the default `operator<`.
-template <typename C, typename Compare>
+template <typename C, typename LessThan>
 container_algorithm_internal::ContainerIter<C> c_is_sorted_until(
-    C& c, Compare&& comp) {
-  return std::is_sorted_until(container_algorithm_internal::c_begin(c),
-                              container_algorithm_internal::c_end(c),
-                              std::forward<Compare>(comp));
+    C& c, LessThan&& comp)
+{
+    return std::is_sorted_until(container_algorithm_internal::c_begin(c),
+                                container_algorithm_internal::c_end(c),
+                                std::forward<LessThan>(comp));
 }
 
 // c_nth_element()
@@ -1074,21 +1204,23 @@ container_algorithm_internal::ContainerIter<C> c_is_sorted_until(
 template <typename RandomAccessContainer>
 void c_nth_element(
     RandomAccessContainer& sequence,
-    container_algorithm_internal::ContainerIter<RandomAccessContainer> nth) {
-  std::nth_element(container_algorithm_internal::c_begin(sequence), nth,
-                   container_algorithm_internal::c_end(sequence));
+    container_algorithm_internal::ContainerIter<RandomAccessContainer> nth)
+{
+    std::nth_element(container_algorithm_internal::c_begin(sequence), nth,
+                     container_algorithm_internal::c_end(sequence));
 }
 
 // Overload of c_nth_element() for performing a `comp` comparison other than
 // the default `operator<`.
-template <typename RandomAccessContainer, typename Compare>
+template <typename RandomAccessContainer, typename LessThan>
 void c_nth_element(
     RandomAccessContainer& sequence,
     container_algorithm_internal::ContainerIter<RandomAccessContainer> nth,
-    Compare&& comp) {
-  std::nth_element(container_algorithm_internal::c_begin(sequence), nth,
-                   container_algorithm_internal::c_end(sequence),
-                   std::forward<Compare>(comp));
+    LessThan&& comp)
+{
+    std::nth_element(container_algorithm_internal::c_begin(sequence), nth,
+                     container_algorithm_internal::c_end(sequence),
+                     std::forward<LessThan>(comp));
 }
 
 //------------------------------------------------------------------------------
@@ -1102,20 +1234,22 @@ void c_nth_element(
 // which does not compare less than `value`.
 template <typename Sequence, typename T>
 container_algorithm_internal::ContainerIter<Sequence> c_lower_bound(
-    Sequence& sequence, T&& value) {
-  return std::lower_bound(container_algorithm_internal::c_begin(sequence),
-                          container_algorithm_internal::c_end(sequence),
-                          std::forward<T>(value));
+    Sequence& sequence, T&& value)
+{
+    return std::lower_bound(container_algorithm_internal::c_begin(sequence),
+                            container_algorithm_internal::c_end(sequence),
+                            std::forward<T>(value));
 }
 
 // Overload of c_lower_bound() for performing a `comp` comparison other than
 // the default `operator<`.
-template <typename Sequence, typename T, typename Compare>
+template <typename Sequence, typename T, typename LessThan>
 container_algorithm_internal::ContainerIter<Sequence> c_lower_bound(
-    Sequence& sequence, T&& value, Compare&& comp) {
-  return std::lower_bound(container_algorithm_internal::c_begin(sequence),
-                          container_algorithm_internal::c_end(sequence),
-                          std::forward<T>(value), std::forward<Compare>(comp));
+    Sequence& sequence, T&& value, LessThan&& comp)
+{
+    return std::lower_bound(container_algorithm_internal::c_begin(sequence),
+                            container_algorithm_internal::c_end(sequence),
+                            std::forward<T>(value), std::forward<LessThan>(comp));
 }
 
 // c_upper_bound()
@@ -1125,20 +1259,22 @@ container_algorithm_internal::ContainerIter<Sequence> c_lower_bound(
 // which is greater than `value`.
 template <typename Sequence, typename T>
 container_algorithm_internal::ContainerIter<Sequence> c_upper_bound(
-    Sequence& sequence, T&& value) {
-  return std::upper_bound(container_algorithm_internal::c_begin(sequence),
-                          container_algorithm_internal::c_end(sequence),
-                          std::forward<T>(value));
+    Sequence& sequence, T&& value)
+{
+    return std::upper_bound(container_algorithm_internal::c_begin(sequence),
+                            container_algorithm_internal::c_end(sequence),
+                            std::forward<T>(value));
 }
 
 // Overload of c_upper_bound() for performing a `comp` comparison other than
 // the default `operator<`.
-template <typename Sequence, typename T, typename Compare>
+template <typename Sequence, typename T, typename LessThan>
 container_algorithm_internal::ContainerIter<Sequence> c_upper_bound(
-    Sequence& sequence, T&& value, Compare&& comp) {
-  return std::upper_bound(container_algorithm_internal::c_begin(sequence),
-                          container_algorithm_internal::c_end(sequence),
-                          std::forward<T>(value), std::forward<Compare>(comp));
+    Sequence& sequence, T&& value, LessThan&& comp)
+{
+    return std::upper_bound(container_algorithm_internal::c_begin(sequence),
+                            container_algorithm_internal::c_end(sequence),
+                            std::forward<T>(value), std::forward<LessThan>(comp));
 }
 
 // c_equal_range()
@@ -1148,20 +1284,22 @@ container_algorithm_internal::ContainerIter<Sequence> c_upper_bound(
 // sorted container which compare equal to `value`.
 template <typename Sequence, typename T>
 container_algorithm_internal::ContainerIterPairType<Sequence, Sequence>
-c_equal_range(Sequence& sequence, T&& value) {
-  return std::equal_range(container_algorithm_internal::c_begin(sequence),
-                          container_algorithm_internal::c_end(sequence),
-                          std::forward<T>(value));
+c_equal_range(Sequence& sequence, T&& value)
+{
+    return std::equal_range(container_algorithm_internal::c_begin(sequence),
+                            container_algorithm_internal::c_end(sequence),
+                            std::forward<T>(value));
 }
 
 // Overload of c_equal_range() for performing a `comp` comparison other than
 // the default `operator<`.
-template <typename Sequence, typename T, typename Compare>
+template <typename Sequence, typename T, typename LessThan>
 container_algorithm_internal::ContainerIterPairType<Sequence, Sequence>
-c_equal_range(Sequence& sequence, T&& value, Compare&& comp) {
-  return std::equal_range(container_algorithm_internal::c_begin(sequence),
-                          container_algorithm_internal::c_end(sequence),
-                          std::forward<T>(value), std::forward<Compare>(comp));
+c_equal_range(Sequence& sequence, T&& value, LessThan&& comp)
+{
+    return std::equal_range(container_algorithm_internal::c_begin(sequence),
+                            container_algorithm_internal::c_end(sequence),
+                            std::forward<T>(value), std::forward<LessThan>(comp));
 }
 
 // c_binary_search()
@@ -1170,20 +1308,22 @@ c_equal_range(Sequence& sequence, T&& value, Compare&& comp) {
 // to test if any element in the sorted container contains a value equivalent to
 // 'value'.
 template <typename Sequence, typename T>
-bool c_binary_search(Sequence&& sequence, T&& value) {
-  return std::binary_search(container_algorithm_internal::c_begin(sequence),
-                            container_algorithm_internal::c_end(sequence),
-                            std::forward<T>(value));
+bool c_binary_search(Sequence&& sequence, T&& value)
+{
+    return std::binary_search(container_algorithm_internal::c_begin(sequence),
+                              container_algorithm_internal::c_end(sequence),
+                              std::forward<T>(value));
 }
 
 // Overload of c_binary_search() for performing a `comp` comparison other than
 // the default `operator<`.
-template <typename Sequence, typename T, typename Compare>
-bool c_binary_search(Sequence&& sequence, T&& value, Compare&& comp) {
-  return std::binary_search(container_algorithm_internal::c_begin(sequence),
-                            container_algorithm_internal::c_end(sequence),
-                            std::forward<T>(value),
-                            std::forward<Compare>(comp));
+template <typename Sequence, typename T, typename LessThan>
+bool c_binary_search(Sequence&& sequence, T&& value, LessThan&& comp)
+{
+    return std::binary_search(container_algorithm_internal::c_begin(sequence),
+                              container_algorithm_internal::c_end(sequence),
+                              std::forward<T>(value),
+                              std::forward<LessThan>(comp));
 }
 
 //------------------------------------------------------------------------------
@@ -1195,23 +1335,25 @@ bool c_binary_search(Sequence&& sequence, T&& value, Compare&& comp) {
 // Container-based version of the <algorithm> `std::merge()` function
 // to merge two sorted containers into a single sorted iterator.
 template <typename C1, typename C2, typename OutputIterator>
-OutputIterator c_merge(const C1& c1, const C2& c2, OutputIterator result) {
-  return std::merge(container_algorithm_internal::c_begin(c1),
-                    container_algorithm_internal::c_end(c1),
-                    container_algorithm_internal::c_begin(c2),
-                    container_algorithm_internal::c_end(c2), result);
+OutputIterator c_merge(const C1& c1, const C2& c2, OutputIterator result)
+{
+    return std::merge(container_algorithm_internal::c_begin(c1),
+                      container_algorithm_internal::c_end(c1),
+                      container_algorithm_internal::c_begin(c2),
+                      container_algorithm_internal::c_end(c2), result);
 }
 
 // Overload of c_merge() for performing a `comp` comparison other than
 // the default `operator<`.
-template <typename C1, typename C2, typename OutputIterator, typename Compare>
+template <typename C1, typename C2, typename OutputIterator, typename LessThan>
 OutputIterator c_merge(const C1& c1, const C2& c2, OutputIterator result,
-                       Compare&& comp) {
-  return std::merge(container_algorithm_internal::c_begin(c1),
-                    container_algorithm_internal::c_end(c1),
-                    container_algorithm_internal::c_begin(c2),
-                    container_algorithm_internal::c_end(c2), result,
-                    std::forward<Compare>(comp));
+                       LessThan&& comp)
+{
+    return std::merge(container_algorithm_internal::c_begin(c1),
+                      container_algorithm_internal::c_end(c1),
+                      container_algorithm_internal::c_begin(c2),
+                      container_algorithm_internal::c_end(c2), result,
+                      std::forward<LessThan>(comp));
 }
 
 // c_inplace_merge()
@@ -1220,20 +1362,22 @@ OutputIterator c_merge(const C1& c1, const C2& c2, OutputIterator result,
 // to merge a supplied iterator `middle` into a container.
 template <typename C>
 void c_inplace_merge(C& c,
-                     container_algorithm_internal::ContainerIter<C> middle) {
-  std::inplace_merge(container_algorithm_internal::c_begin(c), middle,
-                     container_algorithm_internal::c_end(c));
+                     container_algorithm_internal::ContainerIter<C> middle)
+{
+    std::inplace_merge(container_algorithm_internal::c_begin(c), middle,
+                       container_algorithm_internal::c_end(c));
 }
 
 // Overload of c_inplace_merge() for performing a merge using a `comp` other
 // than `operator<`.
-template <typename C, typename Compare>
+template <typename C, typename LessThan>
 void c_inplace_merge(C& c,
                      container_algorithm_internal::ContainerIter<C> middle,
-                     Compare&& comp) {
-  std::inplace_merge(container_algorithm_internal::c_begin(c), middle,
-                     container_algorithm_internal::c_end(c),
-                     std::forward<Compare>(comp));
+                     LessThan&& comp)
+{
+    std::inplace_merge(container_algorithm_internal::c_begin(c), middle,
+                       container_algorithm_internal::c_end(c),
+                       std::forward<LessThan>(comp));
 }
 
 // c_includes()
@@ -1242,22 +1386,24 @@ void c_inplace_merge(C& c,
 // to test whether a sorted container `c1` entirely contains another sorted
 // container `c2`.
 template <typename C1, typename C2>
-bool c_includes(const C1& c1, const C2& c2) {
-  return std::includes(container_algorithm_internal::c_begin(c1),
-                       container_algorithm_internal::c_end(c1),
-                       container_algorithm_internal::c_begin(c2),
-                       container_algorithm_internal::c_end(c2));
+bool c_includes(const C1& c1, const C2& c2)
+{
+    return std::includes(container_algorithm_internal::c_begin(c1),
+                         container_algorithm_internal::c_end(c1),
+                         container_algorithm_internal::c_begin(c2),
+                         container_algorithm_internal::c_end(c2));
 }
 
 // Overload of c_includes() for performing a merge using a `comp` other than
 // `operator<`.
-template <typename C1, typename C2, typename Compare>
-bool c_includes(const C1& c1, const C2& c2, Compare&& comp) {
-  return std::includes(container_algorithm_internal::c_begin(c1),
-                       container_algorithm_internal::c_end(c1),
-                       container_algorithm_internal::c_begin(c2),
-                       container_algorithm_internal::c_end(c2),
-                       std::forward<Compare>(comp));
+template <typename C1, typename C2, typename LessThan>
+bool c_includes(const C1& c1, const C2& c2, LessThan&& comp)
+{
+    return std::includes(container_algorithm_internal::c_begin(c1),
+                         container_algorithm_internal::c_end(c1),
+                         container_algorithm_internal::c_begin(c2),
+                         container_algorithm_internal::c_end(c2),
+                         std::forward<LessThan>(comp));
 }
 
 // c_set_union()
@@ -1265,73 +1411,87 @@ bool c_includes(const C1& c1, const C2& c2, Compare&& comp) {
 // Container-based version of the <algorithm> `std::set_union()` function
 // to return an iterator containing the union of two containers; duplicate
 // values are not copied into the output.
-template <typename C1, typename C2, typename OutputIterator,
-          typename = typename std::enable_if<
-              !container_algorithm_internal::IsUnorderedContainer<C1>::value,
-              void>::type,
-          typename = typename std::enable_if<
-              !container_algorithm_internal::IsUnorderedContainer<C2>::value,
-              void>::type>
-OutputIterator c_set_union(const C1& c1, const C2& c2, OutputIterator output) {
-  return std::set_union(container_algorithm_internal::c_begin(c1),
-                        container_algorithm_internal::c_end(c1),
-                        container_algorithm_internal::c_begin(c2),
-                        container_algorithm_internal::c_end(c2), output);
+template < typename C1, typename C2, typename OutputIterator,
+           typename = typename std::enable_if <
+               !container_algorithm_internal::IsUnorderedContainer<C1>::value,
+               void >::type,
+           typename = typename std::enable_if <
+               !container_algorithm_internal::IsUnorderedContainer<C2>::value,
+               void >::type >
+OutputIterator c_set_union(const C1& c1, const C2& c2, OutputIterator output)
+{
+    return std::set_union(container_algorithm_internal::c_begin(c1),
+                          container_algorithm_internal::c_end(c1),
+                          container_algorithm_internal::c_begin(c2),
+                          container_algorithm_internal::c_end(c2), output);
 }
 
 // Overload of c_set_union() for performing a merge using a `comp` other than
 // `operator<`.
-template <typename C1, typename C2, typename OutputIterator, typename Compare,
-          typename = typename std::enable_if<
-              !container_algorithm_internal::IsUnorderedContainer<C1>::value,
-              void>::type,
-          typename = typename std::enable_if<
-              !container_algorithm_internal::IsUnorderedContainer<C2>::value,
-              void>::type>
+template < typename C1, typename C2, typename OutputIterator, typename LessThan,
+           typename = typename std::enable_if <
+               !container_algorithm_internal::IsUnorderedContainer<C1>::value,
+               void >::type,
+           typename = typename std::enable_if <
+               !container_algorithm_internal::IsUnorderedContainer<C2>::value,
+               void >::type >
 OutputIterator c_set_union(const C1& c1, const C2& c2, OutputIterator output,
-                           Compare&& comp) {
-  return std::set_union(container_algorithm_internal::c_begin(c1),
-                        container_algorithm_internal::c_end(c1),
-                        container_algorithm_internal::c_begin(c2),
-                        container_algorithm_internal::c_end(c2), output,
-                        std::forward<Compare>(comp));
+                           LessThan && comp)
+{
+    return std::set_union(container_algorithm_internal::c_begin(c1),
+                          container_algorithm_internal::c_end(c1),
+                          container_algorithm_internal::c_begin(c2),
+                          container_algorithm_internal::c_end(c2), output,
+                          std::forward<LessThan>(comp));
 }
 
 // c_set_intersection()
 //
 // Container-based version of the <algorithm> `std::set_intersection()` function
-// to return an iterator containing the intersection of two containers.
-template <typename C1, typename C2, typename OutputIterator,
-          typename = typename std::enable_if<
-              !container_algorithm_internal::IsUnorderedContainer<C1>::value,
-              void>::type,
-          typename = typename std::enable_if<
-              !container_algorithm_internal::IsUnorderedContainer<C2>::value,
-              void>::type>
+// to return an iterator containing the intersection of two sorted containers.
+template < typename C1, typename C2, typename OutputIterator,
+           typename = typename std::enable_if <
+               !container_algorithm_internal::IsUnorderedContainer<C1>::value,
+               void >::type,
+           typename = typename std::enable_if <
+               !container_algorithm_internal::IsUnorderedContainer<C2>::value,
+               void >::type >
 OutputIterator c_set_intersection(const C1& c1, const C2& c2,
-                                  OutputIterator output) {
-  return std::set_intersection(container_algorithm_internal::c_begin(c1),
-                               container_algorithm_internal::c_end(c1),
-                               container_algorithm_internal::c_begin(c2),
-                               container_algorithm_internal::c_end(c2), output);
+                                  OutputIterator output)
+{
+    // In debug builds, ensure that both containers are sorted with respect to the
+    // default comparator. std::set_intersection requires the containers be sorted
+    // using operator<.
+    assert(::c_is_sorted(c1));
+    assert(::c_is_sorted(c2));
+    return std::set_intersection(container_algorithm_internal::c_begin(c1),
+                                 container_algorithm_internal::c_end(c1),
+                                 container_algorithm_internal::c_begin(c2),
+                                 container_algorithm_internal::c_end(c2), output);
 }
 
 // Overload of c_set_intersection() for performing a merge using a `comp` other
 // than `operator<`.
-template <typename C1, typename C2, typename OutputIterator, typename Compare,
-          typename = typename std::enable_if<
-              !container_algorithm_internal::IsUnorderedContainer<C1>::value,
-              void>::type,
-          typename = typename std::enable_if<
-              !container_algorithm_internal::IsUnorderedContainer<C2>::value,
-              void>::type>
+template < typename C1, typename C2, typename OutputIterator, typename LessThan,
+           typename = typename std::enable_if <
+               !container_algorithm_internal::IsUnorderedContainer<C1>::value,
+               void >::type,
+           typename = typename std::enable_if <
+               !container_algorithm_internal::IsUnorderedContainer<C2>::value,
+               void >::type >
 OutputIterator c_set_intersection(const C1& c1, const C2& c2,
-                                  OutputIterator output, Compare&& comp) {
-  return std::set_intersection(container_algorithm_internal::c_begin(c1),
-                               container_algorithm_internal::c_end(c1),
-                               container_algorithm_internal::c_begin(c2),
-                               container_algorithm_internal::c_end(c2), output,
-                               std::forward<Compare>(comp));
+                                  OutputIterator output, LessThan && comp)
+{
+    // In debug builds, ensure that both containers are sorted with respect to the
+    // default comparator. std::set_intersection requires the containers be sorted
+    // using the same comparator.
+    assert(::c_is_sorted(c1, comp));
+    assert(::c_is_sorted(c2, comp));
+    return std::set_intersection(container_algorithm_internal::c_begin(c1),
+                                 container_algorithm_internal::c_end(c1),
+                                 container_algorithm_internal::c_begin(c2),
+                                 container_algorithm_internal::c_end(c2), output,
+                                 std::forward<LessThan>(comp));
 }
 
 // c_set_difference()
@@ -1339,37 +1499,39 @@ OutputIterator c_set_intersection(const C1& c1, const C2& c2,
 // Container-based version of the <algorithm> `std::set_difference()` function
 // to return an iterator containing elements present in the first container but
 // not in the second.
-template <typename C1, typename C2, typename OutputIterator,
-          typename = typename std::enable_if<
-              !container_algorithm_internal::IsUnorderedContainer<C1>::value,
-              void>::type,
-          typename = typename std::enable_if<
-              !container_algorithm_internal::IsUnorderedContainer<C2>::value,
-              void>::type>
+template < typename C1, typename C2, typename OutputIterator,
+           typename = typename std::enable_if <
+               !container_algorithm_internal::IsUnorderedContainer<C1>::value,
+               void >::type,
+           typename = typename std::enable_if <
+               !container_algorithm_internal::IsUnorderedContainer<C2>::value,
+               void >::type >
 OutputIterator c_set_difference(const C1& c1, const C2& c2,
-                                OutputIterator output) {
-  return std::set_difference(container_algorithm_internal::c_begin(c1),
-                             container_algorithm_internal::c_end(c1),
-                             container_algorithm_internal::c_begin(c2),
-                             container_algorithm_internal::c_end(c2), output);
+                                OutputIterator output)
+{
+    return std::set_difference(container_algorithm_internal::c_begin(c1),
+                               container_algorithm_internal::c_end(c1),
+                               container_algorithm_internal::c_begin(c2),
+                               container_algorithm_internal::c_end(c2), output);
 }
 
 // Overload of c_set_difference() for performing a merge using a `comp` other
 // than `operator<`.
-template <typename C1, typename C2, typename OutputIterator, typename Compare,
-          typename = typename std::enable_if<
-              !container_algorithm_internal::IsUnorderedContainer<C1>::value,
-              void>::type,
-          typename = typename std::enable_if<
-              !container_algorithm_internal::IsUnorderedContainer<C2>::value,
-              void>::type>
+template < typename C1, typename C2, typename OutputIterator, typename LessThan,
+           typename = typename std::enable_if <
+               !container_algorithm_internal::IsUnorderedContainer<C1>::value,
+               void >::type,
+           typename = typename std::enable_if <
+               !container_algorithm_internal::IsUnorderedContainer<C2>::value,
+               void >::type >
 OutputIterator c_set_difference(const C1& c1, const C2& c2,
-                                OutputIterator output, Compare&& comp) {
-  return std::set_difference(container_algorithm_internal::c_begin(c1),
-                             container_algorithm_internal::c_end(c1),
-                             container_algorithm_internal::c_begin(c2),
-                             container_algorithm_internal::c_end(c2), output,
-                             std::forward<Compare>(comp));
+                                OutputIterator output, LessThan && comp)
+{
+    return std::set_difference(container_algorithm_internal::c_begin(c1),
+                               container_algorithm_internal::c_end(c1),
+                               container_algorithm_internal::c_begin(c2),
+                               container_algorithm_internal::c_end(c2), output,
+                               std::forward<LessThan>(comp));
 }
 
 // c_set_symmetric_difference()
@@ -1377,40 +1539,42 @@ OutputIterator c_set_difference(const C1& c1, const C2& c2,
 // Container-based version of the <algorithm> `std::set_symmetric_difference()`
 // function to return an iterator containing elements present in either one
 // container or the other, but not both.
-template <typename C1, typename C2, typename OutputIterator,
-          typename = typename std::enable_if<
-              !container_algorithm_internal::IsUnorderedContainer<C1>::value,
-              void>::type,
-          typename = typename std::enable_if<
-              !container_algorithm_internal::IsUnorderedContainer<C2>::value,
-              void>::type>
+template < typename C1, typename C2, typename OutputIterator,
+           typename = typename std::enable_if <
+               !container_algorithm_internal::IsUnorderedContainer<C1>::value,
+               void >::type,
+           typename = typename std::enable_if <
+               !container_algorithm_internal::IsUnorderedContainer<C2>::value,
+               void >::type >
 OutputIterator c_set_symmetric_difference(const C1& c1, const C2& c2,
-                                          OutputIterator output) {
-  return std::set_symmetric_difference(
-      container_algorithm_internal::c_begin(c1),
-      container_algorithm_internal::c_end(c1),
-      container_algorithm_internal::c_begin(c2),
-      container_algorithm_internal::c_end(c2), output);
+        OutputIterator output)
+{
+    return std::set_symmetric_difference(
+               container_algorithm_internal::c_begin(c1),
+               container_algorithm_internal::c_end(c1),
+               container_algorithm_internal::c_begin(c2),
+               container_algorithm_internal::c_end(c2), output);
 }
 
 // Overload of c_set_symmetric_difference() for performing a merge using a
 // `comp` other than `operator<`.
-template <typename C1, typename C2, typename OutputIterator, typename Compare,
-          typename = typename std::enable_if<
-              !container_algorithm_internal::IsUnorderedContainer<C1>::value,
-              void>::type,
-          typename = typename std::enable_if<
-              !container_algorithm_internal::IsUnorderedContainer<C2>::value,
-              void>::type>
+template < typename C1, typename C2, typename OutputIterator, typename LessThan,
+           typename = typename std::enable_if <
+               !container_algorithm_internal::IsUnorderedContainer<C1>::value,
+               void >::type,
+           typename = typename std::enable_if <
+               !container_algorithm_internal::IsUnorderedContainer<C2>::value,
+               void >::type >
 OutputIterator c_set_symmetric_difference(const C1& c1, const C2& c2,
-                                          OutputIterator output,
-                                          Compare&& comp) {
-  return std::set_symmetric_difference(
-      container_algorithm_internal::c_begin(c1),
-      container_algorithm_internal::c_end(c1),
-      container_algorithm_internal::c_begin(c2),
-      container_algorithm_internal::c_end(c2), output,
-      std::forward<Compare>(comp));
+        OutputIterator output,
+        LessThan && comp)
+{
+    return std::set_symmetric_difference(
+               container_algorithm_internal::c_begin(c1),
+               container_algorithm_internal::c_end(c1),
+               container_algorithm_internal::c_begin(c2),
+               container_algorithm_internal::c_end(c2), output,
+               std::forward<LessThan>(comp));
 }
 
 //------------------------------------------------------------------------------
@@ -1422,18 +1586,20 @@ OutputIterator c_set_symmetric_difference(const C1& c1, const C2& c2,
 // Container-based version of the <algorithm> `std::push_heap()` function
 // to push a value onto a container heap.
 template <typename RandomAccessContainer>
-void c_push_heap(RandomAccessContainer& sequence) {
-  std::push_heap(container_algorithm_internal::c_begin(sequence),
-                 container_algorithm_internal::c_end(sequence));
+void c_push_heap(RandomAccessContainer& sequence)
+{
+    std::push_heap(container_algorithm_internal::c_begin(sequence),
+                   container_algorithm_internal::c_end(sequence));
 }
 
 // Overload of c_push_heap() for performing a push operation on a heap using a
 // `comp` other than `operator<`.
-template <typename RandomAccessContainer, typename Compare>
-void c_push_heap(RandomAccessContainer& sequence, Compare&& comp) {
-  std::push_heap(container_algorithm_internal::c_begin(sequence),
-                 container_algorithm_internal::c_end(sequence),
-                 std::forward<Compare>(comp));
+template <typename RandomAccessContainer, typename LessThan>
+void c_push_heap(RandomAccessContainer& sequence, LessThan&& comp)
+{
+    std::push_heap(container_algorithm_internal::c_begin(sequence),
+                   container_algorithm_internal::c_end(sequence),
+                   std::forward<LessThan>(comp));
 }
 
 // c_pop_heap()
@@ -1441,18 +1607,20 @@ void c_push_heap(RandomAccessContainer& sequence, Compare&& comp) {
 // Container-based version of the <algorithm> `std::pop_heap()` function
 // to pop a value from a heap container.
 template <typename RandomAccessContainer>
-void c_pop_heap(RandomAccessContainer& sequence) {
-  std::pop_heap(container_algorithm_internal::c_begin(sequence),
-                container_algorithm_internal::c_end(sequence));
+void c_pop_heap(RandomAccessContainer& sequence)
+{
+    std::pop_heap(container_algorithm_internal::c_begin(sequence),
+                  container_algorithm_internal::c_end(sequence));
 }
 
 // Overload of c_pop_heap() for performing a pop operation on a heap using a
 // `comp` other than `operator<`.
-template <typename RandomAccessContainer, typename Compare>
-void c_pop_heap(RandomAccessContainer& sequence, Compare&& comp) {
-  std::pop_heap(container_algorithm_internal::c_begin(sequence),
-                container_algorithm_internal::c_end(sequence),
-                std::forward<Compare>(comp));
+template <typename RandomAccessContainer, typename LessThan>
+void c_pop_heap(RandomAccessContainer& sequence, LessThan&& comp)
+{
+    std::pop_heap(container_algorithm_internal::c_begin(sequence),
+                  container_algorithm_internal::c_end(sequence),
+                  std::forward<LessThan>(comp));
 }
 
 // c_make_heap()
@@ -1460,18 +1628,20 @@ void c_pop_heap(RandomAccessContainer& sequence, Compare&& comp) {
 // Container-based version of the <algorithm> `std::make_heap()` function
 // to make a container a heap.
 template <typename RandomAccessContainer>
-void c_make_heap(RandomAccessContainer& sequence) {
-  std::make_heap(container_algorithm_internal::c_begin(sequence),
-                 container_algorithm_internal::c_end(sequence));
+void c_make_heap(RandomAccessContainer& sequence)
+{
+    std::make_heap(container_algorithm_internal::c_begin(sequence),
+                   container_algorithm_internal::c_end(sequence));
 }
 
 // Overload of c_make_heap() for performing heap comparisons using a
 // `comp` other than `operator<`
-template <typename RandomAccessContainer, typename Compare>
-void c_make_heap(RandomAccessContainer& sequence, Compare&& comp) {
-  std::make_heap(container_algorithm_internal::c_begin(sequence),
-                 container_algorithm_internal::c_end(sequence),
-                 std::forward<Compare>(comp));
+template <typename RandomAccessContainer, typename LessThan>
+void c_make_heap(RandomAccessContainer& sequence, LessThan&& comp)
+{
+    std::make_heap(container_algorithm_internal::c_begin(sequence),
+                   container_algorithm_internal::c_end(sequence),
+                   std::forward<LessThan>(comp));
 }
 
 // c_sort_heap()
@@ -1479,18 +1649,20 @@ void c_make_heap(RandomAccessContainer& sequence, Compare&& comp) {
 // Container-based version of the <algorithm> `std::sort_heap()` function
 // to sort a heap into ascending order (after which it is no longer a heap).
 template <typename RandomAccessContainer>
-void c_sort_heap(RandomAccessContainer& sequence) {
-  std::sort_heap(container_algorithm_internal::c_begin(sequence),
-                 container_algorithm_internal::c_end(sequence));
+void c_sort_heap(RandomAccessContainer& sequence)
+{
+    std::sort_heap(container_algorithm_internal::c_begin(sequence),
+                   container_algorithm_internal::c_end(sequence));
 }
 
 // Overload of c_sort_heap() for performing heap comparisons using a
 // `comp` other than `operator<`
-template <typename RandomAccessContainer, typename Compare>
-void c_sort_heap(RandomAccessContainer& sequence, Compare&& comp) {
-  std::sort_heap(container_algorithm_internal::c_begin(sequence),
-                 container_algorithm_internal::c_end(sequence),
-                 std::forward<Compare>(comp));
+template <typename RandomAccessContainer, typename LessThan>
+void c_sort_heap(RandomAccessContainer& sequence, LessThan&& comp)
+{
+    std::sort_heap(container_algorithm_internal::c_begin(sequence),
+                   container_algorithm_internal::c_end(sequence),
+                   std::forward<LessThan>(comp));
 }
 
 // c_is_heap()
@@ -1498,18 +1670,20 @@ void c_sort_heap(RandomAccessContainer& sequence, Compare&& comp) {
 // Container-based version of the <algorithm> `std::is_heap()` function
 // to check whether the given container is a heap.
 template <typename RandomAccessContainer>
-bool c_is_heap(const RandomAccessContainer& sequence) {
-  return std::is_heap(container_algorithm_internal::c_begin(sequence),
-                      container_algorithm_internal::c_end(sequence));
+bool c_is_heap(const RandomAccessContainer& sequence)
+{
+    return std::is_heap(container_algorithm_internal::c_begin(sequence),
+                        container_algorithm_internal::c_end(sequence));
 }
 
 // Overload of c_is_heap() for performing heap comparisons using a
 // `comp` other than `operator<`
-template <typename RandomAccessContainer, typename Compare>
-bool c_is_heap(const RandomAccessContainer& sequence, Compare&& comp) {
-  return std::is_heap(container_algorithm_internal::c_begin(sequence),
-                      container_algorithm_internal::c_end(sequence),
-                      std::forward<Compare>(comp));
+template <typename RandomAccessContainer, typename LessThan>
+bool c_is_heap(const RandomAccessContainer& sequence, LessThan&& comp)
+{
+    return std::is_heap(container_algorithm_internal::c_begin(sequence),
+                        container_algorithm_internal::c_end(sequence),
+                        std::forward<LessThan>(comp));
 }
 
 // c_is_heap_until()
@@ -1518,19 +1692,21 @@ bool c_is_heap(const RandomAccessContainer& sequence, Compare&& comp) {
 // to find the first element in a given container which is not in heap order.
 template <typename RandomAccessContainer>
 container_algorithm_internal::ContainerIter<RandomAccessContainer>
-c_is_heap_until(RandomAccessContainer& sequence) {
-  return std::is_heap_until(container_algorithm_internal::c_begin(sequence),
-                            container_algorithm_internal::c_end(sequence));
+c_is_heap_until(RandomAccessContainer& sequence)
+{
+    return std::is_heap_until(container_algorithm_internal::c_begin(sequence),
+                              container_algorithm_internal::c_end(sequence));
 }
 
 // Overload of c_is_heap_until() for performing heap comparisons using a
 // `comp` other than `operator<`
-template <typename RandomAccessContainer, typename Compare>
+template <typename RandomAccessContainer, typename LessThan>
 container_algorithm_internal::ContainerIter<RandomAccessContainer>
-c_is_heap_until(RandomAccessContainer& sequence, Compare&& comp) {
-  return std::is_heap_until(container_algorithm_internal::c_begin(sequence),
-                            container_algorithm_internal::c_end(sequence),
-                            std::forward<Compare>(comp));
+c_is_heap_until(RandomAccessContainer& sequence, LessThan&& comp)
+{
+    return std::is_heap_until(container_algorithm_internal::c_begin(sequence),
+                              container_algorithm_internal::c_end(sequence),
+                              std::forward<LessThan>(comp));
 }
 
 //------------------------------------------------------------------------------
@@ -1544,19 +1720,21 @@ c_is_heap_until(RandomAccessContainer& sequence, Compare&& comp) {
 // `operator<` to make the comparisons.
 template <typename Sequence>
 container_algorithm_internal::ContainerIter<Sequence> c_min_element(
-    Sequence& sequence) {
-  return std::min_element(container_algorithm_internal::c_begin(sequence),
-                          container_algorithm_internal::c_end(sequence));
+    Sequence& sequence)
+{
+    return std::min_element(container_algorithm_internal::c_begin(sequence),
+                            container_algorithm_internal::c_end(sequence));
 }
 
 // Overload of c_min_element() for performing a `comp` comparison other than
 // `operator<`.
-template <typename Sequence, typename Compare>
+template <typename Sequence, typename LessThan>
 container_algorithm_internal::ContainerIter<Sequence> c_min_element(
-    Sequence& sequence, Compare&& comp) {
-  return std::min_element(container_algorithm_internal::c_begin(sequence),
-                          container_algorithm_internal::c_end(sequence),
-                          std::forward<Compare>(comp));
+    Sequence& sequence, LessThan&& comp)
+{
+    return std::min_element(container_algorithm_internal::c_begin(sequence),
+                            container_algorithm_internal::c_end(sequence),
+                            std::forward<LessThan>(comp));
 }
 
 // c_max_element()
@@ -1566,19 +1744,21 @@ container_algorithm_internal::ContainerIter<Sequence> c_min_element(
 // `operator<` to make the comparisons.
 template <typename Sequence>
 container_algorithm_internal::ContainerIter<Sequence> c_max_element(
-    Sequence& sequence) {
-  return std::max_element(container_algorithm_internal::c_begin(sequence),
-                          container_algorithm_internal::c_end(sequence));
+    Sequence& sequence)
+{
+    return std::max_element(container_algorithm_internal::c_begin(sequence),
+                            container_algorithm_internal::c_end(sequence));
 }
 
 // Overload of c_max_element() for performing a `comp` comparison other than
 // `operator<`.
-template <typename Sequence, typename Compare>
+template <typename Sequence, typename LessThan>
 container_algorithm_internal::ContainerIter<Sequence> c_max_element(
-    Sequence& sequence, Compare&& comp) {
-  return std::max_element(container_algorithm_internal::c_begin(sequence),
-                          container_algorithm_internal::c_end(sequence),
-                          std::forward<Compare>(comp));
+    Sequence& sequence, LessThan&& comp)
+{
+    return std::max_element(container_algorithm_internal::c_begin(sequence),
+                            container_algorithm_internal::c_end(sequence),
+                            std::forward<LessThan>(comp));
 }
 
 // c_minmax_element()
@@ -1588,20 +1768,22 @@ container_algorithm_internal::ContainerIter<Sequence> c_max_element(
 // smallest and largest values, respectively, using `operator<` to make the
 // comparisons.
 template <typename C>
-container_algorithm_internal::ContainerIterPairType<C, C> c_minmax_element(
-    C& c) {
-  return std::minmax_element(container_algorithm_internal::c_begin(c),
-                             container_algorithm_internal::c_end(c));
+container_algorithm_internal::ContainerIterPairType<C, C>
+c_minmax_element(C& c)
+{
+    return std::minmax_element(container_algorithm_internal::c_begin(c),
+                               container_algorithm_internal::c_end(c));
 }
 
 // Overload of c_minmax_element() for performing `comp` comparisons other than
 // `operator<`.
-template <typename C, typename Compare>
-container_algorithm_internal::ContainerIterPairType<C, C> c_minmax_element(
-    C& c, Compare&& comp) {
-  return std::minmax_element(container_algorithm_internal::c_begin(c),
-                             container_algorithm_internal::c_end(c),
-                             std::forward<Compare>(comp));
+template <typename C, typename LessThan>
+container_algorithm_internal::ContainerIterPairType<C, C>
+c_minmax_element(C& c, LessThan&& comp)
+{
+    return std::minmax_element(container_algorithm_internal::c_begin(c),
+                               container_algorithm_internal::c_end(c),
+                               std::forward<LessThan>(comp));
 }
 
 //------------------------------------------------------------------------------
@@ -1616,25 +1798,27 @@ container_algorithm_internal::ContainerIterPairType<C, C> c_minmax_element(
 // that capital letters ("A-Z") have ASCII values less than lowercase letters
 // ("a-z").
 template <typename Sequence1, typename Sequence2>
-bool c_lexicographical_compare(Sequence1&& sequence1, Sequence2&& sequence2) {
-  return std::lexicographical_compare(
-      container_algorithm_internal::c_begin(sequence1),
-      container_algorithm_internal::c_end(sequence1),
-      container_algorithm_internal::c_begin(sequence2),
-      container_algorithm_internal::c_end(sequence2));
+bool c_lexicographical_compare(Sequence1&& sequence1, Sequence2&& sequence2)
+{
+    return std::lexicographical_compare(
+               container_algorithm_internal::c_begin(sequence1),
+               container_algorithm_internal::c_end(sequence1),
+               container_algorithm_internal::c_begin(sequence2),
+               container_algorithm_internal::c_end(sequence2));
 }
 
 // Overload of c_lexicographical_compare() for performing a lexicographical
 // comparison using a `comp` operator instead of `operator<`.
-template <typename Sequence1, typename Sequence2, typename Compare>
+template <typename Sequence1, typename Sequence2, typename LessThan>
 bool c_lexicographical_compare(Sequence1&& sequence1, Sequence2&& sequence2,
-                               Compare&& comp) {
-  return std::lexicographical_compare(
-      container_algorithm_internal::c_begin(sequence1),
-      container_algorithm_internal::c_end(sequence1),
-      container_algorithm_internal::c_begin(sequence2),
-      container_algorithm_internal::c_end(sequence2),
-      std::forward<Compare>(comp));
+                               LessThan&& comp)
+{
+    return std::lexicographical_compare(
+               container_algorithm_internal::c_begin(sequence1),
+               container_algorithm_internal::c_end(sequence1),
+               container_algorithm_internal::c_begin(sequence2),
+               container_algorithm_internal::c_end(sequence2),
+               std::forward<LessThan>(comp));
 }
 
 // c_next_permutation()
@@ -1643,18 +1827,20 @@ bool c_lexicographical_compare(Sequence1&& sequence1, Sequence2&& sequence2,
 // to rearrange a container's elements into the next lexicographically greater
 // permutation.
 template <typename C>
-bool c_next_permutation(C& c) {
-  return std::next_permutation(container_algorithm_internal::c_begin(c),
-                               container_algorithm_internal::c_end(c));
+bool c_next_permutation(C& c)
+{
+    return std::next_permutation(container_algorithm_internal::c_begin(c),
+                                 container_algorithm_internal::c_end(c));
 }
 
 // Overload of c_next_permutation() for performing a lexicographical
 // comparison using a `comp` operator instead of `operator<`.
-template <typename C, typename Compare>
-bool c_next_permutation(C& c, Compare&& comp) {
-  return std::next_permutation(container_algorithm_internal::c_begin(c),
-                               container_algorithm_internal::c_end(c),
-                               std::forward<Compare>(comp));
+template <typename C, typename LessThan>
+bool c_next_permutation(C& c, LessThan&& comp)
+{
+    return std::next_permutation(container_algorithm_internal::c_begin(c),
+                                 container_algorithm_internal::c_end(c),
+                                 std::forward<LessThan>(comp));
 }
 
 // c_prev_permutation()
@@ -1663,18 +1849,20 @@ bool c_next_permutation(C& c, Compare&& comp) {
 // to rearrange a container's elements into the next lexicographically lesser
 // permutation.
 template <typename C>
-bool c_prev_permutation(C& c) {
-  return std::prev_permutation(container_algorithm_internal::c_begin(c),
-                               container_algorithm_internal::c_end(c));
+bool c_prev_permutation(C& c)
+{
+    return std::prev_permutation(container_algorithm_internal::c_begin(c),
+                                 container_algorithm_internal::c_end(c));
 }
 
 // Overload of c_prev_permutation() for performing a lexicographical
 // comparison using a `comp` operator instead of `operator<`.
-template <typename C, typename Compare>
-bool c_prev_permutation(C& c, Compare&& comp) {
-  return std::prev_permutation(container_algorithm_internal::c_begin(c),
-                               container_algorithm_internal::c_end(c),
-                               std::forward<Compare>(comp));
+template <typename C, typename LessThan>
+bool c_prev_permutation(C& c, LessThan&& comp)
+{
+    return std::prev_permutation(container_algorithm_internal::c_begin(c),
+                                 container_algorithm_internal::c_end(c),
+                                 std::forward<LessThan>(comp));
 }
 
 //------------------------------------------------------------------------------
@@ -1687,10 +1875,11 @@ bool c_prev_permutation(C& c, Compare&& comp) {
 // to compute successive values of `value`, as if incremented with `++value`
 // after each element is written. and write them to the container.
 template <typename Sequence, typename T>
-void c_iota(Sequence& sequence, T&& value) {
-  std::iota(container_algorithm_internal::c_begin(sequence),
-            container_algorithm_internal::c_end(sequence),
-            std::forward<T>(value));
+void c_iota(Sequence& sequence, T&& value)
+{
+    std::iota(container_algorithm_internal::c_begin(sequence),
+              container_algorithm_internal::c_end(sequence),
+              std::forward<T>(value));
 }
 // c_accumulate()
 //
@@ -1702,23 +1891,23 @@ void c_iota(Sequence& sequence, T&& value) {
 // absl::decay_t<T>. As a user of this function you can casually read
 // this as "returns T by value" and assume it does the right thing.
 template <typename Sequence, typename T>
-container_algorithm_internal::decay_t<T> c_accumulate(const Sequence& sequence,
-                                                      T&& init) {
-  return std::accumulate(container_algorithm_internal::c_begin(sequence),
-                         container_algorithm_internal::c_end(sequence),
-                         std::forward<T>(init));
+container_algorithm_internal::decay_t<T> c_accumulate(const Sequence& sequence, T&& init)
+{
+    return std::accumulate(container_algorithm_internal::c_begin(sequence),
+                           container_algorithm_internal::c_end(sequence),
+                           std::forward<T>(init));
 }
 
 // Overload of c_accumulate() for using a binary operations other than
 // addition for computing the accumulation.
 template <typename Sequence, typename T, typename BinaryOp>
-container_algorithm_internal::decay_t<T> c_accumulate(const Sequence& sequence,
-                                                      T&& init,
-                                                      BinaryOp&& binary_op) {
-  return std::accumulate(container_algorithm_internal::c_begin(sequence),
-                         container_algorithm_internal::c_end(sequence),
-                         std::forward<T>(init),
-                         std::forward<BinaryOp>(binary_op));
+container_algorithm_internal::decay_t<T> c_accumulate(const Sequence& sequence, T&& init,
+        BinaryOp&& binary_op)
+{
+    return std::accumulate(container_algorithm_internal::c_begin(sequence),
+                           container_algorithm_internal::c_end(sequence),
+                           std::forward<T>(init),
+                           std::forward<BinaryOp>(binary_op));
 }
 
 // c_inner_product()
@@ -1730,12 +1919,13 @@ container_algorithm_internal::decay_t<T> c_accumulate(const Sequence& sequence,
 // absl::decay_t<T>. As a user of this function you can casually read
 // this as "returns T by value" and assume it does the right thing.
 template <typename Sequence1, typename Sequence2, typename T>
-container_algorithm_internal::decay_t<T> c_inner_product(
-    const Sequence1& factors1, const Sequence2& factors2, T&& sum) {
-  return std::inner_product(container_algorithm_internal::c_begin(factors1),
-                            container_algorithm_internal::c_end(factors1),
-                            container_algorithm_internal::c_begin(factors2),
-                            std::forward<T>(sum));
+container_algorithm_internal::decay_t<T> c_inner_product(const Sequence1& factors1, const Sequence2& factors2,
+        T&& sum)
+{
+    return std::inner_product(container_algorithm_internal::c_begin(factors1),
+                              container_algorithm_internal::c_end(factors1),
+                              container_algorithm_internal::c_begin(factors2),
+                              std::forward<T>(sum));
 }
 
 // Overload of c_inner_product() for using binary operations other than
@@ -1743,14 +1933,14 @@ container_algorithm_internal::decay_t<T> c_inner_product(
 // the product between the two container's element pair).
 template <typename Sequence1, typename Sequence2, typename T,
           typename BinaryOp1, typename BinaryOp2>
-container_algorithm_internal::decay_t<T> c_inner_product(
-    const Sequence1& factors1, const Sequence2& factors2, T&& sum,
-    BinaryOp1&& op1, BinaryOp2&& op2) {
-  return std::inner_product(container_algorithm_internal::c_begin(factors1),
-                            container_algorithm_internal::c_end(factors1),
-                            container_algorithm_internal::c_begin(factors2),
-                            std::forward<T>(sum), std::forward<BinaryOp1>(op1),
-                            std::forward<BinaryOp2>(op2));
+container_algorithm_internal::decay_t<T> c_inner_product(const Sequence1& factors1, const Sequence2& factors2,
+        T&& sum, BinaryOp1&& op1, BinaryOp2&& op2)
+{
+    return std::inner_product(container_algorithm_internal::c_begin(factors1),
+                              container_algorithm_internal::c_end(factors1),
+                              container_algorithm_internal::c_begin(factors2),
+                              std::forward<T>(sum), std::forward<BinaryOp1>(op1),
+                              std::forward<BinaryOp2>(op2));
 }
 
 // c_adjacent_difference()
@@ -1760,20 +1950,22 @@ container_algorithm_internal::decay_t<T> c_inner_product(
 // it and write it to an iterator.
 template <typename InputSequence, typename OutputIt>
 OutputIt c_adjacent_difference(const InputSequence& input,
-                               OutputIt output_first) {
-  return std::adjacent_difference(container_algorithm_internal::c_begin(input),
-                                  container_algorithm_internal::c_end(input),
-                                  output_first);
+                               OutputIt output_first)
+{
+    return std::adjacent_difference(container_algorithm_internal::c_begin(input),
+                                    container_algorithm_internal::c_end(input),
+                                    output_first);
 }
 
 // Overload of c_adjacent_difference() for using a binary operation other than
 // subtraction to compute the adjacent difference.
 template <typename InputSequence, typename OutputIt, typename BinaryOp>
 OutputIt c_adjacent_difference(const InputSequence& input,
-                               OutputIt output_first, BinaryOp&& op) {
-  return std::adjacent_difference(container_algorithm_internal::c_begin(input),
-                                  container_algorithm_internal::c_end(input),
-                                  output_first, std::forward<BinaryOp>(op));
+                               OutputIt output_first, BinaryOp&& op)
+{
+    return std::adjacent_difference(container_algorithm_internal::c_begin(input),
+                                    container_algorithm_internal::c_end(input),
+                                    output_first, std::forward<BinaryOp>(op));
 }
 
 // c_partial_sum()
@@ -1783,22 +1975,22 @@ OutputIt c_adjacent_difference(const InputSequence& input,
 // to an iterator. The partial sum is the sum of all element values so far in
 // the sequence.
 template <typename InputSequence, typename OutputIt>
-OutputIt c_partial_sum(const InputSequence& input, OutputIt output_first) {
-  return std::partial_sum(container_algorithm_internal::c_begin(input),
-                          container_algorithm_internal::c_end(input),
-                          output_first);
+OutputIt c_partial_sum(const InputSequence& input, OutputIt output_first)
+{
+    return std::partial_sum(container_algorithm_internal::c_begin(input),
+                            container_algorithm_internal::c_end(input),
+                            output_first);
 }
 
 // Overload of c_partial_sum() for using a binary operation other than addition
 // to compute the "partial sum".
 template <typename InputSequence, typename OutputIt, typename BinaryOp>
 OutputIt c_partial_sum(const InputSequence& input, OutputIt output_first,
-                       BinaryOp&& op) {
-  return std::partial_sum(container_algorithm_internal::c_begin(input),
-                          container_algorithm_internal::c_end(input),
-                          output_first, std::forward<BinaryOp>(op));
+                       BinaryOp&& op)
+{
+    return std::partial_sum(container_algorithm_internal::c_begin(input),
+                            container_algorithm_internal::c_end(input),
+                            output_first, std::forward<BinaryOp>(op));
 }
-
-}  // namespace absl
 
 #endif  // ABSL_ALGORITHM_CONTAINER_H_

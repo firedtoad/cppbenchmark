@@ -31,6 +31,8 @@ add_executable(sorted_map sorted/sorted_map.cpp)
 add_executable(sorted_unset sorted/sorted_unset.cpp)
 add_executable(sorted_unmap sorted/sorted_unmap.cpp)
 
+add_executable(vec_unique unique/unique.cpp)
+
 add_executable(fast_set vfast/fast_set.cpp)
 add_executable(fast_map vfast/fast_map.cpp)
 add_executable(fast_unset vfast/fast_unset.cpp)
