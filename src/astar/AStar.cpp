@@ -16,9 +16,16 @@ inline std::ostream &operator<<(std::ostream &os, const AStar::Vec2i &coord_)
     return os << coord_.x << " " << coord_.y;
 }
 
-AStar::Vec2i operator+(const AStar::Vec2i &left_, const AStar::Vec2i &right_)
+void operator+=(AStar::Vec2i &left_, const AStar::Vec2i &right_)
 {
-    return {left_.x + right_.x, left_.y + right_.y};
+    left_.x += right_.x;
+    left_.y += right_.y;
+}
+
+void operator-=(AStar::Vec2i &left_, const AStar::Vec2i &right_)
+{
+    left_.x -= right_.x;
+    left_.y -= right_.y;
 }
 
 AStar::Node::Node(const Vec2i &coordinates_, Node *parent_)
@@ -71,11 +78,11 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
         return {};
     }
     MemoryPool<AStar::Node> pool;
-    auto delta    = Heuristic::getDelta(source_, target_);
-    auto dist     = std::max(delta.x, delta.y) + 1;
-    Node *current = nullptr;
-    CordSet openSet;
-    NodeHeap openHeap;
+    auto                    delta   = Heuristic::getDelta(source_, target_);
+    auto                    dist    = std::max(delta.x, delta.y) + 1;
+    Node                   *current = nullptr;
+    CordSet                 openSet;
+    NodeHeap                openHeap;
     openHeap.reserve(dist * 4);
     CoordMap closedMap;
     openSet.reserve(dist * 4);
@@ -83,15 +90,13 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
     openHeap.emplace_back(pool.newElement(target_));
     std::push_heap(openHeap.begin(), openHeap.end(), comp);
     openSet.emplace(target_);
-    int n             = 0;
-    int N             = worldSize.x * worldSize.y;
+    int  n            = 0;
+    int  N            = worldSize.x * worldSize.y;
     bool reach_target = false;
     while (!openHeap.empty())
     {
         current = openHeap.front();
-        delta   = Heuristic::getDelta(source_, current->coordinates);
-        dist    = std::max(delta.x, delta.y);
-        if (current->coordinates == source_ || dist <= step)
+        if (current->coordinates == source_)
         {
             reach_target = true;
             break;
@@ -106,16 +111,26 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
         Vec2i newCoordinates{};
         for (uint i = 0; i < directions; ++i)
         {
-            newCoordinates = current->coordinates + direction[i];
+            newCoordinates = current->coordinates;
+            for (auto s = 0; s < step; s++)
+            {
+                newCoordinates += direction[i];
+                if (detectCollision(newCoordinates))
+                {
+                    newCoordinates -= direction[i];
+                    break;
+                }
+            }
+            if (newCoordinates == current->coordinates)
+            {
+                continue;
+            }
             if (openSet.find(newCoordinates) != openSet.end())
             {
                 continue;
             }
             Node *successor = nullptr;
-            if (detectCollision(newCoordinates))
-            {
-                continue;
-            }
+
             successor      = findNodeOnMap(closedMap, newCoordinates);
             uint totalCost = current->G + ((i < 4) ? 10 : 14);
             if (successor == nullptr)
@@ -162,10 +177,10 @@ AStar::CoordinateList AStar::Generator::findPathStack(const Vec2i &source_, cons
     openStack.reserve(dist);
     openStack.push_back(source_);
     Vec2i newPoint{};
-    int n             = 0;
-    int N             = worldSize.x * worldSize.y;
-    auto dirs         = direction;
-    bool reach_target = false;
+    int   n            = 0;
+    int   N            = worldSize.x * worldSize.y;
+    auto  dirs         = direction;
+    bool  reach_target = false;
     while (!openStack.empty())
     {
         auto point = openStack.back();
@@ -184,13 +199,22 @@ AStar::CoordinateList AStar::Generator::findPathStack(const Vec2i &source_, cons
         float wh = relaxer(epsilon, ++n, N);
         for (uint i = 0; i < directions; ++i)
         {
-            auto nPoint = point + dirs[i];
-            // 已经探测过跳过
-            if (closedSet.find(nPoint) != closedSet.end())
+            auto nPoint = point;
+            for (auto s = 0; s < step; s++)
+            {
+                nPoint += direction[i];
+                if (detectCollision(nPoint))
+                {
+                    nPoint -= direction[i];
+                    break;
+                }
+            }
+            if (nPoint == point)
             {
                 continue;
             }
-            if (detectCollision(nPoint))
+            // 已经探测过跳过
+            if (closedSet.find(nPoint) != closedSet.end())
             {
                 continue;
             }
@@ -251,11 +275,6 @@ void AStar::Generator::setWeight(float epsilon_)
 
 void AStar::Generator::setStep(int32_t step_)
 {
-    for (auto &it : direction)
-    {
-        it.x *= step_;
-        it.y *= step_;
-    }
     step = step_;
 }
 

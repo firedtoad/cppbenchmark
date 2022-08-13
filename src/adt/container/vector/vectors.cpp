@@ -2,17 +2,17 @@
 // Created by Administrator on 2022/01/16.
 //
 
-#include "SmallVector.h"
-#include "vector.hpp"
 #include <benchmark/benchmark.h>
 #include <numeric>
 #include <vector>
+#include <llvm/ADT/SmallVector.h>
+
 
 template <typename V> static void BenchInsert(benchmark::State &state)
 {
     for (auto _ : state)
     {
-        V v;
+        V v{};
         for (auto i = 0; i < state.range(0); i++)
         {
             v.push_back(i);
@@ -22,13 +22,12 @@ template <typename V> static void BenchInsert(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BenchInsert, std::vector<int>)->Range(2, 1024);
 BENCHMARK_TEMPLATE(BenchInsert, llvm::SmallVector<int, 1024>)->Range(2, 1024);
-BENCHMARK_TEMPLATE(BenchInsert, llvm_vecsmall::SmallVector<int, 1024>)->Range(2, 1024);
 
 template <typename V> static void BenchReserve(benchmark::State &state)
 {
     for (auto _ : state)
     {
-        V v;
+        V v{};
         v.reserve(state.range(0));
         for (auto i = 0; i < state.range(0); i++)
         {
@@ -39,7 +38,6 @@ template <typename V> static void BenchReserve(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BenchReserve, std::vector<int>)->Range(2, 1024);
 BENCHMARK_TEMPLATE(BenchReserve, llvm::SmallVector<int, 1024>)->Range(2, 1024);
-BENCHMARK_TEMPLATE(BenchReserve, llvm_vecsmall::SmallVector<int, 1024>)->Range(2, 1024);
 
 template <typename V> static void BenchAccumulate(benchmark::State &state)
 {
@@ -56,7 +54,6 @@ template <typename V> static void BenchAccumulate(benchmark::State &state)
 }
 BENCHMARK_TEMPLATE(BenchAccumulate, std::vector<int>)->Range(2, 1024);
 BENCHMARK_TEMPLATE(BenchAccumulate, llvm::SmallVector<int, 1024>)->Range(2, 1024);
-BENCHMARK_TEMPLATE(BenchAccumulate, llvm_vecsmall::SmallVector<int, 1024>)->Range(2, 1024);
 
 template <typename V> static void BenchAccumulateReverse(benchmark::State &state)
 {
@@ -74,7 +71,6 @@ template <typename V> static void BenchAccumulateReverse(benchmark::State &state
 
 BENCHMARK_TEMPLATE(BenchAccumulateReverse, std::vector<int>)->Range(2, 1024);
 BENCHMARK_TEMPLATE(BenchAccumulateReverse, llvm::SmallVector<int, 1024>)->Range(2, 1024);
-BENCHMARK_TEMPLATE(BenchAccumulateReverse, llvm_vecsmall::SmallVector<int, 1024>)->Range(2, 1024);
 int main(int argc, char **argv)
 {
     benchmark::Initialize(&argc, argv);

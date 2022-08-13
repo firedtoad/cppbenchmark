@@ -116,7 +116,7 @@ template <class T, class K = T> struct fast_vector
             m_f_index[key] = index;
             return *m_data.emplace(m_data.end(), T{key});
         }
-        return it;
+        return *it;
     }
 
     size_t erase(const K &key)

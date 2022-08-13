@@ -7,19 +7,62 @@
 #include <iostream>
 #include <vector>
 #include "llvm/ADT/SmallVector.h"
-#include "llvm/IR/Metadata.h"
-#include "llvm/ADT/Twine.h"
-#include "llvm/Support/Debug.h"
-#include "llvm/ADT/ArrayRef.h"
-#include "llvm/ADT/PackedVector.h"
 
+static void BM_rowSmall(benchmark::State &state)
+{
+
+    const int row = 1024, col = 1024;
+    llvm::SmallVector<llvm::SmallVector<uint64_t,col>,row> cache;
+    cache.resize(row);
+    for (auto &it : cache)
+    {
+        it.resize(col);
+    }
+    uint64_t sum{};
+    for (auto _ : state)
+    {
+        for (auto i = 0; i < row; i++)
+        {
+            for (auto j = 0; j < col; j++)
+            {
+                sum += cache[i][j];
+            }
+        }
+    }
+    benchmark::DoNotOptimize(sum);
+}
+
+static void BM_colSmall(benchmark::State &state)
+{
+    const int row = 1024, col = 1024;
+    llvm::SmallVector<llvm::SmallVector<uint64_t,col>,row> cache;
+    cache.resize(row);
+    for (auto &it : cache)
+    {
+        it.resize(col);
+    }
+    uint64_t sum{};
+    for (auto _ : state)
+    {
+        for (auto i = 0; i < row; i++)
+        {
+            for (auto j = 0; j < col; j++)
+            {
+                sum += cache[j][i];
+            }
+        }
+    }
+    benchmark::DoNotOptimize(sum);
+}
+
+BENCHMARK(BM_rowSmall);
+BENCHMARK(BM_colSmall);
 
 static void BM_row(benchmark::State &state)
 {
 
     const int row = 1024, col = 1024;
-    llvm::SmallVector<llvm::SmallVector<uint64_t,col>,row> cache;
-//    std::vector<std::vector<uint64_t>> cache;
+    std::vector<std::vector<uint64_t>> cache;
     cache.resize(row);
     for (auto &it : cache)
     {

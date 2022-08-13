@@ -8,6 +8,10 @@
 #include <iostream>
 #include <list>
 #include <memory>
+#include <gperftools/malloc_extension.h>
+#include <gperftools/malloc_hook.h>
+#include <gperftools/heap-profiler.h>
+#include <gperftools/heap-checker.h>
 struct A
 {
     virtual void f()
@@ -123,26 +127,57 @@ struct Entry
 
 int main(int argc, char **argv)
 {
-    int a[10]{};
-    int b{20};
-    A *pa = new C{};
-    pa->f();
-    delete pa;
+//    int a[10]{};
+//    int b{20};
+//    A *pa = new C{};
+//    pa->f();
+//    delete pa;
+//
+//    std::cout << "Default-construct deque:\n";
+//    //    std::deque<uint64_t , NAlloc<uint64_t>> deq;
+//    //    std::list<int, NAlloc<int>> list;
+//    //    deq.push_back(1);
+//    std::deque<Entry, NAlloc<Entry>> deq;
+//    //    std::list<Entry,NAlloc<Entry>> queue_;
+//    //    queue_.push_back({});
+//    //    queue_.push_back({});
+//
+//    deq.push_back({});
+//    deq.push_back({});
+//    deq.push_back({});
+//    deq.push_back({});
+//    deq.push_back({});
+//    deq.push_back({});
+//    std::vector<MallocExtension::FreeListInfo> vecInfo;
+//    std::cout<<MallocExtension::instance()->GetMemoryReleaseRate()<<'\n';
+//    MallocExtension::instance()->GetFreeListSizes(&vecInfo);
+//    for(auto &p:vecInfo)
+//    {
+//        std::cout<<p.type<<' '<<p.min_object_size<<' '<<p.max_object_size<<' '<<p.total_bytes_free<<'\n';
+//    }
 
-    std::cout << "Default-construct deque:\n";
-    //    std::deque<uint64_t , NAlloc<uint64_t>> deq;
-    //    std::list<int, NAlloc<int>> list;
-    //    deq.push_back(1);
-    std::deque<Entry, NAlloc<Entry>> deq;
-    //    std::list<Entry,NAlloc<Entry>> queue_;
-    //    queue_.push_back({});
-    //    queue_.push_back({});
 
-    deq.push_back({});
-    deq.push_back({});
-    deq.push_back({});
-    deq.push_back({});
-    deq.push_back({});
-    deq.push_back({});
+    std::vector<uint64_t*> vecPtr;
+    auto  *p=new uint64_t;
+    auto counter=0;
+    while(1)
+    {
+        auto ref=new uint64_t ;
+       if((ref-p)>2)
+       {
+           std::cout<<vecPtr.size()<<'\n';
+           std::cout<<(char*)ref-(char*)p<<'\n';
+           if(counter++>10)
+           {
+               break ;
+           }
+       }
+       vecPtr.emplace_back(ref);
+       p=ref;
+    }
+    for(auto &it:vecPtr)
+    {
+        delete it;
+    }
     return 0;
 }

@@ -44,7 +44,6 @@ template <typename V> static void BenchInsert(benchmark::State &state)
 }
 
 BENCHMARK_TEMPLATE(BenchInsert, sorted_vector<uint64_t>)->Range(1, 1 << 10);
-BENCHMARK_TEMPLATE(BenchInsert, sorted_vector_char<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsert, std::set<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsert, tsl::ordered_set<uint64_t>)->Range(1, 1 << 10);
 
@@ -110,9 +109,7 @@ template <typename V> static void BenchInsertPodMap(benchmark::State &state)
 }
 
 BENCHMARK_TEMPLATE(BenchInsertPod, sorted_vector<Pod>)->Range(1, 1 << 10);
-//BENCHMARK_TEMPLATE(BenchInsertPod, sorted_vector_char<Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsertPodMap, sorted_vector_map<uint64_t,PodMap>)->Range(8, 1 << 10);
-BENCHMARK_TEMPLATE(BenchInsertPod, sorted_vector_char<Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsertPod, std::set<Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsertPod, tsl::ordered_set<Pod, PodHash, PodEqual>)->Range(1, 1 << 10);
 
@@ -131,7 +128,6 @@ template <typename V> static void BenchFind(benchmark::State &state)
 }
 
 BENCHMARK_TEMPLATE(BenchFind, sorted_vector<uint64_t>)->Range(1, 1 << 10);
-BENCHMARK_TEMPLATE(BenchFind, sorted_vector_char<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFind, std::set<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFind, tsl::ordered_set<uint64_t>)->Range(1, 1 << 10);
 
@@ -154,7 +150,6 @@ template <typename V> static void BenchRange(benchmark::State &state)
 }
 
 BENCHMARK_TEMPLATE(BenchRange, sorted_vector<uint64_t>)->Range(1, 1 << 10);
-BENCHMARK_TEMPLATE(BenchRange, sorted_vector_char<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRange, std::set<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRange, tsl::ordered_set<uint64_t>)->Range(1, 1 << 10);
 
@@ -177,7 +172,6 @@ template <typename V> static void BenchErase(benchmark::State &state)
 }
 
 BENCHMARK_TEMPLATE(BenchErase, sorted_vector<uint64_t>)->Range(1, 1 << 10);
-BENCHMARK_TEMPLATE(BenchErase, sorted_vector_char<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchErase, std::set<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchErase, tsl::ordered_set<uint64_t>)->Range(1, 1 << 10);
 
