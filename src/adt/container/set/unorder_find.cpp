@@ -21,6 +21,7 @@
 #include <llvm/ADT/DenseSet.h>
 #include <llvm/ADT/SetVector.h>
 #include <llvm/ADT/StringSet.h>
+#include <llvm/ADT/FoldingSet.h>
 
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
@@ -72,6 +73,10 @@ BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::robin_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::sparse_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt,llvm::DenseSet<int>);
 
+
+
+
+
 template <class M> static void BenchUnOrderVecSetInt(benchmark::State &state)
 {
     M m;
@@ -104,8 +109,6 @@ template <class M> static void BenchUnOrderSparseSetInt(benchmark::State &state)
 }
 
 BENCHMARK_TEMPLATE(BenchUnOrderSparseSetInt,llvm::SparseSet<unsigned>);
-
-
 
 template <class M> static void BenchUnOrderSetString(benchmark::State &state)
 {

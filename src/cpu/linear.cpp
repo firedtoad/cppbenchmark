@@ -10,7 +10,7 @@
 struct S
 {
     uint64_t s;
-    char     c[50];
+    uint64_t c[3];
 };
 
 static void BM_IntervalPtr(benchmark::State &state)

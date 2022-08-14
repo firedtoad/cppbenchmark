@@ -66,64 +66,9 @@ template <class Tp> struct NAlloc
         ::operator delete(p);
     }
 };
-template <class T, class U> bool operator==(const NAlloc<T> &, const NAlloc<U> &)
-{
-    return true;
-}
-template <class T, class U> bool operator!=(const NAlloc<T> &, const NAlloc<U> &)
-{
-    return false;
-}
 
-// 挂起标识
-struct SuspendEntry
-{
-    std::weak_ptr<uint64_t> tk_;
-    uint64_t id_;
 
-    explicit operator bool() const
-    {
-        return tk_.lock() != nullptr;
-    }
-};
 
-// 性能高于LFLock2
-struct LFLock
-{
-    std::atomic_flag flag;
-
-    LFLock() : flag{false} {}
-
-    void lock()
-    {
-        while (flag.test_and_set(std::memory_order_acquire))
-            ;
-    }
-
-    bool try_lock()
-    {
-        return !flag.test_and_set(std::memory_order_acquire);
-    }
-
-    void unlock()
-    {
-        flag.clear(std::memory_order_release);
-    }
-};
-
-struct Entry
-{
-    typedef std::function<void()> Func;
-    SuspendEntry suspendEntry;
-
-    // 控制是否超时的标志位
-    std::shared_ptr<LFLock> noTimeoutLock;
-
-    // 唤醒成功后, 在唤醒线程做的事情
-    Func onWakeup;
-
-    Entry() : noTimeoutLock(std::make_shared<LFLock>()) {}
-};
 
 int main(int argc, char **argv)
 {

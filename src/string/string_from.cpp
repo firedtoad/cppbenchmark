@@ -8,9 +8,11 @@
 #include <google/protobuf/stubs/strutil.h>
 #include <random>
 #include <sstream>
+#include <stdio.h>
+#include <stdlib.h>
 
-uint64_t tag = 1234567890123456;
-float tagf   = M_PI;
+uint64_t tag  = 1234567890123456;
+float    tagf = M_PI;
 
 template <typename S, typename T> void NumberToString(T &t, std::string &str)
 {
@@ -45,13 +47,12 @@ BENCHMARK_TEMPLATE(BenchStreamStringFrom, std::ostringstream, uint64_t);
 
 BENCHMARK_TEMPLATE(BenchStreamStringFromF, std::stringstream, float);
 BENCHMARK_TEMPLATE(BenchStreamStringFromF, std::ostringstream, float);
-
 template <typename T> static void BenchItoa(benchmark::State &state)
 {
     for (auto _ : state)
     {
         char buf[64]{};
-        auto r = itoa(tag, buf, 10);
+        auto r = snprintf(buf, 64, "%d", tag);
         benchmark::DoNotOptimize(r);
     }
 }
@@ -105,7 +106,7 @@ template <typename T> static void BenchStdToCharsF(benchmark::State &state)
     for (auto _ : state)
     {
         char buf[64]{};
-        auto r = std::to_chars(buf, buf + 64, tagf);
+        auto r = std::to_chars(buf, buf + 64, (uint64_t)tagf);
         benchmark::DoNotOptimize(r);
     }
 }

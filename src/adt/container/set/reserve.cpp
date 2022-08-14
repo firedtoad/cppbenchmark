@@ -54,7 +54,6 @@ static void BM_AdtInsert(benchmark::State &state)
 }
 
 BENCHMARK_TEMPLATE(BM_AdtInsert,llvm::SparseSet<unsigned>);
-BENCHMARK_TEMPLATE(BM_AdtInsert,llvm::SparseSet<unsigned>);
 
 template<class M>
 static void BM_StringInsert(benchmark::State &state)
@@ -68,6 +67,7 @@ static void BM_StringInsert(benchmark::State &state)
         }
     }
 }
+
 BENCHMARK_TEMPLATE(BM_StringInsert,llvm::StringSet<>);
 
 int main(int argc, char **argv)

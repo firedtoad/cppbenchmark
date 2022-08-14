@@ -11,6 +11,7 @@
 #include <list>
 #include <llvm/ADT/simple_ilist.h>
 #include <llvm/ADT/ilist.h>
+#include <llvm/ADT/ImmutableList.h>
 
 using mode               = boost::intrusive::link_mode<boost::intrusive::safe_link>;
 using constant_time_size = boost::intrusive::constant_time_size<true>;
@@ -25,6 +26,12 @@ struct LNode : public llvm::ilist_node<LNode, llvm::ilist_tag<LNode>>
     int x{};
 };
 
+struct INode
+{
+    int x{};
+    void Profile(llvm::FoldingSetNodeID &ID) const {
+    }
+};
 
 static void BenchListRange(benchmark::State &state)
 {
@@ -174,6 +181,28 @@ static void BenchAdtSimpleListRange(benchmark::State &state)
 }
 
 BENCHMARK(BenchAdtSimpleListRange)->Range(1, 1024);
+
+static void BenchAdtImmutableListRange(benchmark::State &state)
+{
+    llvm::ImmutableList<INode>::Factory factory;
+    auto                               v = factory.getEmptyList();
+    for (auto i = 0; i < state.range(0); i++)
+    {
+        v = factory.emplace( v,INode{i});
+    }
+    int r = 0;
+    for (auto _ : state)
+    {
+
+        for (auto &it : v)
+        {
+            r++;
+        }
+    }
+    benchmark::DoNotOptimize(r);
+}
+
+BENCHMARK(BenchAdtImmutableListRange)->Range(1, 1024);
 
 int main(int argc, char **argv)
 {
