@@ -3,10 +3,9 @@
 //
 
 #include "FastVector.h"
-#include <unordered_map>
+#include <algorithm>
 #include <benchmark/benchmark.h>
-#include <llvm/ADT/MapVector.h>
-
+#include <map>
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
     static unsigned long x = 103456789, y = 362436069, z = 521088629;
@@ -28,10 +27,10 @@ static inline unsigned long _random()
 {
     return xorshf96();
 }
-
 struct Pod
 {
-    int i;
+    uint64_t i;
+    uint64_t second;
     Pod() noexcept = default;
     Pod(uint64_t i_) : i(i_) {}
     Pod(const Pod &pod) noexcept            = default;
@@ -53,17 +52,16 @@ template <typename V> static void BenchInsert(benchmark::State &state)
     for (auto _ : state)
     {
         V v;
-//        v.reserve(state.range(0));
         for (auto i = 0; i < state.range(0); i++)
         {
-            uint64_t r = _random();
-            v[r]=r;
+            auto r = _random();
+            v[r]   = r;
         }
     }
 }
 
-BENCHMARK_TEMPLATE(BenchInsert, fast_vector_map<uint64_t, uint64_t,llvm::DenseMap<uint64_t,uint32_t>>)->Range(1<<10 , 1 << 20);
-BENCHMARK_TEMPLATE(BenchInsert, llvm::MapVector<uint64_t, uint64_t>)->Range(1<<10 , 1 << 20);
+BENCHMARK_TEMPLATE(BenchInsert, fast_vector<uint64_t, uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsert, std::map<uint64_t, uint64_t>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchFind(benchmark::State &state)
 {
@@ -80,8 +78,8 @@ template <typename V> static void BenchFind(benchmark::State &state)
     }
 }
 
-//BENCHMARK_TEMPLATE(BenchFind, fast_vector_map<uint64_t, uint64_t>)->Range(1, 1 << 10);
-//BENCHMARK_TEMPLATE(BenchFind, llvm::MapVector<uint64_t, uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchFind, fast_vector<uint64_t, uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchFind, std::map<uint64_t, uint64_t>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchRange(benchmark::State &state)
 {
@@ -102,8 +100,8 @@ template <typename V> static void BenchRange(benchmark::State &state)
     benchmark::DoNotOptimize(sum);
 }
 
-//BENCHMARK_TEMPLATE(BenchRange, fast_vector_map<uint64_t, uint64_t>)->Range(1, 1 << 10);
-//BENCHMARK_TEMPLATE(BenchRange, llvm::MapVector<uint64_t, uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchRange, fast_vector<Pod, uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchRange, std::map<uint64_t, uint64_t>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchErase(benchmark::State &state)
 {
@@ -124,8 +122,8 @@ template <typename V> static void BenchErase(benchmark::State &state)
     }
 }
 
-//BENCHMARK_TEMPLATE(BenchErase, fast_vector_map<uint64_t, uint64_t>)->Range(1, 1 << 10);
-//BENCHMARK_TEMPLATE(BenchErase, llvm::MapVector<uint64_t, uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchErase, fast_vector<uint64_t, uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchErase, std::map<uint64_t, uint64_t>)->Range(1, 1 << 10);
 
 int main(int argc, char **argv)
 {

@@ -37,6 +37,7 @@ add_executable(fast_set vfast/fast_set.cpp)
 add_executable(fast_map vfast/fast_map.cpp)
 add_executable(fast_unset vfast/fast_unset.cpp)
 add_executable(fast_unmap vfast/fast_unmap.cpp)
+add_executable(fast_vector vfast/fast_vector.cpp)
 
 aux_source_directory(hash/internal HASH_SRC)
 

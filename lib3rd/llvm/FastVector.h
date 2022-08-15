@@ -9,12 +9,12 @@
 #include <functional>
 #include <vector>
 
-template <class T, class K = T> struct fast_vector
+template <class T, class K = T, class FastMap = tsl::robin_map<K, uint32_t>> struct fast_vector
 {
     using Vector = std::vector<T>;
-    typedef typename Vector::iterator        iterator;
-    typedef typename Vector::const_iterator  const_iterator;
-    typedef typename Vector::reference       reference;
+    typedef typename Vector::iterator iterator;
+    typedef typename Vector::const_iterator const_iterator;
+    typedef typename Vector::reference reference;
     typedef typename Vector::const_reference const_reference;
 
     iterator begin()
@@ -44,41 +44,53 @@ template <class T, class K = T> struct fast_vector
     void reserve(size_t size)
     {
         m_data.reserve(size);
-        m_f_index.reserve(size);
+        m_index.reserve(size);
+    }
+    void clear()
+    {
+        m_data.clear();
+        m_index.clear();
     }
     fast_vector() : m_data() {}
-    template <class InputIterator> fast_vector(InputIterator first, InputIterator last) : m_data(first, last) {}
+    template <class InputIterator> fast_vector(InputIterator first, InputIterator last) : m_data(first, last)
+    {
+        m_index.reserve(m_data.size());
+        for (auto i = 0; i < m_data.size(); i++)
+        {
+            m_index[m_data[i].first] = i;
+        }
+    }
 
     iterator insert(const T &val)
     {
-        auto key = *reinterpret_cast<const K *>(&val);
-        auto it  = find(key);
-        if (it == end())
+        auto key   = *reinterpret_cast<const K *>(&val);
+        auto it    = m_index.insert(std::make_pair(key, 0));
+        auto index = it.first->second;
+        if (it.second)
         {
-            uint32_t index = m_data.size();
-            m_f_index[key] = index;
-            return m_data.insert(m_data.end(), val);
+            m_data.emplace_back(val);
+            index = m_data.size() - 1;
         }
-        return it;
+        return m_data.begin() + index;
     }
 
     iterator insert(T &&val)
     {
-        auto key = *reinterpret_cast<K *>(&val);
-        auto it  = find(key);
-        if (it == end())
+        auto key   = *reinterpret_cast<const K *>(&val);
+        auto it    = m_index.insert(std::make_pair(key, 0));
+        auto index = it.first->second;
+        if (it.second)
         {
-            uint32_t index = m_data.size();
-            m_f_index[key] = index;
-            return m_data.insert(m_data.end(), std::forward<T>(val));
+            m_data.emplace_back(std::forward<T>(val));
+            index = m_data.size() - 1;
         }
-        return it;
+        return m_data.begin() + index;
     }
 
     const_iterator find(const K &key) const
     {
-        auto it = m_f_index.find(key);
-        if (it != m_f_index.end())
+        auto it = m_index.find(key);
+        if (it != m_index.end())
         {
             return m_data.begin() + it->second;
         }
@@ -87,8 +99,8 @@ template <class T, class K = T> struct fast_vector
 
     iterator find(const K &key)
     {
-        auto it = m_f_index.find(key);
-        if (it != m_f_index.end())
+        auto it = m_index.find(key);
+        if (it != m_index.end())
         {
             return m_data.begin() + it->second;
         }
@@ -97,40 +109,40 @@ template <class T, class K = T> struct fast_vector
 
     reference operator[](const K &key)
     {
-        auto it = find(key);
-        if (it == end())
+        auto it    = m_index.insert(std::make_pair(key, 0));
+        auto index = it.first->second;
+        if (it.second)
         {
-            uint32_t index = m_data.size();
-            m_f_index[key] = index;
-            return *m_data.emplace(m_data.end(), T{key});
+            m_data.emplace_back(key);
+            index = m_data.size() - 1;
         }
-        return *it;
+        return m_data[index];
     }
 
     reference operator[](K &&key)
     {
-        auto it = find(std::forward<T>(key));
-        if (it == end())
+        auto it    = m_index.insert(std::make_pair(std::forward<K>(key), 0));
+        auto index = it.first->second;
+        if (it.second)
         {
-            uint32_t index = m_data.size();
-            m_f_index[key] = index;
-            return *m_data.emplace(m_data.end(), T{key});
+            m_data.emplace_back(std::forward<K>(key));
+            index = m_data.size() - 1;
         }
-        return *it;
+        return m_data[index];
     }
 
     size_t erase(const K &key)
     {
-        auto it = m_f_index.find(key);
-        if (it != m_f_index.end())
+        auto it = m_index.find(key);
+        if (it != m_index.end())
         {
             auto rit      = m_data.begin() + it->second;
             auto pos      = it->second;
             auto last_key = *reinterpret_cast<K *>(&m_data.back());
             std::swap(*rit, m_data.back());
             m_data.pop_back();
-            m_f_index[last_key] = pos;
-            m_f_index.erase(key);
+            m_index[last_key] = pos;
+            m_index.erase(key);
             return 1;
         }
         return 0;
@@ -145,31 +157,31 @@ template <class T, class K = T> struct fast_vector
             auto key      = m_data[pos];
             std::swap(*it, m_data.back());
             m_data.pop_back();
-            m_f_index[last_key] = pos;
-            m_f_index.erase(key);
+            m_index[last_key] = pos;
+            m_index.erase(key);
             return 1;
         }
         return 0;
     }
 
+    void pop_back()
+    {
+        auto pos = m_index.find(m_data.back().first);
+        m_index.erase(pos);
+        m_data.pop_back();
+    }
+
   private:
-    Vector                 m_data;
-    tsl::robin_map<K, int> m_f_index; // forward index
+    Vector m_data;
+    FastMap m_index; // index
 };
 
-template <class K, class V> struct fast_vector_map
+template <class K, class V, class FastMap = tsl::robin_map<K, uint32_t>> struct fast_vector_map
 {
-    struct KVPair
-    {
-        K first;
-        V second;
-        KVPair() noexcept = default;
-        KVPair(K k, V v) : first(std::move(k)), second(std::move(v)) {}
-    };
-    using Vector = std::vector<KVPair>;
-    typedef typename Vector::iterator        iterator;
-    typedef typename Vector::const_iterator  const_iterator;
-    typedef typename Vector::reference       reference;
+    using Vector = std::vector<std::pair<K, V>>;
+    typedef typename Vector::iterator iterator;
+    typedef typename Vector::const_iterator const_iterator;
+    typedef typename Vector::reference reference;
     typedef typename Vector::const_reference const_reference;
 
     iterator begin()
@@ -199,39 +211,51 @@ template <class K, class V> struct fast_vector_map
     void reserve(size_t size)
     {
         m_data.reserve(size);
-        m_f_index.reserve(size);
+        m_index.reserve(size);
+    }
+    void clear()
+    {
+        m_data.clear();
+        m_index.clear();
     }
     fast_vector_map() : m_data() {}
-    template <class InputIterator> fast_vector_map(InputIterator first, InputIterator last) : m_data(first, last) {}
+    template <class InputIterator> fast_vector_map(InputIterator first, InputIterator last) : m_data(first, last)
+    {
+        m_index.reserve(m_data.size());
+        for (auto i = 0; i < m_data.size(); i++)
+        {
+            m_index[m_data[i].first] = i;
+        }
+    }
 
     iterator insert(const K &key, const V &val)
     {
-        auto it = find(key);
-        if (it == end())
+        auto it    = m_index.insert(std::make_pair(key, 0));
+        auto index = it.first->second;
+        if (it.second)
         {
-            uint32_t index = m_data.size();
-            m_f_index[key] = index;
-            return m_data.insert(m_data.end(), std::make_pair(key, val));
+            m_data.emplace_back(key, V{});
+            index = m_data.size() - 1;
         }
-        return it;
+        return m_data.begin() + index;
     }
 
     iterator insert(K &&key, V &&val)
     {
-        auto it = find(key);
-        if (it == end())
+        auto it    = m_index.insert(std::make_pair(std::forward<K>(key), 0));
+        auto index = it.first->second;
+        if (it.second)
         {
-            uint32_t index = m_data.size();
-            m_f_index[key] = index;
-            return m_data.insert(m_data.end(), std::make_pair(std::forward<K>(key), std::forward<V>(val)));
+            m_data.emplace_back(std::forward<K>(key), V{});
+            index = m_data.size() - 1;
         }
-        return it;
+        return m_data.begin() + index;
     }
 
     const_iterator find(const K &key) const
     {
-        auto it = m_f_index.find(key);
-        if (it != m_f_index.end())
+        auto it = m_index.find(key);
+        if (it != m_index.end())
         {
             return m_data.begin() + it->second;
         }
@@ -240,8 +264,8 @@ template <class K, class V> struct fast_vector_map
 
     iterator find(const K &key)
     {
-        auto it = m_f_index.find(key);
-        if (it != m_f_index.end())
+        auto it = m_index.find(key);
+        if (it != m_index.end())
         {
             return m_data.begin() + it->second;
         }
@@ -250,40 +274,40 @@ template <class K, class V> struct fast_vector_map
 
     V &operator[](const K &key)
     {
-        auto it = find(key);
-        if (it == end())
+        auto it    = m_index.insert(std::make_pair(key, 0));
+        auto index = it.first->second;
+        if (it.second)
         {
-            uint32_t index = m_data.size();
-            m_f_index[key] = index;
-            return m_data.emplace(m_data.end(), key, V{})->second;
+            m_data.emplace_back(key, V{});
+            index = m_data.size() - 1;
         }
-        return it->second;
+        return m_data[index].second;
     }
 
     V &operator[](K &&key)
     {
-        auto it = find(std::forward<K>(key));
-        if (it == end())
+        auto it    = m_index.insert(std::make_pair(key, 0));
+        auto index = it.first->second;
+        if (it.second)
         {
-            uint32_t index = m_data.size();
-            m_f_index[key] = index;
-            return *m_data.emplace(m_data.end(), std::forward<K>(key), {});
+            m_data.emplace_back(std::forward<K>(key), V{});
+            index = m_data.size() - 1;
         }
-        return it;
+        return m_data[index].second;
     }
 
     size_t erase(const K &key)
     {
-        auto it = m_f_index.find(key);
-        if (it != m_f_index.end())
+        auto it = m_index.find(key);
+        if (it != m_index.end())
         {
             auto rit      = m_data.begin() + it->second;
             auto pos      = it->second;
             auto last_key = m_data.back().first;
             std::swap(*rit, m_data.back());
             m_data.pop_back();
-            m_f_index[last_key] = pos;
-            m_f_index.erase(key);
+            m_index[last_key] = pos;
+            m_index.erase(key);
             return 1;
         }
         return 0;
@@ -298,16 +322,22 @@ template <class K, class V> struct fast_vector_map
             auto key      = m_data[pos];
             std::swap(*it, m_data.back());
             m_data.pop_back();
-            m_f_index[last_key] = pos;
-            m_f_index.erase(key);
+            m_index[last_key] = pos;
+            m_index.erase(key);
             return 1;
         }
         return 0;
     }
+    void pop_back()
+    {
+        auto pos = m_index.find(m_data.back().first);
+        m_index.erase(pos);
+        m_data.pop_back();
+    }
 
   private:
-    Vector                 m_data;
-    tsl::robin_map<K, int> m_f_index; // forward index
+    Vector m_data;
+    FastMap m_index; // forward index
 };
 
 #endif // BENCH_LIB3RD_LLVM_FASTVECTOR_H_

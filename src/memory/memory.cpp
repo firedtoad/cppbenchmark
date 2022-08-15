@@ -98,7 +98,7 @@ struct  CC{
 int main(int argc, char **argv)
 {
 
-    std::cout<<sizeof(std::_Rb_tree_node<char>)<<'\n';
+    std::cout<<sizeof(std::_Rb_tree_node<std::pair<int,bool>>)<<'\n';
     std::cout<<sizeof(std::__detail::_Hash_node<char,true>)<<'\n';
     std::cout<<sizeof(__gnu_cxx::__aligned_buffer<char>)<<'\n';
     std::cout<<sizeof(CC)<<'\n';
@@ -127,7 +127,7 @@ int main(int argc, char **argv)
         std::map<uint16_t,uint16_t,std::less<uint16_t>, my_allocator<uint16_t>> v;
         for(auto i=0;i<1024;i++)
         {
-            v[i]=i;
+            v[i]= i;
         }
         std::cout << "std::map cost memory "  << memAlloc << " alloc " << alloc  << '\n';
     }

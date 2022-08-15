@@ -14,7 +14,6 @@
 #include "tsl/sparse_map.h"
 #include "unordered_map.hpp"
 #include <benchmark/benchmark.h>
-#include <iostream>
 #include <unordered_map>
 
 #include <llvm/ADT/DenseMap.h>
