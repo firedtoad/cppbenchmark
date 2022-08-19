@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.16)
 project(bench C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+include(UseFastestLinker)
+include(Ccache)
+
 link_libraries(benchmark pthread)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-omit-frame-pointer -Wall -pedantic -Wextra -march=native  -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-qualifiers -fdiagnostics-color=auto ")
 
@@ -11,15 +15,6 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 #    set(CMAKE_CXX_FLAGS_RELEASE  "-O2 -DNDEBUG")
 endif ()
 set(CMAKE_VERBOSE_MAKEFILE ON)
-#set(CMAKE_EXE_LINKER_FLAGS "-fuse-ld=gold")
-
-find_program(CCACHE_PROGRAM ccache)
-if (CCACHE_PROGRAM)
-    MESSAGE(STATUS ">> CCACHE ON")
-    set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_PROGRAM}")
-else ()
-    MESSAGE(STATUS ">> CCACHE OFF")
-endif ()
 
 include_directories(
         /usr/local/include

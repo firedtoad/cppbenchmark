@@ -7,11 +7,16 @@
 #include <initializer_list>
 #include <iostream>
 #include <list>
+#include <vector>
 #include <memory>
 #include <gperftools/malloc_extension.h>
 #include <gperftools/malloc_hook.h>
 #include <gperftools/heap-profiler.h>
 #include <gperftools/heap-checker.h>
+
+#include<boost/coroutine2/coroutine.hpp>
+#include <boost/context/continuation.hpp>
+
 struct A
 {
     virtual void f()
@@ -112,7 +117,7 @@ int main(int argc, char **argv)
        {
            std::cout<<vecPtr.size()<<'\n';
            std::cout<<(char*)ref-(char*)p<<'\n';
-           if(counter++>10)
+           if(counter++>1)
            {
                break ;
            }
@@ -123,6 +128,61 @@ int main(int argc, char **argv)
     for(auto &it:vecPtr)
     {
         delete it;
+    }
+    {
+        std::vector<int> vi={1};
+        std::vector<int> va={1,2,3,4,5,6,12,11,4,5,6,21,14};
+        std::cout<<vi.capacity()<<'\n';
+        std::cout<<va.capacity()<<'\n';
+        vi.insert(vi.end(),va.begin(),va.end());
+        std::cout<<vi.capacity()<<'\n';
+        std::cout<<va.capacity()<<'\n';
+    }
+
+    typedef boost::coroutines2::asymmetric_coroutine<int>   coro_t;
+
+    coro_t::pull_type source(
+        [&](coro_t::push_type& sink){
+            int first=1,second=1;
+            sink(first);
+            sink(second);
+            for(int i=0;i<8;++i){
+                int third=first+second;
+                first=second;
+                second=third;
+                sink(third);
+            }
+        });
+
+    for(auto i:source)
+        std::cout << i <<  " ";
+
+    {
+        namespace ctx=boost::context;
+        int a;
+        ctx::continuation source=ctx::callcc(
+            [&a](ctx::continuation && sink){
+                a=0;
+                int b=1;
+                for(;;){
+                    sink=sink.resume();
+                    int next=a+b;
+                    a=b;
+                    b=next;
+                }
+                return std::move(sink);
+            });
+        for (int j=0;j<10;++j) {
+            std::cout << a << " ";
+            source=source.resume();
+        }
+    }
+
+    {
+        std::vector<std::reference_wrapper<int>> v;
+        int x;
+        v.emplace_back(x);
+
     }
     return 0;
 }

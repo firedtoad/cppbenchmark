@@ -20,11 +20,12 @@
 #include <llvm/ADT/IndexedMap.h>
 #include <llvm/ADT/MapVector.h>
 #include <llvm/ADT/StringMap.h>
+#include <iostream>
 
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
     static unsigned long x = 123456789, y = 362436069, z = 521288629;
-    unsigned long        t;
+    unsigned long t;
 
     x ^= x << 16;
     x ^= x >> 5;
@@ -45,7 +46,7 @@ static inline unsigned long _random()
 
 template <class M> static void BenchUnOrderMapInt(benchmark::State &state)
 {
-    M                m;
+    M m;
     std::vector<int> keys;
     m.reserve(65536);
     keys.reserve(65536);
@@ -81,7 +82,7 @@ BENCHMARK_TEMPLATE(BenchUnOrderMapInt, llvm::MapVector<int, int>);
 
 template <class M> static void BenchIndexedMap(benchmark::State &state)
 {
-    M                m;
+    M m;
     std::vector<int> keys;
     m.resize(65536);
     keys.reserve(65536);
@@ -106,7 +107,7 @@ template <class M> static void BenchUnOrderMapString(benchmark::State &state)
     M m;
     m.reserve(65536);
     std::vector<std::string> keys(65536);
-    int                      k = 1000000;
+    int k = 1000000;
     for (auto i = 0; i < 65536; i++)
     {
         keys[i]            = "12345678901234561234567890123456" + std::to_string(k++);
@@ -125,7 +126,7 @@ template <class M> static void BenchCharKeyMap(benchmark::State &state)
 {
     M m;
     std::vector<std::string> keys(65536);
-    int                      k = 1000000;
+    int k = 1000000;
     for (auto i = 0; i < 65536; i++)
     {
         keys[i]            = "12345678901234561234567890123456" + std::to_string(k++);
@@ -156,9 +157,9 @@ BENCHMARK_TEMPLATE(BenchUnOrderMapString, llvm::MapVector<llvm::StringRef, int>)
 
 template <class M> static void BenchStringMapNoSSO(benchmark::State &state)
 {
-    M                        m;
+    M m;
     std::vector<std::string> keys(65536);
-    int                      k = 1000000;
+    int k = 1000000;
     for (auto i = 0; i < 65536; i++)
     {
         keys[i]            = "12345678901234561234567890123456" + std::to_string(k++);
@@ -177,7 +178,7 @@ BENCHMARK_TEMPLATE(BenchStringMapNoSSO, llvm::StringMap<int>);
 
 template <class M> static void BenchIndexedMapString(benchmark::State &state)
 {
-    M                m;
+    M m;
     std::vector<int> keys;
     m.resize(65536);
     keys.reserve(65536);
@@ -199,7 +200,7 @@ template <class M> static void BenchIndexedMapString(benchmark::State &state)
 BENCHMARK_TEMPLATE(BenchIndexedMapString, llvm::IndexedMap<std::string>);
 
 BENCHMARK_TEMPLATE(BenchCharKeyMap, tsl::htrie_map<char, int>);
-BENCHMARK_TEMPLATE(BenchCharKeyMap, tsl::array_map<char, int>);
+ BENCHMARK_TEMPLATE(BenchCharKeyMap, tsl::array_map<char, int>);
 
 int main(int argc, char **argv)
 {

@@ -2,6 +2,9 @@
 #include <benchmark/benchmark.h>
 #include <random>
 #include <unordered_map>
+#include <functional>
+#include <ext/random>
+#include <ext/opt_random.h>
 
 template <typename G> static void BenchEngine(benchmark::State &state)
 {
@@ -16,6 +19,9 @@ BENCHMARK_TEMPLATE(BenchEngine, std::mt19937);
 BENCHMARK_TEMPLATE(BenchEngine, std::mt19937_64);
 BENCHMARK_TEMPLATE(BenchEngine, std::minstd_rand);
 BENCHMARK_TEMPLATE(BenchEngine, std::default_random_engine);
+
+BENCHMARK_TEMPLATE(BenchEngine, __gnu_cxx::sfmt19937);
+BENCHMARK_TEMPLATE(BenchEngine, __gnu_cxx::sfmt19937_64);
 
 static void BenchSFMT(benchmark::State &state)
 {

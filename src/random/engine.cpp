@@ -4,6 +4,7 @@
 #include <benchmark/benchmark.h>
 #include <boost/random.hpp>
 #include <random>
+#include <ext/random>
 #include <unordered_map>
 
 template <typename G> static void BenchSeed(benchmark::State &state)
@@ -48,6 +49,8 @@ BENCHMARK_TEMPLATE(BenchEngine, std::minstd_rand0);
 BENCHMARK_TEMPLATE(BenchEngine, std::minstd_rand);
 BENCHMARK_TEMPLATE(BenchEngine, std::mt19937);
 BENCHMARK_TEMPLATE(BenchEngine, std::mt19937_64);
+BENCHMARK_TEMPLATE(BenchEngine, __gnu_cxx::sfmt19937);
+BENCHMARK_TEMPLATE(BenchEngine, __gnu_cxx::sfmt19937_64);
 
 BENCHMARK_TEMPLATE(BenchEngine, boost::minstd_rand0);
 BENCHMARK_TEMPLATE(BenchEngine, boost::minstd_rand);
