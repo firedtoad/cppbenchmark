@@ -1,31 +1,36 @@
 #include <benchmark/benchmark.h>
-#include <folly/fibers/Fiber.h>
+#include <folly/fibers/FiberManagerMap.h>
+#include <folly/io/async/EventBase.h>
+
 #include <iostream>
 
-
-static void BenchFiberCreate(benchmark::State &state)
+static void BenchFiberCreatePost(benchmark::State &state)
 {
+    folly::EventBase evb;
+    auto& fiberManager = folly::fibers::getFiberManager(evb);
     for (auto _ : state)
     {
-
+        fiberManager.addTask([&] {});
     }
+    evb.loop();
 }
 
-BENCHMARK(BenchFiberCreate)->Range(1024, 1024);
-
-struct alignas(64) SP
+BENCHMARK(BenchFiberCreatePost);
+static void BenchFiberCreateEager(benchmark::State &state)
 {
-    int x;
-    int y;
-    int z;
-    int w;
-    int k;
-    std::string s;
-};
+    folly::EventBase evb;
+    auto& fiberManager = folly::fibers::getFiberManager(evb);
+    for (auto _ : state)
+    {
+        fiberManager.addTaskEager([&] {});
+    }
+    evb.loop();
+}
+
+BENCHMARK(BenchFiberCreateEager);
 
 int main(int argc, char **argv)
 {
-    std::cout<<alignof(SP)<<'\n';
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

@@ -12,7 +12,7 @@ static void BM_rowSmall(benchmark::State &state)
 {
 
     const int row = 1024, col = 1024;
-    llvm::SmallVector<llvm::SmallVector<uint64_t,col>,row> cache;
+    llvm::SmallVector<llvm::SmallVector<char,col>,row> cache;
     cache.resize(row);
     for (auto &it : cache)
     {
@@ -35,7 +35,7 @@ static void BM_rowSmall(benchmark::State &state)
 static void BM_colSmall(benchmark::State &state)
 {
     const int row = 1024, col = 1024;
-    llvm::SmallVector<llvm::SmallVector<uint64_t,col>,row> cache;
+    llvm::SmallVector<llvm::SmallVector<char,col>,row> cache;
     cache.resize(row);
     for (auto &it : cache)
     {
@@ -44,9 +44,9 @@ static void BM_colSmall(benchmark::State &state)
     uint64_t sum{};
     for (auto _ : state)
     {
-        for (auto i = 0; i < row; i++)
+        for (auto i = 0; i < col; i++)
         {
-            for (auto j = 0; j < col; j++)
+            for (auto j = 0; j < row; j++)
             {
                 sum += cache[j][i];
             }
@@ -60,8 +60,7 @@ BENCHMARK(BM_colSmall);
 
 static void BM_row(benchmark::State &state)
 {
-
-    const int row = 1024, col = 1024;
+    const int row = 10240, col = 1024;
     std::vector<std::vector<uint64_t>> cache;
     cache.resize(row);
     for (auto &it : cache)
@@ -84,7 +83,7 @@ static void BM_row(benchmark::State &state)
 
 static void BM_col(benchmark::State &state)
 {
-    const int row = 1024, col = 1024;
+    const int row = 10240, col = 1024;
     std::vector<std::vector<uint64_t>> cache;
     cache.resize(row);
     for (auto &it : cache)
@@ -94,9 +93,9 @@ static void BM_col(benchmark::State &state)
     uint64_t sum{};
     for (auto _ : state)
     {
-        for (auto i = 0; i < row; i++)
+        for (auto i = 0; i < col; i++)
         {
-            for (auto j = 0; j < col; j++)
+            for (auto j = 0; j < row; j++)
             {
                 sum += cache[j][i];
             }

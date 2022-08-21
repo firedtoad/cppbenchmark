@@ -1,6 +1,9 @@
 #include "benchmark/benchmark.h"
 #include <absl/base/internal/spinlock.h>
 #include <boost/smart_ptr/detail/spinlock.hpp>
+#include <boost/fiber/detail/spinlock_ttas.hpp>
+#include <boost/fiber/detail/spinlock.hpp>
+#include <boost/fiber/detail/futex.hpp>
 
 template <typename T> void benchmark_mutex_lock_unlock(benchmark::State &state)
 {
@@ -13,6 +16,8 @@ template <typename T> void benchmark_mutex_lock_unlock(benchmark::State &state)
 }
 
 BENCHMARK_TEMPLATE(benchmark_mutex_lock_unlock, boost::detail::spinlock)->ThreadRange(1, 16);
+BENCHMARK_TEMPLATE(benchmark_mutex_lock_unlock, std::mutex)->ThreadRange(1, 16);
+BENCHMARK_TEMPLATE(benchmark_mutex_lock_unlock, boost::fibers::detail::spinlock_ttas)->ThreadRange(1, 16);
 
 template <typename T> void benchmark_mutex_Lock_Unlock(benchmark::State &state)
 {

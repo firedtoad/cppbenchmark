@@ -1,8 +1,6 @@
 #include <benchmark/benchmark.h>
 #include <boost/context/continuation.hpp>
-#include <boost/context/fiber.hpp>
 #include <boost/fiber/all.hpp>
-
 #include <iostream>
 static void BenchCallCcUnwind(benchmark::State &state)
 {
@@ -21,7 +19,7 @@ static void BenchCallCcUnwind(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchCallCcUnwind)->Range(1024, 1024);
+BENCHMARK(BenchCallCcUnwind);
 
 static void BenchCallCc(benchmark::State &state)
 {
@@ -41,38 +39,75 @@ static void BenchCallCc(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchCallCc)->Range(1024, 1024);
+BENCHMARK(BenchCallCc);
 
-static void BenchFiberCreate(benchmark::State &state)
+static void BenchFiberCreateDetach(benchmark::State &state)
 {
+    namespace fibers = boost::fibers;
     for (auto _ : state)
     {
-        namespace fibers = boost::fibers;
-        fibers::fiber fb{fibers::launch::post,
-                         [](int x)
-                         {
-                         },
-                         10};
-        fb.join();
+        fibers::fiber(fibers::launch::dispatch, []() {}).detach();
     }
 }
 
-BENCHMARK(BenchFiberCreate)->Range(1024, 1024);
+BENCHMARK(BenchFiberCreateDetach);
+
+static void BenchFiberCreateJoin(benchmark::State &state)
+{
+    namespace fibers = boost::fibers;
+    for (auto _ : state)
+    {
+        fibers::fiber(fibers::launch::dispatch, []() {}).join();
+    }
+}
+
+BENCHMARK(BenchFiberCreateJoin);
+
+static void BenchFiberUnBufferChannel(benchmark::State &state)
+{
+    namespace fibers = boost::fibers;
+    fibers::unbuffered_channel<int> ch;
+    fibers::fiber reader{fibers::launch::dispatch, [&ch]()
+                         {
+                             for(auto &it:ch)
+                             {
+
+                             }
+                         }};
+    for (auto _ : state)
+    {
+        ch.push(1);
+    }
+    ch.close();
+    reader.join();
+}
+
+BENCHMARK(BenchFiberUnBufferChannel);
+
+static void BenchFiberBufferChannel(benchmark::State &state)
+{
+    namespace fibers = boost::fibers;
+    fibers::buffered_channel<int> ch(1024);
+    fibers::fiber reader{fibers::launch::dispatch, [&ch]
+                         {
+                            for(auto &it:ch)
+                            {
+
+                            }
+                         }};
+    for (auto _ : state)
+    {
+        ch.push(1);
+    }
+    ch.close();
+    reader.join();
+
+}
+
+BENCHMARK(BenchFiberBufferChannel);
 
 int main(int argc, char **argv)
 {
-    {
-        namespace fibers = boost::fibers;
-        fibers::fiber fb{fibers::launch::post,
-                         [](int x)
-                         {
-                             std::cout << x;
-                             x = 100;
-                         },
-                         10};
-        fb.join();
-    }
-
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

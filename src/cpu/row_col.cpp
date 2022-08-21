@@ -8,7 +8,7 @@
 
 static void BM_row(benchmark::State &state)
 {
-    const int row = 1024, col = 1024;
+    const int row = 10240, col = 1024;
     std::vector<std::vector<uint64_t>> cache;
     cache.resize(row);
     for (auto &it : cache)
@@ -31,7 +31,7 @@ static void BM_row(benchmark::State &state)
 
 static void BM_col(benchmark::State &state)
 {
-    const int row = 1024, col = 1024;
+    const int row = 10240, col = 1024;
     std::vector<std::vector<uint64_t>> cache;
     cache.resize(row);
     for (auto &it : cache)
