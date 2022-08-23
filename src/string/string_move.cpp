@@ -1,4 +1,5 @@
 #include <benchmark/benchmark.h>
+#include <unordered_map>
 struct LogCopy
 {
     template <typename F>
@@ -27,7 +28,7 @@ struct LogMove
 
 template <typename S> static void BenchStringMove(benchmark::State &state)
 {
-    auto fn = [] { return "asdasdasddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"; };
+    auto fn = [] { return "1111111111111111111111111111111111111111111111111111111111111111111111111111111"; };
     for (auto _ : state)
     {
         S s(__FILE__, __LINE__, __PRETTY_FUNCTION__, std::move(fn));
@@ -37,6 +38,79 @@ template <typename S> static void BenchStringMove(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BenchStringMove, LogCopy);
 BENCHMARK_TEMPLATE(BenchStringMove, LogMove);
+
+struct Pod
+{
+    Pod() {}
+
+    void ReSize(size_t sz)
+    {
+        s.resize(sz);
+    }
+    Pod(const Pod &) noexcept = default;
+    //    Pod(Pod &&) noexcept = default ;
+    //    Pod &operator=(Pod &&) noexcept = default ;
+    void Swap(Pod &p)
+    {
+        s.swap(p.s);
+    }
+    ~Pod() {}
+    std::string s;
+};
+
+Pod rvo()
+{
+    Pod p{};
+    p.ReSize(1024);
+    return p;
+}
+
+static void BenchRvo(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        auto r = rvo();
+        benchmark::DoNotOptimize(r);
+    }
+}
+
+static void BenchCopy(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        auto r = std::move(rvo());
+        benchmark::DoNotOptimize(r);
+    }
+}
+
+BENCHMARK(BenchCopy);
+BENCHMARK(BenchRvo);
+
+static void BenchUnmapCopy(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        std::unordered_map<uint32_t, Pod> umap;
+        Pod p;
+        p.ReSize(state.range(0));
+        umap.insert(std::make_pair(1, p));
+        benchmark::DoNotOptimize(umap.size());
+    }
+}
+
+static void BenchUnmapRvo(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        std::unordered_map<uint32_t, Pod> umap;
+        Pod p;
+        p.ReSize(state.range(0));
+        umap[1].Swap(p);
+        benchmark::DoNotOptimize(umap.size());
+    }
+}
+BENCHMARK(BenchUnmapCopy)->Range(1, 1 << 10);
+BENCHMARK(BenchUnmapRvo)->Range(1, 1 << 10);
 
 int main(int argc, char **argv)
 {
