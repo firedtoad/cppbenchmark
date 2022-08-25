@@ -821,13 +821,13 @@ template <typename Key, typename Compare, typename Alloc, int TargetNodeSize, bo
         // Upper bound for the available space for values. This is largest for leaf
         // nodes, which have overhead of at least a pointer + 4 bytes (for storing
         // 3 field_types and an enum).
-        kNodeValueSpace = TargetNodeSize - /*minimum overhead=*/(sizeof(void *) + 4),
+        kNodeSlotSpace = TargetNodeSize - /*minimum overhead=*/(sizeof(void *) + 4),
     };
 
     // This is an integral type large enough to hold as many
     // ValueSize-values as will fit a node of TargetNodeSize bytes.
     using node_count_type =
-        phmap::conditional_t<(kNodeValueSpace / sizeof(value_type) > (std::numeric_limits<uint8_t>::max)()), uint16_t, uint8_t>; // NOLINT
+        phmap::conditional_t<(kNodeSlotSpace / sizeof(slot_type) > (std::numeric_limits<uint8_t>::max)()), uint16_t, uint8_t>; // NOLINT
 
     // The following methods are necessary for passing this struct as PolicyTraits
     // for node_handle and/or are used within btree.
@@ -1075,8 +1075,8 @@ template <typename Params> class btree_node
                                                                              std::is_same<std::less<key_type>, key_compare>::value ||
                                                                              std::is_same<std::greater<key_type>, key_compare>::value)>;
 
-    ~btree_node()                             = default;
-    btree_node(btree_node const &)            = delete;
+    ~btree_node()                  = default;
+    btree_node(btree_node const &) = delete;
     btree_node &operator=(btree_node const &) = delete;
 
     // Public for EmptyNodeType.
@@ -1604,6 +1604,14 @@ template <typename Node, typename Reference, typename Pointer> struct btree_iter
         return node == x.node && position == x.position;
     }
     bool operator!=(const const_iterator &x) const
+    {
+        return node != x.node || position != x.position;
+    }
+    bool operator==(const iterator &x) const
+    {
+        return node == x.node && position == x.position;
+    }
+    bool operator!=(const iterator &x) const
     {
         return node != x.node || position != x.position;
     }
@@ -2363,10 +2371,13 @@ template <typename P> void btree_node<P>::rebalance_left_to_right(const int to_m
 
         // 1) Shift existing values in the right node to their correct positions.
         right->uninitialized_move_n(to_move, right->count() - to_move, right->count(), right, alloc);
-        for (slot_type *src = right->slot(right->count() - to_move - 1), *dest = right->slot(right->count() - 1), *end = right->slot(0); src >= end;
-             --src, --dest)
+        if (right->count() > to_move)
         {
-            params_type::move(alloc, src, dest);
+            for (slot_type *src = right->slot(right->count() - to_move - 1), *dest = right->slot(right->count() - 1), *end = right->slot(0);
+                 src >= end; --src, --dest)
+            {
+                params_type::move(alloc, src, dest);
+            }
         }
 
         // 2) Move the delimiting value in the parent to the right node.
@@ -2641,7 +2652,7 @@ template <typename P> constexpr bool btree<P>::static_assert_validation()
                   "key comparison function must return phmap::{weak,strong}_ordering or "
                   "bool.");
 
-    // Test the assumption made in setting kNodeValueSpace.
+    // Test the assumption made in setting kNodeSlotSpace.
     static_assert(node_type::MinimumOverhead() >= sizeof(void *) + 4, "node space assumption incorrect");
 
     return true;
@@ -3508,9 +3519,9 @@ template <typename Tree> class btree_container
     // Constructors/assignments.
     btree_container() : tree_(key_compare(), allocator_type()) {}
     explicit btree_container(const key_compare &comp, const allocator_type &alloc = allocator_type()) : tree_(comp, alloc) {}
-    btree_container(const btree_container &x)                                                              = default;
-    btree_container(btree_container &&x) noexcept                                                          = default;
-    btree_container &operator=(const btree_container &x)                                                   = default;
+    btree_container(const btree_container &x)     = default;
+    btree_container(btree_container &&x) noexcept = default;
+    btree_container &operator=(const btree_container &x) = default;
     btree_container &operator=(btree_container &&x) noexcept(std::is_nothrow_move_assignable<Tree>::value) = default;
 
     // Iterator routines.
@@ -3564,6 +3575,12 @@ template <typename Tree> class btree_container
     }
 
     // Lookup routines.
+    // ----------------
+    template <typename K = key_type> size_type count(const key_arg<K> &key) const
+    {
+        auto equal_range = this->equal_range(key);
+        return std::distance(equal_range.first, equal_range.second);
+    }
     template <typename K = key_type> iterator find(const key_arg<K> &key)
     {
         return tree_.find(key);
@@ -3620,7 +3637,11 @@ template <typename Tree> class btree_container
     {
         return tree_.erase(iterator(first), iterator(last)).second;
     }
-
+    template <typename K = key_type> size_type erase(const key_arg<K> &key)
+    {
+        auto equal_range = this->equal_range(key);
+        return tree_.erase_range(equal_range.first, equal_range.second).first;
+    }
     node_type extract(iterator position)
     {
         // Use Move instead of Transfer, because the rebalancing code expects to
@@ -3763,6 +3784,8 @@ template <typename Tree> class btree_set_container : public btree_container<Tree
     {
     }
 
+    btree_set_container(std::initializer_list<init_type> init, const allocator_type &alloc) : btree_set_container(init.begin(), init.end(), alloc) {}
+
     // Lookup routines.
     template <typename K = key_type> size_type count(const key_arg<K> &key) const
     {
@@ -3783,19 +3806,19 @@ template <typename Tree> class btree_set_container : public btree_container<Tree
         init_type v(std::forward<Args>(args)...);
         return this->tree_.insert_unique(params_type::key(v), std::move(v));
     }
-    iterator insert(const_iterator position, const value_type &x)
+    iterator insert(const_iterator hint, const value_type &x)
     {
-        return this->tree_.insert_hint_unique(iterator(position), params_type::key(x), x).first;
+        return this->tree_.insert_hint_unique(iterator(hint), params_type::key(x), x).first;
     }
-    iterator insert(const_iterator position, value_type &&x)
+    iterator insert(const_iterator hint, value_type &&x)
     {
-        return this->tree_.insert_hint_unique(iterator(position), params_type::key(x), std::move(x)).first;
+        return this->tree_.insert_hint_unique(iterator(hint), params_type::key(x), std::move(x)).first;
     }
 
-    template <typename... Args> iterator emplace_hint(const_iterator position, Args &&...args)
+    template <typename... Args> iterator emplace_hint(const_iterator hint, Args &&...args)
     {
         init_type v(std::forward<Args>(args)...);
-        return this->tree_.insert_hint_unique(iterator(position), params_type::key(v), std::move(v)).first;
+        return this->tree_.insert_hint_unique(iterator(hint), params_type::key(v), std::move(v)).first;
     }
 
     template <typename InputIterator> void insert(InputIterator b, InputIterator e)
@@ -4020,13 +4043,13 @@ template <typename Tree> class btree_multiset_container : public btree_container
     {
         return this->tree_.insert_multi(std::move(x));
     }
-    iterator insert(const_iterator position, const value_type &x)
+    iterator insert(const_iterator hint, const value_type &x)
     {
-        return this->tree_.insert_hint_multi(iterator(position), x);
+        return this->tree_.insert_hint_multi(iterator(hint), x);
     }
-    iterator insert(const_iterator position, value_type &&x)
+    iterator insert(const_iterator hint, value_type &&x)
     {
-        return this->tree_.insert_hint_multi(iterator(position), std::move(x));
+        return this->tree_.insert_hint_multi(iterator(hint), std::move(x));
     }
     template <typename InputIterator> void insert(InputIterator b, InputIterator e)
     {
@@ -4040,9 +4063,9 @@ template <typename Tree> class btree_multiset_container : public btree_container
     {
         return this->tree_.insert_multi(init_type(std::forward<Args>(args)...));
     }
-    template <typename... Args> iterator emplace_hint(const_iterator position, Args &&...args)
+    template <typename... Args> iterator emplace_hint(const_iterator hint, Args &&...args)
     {
-        return this->tree_.insert_hint_multi(iterator(position), init_type(std::forward<Args>(args)...));
+        return this->tree_.insert_hint_multi(iterator(hint), init_type(std::forward<Args>(args)...));
     }
     iterator insert(node_type &&node)
     {
@@ -4144,10 +4167,12 @@ class btree_set : public priv::btree_set_container<priv::btree<priv::set_params<
     using Base::get_allocator;
     using Base::insert;
     using Base::key_comp;
+    using Base::lower_bound;
     using Base::max_size;
     using Base::merge;
     using Base::size;
     using Base::swap;
+    using Base::upper_bound;
     using Base::value_comp;
 };
 
@@ -4204,10 +4229,12 @@ class btree_multiset
     using Base::get_allocator;
     using Base::insert;
     using Base::key_comp;
+    using Base::lower_bound;
     using Base::max_size;
     using Base::merge;
     using Base::size;
     using Base::swap;
+    using Base::upper_bound;
     using Base::value_comp;
 };
 
@@ -4262,11 +4289,13 @@ class btree_map : public priv::btree_map_container<priv::btree<priv::map_params<
     using Base::extract;
     using Base::find;
     using Base::insert;
+    using Base::lower_bound;
     using Base::max_size;
     using Base::merge;
     using Base::size;
     using Base::swap;
     using Base::try_emplace;
+    using Base::upper_bound;
     using Base::operator[];
     using Base::get_allocator;
     using Base::key_comp;
@@ -4325,10 +4354,12 @@ class btree_multimap
     using Base::get_allocator;
     using Base::insert;
     using Base::key_comp;
+    using Base::lower_bound;
     using Base::max_size;
     using Base::merge;
     using Base::size;
     using Base::swap;
+    using Base::upper_bound;
     using Base::value_comp;
 };
 

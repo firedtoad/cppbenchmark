@@ -1,19 +1,17 @@
 #include <benchmark/benchmark.h>
-#include <vector>
 #include <llvm/ADT/SmallVector.h>
-
+#include <vector>
 
 struct Pod
 {
     char c[128];
 };
 
-
 static void BM_insert(benchmark::State &state)
 {
     for (auto _ : state)
     {
-        llvm::SmallVector<Pod,1024> v;
+        llvm::SmallVector<Pod, 1024> v;
         for (auto i = 0; i < 1024; i++)
         {
             benchmark::DoNotOptimize(v.emplace_back(Pod{}));

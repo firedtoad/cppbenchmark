@@ -11,8 +11,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-uint64_t tag  = 1234567890123456;
-float    tagf = M_PI;
+uint64_t tag = 1234567890123456;
+float tagf   = M_PI;
 
 template <typename S, typename T> void NumberToString(T &t, std::string &str)
 {

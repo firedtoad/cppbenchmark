@@ -8,7 +8,7 @@ add_executable(string_move string_move.cpp)
 
 target_compile_features(string_format PRIVATE cxx_std_20)
 
-target_link_libraries(string_split PRIVATE absl_strings absl_throw_delegate  absl_str_format_internal protobuf)
+target_link_libraries(string_split PRIVATE absl_strings absl_throw_delegate absl_str_format_internal protobuf)
 target_link_libraries(string_from PRIVATE absl_strings absl_str_format_internal protobuf)
 target_link_libraries(string_to PRIVATE absl_strings absl_str_format_internal protobuf)
 target_link_libraries(string_format PRIVATE absl_strings absl_str_format_internal fmt protobuf)

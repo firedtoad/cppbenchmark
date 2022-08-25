@@ -6,13 +6,13 @@
 #include "tsl/ordered_map.h"
 #include <benchmark/benchmark.h>
 #include <iostream>
-#include <map>
 #include <llvm/ADT/ImmutableMap.h>
+#include <map>
 
 static inline uint64_t xor_shift96()
 { /* A George Marsaglia generator, period 2^96-1 */
     static uint64_t x = 123456789, y = 362436069, z = 521288629;
-    uint64_t        t;
+    uint64_t t;
 
     x ^= x << 16;
     x ^= x >> 5;
@@ -33,7 +33,7 @@ static inline uint64_t _random()
 
 template <class M> static void BenchOrderMapInt(benchmark::State &state)
 {
-    M                m;
+    M m;
     std::vector<int> keys;
     keys.reserve(65536);
     for (auto i = 0; i < 65536; i++)
@@ -75,7 +75,7 @@ static void BenchImmutableMapInt(benchmark::State &state)
     for (auto _ : state)
     {
         auto idx = keys[_random() % 65536];
-        auto c   =  m.lookup(idx);
+        auto c   = m.lookup(idx);
         benchmark::DoNotOptimize(c);
     }
 }
@@ -84,7 +84,7 @@ BENCHMARK(BenchImmutableMapInt);
 
 template <class M> static void BenchOrderMapString(benchmark::State &state)
 {
-    M                        m;
+    M m;
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {

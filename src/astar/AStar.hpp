@@ -1,13 +1,7 @@
-/*
-    Copyright (c) 2015, Damian Barczynski <daan.net@wp.eu>
-    Following tool is licensed under the terms and conditions of the ISC
-   license. For more information visit https://opensource.org/licenses/ISC.
-*/
 #ifndef __ASTAR_HPP__
 #define __ASTAR_HPP__
 
-#include "tsl/robin_map.h"
-#include "tsl/robin_set.h"
+#include "parallel_hashmap/phmap.h"
 #include <functional>
 #include <vector>
 
@@ -42,13 +36,13 @@ struct CoordHash
 {
     size_t operator()(const Vec2i &coord) const
     {
-        return (coord.x * 100000) + coord.y;
+        return (size_t(coord.x) << 32) + coord.y;
     }
 };
 
 using NodeHeap = std::vector<Node *>;
-using CoordMap = tsl::robin_map<Vec2i, Node *, CoordHash>;
-using CordSet  = tsl::robin_set<Vec2i, CoordHash>;
+using CoordMap = phmap::flat_hash_map<Vec2i, Node *, CoordHash>;
+using CordSet  = phmap::flat_hash_set<Vec2i, CoordHash>;
 class Generator
 {
     bool detectCollision(const Vec2i &coordinates_);

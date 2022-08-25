@@ -239,7 +239,7 @@ template <typename CharT, typename Traits> std::basic_istream<CharT, Traits> &op
 
 inline std::ostream &operator<<(std::ostream &out, uint8_t value)
 {
-    return pcg_extras::operator<< <char>(out, value);
+    return pcg_extras::operator<<<char>(out, value);
 }
 
 inline std::istream &operator>>(std::istream &in, uint8_t &value)

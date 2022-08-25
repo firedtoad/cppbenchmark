@@ -4,12 +4,12 @@
 
 #ifndef BENCH_LIB3RD_LLVM_FASTVECTOR_H_
 #define BENCH_LIB3RD_LLVM_FASTVECTOR_H_
-#include "tsl/robin_map.h"
+#include "parallel_hashmap/phmap.h"
 #include <algorithm>
 #include <functional>
 #include <vector>
 
-template <class T, class K = T, class FastMap = tsl::robin_map<K, uint32_t>> struct fast_vector
+template <class T, class K = T, class FastMap = phmap::flat_hash_map<K, uint32_t>> struct fast_vector
 {
     using Vector = std::vector<T>;
     typedef typename Vector::iterator iterator;
@@ -63,9 +63,9 @@ template <class T, class K = T, class FastMap = tsl::robin_map<K, uint32_t>> str
 
     iterator insert(const T &val)
     {
-        auto key   = *reinterpret_cast<const K *>(&val);
-        auto it    = m_index.insert(std::make_pair(key, 0));
-        auto& index = it.first->second;
+        auto key    = *reinterpret_cast<const K *>(&val);
+        auto it     = m_index.insert(std::make_pair(key, 0));
+        auto &index = it.first->second;
         if (it.second)
         {
             m_data.emplace_back(val);
@@ -76,9 +76,9 @@ template <class T, class K = T, class FastMap = tsl::robin_map<K, uint32_t>> str
 
     iterator insert(T &&val)
     {
-        auto key   = *reinterpret_cast<const K *>(&val);
-        auto it    = m_index.insert(std::make_pair(key, 0));
-        auto& index = it.first->second;
+        auto key    = *reinterpret_cast<const K *>(&val);
+        auto it     = m_index.insert(std::make_pair(key, 0));
+        auto &index = it.first->second;
         if (it.second)
         {
             m_data.emplace_back(std::forward<T>(val));
@@ -109,8 +109,8 @@ template <class T, class K = T, class FastMap = tsl::robin_map<K, uint32_t>> str
 
     reference operator[](const K &key)
     {
-        auto it    = m_index.insert(std::make_pair(key, 0));
-        auto& index = it.first->second;
+        auto it     = m_index.insert(std::make_pair(key, 0));
+        auto &index = it.first->second;
         if (it.second)
         {
             m_data.emplace_back(key);
@@ -121,8 +121,8 @@ template <class T, class K = T, class FastMap = tsl::robin_map<K, uint32_t>> str
 
     reference operator[](K &&key)
     {
-        auto it    = m_index.insert(std::make_pair(std::forward<K>(key), 0));
-        auto& index = it.first->second;
+        auto it     = m_index.insert(std::make_pair(std::forward<K>(key), 0));
+        auto &index = it.first->second;
         if (it.second)
         {
             m_data.emplace_back(std::forward<K>(key));
@@ -176,7 +176,7 @@ template <class T, class K = T, class FastMap = tsl::robin_map<K, uint32_t>> str
     FastMap m_index; // index
 };
 
-template <class K, class V, class FastMap = tsl::robin_map<K, uint32_t>> struct fast_vector_map
+template <class K, class V, class FastMap = phmap::flat_hash_map<K, uint32_t>> struct fast_vector_map
 {
     using Vector = std::vector<std::pair<K, V>>;
     typedef typename Vector::iterator iterator;
@@ -230,8 +230,8 @@ template <class K, class V, class FastMap = tsl::robin_map<K, uint32_t>> struct 
 
     iterator insert(const K &key, const V &val)
     {
-        auto it    = m_index.insert(std::make_pair(key, 0));
-        auto& index = it.first->second;
+        auto it     = m_index.insert(std::make_pair(key, 0));
+        auto &index = it.first->second;
         if (it.second)
         {
             m_data.emplace_back(key, V{});
@@ -242,7 +242,7 @@ template <class K, class V, class FastMap = tsl::robin_map<K, uint32_t>> struct 
 
     iterator insert(K &&key, V &&val)
     {
-        auto it    = m_index.insert(std::make_pair(std::forward<K>(key), 0));
+        auto it     = m_index.insert(std::make_pair(std::forward<K>(key), 0));
         auto &index = it.first->second;
         if (it.second)
         {
@@ -274,8 +274,9 @@ template <class K, class V, class FastMap = tsl::robin_map<K, uint32_t>> struct 
 
     V &operator[](const K &key)
     {
-        auto it    = m_index.insert(std::make_pair(key, 0));
-        auto& index = it.first->second;
+        auto p      = std::make_pair(key, 0);
+        auto it     = m_index.insert(p);
+        auto &index = it.first->second;
         if (it.second)
         {
             m_data.emplace_back(key, V{});
@@ -286,8 +287,8 @@ template <class K, class V, class FastMap = tsl::robin_map<K, uint32_t>> struct 
 
     V &operator[](K &&key)
     {
-        auto it    = m_index.insert(std::make_pair(key, 0));
-        auto& index = it.first->second;
+        auto it     = m_index.insert(std::make_pair(key, 0));
+        auto &index = it.first->second;
         if (it.second)
         {
             m_data.emplace_back(std::forward<K>(key), V{});

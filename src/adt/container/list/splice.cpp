@@ -11,10 +11,8 @@
 using mode               = boost::intrusive::link_mode<boost::intrusive::auto_unlink>;
 using constant_time_size = boost::intrusive::constant_time_size<false>;
 
-#include <llvm/ADT/simple_ilist.h>
 #include <llvm/ADT/ilist.h>
-
-
+#include <llvm/ADT/simple_ilist.h>
 
 struct SList : public boost::intrusive::list_base_hook<mode>
 {
@@ -158,14 +156,14 @@ static void BenchAdtListSplice(benchmark::State &state)
     for (auto _ : state)
     {
         state.PauseTiming();
-        llvm::ilist<LNode,llvm::ilist_tag<LNode>> v;
-        llvm::ilist<LNode,llvm::ilist_tag<LNode>> v1;
+        llvm::ilist<LNode, llvm::ilist_tag<LNode>> v;
+        llvm::ilist<LNode, llvm::ilist_tag<LNode>> v1;
         for (auto i = 0; i < state.range(0); i++)
         {
             v.push_back(new LNode());
         }
         state.ResumeTiming();
-        v1.splice(v1.end(),v);
+        v1.splice(v1.end(), v);
     }
 }
 
@@ -176,8 +174,8 @@ static void BenchAdtListSwap(benchmark::State &state)
     for (auto _ : state)
     {
         state.PauseTiming();
-        llvm::ilist<LNode,llvm::ilist_tag<LNode>> v;
-        llvm::ilist<LNode,llvm::ilist_tag<LNode>> v1;
+        llvm::ilist<LNode, llvm::ilist_tag<LNode>> v;
+        llvm::ilist<LNode, llvm::ilist_tag<LNode>> v1;
         for (auto i = 0; i < state.range(0); i++)
         {
             v.push_back(new LNode());
@@ -194,8 +192,8 @@ static void BenchAdtSimpleListSplice(benchmark::State &state)
     for (auto _ : state)
     {
         state.PauseTiming();
-        llvm::simple_ilist<LNode,llvm::ilist_tag<LNode>> v;
-        llvm::simple_ilist<LNode,llvm::ilist_tag<LNode>> v1;
+        llvm::simple_ilist<LNode, llvm::ilist_tag<LNode>> v;
+        llvm::simple_ilist<LNode, llvm::ilist_tag<LNode>> v1;
         std::vector<LNode> vs;
         vs.resize(state.range(0));
         for (auto i = 0; i < state.range(0); i++)
@@ -203,7 +201,7 @@ static void BenchAdtSimpleListSplice(benchmark::State &state)
             v.push_back(vs[i]);
         }
         state.ResumeTiming();
-        v1.splice(v1.end(),v);
+        v1.splice(v1.end(), v);
     }
 }
 
@@ -214,8 +212,8 @@ static void BenchAdtSimpleListSwap(benchmark::State &state)
     for (auto _ : state)
     {
         state.PauseTiming();
-        llvm::simple_ilist<LNode,llvm::ilist_tag<LNode>> v;
-        llvm::simple_ilist<LNode,llvm::ilist_tag<LNode>> v1;
+        llvm::simple_ilist<LNode, llvm::ilist_tag<LNode>> v;
+        llvm::simple_ilist<LNode, llvm::ilist_tag<LNode>> v1;
         std::vector<LNode> vs;
         vs.resize(state.range(0));
         for (auto i = 0; i < state.range(0); i++)

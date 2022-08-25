@@ -28,7 +28,7 @@ struct LNode : public llvm::ilist_node<LNode, llvm::ilist_tag<LNode>>
 
 struct INode
 {
-    int  x{};
+    int x{};
     void Profile(llvm::FoldingSetNodeID &ID) const {}
 };
 
@@ -50,7 +50,7 @@ static void BenchBUListInsert(benchmark::State &state)
 {
     for (auto _ : state)
     {
-        butil::LinkedList<SList>            v;
+        butil::LinkedList<SList> v;
         std::vector<butil::LinkNode<SList>> vs;
         vs.resize(state.range(0));
         for (auto i = 0; i < state.range(0); i++)
@@ -67,7 +67,7 @@ static void BenchIntrusiveListInsert(benchmark::State &state)
 
     for (auto _ : state)
     {
-        std::vector<SList>                                lst(state.range(0));
+        std::vector<SList> lst(state.range(0));
         boost::intrusive::list<SList, constant_time_size> v;
         for (auto i = 0; i < state.range(0); i++)
         {
@@ -114,7 +114,7 @@ static void BenchAdtSimpleList(benchmark::State &state)
     for (auto _ : state)
     {
         llvm::simple_ilist<LNode, llvm::ilist_tag<LNode>> v;
-        std::vector<LNode>                                vs;
+        std::vector<LNode> vs;
         vs.resize(state.range(0));
         for (auto i = 0; i < state.range(0); i++)
         {
@@ -131,8 +131,8 @@ static void BenchAdtImmutableList(benchmark::State &state)
     for (auto _ : state)
     {
         llvm::ImmutableList<INode>::Factory factory;
-        auto                                list = factory.getEmptyList();
-        std::vector<INode>                  vn;
+        auto list = factory.getEmptyList();
+        std::vector<INode> vn;
         vn.resize(state.range(0));
         for (auto i = 0; i < state.range(0); i++)
         {

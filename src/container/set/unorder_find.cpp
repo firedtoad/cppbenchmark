@@ -42,14 +42,19 @@ static inline unsigned long _random()
 template <class M> static void BenchUnOrderSetInt(benchmark::State &state)
 {
     M m;
+    std::vector<int> keys;
     m.reserve(65536);
+    keys.reserve(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        m.insert(i);
+        auto r = _random();
+        keys.push_back(r);
+        m.insert(r);
     }
     for (auto _ : state)
     {
-        auto c = m.find(_random() % 65536);
+        auto idx = keys[_random() % 65536];
+        auto c   = m.find(idx);
         benchmark::DoNotOptimize(c);
     }
 }

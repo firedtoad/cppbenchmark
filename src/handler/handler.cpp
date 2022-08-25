@@ -34,14 +34,14 @@ static inline unsigned long _random()
 
 static void BM_map(benchmark::State &state)
 {
-    for (auto i = 0; i < 65536; i++)
+    for (auto i = 0; i < state.range(); i++)
     {
         map_handler[i] = []() -> int { return 1; };
     }
 
     for (auto _ : state)
     {
-        auto idx      = _random() % 65536;
+        auto idx      = _random() % state.range();
         const auto it = map_handler.find(idx);
         if (it != map_handler.end())
         {
@@ -52,15 +52,15 @@ static void BM_map(benchmark::State &state)
 
 static void BM_unmap(benchmark::State &state)
 {
-    unmap_handler.reserve(65536);
-    for (auto i = 0; i < 65536; i++)
+    unmap_handler.reserve(state.range());
+    for (auto i = 0; i < state.range(); i++)
     {
         unmap_handler[i] = []() -> int { return 1; };
     }
 
     for (auto _ : state)
     {
-        auto idx      = _random() % 65536;
+        auto idx      = _random() % state.range();
         const auto it = unmap_handler.find(idx);
         if (it != unmap_handler.end())
         {
@@ -71,13 +71,13 @@ static void BM_unmap(benchmark::State &state)
 
 static void BM_array(benchmark::State &state)
 {
-    for (auto i = 0; i < 65536; i++)
+    for (auto i = 0; i < state.range(); i++)
     {
         array_handler[i] = []() -> int { return 1; };
     }
     for (auto _ : state)
     {
-        auto idx = _random() % 65536;
+        auto idx = _random() % state.range();
         if (array_handler[idx])
         {
             benchmark::DoNotOptimize(array_handler[idx]());
@@ -85,9 +85,9 @@ static void BM_array(benchmark::State &state)
     }
 }
 
-BENCHMARK(BM_map);
-BENCHMARK(BM_unmap);
-BENCHMARK(BM_array);
+BENCHMARK(BM_map)->Range(1, 1 << 16);
+BENCHMARK(BM_unmap)->Range(1, 1 << 16);
+BENCHMARK(BM_array)->Range(1, 1 << 16);
 
 int main(int argc, char **argv)
 {

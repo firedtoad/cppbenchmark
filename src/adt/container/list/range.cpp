@@ -9,9 +9,9 @@
 #include <boost/intrusive/list_hook.hpp>
 #include <forward_list>
 #include <list>
-#include <llvm/ADT/simple_ilist.h>
-#include <llvm/ADT/ilist.h>
 #include <llvm/ADT/ImmutableList.h>
+#include <llvm/ADT/ilist.h>
+#include <llvm/ADT/simple_ilist.h>
 
 using mode               = boost::intrusive::link_mode<boost::intrusive::safe_link>;
 using constant_time_size = boost::intrusive::constant_time_size<true>;
@@ -29,8 +29,7 @@ struct LNode : public llvm::ilist_node<LNode, llvm::ilist_tag<LNode>>
 struct INode
 {
     int x{};
-    void Profile(llvm::FoldingSetNodeID &ID) const {
-    }
+    void Profile(llvm::FoldingSetNodeID &ID) const {}
 };
 
 static void BenchListRange(benchmark::State &state)
@@ -72,7 +71,6 @@ static void BenchForwardListRange(benchmark::State &state)
 }
 
 BENCHMARK(BenchForwardListRange)->Range(1, 1024);
-
 
 static void BenchBUListRange(benchmark::State &state)
 {
@@ -140,7 +138,7 @@ BENCHMARK(BenchPlfListRange)->Range(1, 1024);
 
 static void BenchAdtListRange(benchmark::State &state)
 {
-    llvm::ilist<LNode,llvm::ilist_tag<LNode>> v;
+    llvm::ilist<LNode, llvm::ilist_tag<LNode>> v;
     for (auto i = 0; i < state.range(0); i++)
     {
         v.push_back(new LNode);
@@ -161,7 +159,7 @@ BENCHMARK(BenchAdtListRange)->Range(1, 1024);
 
 static void BenchAdtSimpleListRange(benchmark::State &state)
 {
-    llvm::simple_ilist<LNode,llvm::ilist_tag<LNode>> v;
+    llvm::simple_ilist<LNode, llvm::ilist_tag<LNode>> v;
     std::vector<LNode> vs;
     vs.resize(state.range(0));
     for (auto i = 0; i < state.range(0); i++)
@@ -185,10 +183,10 @@ BENCHMARK(BenchAdtSimpleListRange)->Range(1, 1024);
 static void BenchAdtImmutableListRange(benchmark::State &state)
 {
     llvm::ImmutableList<INode>::Factory factory;
-    auto                               v = factory.getEmptyList();
+    auto v = factory.getEmptyList();
     for (auto i = 0; i < state.range(0); i++)
     {
-        v = factory.emplace( v,INode{i});
+        v = factory.emplace(v, INode{i});
     }
     int r = 0;
     for (auto _ : state)

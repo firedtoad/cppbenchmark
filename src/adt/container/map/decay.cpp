@@ -34,9 +34,6 @@ struct KeyInfo
     }
 };
 
-
-
-
 static void BM_unmap(benchmark::State &state)
 {
     std::unordered_map<int, int> unmap;

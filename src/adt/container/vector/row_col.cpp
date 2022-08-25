@@ -3,16 +3,16 @@
 //
 #include <sys/resource.h>
 
+#include "llvm/ADT/SmallVector.h"
 #include <benchmark/benchmark.h>
 #include <iostream>
 #include <vector>
-#include "llvm/ADT/SmallVector.h"
 
 static void BM_rowSmall(benchmark::State &state)
 {
 
     const int row = 1024, col = 1024;
-    llvm::SmallVector<llvm::SmallVector<char,col>,row> cache;
+    llvm::SmallVector<llvm::SmallVector<char, col>, row> cache;
     cache.resize(row);
     for (auto &it : cache)
     {
@@ -35,7 +35,7 @@ static void BM_rowSmall(benchmark::State &state)
 static void BM_colSmall(benchmark::State &state)
 {
     const int row = 1024, col = 1024;
-    llvm::SmallVector<llvm::SmallVector<char,col>,row> cache;
+    llvm::SmallVector<llvm::SmallVector<char, col>, row> cache;
     cache.resize(row);
     for (auto &it : cache)
     {
@@ -109,7 +109,7 @@ BENCHMARK(BM_col);
 
 int main(int argc, char **argv)
 {
-    const rlim_t kStackSize = 16 * 1024 * 1024;   // min stack size = 16 MB
+    const rlim_t kStackSize = 16 * 1024 * 1024; // min stack size = 16 MB
     struct rlimit rl;
     int result;
 
@@ -119,7 +119,7 @@ int main(int argc, char **argv)
         if (rl.rlim_cur < kStackSize)
         {
             rl.rlim_cur = kStackSize;
-            result = setrlimit(RLIMIT_STACK, &rl);
+            result      = setrlimit(RLIMIT_STACK, &rl);
             if (result != 0)
             {
                 fprintf(stderr, "setrlimit returned result = %d\n", result);

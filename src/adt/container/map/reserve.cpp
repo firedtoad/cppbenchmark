@@ -1,10 +1,6 @@
 #include <benchmark/benchmark.h>
 #include <unordered_map>
 
-#include <llvm/ADT/DenseMap.h>
-#include <llvm/ADT/MapVector.h>
-#include <llvm/ADT/IndexedMap.h>
-#include <llvm/ADT/StringMap.h>
 #include "bytell_hash_map.hpp"
 #include "flat_hash_map.hpp"
 #include "parallel_hashmap/phmap.h"
@@ -15,7 +11,10 @@
 #include "tsl/robin_map.h"
 #include "tsl/sparse_map.h"
 #include "unordered_map.hpp"
-#include "tsl/robin_map.h"
+#include <llvm/ADT/DenseMap.h>
+#include <llvm/ADT/IndexedMap.h>
+#include <llvm/ADT/MapVector.h>
+#include <llvm/ADT/StringMap.h>
 template <class M> static void BM_reserve(benchmark::State &state)
 {
     for (auto _ : state)
@@ -43,9 +42,7 @@ BENCHMARK_TEMPLATE(BM_reserve, tsl::sparse_map<int, int>)->Range(1 << 10, 1 << 2
 BENCHMARK_TEMPLATE(BM_reserve, llvm::DenseMap<int, int>)->Range(1 << 10, 1 << 20);
 BENCHMARK_TEMPLATE(BM_reserve, llvm::MapVector<int, int>)->Range(1 << 10, 1 << 20);
 
-
-template<class  M>
-static void BM_reserveIndex(benchmark::State &state)
+template <class M> static void BM_reserveIndex(benchmark::State &state)
 {
     for (auto _ : state)
     {
@@ -58,7 +55,7 @@ static void BM_reserveIndex(benchmark::State &state)
     }
 }
 
-BENCHMARK_TEMPLATE(BM_reserveIndex,llvm::IndexedMap<int>)->Range(1,1<<20);
+BENCHMARK_TEMPLATE(BM_reserveIndex, llvm::IndexedMap<int>)->Range(1, 1 << 20);
 
 int main(int argc, char **argv)
 {

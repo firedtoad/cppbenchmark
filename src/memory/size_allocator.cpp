@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector>
 //
-//void *operator new(size_t size)
+// void *operator new(size_t size)
 //{
 //    std::cout << __PRETTY_FUNCTION__ << " size " << size << '\n';
 //    void *p = malloc(size);
@@ -15,7 +15,7 @@
 //    return p;
 //}
 //
-//void *operator new[](size_t size)
+// void *operator new[](size_t size)
 //{
 //    std::cout << __PRETTY_FUNCTION__ << " size " << size << '\n';
 //    void *p = malloc(size);
@@ -85,13 +85,13 @@ int main(int argc, char **argv)
             auto sz = v.size();
             if (sz > 2 && (v[sz - 1] - v[sz - 2]) > 4096)
             {
-                std::cout << v[sz - 1] << " : " << v[sz - 2]<<" diff "<< v[sz - 1] - v[sz - 2] <<" sz " << sz << '\n';
+                std::cout << v[sz - 1] << " : " << v[sz - 2] << " diff " << v[sz - 1] - v[sz - 2] << " sz " << sz << '\n';
                 break;
             }
         }
         for (auto p : v)
         {
-//            delete p;
+            //            delete p;
         }
     }
 }

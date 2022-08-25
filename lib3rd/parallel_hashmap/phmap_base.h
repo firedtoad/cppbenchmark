@@ -301,7 +301,7 @@ template <typename... T> using common_type_t = typename std::common_type<T...>::
 template <typename T> using underlying_type_t = typename std::underlying_type<T>::type;
 
 template <class F, class... ArgTypes>
-#if PHMAP_HAVE_CC17
+#if PHMAP_HAVE_CC17 && defined(__cpp_lib_result_of_sfinae)
 using invoke_result_t = typename std::invoke_result_t<F, ArgTypes...>;
 #else
 using invoke_result_t = typename std::result_of<F(ArgTypes...)>::type;
@@ -1871,31 +1871,31 @@ template <copy_traits> class optional_ctor_base;
 template <> class optional_ctor_base<copy_traits::copyable>
 {
   public:
-    constexpr optional_ctor_base()                            = default;
-    optional_ctor_base(const optional_ctor_base &)            = default;
-    optional_ctor_base(optional_ctor_base &&)                 = default;
+    constexpr optional_ctor_base()                 = default;
+    optional_ctor_base(const optional_ctor_base &) = default;
+    optional_ctor_base(optional_ctor_base &&)      = default;
     optional_ctor_base &operator=(const optional_ctor_base &) = default;
-    optional_ctor_base &operator=(optional_ctor_base &&)      = default;
+    optional_ctor_base &operator=(optional_ctor_base &&) = default;
 };
 
 template <> class optional_ctor_base<copy_traits::movable>
 {
   public:
-    constexpr optional_ctor_base()                            = default;
-    optional_ctor_base(const optional_ctor_base &)            = delete;
-    optional_ctor_base(optional_ctor_base &&)                 = default;
+    constexpr optional_ctor_base()                 = default;
+    optional_ctor_base(const optional_ctor_base &) = delete;
+    optional_ctor_base(optional_ctor_base &&)      = default;
     optional_ctor_base &operator=(const optional_ctor_base &) = default;
-    optional_ctor_base &operator=(optional_ctor_base &&)      = default;
+    optional_ctor_base &operator=(optional_ctor_base &&) = default;
 };
 
 template <> class optional_ctor_base<copy_traits::non_movable>
 {
   public:
-    constexpr optional_ctor_base()                            = default;
-    optional_ctor_base(const optional_ctor_base &)            = delete;
-    optional_ctor_base(optional_ctor_base &&)                 = delete;
+    constexpr optional_ctor_base()                 = default;
+    optional_ctor_base(const optional_ctor_base &) = delete;
+    optional_ctor_base(optional_ctor_base &&)      = delete;
     optional_ctor_base &operator=(const optional_ctor_base &) = default;
-    optional_ctor_base &operator=(optional_ctor_base &&)      = default;
+    optional_ctor_base &operator=(optional_ctor_base &&) = default;
 };
 
 // Base class for enabling/disabling copy/move assignment.
@@ -1904,31 +1904,31 @@ template <copy_traits> class optional_assign_base;
 template <> class optional_assign_base<copy_traits::copyable>
 {
   public:
-    constexpr optional_assign_base()                              = default;
-    optional_assign_base(const optional_assign_base &)            = default;
-    optional_assign_base(optional_assign_base &&)                 = default;
+    constexpr optional_assign_base()                   = default;
+    optional_assign_base(const optional_assign_base &) = default;
+    optional_assign_base(optional_assign_base &&)      = default;
     optional_assign_base &operator=(const optional_assign_base &) = default;
-    optional_assign_base &operator=(optional_assign_base &&)      = default;
+    optional_assign_base &operator=(optional_assign_base &&) = default;
 };
 
 template <> class optional_assign_base<copy_traits::movable>
 {
   public:
-    constexpr optional_assign_base()                              = default;
-    optional_assign_base(const optional_assign_base &)            = default;
-    optional_assign_base(optional_assign_base &&)                 = default;
+    constexpr optional_assign_base()                   = default;
+    optional_assign_base(const optional_assign_base &) = default;
+    optional_assign_base(optional_assign_base &&)      = default;
     optional_assign_base &operator=(const optional_assign_base &) = delete;
-    optional_assign_base &operator=(optional_assign_base &&)      = default;
+    optional_assign_base &operator=(optional_assign_base &&) = default;
 };
 
 template <> class optional_assign_base<copy_traits::non_movable>
 {
   public:
-    constexpr optional_assign_base()                              = default;
-    optional_assign_base(const optional_assign_base &)            = default;
-    optional_assign_base(optional_assign_base &&)                 = default;
+    constexpr optional_assign_base()                   = default;
+    optional_assign_base(const optional_assign_base &) = default;
+    optional_assign_base(optional_assign_base &&)      = default;
     optional_assign_base &operator=(const optional_assign_base &) = delete;
-    optional_assign_base &operator=(optional_assign_base &&)      = delete;
+    optional_assign_base &operator=(optional_assign_base &&) = delete;
 };
 
 template <typename T> constexpr copy_traits get_ctor_copy_traits()
@@ -1975,11 +1975,11 @@ bool convertible_to_bool(bool);
 // Reference N4659 23.14.15 [unord.hash].
 template <typename T, typename = size_t> struct optional_hash_base
 {
-    optional_hash_base()                                      = delete;
-    optional_hash_base(const optional_hash_base &)            = delete;
-    optional_hash_base(optional_hash_base &&)                 = delete;
+    optional_hash_base()                           = delete;
+    optional_hash_base(const optional_hash_base &) = delete;
+    optional_hash_base(optional_hash_base &&)      = delete;
     optional_hash_base &operator=(const optional_hash_base &) = delete;
-    optional_hash_base &operator=(optional_hash_base &&)      = delete;
+    optional_hash_base &operator=(optional_hash_base &&) = delete;
 };
 
 template <typename T> struct optional_hash_base<T, decltype(std::hash<phmap::remove_const_t<T>>()(std::declval<phmap::remove_const_t<T>>()))>
@@ -2811,7 +2811,8 @@ template <typename Policy, typename PolicyTraits, typename Alloc, typename = voi
 template <typename Policy, typename PolicyTraits, typename Alloc>
 class node_handle<Policy, PolicyTraits, Alloc, phmap::void_t<typename Policy::mapped_type>> : public node_handle_base<PolicyTraits, Alloc>
 {
-    using Base = node_handle_base<PolicyTraits, Alloc>;
+    using Base      = node_handle_base<PolicyTraits, Alloc>;
+    using slot_type = typename PolicyTraits::slot_type;
 
   public:
     using key_type    = typename Policy::key_type;
@@ -3656,14 +3657,6 @@ template <int &...ExplicitArgumentBarrier, typename T, size_t N> constexpr Span<
 // ---------------------------------------------------------------------------
 //  layout.h
 // ---------------------------------------------------------------------------
-#if defined(__GXX_RTTI)
-#define PHMAP_INTERNAL_HAS_CXA_DEMANGLE
-#endif
-
-#ifdef PHMAP_INTERNAL_HAS_CXA_DEMANGLE
-#include <cxxabi.h>
-#endif
-
 namespace phmap
 {
 namespace priv
@@ -3862,7 +3855,7 @@ class LayoutImpl<std::tuple<Elements...>, phmap::index_sequence<SizeSeq...>, phm
     template <size_t N, EnableIf<N != 0> = 0> constexpr size_t Offset() const
     {
         static_assert(N < NumOffsets, "Index out of bounds");
-        return adl_barrier::Align(Offset<N - 1>() + SizeOf<ElementType<N - 1>>() * size_[N - 1], ElementAlignment<N>::value);
+        return adl_barrier::Align(Offset<N - 1>() + SizeOf<ElementType<N - 1>>::value * size_[N - 1], ElementAlignment<N>::value);
     }
 
     // Offset in bytes of the array with the specified element type. There must
@@ -4048,7 +4041,7 @@ class LayoutImpl<std::tuple<Elements...>, phmap::index_sequence<SizeSeq...>, phm
     constexpr size_t AllocSize() const
     {
         static_assert(NumTypes == NumSizes, "You must specify sizes of all fields");
-        return Offset<NumTypes - 1>() + SizeOf<ElementType<NumTypes - 1>>() * size_[NumTypes - 1];
+        return Offset<NumTypes - 1>() + SizeOf<ElementType<NumTypes - 1>>::value * size_[NumTypes - 1];
     }
 
     // If built with --config=asan, poisons padding bytes (if any) in the
@@ -4072,7 +4065,7 @@ class LayoutImpl<std::tuple<Elements...>, phmap::index_sequence<SizeSeq...>, phm
         // The `if` is an optimization. It doesn't affect the observable behaviour.
         if (ElementAlignment<N - 1>::value % ElementAlignment<N>::value)
         {
-            size_t start = Offset<N - 1>() + SizeOf<ElementType<N - 1>>() * size_[N - 1];
+            size_t start = Offset<N - 1>() + SizeOf<ElementType<N - 1>>::value * size_[N - 1];
             ASAN_POISON_MEMORY_REGION(p + start, Offset<N>() - start);
         }
 #endif
@@ -4578,8 +4571,8 @@ template <class K, class V> struct IsLayoutCompatible
 template <class K, class V> union map_slot_type
 {
     map_slot_type() {}
-    ~map_slot_type()                                = delete;
-    map_slot_type(const map_slot_type &)            = delete;
+    ~map_slot_type()                     = delete;
+    map_slot_type(const map_slot_type &) = delete;
     map_slot_type &operator=(const map_slot_type &) = delete;
 
     using value_type         = std::pair<const K, V>;
@@ -4995,7 +4988,7 @@ template <class MutexType> class LockableBaseImpl
             _m2.unlock();
         }
 
-        WriteLocks(WriteLocks const &)            = delete;
+        WriteLocks(WriteLocks const &) = delete;
         WriteLocks &operator=(WriteLocks const &) = delete;
 
       private:
@@ -5025,7 +5018,7 @@ template <class MutexType> class LockableBaseImpl
             _m2.unlock_shared();
         }
 
-        ReadLocks(ReadLocks const &)            = delete;
+        ReadLocks(ReadLocks const &) = delete;
         ReadLocks &operator=(ReadLocks const &) = delete;
 
       private:

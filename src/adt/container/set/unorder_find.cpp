@@ -17,11 +17,11 @@
 #include <iostream>
 #include <unordered_set>
 
-#include <llvm/ADT/SparseSet.h>
 #include <llvm/ADT/DenseSet.h>
-#include <llvm/ADT/SetVector.h>
-#include <llvm/ADT/StringSet.h>
 #include <llvm/ADT/FoldingSet.h>
+#include <llvm/ADT/SetVector.h>
+#include <llvm/ADT/SparseSet.h>
+#include <llvm/ADT/StringSet.h>
 
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
@@ -71,11 +71,7 @@ BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::bhopscotch_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::hopscotch_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::robin_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::sparse_set<int>);
-BENCHMARK_TEMPLATE(BenchUnOrderSetInt,llvm::DenseSet<int>);
-
-
-
-
+BENCHMARK_TEMPLATE(BenchUnOrderSetInt, llvm::DenseSet<int>);
 
 template <class M> static void BenchUnOrderVecSetInt(benchmark::State &state)
 {
@@ -91,7 +87,7 @@ template <class M> static void BenchUnOrderVecSetInt(benchmark::State &state)
     }
 }
 
-BENCHMARK_TEMPLATE(BenchUnOrderVecSetInt,llvm::SetVector<int>);
+BENCHMARK_TEMPLATE(BenchUnOrderVecSetInt, llvm::SetVector<int>);
 
 template <class M> static void BenchUnOrderSparseSetInt(benchmark::State &state)
 {
@@ -108,17 +104,17 @@ template <class M> static void BenchUnOrderSparseSetInt(benchmark::State &state)
     }
 }
 
-BENCHMARK_TEMPLATE(BenchUnOrderSparseSetInt,llvm::SparseSet<unsigned>);
+BENCHMARK_TEMPLATE(BenchUnOrderSparseSetInt, llvm::SparseSet<unsigned>);
 
 template <class M> static void BenchUnOrderSetString(benchmark::State &state)
 {
     M m;
     m.reserve(65536);
     std::vector<std::string> keys(65536);
-    int                      k = 1000000;
+    int k = 1000000;
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]            = "12345678901234561234567890123456" + std::to_string(k++);
+        keys[i] = "12345678901234561234567890123456" + std::to_string(k++);
         m.insert(keys[i]);
     }
     for (auto _ : state)
@@ -158,7 +154,6 @@ BENCHMARK_TEMPLATE(BenchUnOrderSetString, tsl::hopscotch_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, tsl::robin_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, tsl::sparse_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, llvm::DenseSet<llvm::StringRef>);
-
 
 BENCHMARK_TEMPLATE(BenchCharKeySet, tsl::htrie_set<char>);
 BENCHMARK_TEMPLATE(BenchCharKeySet, tsl::array_set<char>);

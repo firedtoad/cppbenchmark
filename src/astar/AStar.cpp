@@ -78,11 +78,11 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
         return {};
     }
     MemoryPool<AStar::Node> pool;
-    auto                    delta   = Heuristic::getDelta(source_, target_);
-    auto                    dist    = std::max(delta.x, delta.y) + 1;
-    Node                   *current = nullptr;
-    CordSet                 openSet;
-    NodeHeap                openHeap;
+    auto delta    = Heuristic::getDelta(source_, target_);
+    auto dist     = std::max(delta.x, delta.y) + 1;
+    Node *current = nullptr;
+    CordSet openSet;
+    NodeHeap openHeap;
     openHeap.reserve(dist * 4);
     CoordMap closedMap;
     openSet.reserve(dist * 4);
@@ -90,8 +90,8 @@ AStar::CoordinateList AStar::Generator::findPath(const Vec2i &source_, const Vec
     openHeap.emplace_back(pool.newElement(target_));
     std::push_heap(openHeap.begin(), openHeap.end(), comp);
     openSet.emplace(target_);
-    int  n            = 0;
-    int  N            = worldSize.x * worldSize.y;
+    int n             = 0;
+    int N             = worldSize.x * worldSize.y;
     bool reach_target = false;
     while (!openHeap.empty())
     {
@@ -177,10 +177,10 @@ AStar::CoordinateList AStar::Generator::findPathStack(const Vec2i &source_, cons
     openStack.reserve(dist);
     openStack.push_back(source_);
     Vec2i newPoint{};
-    int   n            = 0;
-    int   N            = worldSize.x * worldSize.y;
-    auto  dirs         = direction;
-    bool  reach_target = false;
+    int n             = 0;
+    int N             = worldSize.x * worldSize.y;
+    auto dirs         = direction;
+    bool reach_target = false;
     while (!openStack.empty())
     {
         auto point = openStack.back();

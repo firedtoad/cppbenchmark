@@ -17,10 +17,9 @@
 #include <iostream>
 #include <unordered_set>
 
-
-#include <llvm/ADT/SparseSet.h>
 #include <llvm/ADT/DenseSet.h>
 #include <llvm/ADT/SetVector.h>
+#include <llvm/ADT/SparseSet.h>
 #include <llvm/ADT/StringSet.h>
 
 template <class M> static void BenchRangeUnOrderSetInt(benchmark::State &state)
@@ -73,7 +72,7 @@ template <class M> static void BenchRangeVecSetInt(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK_TEMPLATE(BenchRangeVecSetInt,llvm::SetVector<int>);
+BENCHMARK_TEMPLATE(BenchRangeVecSetInt, llvm::SetVector<int>);
 
 template <class M> static void BenchRangeSparseSetInt(benchmark::State &state)
 {
@@ -94,8 +93,7 @@ template <class M> static void BenchRangeSparseSetInt(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK_TEMPLATE(BenchRangeSparseSetInt,llvm::SparseSet<unsigned>);
-
+BENCHMARK_TEMPLATE(BenchRangeSparseSetInt, llvm::SparseSet<unsigned>);
 
 template <class M> static void BenchRangeUnOrderSetString(benchmark::State &state)
 {
@@ -150,8 +148,7 @@ BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, tsl::robin_set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, tsl::sparse_set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, llvm::DenseSet<llvm::StringRef>);
 
-template<class M>
-static void BenchRangeStringSet(benchmark::State &state)
+template <class M> static void BenchRangeStringSet(benchmark::State &state)
 {
     M m;
     for (auto i = 0; i < 65536; i++)
@@ -168,8 +165,7 @@ static void BenchRangeStringSet(benchmark::State &state)
     }
     benchmark::DoNotOptimize(r);
 }
-BENCHMARK_TEMPLATE(BenchRangeStringSet,llvm::StringSet<>);
-
+BENCHMARK_TEMPLATE(BenchRangeStringSet, llvm::StringSet<>);
 
 BENCHMARK_TEMPLATE(BenchRangeCharKeySet, tsl::htrie_set<char>);
 BENCHMARK_TEMPLATE(BenchRangeCharKeySet, tsl::array_set<char>);

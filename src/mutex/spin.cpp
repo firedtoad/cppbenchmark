@@ -1,9 +1,9 @@
 #include "benchmark/benchmark.h"
 #include <absl/base/internal/spinlock.h>
-#include <boost/smart_ptr/detail/spinlock.hpp>
-#include <boost/fiber/detail/spinlock_ttas.hpp>
-#include <boost/fiber/detail/spinlock.hpp>
 #include <boost/fiber/detail/futex.hpp>
+#include <boost/fiber/detail/spinlock.hpp>
+#include <boost/fiber/detail/spinlock_ttas.hpp>
+#include <boost/smart_ptr/detail/spinlock.hpp>
 
 template <typename T> void benchmark_mutex_lock_unlock(benchmark::State &state)
 {

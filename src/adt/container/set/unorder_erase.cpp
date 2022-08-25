@@ -17,8 +17,8 @@
 #include <iostream>
 #include <unordered_set>
 
-#include <llvm/ADT/SparseSet.h>
 #include <llvm/ADT/DenseSet.h>
+#include <llvm/ADT/SparseSet.h>
 #include <llvm/ADT/StringSet.h>
 
 static unsigned long xorshf96()
@@ -93,7 +93,7 @@ template <class M> static void BenchEraseSparseSetInt(benchmark::State &state)
         }
     }
 }
-BENCHMARK_TEMPLATE(BenchEraseSparseSetInt,llvm::SparseSet<unsigned>);
+BENCHMARK_TEMPLATE(BenchEraseSparseSetInt, llvm::SparseSet<unsigned>);
 
 template <class S> static void BenchEraseUnOrderSetString(benchmark::State &state)
 {
@@ -150,13 +150,10 @@ BENCHMARK_TEMPLATE(BenchEraseUnOrderSetString, tsl::robin_set<std::string>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderSetString, tsl::sparse_set<std::string>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderSetString, llvm::DenseSet<llvm::StringRef>);
 
-
 BENCHMARK_TEMPLATE(BenchEraseCharKeySet, tsl::htrie_set<char>);
 BENCHMARK_TEMPLATE(BenchEraseCharKeySet, tsl::array_set<char>);
 
-
-template<class M>
-static void BenchEraseStringSet(benchmark::State &state)
+template <class M> static void BenchEraseStringSet(benchmark::State &state)
 {
     M s;
     std::vector<std::string> keys(65536);
@@ -176,7 +173,7 @@ static void BenchEraseStringSet(benchmark::State &state)
         }
     }
 }
-BENCHMARK_TEMPLATE(BenchEraseStringSet,llvm::StringSet<>);
+BENCHMARK_TEMPLATE(BenchEraseStringSet, llvm::StringSet<>);
 
 int main(int argc, char **argv)
 {

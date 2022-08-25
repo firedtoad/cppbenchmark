@@ -23,8 +23,6 @@
 #include <llvm/ADT/MapVector.h>
 #include <llvm/ADT/StringMap.h>
 
-
-
 template <class M> static void BenchRangeUnOrderMapInt(benchmark::State &state)
 {
     M m;
@@ -58,26 +56,26 @@ BENCHMARK_TEMPLATE(BenchRangeUnOrderMapInt, tsl::sparse_map<int, int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderMapInt, llvm::DenseMap<int, int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderMapInt, llvm::MapVector<int, int>);
 
-//static void BenchRangeFlatMapInt(benchmark::State &state)
+// static void BenchRangeFlatMapInt(benchmark::State &state)
 //{
-//    butil::FlatMap<int, int> m;
-//    m.init(65536);
-//    for (auto i = 0; i < 65536; i++)
-//    {
-//        m[i] = i;
-//    }
-//    int r{};
-//    for (auto _ : state)
-//    {
-//        for (auto it : m)
-//        {
-//            r += it.second;
-//        }
-//    }
-//    benchmark::DoNotOptimize(r);
-//}
+//     butil::FlatMap<int, int> m;
+//     m.init(65536);
+//     for (auto i = 0; i < 65536; i++)
+//     {
+//         m[i] = i;
+//     }
+//     int r{};
+//     for (auto _ : state)
+//     {
+//         for (auto it : m)
+//         {
+//             r += it.second;
+//         }
+//     }
+//     benchmark::DoNotOptimize(r);
+// }
 //
-//BENCHMARK(BenchRangeFlatMapInt);
+// BENCHMARK(BenchRangeFlatMapInt);
 
 template <class M> static void BenchRangeIndexedMap(benchmark::State &state)
 {
@@ -122,7 +120,7 @@ template <class M> static void BenchRangeUnOrderMapString(benchmark::State &stat
 
 template <class M> static void BenchRangeCharKeyMap(benchmark::State &state)
 {
-    M                        m;
+    M m;
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
@@ -157,27 +155,27 @@ BENCHMARK_TEMPLATE(BenchRangeUnOrderMapString, llvm::MapVector<llvm::StringRef, 
 BENCHMARK_TEMPLATE(BenchRangeCharKeyMap, tsl::htrie_map<char, int>);
 BENCHMARK_TEMPLATE(BenchRangeCharKeyMap, tsl::array_map<char, int>);
 
-//static void BenchRangeFlatMapString(benchmark::State &state)
+// static void BenchRangeFlatMapString(benchmark::State &state)
 //{
-//    butil::FlatMap<std::string, int> m;
-//    m.init(65536);
-//    for (auto i = 0; i < 65536; i++)
-//    {
-//        auto sKey = std::to_string(i);
-//        m[sKey]   = i;
-//    }
-//    int r{};
-//    for (auto _ : state)
-//    {
-//        for (auto &it : m)
-//        {
-//            r += it.second;
-//        }
-//    }
-//    benchmark::DoNotOptimize(r);
-//}
+//     butil::FlatMap<std::string, int> m;
+//     m.init(65536);
+//     for (auto i = 0; i < 65536; i++)
+//     {
+//         auto sKey = std::to_string(i);
+//         m[sKey]   = i;
+//     }
+//     int r{};
+//     for (auto _ : state)
+//     {
+//         for (auto &it : m)
+//         {
+//             r += it.second;
+//         }
+//     }
+//     benchmark::DoNotOptimize(r);
+// }
 //
-//BENCHMARK(BenchRangeFlatMapString);
+// BENCHMARK(BenchRangeFlatMapString);
 
 template <class M> static void BenchRangeIndexedMapString(benchmark::State &state)
 {

@@ -2,13 +2,12 @@
 // Created by Administrator on 2022/01/15.
 //
 
-
 #include <benchmark/benchmark.h>
 #include <iostream>
 
-#include <llvm/ADT/ImmutableSet.h>
-#include "tsl/ordered_set.h"
 #include "absl/container/btree_set.h"
+#include "tsl/ordered_set.h"
+#include <llvm/ADT/ImmutableSet.h>
 
 static inline uint64_t xor_shift96()
 { /* A George Marsaglia generator, period 2^96-1 */
@@ -67,13 +66,12 @@ static void BenchImmutableSetInt(benchmark::State &state)
     for (auto _ : state)
     {
         auto idx = keys[_random() % 65536];
-        auto c   =  m.contains(idx);
+        auto c   = m.contains(idx);
         benchmark::DoNotOptimize(c);
     }
 }
 
 BENCHMARK(BenchImmutableSetInt);
-
 
 template <class M> static void BenchOrderSetString(benchmark::State &state)
 {

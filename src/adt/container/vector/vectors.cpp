@@ -3,10 +3,9 @@
 //
 
 #include <benchmark/benchmark.h>
+#include <llvm/ADT/SmallVector.h>
 #include <numeric>
 #include <vector>
-#include <llvm/ADT/SmallVector.h>
-
 
 template <typename V> static void BenchInsert(benchmark::State &state)
 {

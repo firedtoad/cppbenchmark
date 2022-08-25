@@ -4,18 +4,18 @@
 
 #include <benchmark/benchmark.h>
 #include <iostream>
-#include <llvm/ADT/SmallVector.h>
-#include <llvm/ADT/SmallSet.h>
+#include <llvm/ADT/BitVector.h>
+#include <llvm/ADT/STLExtras.h>
+#include <llvm/ADT/ScopeExit.h>
 #include <llvm/ADT/SmallBitVector.h>
 #include <llvm/ADT/SmallPtrSet.h>
-#include <llvm/ADT/ScopeExit.h>
-#include <llvm/ADT/STLExtras.h>
-#include <llvm/ADT/BitVector.h>
+#include <llvm/ADT/SmallSet.h>
+#include <llvm/ADT/SmallVector.h>
 
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
     static unsigned long x = 103456789, y = 362436069, z = 521088629;
-    unsigned long        t;
+    unsigned long t;
 
     x ^= x << 16;
     x ^= x >> 5;
@@ -69,14 +69,14 @@ int main(int argc, char **argv)
     }
     {
         llvm::ImmutableList<Node>::Factory factory;
-        auto                               list = factory.getEmptyList();
+        auto list = factory.getEmptyList();
         for (auto i = 0; i < 10; i++)
         {
-            list = factory.emplace( list,Node{i});
+            list = factory.emplace(list, Node{i});
         }
-        for(auto &it:list)
+        for (auto &it : list)
         {
-            std::cout<<it.i<<'\n';
+            std::cout << it.i << '\n';
         }
     }
 

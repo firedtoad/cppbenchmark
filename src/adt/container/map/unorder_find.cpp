@@ -16,11 +16,11 @@
 #include <benchmark/benchmark.h>
 #include <unordered_map>
 
+#include <iostream>
 #include <llvm/ADT/DenseMap.h>
 #include <llvm/ADT/IndexedMap.h>
 #include <llvm/ADT/MapVector.h>
 #include <llvm/ADT/StringMap.h>
-#include <iostream>
 
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
@@ -200,7 +200,7 @@ template <class M> static void BenchIndexedMapString(benchmark::State &state)
 BENCHMARK_TEMPLATE(BenchIndexedMapString, llvm::IndexedMap<std::string>);
 
 BENCHMARK_TEMPLATE(BenchCharKeyMap, tsl::htrie_map<char, int>);
- BENCHMARK_TEMPLATE(BenchCharKeyMap, tsl::array_map<char, int>);
+BENCHMARK_TEMPLATE(BenchCharKeyMap, tsl::array_map<char, int>);
 
 int main(int argc, char **argv)
 {

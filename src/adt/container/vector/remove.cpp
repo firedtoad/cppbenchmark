@@ -11,8 +11,7 @@
 
 constexpr int N = 1000;
 
-template<class V>
-void init(V &v1)
+template <class V> void init(V &v1)
 {
     v1.resize(N);
     for (auto i = 0; i < N; i++)
@@ -67,7 +66,7 @@ static void BM_erase(benchmark::State &state)
 
 static void BM_eraseSmall(benchmark::State &state)
 {
-    llvm::SmallVector<std::string,N> vec;
+    llvm::SmallVector<std::string, N> vec;
     init(vec);
     for (auto _ : state)
     {
@@ -96,7 +95,7 @@ static void BM_swap_pop(benchmark::State &state)
 
 static void BM_swap_popSmall(benchmark::State &state)
 {
-    llvm::SmallVector<std::string,N> vec;
+    llvm::SmallVector<std::string, N> vec;
     init(vec);
     for (auto _ : state)
     {

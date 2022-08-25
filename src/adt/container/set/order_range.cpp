@@ -2,12 +2,12 @@
 // Created by Administrator on 2022/01/15.
 //
 
+#include "absl/container/btree_set.h"
+#include "tsl/ordered_set.h"
 #include <benchmark/benchmark.h>
 #include <iostream>
-#include <set>
 #include <llvm/ADT/ImmutableSet.h>
-#include "tsl/ordered_set.h"
-#include "absl/container/btree_set.h"
+#include <set>
 
 template <class M> static void BenchRangeOrderSetInt(benchmark::State &state)
 {
@@ -53,7 +53,6 @@ static void BenchRangeImmutableSetInt(benchmark::State &state)
         }
     }
     benchmark::DoNotOptimize(r);
-
 }
 
 BENCHMARK(BenchRangeImmutableSetInt);
@@ -77,7 +76,6 @@ template <class M> static void BenchRangeOrderSetString(benchmark::State &state)
     }
     benchmark::DoNotOptimize(r);
 }
-
 
 BENCHMARK_TEMPLATE(BenchRangeOrderSetString, std::set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeOrderSetString, tsl::ordered_set<std::string>);

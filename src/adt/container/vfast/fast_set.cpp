@@ -3,6 +3,7 @@
 //
 
 #include "FastVector.h"
+#include "parallel_hashmap/phmap.h"
 #include "tsl/ordered_set.h"
 #include <benchmark/benchmark.h>
 #include <llvm/ADT/SetVector.h>
@@ -28,8 +29,6 @@ static inline unsigned long _random()
     return xorshf96();
 }
 
-
-
 struct Pod
 {
     uint64_t i;
@@ -44,7 +43,7 @@ struct Pod
     {
         return i < p.i;
     }
-    int  operator+(int i_) const
+    int operator+(int i_) const
     {
         return i + i_;
     }
@@ -66,18 +65,23 @@ struct PodEqual
     }
 };
 
-struct PodKeyInfo{
-    static inline Pod getEmptyKey(){
+struct PodKeyInfo
+{
+    static inline Pod getEmptyKey()
+    {
         return {};
     }
-    static inline Pod  getTombstoneKey(){
+    static inline Pod getTombstoneKey()
+    {
         return {};
     }
-    static unsigned getHashValue(const Pod &Val){
-           return Val.i;
+    static unsigned getHashValue(const Pod &Val)
+    {
+        return Val.i;
     }
-    static bool isEqual(const Pod &LHS, const Pod &RHS){
-               return LHS==RHS;
+    static bool isEqual(const Pod &LHS, const Pod &RHS)
+    {
+        return LHS == RHS;
     }
 };
 
@@ -93,7 +97,8 @@ template <typename V> static void BenchInsert(benchmark::State &state)
     }
 }
 
-BENCHMARK_TEMPLATE(BenchInsert, fast_vector<uint64_t,uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsert, fast_vector<uint32_t, uint32_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsert, phmap::flat_hash_set<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsert, llvm::SetVector<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsert, tsl::ordered_set<uint64_t, PodHash, PodEqual>)->Range(1, 1 << 10);
 
@@ -125,7 +130,8 @@ template <typename V> static void BenchFindSetVector(benchmark::State &state)
     }
 }
 
-BENCHMARK_TEMPLATE(BenchFind, fast_vector<uint64_t,uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchFind, fast_vector<uint32_t, uint32_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchFind, phmap::flat_hash_set<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFindSetVector, llvm::SetVector<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFind, tsl::ordered_set<Pod, PodHash, PodEqual>)->Range(1, 1 << 10);
 
@@ -141,15 +147,16 @@ template <typename V> static void BenchRange(benchmark::State &state)
     {
         for (auto &it : v)
         {
-            sum=it+sum;
+            sum = it + sum;
         }
     }
     benchmark::DoNotOptimize(sum);
 }
 
-BENCHMARK_TEMPLATE(BenchRange, fast_vector<uint64_t,uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchRange, fast_vector<uint32_t, uint32_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchRange, phmap::flat_hash_set<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRange, llvm::SetVector<uint64_t>)->Range(1, 1 << 10);
-BENCHMARK_TEMPLATE(BenchRange,  tsl::ordered_set<uint64_t, PodHash, PodEqual>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchRange, tsl::ordered_set<uint64_t, PodHash, PodEqual>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchErase(benchmark::State &state)
 {
@@ -185,7 +192,8 @@ template <typename V> static void BenchEraseSetVector(benchmark::State &state)
         }
     }
 }
-BENCHMARK_TEMPLATE(BenchErase, fast_vector<uint64_t,uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchErase, fast_vector<uint32_t, uint32_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchErase, phmap::flat_hash_set<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchEraseSetVector, llvm::SetVector<uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchErase, tsl::ordered_set<Pod, PodHash, PodEqual>)->Range(1, 1 << 10);
 

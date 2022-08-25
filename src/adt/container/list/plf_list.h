@@ -1474,10 +1474,9 @@ template <class element_type, class element_allocator_type = std::allocator<elem
 
 #ifdef PLF_CPP20_SUPPORT
     template <class iterator_type, class sentinel>
-        requires(!(std::convertible_to<sentinel, iterator_type> || std::convertible_to<iterator_type, sentinel> || std::integral<iterator_type> ||
-                   std::integral<sentinel>) &&
-                 std::sentinel_for<sentinel, iterator_type>)
-    list(const iterator_type &first, const sentinel &last, const element_allocator_type &alloc = element_allocator_type())
+    requires(!(std::convertible_to<sentinel, iterator_type> || std::convertible_to<iterator_type, sentinel> || std::integral<iterator_type> ||
+               std::integral<sentinel>)&&std::sentinel_for<sentinel, iterator_type>)
+        list(const iterator_type &first, const sentinel &last, const element_allocator_type &alloc = element_allocator_type())
         : element_allocator_type(alloc), end_node(static_cast<node_pointer_type>(&end_node), static_cast<node_pointer_type>(&end_node)),
           last_endpoint(NULL), end_iterator(static_cast<node_pointer_type>(&end_node)), begin_iterator(static_cast<node_pointer_type>(&end_node)),
           node_pointer_allocator_pair(0), node_allocator_pair(0)
@@ -2199,10 +2198,9 @@ template <class element_type, class element_allocator_type = std::allocator<elem
 #ifdef PLF_CPP20_SUPPORT
     // Support for sentinels:
     template <class iterator_type, class sentinel>
-        requires(!(std::convertible_to<sentinel, iterator_type> || std::convertible_to<iterator_type, sentinel> || std::integral<iterator_type> ||
-                   std::integral<sentinel>) &&
-                 std::sentinel_for<sentinel, iterator_type>)
-    inline iterator insert(const const_iterator position, const iterator_type first, const sentinel last)
+    requires(!(std::convertible_to<sentinel, iterator_type> || std::convertible_to<iterator_type, sentinel> || std::integral<iterator_type> ||
+               std::integral<sentinel>)&&std::sentinel_for<sentinel, iterator_type>) inline iterator
+        insert(const const_iterator position, const iterator_type first, const sentinel last)
     {
         size_type distance = 0;
         for (iterator_type current = first; current != last; ++current, ++distance)
@@ -3134,10 +3132,9 @@ template <class element_type, class element_allocator_type = std::allocator<elem
 #ifdef PLF_CPP20_SUPPORT
     // Support for sentinels:
     template <class iterator_type, class sentinel>
-        requires(!(std::convertible_to<sentinel, iterator_type> || std::convertible_to<iterator_type, sentinel> || std::integral<iterator_type> ||
-                   std::integral<sentinel>) &&
-                 std::sentinel_for<sentinel, iterator_type>)
-    inline void assign(const iterator_type first, const sentinel last)
+    requires(!(std::convertible_to<sentinel, iterator_type> || std::convertible_to<iterator_type, sentinel> || std::integral<iterator_type> ||
+               std::integral<sentinel>)&&std::sentinel_for<sentinel, iterator_type>) inline void assign(const iterator_type first,
+                                                                                                        const sentinel last)
     {
         clear();
         insert(end_iterator, first, last);

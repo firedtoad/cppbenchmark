@@ -1,8 +1,8 @@
 #include <benchmark/benchmark.h>
 #include <iostream>
-#include <map>
 #include <llvm/ADT/DenseMap.h>
 #include <llvm/ADT/StringMap.h>
+#include <map>
 
 static inline uint64_t xor_shift96()
 { /* A George Marsaglia generator, period 2^96-1 */
@@ -53,7 +53,7 @@ template <class M> static void BenchStringMapNoSSO(benchmark::State &state)
     int k = 1000000;
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]    = "12345678901234561234567890123456" + std::to_string(k++);
+        keys[i]            = "12345678901234561234567890123456" + std::to_string(k++);
         m[keys[i].c_str()] = i;
     }
 
@@ -65,7 +65,7 @@ template <class M> static void BenchStringMapNoSSO(benchmark::State &state)
     }
 }
 
-BENCHMARK_TEMPLATE(BenchStringMapNoSSO,llvm::StringMap<int>);
+BENCHMARK_TEMPLATE(BenchStringMapNoSSO, llvm::StringMap<int>);
 int main(int argc, char **argv)
 {
 
@@ -80,7 +80,7 @@ int main(int argc, char **argv)
 
     auto kIndex = _random() % 65536;
     auto c      = m.find(keys[kIndex].c_str());
-    std::cout<<c->first().str()<<c->second<<'\n';
+    std::cout << c->first().str() << c->second << '\n';
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

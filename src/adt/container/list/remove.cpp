@@ -9,8 +9,8 @@
 #include <forward_list>
 #include <iostream>
 #include <list>
-#include <llvm/ADT/simple_ilist.h>
 #include <llvm/ADT/ilist.h>
+#include <llvm/ADT/simple_ilist.h>
 
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
@@ -47,7 +47,6 @@ struct LNode : public llvm::ilist_node<LNode, llvm::ilist_tag<LNode>>
     int x{};
 };
 
-
 static void BenchListRemove(benchmark::State &state)
 {
     for (auto _ : state)
@@ -80,7 +79,7 @@ static void BenchForwardListRemove(benchmark::State &state)
             v.push_front({});
         }
         state.ResumeTiming();
-        auto size=state.range(0);
+        auto size = state.range(0);
         while (!v.empty())
         {
             benchmark::DoNotOptimize(v.front());
@@ -168,7 +167,7 @@ static void BenchAdtListRemove(benchmark::State &state)
     for (auto _ : state)
     {
         state.PauseTiming();
-        llvm::ilist<LNode,llvm::ilist_tag<LNode>> v;
+        llvm::ilist<LNode, llvm::ilist_tag<LNode>> v;
         for (auto i = 0; i < state.range(0); i++)
         {
             v.push_back(new LNode());
@@ -190,7 +189,7 @@ static void BenchAdtSimpleListRemove(benchmark::State &state)
     for (auto _ : state)
     {
         state.PauseTiming();
-        llvm::simple_ilist<LNode,llvm::ilist_tag<LNode>> v;
+        llvm::simple_ilist<LNode, llvm::ilist_tag<LNode>> v;
         std::vector<LNode> vs;
         vs.resize(state.range(0));
         for (auto i = 0; i < state.range(0); i++)
@@ -208,9 +207,6 @@ static void BenchAdtSimpleListRemove(benchmark::State &state)
 }
 
 BENCHMARK(BenchAdtSimpleListRemove)->Range(1, 1024);
-
-
-
 
 int main(int argc, char **argv)
 {

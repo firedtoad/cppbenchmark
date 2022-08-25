@@ -8,8 +8,8 @@ add_definitions(${LLVM_DEFINITIONS_LIST})
 llvm_map_components_to_libnames(llvm_libs support core irreader)
 
 
-include_directories(  ${LLVM_INCLUDE_DIRS})
-link_libraries(  ${llvm_libs})
+include_directories(${LLVM_INCLUDE_DIRS})
+link_libraries(${llvm_libs})
 
 add_executable(adt_list_insert container/list/insert.cpp)
 add_executable(adt_list_range container/list/range.cpp)
@@ -45,8 +45,6 @@ add_executable(adt_vec_remove container/vector/remove.cpp)
 add_executable(adt_vec_reserve container/vector/reserve.cpp)
 add_executable(adt_vec_vectors container/vector/vectors.cpp)
 add_executable(adt_vec_row_col container/vector/row_col.cpp)
-
-
 
 
 add_executable(adt_immutable container/immutable/immutable.cpp)

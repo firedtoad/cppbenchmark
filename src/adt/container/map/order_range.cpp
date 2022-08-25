@@ -2,12 +2,12 @@
 // Created by Administrator on 2022/01/15.
 //
 
-#include <benchmark/benchmark.h>
-#include <iostream>
-#include <map>
-#include <llvm/ADT/ImmutableMap.h>
 #include "absl/container/btree_map.h"
 #include "tsl/ordered_map.h"
+#include <benchmark/benchmark.h>
+#include <iostream>
+#include <llvm/ADT/ImmutableMap.h>
+#include <map>
 
 template <class M> static void BenchRangeOrderMapInt(benchmark::State &state)
 {
@@ -29,7 +29,9 @@ template <class M> static void BenchRangeOrderMapInt(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, std::map<int, int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, tsl::ordered_map<int, int>);
-BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, tsl::ordered_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int, int>>, std::vector<std::pair<int, int>>>);
+BENCHMARK_TEMPLATE(
+    BenchRangeOrderMapInt,
+    tsl::ordered_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int, int>>, std::vector<std::pair<int, int>>>);
 BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, absl::btree_map<int, int>);
 
 static void BenchRangeImmutableMapInt(benchmark::State &state)
@@ -46,7 +48,7 @@ static void BenchRangeImmutableMapInt(benchmark::State &state)
     int r{};
     for (auto _ : state)
     {
-        for (auto &it :imap)
+        for (auto &it : imap)
         {
             r += it.second;
         }
@@ -55,7 +57,6 @@ static void BenchRangeImmutableMapInt(benchmark::State &state)
 }
 
 BENCHMARK(BenchRangeImmutableMapInt);
-
 
 template <class M> static void BenchRangeOrderMapString(benchmark::State &state)
 {

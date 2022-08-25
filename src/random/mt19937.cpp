@@ -1,10 +1,10 @@
 #include "SFMT/SFMT.h"
 #include <benchmark/benchmark.h>
+#include <ext/opt_random.h>
+#include <ext/random>
+#include <functional>
 #include <random>
 #include <unordered_map>
-#include <functional>
-#include <ext/random>
-#include <ext/opt_random.h>
 
 template <typename G> static void BenchEngine(benchmark::State &state)
 {
