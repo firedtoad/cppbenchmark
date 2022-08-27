@@ -15,28 +15,33 @@ struct Pod
     Pod(Pod &&pod) noexcept                 = default;
     Pod &operator=(const Pod &pod) noexcept = default;
     Pod &operator=(Pod &&pod) noexcept      = default;
-    bool operator<(const Pod &p) const
-    {
-        return i < p.i;
-    }
 };
 
 struct NonPod
 {
-    uint64_t i        = 0;
+    uint64_t i = 0;
     NonPod() noexcept = default;
     explicit NonPod(uint64_t i_) noexcept : i(i_) {}
     NonPod(const NonPod &p) noexcept            = default;
     NonPod(NonPod &&p) noexcept                 = default;
     NonPod &operator=(const NonPod &p) noexcept = default;
     NonPod &operator=(NonPod &&p) noexcept      = default;
-    bool    operator<(const NonPod &p) const
-    {
-        return i < p.i;
-    }
 };
 
-template <typename V, typename P> static void BenchInsertPod(benchmark::State &state)
+struct TriviallyCopy
+{
+    uint64_t i;
+    uint64_t c[7];
+};
+
+struct NoTriviallyCopy
+{
+    uint64_t i;
+    uint64_t c[7];
+    ~NoTriviallyCopy() {}
+};
+
+template <typename V> static void BenchInsertPod(benchmark::State &state)
 {
 
     for (auto _ : state)
@@ -49,8 +54,14 @@ template <typename V, typename P> static void BenchInsertPod(benchmark::State &s
     }
 }
 
-BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<NonPod>, NonPod)->Range(2, 65536)->MeasureProcessCPUTime();
-BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<Pod>, Pod)->Range(2, 65536)->MeasureProcessCPUTime();
+BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<NonPod>)->Range(2, 1<<16);
+BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<Pod>)->Range(2, 1<<16);
+
+BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<TriviallyCopy>)->Range(2, 1<<16);
+BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<NoTriviallyCopy>)->Range(2, 1<<16);
+
+BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<std::pair<int,TriviallyCopy>>)->Range(2, 1<<16);
+BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<std::pair<const int,TriviallyCopy>>)->Range(2, 1<<16);
 
 template <typename P> static void BenchUninitializedCopy(benchmark::State &state)
 {
@@ -63,12 +74,23 @@ template <typename P> static void BenchUninitializedCopy(benchmark::State &state
     }
 }
 
-BENCHMARK_TEMPLATE(BenchUninitializedCopy, NonPod)->Range(2, 65536)->MeasureProcessCPUTime();
-BENCHMARK_TEMPLATE(BenchUninitializedCopy, Pod)->Range(2, 65536)->MeasureProcessCPUTime();
+BENCHMARK_TEMPLATE(BenchUninitializedCopy, NonPod)->Range(2, 1<<16);
+BENCHMARK_TEMPLATE(BenchUninitializedCopy, Pod)->Range(2, 1<<16);
+
+BENCHMARK_TEMPLATE(BenchUninitializedCopy, TriviallyCopy)->Range(2, 1<<16);
+BENCHMARK_TEMPLATE(BenchUninitializedCopy, NoTriviallyCopy)->Range(2, 1<<16);
+
+BENCHMARK_TEMPLATE(BenchUninitializedCopy, std::pair<int,TriviallyCopy>)->Range(2, 1<<16);
+BENCHMARK_TEMPLATE(BenchUninitializedCopy, std::pair<const int,TriviallyCopy>)->Range(2, 1<<16);
 
 int main(int argc, char **argv)
 {
-
+    std::cout << std::is_pod_v<Pod> << '\n';
+    std::cout << std::is_pod_v<NonPod> << '\n';
+    std::cout << std::is_trivially_copyable_v<TriviallyCopy> << '\n';
+    std::cout << std::is_trivially_copyable_v<NoTriviallyCopy> << '\n';
+    std::cout << std::is_trivially_copyable_v<std::pair< int,TriviallyCopy>> << '\n';
+    std::cout << std::is_trivially_copyable_v<std::pair<const int,TriviallyCopy>> << '\n';
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;
