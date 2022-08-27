@@ -20,9 +20,8 @@ void worker_thread()
     }
     uv_run(loop, UV_RUN_DEFAULT);
 }
-int main()
+int main(int argc, char **argv)
 {
-
     std::vector<std::unique_ptr<std::thread>> vecThread;
     for (auto i = 0; i < 4; i++)
     {

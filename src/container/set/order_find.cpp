@@ -3,6 +3,7 @@
 //
 
 #include "tsl/ordered_set.h"
+#include "absl/container/btree_set.h"
 #include <benchmark/benchmark.h>
 #include <iostream>
 
@@ -45,6 +46,7 @@ template <class M> static void BenchOrderSetInt(benchmark::State &state)
 BENCHMARK_TEMPLATE(BenchOrderSetInt, std::set<int>);
 BENCHMARK_TEMPLATE(BenchOrderSetInt, std::set<int, std::less<>>);
 BENCHMARK_TEMPLATE(BenchOrderSetInt, tsl::ordered_set<int>);
+BENCHMARK_TEMPLATE(BenchOrderSetInt, absl::btree_set<int>);
 
 template <class M> static void BenchOrderSetString(benchmark::State &state)
 {
@@ -52,9 +54,8 @@ template <class M> static void BenchOrderSetString(benchmark::State &state)
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]   = std::to_string(_random() % 65536);
-        auto sKey = std::to_string(i);
-        m.insert(sKey);
+        keys[i]   = "12345678901234561234567890123456" + std::to_string(_random());
+        m.insert(keys[i]);
     }
     for (auto _ : state)
     {
@@ -67,6 +68,7 @@ template <class M> static void BenchOrderSetString(benchmark::State &state)
 BENCHMARK_TEMPLATE(BenchOrderSetString, std::set<std::string>);
 BENCHMARK_TEMPLATE(BenchOrderSetString, std::set<std::string, std::less<>>);
 BENCHMARK_TEMPLATE(BenchOrderSetString, tsl::ordered_set<std::string>);
+BENCHMARK_TEMPLATE(BenchOrderSetString, absl::btree_set<std::string>);
 
 int main(int argc, char **argv)
 {

@@ -2,6 +2,7 @@
 // Created by Administrator on 2022/01/15.
 //
 
+#include "absl/container/btree_set.h"
 #include "tsl/ordered_set.h"
 #include <benchmark/benchmark.h>
 #include <iostream>
@@ -46,8 +47,28 @@ template <class S> static void BenchEraseOrderSetInt(benchmark::State &state)
     }
 }
 
+template <class S> static void BenchEraseUnOrderSetInt(benchmark::State &state)
+{
+    S s;
+    for (auto i = 0; i < 65536; i++)
+    {
+        s.insert(i);
+    }
+    for (auto _ : state)
+    {
+        auto r  = _random() % 65536;
+        auto it = s.unordered_erase(r);
+        if (it > 0)
+        {
+            s.insert(r);
+        }
+    }
+}
+
 BENCHMARK_TEMPLATE(BenchEraseOrderSetInt, std::set<int>);
 BENCHMARK_TEMPLATE(BenchEraseOrderSetInt, tsl::ordered_set<int>);
+BENCHMARK_TEMPLATE(BenchEraseUnOrderSetInt, tsl::ordered_set<int>);
+BENCHMARK_TEMPLATE(BenchEraseOrderSetInt, absl::btree_set<int>);
 
 template <class S> static void BenchEraseOrderSetString(benchmark::State &state)
 {
@@ -55,8 +76,8 @@ template <class S> static void BenchEraseOrderSetString(benchmark::State &state)
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto sKey = std::to_string(i);
-        keys[i]   = sKey;
+        auto sKey = "12345678901234561234567890123456" + std::to_string(_random());
+        keys[i] = sKey;
         s.insert(sKey);
     }
     for (auto _ : state)
@@ -69,16 +90,13 @@ template <class S> static void BenchEraseOrderSetString(benchmark::State &state)
         }
     }
 }
-
-BENCHMARK_TEMPLATE(BenchEraseOrderSetString, std::set<std::string>);
-BENCHMARK_TEMPLATE(BenchEraseOrderSetString, tsl::ordered_set<std::string>);
 template <class S> static void BenchEraseUnorderSetString(benchmark::State &state)
 {
     S s;
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto sKey = std::to_string(i);
+        auto sKey ="12345678901234561234567890123456" + std::to_string(_random());
         keys[i]   = sKey;
         s.insert(sKey);
     }
@@ -92,8 +110,10 @@ template <class S> static void BenchEraseUnorderSetString(benchmark::State &stat
         }
     }
 }
-
+BENCHMARK_TEMPLATE(BenchEraseOrderSetString, std::set<std::string>);
+BENCHMARK_TEMPLATE(BenchEraseOrderSetString, tsl::ordered_set<std::string>);
 BENCHMARK_TEMPLATE(BenchEraseUnorderSetString, tsl::ordered_set<std::string>);
+BENCHMARK_TEMPLATE(BenchEraseOrderSetString, absl::btree_set<std::string>);
 
 int main(int argc, char **argv)
 {

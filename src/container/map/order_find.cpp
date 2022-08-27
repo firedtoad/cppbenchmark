@@ -6,8 +6,6 @@
 #include "absl/container/node_hash_map.h"
 #include "tsl/ordered_map.h"
 #include <benchmark/benchmark.h>
-#include <boost/container/flat_map.hpp>
-#include <boost/container/small_vector.hpp>
 #include <iostream>
 #include <map>
 
@@ -67,9 +65,8 @@ template <class M> static void BenchOrderMapString(benchmark::State &state)
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]   = std::to_string(_random() % 65536);
-        auto sKey = std::to_string(i);
-        m[sKey]   = i;
+        keys[i]            = "12345678901234561234567890123456" +std::to_string(_random());
+        m[keys[i]]=i;
     }
     for (auto _ : state)
     {

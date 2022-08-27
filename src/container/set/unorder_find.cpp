@@ -12,6 +12,7 @@
 #include "tsl/htrie_set.h"
 #include "tsl/robin_set.h"
 #include "tsl/sparse_set.h"
+#include <absl/container/flat_hash_set.h>
 #include "unordered_map.hpp"
 #include <benchmark/benchmark.h>
 #include <iostream>
@@ -64,6 +65,7 @@ BENCHMARK_TEMPLATE(BenchUnOrderSetInt, ska::unordered_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, ska::flat_hash_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, ska::bytell_hash_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, phmap::flat_hash_set<int>);
+BENCHMARK_TEMPLATE(BenchUnOrderSetInt, absl::flat_hash_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, robin_hood::unordered_flat_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, spp::sparse_hash_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::bhopscotch_set<int>);
@@ -78,9 +80,8 @@ template <class M> static void BenchUnOrderSetString(benchmark::State &state)
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]   = std::to_string(_random() % 65536);
-        auto sKey = std::to_string(i);
-        m.insert(sKey);
+        keys[i]   = "12345678901234561234567890123456" +std::to_string(_random());
+        m.insert(keys[i]);
     }
     for (auto _ : state)
     {
@@ -93,11 +94,11 @@ template <class M> static void BenchCharKeySet(benchmark::State &state)
 {
     M m;
     std::vector<std::string> keys(65536);
+
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]   = std::to_string(_random() % 65536);
-        auto sKey = std::to_string(i);
-        m.insert(sKey);
+        keys[i]   = "12345678901234561234567890123456" +std::to_string(_random());
+        m.insert(keys[i]);
     }
     for (auto _ : state)
     {
@@ -112,6 +113,7 @@ BENCHMARK_TEMPLATE(BenchUnOrderSetString, ska::unordered_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, ska::flat_hash_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, ska::bytell_hash_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, phmap::flat_hash_set<std::string>);
+BENCHMARK_TEMPLATE(BenchUnOrderSetString, absl::flat_hash_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, robin_hood::unordered_flat_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, spp::sparse_hash_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, tsl::bhopscotch_set<std::string>);
@@ -125,6 +127,5 @@ int main(int argc, char **argv)
 {
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
-    tsl::array_map<char, int> m;
     return 0;
 }

@@ -36,7 +36,7 @@ struct CoordHash
 {
     size_t operator()(const Vec2i &coord) const
     {
-        return (size_t(coord.x) << 32) + coord.y;
+        return (size_t(coord.x) * 32) + coord.y;
     }
 };
 

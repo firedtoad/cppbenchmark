@@ -55,7 +55,7 @@ template <typename T, size_t BlockSize = 4096> class MemoryPool
     ~MemoryPool() noexcept;
 
     MemoryPool &operator=(const MemoryPool &memoryPool) = delete;
-    MemoryPool &operator                                =(MemoryPool &&memoryPool) noexcept;
+    MemoryPool &operator=(MemoryPool &&memoryPool) noexcept;
 
     pointer address(reference x) const noexcept;
     const_pointer address(const_reference x) const noexcept;

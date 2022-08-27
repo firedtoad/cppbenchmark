@@ -22,8 +22,8 @@
 
 #ifndef MEMORY_BLOCK_TCC
 #define MEMORY_BLOCK_TCC
-#include<stdint.h>
-#include<utility>
+#include <stdint.h>
+#include <utility>
 template <typename T, size_t BlockSize>
 inline typename MemoryPool<T, BlockSize>::size_type MemoryPool<T, BlockSize>::padPointer(data_pointer_ p, size_type align) const noexcept
 {

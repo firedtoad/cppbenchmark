@@ -1034,7 +1034,6 @@ class Two_d_destructive_iterator : public Two_d_iterator<T, row_it, col_it, iter
     }
 
   private:
-    Two_d_destructive_iterator &operator=(const Two_d_destructive_iterator &o);
 
     Alloc &_alloc;
 };

@@ -4,6 +4,10 @@
 
 #include <benchmark/benchmark.h>
 #include <unordered_map>
+#include "unordered_map.hpp"
+#include "flat_hash_map.hpp"
+#include "parallel_hashmap/phmap.h"
+#include <absl/container/flat_hash_map.h>
 
 struct Hasher
 {
@@ -13,33 +17,45 @@ struct Hasher
     }
 };
 
-std::unordered_map<int, int> unmap;
-std::unordered_map<int, int, Hasher> decay_unmap;
-
-static void BM_unmap(benchmark::State &state)
+template <class M> static void BM_unmap(benchmark::State &state)
 {
     for (auto _ : state)
     {
+        M m;
         for (int i = 0; i < 10000; i++)
         {
-            unmap[i] = i;
+            m[i] = i;
+        }
+    }
+}
+template <class M> static void BM_decay_map(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        M m;
+        for (int i = 0; i < 10000; i++)
+        {
+            m[i] = i;
         }
     }
 }
 
-static void BM_decay_map(benchmark::State &state)
-{
-    for (auto _ : state)
-    {
-        for (int i = 0; i < 10000; i++)
-        {
-            decay_unmap[i] = i;
-        }
-    }
-}
+BENCHMARK_TEMPLATE(BM_unmap, std::unordered_map<int, int>);
+BENCHMARK_TEMPLATE(BM_decay_map, std::unordered_map<int, int,Hasher>);
 
-BENCHMARK(BM_unmap);
-BENCHMARK(BM_decay_map);
+BENCHMARK_TEMPLATE(BM_unmap, ska::unordered_map<int, int>);
+BENCHMARK_TEMPLATE(BM_decay_map, ska::unordered_map<int, int,Hasher>);
+
+
+BENCHMARK_TEMPLATE(BM_unmap, ska::flat_hash_map<int, int>);
+//BENCHMARK_TEMPLATE(BM_decay_map, ska::flat_hash_map<int, int,Hasher>);
+
+BENCHMARK_TEMPLATE(BM_unmap, phmap::flat_hash_map<int, int>);
+BENCHMARK_TEMPLATE(BM_decay_map, phmap::flat_hash_map<int, int,Hasher>);
+
+BENCHMARK_TEMPLATE(BM_unmap, absl::flat_hash_map<int, int>);
+BENCHMARK_TEMPLATE(BM_decay_map, absl::flat_hash_map<int, int,Hasher>);
+
 
 int main(int argc, char **argv)
 {

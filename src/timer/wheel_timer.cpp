@@ -21,7 +21,7 @@ void worker_thread()
         skynet_timeout(0, i * 1, 0);
     }
 }
-int main()
+int main(int argc, char **argv)
 {
     skynet_timer_init();
     std::vector<std::unique_ptr<std::thread>> vecThread;

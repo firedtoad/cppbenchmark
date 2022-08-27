@@ -23,7 +23,7 @@ void worker_thread()
 
     io_service.run();
 }
-int main()
+int main(int argc, char **argv)
 {
     std::vector<std::unique_ptr<std::thread>> vecThread;
     for (auto i = 0; i < 4; i++)

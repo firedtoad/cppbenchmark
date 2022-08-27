@@ -35,10 +35,10 @@ struct Pod
     int i;
     Pod() noexcept = default;
     Pod(uint64_t i_) : i(i_) {}
-    Pod(const Pod &pod) noexcept = default;
-    Pod(Pod &&pod) noexcept      = default;
+    Pod(const Pod &pod) noexcept            = default;
+    Pod(Pod &&pod) noexcept                 = default;
     Pod &operator=(const Pod &pod) noexcept = default;
-    Pod &operator=(Pod &&pod) noexcept = default;
+    Pod &operator=(Pod &&pod) noexcept      = default;
     bool operator<(const Pod &p) const
     {
         return i < p.i;

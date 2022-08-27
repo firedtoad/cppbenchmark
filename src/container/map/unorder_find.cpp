@@ -12,10 +12,12 @@
 #include "tsl/htrie_map.h"
 #include "tsl/robin_map.h"
 #include "tsl/sparse_map.h"
+#include <absl/container/flat_hash_map.h>
 #include "unordered_map.hpp"
 #include <benchmark/benchmark.h>
 #include <iostream>
 #include <unordered_map>
+
 
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
@@ -66,6 +68,7 @@ BENCHMARK_TEMPLATE(BenchUnOrderMapInt, ska::unordered_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, ska::flat_hash_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, ska::bytell_hash_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, phmap::flat_hash_map<int, int>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapInt, absl::flat_hash_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, robin_hood::unordered_flat_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, spp::sparse_hash_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, tsl::bhopscotch_map<int, int>);
@@ -74,15 +77,15 @@ BENCHMARK_TEMPLATE(BenchUnOrderMapInt, tsl::hopscotch_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, tsl::robin_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, tsl::sparse_map<int, int>);
 
+
 template <class M> static void BenchUnOrderMapString(benchmark::State &state)
 {
     M m;
     m.reserve(65536);
     std::vector<std::string> keys(65536);
-    int                      k = 1000000;
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]            = "12345678901234561234567890123456" + std::to_string(k++);
+        keys[i]            = "12345678901234561234567890123456" +std::to_string(_random());
         m[keys[i]]=i;
     }
     for (auto _ : state)
@@ -99,9 +102,8 @@ template <class M> static void BenchCharKeyMap(benchmark::State &state)
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]            = "12345678901234561234567890123456" + std::to_string(_random());
-        auto sKey = std::to_string(i);
-        m[sKey]   = i;
+        keys[i]            = "12345678901234561234567890123456" +std::to_string(_random());
+        m[keys[i]]=i;
     }
     for (auto _ : state)
     {
@@ -116,6 +118,7 @@ BENCHMARK_TEMPLATE(BenchUnOrderMapString, ska::unordered_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, ska::flat_hash_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, ska::bytell_hash_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, phmap::flat_hash_map<std::string, int>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapString, absl::flat_hash_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, robin_hood::unordered_flat_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, spp::sparse_hash_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, tsl::bhopscotch_map<std::string, int>);

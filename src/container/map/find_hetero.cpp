@@ -1,7 +1,6 @@
 #include <benchmark/benchmark.h>
 #include <iostream>
 #include <map>
-#include <unordered_map>
 
 static inline uint64_t xor_shift96()
 { /* A George Marsaglia generator, period 2^96-1 */

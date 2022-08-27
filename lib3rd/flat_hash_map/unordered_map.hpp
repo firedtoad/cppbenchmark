@@ -35,7 +35,7 @@ template <typename T, typename Allocator> struct sherwood_v10_entry
 
     static EntryPointer *empty_pointer()
     {
-        static EntryPointer result[3] = {EntryPointer(nullptr) + ptrdiff_t(1), nullptr, nullptr};
+        static EntryPointer result[3] = {reinterpret_cast<EntryPointer>(ptrdiff_t(1)), nullptr, nullptr};
         return result + 1;
     }
 };
@@ -412,7 +412,7 @@ class sherwood_v10_table : private EntryAlloc, private Hasher, private Equal, pr
             return;
         EntryPointer *new_buckets(&*BucketAllocatorTraits::allocate(*this, num_buckets + 1));
         EntryPointer *end_it = new_buckets + static_cast<ptrdiff_t>(num_buckets + 1);
-        *new_buckets         = EntryPointer(nullptr) + ptrdiff_t(1);
+        *new_buckets         = reinterpret_cast<EntryPointer>(ptrdiff_t(1));
         ++new_buckets;
         std::fill(new_buckets, end_it, nullptr);
         std::swap(entries, new_buckets);

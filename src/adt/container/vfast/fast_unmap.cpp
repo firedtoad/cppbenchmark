@@ -40,10 +40,10 @@ struct Pod
     char c[1024];
     Pod() noexcept = default;
     Pod(uint64_t key_) : key1(key_) {}
-    Pod(const Pod &pod) noexcept = default;
-    Pod(Pod &&pod) noexcept      = default;
+    Pod(const Pod &pod) noexcept            = default;
+    Pod(Pod &&pod) noexcept                 = default;
     Pod &operator=(const Pod &pod) noexcept = default;
-    Pod &operator=(Pod &&pod) noexcept = default;
+    Pod &operator=(Pod &&pod) noexcept      = default;
     int operator+(int i) const
     {
         return key1 + i;

@@ -14,7 +14,7 @@
 #include "tsl/sparse_map.h"
 #include "unordered_map.hpp"
 #include <benchmark/benchmark.h>
-#include <boost/container/flat_map.hpp>
+#include <absl/container/flat_hash_map.h>
 #include <iostream>
 #include <unordered_map>
 
@@ -64,6 +64,7 @@ BENCHMARK_TEMPLATE(BenchEraseUnOrderMapInt, ska::unordered_map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapInt, ska::flat_hash_map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapInt, ska::bytell_hash_map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapInt, phmap::flat_hash_map<int, int>);
+BENCHMARK_TEMPLATE(BenchEraseUnOrderMapInt, absl::flat_hash_map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapInt, robin_hood::unordered_flat_map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapInt, spp::sparse_hash_map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapInt, tsl::bhopscotch_map<int, int>);
@@ -78,7 +79,7 @@ template <class M> static void BenchEraseUnOrderMapString(benchmark::State &stat
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto sKey = std::to_string(i);
+        auto sKey ="12345678901234561234567890123456" + std::to_string(_random());
         keys[i]   = sKey;
         m[sKey]   = i;
     }
@@ -95,13 +96,13 @@ template <class M> static void BenchEraseUnOrderMapString(benchmark::State &stat
     benchmark::DoNotOptimize(r);
 }
 
-template <class M> static void BenchRangeCharKeyMap(benchmark::State &state)
+template <class M> static void BenchEraseCharKeyMap(benchmark::State &state)
 {
     M m;
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto sKey = std::to_string(i);
+        auto sKey ="12345678901234561234567890123456" + std::to_string(_random());
         keys[i]   = sKey;
         m[sKey]   = i;
     }
@@ -123,14 +124,15 @@ BENCHMARK_TEMPLATE(BenchEraseUnOrderMapString, ska::unordered_map<std::string, i
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapString, ska::flat_hash_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapString, ska::bytell_hash_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapString, phmap::flat_hash_map<std::string, int>);
+BENCHMARK_TEMPLATE(BenchEraseUnOrderMapString, absl::flat_hash_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapString, robin_hood::unordered_flat_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapString, spp::sparse_hash_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapString, tsl::bhopscotch_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapString, tsl::hopscotch_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapString, tsl::robin_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapString, tsl::sparse_map<std::string, int>);
-BENCHMARK_TEMPLATE(BenchRangeCharKeyMap, tsl::htrie_map<char, int>);
-BENCHMARK_TEMPLATE(BenchRangeCharKeyMap, tsl::array_map<char, int>);
+BENCHMARK_TEMPLATE(BenchEraseCharKeyMap, tsl::htrie_map<char, int>);
+BENCHMARK_TEMPLATE(BenchEraseCharKeyMap, tsl::array_map<char, int>);
 
 int main(int argc, char **argv)
 {

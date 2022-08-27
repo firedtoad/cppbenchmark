@@ -146,7 +146,7 @@ template <class K, class V, class Compare = std::less<K>> struct sorted_vector_m
         KVPair(K k, V v) : first(std::move(k)), second(std::move(v)) {}
     };
 
-    static_assert(std::is_trivial<V>::value, "T must be trivially_copyable");
+    static_assert(std::is_trivial<V>::value, "V must be trivially_copyable");
     static_assert(sizeof(V) <= 16, "sizeof T must less than 16");
     using Vector = std::vector<KVPair>;
 
@@ -205,7 +205,7 @@ template <class K, class V, class Compare = std::less<K>> struct sorted_vector_m
         auto it = std::lower_bound(begin(), end(), std::forward<K>(key), [this](const auto &p1, const auto &p2) { return cmp(p1.first, p2); });
         if (it == end() || cmp(key, it->first))
         {
-            return m_data.emplace(it, std::forward<K>(key), std::forward<V>(val));
+            return m_data.emplace( it,std::forward<K>(key), std::forward<V>(val));
         }
         return it;
     }

@@ -27,7 +27,7 @@ void worker_thread()
     int n = event_base_dispatch(loop);
     event_base_free(loop);
 }
-int main()
+int main(int argc, char **argv)
 {
 
     std::vector<std::unique_ptr<std::thread>> vecThread;

@@ -5,8 +5,9 @@
 #include "SortedVector.h"
 #include <benchmark/benchmark.h>
 #include <folly/FBString.h>
-#include <folly/sorted_vector_types.h>
 #include <folly/container/heap_vector_types.h>
+#include <folly/sorted_vector_types.h>
+#include <iostream>
 #include <map>
 
 static unsigned long xorshf96()
@@ -144,6 +145,7 @@ BENCHMARK_TEMPLATE(BenchStringFind, folly::fbstring)->Range(128, 1 << 16);
 
 int main(int argc, char **argv)
 {
+    std::cout<<std::is_trivially_copyable_v<std::pair<const uint64_t, Pod>><<'\n';
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

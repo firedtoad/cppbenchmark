@@ -1,23 +1,22 @@
+#include "tsl/ordered_set.h"
 #include <benchmark/benchmark.h>
 #include <unordered_set>
-
-static void BM_insert(benchmark::State &state)
+template <class M> static void BM_insert(benchmark::State &state)
 {
     for (auto _ : state)
     {
-        std::unordered_set<int> m;
+        M m;
         for (auto i = 0; i < 65536; i++)
         {
             m.insert(i);
         }
     }
 }
-
-static void BM_reserve(benchmark::State &state)
+template <class M> static void BM_reserve(benchmark::State &state)
 {
     for (auto _ : state)
     {
-        std::unordered_set<int> m;
+        M m;
         m.reserve(65536);
         for (auto i = 0; i < 65536; i++)
         {
@@ -26,8 +25,9 @@ static void BM_reserve(benchmark::State &state)
     }
 }
 
-BENCHMARK(BM_insert);
-BENCHMARK(BM_reserve);
+BENCHMARK_TEMPLATE(BM_insert, std::unordered_set<int>);
+BENCHMARK_TEMPLATE(BM_reserve, std::unordered_set<int>);
+BENCHMARK_TEMPLATE(BM_reserve, tsl::ordered_set<int>);
 
 int main(int argc, char **argv)
 {
