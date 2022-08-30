@@ -102,7 +102,7 @@ template <class M> static void BenchCharKeyMap(benchmark::State &state)
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]            = "12345678901234561234567890123456" +std::to_string(_random());
+        keys[i]            = std::to_string(_random() %65536);
         m[keys[i]]=i;
     }
     for (auto _ : state)

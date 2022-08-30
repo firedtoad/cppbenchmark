@@ -60,5 +60,5 @@ add_executable(fast_vector vfast/fast_vector.cpp)
 aux_source_directory(hash/internal HASH_SRC)
 
 add_executable(hash hash/hash.cpp ${HASH_SRC})
-target_link_libraries(hash PRIVATE glog gflags brpc)
+target_link_libraries(hash PRIVATE absl_hash absl_city glog gflags brpc)
 

@@ -9,19 +9,15 @@
 #include "internal/wyhash.h"
 #include "internal/xxhash.h"
 #include "tsl/robin_map.h"
+#include "parallel_hashmap/phmap.h"
+#include <absl/container/flat_hash_map.h>
+#include <absl/hash/hash.h>
 #include <benchmark/benchmark.h>
 #include <string>
 #include <vector>
 constexpr int N = 100;
 
-void init(std::vector<std::string> &v1)
-{
-    v1.resize(N);
-    for (auto i = 0; i < N; i++)
-    {
-        v1[i] = std::to_string(i);
-    }
-}
+
 
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
@@ -45,6 +41,14 @@ static inline unsigned long random_()
     return xorshf96();
 }
 
+void init(std::vector<std::string> &v1)
+{
+    v1.resize(N);
+    for (auto i = 0; i < N; i++)
+    {
+        v1[i] = "12345678901234561234567890123456"+std::to_string(random_());
+    }
+}
 static void BM_StdHash(benchmark::State &state)
 {
     std::vector<std::string> vec;
@@ -52,7 +56,7 @@ static void BM_StdHash(benchmark::State &state)
     auto idx = random_() % vec.size();
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(std::hash<std::string>{}(vec[idx]));
+        benchmark::DoNotOptimize(std::_Hash_impl{}.hash(vec[idx]));
     }
 }
 
@@ -128,6 +132,20 @@ static void BM_XXHash(benchmark::State &state)
 
 BENCHMARK(BM_XXHash);
 
+static void BM_AbseilHash(benchmark::State &state)
+{
+    std::vector<std::string> vec;
+    init(vec);
+    auto idx = random_() % vec.size();
+    for (auto _ : state)
+    {
+        auto r = absl::Hash<std::string>{}(vec[idx]);
+        benchmark::DoNotOptimize(r);
+    }
+}
+
+BENCHMARK(BM_AbseilHash);
+
 static void BM_DefaultHash(benchmark::State &state)
 {
     std::vector<std::string> vec;
@@ -163,20 +181,27 @@ template <class M> static void BenchUnOrderMapString(benchmark::State &state)
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i] = std::to_string(random_());
-        //    auto sKey = std::to_string(i);
-        m[keys[i]] = i;
+        keys[i]            = "12345678901234561234567890123456" +std::to_string(random_());
+        m[keys[i]]=i;
     }
     for (auto _ : state)
     {
         auto kIndex = random_() % 65536;
         auto c      = m.find(keys[kIndex]);
-        benchmark::DoNotOptimize(c->first);
+        benchmark::DoNotOptimize(c);
     }
 }
 
+BENCHMARK_TEMPLATE(BenchUnOrderMapString, std::unordered_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, std::unordered_map<std::string, int, Hasher>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapString, ska::flat_hash_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, ska::flat_hash_map<std::string, int, Hasher>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapString, phmap::flat_hash_map<std::string, int>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapString, phmap::flat_hash_map<std::string, int, Hasher>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapString, absl::flat_hash_map<std::string, int>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapString, absl::flat_hash_map<std::string, int,absl::Hash<std::string>>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapString, absl::flat_hash_map<std::string, int, Hasher>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapString, tsl::robin_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, tsl::robin_map<std::string, int, Hasher>);
 
 static void BenchFlatMapString(benchmark::State &state)
