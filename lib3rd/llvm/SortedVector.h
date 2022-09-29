@@ -15,11 +15,11 @@ template <class T, class Compare = std::less<T>> struct sorted_vector
     static_assert(std::is_trivially_copyable<T>::value, "T must be trivially_copyable");
     using Vector = std::vector<T>;
 
-    typedef typename Vector::iterator        iterator;
-    typedef typename Vector::const_iterator  const_iterator;
-    typedef typename Vector::reference       reference;
+    typedef typename Vector::iterator iterator;
+    typedef typename Vector::const_iterator const_iterator;
+    typedef typename Vector::reference reference;
     typedef typename Vector::const_reference const_reference;
-    iterator                                 begin()
+    iterator begin()
     {
         return m_data.begin();
     }
@@ -132,7 +132,7 @@ template <class T, class Compare = std::less<T>> struct sorted_vector
     }
 
   private:
-    Vector  m_data;
+    Vector m_data;
     Compare cmp;
 };
 
@@ -147,14 +147,14 @@ template <class K, class V, class Compare = std::less<K>> struct sorted_vector_m
     };
 
     static_assert(std::is_trivial<V>::value, "V must be trivially_copyable");
-    static_assert(sizeof(V) <= 16, "sizeof T must less than 16");
+    static_assert(sizeof(V) <= 16, "sizeof V must less than 16");
     using Vector = std::vector<KVPair>;
 
-    typedef typename Vector::iterator        iterator;
-    typedef typename Vector::const_iterator  const_iterator;
-    typedef typename Vector::reference       reference;
+    typedef typename Vector::iterator iterator;
+    typedef typename Vector::const_iterator const_iterator;
+    typedef typename Vector::reference reference;
     typedef typename Vector::const_reference const_reference;
-    iterator                                 begin()
+    iterator begin()
     {
         return m_data.begin();
     }
@@ -205,7 +205,7 @@ template <class K, class V, class Compare = std::less<K>> struct sorted_vector_m
         auto it = std::lower_bound(begin(), end(), std::forward<K>(key), [this](const auto &p1, const auto &p2) { return cmp(p1.first, p2); });
         if (it == end() || cmp(key, it->first))
         {
-            return m_data.emplace( it,std::forward<K>(key), std::forward<V>(val));
+            return m_data.emplace(it, std::forward<K>(key), std::forward<V>(val));
         }
         return it;
     }
@@ -234,7 +234,7 @@ template <class K, class V, class Compare = std::less<K>> struct sorted_vector_m
 
     size_t erase(const K &key)
     {
-        auto it = std::lower_bound(begin(), end(), key, [this](const auto &p1, const auto &p2) { return cmp(p1.first, p2); });
+        auto it = find(key);
         if (it != end())
         {
             m_data.erase(it);
@@ -245,7 +245,7 @@ template <class K, class V, class Compare = std::less<K>> struct sorted_vector_m
 
     size_t erase(K &&key)
     {
-        auto it = std::lower_bound(begin(), end(), std::forward<K>(key), [this](const auto &p1, const auto &p2) { return cmp(p1.first, p2); });
+        auto it = find(std::forward<K>(key));
         if (it != end())
         {
             m_data.erase(it);
@@ -269,7 +269,7 @@ template <class K, class V, class Compare = std::less<K>> struct sorted_vector_m
     }
 
   private:
-    Vector  m_data;
+    Vector m_data;
     Compare cmp;
 };
 
