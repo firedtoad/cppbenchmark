@@ -10,7 +10,7 @@ static void BM_AllocSize(benchmark::State &state)
     for (auto _ : state)
     {
         std::vector<char> vc;
-        vc.reserve(state.range(0));
+        vc.resize(state.range(0));
         benchmark::DoNotOptimize(vc);
 //        auto p = malloc(state.range(0));
 //        benchmark::DoNotOptimize(p);
@@ -94,5 +94,11 @@ int main(int argc, char **argv)
     std::cout<<std::_Function_base::_M_max_align<<'\n';
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
+    std::map<int,int > m1;
+    std::map<int,int > m2;
+    if(m1==m2)
+    {
+
+    }
     return 0;
 }

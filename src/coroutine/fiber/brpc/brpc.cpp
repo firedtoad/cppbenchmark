@@ -8,7 +8,7 @@ static void BenchBackground(benchmark::State &state)
     {
         bthread_t tid{};
         bthread_start_background(
-            &tid, nullptr, [](void *) { return (void *)0; }, nullptr);
+            &tid, &BTHREAD_ATTR_SMALL, [](void *) { return (void *)0; }, nullptr);
     }
 }
 
@@ -18,7 +18,7 @@ static void BenchUrgent(benchmark::State &state) {
     {
         bthread_t tid{};
         bthread_start_urgent(
-            &tid, nullptr, [](void *) { return (void *)0; }, nullptr);
+            &tid, &BTHREAD_ATTR_SMALL, [](void *) { return (void *)0; }, nullptr);
     }
 }
 

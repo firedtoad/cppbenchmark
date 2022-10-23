@@ -1,7 +1,6 @@
 //
 // Created by Administrator on 2022/08/21.
 //
-
 #include "SortedVector.h"
 #include <boost/container/flat_map.hpp>
 #include <benchmark/benchmark.h>
@@ -10,7 +9,19 @@
 #include <folly/sorted_vector_types.h>
 #include <iostream>
 #include <map>
+#include <EASTL/vector_set.h>
+#include <EASTL/vector_map.h>
 
+void* operator new[](size_t size, const char* /*pName*/, int /*flags*/, unsigned /*debugFlags*/, const char* /*file*/, int /*line*/)
+{
+    return operator new[](size);
+}
+
+void* operator new[](size_t size, size_t /*alignment*/, size_t /*alignmentOffset*/, const char* /*pName*/,
+                     int /*flags*/, unsigned /*debugFlags*/, const char* /*file*/, int /*line*/)
+{
+    return operator new[](size);
+}
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
     static unsigned long x = 103456789, y = 362436069, z = 521088629;
@@ -58,6 +69,7 @@ BENCHMARK_TEMPLATE(BenchInsert, folly::sorted_vector_map<uint32_t, uint32_t>)->R
 BENCHMARK_TEMPLATE(BenchInsert, folly::heap_vector_map<uint32_t,uint32_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsert, std::map<uint32_t, uint32_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsert, boost::container::flat_map<uint32_t, uint32_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsert, eastl::vector_map<uint32_t, uint32_t>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchFind(benchmark::State &state)
 {
@@ -79,6 +91,7 @@ BENCHMARK_TEMPLATE(BenchFind, folly::sorted_vector_map<uint64_t, Pod>)->Range(1,
 BENCHMARK_TEMPLATE(BenchFind, folly::heap_vector_map<uint64_t,Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFind, std::map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFind, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchFind, eastl::vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchRange(benchmark::State &state)
 {
@@ -104,6 +117,7 @@ BENCHMARK_TEMPLATE(BenchRange, folly::sorted_vector_map<uint64_t, Pod>)->Range(1
 BENCHMARK_TEMPLATE(BenchRange, folly::heap_vector_map<uint64_t,Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRange, std::map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRange, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchRange, eastl::vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchErase(benchmark::State &state)
 {
@@ -129,6 +143,7 @@ BENCHMARK_TEMPLATE(BenchErase, folly::sorted_vector_map<uint64_t, Pod>)->Range(1
 BENCHMARK_TEMPLATE(BenchErase, folly::heap_vector_map<uint64_t,Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchErase, std::map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchErase, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchErase,eastl::vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchStringFind(benchmark::State &state)
 {
