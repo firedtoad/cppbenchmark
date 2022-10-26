@@ -7,6 +7,7 @@
 #include "tsl/ordered_set.h"
 #include "tsl/robin_map.h"
 #include "tsl/robin_set.h"
+#include "parallel_hashmap/phmap.h"
 #include <deque>
 #include <iostream>
 #include <list>
@@ -16,6 +17,8 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+#include <cxxabi.h>
+
 static size_t memAlloc;
 static size_t alloc;
 
@@ -96,13 +99,35 @@ struct CC
     char c;
 };
 
+std::string demangle(const char *name)
+{
+    int status                       = -4;
+    char *res                        = abi::__cxa_demangle(name, NULL, NULL, &status);
+    const char *const demangled_name = (status == 0) ? res : name;
+    std::string ret_val(demangled_name);
+    free(res);
+    return ret_val;
+}
+
+template <typename... T> void PrintSize(T &&...t)
+{
+    (..., (std::cout << demangle(typeid(t).name()) << " size " << sizeof(t) << '\n'));
+}
+
 int main(int argc, char **argv)
 {
 
-    std::cout << sizeof(std::_Rb_tree_node<std::pair<int, bool>>) << '\n';
-    std::cout << sizeof(std::__detail::_Hash_node<char, true>) << '\n';
-    std::cout << sizeof(__gnu_cxx::__aligned_buffer<char>) << '\n';
-    std::cout << sizeof(CC) << '\n';
+    PrintSize(std::_List_node<char>{});
+    PrintSize(std::_List_node<uint64_t>{});
+    PrintSize(std::_Rb_tree_node<std::pair<char, char>>{});
+    PrintSize(std::_Rb_tree_node<std::pair<uint64_t, uint64_t>>{});
+    PrintSize(std::__detail::_Hash_node<char, true>{});
+    PrintSize(std::__detail::_Hash_node<uint64_t, true>{});
+    PrintSize(__gnu_cxx::__aligned_buffer<char>{});
+    PrintSize(__gnu_cxx::__aligned_buffer<uint64_t>{});
+    PrintSize(phmap::flat_hash_set<char>::node_type{});
+    PrintSize(phmap::flat_hash_set<uint64_t>::node_type{});
+    PrintSize(CC{});
     {
         std::list<uint32_t, my_allocator<uint32_t>> v;
         v.resize(1024);
@@ -222,6 +247,27 @@ int main(int argc, char **argv)
             v.insert(i);
         }
         std::cout << "tsl::ordered_set cost memory " << memAlloc << " alloc " << alloc << '\n';
+    }
+
+    memAlloc = 0;
+    {
+        phmap::flat_hash_map<uint32_t, uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<std::pair<uint32_t, uint32_t>>> v;
+        v.reserve(1024);
+        for (auto i = 0; i < 1024; i++)
+        {
+            v[i] = i;
+        }
+        std::cout << "phmap::flat_hash_map cost memory " << memAlloc << " alloc " << alloc << '\n';
+    }
+    memAlloc = 0;
+    {
+        phmap::flat_hash_set<uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
+        v.reserve(1024);
+        for (auto i = 0; i < 1024; i++)
+        {
+            v.insert(i);
+        }
+        std::cout << "phmap::flat_hash_set cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
     return 0;
 }

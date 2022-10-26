@@ -16,6 +16,7 @@
 
 #include <boost/context/continuation.hpp>
 #include <boost/coroutine2/coroutine.hpp>
+#include <map>
 
 struct A
 {
@@ -184,5 +185,22 @@ int main(int argc, char **argv)
         int x;
         v.emplace_back(x);
     }
+    {
+        struct XX{
+            char cc[1024];
+            int i;
+            char c;
+            double  d;
+            float f;
+        };
+
+        std::map<int,XX> mx;
+        auto x=mx.insert(std::pair(1,XX{}));
+        auto &xx=x.first->second;
+        auto &yy=mx[2];
+        std::cout<<xx.cc[0]<<'\n';
+        std::cout<<yy.cc[0]<<'\n';
+    }
+
     return 0;
 }
