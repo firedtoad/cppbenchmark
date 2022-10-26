@@ -8,7 +8,6 @@
 #include <llvm/ADT/DenseMap.h>
 #include <llvm/ADT/DenseSet.h>
 #include <unordered_map>
-#include <llvm/ADT/ilist.h>
 #include <llvm/ADT/simple_ilist.h>
 std::string demangle(const char *name)
 {
@@ -126,7 +125,6 @@ struct LNode : public llvm::ilist_node<LNode, llvm::ilist_tag<LNode>>
 int main(int argc, char **argv)
 {
 
-    std::cout<<sizeof(llvm::simple_ilist<LNode, llvm::ilist_tag<LNode>>::value_type)<<'\n';
     PrintList(llvm::detail::DenseSetPair<uint8_t>{}, llvm::detail::DenseSetPair<uint16_t>{}, llvm::detail::DenseSetPair<uint32_t>{},
               llvm::detail::DenseSetPair<uint64_t>{});
     PrintContainer(llvm::DenseMap<uint8_t, uint8_t, KeyInfo<uint8_t>>{}, llvm::DenseMap<uint16_t, uint16_t, KeyInfo<uint16_t>>{},
