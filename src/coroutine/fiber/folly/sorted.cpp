@@ -165,7 +165,7 @@ BENCHMARK_TEMPLATE(BenchStringFind, folly::fbstring)->Range(128, 1 << 16);
 
 int main(int argc, char **argv)
 {
-    std::cout<<std::is_trivially_copyable_v<std::pair<const uint64_t, Pod>><<'\n';
+    std::cout<<std::is_trivially_copyable_v<std::pair<uint64_t, Pod>><<'\n';
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

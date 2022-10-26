@@ -1,7 +1,9 @@
+//#define BOOST_CONTEXT_USE_MAP_STACK
 #include <benchmark/benchmark.h>
 #include <boost/context/continuation.hpp>
 #include <boost/fiber/all.hpp>
 #include <iostream>
+
 static void BenchCallCcUnwind(benchmark::State &state)
 {
     for (auto _ : state)
