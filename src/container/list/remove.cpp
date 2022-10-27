@@ -61,7 +61,7 @@ static void BenchListRemove(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchListRemove)->Range(1, 1024);
+BENCHMARK(BenchListRemove)->Range(1, 65536);
 static void BenchForwardListRemove(benchmark::State &state)
 {
     for (auto _ : state)
@@ -81,7 +81,7 @@ static void BenchForwardListRemove(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchForwardListRemove)->Range(1, 1024);
+BENCHMARK(BenchForwardListRemove)->Range(1, 65536);
 
 static void BenchDequeRemove(benchmark::State &state)
 {
@@ -103,7 +103,7 @@ static void BenchDequeRemove(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchDequeRemove)->Range(1, 1024);
+BENCHMARK(BenchDequeRemove)->Range(1, 65536);
 
 static void BenchVectorRemove(benchmark::State &state)
 {
@@ -126,7 +126,7 @@ static void BenchVectorRemove(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchVectorRemove)->Range(1, 1024);
+BENCHMARK(BenchVectorRemove)->Range(1, 65536);
 
 static void BenchBUListRemove(benchmark::State &state)
 {
@@ -149,7 +149,7 @@ static void BenchBUListRemove(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchBUListRemove)->Range(1, 1024);
+BENCHMARK(BenchBUListRemove)->Range(1, 65536);
 
 static void BenchIntrusiveListRemove(benchmark::State &state)
 {
@@ -173,7 +173,7 @@ static void BenchIntrusiveListRemove(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchIntrusiveListRemove)->Range(1, 1024);
+BENCHMARK(BenchIntrusiveListRemove)->Range(1, 65536);
 
 static void BenchPlfListRemove(benchmark::State &state)
 {
@@ -195,7 +195,7 @@ static void BenchPlfListRemove(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchPlfListRemove)->Range(1, 1024);
+BENCHMARK(BenchPlfListRemove)->Range(1, 65536);
 
 int main(int argc, char **argv)
 {

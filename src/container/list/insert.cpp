@@ -31,7 +31,7 @@ static void BenchListInsert(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchListInsert)->Range(1, 1024);
+BENCHMARK(BenchListInsert)->Range(1, 65536);
 
 static void BenchDequeInsert(benchmark::State &state)
 {
@@ -45,7 +45,7 @@ static void BenchDequeInsert(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchDequeInsert)->Range(1, 1024);
+BENCHMARK(BenchDequeInsert)->Range(1, 65536);
 
 static void BenchVectorInsert(benchmark::State &state)
 {
@@ -60,7 +60,7 @@ static void BenchVectorInsert(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchVectorInsert)->Range(1, 1024);
+BENCHMARK(BenchVectorInsert)->Range(1, 65536);
 
 static void BenchBUListInsert(benchmark::State &state)
 {
@@ -76,7 +76,7 @@ static void BenchBUListInsert(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchBUListInsert)->Range(1, 1024);
+BENCHMARK(BenchBUListInsert)->Range(1, 65536);
 
 static void BenchIntrusiveListInsert(benchmark::State &state)
 {
@@ -92,7 +92,7 @@ static void BenchIntrusiveListInsert(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchIntrusiveListInsert)->Range(1, 1024);
+BENCHMARK(BenchIntrusiveListInsert)->Range(1, 65536);
 
 static void BenchPlfListInsert(benchmark::State &state)
 {
@@ -107,7 +107,7 @@ static void BenchPlfListInsert(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchPlfListInsert)->Range(1, 1024);
+BENCHMARK(BenchPlfListInsert)->Range(1, 65536);
 
 int main(int argc, char **argv)
 {

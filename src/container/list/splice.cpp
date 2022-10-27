@@ -39,7 +39,7 @@ static void BenchListSplice(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchListSplice)->Range(1, 1024);
+BENCHMARK(BenchListSplice)->Range(1, 65536);
 
 static void BenchListSwap(benchmark::State &state)
 {
@@ -59,7 +59,7 @@ static void BenchListSwap(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchListSwap)->Range(1, 1024);
+BENCHMARK(BenchListSwap)->Range(1, 65536);
 
 static void BenchDequeSwap(benchmark::State &state)
 {
@@ -80,7 +80,7 @@ static void BenchDequeSwap(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchDequeSwap)->Range(1, 1024);
+BENCHMARK(BenchDequeSwap)->Range(1, 65536);
 
 static void BenchIntrusiveListSplice(benchmark::State &state)
 {
@@ -102,7 +102,7 @@ static void BenchIntrusiveListSplice(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchIntrusiveListSplice)->Range(1, 1024);
+BENCHMARK(BenchIntrusiveListSplice)->Range(1, 65536);
 
 static void BenchIntrusiveListSwap(benchmark::State &state)
 {
@@ -124,7 +124,7 @@ static void BenchIntrusiveListSwap(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchIntrusiveListSwap)->Range(1, 1024);
+BENCHMARK(BenchIntrusiveListSwap)->Range(1, 65536);
 
 static void BenchPlfListSplice(benchmark::State &state)
 {
@@ -145,7 +145,7 @@ static void BenchPlfListSplice(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchPlfListSplice)->Range(1, 1024);
+BENCHMARK(BenchPlfListSplice)->Range(1, 65536);
 
 static void BenchPlfListSwap(benchmark::State &state)
 {
@@ -165,7 +165,7 @@ static void BenchPlfListSwap(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchPlfListSwap)->Range(1, 1024);
+BENCHMARK(BenchPlfListSwap)->Range(1, 65536);
 
 int main(int argc, char **argv)
 {

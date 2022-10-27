@@ -44,7 +44,7 @@ static void BenchListInsert(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchListInsert)->Range(1, 1024);
+BENCHMARK(BenchListInsert)->Range(1, 65536);
 
 static void BenchBUListInsert(benchmark::State &state)
 {
@@ -60,7 +60,7 @@ static void BenchBUListInsert(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchBUListInsert)->Range(1, 1024);
+BENCHMARK(BenchBUListInsert)->Range(1, 65536);
 
 static void BenchIntrusiveListInsert(benchmark::State &state)
 {
@@ -76,7 +76,7 @@ static void BenchIntrusiveListInsert(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchIntrusiveListInsert)->Range(1, 1024);
+BENCHMARK(BenchIntrusiveListInsert)->Range(1, 65536);
 
 static void BenchPlfListInsert(benchmark::State &state)
 {
@@ -91,7 +91,7 @@ static void BenchPlfListInsert(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchPlfListInsert)->Range(1, 1024);
+BENCHMARK(BenchPlfListInsert)->Range(1, 65536);
 
 static void BenchAdtList(benchmark::State &state)
 {
@@ -106,7 +106,7 @@ static void BenchAdtList(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchAdtList)->Range(1, 1024);
+BENCHMARK(BenchAdtList)->Range(1, 65536);
 
 static void BenchAdtSimpleList(benchmark::State &state)
 {
@@ -123,7 +123,7 @@ static void BenchAdtSimpleList(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchAdtSimpleList)->Range(1, 1024);
+BENCHMARK(BenchAdtSimpleList)->Range(1, 65536);
 
 static void BenchAdtImmutableList(benchmark::State &state)
 {
@@ -141,7 +141,7 @@ static void BenchAdtImmutableList(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchAdtImmutableList)->Range(1, 1024);
+BENCHMARK(BenchAdtImmutableList)->Range(1, 65536);
 
 int main(int argc, char **argv)
 {

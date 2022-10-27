@@ -51,8 +51,7 @@ void printRSS()
     std::cout << "virtual " << vSize << " rss " << resident << " share " << share << '\n';
 }
 
-const int SIZE = 1024 * 1024;
-
+const int SIZE = 1024 * 1024 ;
 int main(int argc, char *argv[])
 {
     using namespace std::chrono_literals;
@@ -151,9 +150,9 @@ int main(int argc, char *argv[])
     std::cout << "diff rss " << newRss - rss << '\n';
     free(p);
     std::cout << std::dec << '\n';
-    std::vector<uint64_t> vec;
+    std::list<uint8_t> vec;
     vec.resize(SIZE);
-    std::cout << "vector of u8 " << SIZE  <<" node size "<< sizeof(std::_List_node<uint8_t>) << '\n';
+    std::cout << "vector of u8 " << SIZE << " node size " << sizeof(std::_List_node<uint8_t>) << '\n';
     printUsage(usage);
     return 0;
 }

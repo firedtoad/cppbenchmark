@@ -37,7 +37,7 @@ static void BenchListRange(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchListRange)->Range(1, 1024);
+BENCHMARK(BenchListRange)->Range(1, 65536);
 
 static void BenchForwardListRange(benchmark::State &state)
 {
@@ -57,7 +57,7 @@ static void BenchForwardListRange(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchForwardListRange)->Range(1, 1024);
+BENCHMARK(BenchForwardListRange)->Range(1, 65536);
 
 static void BenchDequeRange(benchmark::State &state)
 {
@@ -77,7 +77,7 @@ static void BenchDequeRange(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchDequeRange)->Range(1, 1024);
+BENCHMARK(BenchDequeRange)->Range(1, 65536);
 
 static void BenchVectorRange(benchmark::State &state)
 {
@@ -97,7 +97,7 @@ static void BenchVectorRange(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchVectorRange)->Range(1, 1024);
+BENCHMARK(BenchVectorRange)->Range(1, 65536);
 
 static void BenchBUListRange(benchmark::State &state)
 {
@@ -119,7 +119,7 @@ static void BenchBUListRange(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchBUListRange)->Range(1, 1024);
+BENCHMARK(BenchBUListRange)->Range(1, 65536);
 
 static void BenchIntrusiveListRange(benchmark::State &state)
 {
@@ -140,7 +140,7 @@ static void BenchIntrusiveListRange(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchIntrusiveListRange)->Range(1, 1024);
+BENCHMARK(BenchIntrusiveListRange)->Range(1, 65536);
 
 static void BenchPlfListRange(benchmark::State &state)
 {
@@ -161,7 +161,7 @@ static void BenchPlfListRange(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchPlfListRange)->Range(1, 1024);
+BENCHMARK(BenchPlfListRange)->Range(1, 65536);
 
 int main(int argc, char **argv)
 {

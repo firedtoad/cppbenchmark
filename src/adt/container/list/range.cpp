@@ -50,7 +50,7 @@ static void BenchListRange(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchListRange)->Range(1, 1024);
+BENCHMARK(BenchListRange)->Range(1, 65536);
 
 static void BenchForwardListRange(benchmark::State &state)
 {
@@ -70,7 +70,7 @@ static void BenchForwardListRange(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchForwardListRange)->Range(1, 1024);
+BENCHMARK(BenchForwardListRange)->Range(1, 65536);
 
 static void BenchBUListRange(benchmark::State &state)
 {
@@ -92,7 +92,7 @@ static void BenchBUListRange(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchBUListRange)->Range(1, 1024);
+BENCHMARK(BenchBUListRange)->Range(1, 65536);
 
 static void BenchIntrusiveListRange(benchmark::State &state)
 {
@@ -113,7 +113,7 @@ static void BenchIntrusiveListRange(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchIntrusiveListRange)->Range(1, 1024);
+BENCHMARK(BenchIntrusiveListRange)->Range(1, 65536);
 
 static void BenchPlfListRange(benchmark::State &state)
 {
@@ -134,7 +134,7 @@ static void BenchPlfListRange(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchPlfListRange)->Range(1, 1024);
+BENCHMARK(BenchPlfListRange)->Range(1, 65536);
 
 static void BenchAdtListRange(benchmark::State &state)
 {
@@ -155,7 +155,7 @@ static void BenchAdtListRange(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchAdtListRange)->Range(1, 1024);
+BENCHMARK(BenchAdtListRange)->Range(1, 65536);
 
 static void BenchAdtSimpleListRange(benchmark::State &state)
 {
@@ -178,7 +178,7 @@ static void BenchAdtSimpleListRange(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchAdtSimpleListRange)->Range(1, 1024);
+BENCHMARK(BenchAdtSimpleListRange)->Range(1, 65536);
 
 static void BenchAdtImmutableListRange(benchmark::State &state)
 {
@@ -200,7 +200,7 @@ static void BenchAdtImmutableListRange(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
-BENCHMARK(BenchAdtImmutableListRange)->Range(1, 1024);
+BENCHMARK(BenchAdtImmutableListRange)->Range(1, 65536);
 
 int main(int argc, char **argv)
 {
