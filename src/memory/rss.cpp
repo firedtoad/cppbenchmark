@@ -4,12 +4,18 @@
 #include <iostream>
 #include <list>
 #include <map>
-#include <queue>
 #include <set>
 #include <sys/resource.h>
+#include <sys/time.h>
 #include <thread>
 #include <unistd.h>
+#include <unordered_map>
+#include <unordered_set>
 #include <vector>
+
+#include "flat_hash_map.hpp"
+#include "parallel_hashmap/phmap.h"
+
 const int PAGE_SIZE = sysconf(_SC_PAGESIZE);
 
 template <class Tp> inline __attribute__((always_inline)) void DoNotOptimize(Tp &value)
@@ -20,19 +26,27 @@ template <class Tp> inline __attribute__((always_inline)) void DoNotOptimize(Tp 
     asm volatile("" : "+m,r"(value) : : "memory");
 #endif
 }
+
 uint64_t getThreadRss()
 {
     rusage usage{};
     getrusage(RUSAGE_THREAD, &usage);
-    return usage.__ru_maxrss_word;
+    return usage.ru_maxrss;
+}
+
+std::string operator-(const timeval tv1, const timeval tv2)
+{
+    timeval res;
+    timersub(&tv1, &tv2, &res);
+    return std::to_string(res.tv_sec) + "s " + std::to_string(res.tv_usec) + "us";
 }
 
 void printUsage(struct rusage &rUsage)
 {
     rusage usage{};
     getrusage(RUSAGE_THREAD, &usage);
-    std::cout << "user cpu : " << usage.ru_utime.tv_usec - rUsage.ru_utime.tv_usec << '\n';
-    std::cout << "sys cpu : " << usage.ru_stime.tv_usec - rUsage.ru_stime.tv_usec << '\n';
+    std::cout << "user cpu : " << usage.ru_utime - rUsage.ru_utime << '\n';
+    std::cout << "sys cpu : " << usage.ru_stime - rUsage.ru_stime << '\n';
     std::cout << "max rss : " << (usage.ru_maxrss - rUsage.ru_maxrss) << " kb / " << (usage.ru_maxrss - rUsage.ru_maxrss) / 1024.0 << " MB" << '\n';
     std::cout << "page reclaims : " << usage.ru_minflt - rUsage.ru_minflt << '\n';
     std::cout << "page faults : " << usage.ru_majflt - rUsage.ru_majflt << '\n';
@@ -42,117 +56,222 @@ void printUsage(struct rusage &rUsage)
     std::cout.flush();
 }
 
-void printRSS()
+void FillRSS(rusage &rUsage)
 {
-    int vSize = 0, resident = 0, share = 0;
-    std::ifstream buffer("/proc/self/statm");
-    buffer >> vSize >> resident >> share;
-    buffer.close();
-    std::cout << "virtual " << vSize << " rss " << resident << " share " << share << '\n';
-}
-
-const int SIZE = 1024 * 1024 ;
-int main(int argc, char *argv[])
-{
-    using namespace std::chrono_literals;
-    //    std::thread th_vector_u8(
-    //        []
-    //        {
-    //            auto pSize = sysconf(_SC_PAGESIZE);
-    //            rusage usage{};
-    //            getrusage(RUSAGE_THREAD, &usage);
-    //            std::vector<uint8_t> vec;
-    //            vec.resize(SIZE);
-    //            std::cout << "vector of u8 " << SIZE << '\n';
-    //            std::cout << SIZE / pSize << '\n';
-    //            printUsage(usage);
-    //        });
-    //    std::thread th_vector_u64(
-    //        []
-    //        {
-    //            rusage usage{};
-    //            getrusage(RUSAGE_THREAD, &usage);
-    //            std::vector<uint64_t> vec;
-    //            vec.resize(SIZE);
-    //            std::cout << "vector of u64 " << SIZE << '\n';
-    //            printUsage(usage);
-    //        });
-    //    std::thread th_list_u8(
-    //        []
-    //        {
-    //            rusage usage{};
-    //            getrusage(RUSAGE_THREAD, &usage);
-    //            std::list<uint8_t> li;
-    //            li.resize(SIZE);
-    //            std::cout << "list of u8 " << SIZE << '\n';
-    //            printUsage(usage);
-    //        });
-    //    std::thread th_list_u64(
-    //        []
-    //        {
-    //            rusage usage{};
-    //            getrusage(RUSAGE_THREAD, &usage);
-    //            std::list<uint64_t> li;
-    //            li.resize(SIZE);
-    //            std::cout << "list of u64 " << SIZE << '\n';
-    //            printUsage(usage);
-    //        });
-    //    std::thread th_set_u8(
-    //        []
-    //        {
-    //            rusage usage{};
-    //            getrusage(RUSAGE_THREAD, &usage);
-    //            std::set<uint8_t> li;
-    //            for (auto i = 0; i < SIZE; i++)
-    //            {
-    //                li.insert(i);
-    //            }
-    //            std::cout << "set of u8 " << SIZE << '\n';
-    //            printUsage(usage);
-    //        });
-    //    std::thread th_set_u64(
-    //        []
-    //        {
-    //            rusage usage{};
-    //            getrusage(RUSAGE_THREAD, &usage);
-    //            std::set<uint64_t> li;
-    //            for (auto i = 0; i < SIZE; i++)
-    //            {
-    //                li.insert(i);
-    //            }
-    //            std::cout << "set of u64 " << SIZE << '\n';
-    //            printUsage(usage);
-    //        });
-    //    th_vector_u8.detach();
-    //    th_vector_u64.detach();
-    //    th_list_u8.detach();
-    //    th_list_u64.detach();
-    //    th_set_u8.detach();
-    //    th_set_u64.join();
-
     auto rss        = getThreadRss();
     uint64_t newRss = 0;
-    rusage usage{};
-    auto p = (char *)malloc(0);
-    auto s = (char *)sbrk(0);
-    auto e = (char *)sbrk(0);
+    int sz          = 1;
+    auto p          = (char *)calloc(1, 1);
     while (newRss <= rss)
     {
-        getrusage(RUSAGE_THREAD, &usage);
-        p      = (char *)malloc(1);
-        *p     = 1;
-        e      = (char *)sbrk(0);
+        getrusage(RUSAGE_THREAD, &rUsage);
+        p      = (char *)calloc(sz++, 1);
         newRss = getThreadRss();
         DoNotOptimize(p);
     }
-    std::cout << "diff " << std::dec << e - p << '\n';
-    std::cout << "diff " << e - s << '\n';
-    std::cout << "diff rss " << newRss - rss << '\n';
-    free(p);
-    std::cout << std::dec << '\n';
-    std::list<uint8_t> vec;
-    vec.resize(SIZE);
-    std::cout << "vector of u8 " << SIZE << " node size " << sizeof(std::_List_node<uint8_t>) << '\n';
+}
+
+const int SIZE = 1024 * 1024;
+int main(int argc, char *argv[])
+{
+    rusage usage{};
+    FillRSS(usage);
+    std::vector<uint8_t> vecu8;
+    vecu8.resize(SIZE);
+    std::cout << "vector of u8 " << SIZE << '\n';
     printUsage(usage);
+
+    FillRSS(usage);
+    std::vector<uint64_t> vec;
+    vec.resize(SIZE);
+    std::cout << "vector of u64 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    std::deque<uint8_t> dequ8;
+    dequ8.resize(SIZE);
+    std::cout << "deque of u8 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    std::deque<uint64_t> dequ64;
+    dequ64.resize(SIZE);
+    std::cout << "deque of u64 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    std::list<uint8_t> li;
+    li.resize(SIZE);
+    std::cout << "list of u8 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    std::list<uint8_t> li16;
+    li16.resize(SIZE);
+    std::cout << "list of u16 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    std::list<uint64_t> li64;
+    li64.resize(SIZE);
+    std::cout << "list of u64 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    std::set<uint32_t> s32;
+    for (auto i = 0; i < SIZE; i++)
+    {
+        s32.insert(i);
+    }
+    std::cout << "set of u32 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    std::set<uint64_t> s64;
+    for (auto i = 0; i < SIZE; i++)
+    {
+        s64.insert(i);
+    }
+    std::cout << "set of u64 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    std::map<uint32_t, uint32_t> m32;
+    for (auto i = 0; i < SIZE; i++)
+    {
+        m32[i] = i;
+    }
+    std::cout << "map of u32 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    std::map<uint64_t, uint64_t> m64;
+    for (auto i = 0; i < SIZE; i++)
+    {
+        m64[i] = i;
+    }
+    std::cout << "map of u64 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    std::unordered_set<uint32_t> us32;
+    us32.reserve(SIZE);
+    for (auto i = 0; i < SIZE; i++)
+    {
+        us32.insert(i);
+    }
+    std::cout << "uset of u32 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    std::unordered_set<uint64_t> us64;
+    us64.reserve(SIZE);
+    for (auto i = 0; i < SIZE; i++)
+    {
+        us64.insert(i);
+    }
+    std::cout << "uset of u64 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    std::unordered_map<uint32_t, uint32_t> um32;
+    um32.reserve(SIZE);
+    for (auto i = 0; i < SIZE; i++)
+    {
+        um32[i] = i;
+    }
+    std::cout << "umap of u32 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    std::unordered_map<uint64_t, uint64_t> um64;
+    um64.reserve(SIZE);
+    for (auto i = 0; i < SIZE; i++)
+    {
+        um64[i] = i;
+    }
+    std::cout << "umap of u64 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    ska::flat_hash_set<uint32_t> flat_set_32;
+    flat_set_32.reserve(SIZE);
+    for (auto i = 0; i < SIZE; i++)
+    {
+        flat_set_32.insert(i);
+    }
+    std::cout << "ska flat set of u32 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    ska::flat_hash_set<uint64_t> flat_set_64;
+    flat_set_64.reserve(SIZE);
+    for (auto i = 0; i < SIZE; i++)
+    {
+        flat_set_64.insert(i);
+    }
+    std::cout << "ska flat set of u64 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    phmap::flat_hash_set<uint32_t> ph_flat_set_32;
+    ph_flat_set_32.reserve(SIZE);
+    for (auto i = 0; i < SIZE; i++)
+    {
+        ph_flat_set_32.insert(i);
+    }
+    std::cout << "ph flat set of u32 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    phmap::flat_hash_set<uint64_t> ph_flat_set_64;
+    ph_flat_set_64.reserve(SIZE);
+    for (auto i = 0; i < SIZE; i++)
+    {
+        ph_flat_set_64.insert(i);
+    }
+    std::cout << "ph flat set of u64 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    ska::flat_hash_map<uint32_t, uint32_t> flat_map_32;
+    flat_map_32.reserve(SIZE);
+    for (auto i = 0; i < SIZE; i++)
+    {
+        flat_map_32[i] = i;
+    }
+    std::cout << "ska flat map of u32 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    ska::flat_hash_map<uint64_t, uint64_t> flat_map_64;
+    flat_map_64.reserve(SIZE);
+    for (auto i = 0; i < SIZE; i++)
+    {
+        flat_map_64[i] = i;
+    }
+    std::cout << "ska flat map of u64 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    phmap::flat_hash_map<uint32_t, uint32_t> ph_flat_map_32;
+    ph_flat_map_32.reserve(SIZE);
+    for (auto i = 0; i < SIZE; i++)
+    {
+        ph_flat_map_32[i] = i;
+    }
+    std::cout << "ph flat map of u32 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    phmap::flat_hash_map<uint64_t, uint64_t> ph_flat_map_64;
+    ph_flat_map_64.reserve(SIZE);
+    for (auto i = 0; i < SIZE; i++)
+    {
+        ph_flat_map_64[i] = i;
+    }
+    std::cout << "ph flat map of u64 " << SIZE << '\n';
+    printUsage(usage);
+
     return 0;
 }

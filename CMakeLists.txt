@@ -14,6 +14,7 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-limit-debug-info")
 #    set(CMAKE_CXX_FLAGS_RELEASE  "-O2 -DNDEBUG")
 endif ()
+
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
 include_directories(
@@ -33,7 +34,6 @@ add_subdirectory(src/string)
 add_subdirectory(src/allocator)
 add_subdirectory(src/arithmetic)
 add_subdirectory(src/astar)
-add_subdirectory(src/astar_orgin)
 add_subdirectory(src/container)
 add_subdirectory(src/coroutine)
 add_subdirectory(src/branch)
