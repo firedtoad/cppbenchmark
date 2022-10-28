@@ -3,6 +3,7 @@
 //
 
 #include <benchmark/benchmark.h>
+#include <iostream>
 #include <llvm/ADT/SmallVector.h>
 #include <numeric>
 #include <vector>
@@ -72,7 +73,14 @@ BENCHMARK_TEMPLATE(BenchAccumulateReverse, std::vector<int>)->Range(2, 1024);
 BENCHMARK_TEMPLATE(BenchAccumulateReverse, llvm::SmallVector<int, 1024>)->Range(2, 1024);
 int main(int argc, char **argv)
 {
+    std::cout<<std::numeric_limits<double>::max_digits10<<'\n';
+    llvm::SmallVector<int, 1024> v;
+    for (auto i = 0; i < 1024; i++)
+    {
+        v.push_back(i);
+    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
+
     return 0;
 }
