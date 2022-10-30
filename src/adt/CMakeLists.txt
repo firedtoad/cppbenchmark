@@ -45,6 +45,7 @@ add_executable(adt_vec_remove container/vector/remove.cpp)
 add_executable(adt_vec_reserve container/vector/reserve.cpp)
 add_executable(adt_vec_vectors container/vector/vectors.cpp)
 add_executable(adt_vec_row_col container/vector/row_col.cpp)
+add_executable(adt_vec_ReserveSmall container/vector/Small.cpp)
 
 
 add_executable(adt_immutable container/immutable/immutable.cpp)

@@ -71,7 +71,7 @@ void FillRSS(rusage &rUsage)
     }
 }
 
-const int SIZE = 1024 * 1024;
+const int SIZE = 1024 * 1024 ;
 int main(int argc, char *argv[])
 {
     rusage usage{};
