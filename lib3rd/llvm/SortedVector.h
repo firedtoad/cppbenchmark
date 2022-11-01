@@ -4,11 +4,11 @@
 
 #ifndef LLVM_SORTED_VECTOR_H
 #define LLVM_SORTED_VECTOR_H
-#include "SmallVector.h"
 #include <algorithm>
 #include <ext/pool_allocator.h>
 #include <functional>
 #include <vector>
+#include "vector.hpp"
 
 template <class T, class Compare = std::less<T>> struct sorted_vector
 {

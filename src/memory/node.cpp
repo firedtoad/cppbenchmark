@@ -29,7 +29,7 @@ template <typename... T> void PrintVector(T &&...t)
 
 template <typename... T> void PrintNode(T &&...t)
 {
-    (..., (std::cout << demangle(typeid(t).name()) << " size " << sizeof(typename T::node_type) << '\n'));
+    (..., (std::cout << demangle(typeid(typename T::node_type).name()) << " size " << sizeof(typename T::node_type) << '\n'));
     std::cout << '\n';
 }
 

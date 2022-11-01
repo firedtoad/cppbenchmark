@@ -1,13 +1,11 @@
 #include <benchmark/benchmark.h>
 #include <vector>
-#include "SmallVector.h"
 
 static void BM_insert(benchmark::State &state)
 {
     for (auto _ : state)
     {
         std::vector<int> v;
-//        llvm_vecsmall::SmallVector<int,1024> v;
         for (auto i = 0; i < 1024; i++)
         {
             v.push_back(i);

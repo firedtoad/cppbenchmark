@@ -6,6 +6,8 @@
 #include "parallel_hashmap/phmap.h"
 #include <absl/container/flat_hash_map.h>
 #include <absl/container/flat_hash_set.h>
+#include <absl/container/node_hash_map.h>
+#include <absl/container/node_hash_set.h>
 #include <benchmark/benchmark.h>
 #include <cxxabi.h>
 #include <unordered_map>
@@ -22,13 +24,13 @@ std::string demangle(const char *name)
 }
 template <typename... T> void PrintNode(T &&...t)
 {
-    (..., (std::cout << demangle(typeid(t).name()) << " size " << sizeof(typename T::node_type) << '\n'));
+    (..., (std::cout << demangle(typeid(typename T::node_type).name()) << " size " << sizeof(typename T::node_type) << '\n'));
     std::cout << '\n';
 }
 
 template <typename... T> void PrintContainer(T &&...t)
 {
-    (..., (std::cout << demangle(typeid(t).name()) << " size " << sizeof(typename T::allocator_type::value_type) << '\n'));
+    (..., (std::cout << demangle(typeid(t).name()) << " size " << sizeof(typename T::value_type) << '\n'));
     std::cout << '\n';
 }
 
@@ -88,11 +90,14 @@ int main(int argc, char **argv)
 
     PrintNode(phmap::flat_hash_set<uint8_t>{}, phmap::flat_hash_set<uint16_t>{}, phmap::flat_hash_set<uint32_t>{}, phmap::flat_hash_set<uint64_t>{});
     PrintNode(absl::flat_hash_set<uint8_t>{}, absl::flat_hash_set<uint16_t>{}, absl::flat_hash_set<uint32_t>{}, absl::flat_hash_set<uint64_t>{});
+    PrintNode(absl::node_hash_set<uint8_t>{}, absl::node_hash_set<uint16_t>{}, absl::node_hash_set<uint32_t>{}, absl::node_hash_set<uint64_t>{});
 
     PrintContainer(phmap::flat_hash_map<uint8_t, uint8_t>{}, phmap::flat_hash_map<uint16_t, uint16_t>{}, phmap::flat_hash_map<uint32_t, uint32_t>{},
                    phmap::flat_hash_map<uint64_t, uint64_t>{});
     PrintContainer(absl::flat_hash_map<uint8_t, uint8_t>{}, absl::flat_hash_map<uint16_t, uint16_t>{}, absl::flat_hash_map<uint32_t, uint32_t>{},
                    absl::flat_hash_map<uint64_t, uint64_t>{});
+    PrintContainer(absl::node_hash_map<uint8_t, uint8_t>{}, absl::node_hash_map<uint16_t, uint16_t>{}, absl::node_hash_map<uint32_t, uint32_t>{},
+                   absl::node_hash_map<uint64_t, uint64_t>{});
 
     PrintContainer(ska::flat_hash_set<uint8_t>{}, ska::flat_hash_set<uint16_t>{}, ska::flat_hash_set<uint32_t>{}, ska::flat_hash_set<uint64_t>{});
     PrintContainer(ska::flat_hash_map<uint8_t, uint8_t>{}, ska::flat_hash_map<uint16_t, uint16_t>{}, ska::flat_hash_map<uint32_t, uint32_t>{},
