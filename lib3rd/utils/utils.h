@@ -6,13 +6,11 @@
 #define BENCH_UTILS_H
 #include <iostream>
 #include <malloc.h>
-#include <memory.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string>
 #include <sys/resource.h>
 #include <sys/time.h>
-#include <thread>
 
 template <class Tp> inline __attribute__((always_inline)) void DoNotOptimize(Tp &value)
 {
@@ -37,10 +35,13 @@ inline void FillRSS(rusage &rUsage)
     auto p          = (char *)calloc(1, 4096);
     while (newRss <= rss)
     {
-        p      = (char *)calloc(sz, 4096);
         newRss = getThreadRss(rUsage);
+        p      = (char *)calloc(sz, 4096);
         DoNotOptimize(p);
     }
+    auto info = mallinfo();
+    p         = (char *)calloc(info.fordblks, 1);
+    DoNotOptimize(p);
 }
 
 inline std::string operator-(const timeval tv1, const timeval tv2)

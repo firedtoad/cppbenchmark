@@ -3,7 +3,8 @@
 //
 
 #include <benchmark/benchmark.h>
-#include <llvm/ADT/SmallVector.h>
+//#include <llvm/ADT/SmallVector.h>
+#include "llvm/OPT_SmallVector.h"
 #include "llvm/vector.hpp"
 #include <vector>
 
@@ -39,8 +40,8 @@ template <typename V> static void BenchReserveSmall(benchmark::State &state)
     }
 }
 //
-BENCHMARK_TEMPLATE(BenchReserve, std::vector<uint64_t>)->Range(65536, 65536);
-BENCHMARK_TEMPLATE(BenchReserveSmall, llvm::SmallVector<uint64_t , 65536>)->Range(65536, 65536);
+BENCHMARK_TEMPLATE(BenchReserve, std::vector<uint32_t>)->Range(65536, 65536);
+BENCHMARK_TEMPLATE(BenchReserveSmall, llvm::SmallVector<uint32_t , 65536>)->Range(65536, 65536);
 
 int main(int argc, char **argv)
 {
