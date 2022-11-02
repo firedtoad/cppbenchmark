@@ -5,6 +5,7 @@
 #ifndef BENCH_UTILS_H
 #define BENCH_UTILS_H
 #include <iostream>
+#include <malloc.h>
 #include <memory.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -22,24 +23,22 @@ template <class Tp> inline __attribute__((always_inline)) void DoNotOptimize(Tp 
 #endif
 }
 
-inline uint64_t getThreadRss()
+inline uint64_t getThreadRss(rusage &rUsage)
 {
-    rusage usage{};
-    getrusage(RUSAGE_THREAD, &usage);
-    return usage.ru_maxrss;
+    getrusage(RUSAGE_THREAD, &rUsage);
+    return rUsage.ru_maxrss;
 }
 
 inline void FillRSS(rusage &rUsage)
 {
-    auto rss        = getThreadRss();
+    auto rss        = getThreadRss(rUsage);
     uint64_t newRss = 0;
     int sz          = 1;
-    auto p          = (char *)calloc(1, 1);
+    auto p          = (char *)calloc(1, 4096);
     while (newRss <= rss)
     {
-        getrusage(RUSAGE_THREAD, &rUsage);
-        p      = (char *)calloc(sz++, 1);
-        newRss = getThreadRss();
+        p      = (char *)calloc(sz, 4096);
+        newRss = getThreadRss(rUsage);
         DoNotOptimize(p);
     }
 }
