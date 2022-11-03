@@ -1,0 +1,1 @@
+add_executable(rapid_boost rapid_boost.cpp yyjson.c)

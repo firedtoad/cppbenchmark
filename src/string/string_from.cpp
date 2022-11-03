@@ -16,7 +16,7 @@ float tagf   = M_PI;
 
 template <typename S, typename T> void NumberToString(T &t, std::string &str)
 {
-    thread_local static S oss;
+    S oss;
     oss.str("");
     oss << t;
     str = oss.str();
