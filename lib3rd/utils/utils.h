@@ -1,7 +1,3 @@
-//
-// Created by Bytedance on 2022/11/2.
-//
-
 #ifndef BENCH_UTILS_H
 #define BENCH_UTILS_H
 #include <iostream>

@@ -1,7 +1,3 @@
-//
-// Created by Bytedance on 2022/11/3.
-//
-
 #ifndef BENCH_TSC_H
 #define BENCH_TSC_H
 #include <stdint.h>
