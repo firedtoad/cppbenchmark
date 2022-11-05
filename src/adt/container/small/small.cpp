@@ -5,6 +5,8 @@
 #include <benchmark/benchmark.h>
 #include <iostream>
 #include <llvm/ADT/BitVector.h>
+#include <llvm/ADT/ImmutableList.h>
+#include <llvm/ADT/ImmutableMap.h>
 #include <llvm/ADT/STLExtras.h>
 #include <llvm/ADT/ScopeExit.h>
 #include <llvm/ADT/SmallBitVector.h>

@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <benchmark/benchmark.h>
 #include <map>
+#include <EASTL/vector_set.h>
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
     static unsigned long x = 103456789, y = 362436069, z = 521088629;

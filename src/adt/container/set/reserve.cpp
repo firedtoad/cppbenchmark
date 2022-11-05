@@ -2,6 +2,7 @@
 #include <llvm/ADT/DenseSet.h>
 #include <llvm/ADT/SetVector.h>
 #include <llvm/ADT/SmallSet.h>
+#include <llvm/ADT/SmallPtrSet.h>
 #include <llvm/ADT/SparseSet.h>
 #include <llvm/ADT/StringSet.h>
 #include <unordered_set>
@@ -17,6 +18,7 @@ template <class M> static void BM_insert(benchmark::State &state)
         }
     }
 }
+
 template <class M> static void BM_reserve(benchmark::State &state)
 {
     for (auto _ : state)
@@ -33,6 +35,8 @@ template <class M> static void BM_reserve(benchmark::State &state)
 BENCHMARK_TEMPLATE(BM_insert, std::unordered_set<int>);
 BENCHMARK_TEMPLATE(BM_reserve, std::unordered_set<int>);
 BENCHMARK_TEMPLATE(BM_insert, llvm::DenseSet<int>);
+BENCHMARK_TEMPLATE(BM_insert, llvm::SmallSet<int,32>);
+
 BENCHMARK_TEMPLATE(BM_reserve, llvm::DenseSet<int>);
 BENCHMARK_TEMPLATE(BM_insert, llvm::SetVector<int>);
 
@@ -67,7 +71,6 @@ BENCHMARK_TEMPLATE(BM_StringInsert, llvm::StringSet<>);
 
 int main(int argc, char **argv)
 {
-
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

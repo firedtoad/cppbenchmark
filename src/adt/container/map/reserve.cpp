@@ -13,6 +13,7 @@
 #include "unordered_map.hpp"
 #include <llvm/ADT/DenseMap.h>
 #include <llvm/ADT/IndexedMap.h>
+#include <llvm/ADT/IntervalMap.h>
 #include <llvm/ADT/MapVector.h>
 #include <llvm/ADT/StringMap.h>
 template <class M> static void BM_reserve(benchmark::State &state)

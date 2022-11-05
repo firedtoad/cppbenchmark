@@ -159,7 +159,7 @@ int main(int argc, char **argv)
     }
     memAlloc = 0;
     {
-        std::set<uint16_t, std::less<uint16_t>, my_allocator<uint16_t>> v;
+        std::set<uint32_t, std::less<uint32_t>, my_allocator<uint32_t>> v;
         for (auto i = 0; i < 1024; i++)
         {
             v.insert(i);

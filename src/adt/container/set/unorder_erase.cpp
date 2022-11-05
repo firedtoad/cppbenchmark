@@ -18,6 +18,7 @@
 #include <unordered_set>
 
 #include <llvm/ADT/DenseSet.h>
+#include <llvm/ADT/SetVector.h>
 #include <llvm/ADT/SparseSet.h>
 #include <llvm/ADT/StringSet.h>
 
@@ -74,6 +75,25 @@ BENCHMARK_TEMPLATE(BenchEraseUnOrderSetInt, tsl::hopscotch_set<int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderSetInt, tsl::robin_set<int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderSetInt, tsl::sparse_set<int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderSetInt, llvm::DenseSet<int>);
+template <class S> static void BenchEraseVecSetInt(benchmark::State &state)
+{
+    S s;
+    for (auto i = 0; i < 65536; i++)
+    {
+        s.insert(i);
+    }
+    for (auto _ : state)
+    {
+        auto r  = _random() % 65536;
+        auto it = s.remove(r);
+        if (it)
+        {
+            s.insert(r);
+        }
+    }
+}
+
+BENCHMARK_TEMPLATE(BenchEraseVecSetInt, llvm::SetVector<int>);
 
 template <class M> static void BenchEraseSparseSetInt(benchmark::State &state)
 {
@@ -173,6 +193,7 @@ template <class M> static void BenchEraseStringSet(benchmark::State &state)
         }
     }
 }
+
 BENCHMARK_TEMPLATE(BenchEraseStringSet, llvm::StringSet<>);
 
 int main(int argc, char **argv)

@@ -9,12 +9,9 @@ static void BM_AllocSize(benchmark::State &state)
 {
     for (auto _ : state)
     {
-        std::vector<char> vc;
-        vc.resize(state.range(0));
-        benchmark::DoNotOptimize(vc);
-//        auto p = malloc(state.range(0));
-//        benchmark::DoNotOptimize(p);
-//        free(p);
+        auto p = malloc(state.range(0));
+        free(p);
+        benchmark::DoNotOptimize(p);
     }
 }
 BENCHMARK(BM_AllocSize)->Range(1,1<<20);

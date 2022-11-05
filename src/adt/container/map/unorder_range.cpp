@@ -22,6 +22,7 @@
 #include <llvm/ADT/DenseMap.h>
 #include <llvm/ADT/MapVector.h>
 #include <llvm/ADT/StringMap.h>
+#include <llvm/ADT/IndexedMap.h>
 
 template <class M> static void BenchRangeUnOrderMapInt(benchmark::State &state)
 {

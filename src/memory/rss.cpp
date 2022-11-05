@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
     printUsage(usage);
 
     FillRSS(usage);
-    std::list<uint8_t> li16;
+    std::list<uint16_t> li16;
     li16.resize(SIZE);
     std::cout << "list of u16 " << SIZE << '\n';
     printUsage(usage);
