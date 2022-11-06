@@ -1,15 +1,13 @@
-//
-// Created by Administrator on 2022/01/15.
-//
 #include "flat_hash_map.hpp"
-#include "unordered_map.hpp"
 #include "parallel_hashmap/phmap.h"
+#include "unordered_map.hpp"
 #include <absl/container/flat_hash_map.h>
 #include <absl/container/flat_hash_set.h>
 #include <absl/container/node_hash_map.h>
 #include <absl/container/node_hash_set.h>
 #include <benchmark/benchmark.h>
 #include <cxxabi.h>
+#include <iostream>
 #include <unordered_map>
 #include <unordered_set>
 
@@ -88,12 +86,15 @@ BENCHMARK_TEMPLATE(BM_decay_map, absl::flat_hash_map<int, int, Hasher>);
 int main(int argc, char **argv)
 {
 
+    std::cout<<sizeof(phmap::priv::hash_policy_traits<phmap::priv::FlatHashSetPolicy<unsigned char>, void>)<<'\n';
     PrintNode(phmap::flat_hash_set<uint8_t>{}, phmap::flat_hash_set<uint16_t>{}, phmap::flat_hash_set<uint32_t>{}, phmap::flat_hash_set<uint64_t>{});
+
     PrintNode(absl::flat_hash_set<uint8_t>{}, absl::flat_hash_set<uint16_t>{}, absl::flat_hash_set<uint32_t>{}, absl::flat_hash_set<uint64_t>{});
     PrintNode(absl::node_hash_set<uint8_t>{}, absl::node_hash_set<uint16_t>{}, absl::node_hash_set<uint32_t>{}, absl::node_hash_set<uint64_t>{});
 
     PrintContainer(phmap::flat_hash_map<uint8_t, uint8_t>{}, phmap::flat_hash_map<uint16_t, uint16_t>{}, phmap::flat_hash_map<uint32_t, uint32_t>{},
                    phmap::flat_hash_map<uint64_t, uint64_t>{});
+
     PrintContainer(absl::flat_hash_map<uint8_t, uint8_t>{}, absl::flat_hash_map<uint16_t, uint16_t>{}, absl::flat_hash_map<uint32_t, uint32_t>{},
                    absl::flat_hash_map<uint64_t, uint64_t>{});
     PrintContainer(absl::node_hash_map<uint8_t, uint8_t>{}, absl::node_hash_map<uint16_t, uint16_t>{}, absl::node_hash_map<uint32_t, uint32_t>{},
@@ -109,7 +110,7 @@ int main(int argc, char **argv)
 
     PrintNode(std::unordered_set<uint8_t>{}, std::unordered_set<uint16_t>{}, std::unordered_set<uint32_t>{}, std::unordered_set<uint64_t>{});
     PrintNode(std::unordered_map<uint8_t, uint8_t>{}, std::unordered_map<uint16_t, uint16_t>{}, std::unordered_map<uint32_t, uint32_t>{},
-                   std::unordered_map<uint64_t, uint64_t>{});
+              std::unordered_map<uint64_t, uint64_t>{});
 
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();

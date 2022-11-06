@@ -3,11 +3,12 @@
 //
 
 #include "flat_hash_map.hpp"
+#include "parallel_hashmap/phmap.h"
 #include "tsl/ordered_map.h"
 #include "tsl/ordered_set.h"
 #include "tsl/robin_map.h"
 #include "tsl/robin_set.h"
-#include "parallel_hashmap/phmap.h"
+#include <cxxabi.h>
 #include <deque>
 #include <iostream>
 #include <list>
@@ -17,7 +18,6 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-#include <cxxabi.h>
 
 static size_t memAlloc;
 static size_t alloc;
@@ -47,8 +47,6 @@ template <class T> class my_allocator
     {
         if (p)
         {
-            alloc--;
-            memAlloc -= n * sizeof(T);
             free(p);
         }
     }
@@ -120,14 +118,16 @@ int main(int argc, char **argv)
     PrintSize(std::_List_node<char>{});
     PrintSize(std::_List_node<uint64_t>{});
     PrintSize(std::_Rb_tree_node<std::pair<char, char>>{});
-    PrintSize(std::_Rb_tree_node<std::pair<uint64_t, uint64_t>>{});
-    PrintSize(std::__detail::_Hash_node<char, true>{});
-    PrintSize(std::__detail::_Hash_node<uint64_t, true>{});
+    PrintSize(std::_Rb_tree_node<std::pair<uint64_t, char>>{});
+    PrintSize(std::__detail::_Hash_node<char, false>{});
+    PrintSize(std::__detail::_Hash_node<uint64_t, false>{});
     PrintSize(__gnu_cxx::__aligned_buffer<char>{});
     PrintSize(__gnu_cxx::__aligned_buffer<uint64_t>{});
     PrintSize(phmap::flat_hash_set<char>::node_type{});
     PrintSize(phmap::flat_hash_set<uint64_t>::node_type{});
     PrintSize(CC{});
+    memAlloc = 0;
+    alloc    = 0;
     {
         std::list<uint32_t, my_allocator<uint32_t>> v;
         v.resize(1024);
@@ -135,6 +135,7 @@ int main(int argc, char **argv)
     }
 
     memAlloc = 0;
+    alloc    = 0;
     {
         std::deque<uint64_t, my_allocator<uint64_t>> v;
         v.resize(1024);
@@ -142,6 +143,7 @@ int main(int argc, char **argv)
     }
 
     memAlloc = 0;
+    alloc    = 0;
     {
         std::vector<uint64_t, my_allocator<uint64_t>> v;
         v.resize(1024);
@@ -149,15 +151,27 @@ int main(int argc, char **argv)
         std::cout << "std::vector cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
     memAlloc = 0;
+    alloc    = 0;
     {
         std::map<uint16_t, uint16_t, std::less<uint16_t>, my_allocator<uint16_t>> v;
         for (auto i = 0; i < 1024; i++)
         {
             v[i] = i;
         }
-        std::cout << "std::map cost memory " << memAlloc << " alloc " << alloc << '\n';
+        std::cout << "std::map u16 cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
     memAlloc = 0;
+    alloc    = 0;
+    {
+        std::map<uint64_t, uint64_t, std::less<uint64_t>, my_allocator<uint64_t>> v;
+        for (auto i = 0; i < 1024; i++)
+        {
+            v[i] = i;
+        }
+        std::cout << "std::map u64 cost memory " << memAlloc << " alloc " << alloc << '\n';
+    }
+    memAlloc = 0;
+    alloc    = 0;
     {
         std::set<uint32_t, std::less<uint32_t>, my_allocator<uint32_t>> v;
         for (auto i = 0; i < 1024; i++)
@@ -166,10 +180,21 @@ int main(int argc, char **argv)
         }
         std::cout << "std::set cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
-
     memAlloc = 0;
+    alloc    = 0;
     {
-        std::unordered_map<uint32_t, uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
+        std::unordered_set<uint64_t, std::hash<uint64_t>, std::equal_to<uint64_t>, my_allocator<uint64_t>> v;
+        v.reserve(1024);
+        for (auto i = 0; i < 1024; i++)
+        {
+            v.insert(i);
+        }
+        std::cout << "std::unordered_set cost memory " << memAlloc << " alloc " << alloc << '\n';
+    }
+    memAlloc = 0;
+    alloc    = 0;
+    {
+        std::unordered_map<uint32_t, uint64_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
         v.reserve(1024);
         for (auto i = 0; i < 1024; i++)
         {
@@ -177,18 +202,8 @@ int main(int argc, char **argv)
         }
         std::cout << "std::unordered_map cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
-
     memAlloc = 0;
-    {
-        std::unordered_set<uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
-        v.reserve(1024);
-        for (auto i = 0; i < 1024; i++)
-        {
-            v.insert(i);
-        }
-        std::cout << "std::unordered_map cost memory " << memAlloc << " alloc " << alloc << '\n';
-    }
-    memAlloc = 0;
+    alloc    = 0;
     {
         tsl::robin_map<uint32_t, uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
         v.reserve(1024);
@@ -199,6 +214,7 @@ int main(int argc, char **argv)
         std::cout << "tsl::robin_map cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
     memAlloc = 0;
+    alloc    = 0;
     {
         tsl::robin_set<uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
         v.reserve(1024);
@@ -209,6 +225,7 @@ int main(int argc, char **argv)
         std::cout << "tsl::robin_set cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
     memAlloc = 0;
+    alloc    = 0;
     {
         ska::flat_hash_map<uint32_t, uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
         v.reserve(1024);
@@ -219,6 +236,7 @@ int main(int argc, char **argv)
         std::cout << "ska::flat_hash_map cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
     memAlloc = 0;
+    alloc    = 0;
     {
         ska::flat_hash_set<uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
         v.reserve(1024);
@@ -229,6 +247,7 @@ int main(int argc, char **argv)
         std::cout << "ska::flat_hash_set cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
     memAlloc = 0;
+    alloc    = 0;
     {
         tsl::ordered_map<uint32_t, uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<std::pair<uint32_t, uint32_t>>> v;
         v.reserve(1024);
@@ -239,6 +258,7 @@ int main(int argc, char **argv)
         std::cout << "tsl::ordered_map cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
     memAlloc = 0;
+    alloc    = 0;
     {
         tsl::ordered_set<uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
         v.reserve(1024);
@@ -248,8 +268,8 @@ int main(int argc, char **argv)
         }
         std::cout << "tsl::ordered_set cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
-
     memAlloc = 0;
+    alloc    = 0;
     {
         phmap::flat_hash_map<uint32_t, uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<std::pair<uint32_t, uint32_t>>> v;
         v.reserve(1024);
@@ -260,6 +280,7 @@ int main(int argc, char **argv)
         std::cout << "phmap::flat_hash_map cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
     memAlloc = 0;
+    alloc    = 0;
     {
         phmap::flat_hash_set<uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
         v.reserve(1024);

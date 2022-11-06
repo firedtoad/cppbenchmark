@@ -50,3 +50,6 @@ add_executable(adt_vec_ReserveSmall container/vector/Small.cpp)
 
 add_executable(adt_immutable container/immutable/immutable.cpp)
 add_executable(adt_small container/small/small.cpp)
+add_executable(adt_small_string container/small/string.cpp)
+add_executable(adt_small_twine container/small/twine.cpp)
+add_executable(adt_small_node container/small/node.cpp)

@@ -18,7 +18,7 @@ target_link_libraries(map_range_order PRIVATE absl_hash absl_raw_hash_set absl_l
 target_link_libraries(map_find_unorder PRIVATE absl_hash absl_raw_hash_set absl_low_level_hash absl_city)
 target_link_libraries(map_range_unorder PRIVATE absl_hash absl_raw_hash_set absl_low_level_hash absl_city glog brpc)
 target_link_libraries(map_erase_unorder PRIVATE absl_hash absl_raw_hash_set absl_low_level_hash absl_city)
-target_link_libraries(map_decay PRIVATE absl_hash absl_raw_hash_set absl_low_level_hash  absl_city)
+target_link_libraries(map_decay PRIVATE absl_hash   absl_city)
 target_link_libraries(map_reserve PRIVATE absl_hash absl_raw_hash_set absl_low_level_hash absl_city)
 
 add_executable(set_find_order set/order_find.cpp)

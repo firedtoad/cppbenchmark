@@ -2,7 +2,12 @@ add_executable(memory memory.cpp)
 add_executable(alloc alloc.cpp)
 add_executable(node node.cpp)
 add_executable(rss rss.cpp)
+
 add_executable(memory_copy copy.cpp)
 add_executable(page page.cpp)
 add_executable(size_allocator size_allocator.cpp)
 target_compile_options(size_allocator PRIVATE -fsized-deallocation)
+
+add_executable(overhead overhead.cpp)
+add_executable(overhead_tc overhead_tc.cpp)
+target_link_libraries(overhead_tc PRIVATE tcmalloc)

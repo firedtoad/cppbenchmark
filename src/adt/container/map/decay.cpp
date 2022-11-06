@@ -26,7 +26,7 @@ template <typename... T> void PrintVector(T &&...t)
 
 template <typename... T> void PrintContainer(T &&...t)
 {
-    (..., (std::cout << demangle(typeid(t).name()) << " size " << sizeof(typename T::value_type) << '\n'));
+    (..., (std::cout << demangle(typeid(typename T::value_type).name()) << " size " << sizeof(typename T::value_type) << '\n'));
     std::cout << '\n';
 }
 
@@ -120,15 +120,21 @@ BENCHMARK(BM_Decay_DenseMap);
 struct LNode : public llvm::ilist_node<LNode, llvm::ilist_tag<LNode>>
 {
     char c;
+    LNode(){
+
+    }
 };
 
 int main(int argc, char **argv)
 {
-
     PrintList(llvm::detail::DenseSetPair<uint8_t>{}, llvm::detail::DenseSetPair<uint16_t>{}, llvm::detail::DenseSetPair<uint32_t>{},
               llvm::detail::DenseSetPair<uint64_t>{});
+    llvm::detail::DenseMapPair<unsigned char, unsigned char> p;
     PrintContainer(llvm::DenseMap<uint8_t, uint8_t, KeyInfo<uint8_t>>{}, llvm::DenseMap<uint16_t, uint16_t, KeyInfo<uint16_t>>{},
                    llvm::DenseMap<uint32_t, uint32_t, KeyInfo<uint32_t>>{}, llvm::DenseMap<uint64_t, uint64_t, KeyInfo<uint64_t>>{});
+    llvm::DenseMap<uint32_t, uint32_t> dmap;
+    dmap.reserve(1024*1024);
+
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;
