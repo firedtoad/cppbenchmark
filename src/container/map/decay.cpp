@@ -5,6 +5,8 @@
 #include <absl/container/flat_hash_set.h>
 #include <absl/container/node_hash_map.h>
 #include <absl/container/node_hash_set.h>
+#include <absl/container/btree_set.h>
+#include <absl/container/btree_map.h>
 #include <benchmark/benchmark.h>
 #include <cxxabi.h>
 #include <iostream>
@@ -87,6 +89,9 @@ int main(int argc, char **argv)
 {
 
     std::cout<<sizeof(phmap::priv::hash_policy_traits<phmap::priv::FlatHashSetPolicy<unsigned char>, void>)<<'\n';
+
+    PrintNode(absl::btree_set<uint8_t>{}, absl::btree_set<uint16_t>{}, absl::btree_set<uint32_t>{}, absl::btree_set<uint64_t>{});
+
     PrintNode(phmap::flat_hash_set<uint8_t>{}, phmap::flat_hash_set<uint16_t>{}, phmap::flat_hash_set<uint32_t>{}, phmap::flat_hash_set<uint64_t>{});
 
     PrintNode(absl::flat_hash_set<uint8_t>{}, absl::flat_hash_set<uint16_t>{}, absl::flat_hash_set<uint32_t>{}, absl::flat_hash_set<uint64_t>{});
@@ -95,8 +100,12 @@ int main(int argc, char **argv)
     PrintContainer(phmap::flat_hash_map<uint8_t, uint8_t>{}, phmap::flat_hash_map<uint16_t, uint16_t>{}, phmap::flat_hash_map<uint32_t, uint32_t>{},
                    phmap::flat_hash_map<uint64_t, uint64_t>{});
 
+    PrintContainer(absl::btree_map<uint8_t, uint8_t>{}, absl::btree_map<uint16_t, uint16_t>{}, absl::btree_map<uint32_t, uint32_t>{},
+                   absl::btree_map<uint64_t, uint64_t>{});
+
     PrintContainer(absl::flat_hash_map<uint8_t, uint8_t>{}, absl::flat_hash_map<uint16_t, uint16_t>{}, absl::flat_hash_map<uint32_t, uint32_t>{},
                    absl::flat_hash_map<uint64_t, uint64_t>{});
+
     PrintContainer(absl::node_hash_map<uint8_t, uint8_t>{}, absl::node_hash_map<uint16_t, uint16_t>{}, absl::node_hash_map<uint32_t, uint32_t>{},
                    absl::node_hash_map<uint64_t, uint64_t>{});
 

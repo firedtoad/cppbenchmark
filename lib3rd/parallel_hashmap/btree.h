@@ -1075,8 +1075,8 @@ template <typename Params> class btree_node
                                                                              std::is_same<std::less<key_type>, key_compare>::value ||
                                                                              std::is_same<std::greater<key_type>, key_compare>::value)>;
 
-    ~btree_node()                  = default;
-    btree_node(btree_node const &) = delete;
+    ~btree_node()                             = default;
+    btree_node(btree_node const &)            = delete;
     btree_node &operator=(btree_node const &) = delete;
 
     // Public for EmptyNodeType.
@@ -1266,6 +1266,10 @@ template <typename Params> class btree_node
         return params_type::element(slot(i));
     }
 
+#if defined(__GNUC__) || defined(__clang__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warray-bounds"
+#endif
     // Getters/setter for the child at position i in the node.
     btree_node *child(size_type i) const
     {
@@ -1285,6 +1289,9 @@ template <typename Params> class btree_node
         mutable_child(i) = c;
         c->set_position((field_type)i);
     }
+#if defined(__GNUC__) || defined(__clang__)
+#pragma GCC diagnostic pop
+#endif
     void init_child(int i, btree_node *c)
     {
         set_child(i, c);
@@ -2217,7 +2224,7 @@ template <typename Params> class btree
     void internal_clear(node_type *node);
 
     // Verifies the tree structure of node.
-    int internal_verify(const node_type *node, const key_type *lo, const key_type *hi) const;
+    size_type internal_verify(const node_type *node, const key_type *lo, const key_type *hi) const;
 
     node_stats internal_stats(const node_type *node) const
     {
@@ -3455,7 +3462,7 @@ template <typename P> void btree<P>::internal_clear(node_type *node)
     }
 }
 
-template <typename P> int btree<P>::internal_verify(const node_type *node, const key_type *lo, const key_type *hi) const
+template <typename P> typename btree<P>::size_type btree<P>::internal_verify(const node_type *node, const key_type *lo, const key_type *hi) const
 {
     assert(node->count() > 0);
     assert(node->count() <= node->max_count());
@@ -3471,7 +3478,7 @@ template <typename P> int btree<P>::internal_verify(const node_type *node, const
     {
         assert(!compare_keys(node->key(i), node->key(i - 1)));
     }
-    int count = node->count();
+    size_type count = node->count();
     if (!node->leaf())
     {
         for (int i = 0; i <= node->count(); ++i)
@@ -3519,9 +3526,9 @@ template <typename Tree> class btree_container
     // Constructors/assignments.
     btree_container() : tree_(key_compare(), allocator_type()) {}
     explicit btree_container(const key_compare &comp, const allocator_type &alloc = allocator_type()) : tree_(comp, alloc) {}
-    btree_container(const btree_container &x)     = default;
-    btree_container(btree_container &&x) noexcept = default;
-    btree_container &operator=(const btree_container &x) = default;
+    btree_container(const btree_container &x)                                                              = default;
+    btree_container(btree_container &&x) noexcept                                                          = default;
+    btree_container &operator=(const btree_container &x)                                                   = default;
     btree_container &operator=(btree_container &&x) noexcept(std::is_nothrow_move_assignable<Tree>::value) = default;
 
     // Iterator routines.

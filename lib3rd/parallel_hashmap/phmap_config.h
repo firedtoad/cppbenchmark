@@ -35,8 +35,8 @@
 // ---------------------------------------------------------------------------
 
 #define PHMAP_VERSION_MAJOR 1
-#define PHMAP_VERSION_MINOR 0
-#define PHMAP_VERSION_PATCH 0
+#define PHMAP_VERSION_MINOR 3
+#define PHMAP_VERSION_PATCH 8
 
 // Included for the __GLIBC__ macro (or similar macros on other systems).
 #include <limits.h>
@@ -60,9 +60,9 @@
 // -----------------------------------------------------------------------------
 // Some sanity checks
 // -----------------------------------------------------------------------------
-//#if defined(__CYGWIN__)
+// #if defined(__CYGWIN__)
 //    #error "Cygwin is not supported."
-//#endif
+// #endif
 
 #if defined(_MSC_FULL_VER) && _MSC_FULL_VER < 190023918 && !defined(__clang__)
 #error "phmap requires Visual Studio 2015 Update 2 or higher."

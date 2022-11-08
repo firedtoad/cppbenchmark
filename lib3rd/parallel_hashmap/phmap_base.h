@@ -95,17 +95,6 @@ template <typename... Ts> struct VoidTImpl
     using type = void;
 };
 
-// This trick to retrieve a default alignment is necessary for our
-// implementation of aligned_storage_t to be consistent with any implementation
-// of std::aligned_storage.
-// ---------------------------------------------------------------------------
-template <size_t Len, typename T = std::aligned_storage<Len>> struct default_alignment_of_aligned_storage;
-
-template <size_t Len, size_t Align> struct default_alignment_of_aligned_storage<Len, std::aligned_storage<Len, Align>>
-{
-    static constexpr size_t value = Align;
-};
-
 // NOTE: The `is_detected` family of templates here differ from the library
 // fundamentals specification in that for library fundamentals, `Op<Args...>` is
 // evaluated as soon as the type `is_detected<Op, Args...>` undergoes
@@ -231,25 +220,25 @@ template <typename T> struct negation : std::integral_constant<bool, !T::value>
 {
 };
 
-template <typename T> struct is_trivially_destructible : std::integral_constant<bool, __has_trivial_destructor(T) && std::is_destructible<T>::value>
+template <typename T> struct is_trivially_destructible : std::integral_constant<bool, __is_trivially_destructible(T) && std::is_destructible<T>::value>
 {
 };
 
 template <typename T>
 struct is_trivially_default_constructible
-    : std::integral_constant<bool, __has_trivial_constructor(T) && std::is_default_constructible<T>::value && is_trivially_destructible<T>::value>
+    : std::integral_constant<bool, __is_trivially_constructible(T) && std::is_default_constructible<T>::value && is_trivially_destructible<T>::value>
 {
 };
 
 template <typename T>
 struct is_trivially_copy_constructible
-    : std::integral_constant<bool, __has_trivial_copy(T) && std::is_copy_constructible<T>::value && is_trivially_destructible<T>::value>
+    : std::integral_constant<bool, __is_trivially_copyable(T) && std::is_copy_constructible<T>::value && is_trivially_destructible<T>::value>
 {
 };
 
 template <typename T>
 struct is_trivially_copy_assignable
-    : std::integral_constant<bool, __has_trivial_assign(typename std::remove_reference<T>::type) && phmap::is_copy_assignable<T>::value>
+    : std::integral_constant<bool, __is_trivially_assignable(typename std::remove_reference<T>::type,typename std::remove_reference<T>::type) && phmap::is_copy_assignable<T>::value>
 {
 };
 
@@ -287,8 +276,15 @@ template <typename T> using remove_extent_t = typename std::remove_extent<T>::ty
 
 template <typename T> using remove_all_extents_t = typename std::remove_all_extents<T>::type;
 
-template <size_t Len, size_t Align = type_traits_internal::default_alignment_of_aligned_storage<Len>::value>
-using aligned_storage_t = typename std::aligned_storage<Len, Align>::type;
+template <std::size_t Len, std::size_t Align> struct aligned_storage
+{
+    struct type
+    {
+        alignas(Align) unsigned char data[Len];
+    };
+};
+
+template <std::size_t Len, std::size_t Align> using aligned_storage_t = typename aligned_storage<Len, Align>::type;
 
 template <typename T> using decay_t = typename std::decay<T>::type;
 
@@ -1871,31 +1867,31 @@ template <copy_traits> class optional_ctor_base;
 template <> class optional_ctor_base<copy_traits::copyable>
 {
   public:
-    constexpr optional_ctor_base()                 = default;
-    optional_ctor_base(const optional_ctor_base &) = default;
-    optional_ctor_base(optional_ctor_base &&)      = default;
+    constexpr optional_ctor_base()                            = default;
+    optional_ctor_base(const optional_ctor_base &)            = default;
+    optional_ctor_base(optional_ctor_base &&)                 = default;
     optional_ctor_base &operator=(const optional_ctor_base &) = default;
-    optional_ctor_base &operator=(optional_ctor_base &&) = default;
+    optional_ctor_base &operator=(optional_ctor_base &&)      = default;
 };
 
 template <> class optional_ctor_base<copy_traits::movable>
 {
   public:
-    constexpr optional_ctor_base()                 = default;
-    optional_ctor_base(const optional_ctor_base &) = delete;
-    optional_ctor_base(optional_ctor_base &&)      = default;
+    constexpr optional_ctor_base()                            = default;
+    optional_ctor_base(const optional_ctor_base &)            = delete;
+    optional_ctor_base(optional_ctor_base &&)                 = default;
     optional_ctor_base &operator=(const optional_ctor_base &) = default;
-    optional_ctor_base &operator=(optional_ctor_base &&) = default;
+    optional_ctor_base &operator=(optional_ctor_base &&)      = default;
 };
 
 template <> class optional_ctor_base<copy_traits::non_movable>
 {
   public:
-    constexpr optional_ctor_base()                 = default;
-    optional_ctor_base(const optional_ctor_base &) = delete;
-    optional_ctor_base(optional_ctor_base &&)      = delete;
+    constexpr optional_ctor_base()                            = default;
+    optional_ctor_base(const optional_ctor_base &)            = delete;
+    optional_ctor_base(optional_ctor_base &&)                 = delete;
     optional_ctor_base &operator=(const optional_ctor_base &) = default;
-    optional_ctor_base &operator=(optional_ctor_base &&) = default;
+    optional_ctor_base &operator=(optional_ctor_base &&)      = default;
 };
 
 // Base class for enabling/disabling copy/move assignment.
@@ -1904,31 +1900,31 @@ template <copy_traits> class optional_assign_base;
 template <> class optional_assign_base<copy_traits::copyable>
 {
   public:
-    constexpr optional_assign_base()                   = default;
-    optional_assign_base(const optional_assign_base &) = default;
-    optional_assign_base(optional_assign_base &&)      = default;
+    constexpr optional_assign_base()                              = default;
+    optional_assign_base(const optional_assign_base &)            = default;
+    optional_assign_base(optional_assign_base &&)                 = default;
     optional_assign_base &operator=(const optional_assign_base &) = default;
-    optional_assign_base &operator=(optional_assign_base &&) = default;
+    optional_assign_base &operator=(optional_assign_base &&)      = default;
 };
 
 template <> class optional_assign_base<copy_traits::movable>
 {
   public:
-    constexpr optional_assign_base()                   = default;
-    optional_assign_base(const optional_assign_base &) = default;
-    optional_assign_base(optional_assign_base &&)      = default;
+    constexpr optional_assign_base()                              = default;
+    optional_assign_base(const optional_assign_base &)            = default;
+    optional_assign_base(optional_assign_base &&)                 = default;
     optional_assign_base &operator=(const optional_assign_base &) = delete;
-    optional_assign_base &operator=(optional_assign_base &&) = default;
+    optional_assign_base &operator=(optional_assign_base &&)      = default;
 };
 
 template <> class optional_assign_base<copy_traits::non_movable>
 {
   public:
-    constexpr optional_assign_base()                   = default;
-    optional_assign_base(const optional_assign_base &) = default;
-    optional_assign_base(optional_assign_base &&)      = default;
+    constexpr optional_assign_base()                              = default;
+    optional_assign_base(const optional_assign_base &)            = default;
+    optional_assign_base(optional_assign_base &&)                 = default;
     optional_assign_base &operator=(const optional_assign_base &) = delete;
-    optional_assign_base &operator=(optional_assign_base &&) = delete;
+    optional_assign_base &operator=(optional_assign_base &&)      = delete;
 };
 
 template <typename T> constexpr copy_traits get_ctor_copy_traits()
@@ -1975,11 +1971,11 @@ bool convertible_to_bool(bool);
 // Reference N4659 23.14.15 [unord.hash].
 template <typename T, typename = size_t> struct optional_hash_base
 {
-    optional_hash_base()                           = delete;
-    optional_hash_base(const optional_hash_base &) = delete;
-    optional_hash_base(optional_hash_base &&)      = delete;
+    optional_hash_base()                                      = delete;
+    optional_hash_base(const optional_hash_base &)            = delete;
+    optional_hash_base(optional_hash_base &&)                 = delete;
     optional_hash_base &operator=(const optional_hash_base &) = delete;
-    optional_hash_base &operator=(optional_hash_base &&) = delete;
+    optional_hash_base &operator=(optional_hash_base &&)      = delete;
 };
 
 template <typename T> struct optional_hash_base<T, decltype(std::hash<phmap::remove_const_t<T>>()(std::declval<phmap::remove_const_t<T>>()))>
@@ -4571,8 +4567,8 @@ template <class K, class V> struct IsLayoutCompatible
 template <class K, class V> union map_slot_type
 {
     map_slot_type() {}
-    ~map_slot_type()                     = delete;
-    map_slot_type(const map_slot_type &) = delete;
+    ~map_slot_type()                                = delete;
+    map_slot_type(const map_slot_type &)            = delete;
     map_slot_type &operator=(const map_slot_type &) = delete;
 
     using value_type         = std::pair<const K, V>;
@@ -4988,7 +4984,7 @@ template <class MutexType> class LockableBaseImpl
             _m2.unlock();
         }
 
-        WriteLocks(WriteLocks const &) = delete;
+        WriteLocks(WriteLocks const &)            = delete;
         WriteLocks &operator=(WriteLocks const &) = delete;
 
       private:
@@ -5018,7 +5014,7 @@ template <class MutexType> class LockableBaseImpl
             _m2.unlock_shared();
         }
 
-        ReadLocks(ReadLocks const &) = delete;
+        ReadLocks(ReadLocks const &)            = delete;
         ReadLocks &operator=(ReadLocks const &) = delete;
 
       private:
