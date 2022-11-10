@@ -47,7 +47,7 @@ template <typename T> static void BenchSnprintf(benchmark::State &state)
     for (auto _ : state)
     {
         char buff[256]{};
-        auto r = snprintf(buff, 256, "%llu", tag);
+        auto r = snprintf(buff, 256, "%lu", tag);
         benchmark::DoNotOptimize(r);
     }
 }

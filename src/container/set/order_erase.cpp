@@ -2,8 +2,10 @@
 // Created by Administrator on 2022/01/15.
 //
 
-#include "absl/container/btree_set.h"
+
 #include "tsl/ordered_set.h"
+#include "absl/container/btree_set.h"
+#include "parallel_hashmap/btree.h"
 #include <benchmark/benchmark.h>
 #include <iostream>
 #include <set>
@@ -69,6 +71,7 @@ BENCHMARK_TEMPLATE(BenchEraseOrderSetInt, std::set<int>);
 BENCHMARK_TEMPLATE(BenchEraseOrderSetInt, tsl::ordered_set<int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderSetInt, tsl::ordered_set<int>);
 BENCHMARK_TEMPLATE(BenchEraseOrderSetInt, absl::btree_set<int>);
+BENCHMARK_TEMPLATE(BenchEraseOrderSetInt, phmap::btree_set<int>);
 
 template <class S> static void BenchEraseOrderSetString(benchmark::State &state)
 {
@@ -114,6 +117,7 @@ BENCHMARK_TEMPLATE(BenchEraseOrderSetString, std::set<std::string>);
 BENCHMARK_TEMPLATE(BenchEraseOrderSetString, tsl::ordered_set<std::string>);
 BENCHMARK_TEMPLATE(BenchEraseUnorderSetString, tsl::ordered_set<std::string>);
 BENCHMARK_TEMPLATE(BenchEraseOrderSetString, absl::btree_set<std::string>);
+BENCHMARK_TEMPLATE(BenchEraseOrderSetString, phmap::btree_set<std::string>);
 
 int main(int argc, char **argv)
 {

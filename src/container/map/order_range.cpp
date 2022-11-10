@@ -4,6 +4,7 @@
 
 #include "tsl/ordered_map.h"
 #include "absl/container/btree_map.h"
+#include "parallel_hashmap/btree.h"
 #include <benchmark/benchmark.h>
 #include <iostream>
 #include <map>
@@ -46,9 +47,29 @@ template <class M> static void BenchRangeOrderMapInt(benchmark::State &state)
     benchmark::DoNotOptimize(r);
 }
 
+template <class M> static void BenchRangeOrderVectorInt(benchmark::State &state)
+{
+    M m;
+    m.resize(65536);
+    for (auto i = 0; i < 65536; i++)
+    {
+        m[i]={i,i};
+    }
+    int r{};
+    for (auto _ : state)
+    {
+        for (auto &it : m)
+        {
+            r += it.second;
+        }
+    }
+    benchmark::DoNotOptimize(r);
+}
 BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, std::map<int, int>);
+BENCHMARK_TEMPLATE(BenchRangeOrderVectorInt, std::vector<std::pair<int,int>>);
 BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, tsl::ordered_map<int, int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, absl::btree_map<int, int>);
+BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, phmap::btree_map<int, int>);
 
 template <class M> static void BenchRangeOrderMapString(benchmark::State &state)
 {
@@ -73,6 +94,7 @@ template <class M> static void BenchRangeOrderMapString(benchmark::State &state)
 BENCHMARK_TEMPLATE(BenchRangeOrderMapString, std::map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderMapString, tsl::ordered_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderMapString, absl::btree_map<std::string, int>);
+BENCHMARK_TEMPLATE(BenchRangeOrderMapString, phmap::btree_map<std::string, int>);
 
 int main(int argc, char **argv)
 {

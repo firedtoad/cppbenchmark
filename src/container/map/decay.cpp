@@ -84,29 +84,116 @@ BENCHMARK_TEMPLATE(BM_decay_map, phmap::flat_hash_map<int, int, Hasher>);
 
 BENCHMARK_TEMPLATE(BM_unmap, absl::flat_hash_map<int, int>);
 BENCHMARK_TEMPLATE(BM_decay_map, absl::flat_hash_map<int, int, Hasher>);
+#include "utils/utils.h"
+
+static size_t memAlloc;
+static size_t alloc;
+
+template <class T> class my_allocator
+{
+  public:
+    typedef size_t size_type;
+    typedef T *pointer;
+    typedef const T *const_pointer;
+    typedef T &reference;
+    typedef const T &const_reference;
+    typedef T value_type;
+
+    my_allocator() noexcept {}
+    my_allocator(const my_allocator &) noexcept {}
+
+    pointer allocate(size_type n, const void * = 0)
+    {
+        memAlloc += n * sizeof(T);
+        alloc++;
+        T *t = (T *)malloc(n * sizeof(T));
+        return t;
+    }
+
+    void deallocate(void *p, size_type n)
+    {
+        if (p)
+        {
+            free(p);
+        }
+    }
+
+    pointer address(reference x) const
+    {
+        return &x;
+    }
+    const_pointer address(const_reference x) const
+    {
+        return &x;
+    }
+    my_allocator<T> &operator=(const my_allocator &)
+    {
+        return *this;
+    }
+    void construct(pointer p)
+    {
+        new ((T *)p) T();
+    }
+    void destroy(pointer p)
+    {
+        p->~T();
+    }
+
+    size_type max_size() const
+    {
+        return size_t(-1);
+    }
+
+    template <class U> struct rebind
+    {
+        typedef my_allocator<U> other;
+    };
+
+    template <class U> my_allocator(const my_allocator<U> &) {}
+
+    template <class U> my_allocator &operator=(const my_allocator<U> &)
+    {
+        return *this;
+    }
+};
+template<typename F,typename S>
+struct SS :std::pair<F,S>
+{
+
+};
 
 int main(int argc, char **argv)
 {
-
+    std::cout<<sizeof(SS<uint64_t,char>)<<'\n';
+    std::cout<<sizeof(SS<char,uint64_t>)<<'\n';
+    std::cout<<std::is_trivially_copy_constructible_v<SS<int,char>><<'\n';
     std::cout<<sizeof(phmap::priv::hash_policy_traits<phmap::priv::FlatHashSetPolicy<unsigned char>, void>)<<'\n';
-
+    rusage rusage;
+    FillRSS(rusage);
     PrintNode(absl::btree_set<uint8_t>{}, absl::btree_set<uint16_t>{}, absl::btree_set<uint32_t>{}, absl::btree_set<uint64_t>{});
+
+    absl::btree_set<uint32_t,std::less<>,my_allocator<uint32_t>> bset;
+    for(auto i=0;i<1024;i++)
+    {
+        bset.insert(i);
+    }
+
 
     PrintNode(phmap::flat_hash_set<uint8_t>{}, phmap::flat_hash_set<uint16_t>{}, phmap::flat_hash_set<uint32_t>{}, phmap::flat_hash_set<uint64_t>{});
 
     PrintNode(absl::flat_hash_set<uint8_t>{}, absl::flat_hash_set<uint16_t>{}, absl::flat_hash_set<uint32_t>{}, absl::flat_hash_set<uint64_t>{});
     PrintNode(absl::node_hash_set<uint8_t>{}, absl::node_hash_set<uint16_t>{}, absl::node_hash_set<uint32_t>{}, absl::node_hash_set<uint64_t>{});
 
-    PrintContainer(phmap::flat_hash_map<uint8_t, uint8_t>{}, phmap::flat_hash_map<uint16_t, uint16_t>{}, phmap::flat_hash_map<uint32_t, uint32_t>{},
+    PrintNode(phmap::flat_hash_map<uint8_t, uint8_t>{}, phmap::flat_hash_map<uint16_t, uint16_t>{}, phmap::flat_hash_map<uint32_t, uint32_t>{},
                    phmap::flat_hash_map<uint64_t, uint64_t>{});
 
-    PrintContainer(absl::btree_map<uint8_t, uint8_t>{}, absl::btree_map<uint16_t, uint16_t>{}, absl::btree_map<uint32_t, uint32_t>{},
+    PrintNode(absl::btree_map<uint8_t, uint8_t>{}, absl::btree_map<uint16_t, uint16_t>{}, absl::btree_map<uint32_t, uint32_t>{},
                    absl::btree_map<uint64_t, uint64_t>{});
 
-    PrintContainer(absl::flat_hash_map<uint8_t, uint8_t>{}, absl::flat_hash_map<uint16_t, uint16_t>{}, absl::flat_hash_map<uint32_t, uint32_t>{},
+    PrintNode(absl::flat_hash_map<uint8_t, uint8_t>{}, absl::flat_hash_map<uint16_t, uint16_t>{}, absl::flat_hash_map<uint32_t, uint32_t>{},
                    absl::flat_hash_map<uint64_t, uint64_t>{});
 
-    PrintContainer(absl::node_hash_map<uint8_t, uint8_t>{}, absl::node_hash_map<uint16_t, uint16_t>{}, absl::node_hash_map<uint32_t, uint32_t>{},
+    PrintNode(absl::node_hash_map<uint8_t, uint8_t>{}, absl::node_hash_map<uint16_t, uint16_t>{}, absl::node_hash_map<uint32_t, uint32_t>{},
                    absl::node_hash_map<uint64_t, uint64_t>{});
 
     PrintContainer(ska::flat_hash_set<uint8_t>{}, ska::flat_hash_set<uint16_t>{}, ska::flat_hash_set<uint32_t>{}, ska::flat_hash_set<uint64_t>{});

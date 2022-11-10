@@ -96,7 +96,7 @@ void demo(size_t N)
 int main(int argc, char **argv)
 {
 
-    printf("clocks per s = %d \n", CLOCKS_PER_SEC);
+    printf("clocks per s = %ld \n", CLOCKS_PER_SEC);
     demo(1000);
 
     return 0;

@@ -4,6 +4,7 @@
 
 #include "absl/container/btree_map.h"
 #include "absl/container/node_hash_map.h"
+#include "parallel_hashmap/btree.h"
 #include "tsl/ordered_map.h"
 #include <benchmark/benchmark.h>
 #include <iostream>
@@ -53,11 +54,13 @@ template <class M> static void BenchOrderMapInt(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BenchOrderMapInt, std::map<int, int>);
 BENCHMARK_TEMPLATE(BenchOrderMapInt, tsl::ordered_map<int, int>);
+BENCHMARK_TEMPLATE(BenchOrderMapInt, absl::btree_map<int, int>);
+BENCHMARK_TEMPLATE(BenchOrderMapInt, phmap::btree_map<int, int>);
 BENCHMARK_TEMPLATE(
     BenchOrderMapInt,
     tsl::ordered_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int, int>>, std::vector<std::pair<int, int>>>);
 BENCHMARK_TEMPLATE(BenchOrderMapInt, absl::btree_map<int, int>);
-//BENCHMARK_TEMPLATE(BenchOrderMapInt, boost::container::small_flat_map<int, int, 65536>);
+// BENCHMARK_TEMPLATE(BenchOrderMapInt, boost::container::small_flat_map<int, int, 65536>);
 
 template <class M> static void BenchOrderMapString(benchmark::State &state)
 {
@@ -65,8 +68,8 @@ template <class M> static void BenchOrderMapString(benchmark::State &state)
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]            = "12345678901234561234567890123456" +std::to_string(_random());
-        m[keys[i]]=i;
+        keys[i]    = "12345678901234561234567890123456" + std::to_string(_random());
+        m[keys[i]] = i;
     }
     for (auto _ : state)
     {
@@ -81,7 +84,8 @@ BENCHMARK_TEMPLATE(BenchOrderMapString, tsl::ordered_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchOrderMapString, tsl::ordered_map<std::string, int, std::hash<std::string>, std::equal_to<std::string>,
                                                          std::allocator<std::pair<std::string, int>>, std::vector<std::pair<std::string, int>>>);
 BENCHMARK_TEMPLATE(BenchOrderMapString, absl::btree_map<std::string, int>);
-//BENCHMARK_TEMPLATE(BenchOrderMapString, boost::container::small_flat_map<std::string, int, 1024>);
+BENCHMARK_TEMPLATE(BenchOrderMapString, phmap::btree_map<std::string, int>);
+// BENCHMARK_TEMPLATE(BenchOrderMapString, boost::container::small_flat_map<std::string, int, 1024>);
 int main(int argc, char **argv)
 {
 

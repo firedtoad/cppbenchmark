@@ -52,7 +52,7 @@ template <typename T> static void BenchItoa(benchmark::State &state)
     for (auto _ : state)
     {
         char buf[64]{};
-        auto r = snprintf(buf, 64, "%d", tag);
+        auto r = snprintf(buf, 64, "%lu", tag);
         benchmark::DoNotOptimize(r);
     }
 }

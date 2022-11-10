@@ -4,6 +4,7 @@
 
 #include "tsl/ordered_set.h"
 #include "absl/container/btree_set.h"
+#include "parallel_hashmap/btree.h"
 #include <benchmark/benchmark.h>
 #include <iostream>
 #include <set>
@@ -50,6 +51,7 @@ template <class M> static void BenchRangeOrderSetInt(benchmark::State &state)
 BENCHMARK_TEMPLATE(BenchRangeOrderSetInt, std::set<int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderSetInt, tsl::ordered_set<int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderSetInt, absl::btree_set<int>);
+BENCHMARK_TEMPLATE(BenchRangeOrderSetInt, phmap::btree_set<int>);
 
 template <class M> static void BenchRangeOrderSetString(benchmark::State &state)
 {
@@ -74,6 +76,7 @@ template <class M> static void BenchRangeOrderSetString(benchmark::State &state)
 BENCHMARK_TEMPLATE(BenchRangeOrderSetString, std::set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeOrderSetString, tsl::ordered_set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeOrderSetString, absl::btree_set<std::string>);
+BENCHMARK_TEMPLATE(BenchRangeOrderSetString, phmap::btree_set<std::string>);
 
 int main(int argc, char **argv)
 {

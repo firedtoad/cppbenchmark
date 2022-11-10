@@ -113,7 +113,7 @@ static void BenchIntrusiveListSwap(benchmark::State &state)
         state.PauseTiming();
         boost::intrusive::list<SList, constant_time_size> vt;
         boost::intrusive::list<SList, constant_time_size> v;
-        SList lst[state.range(0)];
+        std::vector<SList> lst{static_cast<size_t>(state.range(0))};
         for (auto i = 0; i < state.range(0); i++)
         {
             v.push_back(lst[i]);

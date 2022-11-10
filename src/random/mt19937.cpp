@@ -1,6 +1,5 @@
 #include "SFMT/SFMT.h"
 #include <benchmark/benchmark.h>
-#include <ext/opt_random.h>
 #include <ext/random>
 #include <functional>
 #include <random>

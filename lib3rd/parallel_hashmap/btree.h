@@ -148,8 +148,8 @@ template <typename T> class is_trivially_copyable_impl
         phmap::is_copy_assignable<ExtentsRemoved>::value || phmap::is_move_assignable<ExtentsRemoved>::value;
 
   public:
-    static constexpr bool kValue = (__has_trivial_copy(ExtentsRemoved) || !kIsCopyOrMoveConstructible) &&
-                                   (__has_trivial_assign(ExtentsRemoved) || !kIsCopyOrMoveAssignable) &&
+    static constexpr bool kValue = (__is_trivially_copyable(ExtentsRemoved) || !kIsCopyOrMoveConstructible) &&
+                                   (__is_trivially_assignable(ExtentsRemoved,ExtentsRemoved) || !kIsCopyOrMoveAssignable) &&
                                    (kIsCopyOrMoveConstructible || kIsCopyOrMoveAssignable) && is_trivially_destructible<ExtentsRemoved>::value &&
                                    // We need to check for this explicitly because otherwise we'll say
                                    // references are trivial copyable when compiled by MSVC.

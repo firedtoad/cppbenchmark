@@ -16,7 +16,7 @@ class StackAllocator : public Allocator
 
     virtual void *Allocate(const std::size_t size, const std::size_t alignment = 0) override;
 
-    virtual void Free(void *ptr);
+    virtual void Free(void *ptr) override;
 
     virtual void Init() override;
 

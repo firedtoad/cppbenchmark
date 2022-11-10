@@ -1,3 +1,4 @@
+find_package(absl REQUIRED)
 add_executable(string_view string_view.cpp)
 add_executable(string_split string_split.cpp)
 add_executable(string_from string_from.cpp)
@@ -9,8 +10,8 @@ add_executable(string_length string_length.cpp)
 
 target_compile_features(string_format PRIVATE cxx_std_20)
 
-target_link_libraries(string_split PRIVATE absl_strings absl_strings_internal absl_raw_logging_internal absl_throw_delegate absl_str_format_internal absl_int128 protobuf)
-target_link_libraries(string_from PRIVATE absl_strings absl_strings_internal absl_raw_logging_internal absl_str_format_internal absl_int128 protobuf)
-target_link_libraries(string_to PRIVATE absl_strings absl_strings_internal absl_raw_logging_internal absl_str_format_internal absl_int128 protobuf)
-target_link_libraries(string_format PRIVATE absl_strings absl_strings_internal absl_raw_logging_internal absl_str_format_internal absl_int128 fmt protobuf)
-target_link_libraries(string_cat PRIVATE absl_strings absl_strings_internal absl_raw_logging_internal absl_str_format_internal absl_int128 fmt protobuf)
+target_link_libraries(string_split PRIVATE absl::strings protobuf)
+target_link_libraries(string_from PRIVATE absl::strings absl::str_format fmt protobuf)
+target_link_libraries(string_to PRIVATE absl::strings absl::str_format fmt protobuf)
+target_link_libraries(string_format PRIVATE absl::strings absl::str_format fmt protobuf)
+target_link_libraries(string_cat PRIVATE absl::strings absl::str_format fmt protobuf)

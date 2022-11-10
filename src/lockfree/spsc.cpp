@@ -3,9 +3,8 @@
 #include <benchmark/benchmark.h>
 #include <boost/lockfree/spsc_queue.hpp>
 #include <boost/smart_ptr/detail/spinlock.hpp>
-#include <boost/smart_ptr/detail/spinlock_std_atomic.hpp>
 #include <cds/container/weak_ringbuffer.h>
-#include <cds/intrusive //vyukov_mpmc_cycle_queue.h>
+#include <cds/intrusive/vyukov_mpmc_cycle_queue.h>
 #include <tbb/concurrent_queue.h>
 #include <thread>
 
