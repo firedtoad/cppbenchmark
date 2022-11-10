@@ -1,6 +1,3 @@
-//
-// Created by Administrator on 2022/08/14.
-//
 
 #include <benchmark/benchmark.h>
 #include <iostream>
@@ -14,27 +11,7 @@
 #include <llvm/ADT/SmallSet.h>
 #include <llvm/ADT/SmallVector.h>
 
-static unsigned long xorshf96()
-{ /* A George Marsaglia generator, period 2^96-1 */
-    static unsigned long x = 103456789, y = 362436069, z = 521088629;
-    unsigned long t;
 
-    x ^= x << 16;
-    x ^= x >> 5;
-    x ^= x << 1;
-
-    t = x;
-    x = y;
-    y = z;
-
-    z = t ^ x ^ y;
-    return z;
-}
-
-static inline unsigned long _random()
-{
-    return xorshf96();
-}
 
 struct Node
 {

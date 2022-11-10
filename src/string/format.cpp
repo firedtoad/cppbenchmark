@@ -42,15 +42,15 @@ template <typename S, typename T> static void BenchStreamStringFromF(benchmark::
     }
 }
 
-// BENCHMARK_TEMPLATE(BenchStreamStringFrom, std::stringstream, uint64_t
-//);
-// BENCHMARK_TEMPLATE(BenchStreamStringFrom, std::ostringstream, uint64_t
-//);
-//
-// BENCHMARK_TEMPLATE(BenchStreamStringFromF, std::stringstream,
-//                    float);
-// BENCHMARK_TEMPLATE(BenchStreamStringFromF, std::ostringstream,
-//                    float);
+ BENCHMARK_TEMPLATE(BenchStreamStringFrom, std::stringstream, uint64_t
+);
+ BENCHMARK_TEMPLATE(BenchStreamStringFrom, std::ostringstream, uint64_t
+);
+
+ BENCHMARK_TEMPLATE(BenchStreamStringFromF, std::stringstream,
+                    float);
+ BENCHMARK_TEMPLATE(BenchStreamStringFromF, std::ostringstream,
+                    float);
 
 template <typename T> static void BenchToString(benchmark::State &state)
 {
@@ -60,8 +60,8 @@ template <typename T> static void BenchToString(benchmark::State &state)
         benchmark::DoNotOptimize(r);
     }
 }
-// BENCHMARK_TEMPLATE(BenchToString, uint64_t
-//);
+ BENCHMARK_TEMPLATE(BenchToString, uint64_t
+);
 
 template <typename T> static void BenchToStringF(benchmark::State &state)
 {
@@ -71,8 +71,8 @@ template <typename T> static void BenchToStringF(benchmark::State &state)
         benchmark::DoNotOptimize(r);
     }
 }
-// BENCHMARK_TEMPLATE(BenchToStringF,
-//                    float);
+ BENCHMARK_TEMPLATE(BenchToStringF,
+                    float);
 
 template <typename T> static void BenchStdToChars(benchmark::State &state)
 {
@@ -84,8 +84,7 @@ template <typename T> static void BenchStdToChars(benchmark::State &state)
     }
 }
 
-// BENCHMARK_TEMPLATE(BenchStdToChars, uint64_t
-//);
+BENCHMARK_TEMPLATE(BenchStdToChars, uint64_t);
 
 template <typename T> static void BenchBoostStringFrom(benchmark::State &state)
 {
@@ -104,11 +103,9 @@ template <typename T> static void BenchBoostStringTof(benchmark::State &state)
     }
 }
 
-// BENCHMARK_TEMPLATE(BenchBoostStringFrom, std::string
-//);
-//
-// BENCHMARK_TEMPLATE(BenchBoostStringTof, std::string
-//);
+BENCHMARK_TEMPLATE(BenchBoostStringFrom, std::string);
+
+BENCHMARK_TEMPLATE(BenchBoostStringTof, std::string);
 
 template <typename T> static void BenchAbFastIntToBuffer(benchmark::State &state)
 {
@@ -146,8 +143,7 @@ template <typename T> static void BenchAbStrFormat(benchmark::State &state)
         benchmark::DoNotOptimize(r);
     }
 }
-// BENCHMARK_TEMPLATE(BenchAbStrFormat, uint64_t
-//);
+BENCHMARK_TEMPLATE(BenchAbStrFormat, uint64_t);
 
 template <typename T> static void BenchAbStrFormatF(benchmark::State &state)
 {
@@ -157,8 +153,7 @@ template <typename T> static void BenchAbStrFormatF(benchmark::State &state)
         benchmark::DoNotOptimize(r);
     }
 }
-// BENCHMARK_TEMPLATE(BenchAbStrFormatF,
-//                    float);
+BENCHMARK_TEMPLATE(BenchAbStrFormatF, float);
 
 template <typename T> static void BenchFollyTo(benchmark::State &state)
 {

@@ -255,7 +255,7 @@ void skynet_updatetime(void)
         uint32_t diff     = (uint32_t)(cp - TI->current_point);
         TI->current_point = cp;
         TI->current += diff;
-        int i;
+        uint32_t i;
         for (i = 0; i < diff; i++)
         {
             timer_update(TI);
