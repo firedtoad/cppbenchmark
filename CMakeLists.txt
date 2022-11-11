@@ -13,7 +13,7 @@ include(UseFastestLinker)
 include(Ccache)
 
 link_libraries(benchmark pthread)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-omit-frame-pointer -Wall -pedantic -Wextra -march=native  -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-unused-variable -Wno-ignored-qualifiers -fdiagnostics-color=auto ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-omit-frame-pointer -Wall -pedantic -Wextra -march=native  -Wno-unused-parameter -Wno-unused-const-variable -Wno-unused-variable -Wno-ignored-qualifiers -fdiagnostics-color=auto ")
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 #    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -fsanitize=address -fno-omit-frame-pointer")
@@ -33,7 +33,7 @@ include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/lib3rd/robin_hood
 )
 
-link_directories(/usr/local/lib)
+link_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib3rd/libs /usr/local/lib)
 
 add_subdirectory(src/adt)
 add_subdirectory(src/string)

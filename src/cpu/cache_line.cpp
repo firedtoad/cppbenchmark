@@ -46,16 +46,6 @@ static inline uint64_t _random()
     return xor_shift96();
 }
 
-static inline float ranf()
-{
-    return (float)_random() / (float)(~0UL);
-}
-
-static inline float ranfu()
-{
-    return (float)_random() / ((~0UL >> 1) * 1.0) - 1.0;
-}
-
 static void BM_cache32K(benchmark::State &state)
 {
     const int N = 32 * 1024 / DIV;

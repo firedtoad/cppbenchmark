@@ -21,6 +21,7 @@
 #include <benchmark/benchmark.h>
 #include <boost/json/src.hpp>
 #include <iostream>
+#include <sstream>
 
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */

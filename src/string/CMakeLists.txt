@@ -11,7 +11,7 @@ add_executable(string_length string_length.cpp)
 
 
 target_compile_features(string_format PRIVATE cxx_std_20)
-target_link_libraries(format PRIVATE folly absl::strings absl::strings_internal absl::str_format_internal double-conversion boost_context glog unwind fmt event dl benchmark pthread)
+target_link_libraries(format PRIVATE folly absl::strings absl::strings_internal absl::str_format_internal double-conversion boost_context glog unwind fmt event dl crypto pthread)
 target_link_libraries(string_split PRIVATE absl::strings absl::strings_internal absl::throw_delegate protobuf)
 target_link_libraries(string_from PRIVATE absl::strings absl::str_format absl::strings_internal absl::throw_delegate fmt protobuf)
 target_link_libraries(string_to PRIVATE absl::strings absl::str_format absl::strings_internal absl::throw_delegate fmt protobuf)

@@ -25,7 +25,7 @@
 #include <ext/pool_allocator.h>
 #include <foonathan/memory/memory_pool.hpp>
 #include <iostream>
-#include <memory_resource>
+#include <experimental/memory_resource>
 #include <thread>
 
 struct Child
@@ -62,7 +62,7 @@ static void BM_Pool2(benchmark::State &state)
 }
 
 BENCHMARK(BM_Pool2);
-
+#if (((__GNUC__ * 100) + __GNUC_MINOR__) >= 900)
 static void BM_Resource(benchmark::State &state)
 {
     std::pmr::synchronized_pool_resource pool;
@@ -93,6 +93,7 @@ static void BM_Monotonic(benchmark::State &state)
 }
 
 BENCHMARK(BM_Monotonic);
+#endif
 
 static void BM_GCC(benchmark::State &state)
 {
