@@ -1,0 +1,18 @@
+2022-11-11T21:46:11+08:00
+Running ./bin/allocator
+Run on (8 X 2294.61 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 1024 KiB (x8)
+  L3 Unified 22528 KiB (x2)
+Load Average: 3.23, 3.14, 3.22
+------------------------------------------------------
+Benchmark            Time             CPU   Iterations
+------------------------------------------------------
+BM_Pool           6.63 ns         6.46 ns     98111238
+BM_Pool2          3.30 ns         3.22 ns    218190789
+BM_GCC            67.5 ns         55.4 ns     12421714
+BM_Boost          3.78 ns         3.70 ns    182566729
+BM_Foo            8.37 ns         7.39 ns     94124818
+BM_lockless       17.6 ns         16.8 ns     41819855

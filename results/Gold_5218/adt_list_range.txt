@@ -1,0 +1,68 @@
+2022-11-11T21:50:42+08:00
+Running ./bin/adt_list_range
+Run on (8 X 2294.61 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 1024 KiB (x8)
+  L3 Unified 22528 KiB (x2)
+Load Average: 9.36, 6.49, 4.61
+---------------------------------------------------------------------------
+Benchmark                                 Time             CPU   Iterations
+---------------------------------------------------------------------------
+BenchListRange/1                      0.933 ns        0.904 ns    775650255
+BenchListRange/8                       4.55 ns         4.40 ns    158299432
+BenchListRange/64                      53.1 ns         52.4 ns     13374084
+BenchListRange/512                      773 ns          748 ns       933663
+BenchListRange/4096                   15322 ns        15082 ns        58631
+BenchListRange/32768                 152574 ns       150292 ns         7150
+BenchListRange/65536                 312864 ns       303720 ns         3620
+BenchForwardListRange/1               0.685 ns        0.676 ns   1000000000
+BenchForwardListRange/8                4.41 ns         4.27 ns    163344712
+BenchForwardListRange/64               53.1 ns         52.5 ns     13339956
+BenchForwardListRange/512               762 ns          751 ns       937144
+BenchForwardListRange/4096            14980 ns        14577 ns        54474
+BenchForwardListRange/32768          120531 ns       118023 ns         4352
+BenchForwardListRange/65536          283007 ns       271087 ns         2488
+BenchBUListRange/1                    0.685 ns        0.677 ns   1000000000
+BenchBUListRange/8                     4.46 ns         4.22 ns    165173677
+BenchBUListRange/64                    67.2 ns         63.8 ns     10980415
+BenchBUListRange/512                    748 ns          745 ns       940265
+BenchBUListRange/4096                  6175 ns         6151 ns       113922
+BenchBUListRange/32768                49265 ns        49077 ns        14273
+BenchBUListRange/65536                99404 ns        99018 ns         7061
+BenchIntrusiveListRange/1             0.678 ns        0.677 ns   1000000000
+BenchIntrusiveListRange/8              4.03 ns         4.02 ns    175050227
+BenchIntrusiveListRange/64             52.3 ns         52.2 ns     13381717
+BenchIntrusiveListRange/512             744 ns          742 ns       942756
+BenchIntrusiveListRange/4096           7098 ns         7091 ns        98701
+BenchIntrusiveListRange/32768         57120 ns        57049 ns        12284
+BenchIntrusiveListRange/65536        117894 ns       117706 ns         5956
+BenchPlfListRange/1                   0.687 ns        0.686 ns   1000000000
+BenchPlfListRange/8                    4.14 ns         4.13 ns    170582391
+BenchPlfListRange/64                   52.9 ns         52.9 ns     13263357
+BenchPlfListRange/512                   761 ns          760 ns       938258
+BenchPlfListRange/4096                10116 ns        10105 ns        69295
+BenchPlfListRange/32768               84337 ns        84215 ns         8319
+BenchPlfListRange/65536              166239 ns       165580 ns         4224
+BenchAdtListRange/1                   0.678 ns        0.676 ns   1000000000
+BenchAdtListRange/8                    4.26 ns         4.25 ns    165358115
+BenchAdtListRange/64                   52.4 ns         52.3 ns     13423323
+BenchAdtListRange/512                   745 ns          744 ns       933328
+BenchAdtListRange/4096                13175 ns        13147 ns        53404
+BenchAdtListRange/32768              108331 ns       108118 ns         6699
+BenchAdtListRange/65536              223608 ns       223185 ns         3242
+BenchAdtSimpleListRange/1              1.17 ns         1.17 ns    596745044
+BenchAdtSimpleListRange/8              4.51 ns         4.51 ns    155674829
+BenchAdtSimpleListRange/64             54.0 ns         53.9 ns     13045686
+BenchAdtSimpleListRange/512             749 ns          747 ns       938307
+BenchAdtSimpleListRange/4096           7190 ns         7157 ns        97907
+BenchAdtSimpleListRange/32768         57914 ns        57454 ns        12201
+BenchAdtSimpleListRange/65536        118691 ns       118234 ns         5926
+BenchAdtImmutableListRange/1          0.676 ns        0.674 ns   1000000000
+BenchAdtImmutableListRange/8           4.00 ns         4.00 ns    175522940
+BenchAdtImmutableListRange/64          52.3 ns         52.3 ns     13429417
+BenchAdtImmutableListRange/512          752 ns          752 ns       940513
+BenchAdtImmutableListRange/4096        7234 ns         7234 ns        96848
+BenchAdtImmutableListRange/32768      60223 ns        60223 ns        11662
+BenchAdtImmutableListRange/65536     128234 ns       128234 ns         5456

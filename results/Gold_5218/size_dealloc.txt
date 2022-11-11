@@ -1,0 +1,28 @@
+2022-11-11T21:47:42+08:00
+Running ./bin/size_dealloc
+Run on (8 X 2294.61 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 1024 KiB (x8)
+  L3 Unified 22528 KiB (x2)
+Load Average: 7.13, 4.47, 3.69
+-----------------------------------------------------------------
+Benchmark                       Time             CPU   Iterations
+-----------------------------------------------------------------
+BM_Delete/1                  10.3 ns         10.1 ns     69475594
+BM_Delete/8                  77.9 ns         77.1 ns      9176832
+BM_Delete/64                  635 ns          631 ns      1107376
+BM_Delete/512                5069 ns         5037 ns       100000
+BM_Delete/4096              40714 ns        40463 ns        17324
+BM_Delete/32768            335202 ns       332271 ns         2115
+BM_Delete/262144         22552774 ns     22393637 ns           31
+BM_Delete/1048576        95205985 ns     94620165 ns            7
+BM_DeleteSized/1             10.7 ns         10.7 ns     66006981
+BM_DeleteSized/8             83.8 ns         83.3 ns      8433584
+BM_DeleteSized/64             750 ns          673 ns      1041933
+BM_DeleteSized/512           7203 ns         5157 ns       129789
+BM_DeleteSized/4096         40930 ns        40918 ns        17116
+BM_DeleteSized/32768       453698 ns       338570 ns         2066
+BM_DeleteSized/262144    26989257 ns     22978631 ns           31
+BM_DeleteSized/1048576   95106818 ns     93970995 ns            7

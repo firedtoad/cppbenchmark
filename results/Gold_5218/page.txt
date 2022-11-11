@@ -1,0 +1,8 @@
+user cpu : 0s 315us
+sys cpu : 0s 0us
+max rss : 1056 kb / 1.03125 MB
+page reclaims : 274
+page faults : 0
+voluntary switches : 0
+involuntary switches : 3
+

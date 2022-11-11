@@ -1,0 +1,33 @@
+2022-11-11T21:47:54+08:00
+Running ./bin/hash
+Run on (8 X 2294.61 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 1024 KiB (x8)
+  L3 Unified 22528 KiB (x2)
+Load Average: 7.96, 4.77, 3.80
+--------------------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                                      Time             CPU   Iterations
+--------------------------------------------------------------------------------------------------------------------------------
+BM_StdHash                                                                                  10.5 ns         7.65 ns     92144992
+BM_StdHashFnv                                                                               41.2 ns         33.5 ns     21152605
+BM_CityHash                                                                                 9.37 ns         9.17 ns     71604923
+BM_Murmur                                                                                   33.8 ns         30.3 ns     22370455
+BM_WyHash                                                                                   8.95 ns         7.97 ns     87401595
+BM_XXHash                                                                                   21.5 ns         21.0 ns     41245363
+BM_AbseilHash                                                                               12.9 ns         11.1 ns     68288001
+BM_DefaultHash                                                                              45.9 ns         45.2 ns     15497376
+BenchUnOrderMapString<std::unordered_map<std::string, int>>                                  255 ns          249 ns      3660687
+BenchUnOrderMapString<std::unordered_map<std::string, int, Hasher>>                          239 ns          234 ns      3203821
+BenchUnOrderMapString<ska::flat_hash_map<std::string, int>>                                  155 ns          152 ns      5125748
+BenchUnOrderMapString<ska::flat_hash_map<std::string, int, Hasher>>                          112 ns          110 ns      5804542
+BenchUnOrderMapString<phmap::flat_hash_map<std::string, int>>                                173 ns          169 ns      4384386
+BenchUnOrderMapString<phmap::flat_hash_map<std::string, int, Hasher>>                        206 ns          201 ns      3329675
+BenchUnOrderMapString<absl::flat_hash_map<std::string, int>>                                 182 ns          178 ns      3729638
+BenchUnOrderMapString<absl::flat_hash_map<std::string, int, absl::Hash<std::string>>>        140 ns          137 ns      4858349
+BenchUnOrderMapString<absl::flat_hash_map<std::string, int, Hasher>>                         117 ns          115 ns      6022971
+BenchUnOrderMapString<tsl::robin_map<std::string, int>>                                      147 ns          144 ns      4705367
+BenchUnOrderMapString<tsl::robin_map<std::string, int, Hasher>>                              170 ns          166 ns      4677387
+BenchFlatMapString                                                                           105 ns          103 ns      6115892
+BenchFlatMapStringStandHash                                                                 93.8 ns         92.1 ns      7756206

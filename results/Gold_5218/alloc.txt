@@ -1,0 +1,25 @@
+16
+8
+2022-11-11T21:49:35+08:00
+Running ./bin/alloc
+Run on (8 X 2294.61 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 1024 KiB (x8)
+  L3 Unified 22528 KiB (x2)
+Load Average: 8.25, 5.79, 4.27
+---------------------------------------------------------------
+Benchmark                     Time             CPU   Iterations
+---------------------------------------------------------------
+BM_AllocSize/1             14.1 ns         14.0 ns     50782274
+BM_AllocSize/8             14.1 ns         13.8 ns     50849663
+BM_AllocSize/64            14.6 ns         14.6 ns     48304210
+BM_AllocSize/512           15.1 ns         14.8 ns     46043004
+BM_AllocSize/4096          38.6 ns         34.8 ns     19933607
+BM_AllocSize/32768         35.5 ns         35.1 ns     19936117
+BM_AllocSize/262144        37.8 ns         37.2 ns     19031216
+BM_AllocSize/1048576       37.3 ns         36.9 ns     18820327
+BM_FunctionStack           3.75 ns         3.70 ns    190174551
+BM_FunctionHeap            21.3 ns         21.0 ns     33583729
+BM_Lambda                  1.10 ns         1.09 ns    645826724

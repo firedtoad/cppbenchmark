@@ -1,0 +1,43 @@
+2022-11-11T21:49:08+08:00
+Running ./bin/adt_map_unordered_find
+Run on (8 X 2294.61 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 1024 KiB (x8)
+  L3 Unified 22528 KiB (x2)
+Load Average: 8.16, 5.56, 4.15
+------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                        Time             CPU   Iterations
+------------------------------------------------------------------------------------------------------------------
+BenchUnOrderMapInt<std::unordered_map<int, int>>                              50.6 ns         47.8 ns     14761510
+BenchUnOrderMapInt<ska::unordered_map<int, int>>                              22.9 ns         21.7 ns     31905015
+BenchUnOrderMapInt<ska::flat_hash_map<int, int>>                              17.8 ns         17.2 ns     40873468
+BenchUnOrderMapInt<ska::bytell_hash_map<int, int>>                            14.0 ns         13.5 ns     51926355
+BenchUnOrderMapInt<phmap::flat_hash_map<int, int>>                            11.3 ns         10.9 ns     64259653
+BenchUnOrderMapInt<robin_hood::unordered_flat_map<int, int>>                  19.2 ns         18.5 ns     37874275
+BenchUnOrderMapInt<spp::sparse_hash_map<int, int>>                            18.7 ns         18.0 ns     38085586
+BenchUnOrderMapInt<tsl::bhopscotch_map<int, int>>                             15.3 ns         14.8 ns     47473911
+BenchUnOrderMapInt<tsl::hopscotch_map<int, int>>                              15.3 ns         14.8 ns     48196015
+BenchUnOrderMapInt<tsl::robin_map<int, int>>                                  17.4 ns         16.8 ns     42050105
+BenchUnOrderMapInt<tsl::sparse_map<int, int>>                                 16.5 ns         15.9 ns     43831719
+BenchUnOrderMapInt<llvm::DenseMap<int, int>>                                  14.3 ns         13.8 ns     51256785
+BenchUnOrderMapInt<llvm::MapVector<int, int>>                                 17.8 ns         17.1 ns     41313000
+BenchIndexedMap<llvm::IndexedMap<int>>                                        3.24 ns         3.14 ns    220819960
+BenchUnOrderMapString<std::unordered_map<std::string, int>>                    249 ns          239 ns      2661751
+BenchUnOrderMapString<ska::unordered_map<std::string, int>>                    162 ns          156 ns      4111722
+BenchUnOrderMapString<ska::flat_hash_map<std::string, int>>                    165 ns          159 ns      3611009
+BenchUnOrderMapString<ska::bytell_hash_map<std::string, int>>                  171 ns          163 ns      4405337
+BenchUnOrderMapString<phmap::flat_hash_map<std::string, int>>                  166 ns          158 ns      4596590
+BenchUnOrderMapString<robin_hood::unordered_flat_map<std::string, int>>        171 ns          163 ns      3099287
+BenchUnOrderMapString<spp::sparse_hash_map<std::string, int>>                  164 ns          156 ns      4573802
+BenchUnOrderMapString<tsl::bhopscotch_map<std::string, int>>                   173 ns          165 ns      4444715
+BenchUnOrderMapString<tsl::hopscotch_map<std::string, int>>                    176 ns          168 ns      4239041
+BenchUnOrderMapString<tsl::robin_map<std::string, int>>                        174 ns          168 ns      3804646
+BenchUnOrderMapString<tsl::sparse_map<std::string, int>>                       169 ns          163 ns      4349365
+BenchUnOrderMapString<llvm::DenseMap<llvm::StringRef, int>>                    102 ns         98.5 ns      6675517
+BenchUnOrderMapString<llvm::MapVector<llvm::StringRef, int>>                   103 ns         99.0 ns      7178502
+BenchStringMapNoSSO<llvm::StringMap<int>>                                      149 ns          144 ns      4712351
+BenchIndexedMapString<llvm::IndexedMap<std::string>>                          58.1 ns         54.9 ns     13195658
+BenchCharKeyMap<tsl::htrie_map<char, int>>                                     227 ns          223 ns      2995394
+BenchCharKeyMap<tsl::array_map<char, int>>                                     126 ns          124 ns      5246948

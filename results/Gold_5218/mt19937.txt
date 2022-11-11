@@ -1,0 +1,19 @@
+2022-11-11T21:46:38+08:00
+Running ./bin/mt19937
+Run on (8 X 2294.61 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 1024 KiB (x8)
+  L3 Unified 22528 KiB (x2)
+Load Average: 5.11, 3.60, 3.37
+----------------------------------------------------------------------------------
+Benchmark                                        Time             CPU   Iterations
+----------------------------------------------------------------------------------
+BenchEngine<std::mt19937>                     2.70 ns         2.69 ns    263007513
+BenchEngine<std::mt19937_64>                  2.54 ns         2.53 ns    275142901
+BenchEngine<std::minstd_rand>                 6.23 ns         6.20 ns    112825849
+BenchEngine<std::default_random_engine>       6.24 ns         6.21 ns    112798665
+BenchEngine<__gnu_cxx::sfmt19937>             2.18 ns         2.17 ns    323306967
+BenchEngine<__gnu_cxx::sfmt19937_64>          2.49 ns         2.48 ns    282616947
+BenchSFMT                                     2.85 ns         2.84 ns    246299910

@@ -1,0 +1,24 @@
+2022-11-11T21:46:17+08:00
+Running ./bin/string_format
+Run on (8 X 2294.61 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 1024 KiB (x8)
+  L3 Unified 22528 KiB (x2)
+Load Average: 3.62, 3.22, 3.25
+------------------------------------------------------------------------------------------------
+Benchmark                                                      Time             CPU   Iterations
+------------------------------------------------------------------------------------------------
+BenchStreamStringFormat<std::stringstream, uint64_t>         571 ns          568 ns      1233906
+BenchStreamStringFormat<std::ostringstream, uint64_t>        448 ns          438 ns      1599943
+BenchStreamStringFormatF<std::stringstream, float>          1076 ns         1072 ns       651511
+BenchStreamStringFormatF<std::ostringstream, float>          952 ns          952 ns       736089
+BenchSnprintf<uint64_t>                                      105 ns          105 ns      6661010
+BenchSnprintfFloat<float>                                   1003 ns         1002 ns       697810
+BenchBoostStringFormat<std::string>                          615 ns          614 ns      1144913
+BenchBoostStringFormatf<std::string>                         690 ns          617 ns      1136174
+BenchFmtStrFormat<uint64_t>                                 45.7 ns         43.7 ns     16146899
+BenchFmtStrFormatf<float>                                   56.1 ns         53.9 ns     13025964
+BenchAbStrFormat<uint64_t>                                  69.1 ns         67.2 ns     10389188
+BenchAbStrFormatF<float>                                     128 ns          124 ns      5697183

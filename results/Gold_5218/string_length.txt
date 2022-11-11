@@ -1,0 +1,30 @@
+2022-11-11T21:46:11+08:00
+Running ./bin/string_length
+Run on (8 X 2294.61 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 1024 KiB (x8)
+  L3 Unified 22528 KiB (x2)
+Load Average: 3.23, 3.14, 3.22
+----------------------------------------------------------------
+Benchmark                      Time             CPU   Iterations
+----------------------------------------------------------------
+BenchNaiveStrlen/1          1.09 ns         1.09 ns    641854809
+BenchNaiveStrlen/8          5.61 ns         4.40 ns    160018471
+BenchNaiveStrlen/64         42.3 ns         42.3 ns     16895195
+BenchNaiveStrlen/512         121 ns          121 ns      5549148
+BenchNaiveStrlen/4096        139 ns          121 ns      5825599
+BenchNaiveStrlen/8192        123 ns          121 ns      5644563
+BenchSysStrlen/1            3.44 ns         3.42 ns    206409073
+BenchSysStrlen/8            3.80 ns         3.39 ns    206147232
+BenchSysStrlen/64           5.10 ns         5.09 ns    138786784
+BenchSysStrlen/512          8.18 ns         7.73 ns     90913070
+BenchSysStrlen/4096         10.0 ns         7.69 ns     90897986
+BenchSysStrlen/8192         7.77 ns         7.71 ns     91087132
+BenchWrapStrLen/1           3.40 ns         2.90 ns    242085647
+BenchWrapStrLen/8           2.95 ns         2.89 ns    242940466
+BenchWrapStrLen/64          4.71 ns         4.70 ns    149620101
+BenchWrapStrLen/512         7.22 ns         7.21 ns     97140282
+BenchWrapStrLen/4096        7.22 ns         7.21 ns     97061846
+BenchWrapStrLen/8192        7.31 ns         7.21 ns     97367675

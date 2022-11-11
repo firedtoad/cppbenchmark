@@ -1,0 +1,18 @@
+2022-11-11T21:47:22+08:00
+Running ./bin/div
+Run on (8 X 2294.61 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 1024 KiB (x8)
+  L3 Unified 22528 KiB (x2)
+Load Average: 6.79, 4.22, 3.59
+------------------------------------------------------
+Benchmark            Time             CPU   Iterations
+------------------------------------------------------
+calc              3.67 ns         3.63 ns    193423250
+calc1             3.66 ns         3.62 ns    193549030
+calc_int          2.58 ns         2.55 ns    276216953
+calc1_int         2.20 ns         2.18 ns    321444948
+calc_int64        2.92 ns         2.89 ns    242061799
+calc1_int64       2.21 ns         2.18 ns    321488792

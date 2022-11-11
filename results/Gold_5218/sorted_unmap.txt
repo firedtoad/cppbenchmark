@@ -1,0 +1,52 @@
+2022-11-11T21:47:57+08:00
+Running ./bin/sorted_unmap
+Run on (8 X 2294.61 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 1024 KiB (x8)
+  L3 Unified 22528 KiB (x2)
+Load Average: 7.96, 4.77, 3.80
+---------------------------------------------------------------------------------------------------
+Benchmark                                                         Time             CPU   Iterations
+---------------------------------------------------------------------------------------------------
+BenchInsert<sorted_vector<Pod>>/1                              32.1 ns         25.5 ns     27315798
+BenchInsert<sorted_vector<Pod>>/8                               266 ns          260 ns      2677574
+BenchInsert<sorted_vector<Pod>>/64                             3898 ns         3620 ns       192107
+BenchInsert<sorted_vector<Pod>>/512                           48662 ns        45556 ns        15367
+BenchInsert<sorted_vector<Pod>>/1024                         113431 ns       109921 ns         6364
+BenchInsert<std::unordered_map<uint64_t, uint64_t>>/1          98.4 ns         95.5 ns      7310564
+BenchInsert<std::unordered_map<uint64_t, uint64_t>>/8           749 ns          725 ns       975768
+BenchInsert<std::unordered_map<uint64_t, uint64_t>>/64         5502 ns         5345 ns       130694
+BenchInsert<std::unordered_map<uint64_t, uint64_t>>/512       61106 ns        59447 ns        11648
+BenchInsert<std::unordered_map<uint64_t, uint64_t>>/1024     123978 ns       119765 ns         5890
+BenchFind<sorted_vector<Pod>>/1                                6.82 ns         6.66 ns    100000000
+BenchFind<sorted_vector<Pod>>/8                                21.2 ns         20.8 ns     31250765
+BenchFind<sorted_vector<Pod>>/64                               44.6 ns         43.5 ns     16346684
+BenchFind<sorted_vector<Pod>>/512                              66.2 ns         64.1 ns     10686254
+BenchFind<sorted_vector<Pod>>/1024                             73.1 ns         70.8 ns      9920599
+BenchFind<std::unordered_map<uint64_t, uint64_t>>/1            13.1 ns         12.6 ns     56231097
+BenchFind<std::unordered_map<uint64_t, uint64_t>>/8            17.7 ns         17.2 ns     36771831
+BenchFind<std::unordered_map<uint64_t, uint64_t>>/64           23.5 ns         22.8 ns     29326678
+BenchFind<std::unordered_map<uint64_t, uint64_t>>/512          23.2 ns         22.4 ns     30661986
+BenchFind<std::unordered_map<uint64_t, uint64_t>>/1024         23.8 ns         23.0 ns     30530321
+BenchRange<sorted_vector<Pod>>/1                               1.88 ns         1.82 ns    386461558
+BenchRange<sorted_vector<Pod>>/8                               4.71 ns         4.58 ns    154049539
+BenchRange<sorted_vector<Pod>>/64                              19.4 ns         18.8 ns     37358406
+BenchRange<sorted_vector<Pod>>/512                             46.8 ns         45.2 ns     15356914
+BenchRange<sorted_vector<Pod>>/1024                            83.7 ns         80.5 ns      8734890
+BenchRange<std::unordered_map<uint64_t, uint64_t>>/1          0.706 ns        0.681 ns   1000000000
+BenchRange<std::unordered_map<uint64_t, uint64_t>>/8           4.27 ns         4.13 ns    169347112
+BenchRange<std::unordered_map<uint64_t, uint64_t>>/64          79.2 ns         76.2 ns      9418744
+BenchRange<std::unordered_map<uint64_t, uint64_t>>/512          780 ns          756 ns       929925
+BenchRange<std::unordered_map<uint64_t, uint64_t>>/1024        1967 ns         1904 ns       379164
+BenchErase<sorted_vector<Pod>>/1                               5.28 ns         5.15 ns    136381400
+BenchErase<sorted_vector<Pod>>/8                               7.25 ns         7.05 ns     97077186
+BenchErase<sorted_vector<Pod>>/64                              10.7 ns         10.4 ns     67170063
+BenchErase<sorted_vector<Pod>>/512                             15.9 ns         15.5 ns     34772295
+BenchErase<sorted_vector<Pod>>/1024                            29.0 ns         28.2 ns     20844960
+BenchErase<std::unordered_map<uint64_t, uint64_t>>/1           12.6 ns         12.2 ns     57279327
+BenchErase<std::unordered_map<uint64_t, uint64_t>>/8           16.4 ns         15.9 ns     43880523
+BenchErase<std::unordered_map<uint64_t, uint64_t>>/64          23.3 ns         22.6 ns     31094741
+BenchErase<std::unordered_map<uint64_t, uint64_t>>/512         23.4 ns         22.6 ns     31775375
+BenchErase<std::unordered_map<uint64_t, uint64_t>>/1024        24.0 ns         23.4 ns     30595405

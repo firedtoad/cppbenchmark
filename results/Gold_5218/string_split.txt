@@ -1,0 +1,32 @@
+2022-11-11T21:46:11+08:00
+Running ./bin/string_split
+Run on (8 X 2294.61 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 1024 KiB (x8)
+  L3 Unified 22528 KiB (x2)
+Load Average: 3.23, 3.14, 3.22
+---------------------------------------------------------------------------
+Benchmark                                 Time             CPU   Iterations
+---------------------------------------------------------------------------
+BenchStringSplit/threads:1              507 ns          496 ns      1428629
+BenchStringSplit/threads:2              316 ns          469 ns      1493084
+BenchStringSplit/threads:4              271 ns          473 ns      1545812
+BenchStringSplit/threads:8              150 ns          452 ns      1526592
+BenchStringSplitStream/threads:1        651 ns          650 ns      1065544
+BenchStringSplitStream/threads:2        504 ns          652 ns       991942
+BenchStringSplitStream/threads:4        289 ns          652 ns      1072344
+BenchStringSplitStream/threads:8        246 ns          655 ns       913512
+BenchBoostSplit/threads:1              1033 ns         1031 ns       681277
+BenchBoostSplit/threads:2               757 ns         1052 ns       664332
+BenchBoostSplit/threads:4               511 ns         1047 ns       667812
+BenchBoostSplit/threads:8               353 ns         1033 ns       668040
+BenchABSplit/threads:1                  311 ns          310 ns      2224086
+BenchABSplit/threads:2                  234 ns          305 ns      2303040
+BenchABSplit/threads:4                  133 ns          306 ns      2259284
+BenchABSplit/threads:8                  104 ns          306 ns      2291608
+BenchPBSplit/threads:1                  442 ns          442 ns      1583081
+BenchPBSplit/threads:2                  276 ns          452 ns      1585866
+BenchPBSplit/threads:4                  170 ns          445 ns      1581212
+BenchPBSplit/threads:8                  151 ns          442 ns      1569536

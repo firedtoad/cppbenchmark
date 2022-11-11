@@ -1,0 +1,61 @@
+2022-11-11T21:49:44+08:00
+Running ./bin/list_range
+Run on (8 X 2294.61 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 1024 KiB (x8)
+  L3 Unified 22528 KiB (x2)
+Load Average: 8.21, 5.87, 4.31
+------------------------------------------------------------------------
+Benchmark                              Time             CPU   Iterations
+------------------------------------------------------------------------
+BenchListRange/1                   0.903 ns        0.901 ns    765163823
+BenchListRange/8                    4.32 ns         4.24 ns    164608700
+BenchListRange/64                   52.6 ns         52.5 ns     13419150
+BenchListRange/512                   746 ns          745 ns       921816
+BenchListRange/4096                15197 ns        14980 ns        58854
+BenchListRange/32768              148397 ns       146395 ns         7251
+BenchListRange/65536              296511 ns       292918 ns         3657
+BenchForwardListRange/1            0.696 ns        0.684 ns   1000000000
+BenchForwardListRange/8             3.97 ns         3.96 ns    174625784
+BenchForwardListRange/64            63.7 ns         62.6 ns     11135526
+BenchForwardListRange/512            749 ns          748 ns       941519
+BenchForwardListRange/4096         14757 ns        14502 ns        57116
+BenchForwardListRange/32768       111984 ns       111487 ns         4690
+BenchForwardListRange/65536       262614 ns       261385 ns         2682
+BenchDequeRange/1                   2.10 ns         2.06 ns    341031612
+BenchDequeRange/8                   5.84 ns         5.83 ns    124751902
+BenchDequeRange/64                  35.8 ns         35.1 ns     20044417
+BenchDequeRange/512                  289 ns          283 ns      2478519
+BenchDequeRange/4096                2164 ns         2157 ns       325621
+BenchDequeRange/32768              17696 ns        17336 ns        41140
+BenchDequeRange/65536              34765 ns        34163 ns        20586
+BenchVectorRange/1                  1.09 ns         1.09 ns    649824696
+BenchVectorRange/8                  4.05 ns         3.98 ns    175757929
+BenchVectorRange/64                 15.0 ns         15.0 ns     46467496
+BenchVectorRange/512                92.9 ns         92.8 ns      7522723
+BenchVectorRange/4096               1543 ns         1514 ns       464156
+BenchVectorRange/32768             10960 ns        10934 ns        63006
+BenchVectorRange/65536             52345 ns        51404 ns        13665
+BenchBUListRange/1                 0.687 ns        0.686 ns   1000000000
+BenchBUListRange/8                  3.98 ns         3.91 ns    178571493
+BenchBUListRange/64                 52.6 ns         52.6 ns     13381500
+BenchBUListRange/512                 756 ns          743 ns       943048
+BenchBUListRange/4096               6146 ns         6138 ns       114148
+BenchBUListRange/32768             48995 ns        48933 ns        14302
+BenchBUListRange/65536            100897 ns        99073 ns         7075
+BenchIntrusiveListRange/1          0.676 ns        0.675 ns   1000000000
+BenchIntrusiveListRange/8           4.26 ns         4.26 ns    162778731
+BenchIntrusiveListRange/64          53.2 ns         52.3 ns     13413109
+BenchIntrusiveListRange/512          743 ns          743 ns       942258
+BenchIntrusiveListRange/4096        7228 ns         7104 ns        98677
+BenchIntrusiveListRange/32768      57046 ns        56992 ns        12294
+BenchIntrusiveListRange/65536     119434 ns       117381 ns         5962
+BenchPlfListRange/1                0.799 ns        0.694 ns   1000000000
+BenchPlfListRange/8                 4.64 ns         4.55 ns    148019540
+BenchPlfListRange/64                55.3 ns         53.5 ns     12895881
+BenchPlfListRange/512                755 ns          752 ns       925346
+BenchPlfListRange/4096             10114 ns        10100 ns        68087
+BenchPlfListRange/32768           111308 ns        84294 ns         8262
+BenchPlfListRange/65536           166908 ns       165615 ns         4220

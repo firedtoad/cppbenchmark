@@ -1,0 +1,13 @@
+2022-11-11T21:48:59+08:00
+Running ./bin/logging
+Run on (8 X 2294.61 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 1024 KiB (x8)
+  L3 Unified 22528 KiB (x2)
+Load Average: 8.19, 5.48, 4.11
+-----------------------------------------------------
+Benchmark           Time             CPU   Iterations
+-----------------------------------------------------
+BM_SpdLog         459 ns          435 ns      1720448

@@ -1,0 +1,18 @@
+2022-11-11T21:46:51+08:00
+Running ./bin/spsc
+Run on (8 X 2294.61 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 1024 KiB (x8)
+  L3 Unified 22528 KiB (x2)
+Load Average: 5.56, 3.75, 3.42
+-----------------------------------------------------
+Benchmark           Time             CPU   Iterations
+-----------------------------------------------------
+Boost_Spsc       9.06 ns         8.89 ns     77665356
+SPSCQueue        10.8 ns         10.6 ns     66759856
+RWQueue          11.4 ns         11.3 ns     62587877
+RBQueue          9.88 ns         9.70 ns     77122276
+VYQueue          18.1 ns         17.8 ns     37429248
+TBBQueue          219 ns          217 ns      3223857
