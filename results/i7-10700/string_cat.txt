@@ -1,0 +1,20 @@
+2022-11-11T10:54:14-05:00
+Running ./bin/string_cat
+Run on (4 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x4)
+  L1 Instruction 32 KiB (x4)
+  L2 Unified 256 KiB (x4)
+  L3 Unified 16384 KiB (x4)
+Load Average: 4.09, 3.58, 2.39
+---------------------------------------------------------------
+Benchmark                     Time             CPU   Iterations
+---------------------------------------------------------------
+BenchStrNCat               21.0 ns         20.9 ns     33248389
+BenchStdStringCat          60.9 ns         60.8 ns     10799606
+BenchStreamStringCat        397 ns          397 ns      1912869
+BenchBoostStrCat            137 ns          136 ns      5630330
+BenchAbStrCat              29.6 ns         29.6 ns     22601967
+BenchPBStrCat              28.6 ns         28.6 ns     21766826
+BenchAbStrFormat           68.6 ns         68.4 ns     11058658
+BenchFormat                85.4 ns         85.4 ns      8359599

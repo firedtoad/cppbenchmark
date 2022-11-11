@@ -1,0 +1,61 @@
+2022-11-11T10:49:37-05:00
+Running ./bin/list_range
+Run on (4 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x4)
+  L1 Instruction 32 KiB (x4)
+  L2 Unified 256 KiB (x4)
+  L3 Unified 16384 KiB (x4)
+Load Average: 3.41, 2.56, 1.72
+------------------------------------------------------------------------
+Benchmark                              Time             CPU   Iterations
+------------------------------------------------------------------------
+BenchListRange/1                   0.534 ns        0.534 ns   1000000000
+BenchListRange/8                    3.14 ns         3.13 ns    229220535
+BenchListRange/64                   62.3 ns         62.3 ns     11316098
+BenchListRange/512                   507 ns          507 ns      1462804
+BenchListRange/4096                10341 ns        10338 ns        95179
+BenchListRange/32768               65166 ns        65157 ns         7705
+BenchListRange/65536              162922 ns       162909 ns         4275
+BenchForwardListRange/1            0.421 ns        0.421 ns   1000000000
+BenchForwardListRange/8             2.70 ns         2.70 ns    266861508
+BenchForwardListRange/64            59.6 ns         59.6 ns     11699402
+BenchForwardListRange/512            522 ns          522 ns      1000000
+BenchForwardListRange/4096          7587 ns         7579 ns        71942
+BenchForwardListRange/32768        92326 ns        92312 ns        10654
+BenchForwardListRange/65536       162391 ns       162243 ns         3805
+BenchDequeRange/1                   1.18 ns         1.18 ns    613286158
+BenchDequeRange/8                   3.82 ns         3.81 ns    192950993
+BenchDequeRange/64                  18.8 ns         18.8 ns     34571915
+BenchDequeRange/512                  179 ns          179 ns      4631674
+BenchDequeRange/4096                1835 ns         1835 ns       385709
+BenchDequeRange/32768               9819 ns         9818 ns        72786
+BenchDequeRange/65536              16735 ns        16720 ns        38862
+BenchVectorRange/1                 0.739 ns        0.739 ns   1000000000
+BenchVectorRange/8                  2.15 ns         2.15 ns    307038915
+BenchVectorRange/64                 17.8 ns         17.8 ns     34001548
+BenchVectorRange/512                82.0 ns         81.7 ns      8998014
+BenchVectorRange/4096                804 ns          803 ns       877638
+BenchVectorRange/32768             12294 ns        12293 ns        58208
+BenchVectorRange/65536             25325 ns        25299 ns        25907
+BenchBUListRange/1                 0.430 ns        0.430 ns   1000000000
+BenchBUListRange/8                  2.77 ns         2.77 ns    235303298
+BenchBUListRange/64                 57.0 ns         56.9 ns     11548964
+BenchBUListRange/512                 460 ns          460 ns      1502036
+BenchBUListRange/4096               3740 ns         3740 ns       188242
+BenchBUListRange/32768             32396 ns        32391 ns        21404
+BenchBUListRange/65536             63873 ns        63867 ns        10427
+BenchIntrusiveListRange/1          0.400 ns        0.400 ns   1000000000
+BenchIntrusiveListRange/8           2.54 ns         2.54 ns    257239371
+BenchIntrusiveListRange/64          55.1 ns         55.1 ns     12428982
+BenchIntrusiveListRange/512          458 ns          458 ns      1528924
+BenchIntrusiveListRange/4096        4245 ns         4244 ns       163043
+BenchIntrusiveListRange/32768      38601 ns        38563 ns        18074
+BenchIntrusiveListRange/65536      76977 ns        76971 ns         9223
+BenchPlfListRange/1                0.423 ns        0.423 ns   1000000000
+BenchPlfListRange/8                 2.66 ns         2.66 ns    281927554
+BenchPlfListRange/64                59.3 ns         59.3 ns     12254524
+BenchPlfListRange/512                468 ns          467 ns      1496150
+BenchPlfListRange/4096              6068 ns         6067 ns       117378
+BenchPlfListRange/32768            55037 ns        54985 ns        12736
+BenchPlfListRange/65536           108796 ns       108776 ns         6333

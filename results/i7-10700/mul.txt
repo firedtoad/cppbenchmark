@@ -1,0 +1,16 @@
+2022-11-11T10:55:30-05:00
+Running ./bin/mul
+Run on (4 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x4)
+  L1 Instruction 32 KiB (x4)
+  L2 Unified 256 KiB (x4)
+  L3 Unified 16384 KiB (x4)
+Load Average: 4.47, 3.80, 2.56
+------------------------------------------------------
+Benchmark            Time             CPU   Iterations
+------------------------------------------------------
+calc_int          1.29 ns         1.28 ns    626382779
+calc_int64        1.02 ns         1.02 ns    624577373
+calc_float        2.35 ns         2.34 ns    298818740
+calc_double       2.33 ns         2.33 ns    292825744

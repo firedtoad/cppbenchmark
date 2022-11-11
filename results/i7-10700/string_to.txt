@@ -1,0 +1,28 @@
+2022-11-11T10:54:06-05:00
+Running ./bin/string_to
+Run on (4 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x4)
+  L1 Instruction 32 KiB (x4)
+  L2 Unified 256 KiB (x4)
+  L3 Unified 16384 KiB (x4)
+Load Average: 4.10, 3.58, 2.38
+--------------------------------------------------------------------------------------------
+Benchmark                                                  Time             CPU   Iterations
+--------------------------------------------------------------------------------------------
+BenchStreamStringTo<std::stringstream, uint64_t>         408 ns          408 ns      1827659
+BenchStreamStringTo<std::istringstream, uint64_t>        292 ns          292 ns      2500632
+BenchStreamStringToF<std::stringstream, float>           500 ns          500 ns      1525876
+BenchStreamStringToF<std::istringstream, float>          429 ns          429 ns      1712762
+BenchStdAtol<uint64_t>                                  28.7 ns         28.6 ns     24970242
+BenchStdAtof<float>                                     62.9 ns         62.8 ns     12160929
+BenchStdStol<uint64_t>                                  32.3 ns         32.3 ns     22063888
+BenchStdStof<float>                                     61.6 ns         61.6 ns     10918497
+BenchStdCharConvInt<uint64_t>                           16.1 ns         16.1 ns     38814262
+BenchABCharConvIntF<float>                              30.3 ns         30.3 ns     21862547
+BenchBoostStringTo<uint64_t>                            50.7 ns         50.7 ns     13489844
+BenchBoostStringTof<float>                               322 ns          322 ns      1953125
+BenchAbSimpleToInt<uint64_t>                            18.7 ns         18.7 ns     38391704
+BenchAbSimpleToFloat<float>                             35.5 ns         35.5 ns     18617138
+BenchPBStrAppend<uint64_t>                              19.0 ns         19.0 ns     37728468
+BenchPBStrAppendF<float>                                19.7 ns         19.7 ns     33897753

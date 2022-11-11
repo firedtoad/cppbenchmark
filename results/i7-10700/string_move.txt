@@ -1,0 +1,26 @@
+2022-11-11T10:54:43-05:00
+Running ./bin/string_move
+Run on (4 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x4)
+  L1 Instruction 32 KiB (x4)
+  L2 Unified 256 KiB (x4)
+  L3 Unified 16384 KiB (x4)
+Load Average: 4.06, 3.62, 2.44
+-------------------------------------------------------------------
+Benchmark                         Time             CPU   Iterations
+-------------------------------------------------------------------
+BenchStringMove<LogCopy>       60.1 ns         60.1 ns     10851880
+BenchStringMove<LogMove>       33.4 ns         33.4 ns     21690452
+BenchCopy                      48.9 ns         48.9 ns     14335556
+BenchRvo                       26.1 ns         26.1 ns     25472922
+BenchUnmapCopy/1               65.7 ns         65.7 ns     10934614
+BenchUnmapCopy/8               62.3 ns         62.2 ns     11708797
+BenchUnmapCopy/64               110 ns          110 ns      7550163
+BenchUnmapCopy/512              120 ns          120 ns      4332315
+BenchUnmapCopy/1024             132 ns          132 ns      5356356
+BenchUnmapRvo/1                60.0 ns         59.9 ns      9747027
+BenchUnmapRvo/8                62.3 ns         62.2 ns      9738115
+BenchUnmapRvo/64               77.4 ns         77.3 ns      9976442
+BenchUnmapRvo/512              87.9 ns         87.9 ns      6258850
+BenchUnmapRvo/1024             82.4 ns         82.4 ns      8158346

@@ -1,0 +1,38 @@
+2022-11-11T10:52:13-05:00
+Running ./bin/set_range_unorder
+Run on (4 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x4)
+  L1 Instruction 32 KiB (x4)
+  L2 Unified 256 KiB (x4)
+  L3 Unified 16384 KiB (x4)
+Load Average: 4.72, 3.37, 2.16
+------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                        Time             CPU   Iterations
+------------------------------------------------------------------------------------------------------------------
+BenchRangeUnOrderSetInt<std::unordered_set<int>>                            121781 ns       121695 ns         5645
+BenchRangeUnOrderSetInt<ska::unordered_set<int>>                            130754 ns       130677 ns         5662
+BenchRangeUnOrderSetInt<ska::flat_hash_set<int>>                             98606 ns        98145 ns         6852
+BenchRangeUnOrderSetInt<ska::bytell_hash_set<int>>                          164060 ns       163988 ns         4297
+BenchRangeUnOrderSetInt<phmap::flat_hash_set<int>>                          245748 ns       242752 ns         2904
+BenchRangeUnOrderSetInt<absl::flat_hash_set<int>>                           211517 ns       211377 ns         3247
+BenchRangeUnOrderSetInt<robin_hood::unordered_flat_set<int>>                165329 ns       165244 ns         4160
+BenchRangeUnOrderSetInt<spp::sparse_hash_set<int>>                           63571 ns        63320 ns        11472
+BenchRangeUnOrderSetInt<tsl::bhopscotch_set<int>>                           118418 ns       118367 ns         5818
+BenchRangeUnOrderSetInt<tsl::hopscotch_set<int>>                            120822 ns       120275 ns         5649
+BenchRangeUnOrderSetInt<tsl::robin_set<int>>                                 79486 ns        79434 ns         8880
+BenchRangeUnOrderSetInt<tsl::sparse_set<int>>                                45365 ns        45156 ns        15700
+BenchRangeUnOrderSetString<std::unordered_set<std::string>>                1770074 ns      1765071 ns          603
+BenchRangeUnOrderSetString<ska::unordered_set<std::string>>                7276503 ns      7250354 ns          135
+BenchRangeUnOrderSetString<ska::flat_hash_set<std::string>>                1548672 ns      1547723 ns          354
+BenchRangeUnOrderSetString<ska::bytell_hash_set<std::string>>              1512453 ns      1505889 ns          470
+BenchRangeUnOrderSetString<phmap::flat_hash_set<std::string>>              2080529 ns      2071439 ns          347
+BenchRangeUnOrderSetString<absl::flat_hash_set<std::string>>               2663193 ns      2655256 ns          402
+BenchRangeUnOrderSetString<robin_hood::unordered_flat_set<std::string>>    1396515 ns      1395732 ns          387
+BenchRangeUnOrderSetString<spp::sparse_hash_set<std::string>>              1195900 ns      1189052 ns          528
+BenchRangeUnOrderSetString<tsl::bhopscotch_set<std::string>>               1476534 ns      1475358 ns          493
+BenchRangeUnOrderSetString<tsl::hopscotch_set<std::string>>                2398140 ns      2389707 ns          363
+BenchRangeUnOrderSetString<tsl::robin_set<std::string>>                    1827894 ns      1820878 ns          407
+BenchRangeUnOrderSetString<tsl::sparse_set<std::string>>                   1481360 ns      1476096 ns          558
+BenchRangeCharKeySet<tsl::htrie_set<char>>                                 8716684 ns      8682238 ns           98
+BenchRangeCharKeySet<tsl::array_set<char>>                                 1678054 ns      1677164 ns          502

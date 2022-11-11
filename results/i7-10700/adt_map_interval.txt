@@ -1,0 +1,20 @@
+2022-11-11T10:49:30-05:00
+Running ./bin/adt_map_interval
+Run on (4 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x4)
+  L1 Instruction 32 KiB (x4)
+  L2 Unified 256 KiB (x4)
+  L3 Unified 16384 KiB (x4)
+Load Average: 3.21, 2.49, 1.69
+--------------------------------------------------------------
+Benchmark                    Time             CPU   Iterations
+--------------------------------------------------------------
+BM_Interval/1             12.1 ns         12.1 ns     64503049
+BM_Interval/8             12.1 ns         12.1 ns     54659755
+BM_Interval/64            34.0 ns         34.0 ns     20249524
+BM_Interval/512            802 ns          801 ns       829422
+BM_Interval/4096         12825 ns        12823 ns        62348
+BM_Interval/32768       126697 ns       126684 ns         6217
+BM_Interval/262144     1067861 ns      1067801 ns          729
+BM_Interval/1048576    5233817 ns      5229320 ns          136

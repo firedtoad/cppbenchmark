@@ -1,0 +1,22 @@
+2022-11-11T10:56:23-05:00
+Running ./bin/set_find_order
+Run on (4 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x4)
+  L1 Instruction 32 KiB (x4)
+  L2 Unified 256 KiB (x4)
+  L3 Unified 16384 KiB (x4)
+Load Average: 4.34, 3.88, 2.66
+--------------------------------------------------------------------------------------------------
+Benchmark                                                        Time             CPU   Iterations
+--------------------------------------------------------------------------------------------------
+BenchOrderSetInt<std::set<int>>                                126 ns          126 ns      5552599
+BenchOrderSetInt<std::set<int, std::less<>>>                   152 ns          152 ns      4823049
+BenchOrderSetInt<tsl::ordered_set<int>>                       11.0 ns         11.0 ns     51418000
+BenchOrderSetInt<absl::btree_set<int>>                        56.0 ns         56.0 ns     11374048
+BenchOrderSetInt<phmap::btree_set<int>>                       60.1 ns         60.1 ns     12023647
+BenchOrderSetString<std::set<std::string>>                     702 ns          701 ns       957395
+BenchOrderSetString<std::set<std::string, std::less<>>>        734 ns          734 ns       858675
+BenchOrderSetString<tsl::ordered_set<std::string>>             165 ns          165 ns      4314766
+BenchOrderSetString<absl::btree_set<std::string>>              552 ns          552 ns      1000000
+BenchOrderSetString<phmap::btree_set<std::string>>             436 ns          436 ns      1568266
