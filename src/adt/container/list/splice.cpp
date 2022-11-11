@@ -75,7 +75,7 @@ static void BenchListSwap(benchmark::State &state)
     }
     for (auto _ : state)
     {
-        Splice(v, v1);
+        std::swap(v, v1);
         r = v1.size();
     }
     benchmark::DoNotOptimize(r);
@@ -118,7 +118,7 @@ static void BenchIntrusiveListSwap(benchmark::State &state)
     int r = 0;
     for (auto _ : state)
     {
-        Splice(vt, v);
+        std::swap(vt, v);
         r += v.size();
     }
     benchmark::DoNotOptimize(r);
@@ -156,7 +156,7 @@ static void BenchPlfListSwap(benchmark::State &state)
     int r = 0;
     for (auto _ : state)
     {
-        Splice(v1, v);
+        std::swap(v1, v);
         r += v.size();
     }
     benchmark::DoNotOptimize(r);
@@ -194,7 +194,7 @@ static void BenchAdtListSwap(benchmark::State &state)
     int r = 0;
     for (auto _ : state)
     {
-        Splice(v1, v);
+        std::swap(v1, v);
         r += v.size();
     }
     benchmark::DoNotOptimize(r);

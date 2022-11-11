@@ -27,20 +27,27 @@ struct SList : public boost::intrusive::list_base_hook<mode>
 {
 };
 
+template <typename V> void Splice(V &&v1, V &&v2)
+{
+    if (v1.empty())
+    {
+        v1.splice(v1.end(), v2);
+        return;
+    }
+    v2.splice(v2.end(), v1);
+}
 static void BenchListSplice(benchmark::State &state)
 {
+    std::list<SList> v;
+    std::list<SList> v1;
+    for (auto i = 0; i < state.range(0); i++)
+    {
+        v1.push_back({});
+    }
     int r = 0;
     for (auto _ : state)
     {
-        state.PauseTiming();
-        std::list<SList> v;
-        std::list<SList> v1;
-        for (auto i = 0; i < state.range(0); i++)
-        {
-            v1.push_back({});
-        }
-        state.ResumeTiming();
-        v.splice(v.end(), v1);
+        Splice(v, v1);
         r += v.size();
     }
     benchmark::DoNotOptimize(r);
@@ -51,17 +58,16 @@ BENCHMARK(BenchListSplice)->Range(1, 65536);
 static void BenchListSwap(benchmark::State &state)
 {
     int r = 0;
+    std::list<SList> v;
+    std::list<SList> v1;
+    for (auto i = 0; i < state.range(0); i++)
+    {
+        v1.push_back({});
+    }
     for (auto _ : state)
     {
-        state.PauseTiming();
-        std::list<SList> v;
-        std::list<SList> v1;
-        for (auto i = 0; i < state.range(0); i++)
-        {
-            v1.push_back({});
-        }
-        state.ResumeTiming();
         v.swap(v1);
+        r = v.size();
     }
     benchmark::DoNotOptimize(r);
 }
@@ -70,19 +76,17 @@ BENCHMARK(BenchListSwap)->Range(1, 65536);
 
 static void BenchDequeSwap(benchmark::State &state)
 {
-
+    std::deque<SList> v;
+    std::deque<SList> v1;
+    for (auto i = 0; i < state.range(0); i++)
+    {
+        v1.push_back({});
+    }
     int r = 0;
     for (auto _ : state)
     {
-        state.PauseTiming();
-        std::deque<SList> v;
-        std::deque<SList> v1;
-        for (auto i = 0; i < state.range(0); i++)
-        {
-            v1.push_back({});
-        }
-        state.ResumeTiming();
         v.swap(v1);
+        r = v.size();
     }
     benchmark::DoNotOptimize(r);
 }
@@ -91,20 +95,18 @@ BENCHMARK(BenchDequeSwap)->Range(1, 65536);
 
 static void BenchIntrusiveListSplice(benchmark::State &state)
 {
-
+    boost::intrusive::list<SList, constant_time_size> vt;
+    boost::intrusive::list<SList, constant_time_size> v;
+    std::vector<SList> lst(state.range(0));
+    for (auto i = 0; i < state.range(0); i++)
+    {
+        v.push_back(lst[i]);
+    }
     int r = 0;
     for (auto _ : state)
     {
-        state.PauseTiming();
-        boost::intrusive::list<SList, constant_time_size> vt;
-        boost::intrusive::list<SList, constant_time_size> v;
-        std::vector<SList> lst(state.range(0));
-        for (auto i = 0; i < state.range(0); i++)
-        {
-            v.push_back(lst[i]);
-        }
-        state.ResumeTiming();
-        vt.splice(vt.end(), v);
+        Splice(vt, v);
+        r = v.size();
     }
     benchmark::DoNotOptimize(r);
 }
@@ -113,20 +115,18 @@ BENCHMARK(BenchIntrusiveListSplice)->Range(1, 65536);
 
 static void BenchIntrusiveListSwap(benchmark::State &state)
 {
-
+    boost::intrusive::list<SList, constant_time_size> vt;
+    boost::intrusive::list<SList, constant_time_size> v;
+    std::vector<SList> lst{static_cast<size_t>(state.range(0))};
+    for (auto i = 0; i < state.range(0); i++)
+    {
+        v.push_back(lst[i]);
+    }
     int r = 0;
     for (auto _ : state)
     {
-        state.PauseTiming();
-        boost::intrusive::list<SList, constant_time_size> vt;
-        boost::intrusive::list<SList, constant_time_size> v;
-        std::vector<SList> lst{static_cast<size_t>(state.range(0))};
-        for (auto i = 0; i < state.range(0); i++)
-        {
-            v.push_back(lst[i]);
-        }
-        state.ResumeTiming();
         vt.swap(v);
+        r = v.size();
     }
     benchmark::DoNotOptimize(r);
 }
@@ -135,18 +135,16 @@ BENCHMARK(BenchIntrusiveListSwap)->Range(1, 65536);
 
 static void BenchPlfListSplice(benchmark::State &state)
 {
+    plf::list<SList> v;
+    plf::list<SList> v1;
+    for (auto i = 0; i < state.range(0); i++)
+    {
+        v1.push_back({});
+    }
     int r = 0;
     for (auto _ : state)
     {
-        state.PauseTiming();
-        plf::list<SList> v;
-        plf::list<SList> v1;
-        for (auto i = 0; i < state.range(0); i++)
-        {
-            v1.push_back({});
-        }
-        state.ResumeTiming();
-        v.splice(v.end(), v1);
+        Splice(v,v1);
         r += v.size();
     }
     benchmark::DoNotOptimize(r);
@@ -156,18 +154,17 @@ BENCHMARK(BenchPlfListSplice)->Range(1, 65536);
 
 static void BenchPlfListSwap(benchmark::State &state)
 {
+    plf::list<SList> v;
+    plf::list<SList> v1;
+    for (auto i = 0; i < state.range(0); i++)
+    {
+        v1.push_back({});
+    }
     int r = 0;
     for (auto _ : state)
     {
-        state.PauseTiming();
-        plf::list<SList> v;
-        plf::list<SList> v1;
-        for (auto i = 0; i < state.range(0); i++)
-        {
-            v1.push_back({});
-        }
-        state.ResumeTiming();
         v.swap(v1);
+        r += v.size();
     }
     benchmark::DoNotOptimize(r);
 }
