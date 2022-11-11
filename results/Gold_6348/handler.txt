@@ -1,0 +1,33 @@
+2022-11-11T19:25:42+08:00
+Running ./bin/handler
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 15.66, 7.29, 3.11
+---------------------------------------------------------
+Benchmark               Time             CPU   Iterations
+---------------------------------------------------------
+BM_map/1             3.41 ns         3.26 ns    214637239
+BM_map/8             7.38 ns         7.38 ns     94696793
+BM_map/64            31.0 ns         31.0 ns     22572682
+BM_map/512           41.9 ns         41.9 ns     16838586
+BM_map/4096          69.5 ns         69.5 ns      9790551
+BM_map/32768          163 ns          163 ns      4611845
+BM_map/65536          210 ns          210 ns      3286476
+BM_unmap/1           4.74 ns         4.74 ns    147766003
+BM_unmap/8           4.74 ns         4.74 ns    147749752
+BM_unmap/64          4.74 ns         4.74 ns    146855881
+BM_unmap/512         4.75 ns         4.74 ns    147631718
+BM_unmap/4096        4.96 ns         4.95 ns    141901167
+BM_unmap/32768       6.96 ns         6.94 ns    100967734
+BM_unmap/65536       10.2 ns         10.2 ns     68597452
+BM_array/1           2.96 ns         2.96 ns    236595115
+BM_array/8           2.98 ns         2.98 ns    236509847
+BM_array/64          2.96 ns         2.96 ns    236473228
+BM_array/512         2.96 ns         2.96 ns    236550516
+BM_array/4096        2.96 ns         2.96 ns    236369098
+BM_array/32768       2.96 ns         2.96 ns    236396909
+BM_array/65536       2.97 ns         2.97 ns    236315985

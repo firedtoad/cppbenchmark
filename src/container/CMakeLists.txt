@@ -16,7 +16,7 @@ add_executable(map_decay map/decay.cpp)
 add_executable(map_reserve map/reserve.cpp)
 
 target_link_libraries(map_find_hetero PRIVATE absl::flat_hash_map)
-target_link_libraries(map_find_order PRIVATE  absl::flat_hash_map)
+target_link_libraries(map_find_order PRIVATE absl::flat_hash_map)
 target_link_libraries(map_erase_order PRIVATE absl::flat_hash_map)
 target_link_libraries(map_range_order PRIVATE absl::flat_hash_map)
 target_link_libraries(map_find_unorder PRIVATE absl::flat_hash_map)

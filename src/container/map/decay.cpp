@@ -1,12 +1,27 @@
+// Copyright 2020 The Division Authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// Author dietoad@gmail.com && firedtoad@gmail.com
+
 #include "flat_hash_map.hpp"
 #include "parallel_hashmap/phmap.h"
 #include "unordered_map.hpp"
+#include <absl/container/btree_map.h>
+#include <absl/container/btree_set.h>
 #include <absl/container/flat_hash_map.h>
 #include <absl/container/flat_hash_set.h>
 #include <absl/container/node_hash_map.h>
 #include <absl/container/node_hash_set.h>
-#include <absl/container/btree_set.h>
-#include <absl/container/btree_map.h>
 #include <benchmark/benchmark.h>
 #include <cxxabi.h>
 #include <iostream>
@@ -156,28 +171,25 @@ template <class T> class my_allocator
         return *this;
     }
 };
-template<typename F,typename S>
-struct SS :std::pair<F,S>
+template <typename F, typename S> struct SS : std::pair<F, S>
 {
-
 };
 
 int main(int argc, char **argv)
 {
-    std::cout<<sizeof(SS<uint64_t,char>)<<'\n';
-    std::cout<<sizeof(SS<char,uint64_t>)<<'\n';
-    std::cout<<std::is_trivially_copy_constructible_v<SS<int,char>><<'\n';
-    std::cout<<sizeof(phmap::priv::hash_policy_traits<phmap::priv::FlatHashSetPolicy<unsigned char>, void>)<<'\n';
+    std::cout << sizeof(SS<uint64_t, char>) << '\n';
+    std::cout << sizeof(SS<char, uint64_t>) << '\n';
+    std::cout << std::is_trivially_copy_constructible_v<SS<int, char>> << '\n';
+    std::cout << sizeof(phmap::priv::hash_policy_traits<phmap::priv::FlatHashSetPolicy<unsigned char>, void>) << '\n';
     rusage rusage;
     FillRSS(rusage);
     PrintNode(absl::btree_set<uint8_t>{}, absl::btree_set<uint16_t>{}, absl::btree_set<uint32_t>{}, absl::btree_set<uint64_t>{});
 
-    absl::btree_set<uint32_t,std::less<>,my_allocator<uint32_t>> bset;
-    for(auto i=0;i<1024;i++)
+    absl::btree_set<uint32_t, std::less<>, my_allocator<uint32_t>> bset;
+    for (auto i = 0; i < 1024; i++)
     {
         bset.insert(i);
     }
-
 
     PrintNode(phmap::flat_hash_set<uint8_t>{}, phmap::flat_hash_set<uint16_t>{}, phmap::flat_hash_set<uint32_t>{}, phmap::flat_hash_set<uint64_t>{});
 
@@ -185,16 +197,16 @@ int main(int argc, char **argv)
     PrintNode(absl::node_hash_set<uint8_t>{}, absl::node_hash_set<uint16_t>{}, absl::node_hash_set<uint32_t>{}, absl::node_hash_set<uint64_t>{});
 
     PrintNode(phmap::flat_hash_map<uint8_t, uint8_t>{}, phmap::flat_hash_map<uint16_t, uint16_t>{}, phmap::flat_hash_map<uint32_t, uint32_t>{},
-                   phmap::flat_hash_map<uint64_t, uint64_t>{});
+              phmap::flat_hash_map<uint64_t, uint64_t>{});
 
     PrintNode(absl::btree_map<uint8_t, uint8_t>{}, absl::btree_map<uint16_t, uint16_t>{}, absl::btree_map<uint32_t, uint32_t>{},
-                   absl::btree_map<uint64_t, uint64_t>{});
+              absl::btree_map<uint64_t, uint64_t>{});
 
     PrintNode(absl::flat_hash_map<uint8_t, uint8_t>{}, absl::flat_hash_map<uint16_t, uint16_t>{}, absl::flat_hash_map<uint32_t, uint32_t>{},
-                   absl::flat_hash_map<uint64_t, uint64_t>{});
+              absl::flat_hash_map<uint64_t, uint64_t>{});
 
     PrintNode(absl::node_hash_map<uint8_t, uint8_t>{}, absl::node_hash_map<uint16_t, uint16_t>{}, absl::node_hash_map<uint32_t, uint32_t>{},
-                   absl::node_hash_map<uint64_t, uint64_t>{});
+              absl::node_hash_map<uint64_t, uint64_t>{});
 
     PrintContainer(ska::flat_hash_set<uint8_t>{}, ska::flat_hash_set<uint16_t>{}, ska::flat_hash_set<uint32_t>{}, ska::flat_hash_set<uint64_t>{});
     PrintContainer(ska::flat_hash_map<uint8_t, uint8_t>{}, ska::flat_hash_map<uint16_t, uint16_t>{}, ska::flat_hash_map<uint32_t, uint32_t>{},

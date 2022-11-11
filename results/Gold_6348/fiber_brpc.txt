@@ -1,0 +1,15 @@
+2022-11-11T19:26:18+08:00
+Running ./bin/fiber_brpc
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 16.09, 8.33, 3.61
+E1111 19:26:18.633781 14302 /home/dietoad/checker/incubator-brpc/src/bthread/task_group.cpp:677] _remote_rq is full, capacity=2048
+----------------------------------------------------------
+Benchmark                Time             CPU   Iterations
+----------------------------------------------------------
+BenchBackground       2160 ns          988 ns       732362
+BenchUrgent           2211 ns         2193 ns       708190

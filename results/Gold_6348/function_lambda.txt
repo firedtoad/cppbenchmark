@@ -1,0 +1,14 @@
+2022-11-11T19:25:11+08:00
+Running ./bin/function_lambda
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 15.43, 6.37, 2.68
+------------------------------------------------------
+Benchmark            Time             CPU   Iterations
+------------------------------------------------------
+BM_array          2.55 ns         2.55 ns    274059555
+BM_function       3.56 ns         3.56 ns    196593217

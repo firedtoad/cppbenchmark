@@ -1,6 +1,17 @@
+// Copyright 2020 The Division Authors.
 //
-// Created by zhangwenhao.101 on 2022/7/19.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
+//      https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// Author dietoad@gmail.com && firedtoad@gmail.com
 
 #include "SortedVector.h"
 #include <benchmark/benchmark.h>
@@ -19,7 +30,7 @@ struct Pod
 
 struct NonPod
 {
-    uint64_t i = 0;
+    uint64_t i        = 0;
     NonPod() noexcept = default;
     explicit NonPod(uint64_t i_) noexcept : i(i_) {}
     NonPod(const NonPod &p) noexcept            = default;
@@ -54,14 +65,14 @@ template <typename V> static void BenchInsertPod(benchmark::State &state)
     }
 }
 
-BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<NonPod>)->Range(2, 1<<16);
-BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<Pod>)->Range(2, 1<<16);
+BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<NonPod>)->Range(2, 1 << 16);
+BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<Pod>)->Range(2, 1 << 16);
 
-BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<TriviallyCopy>)->Range(2, 1<<16);
-BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<NoTriviallyCopy>)->Range(2, 1<<16);
+BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<TriviallyCopy>)->Range(2, 1 << 16);
+BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<NoTriviallyCopy>)->Range(2, 1 << 16);
 
-BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<std::pair<int,TriviallyCopy>>)->Range(2, 1<<16);
-BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<std::pair<const int,TriviallyCopy>>)->Range(2, 1<<16);
+BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<std::pair<int, TriviallyCopy>>)->Range(2, 1 << 16);
+BENCHMARK_TEMPLATE(BenchInsertPod, std::vector<std::pair<const int, TriviallyCopy>>)->Range(2, 1 << 16);
 
 template <typename P> static void BenchUninitializedCopy(benchmark::State &state)
 {
@@ -74,14 +85,14 @@ template <typename P> static void BenchUninitializedCopy(benchmark::State &state
     }
 }
 
-BENCHMARK_TEMPLATE(BenchUninitializedCopy, NonPod)->Range(2, 1<<16);
-BENCHMARK_TEMPLATE(BenchUninitializedCopy, Pod)->Range(2, 1<<16);
+BENCHMARK_TEMPLATE(BenchUninitializedCopy, NonPod)->Range(2, 1 << 16);
+BENCHMARK_TEMPLATE(BenchUninitializedCopy, Pod)->Range(2, 1 << 16);
 
-BENCHMARK_TEMPLATE(BenchUninitializedCopy, TriviallyCopy)->Range(2, 1<<16);
-BENCHMARK_TEMPLATE(BenchUninitializedCopy, NoTriviallyCopy)->Range(2, 1<<16);
+BENCHMARK_TEMPLATE(BenchUninitializedCopy, TriviallyCopy)->Range(2, 1 << 16);
+BENCHMARK_TEMPLATE(BenchUninitializedCopy, NoTriviallyCopy)->Range(2, 1 << 16);
 
-BENCHMARK_TEMPLATE(BenchUninitializedCopy, std::pair<int,TriviallyCopy>)->Range(2, 1<<16);
-BENCHMARK_TEMPLATE(BenchUninitializedCopy, std::pair<const int,TriviallyCopy>)->Range(2, 1<<16);
+BENCHMARK_TEMPLATE(BenchUninitializedCopy, std::pair<int, TriviallyCopy>)->Range(2, 1 << 16);
+BENCHMARK_TEMPLATE(BenchUninitializedCopy, std::pair<const int, TriviallyCopy>)->Range(2, 1 << 16);
 
 int main(int argc, char **argv)
 {
@@ -89,8 +100,8 @@ int main(int argc, char **argv)
     std::cout << std::is_pod_v<NonPod> << '\n';
     std::cout << std::is_trivially_copyable_v<TriviallyCopy> << '\n';
     std::cout << std::is_trivially_copyable_v<NoTriviallyCopy> << '\n';
-    std::cout << std::is_trivially_copyable_v<std::pair< int,TriviallyCopy>> << '\n';
-    std::cout << std::is_trivially_copyable_v<std::pair<const int,TriviallyCopy>> << '\n';
+    std::cout << std::is_trivially_copyable_v<std::pair<int, TriviallyCopy>> << '\n';
+    std::cout << std::is_trivially_copyable_v<std::pair<const int, TriviallyCopy>> << '\n';
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

@@ -1,14 +1,25 @@
+// Copyright 2020 The Division Authors.
 //
-// Created by Administrator on 2022/01/15.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
+//      https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// Author dietoad@gmail.com && firedtoad@gmail.com
 
 #include <benchmark/benchmark.h>
 #include <cxxabi.h>
 #include <iostream>
 #include <llvm/ADT/DenseMap.h>
 #include <llvm/ADT/DenseSet.h>
-#include <unordered_map>
 #include <llvm/ADT/simple_ilist.h>
+#include <unordered_map>
 std::string demangle(const char *name)
 {
     int status                       = -4;
@@ -120,9 +131,7 @@ BENCHMARK(BM_Decay_DenseMap);
 struct LNode : public llvm::ilist_node<LNode, llvm::ilist_tag<LNode>>
 {
     char c;
-    LNode(){
-
-    }
+    LNode() {}
 };
 
 int main(int argc, char **argv)
@@ -133,7 +142,7 @@ int main(int argc, char **argv)
     PrintContainer(llvm::DenseMap<uint8_t, uint8_t, KeyInfo<uint8_t>>{}, llvm::DenseMap<uint16_t, uint16_t, KeyInfo<uint16_t>>{},
                    llvm::DenseMap<uint32_t, uint32_t, KeyInfo<uint32_t>>{}, llvm::DenseMap<uint64_t, uint64_t, KeyInfo<uint64_t>>{});
     llvm::DenseMap<uint32_t, uint32_t> dmap;
-    dmap.reserve(1024*1024);
+    dmap.reserve(1024 * 1024);
 
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();

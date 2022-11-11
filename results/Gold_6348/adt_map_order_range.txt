@@ -1,0 +1,20 @@
+2022-11-11T19:25:22+08:00
+Running ./bin/adt_map_order_range
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 15.52, 6.69, 2.83
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                                                                                                             Time             CPU   Iterations
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+BenchRangeOrderMapInt<std::map<int, int>>                                                                                                                        593945 ns       593773 ns         1000
+BenchRangeOrderMapInt<tsl::ordered_map<int, int>>                                                                                                                 37298 ns        37295 ns        18771
+BenchRangeOrderMapInt<tsl::ordered_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int, int>>, std::vector<std::pair<int, int>>>>       7555 ns         7553 ns        92628
+BenchRangeOrderMapInt<absl::btree_map<int, int>>                                                                                                                  62630 ns        62625 ns        11255
+BenchRangeImmutableMapInt                                                                                                                                        884104 ns       883842 ns          800
+BenchRangeOrderMapString<std::map<std::string, int>>                                                                                                             432250 ns       432220 ns         1627
+BenchRangeOrderMapString<tsl::ordered_map<std::string, int>>                                                                                                      84824 ns        84776 ns         8303
+BenchRangeOrderMapString<absl::btree_map<std::string, int>>                                                                                                      125875 ns       125834 ns         5502

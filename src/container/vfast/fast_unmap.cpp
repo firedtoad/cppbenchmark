@@ -1,18 +1,29 @@
+// Copyright 2020 The Division Authors.
 //
-// Created by Administrator on 2022/07/19.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
+//      https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// Author dietoad@gmail.com && firedtoad@gmail.com
 
 #include "FastVector.h"
-#include <benchmark/benchmark.h>
-#include <unordered_map>
 #include "bytell_hash_map.hpp"
 #include "flat_hash_map.hpp"
 #include "tsl/robin_map.h"
+#include <benchmark/benchmark.h>
+#include <unordered_map>
 
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
     static unsigned long x = 103456789, y = 362436069, z = 521088629;
-    unsigned long        t;
+    unsigned long t;
 
     x ^= x << 16;
     x ^= x >> 5;
@@ -34,7 +45,7 @@ static inline unsigned long _random()
 struct Pod
 {
     uint64_t key1;
-    int      second;
+    int second;
     char c[1024];
     Pod() noexcept = default;
     Pod(uint64_t key_) : key1(key_) {}
@@ -42,7 +53,7 @@ struct Pod
     Pod(Pod &&pod) noexcept                 = default;
     Pod &operator=(const Pod &pod) noexcept = default;
     Pod &operator=(Pod &&pod) noexcept      = default;
-    int  operator+(int i) const
+    int operator+(int i) const
     {
         return key1 + i;
     }

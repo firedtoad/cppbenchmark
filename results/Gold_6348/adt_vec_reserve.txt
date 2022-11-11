@@ -1,0 +1,16 @@
+2022-11-11T19:23:26+08:00
+Running ./bin/adt_vec_reserve
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 2.81, 1.08, 0.72
+-----------------------------------------------------------------------------------------------
+Benchmark                                                     Time             CPU   Iterations
+-----------------------------------------------------------------------------------------------
+BM_erase<llvm::SmallVector<uint64_t, 1024>>/1024            107 ns         55.9 ns     12351203
+BM_erase<std::vector<uint64_t>>/1024                       56.9 ns         54.8 ns     12839264
+BM_eraseSwap<llvm::SmallVector<uint64_t, 1024>>/1024       3.28 ns         3.23 ns    217804767
+BM_eraseSwap<std::vector<uint64_t>>/1024                   3.44 ns         2.97 ns    235320080

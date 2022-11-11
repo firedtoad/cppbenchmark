@@ -1,0 +1,20 @@
+2022-11-11T19:25:04+08:00
+Running ./bin/adt_set_reserve
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 15.33, 6.04, 2.54
+----------------------------------------------------------------------------------
+Benchmark                                        Time             CPU   Iterations
+----------------------------------------------------------------------------------
+BM_insert<std::unordered_set<int>>         2364966 ns      2364109 ns          297
+BM_reserve<std::unordered_set<int>>        2236864 ns      2236411 ns          313
+BM_insert<llvm::DenseSet<int>>              440810 ns       440806 ns         1596
+BM_insert<llvm::SmallSet<int, 32>>         8515954 ns      8515559 ns           83
+BM_reserve<llvm::DenseSet<int>>             248481 ns       248437 ns         2829
+BM_insert<llvm::SetVector<int>>             576503 ns       576429 ns         1231
+BM_AdtInsert<llvm::SparseSet<unsigned>>    5703966 ns      5701911 ns          123
+BM_StringInsert<llvm::StringSet<>>         5248475 ns      5248405 ns          131

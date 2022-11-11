@@ -47,24 +47,24 @@
 #include <unistd.h>
 
 /* Debugging */
-//#define DEBUG_ALLOC
+// #define DEBUG_ALLOC
 
 /* Extra checking */
-//#define DEBUG_ALLOC_SLOW
+// #define DEBUG_ALLOC_SLOW
 
 /* Memory leak debugging */
-//#define DEBUG_LEAK
-//#define DEBUG_LEAK_DISP		0
+// #define DEBUG_LEAK
+// #define DEBUG_LEAK_DISP		0
 
 /* For windows and valgrind */
-//#define EMU_SBRK
-//#define EMU_SBRK_VG
+// #define EMU_SBRK
+// #define EMU_SBRK_VG
 
 /* Turn off slab usage - useful for debugging btree and small alloc code */
-//#define DEBUG_NO_SLAB
+// #define DEBUG_NO_SLAB
 
 /* Turn on home-made profiler */
-//#define DEBUG_PROFILE
+// #define DEBUG_PROFILE
 
 #ifdef DEBUG_PROFILE
 #include "prof.h"
@@ -87,7 +87,7 @@
 #define ADDR_SIZE 27
 
 #define SLABSIZE ((uintptr_t)(1 << 17))
-//#define SLABBMAX		((SLABSIZE / 8) - 2)
+// #define SLABBMAX		((SLABSIZE / 8) - 2)
 #define SLABBMAX 64 /* About 4M per thread */
 
 /* Slab sizes 0 to 512 bytes in steps of 16 */

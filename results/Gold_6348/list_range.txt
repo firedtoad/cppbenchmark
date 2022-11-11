@@ -1,0 +1,61 @@
+2022-11-11T19:26:06+08:00
+Running ./bin/list_range
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 16.01, 8.05, 3.47
+------------------------------------------------------------------------
+Benchmark                              Time             CPU   Iterations
+------------------------------------------------------------------------
+BenchListRange/1                   0.636 ns        0.635 ns   1000000000
+BenchListRange/8                    3.12 ns         3.12 ns    224356281
+BenchListRange/64                   46.8 ns         46.8 ns     14971652
+BenchListRange/512                   766 ns          766 ns       914871
+BenchListRange/4096                11987 ns        11975 ns        78193
+BenchListRange/32768              126748 ns       126602 ns         9078
+BenchListRange/65536              243653 ns       243332 ns         4693
+BenchForwardListRange/1            0.412 ns        0.411 ns   1000000000
+BenchForwardListRange/8             2.94 ns         2.94 ns    237895449
+BenchForwardListRange/64            43.7 ns         43.7 ns     15946393
+BenchForwardListRange/512            777 ns          764 ns       917454
+BenchForwardListRange/4096         11292 ns        11292 ns        73072
+BenchForwardListRange/32768       122542 ns       122537 ns         8082
+BenchForwardListRange/65536       175149 ns       175146 ns         3045
+BenchDequeRange/1                   1.04 ns         1.04 ns    668550700
+BenchDequeRange/8                   4.09 ns         3.84 ns    179402431
+BenchDequeRange/64                  23.0 ns         23.0 ns     30484242
+BenchDequeRange/512                  193 ns          193 ns      3626289
+BenchDequeRange/4096                1486 ns         1486 ns       469239
+BenchDequeRange/32768              11880 ns        11880 ns        58948
+BenchDequeRange/65536              23842 ns        23841 ns        29452
+BenchVectorRange/1                 0.892 ns        0.892 ns    782524948
+BenchVectorRange/8                  4.54 ns         4.54 ns    156054365
+BenchVectorRange/64                 11.9 ns         11.9 ns     58603624
+BenchVectorRange/512                74.0 ns         74.0 ns      9463518
+BenchVectorRange/4096               1242 ns         1242 ns       563566
+BenchVectorRange/32768              8017 ns         8017 ns        87345
+BenchVectorRange/65536             31094 ns        31092 ns        22456
+BenchBUListRange/1                 0.411 ns        0.411 ns   1000000000
+BenchBUListRange/8                  2.92 ns         2.92 ns    237653238
+BenchBUListRange/64                 43.6 ns         43.6 ns     16047353
+BenchBUListRange/512                 763 ns          763 ns       917591
+BenchBUListRange/4096               6075 ns         6075 ns       115190
+BenchBUListRange/32768             48632 ns        48620 ns        14428
+BenchBUListRange/65536             97888 ns        97885 ns         7145
+BenchIntrusiveListRange/1          0.407 ns        0.407 ns   1000000000
+BenchIntrusiveListRange/8           3.10 ns         3.10 ns    225509752
+BenchIntrusiveListRange/64          43.6 ns         43.6 ns     16057751
+BenchIntrusiveListRange/512          763 ns          763 ns       917559
+BenchIntrusiveListRange/4096        6070 ns         6068 ns       115338
+BenchIntrusiveListRange/32768      48505 ns        48502 ns        14433
+BenchIntrusiveListRange/65536      99869 ns        99867 ns         7006
+BenchPlfListRange/1                0.407 ns        0.407 ns   1000000000
+BenchPlfListRange/8                 2.92 ns         2.92 ns    240045271
+BenchPlfListRange/64                43.6 ns         43.6 ns     16064985
+BenchPlfListRange/512                763 ns          763 ns       917942
+BenchPlfListRange/4096              7883 ns         7883 ns        88736
+BenchPlfListRange/32768            64734 ns        64733 ns        10796
+BenchPlfListRange/65536           129310 ns       129299 ns         5415

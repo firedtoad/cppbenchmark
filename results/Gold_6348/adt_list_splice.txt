@@ -1,0 +1,83 @@
+2022-11-11T19:56:18+08:00
+Running /home/dietoad/work/cppbenchmark/bin/adt_list_splice
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 0.10, 0.61, 1.41
+-------------------------------------------------------------------------
+Benchmark                               Time             CPU   Iterations
+-------------------------------------------------------------------------
+BenchListSplice/1                    3.19 ns         3.19 ns    220600817
+BenchListSplice/8                    3.18 ns         3.18 ns    218996820
+BenchListSplice/64                   3.27 ns         3.27 ns    214806118
+BenchListSplice/512                  3.33 ns         3.33 ns    214978275
+BenchListSplice/4096                 3.36 ns         3.36 ns    206714321
+BenchListSplice/32768                3.31 ns         3.31 ns    207015955
+BenchListSplice/65536                3.29 ns         3.29 ns    213642713
+BenchListSwap/1                      3.26 ns         3.26 ns    214330777
+BenchListSwap/8                      3.28 ns         3.27 ns    213582243
+BenchListSwap/64                     3.29 ns         3.29 ns    213837251
+BenchListSwap/512                    3.30 ns         3.29 ns    214936054
+BenchListSwap/4096                   3.28 ns         3.28 ns    215421299
+BenchListSwap/32768                  3.33 ns         3.33 ns    210094207
+BenchListSwap/65536                  3.32 ns         3.32 ns    210174858
+BenchIntrusiveListSplice/1           3.37 ns         3.37 ns    203487051
+BenchIntrusiveListSplice/8           3.26 ns         3.26 ns    215688106
+BenchIntrusiveListSplice/64          29.4 ns         29.4 ns     23781889
+BenchIntrusiveListSplice/512          387 ns          386 ns      1812722
+BenchIntrusiveListSplice/4096        3044 ns         3043 ns       229430
+BenchIntrusiveListSplice/32768      24315 ns        24304 ns        28843
+BenchIntrusiveListSplice/65536      50563 ns        50548 ns        13847
+BenchIntrusiveListSwap/1             3.08 ns         3.08 ns    206046001
+BenchIntrusiveListSwap/8             2.84 ns         2.84 ns    251746778
+BenchIntrusiveListSwap/64            26.9 ns         26.9 ns     26039912
+BenchIntrusiveListSwap/512            386 ns          386 ns      1815996
+BenchIntrusiveListSwap/4096          3052 ns         3051 ns       229686
+BenchIntrusiveListSwap/32768        24325 ns        24313 ns        28776
+BenchIntrusiveListSwap/65536        50610 ns        50594 ns        13844
+BenchPlfListSplice/1                 6.53 ns         6.53 ns    107239647
+BenchPlfListSplice/8                 6.70 ns         6.70 ns    104877750
+BenchPlfListSplice/64                6.68 ns         6.67 ns    104969011
+BenchPlfListSplice/512               6.71 ns         6.71 ns    105038951
+BenchPlfListSplice/4096              6.85 ns         6.85 ns    102472625
+BenchPlfListSplice/32768             6.68 ns         6.67 ns    103012090
+BenchPlfListSplice/65536             6.69 ns         6.69 ns    104736159
+BenchPlfListSwap/1                   6.55 ns         6.55 ns    106925785
+BenchPlfListSwap/8                   6.69 ns         6.69 ns    104247502
+BenchPlfListSwap/64                  6.72 ns         6.72 ns    103689090
+BenchPlfListSwap/512                 6.75 ns         6.75 ns    104131916
+BenchPlfListSwap/4096                6.71 ns         6.71 ns    104693778
+BenchPlfListSwap/32768               6.76 ns         6.76 ns    104292115
+BenchPlfListSwap/65536               6.81 ns         6.81 ns    103026446
+BenchAdtListSplice/1                 2.68 ns         2.68 ns    264364641
+BenchAdtListSplice/8                 3.39 ns         3.38 ns    207056088
+BenchAdtListSplice/64                26.4 ns         26.4 ns     26424466
+BenchAdtListSplice/512                385 ns          385 ns      1818425
+BenchAdtListSplice/4096              5722 ns         5721 ns       122278
+BenchAdtListSplice/32768            36874 ns        36861 ns        15619
+BenchAdtListSplice/65536            85536 ns        85508 ns         8683
+BenchAdtListSwap/1                   2.12 ns         2.12 ns    329789492
+BenchAdtListSwap/8                   2.89 ns         2.89 ns    242253987
+BenchAdtListSwap/64                  26.3 ns         26.3 ns     26400936
+BenchAdtListSwap/512                  385 ns          385 ns      1822677
+BenchAdtListSwap/4096                5640 ns         5639 ns       122076
+BenchAdtListSwap/32768              36855 ns        36848 ns        18499
+BenchAdtListSwap/65536              79409 ns        79403 ns         9159
+BenchAdtSimpleListSplice/1           2.64 ns         2.64 ns    264214570
+BenchAdtSimpleListSplice/8           3.36 ns         3.36 ns    199267507
+BenchAdtSimpleListSplice/64          25.7 ns         25.7 ns     27092178
+BenchAdtSimpleListSplice/512          386 ns          386 ns      1822908
+BenchAdtSimpleListSplice/4096        3055 ns         3054 ns       230390
+BenchAdtSimpleListSplice/32768      24336 ns        24334 ns        28734
+BenchAdtSimpleListSplice/65536      50681 ns        50670 ns        13846
+BenchAdtSimpleListSwap/1             2.43 ns         2.43 ns    289859295
+BenchAdtSimpleListSwap/8             3.76 ns         3.76 ns    187056554
+BenchAdtSimpleListSwap/64            26.1 ns         26.1 ns     26444612
+BenchAdtSimpleListSwap/512            386 ns          385 ns      1818354
+BenchAdtSimpleListSwap/4096          3054 ns         3053 ns       230078
+BenchAdtSimpleListSwap/32768        24294 ns        24289 ns        28833
+BenchAdtSimpleListSwap/65536        50723 ns        50708 ns        13796
+

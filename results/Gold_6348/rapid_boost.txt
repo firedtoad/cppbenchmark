@@ -1,0 +1,32 @@
+2022-11-11T19:23:26+08:00
+Running ./bin/rapid_boost
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 2.81, 1.08, 0.72
+-----------------------------------------------------------------
+Benchmark                       Time             CPU   Iterations
+-----------------------------------------------------------------
+BenchYYJson/1                 144 ns         72.1 ns      9711566
+BenchYYJson/8                 818 ns          409 ns      1720945
+BenchYYJson/64               5866 ns         3003 ns       231862
+BenchYYJson/128             10099 ns         5866 ns       118187
+BenchRapid/1                  116 ns          112 ns      6300162
+BenchRapid/8                 1193 ns          593 ns      1181097
+BenchRapid/64                4200 ns         4188 ns       167310
+BenchRapid/128               9403 ns         8178 ns        85721
+BenchRapidReserve/1           157 ns          144 ns      4825248
+BenchRapidReserve/8           828 ns          570 ns      1247638
+BenchRapidReserve/64         8087 ns         4027 ns       139681
+BenchRapidReserve/128       16917 ns         8428 ns        87584
+BenchRapidDocument/1          218 ns          212 ns      3255416
+BenchRapidDocument/8          993 ns          939 ns       748805
+BenchRapidDocument/64        7392 ns         6115 ns       115068
+BenchRapidDocument/128      13227 ns        11675 ns        61145
+BenchBoostJson/1              198 ns          191 ns      3652690
+BenchBoostJson/8             1496 ns         1090 ns       647697
+BenchBoostJson/64           21531 ns        11266 ns        61855
+BenchBoostJson/128          30252 ns        21210 ns        32955

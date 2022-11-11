@@ -1,0 +1,30 @@
+2022-11-11T19:23:31+08:00
+Running ./bin/linear
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 4.51, 1.46, 0.84
+--------------------------------------------------------------
+Benchmark                    Time             CPU   Iterations
+--------------------------------------------------------------
+BM_IntervalPtr/1          1.07 ns        0.527 ns   1000000000
+BM_IntervalPtr/8          5.64 ns         3.96 ns    176185255
+BM_IntervalPtr/64         33.7 ns         29.7 ns     23512127
+BM_IntervalPtr/512         376 ns          277 ns      2537717
+BM_IntervalPtr/4096       3160 ns         2553 ns       270820
+BM_IntervalPtr/8192       5477 ns         5122 ns       136301
+BM_LinearPtr/1           0.607 ns        0.583 ns   1000000000
+BM_LinearPtr/8            4.10 ns         4.03 ns    172852963
+BM_LinearPtr/64           37.5 ns         30.0 ns     23297252
+BM_LinearPtr/512           566 ns          282 ns      2494804
+BM_LinearPtr/4096         2686 ns         2181 ns       320381
+BM_LinearPtr/8192         6513 ns         4449 ns       158658
+BM_LinearVal/1           0.924 ns        0.913 ns    771414865
+BM_LinearVal/8            6.10 ns         4.82 ns    144837687
+BM_LinearVal/64           24.3 ns         12.2 ns     57496802
+BM_LinearVal/512           165 ns         82.4 ns      8495468
+BM_LinearVal/4096         2387 ns         1349 ns       517538
+BM_LinearVal/8192         3633 ns         2702 ns       260943

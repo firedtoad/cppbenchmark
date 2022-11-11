@@ -1,0 +1,54 @@
+2022-11-11T19:23:26+08:00
+Running ./bin/list_insert
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 2.81, 1.08, 0.72
+-------------------------------------------------------------------------
+Benchmark                               Time             CPU   Iterations
+-------------------------------------------------------------------------
+BenchListInsert/1                    11.9 ns         11.9 ns     60414234
+BenchListInsert/8                     103 ns          100 ns      7064842
+BenchListInsert/64                   1162 ns          992 ns       718539
+BenchListInsert/512                  7649 ns         7647 ns        92271
+BenchListInsert/4096                86789 ns        60446 ns        11560
+BenchListInsert/32768              583225 ns       492995 ns         1428
+BenchListInsert/65536              994806 ns       994755 ns          710
+BenchDequeInsert/1                   50.8 ns         25.4 ns     27137848
+BenchDequeInsert/8                   39.8 ns         35.8 ns     19711610
+BenchDequeInsert/64                   204 ns          185 ns      3762567
+BenchDequeInsert/512                 2613 ns         1610 ns       432802
+BenchDequeInsert/4096               27818 ns        13893 ns        50429
+BenchDequeInsert/32768             218008 ns       113113 ns         6270
+BenchDequeInsert/65536             488561 ns       244378 ns         2915
+BenchVectorInsert/1                  15.6 ns         12.2 ns     57689468
+BenchVectorInsert/8                  27.9 ns         24.0 ns     29269394
+BenchVectorInsert/64                  157 ns          155 ns      4470688
+BenchVectorInsert/512                1103 ns          991 ns       710130
+BenchVectorInsert/4096              15344 ns         9169 ns        76042
+BenchVectorInsert/32768             88811 ns        73842 ns         9464
+BenchVectorInsert/65536            169257 ns       151185 ns         4595
+BenchBUListInsert/1                  15.3 ns         15.2 ns     44408693
+BenchBUListInsert/8                  24.6 ns         24.5 ns     28526915
+BenchBUListInsert/64                  176 ns         94.6 ns      7486632
+BenchBUListInsert/512                1213 ns          630 ns      1118502
+BenchBUListInsert/4096              14445 ns         8706 ns        80331
+BenchBUListInsert/32768             72885 ns        69681 ns        10059
+BenchBUListInsert/65536            149433 ns       142910 ns         4924
+BenchIntrusiveListInsert/1           13.4 ns         13.4 ns     52103831
+BenchIntrusiveListInsert/8           23.4 ns         23.4 ns     29983470
+BenchIntrusiveListInsert/64           186 ns          182 ns      3869421
+BenchIntrusiveListInsert/512         1389 ns         1366 ns       509677
+BenchIntrusiveListInsert/4096       14982 ns        14320 ns        48606
+BenchIntrusiveListInsert/32768     143867 ns       114410 ns         6153
+BenchIntrusiveListInsert/65536     357314 ns       256512 ns         2754
+BenchPlfListInsert/1                 24.4 ns         24.4 ns     28317710
+BenchPlfListInsert/8                 53.9 ns         53.8 ns     12904896
+BenchPlfListInsert/64                 398 ns          398 ns      1771237
+BenchPlfListInsert/512               2468 ns         2468 ns       283128
+BenchPlfListInsert/4096             22521 ns        22517 ns        31102
+BenchPlfListInsert/32768           185044 ns       184963 ns         3783
+BenchPlfListInsert/65536           387170 ns       387045 ns         1806

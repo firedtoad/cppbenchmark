@@ -1,0 +1,19 @@
+2022-11-11T19:26:13+08:00
+Running ./bin/adt_set_order_range
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 16.01, 8.19, 3.54
+--------------------------------------------------------------------------------------------------
+Benchmark                                                        Time             CPU   Iterations
+--------------------------------------------------------------------------------------------------
+BenchRangeOrderSetInt<std::set<int>>                        570078 ns       569956 ns         1000
+BenchRangeOrderSetInt<tsl::ordered_set<int>>                 32503 ns        32496 ns        21538
+BenchRangeOrderSetInt<absl::btree_set<int>>                  57356 ns        54918 ns        13134
+BenchRangeImmutableSetInt                                   854744 ns       854673 ns          830
+BenchRangeOrderSetString<std::set<std::string>>             679812 ns       669198 ns         1055
+BenchRangeOrderSetString<tsl::ordered_set<std::string>>     377950 ns       377886 ns         1853
+BenchRangeOrderSetString<absl::btree_set<std::string>>      411345 ns       411225 ns         1719

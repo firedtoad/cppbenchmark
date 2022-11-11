@@ -1,4 +1,19 @@
-//#define BOOST_CONTEXT_USE_MAP_STACK
+// Copyright 2020 The Division Authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// Author dietoad@gmail.com && firedtoad@gmail.com
+
+// #define BOOST_CONTEXT_USE_MAP_STACK
 #include <benchmark/benchmark.h>
 #include <boost/context/continuation.hpp>
 #include <boost/fiber/all.hpp>
@@ -71,9 +86,8 @@ static void BenchFiberUnBufferChannel(benchmark::State &state)
     fibers::unbuffered_channel<int> ch;
     fibers::fiber reader{fibers::launch::dispatch, [&ch]()
                          {
-                             for(auto &it:ch)
+                             for (auto &it : ch)
                              {
-
                              }
                          }};
     for (auto _ : state)
@@ -92,10 +106,9 @@ static void BenchFiberBufferChannel(benchmark::State &state)
     fibers::buffered_channel<int> ch(1024);
     fibers::fiber reader{fibers::launch::dispatch, [&ch]
                          {
-                            for(auto &it:ch)
-                            {
-
-                            }
+                             for (auto &it : ch)
+                             {
+                             }
                          }};
     for (auto _ : state)
     {
@@ -103,7 +116,6 @@ static void BenchFiberBufferChannel(benchmark::State &state)
     }
     ch.close();
     reader.join();
-
 }
 
 BENCHMARK(BenchFiberBufferChannel);

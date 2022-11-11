@@ -1,6 +1,18 @@
+// Copyright 2020 The Division Authors.
 //
-// Created by Administrator on 2022/01/15.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
+//      https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// Author dietoad@gmail.com && firedtoad@gmail.com
+
 #include "bytell_hash_map.hpp"
 #include "flat_hash_map.hpp"
 #include "parallel_hashmap/phmap.h"
@@ -13,8 +25,8 @@
 #include "tsl/robin_map.h"
 #include "tsl/sparse_map.h"
 #include "unordered_map.hpp"
-#include <benchmark/benchmark.h>
 #include <absl/container/flat_hash_map.h>
+#include <benchmark/benchmark.h>
 #include <iostream>
 #include <unordered_map>
 
@@ -79,7 +91,7 @@ template <class M> static void BenchEraseUnOrderMapString(benchmark::State &stat
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto sKey ="12345678901234561234567890123456" + std::to_string(_random());
+        auto sKey = "12345678901234561234567890123456" + std::to_string(_random());
         keys[i]   = sKey;
         m[sKey]   = i;
     }
@@ -102,7 +114,7 @@ template <class M> static void BenchEraseCharKeyMap(benchmark::State &state)
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto sKey ="12345678901234561234567890123456" + std::to_string(_random());
+        auto sKey = "12345678901234561234567890123456" + std::to_string(_random());
         keys[i]   = sKey;
         m[sKey]   = i;
     }

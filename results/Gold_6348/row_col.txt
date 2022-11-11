@@ -1,0 +1,14 @@
+2022-11-11T19:25:31+08:00
+Running ./bin/row_col
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 15.59, 6.99, 2.97
+-----------------------------------------------------
+Benchmark           Time             CPU   Iterations
+-----------------------------------------------------
+BM_row        6262198 ns      6259868 ns          110
+BM_col       89375371 ns     89319100 ns            8

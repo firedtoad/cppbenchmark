@@ -1,6 +1,17 @@
+// Copyright 2020 The Division Authors.
 //
-// Created by Administrator on 2021/9/12.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
+//      https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// Author dietoad@gmail.com && firedtoad@gmail.com
 
 #include <deque>
 #include <functional>
@@ -186,20 +197,21 @@ int main(int argc, char **argv)
         v.emplace_back(x);
     }
     {
-        struct XX{
+        struct XX
+        {
             char cc[1024];
             int i;
             char c;
-            double  d;
+            double d;
             float f;
         };
 
-        std::map<int,XX> mx;
-        auto x=mx.insert(std::pair(1,XX{}));
-        auto &xx=x.first->second;
-        auto &yy=mx[2];
-        std::cout<<xx.cc[0]<<'\n';
-        std::cout<<yy.cc[0]<<'\n';
+        std::map<int, XX> mx;
+        auto x   = mx.insert(std::pair(1, XX{}));
+        auto &xx = x.first->second;
+        auto &yy = mx[2];
+        std::cout << xx.cc[0] << '\n';
+        std::cout << yy.cc[0] << '\n';
     }
 
     return 0;

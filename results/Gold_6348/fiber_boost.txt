@@ -1,0 +1,18 @@
+2022-11-11T19:23:45+08:00
+Running ./bin/fiber_boost
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 7.50, 2.20, 1.09
+--------------------------------------------------------------------
+Benchmark                          Time             CPU   Iterations
+--------------------------------------------------------------------
+BenchCallCcUnwind               2667 ns         1337 ns       525850
+BenchCallCc                     98.7 ns         50.1 ns     13951996
+BenchFiberCreateDetach           436 ns          225 ns      3136129
+BenchFiberCreateJoin             401 ns          237 ns      3012628
+BenchFiberUnBufferChannel        472 ns          237 ns      2920617
+BenchFiberBufferChannel         26.1 ns         23.6 ns     29404153

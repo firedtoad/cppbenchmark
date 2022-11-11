@@ -1,3 +1,18 @@
+// Copyright 2020 The Division Authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// Author dietoad@gmail.com && firedtoad@gmail.com
+
 #include "MemoryPool.h"
 #include <LinearAllocator.h>
 #include <PoolAllocator.h>
@@ -15,7 +30,7 @@
 
 struct Child
 {
-    uint8_t c[8192]{};
+    uint8_t c[128];
 };
 
 static void BM_Pool(benchmark::State &state)
@@ -40,6 +55,7 @@ static void BM_Pool2(benchmark::State &state)
     for (auto _ : state)
     {
         auto c = (Child *)pool.newElement();
+        pool.construct(c);
         benchmark::DoNotOptimize(c);
         pool.deleteElement(c);
     }
@@ -62,6 +78,22 @@ static void BM_Resource(benchmark::State &state)
 
 BENCHMARK(BM_Resource);
 
+static void BM_Monotonic(benchmark::State &state)
+{
+    char buff[8192];
+    std::pmr::monotonic_buffer_resource pool(buff, std::size(buff));
+    for (auto _ : state)
+    {
+        auto c = (Child *)pool.allocate(sizeof(Child));
+        new (c) Child();
+        benchmark::DoNotOptimize(c);
+        c->~Child();
+        pool.deallocate(c, sizeof(Child));
+    }
+}
+
+BENCHMARK(BM_Monotonic);
+
 static void BM_GCC(benchmark::State &state)
 {
 
@@ -69,9 +101,9 @@ static void BM_GCC(benchmark::State &state)
     for (auto _ : state)
     {
         auto c = pool.allocate(1);
-        pool.construct(c);
+        new (c) Child();
         benchmark::DoNotOptimize(c);
-        pool.destroy(c);
+        c->~Child();
         pool.deallocate(c, 1);
     }
 }

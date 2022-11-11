@@ -1,6 +1,4 @@
-//
-// Created by Administrator on 2022/01/15.
-//
+
 #include "AStar.hpp"
 #include <benchmark/benchmark.h>
 #include <iostream>
@@ -23,17 +21,16 @@ static void BenchmarkAStar(benchmark::State &state)
     state.SetItemsProcessed(state.iterations());
 }
 
-//BENCHMARK(BenchmarkAStar);
+// BENCHMARK(BenchmarkAStar);
 
-//static void BM_Astar(benchmark::State& state) {
-//    for (auto _ : state) {
-//        //      auto path = generator.findPath({49, 76}, {87,70});
-//        generator_.findPath({1,1}, {255,255});
-//    }
-//}
+// static void BM_Astar(benchmark::State& state) {
+//     for (auto _ : state) {
+//         //      auto path = generator.findPath({49, 76}, {87,70});
+//         generator_.findPath({1,1}, {255,255});
+//     }
+// }
 
-//BENCHMARK(BM_Astar);
-
+// BENCHMARK(BM_Astar);
 
 inline std::ostream &operator<<(std::ostream &os, const AStar::Vec2i &coord_)
 {

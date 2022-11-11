@@ -340,18 +340,28 @@ extern "C"
             "# Routine is from <https://wiki.osdev.org/CPUID>.\n\t"
 
             "# Save EFLAGS\n\t" XXH_I_ATT("pushfd", "pushfl") "# Store EFLAGS\n\t" XXH_I_ATT(
-                "pushfd", "pushfl") "# Invert the ID bit in stored EFLAGS\n\t" XXH_I_ATT("xor     dword ptr[esp], 0x200000", "xorl    $0x200000, "
-                                                                                                                             "(%%esp)") "# Load "
-                                                                                                                                        "stored "
-                                                                                                                                        "EFLAGS "
-                                                                                                                                        "(with ID "
-                                                                                                                                        "bit "
-                                                                                                                                        "inverted)"
-                                                                                                                                        "\n"
-                                                                                                                                        "\t" XXH_I_ATT("popfd", "popfl") "# Store EFLAGS again (ID bit may or not be inverted)\n\t" XXH_I_ATT("pushfd",
-                                                                                                                                                                                                                                              "pushfl") "# eax = modified EFLAGS (ID bit may or may not be inverted)\n\t" XXH_I_ATT("pop     eax", "popl    %%eax") "# eax = whichever bits were changed\n\t" XXH_I_ATT("xor     eax, dword ptr[esp]", "xorl    (%%esp), %%eax") "# Restore original EFLAGS\n\t" XXH_I_ATT("popfd",
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           "popfl") "# eax = zero if ID bit can't be changed, else non-zero\n\t" XXH_I_ATT("and     eax, 0x200000",
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           "andl    $0x200000, %%eax")
+                "pushfd",
+                "pushfl") "# Invert the ID bit in stored EFLAGS\n\t" XXH_I_ATT("xor     dword ptr[esp], 0x200000",
+                                                                               "xorl    $0x200000, "
+                                                                               "(%%esp)") "# Load "
+                                                                                          "stored "
+                                                                                          "EFLAGS "
+                                                                                          "(with ID "
+                                                                                          "bit "
+                                                                                          "inverted)"
+                                                                                          "\n"
+                                                                                          "\t" XXH_I_ATT("popfd", "popfl") "# Store EFLAGS again (ID "
+                                                                                                                           "bit may or not be "
+                                                                                                                           "inverted)\n\t" XXH_I_ATT("pushfd", "pushfl") "# eax = modified EFLAGS (ID bit may or may not be inverted)\n\t" XXH_I_ATT("pop     eax", "popl    %%eax") "# eax = whichever bits were changed\n\t" XXH_I_ATT(
+                                                                                                                               "xor     eax, dword "
+                                                                                                                               "ptr[esp]",
+                                                                                                                               "xorl    (%%esp), "
+                                                                                                                               "%%eax") "# Restore "
+                                                                                                                                        "original "
+                                                                                                                                        "EFLAGS\n"
+                                                                                                                                        "\t" XXH_I_ATT("popfd",
+                                                                                                                                                       "popfl") "# eax = zero if ID bit can't be changed, else non-zero\n\t" XXH_I_ATT("and     eax, 0x200000",
+                                                                                                                                                                                                                                       "andl    $0x200000, %%eax")
             : "=a"(cpuid_supported)::"cc");
 
         if (XXH_unlikely(!cpuid_supported))

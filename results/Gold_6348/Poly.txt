@@ -1,0 +1,15 @@
+2022-11-11T19:26:18+08:00
+Running ./bin/Poly
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 16.09, 8.33, 3.61
+----------------------------------------------------------------
+Benchmark                      Time             CPU   Iterations
+----------------------------------------------------------------
+BenchPureCall/1024           362 ns          362 ns      1935057
+BenchVirtualCall/1024       1539 ns         1539 ns       454710
+BenchCRTP/1024               378 ns          378 ns      1857857

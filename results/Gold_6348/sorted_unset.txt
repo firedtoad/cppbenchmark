@@ -1,0 +1,52 @@
+2022-11-11T19:23:55+08:00
+Running ./bin/sorted_unset
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 11.23, 3.29, 1.47
+-----------------------------------------------------------------------------------------
+Benchmark                                               Time             CPU   Iterations
+-----------------------------------------------------------------------------------------
+BenchInsert<sorted_vector<uint64_t>>/1               16.7 ns         15.3 ns     45588081
+BenchInsert<sorted_vector<uint64_t>>/8                197 ns          193 ns      3627150
+BenchInsert<sorted_vector<uint64_t>>/64              2775 ns         2546 ns       275897
+BenchInsert<sorted_vector<uint64_t>>/512            32127 ns        32031 ns        21507
+BenchInsert<sorted_vector<uint64_t>>/1024          102358 ns        78754 ns         8888
+BenchInsert<std::unordered_set<uint64_t>>/1          58.8 ns         54.3 ns     12630514
+BenchInsert<std::unordered_set<uint64_t>>/8           250 ns          245 ns      2895875
+BenchInsert<std::unordered_set<uint64_t>>/64         3940 ns         3238 ns       216861
+BenchInsert<std::unordered_set<uint64_t>>/512       53582 ns        32669 ns        21894
+BenchInsert<std::unordered_set<uint64_t>>/1024      74851 ns        64850 ns        10803
+BenchFind<sorted_vector<uint64_t>>/1                 2.97 ns         2.97 ns    173472927
+BenchFind<sorted_vector<uint64_t>>/8                 14.0 ns         14.0 ns     48301918
+BenchFind<sorted_vector<uint64_t>>/64                31.3 ns         31.2 ns     20723715
+BenchFind<sorted_vector<uint64_t>>/512               50.0 ns         50.0 ns     13957098
+BenchFind<sorted_vector<uint64_t>>/1024              56.0 ns         55.9 ns     12514330
+BenchFind<std::unordered_set<uint64_t>>/1            3.77 ns         3.76 ns    187995392
+BenchFind<std::unordered_set<uint64_t>>/8            13.1 ns         13.1 ns     53591629
+BenchFind<std::unordered_set<uint64_t>>/64           11.4 ns         10.8 ns     64561761
+BenchFind<std::unordered_set<uint64_t>>/512          15.9 ns         15.9 ns     43418332
+BenchFind<std::unordered_set<uint64_t>>/1024         15.5 ns         15.5 ns     44843269
+BenchRange<sorted_vector<uint64_t>>/1               0.892 ns        0.892 ns    783134435
+BenchRange<sorted_vector<uint64_t>>/8                3.59 ns         3.59 ns    196960478
+BenchRange<sorted_vector<uint64_t>>/64               5.32 ns         5.32 ns    130020845
+BenchRange<sorted_vector<uint64_t>>/512              38.7 ns         38.7 ns     18324925
+BenchRange<sorted_vector<uint64_t>>/1024             78.1 ns         78.0 ns      9017628
+BenchRange<std::unordered_set<uint64_t>>/1          0.408 ns        0.408 ns   1000000000
+BenchRange<std::unordered_set<uint64_t>>/8           2.91 ns         2.91 ns    238324458
+BenchRange<std::unordered_set<uint64_t>>/64          66.3 ns         66.3 ns     10453500
+BenchRange<std::unordered_set<uint64_t>>/512          766 ns          765 ns       912271
+BenchRange<std::unordered_set<uint64_t>>/1024        1541 ns         1540 ns       452775
+BenchErase<sorted_vector<uint64_t>>/1                2.67 ns         2.67 ns    256006585
+BenchErase<sorted_vector<uint64_t>>/8                4.12 ns         4.12 ns    169811545
+BenchErase<sorted_vector<uint64_t>>/64               6.81 ns         6.81 ns    102992926
+BenchErase<sorted_vector<uint64_t>>/512              10.5 ns         10.5 ns     48492551
+BenchErase<sorted_vector<uint64_t>>/1024             18.3 ns         18.3 ns     33063612
+BenchErase<std::unordered_set<uint64_t>>/1           4.98 ns         4.97 ns    139877247
+BenchErase<std::unordered_set<uint64_t>>/8           15.1 ns         15.1 ns     52229809
+BenchErase<std::unordered_set<uint64_t>>/64          12.9 ns         12.6 ns     57069045
+BenchErase<std::unordered_set<uint64_t>>/512         18.6 ns         18.6 ns     38018189
+BenchErase<std::unordered_set<uint64_t>>/1024        19.0 ns         18.9 ns     37273630

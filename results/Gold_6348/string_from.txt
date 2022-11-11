@@ -1,0 +1,29 @@
+2022-11-11T19:26:01+08:00
+Running ./bin/string_from
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 16.01, 7.92, 3.41
+----------------------------------------------------------------------------------------------
+Benchmark                                                    Time             CPU   Iterations
+----------------------------------------------------------------------------------------------
+BenchStreamStringFrom<std::stringstream, uint64_t>         353 ns          353 ns      1990596
+BenchStreamStringFrom<std::ostringstream, uint64_t>        293 ns          293 ns      2398679
+BenchStreamStringFromF<std::stringstream, float>           594 ns          594 ns      1187200
+BenchStreamStringFromF<std::ostringstream, float>          537 ns          537 ns      1312338
+BenchItoa<uint64_t>                                       77.8 ns         77.8 ns      8999858
+BenchGcvt<float>                                           302 ns          301 ns      2322101
+BenchToString<uint64_t>                                   30.8 ns         30.8 ns     22671794
+BenchToStringF<float>                                      447 ns          447 ns      1566647
+BenchStdToChars<uint64_t>                                 15.8 ns         15.8 ns     44173005
+BenchStdToCharsF<float>                                   16.1 ns         16.1 ns     43566492
+BenchBoostStringFrom<std::string>                         70.8 ns         70.8 ns      9941019
+BenchBoostStringTof<std::string>                           410 ns          410 ns      1733188
+BenchAbFastIntToBuffer<uint64_t>                          10.0 ns         10.0 ns     70165701
+BenchAbSixDigitsToBuffer<float>                           12.2 ns         12.2 ns     54408325
+BenchAbStrFormat<uint64_t>                                46.1 ns         46.1 ns     15781627
+BenchAbStrFormatF<float>                                  80.7 ns         76.8 ns      9188079
+BenchPBSimpleItoa<uint64_t>                               8.23 ns         8.20 ns     87030724

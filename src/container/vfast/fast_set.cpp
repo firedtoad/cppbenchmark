@@ -1,6 +1,17 @@
+// Copyright 2020 The Division Authors.
 //
-// Created by Administrator on 2022/07/19.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
+//      https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// Author dietoad@gmail.com && firedtoad@gmail.com
 
 #include "FastVector.h"
 #include "tsl/ordered_set.h"
@@ -29,8 +40,6 @@ static inline unsigned long _random()
     return xorshf96();
 }
 
-
-
 struct Pod
 {
     uint64_t i;
@@ -45,7 +54,7 @@ struct Pod
     {
         return i < p.i;
     }
-    int  operator+(int i_) const
+    int operator+(int i_) const
     {
         return i + i_;
     }
@@ -79,7 +88,7 @@ template <typename V> static void BenchInsert(benchmark::State &state)
     }
 }
 
-BENCHMARK_TEMPLATE(BenchInsert, fast_vector<Pod,uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsert, fast_vector<Pod, uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsert, std::set<Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsert, tsl::ordered_set<Pod, PodHash, PodEqual>)->Range(1, 1 << 10);
 
@@ -97,7 +106,7 @@ template <typename V> static void BenchFind(benchmark::State &state)
     }
 }
 
-BENCHMARK_TEMPLATE(BenchFind, fast_vector<Pod,uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchFind, fast_vector<Pod, uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFind, std::set<Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFind, tsl::ordered_set<Pod, PodHash, PodEqual>)->Range(1, 1 << 10);
 
@@ -113,13 +122,13 @@ template <typename V> static void BenchRange(benchmark::State &state)
     {
         for (auto &it : v)
         {
-            sum=it+sum;
+            sum = it + sum;
         }
     }
     benchmark::DoNotOptimize(sum);
 }
 
-BENCHMARK_TEMPLATE(BenchRange, fast_vector<Pod,uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchRange, fast_vector<Pod, uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRange, std::set<Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRange, tsl::ordered_set<Pod, PodHash, PodEqual>)->Range(1, 1 << 10);
 
@@ -141,7 +150,7 @@ template <typename V> static void BenchErase(benchmark::State &state)
     }
 }
 
-BENCHMARK_TEMPLATE(BenchErase, fast_vector<Pod,uint64_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchErase, fast_vector<Pod, uint64_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchErase, std::set<Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchErase, tsl::ordered_set<Pod, PodHash, PodEqual>)->Range(1, 1 << 10);
 

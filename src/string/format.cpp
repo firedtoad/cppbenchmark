@@ -1,3 +1,18 @@
+// Copyright 2020 The Division Authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// Author dietoad@gmail.com && firedtoad@gmail.com
+
 #include <absl/strings/numbers.h>
 #include <absl/strings/str_format.h>
 #include <benchmark/benchmark.h>
@@ -42,15 +57,11 @@ template <typename S, typename T> static void BenchStreamStringFromF(benchmark::
     }
 }
 
- BENCHMARK_TEMPLATE(BenchStreamStringFrom, std::stringstream, uint64_t
-);
- BENCHMARK_TEMPLATE(BenchStreamStringFrom, std::ostringstream, uint64_t
-);
+BENCHMARK_TEMPLATE(BenchStreamStringFrom, std::stringstream, uint64_t);
+BENCHMARK_TEMPLATE(BenchStreamStringFrom, std::ostringstream, uint64_t);
 
- BENCHMARK_TEMPLATE(BenchStreamStringFromF, std::stringstream,
-                    float);
- BENCHMARK_TEMPLATE(BenchStreamStringFromF, std::ostringstream,
-                    float);
+BENCHMARK_TEMPLATE(BenchStreamStringFromF, std::stringstream, float);
+BENCHMARK_TEMPLATE(BenchStreamStringFromF, std::ostringstream, float);
 
 template <typename T> static void BenchToString(benchmark::State &state)
 {
@@ -60,8 +71,7 @@ template <typename T> static void BenchToString(benchmark::State &state)
         benchmark::DoNotOptimize(r);
     }
 }
- BENCHMARK_TEMPLATE(BenchToString, uint64_t
-);
+BENCHMARK_TEMPLATE(BenchToString, uint64_t);
 
 template <typename T> static void BenchToStringF(benchmark::State &state)
 {
@@ -71,8 +81,7 @@ template <typename T> static void BenchToStringF(benchmark::State &state)
         benchmark::DoNotOptimize(r);
     }
 }
- BENCHMARK_TEMPLATE(BenchToStringF,
-                    float);
+BENCHMARK_TEMPLATE(BenchToStringF, float);
 
 template <typename T> static void BenchStdToChars(benchmark::State &state)
 {

@@ -1,6 +1,18 @@
+// Copyright 2020 The Division Authors.
 //
-// Created by Administrator on 2022/01/15.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
+//      https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// Author dietoad@gmail.com && firedtoad@gmail.com
+
 #include "bytell_hash_map.hpp"
 #include "flat_hash_map.hpp"
 #include "parallel_hashmap/phmap.h"
@@ -12,8 +24,8 @@
 #include "tsl/htrie_set.h"
 #include "tsl/robin_set.h"
 #include "tsl/sparse_set.h"
-#include <absl/container/flat_hash_set.h>
 #include "unordered_map.hpp"
+#include <absl/container/flat_hash_set.h>
 #include <benchmark/benchmark.h>
 #include <iostream>
 #include <unordered_set>
@@ -80,7 +92,7 @@ template <class M> static void BenchUnOrderSetString(benchmark::State &state)
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]   = "12345678901234561234567890123456" +std::to_string(_random());
+        keys[i] = "12345678901234561234567890123456" + std::to_string(_random());
         m.insert(keys[i]);
     }
     for (auto _ : state)
@@ -97,7 +109,7 @@ template <class M> static void BenchCharKeySet(benchmark::State &state)
 
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]   = "12345678901234561234567890123456" +std::to_string(_random());
+        keys[i] = "12345678901234561234567890123456" + std::to_string(_random());
         m.insert(keys[i]);
     }
     for (auto _ : state)

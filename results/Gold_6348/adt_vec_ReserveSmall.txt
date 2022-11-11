@@ -1,0 +1,16 @@
+2022-11-11T19:23:43+08:00
+Running ./bin/adt_vec_ReserveSmall
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 7.50, 2.20, 1.09
+------------------------------------------------------------------------------------------------------
+Benchmark                                                            Time             CPU   Iterations
+------------------------------------------------------------------------------------------------------
+BenchReserve<std::vector<uint32_t>>/65536                        67068 ns        48339 ns        14476
+BenchReserveSmall<llvm::SmallVector<uint32_t, 65536>>/65536     155009 ns       149041 ns         4697
+BenchReserve<std::vector<uint64_t>>/65536                        52866 ns        51097 ns        13684
+BenchReserveSmall<llvm::SmallVector<uint64_t, 65536>>/65536      74571 ns        52025 ns        13556

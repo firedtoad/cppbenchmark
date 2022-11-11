@@ -1,0 +1,21 @@
+2022-11-11T19:24:28+08:00
+Running ./bin/map_range_order
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 13.22, 4.54, 1.94
+-------------------------------------------------------------------------------------------------------
+Benchmark                                                             Time             CPU   Iterations
+-------------------------------------------------------------------------------------------------------
+BenchRangeOrderMapInt<std::map<int, int>>                        438203 ns       437295 ns         1438
+BenchRangeOrderVectorInt<std::vector<std::pair<int, int>>>         8045 ns         8044 ns        87007
+BenchRangeOrderMapInt<tsl::ordered_map<int, int>>                 32765 ns        32756 ns        21378
+BenchRangeOrderMapInt<absl::btree_map<int, int>>                  51530 ns        48120 ns        14200
+BenchRangeOrderMapInt<phmap::btree_map<int, int>>                 60845 ns        60833 ns        10982
+BenchRangeOrderMapString<std::map<std::string, int>>            2511034 ns      2510903 ns          272
+BenchRangeOrderMapString<tsl::ordered_map<std::string, int>>     121093 ns       121092 ns         5793
+BenchRangeOrderMapString<absl::btree_map<std::string, int>>      622552 ns       562516 ns         1223
+BenchRangeOrderMapString<phmap::btree_map<std::string, int>>     562051 ns       561980 ns         1242

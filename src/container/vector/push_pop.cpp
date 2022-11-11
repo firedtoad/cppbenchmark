@@ -1,15 +1,26 @@
+// Copyright 2020 The Division Authors.
 //
-// Created by Administrator on 2021/9/23.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
+//      https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// Author dietoad@gmail.com && firedtoad@gmail.com
 
 #include <benchmark/benchmark.h>
 #include <deque>
 #include <ext/pool_allocator.h>
 #include <list>
+#include <memory_resource>
 #include <queue>
 #include <string>
 #include <vector>
-#include <memory_resource>
 
 constexpr int N = 1000;
 
@@ -44,7 +55,8 @@ static inline unsigned long random_()
     return xorshf96();
 }
 
-struct Pod{
+struct Pod
+{
     char c[1024]{};
 };
 template <typename V> static void BenchPushPop(benchmark::State &state)
@@ -95,8 +107,8 @@ template <typename V> static void BenchPushErase(benchmark::State &state)
 
 template <typename V> static void BenchPmrPushErase(benchmark::State &state)
 {
-    char buff[state.range(0)*sizeof(int)];
-    std::pmr::monotonic_buffer_resource pool(buff,state.range(0)*sizeof(int));
+    std::vector<int> buff(state.range(0));
+    std::pmr::monotonic_buffer_resource pool(buff.data(), state.range(0) * sizeof(int));
     V v{&pool};
     v.reserve(state.range(0));
     for (auto _ : state)

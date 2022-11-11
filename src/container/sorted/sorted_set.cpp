@@ -1,6 +1,17 @@
+// Copyright 2020 The Division Authors.
 //
-// Created by Administrator on 2022/07/19.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
+//      https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// Author dietoad@gmail.com && firedtoad@gmail.com
 
 #include "SortedVector.h"
 #include "tsl/ordered_set.h"
@@ -29,7 +40,6 @@ static inline unsigned long _random()
     return xorshf96();
 }
 
-
 template <typename V> static void BenchInsert(benchmark::State &state)
 {
     for (auto _ : state)
@@ -37,7 +47,7 @@ template <typename V> static void BenchInsert(benchmark::State &state)
         V v;
         for (auto i = 0; i < state.range(0); i++)
         {
-            auto r=_random();
+            auto r = _random();
             v.insert(r);
         }
     }
@@ -89,7 +99,7 @@ template <typename V> static void BenchInsertPod(benchmark::State &state)
         for (auto i = 0; i < state.range(0); i++)
         {
 
-            Pod pod{static_cast<uint32_t>(_random()),0};
+            Pod pod{static_cast<uint32_t>(_random()), 0};
             v.insert(pod);
         }
     }
@@ -102,14 +112,14 @@ template <typename V> static void BenchInsertPodMap(benchmark::State &state)
         V v;
         for (auto i = 0; i < state.range(0); i++)
         {
-            auto r=_random();
-            v.insert(r,{r});
+            auto r = _random();
+            v.insert(r, {r});
         }
     }
 }
 
 BENCHMARK_TEMPLATE(BenchInsertPod, sorted_vector<Pod>)->Range(1, 1 << 10);
-BENCHMARK_TEMPLATE(BenchInsertPodMap, sorted_vector_map<uint64_t,PodMap>)->Range(8, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsertPodMap, sorted_vector_map<uint64_t, PodMap>)->Range(8, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsertPod, std::set<Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsertPod, tsl::ordered_set<Pod, PodHash, PodEqual>)->Range(1, 1 << 10);
 

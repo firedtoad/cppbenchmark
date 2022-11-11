@@ -1,6 +1,18 @@
+// Copyright 2020 The Division Authors.
 //
-// Created by Administrator on 2022/01/15.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
+//      https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// Author dietoad@gmail.com && firedtoad@gmail.com
+
 #include "bytell_hash_map.hpp"
 #include "flat_hash_map.hpp"
 #include "parallel_hashmap/phmap.h"
@@ -12,17 +24,16 @@
 #include "tsl/htrie_map.h"
 #include "tsl/robin_map.h"
 #include "tsl/sparse_map.h"
-#include <absl/container/flat_hash_map.h>
 #include "unordered_map.hpp"
+#include <absl/container/flat_hash_map.h>
 #include <benchmark/benchmark.h>
 #include <iostream>
 #include <unordered_map>
 
-
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
     static unsigned long x = 123456789, y = 362436069, z = 521288629;
-    unsigned long        t;
+    unsigned long t;
 
     x ^= x << 16;
     x ^= x >> 5;
@@ -43,7 +54,7 @@ static inline unsigned long _random()
 
 template <class M> static void BenchUnOrderMapInt(benchmark::State &state)
 {
-    M                m;
+    M m;
     std::vector<int> keys;
     m.reserve(65536);
     keys.reserve(65536);
@@ -77,7 +88,6 @@ BENCHMARK_TEMPLATE(BenchUnOrderMapInt, tsl::hopscotch_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, tsl::robin_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, tsl::sparse_map<int, int>);
 
-
 template <class M> static void BenchUnOrderMapString(benchmark::State &state)
 {
     M m;
@@ -85,8 +95,8 @@ template <class M> static void BenchUnOrderMapString(benchmark::State &state)
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]            = "12345678901234561234567890123456" +std::to_string(_random());
-        m[keys[i]]=i;
+        keys[i]    = "12345678901234561234567890123456" + std::to_string(_random());
+        m[keys[i]] = i;
     }
     for (auto _ : state)
     {
@@ -98,13 +108,13 @@ template <class M> static void BenchUnOrderMapString(benchmark::State &state)
 
 template <class M> static void BenchCharKeyMap(benchmark::State &state)
 {
-    M                        m;
+    M m;
     std::vector<std::string> keys(65536);
     int k = 1000000;
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]            = "12345678901234561234567890123456" + std::to_string(k++);
-        m[keys[i]]=i;
+        keys[i]    = "12345678901234561234567890123456" + std::to_string(k++);
+        m[keys[i]] = i;
     }
     for (auto _ : state)
     {

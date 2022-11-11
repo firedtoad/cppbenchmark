@@ -1,0 +1,61 @@
+2022-11-11T19:25:22+08:00
+Running ./bin/list_splice
+Run on (16 X 2593.91 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 1280 KiB (x16)
+  L3 Unified 43008 KiB (x16)
+Load Average: 15.52, 6.69, 2.83
+-------------------------------------------------------------------------
+Benchmark                               Time             CPU   Iterations
+-------------------------------------------------------------------------
+BenchListSplice/1                     190 ns          193 ns      3603239
+BenchListSplice/8                     231 ns          234 ns      2974324
+BenchListSplice/64                    600 ns          602 ns      1163352
+BenchListSplice/512                  3482 ns         3486 ns       198483
+BenchListSplice/4096                26116 ns        26116 ns        26641
+BenchListSplice/32768              216175 ns       216162 ns         3264
+BenchListSplice/65536              429503 ns       429249 ns         1629
+BenchListSwap/1                       189 ns          191 ns      3664953
+BenchListSwap/8                       237 ns          240 ns      2912496
+BenchListSwap/64                      602 ns          604 ns      1164100
+BenchListSwap/512                    3680 ns         3470 ns       204338
+BenchListSwap/4096                  25945 ns        25929 ns        27000
+BenchListSwap/32768                214101 ns       210238 ns         3338
+BenchListSwap/65536                439382 ns       439250 ns         1656
+BenchDequeSwap/1                      212 ns          215 ns      3272445
+BenchDequeSwap/8                      212 ns          214 ns      3267461
+BenchDequeSwap/64                     246 ns          248 ns      2827458
+BenchDequeSwap/512                    602 ns          603 ns      1143279
+BenchDequeSwap/4096                  3459 ns         3438 ns       203929
+BenchDequeSwap/32768                25448 ns        25438 ns        27537
+BenchDequeSwap/65536                52267 ns        52217 ns        13361
+BenchIntrusiveListSplice/1            199 ns          192 ns      3620549
+BenchIntrusiveListSplice/8            201 ns          199 ns      3522839
+BenchIntrusiveListSplice/64           294 ns          284 ns      2465337
+BenchIntrusiveListSplice/512          978 ns          980 ns       714178
+BenchIntrusiveListSplice/4096        6566 ns         6573 ns       106399
+BenchIntrusiveListSplice/32768      50606 ns        50599 ns        10000
+BenchIntrusiveListSplice/65536     100588 ns       100574 ns         6938
+BenchIntrusiveListSwap/1              189 ns          192 ns      3652723
+BenchIntrusiveListSwap/8              197 ns          199 ns      3515186
+BenchIntrusiveListSwap/64             282 ns          284 ns      2481462
+BenchIntrusiveListSwap/512            968 ns          971 ns       721279
+BenchIntrusiveListSwap/4096          6587 ns         6599 ns       106640
+BenchIntrusiveListSwap/32768        52246 ns        52238 ns        13383
+BenchIntrusiveListSwap/65536       103012 ns       102989 ns         6742
+BenchPlfListSplice/1                  202 ns          204 ns      3425757
+BenchPlfListSplice/8                  206 ns          208 ns      3350434
+BenchPlfListSplice/64                 255 ns          257 ns      2723066
+BenchPlfListSplice/512                453 ns          450 ns      1549855
+BenchPlfListSplice/4096              1921 ns         1900 ns       368898
+BenchPlfListSplice/32768            13952 ns        13913 ns        51247
+BenchPlfListSplice/65536            59942 ns        59911 ns        11684
+BenchPlfListSwap/1                    209 ns          212 ns      3305109
+BenchPlfListSwap/8                    211 ns          213 ns      3281033
+BenchPlfListSwap/64                   262 ns          264 ns      2648079
+BenchPlfListSwap/512                  471 ns          469 ns      1500166
+BenchPlfListSwap/4096                1984 ns         1964 ns       363291
+BenchPlfListSwap/32768              13849 ns        13827 ns        49849
+BenchPlfListSwap/65536              61031 ns        60988 ns        11464
