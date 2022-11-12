@@ -138,12 +138,11 @@ int main(int argc, char **argv)
 {
     PrintList(llvm::detail::DenseSetPair<uint8_t>{}, llvm::detail::DenseSetPair<uint16_t>{}, llvm::detail::DenseSetPair<uint32_t>{},
               llvm::detail::DenseSetPair<uint64_t>{});
-    llvm::detail::DenseMapPair<unsigned char, unsigned char> p;
+    PrintList(llvm::detail::DenseMapPair<uint8_t, uint8_t>{}, llvm::detail::DenseMapPair<uint16_t, uint16_t>{},
+              llvm::detail::DenseMapPair<uint32_t, uint32_t>{}, llvm::detail::DenseMapPair<uint64_t, uint64_t>{});
+    PrintList(std::pair<uint8_t, uint8_t>{}, std::pair<uint16_t, uint16_t>{}, std::pair<uint32_t, uint32_t>{}, std::pair<uint64_t, uint64_t>{});
     PrintContainer(llvm::DenseMap<uint8_t, uint8_t, KeyInfo<uint8_t>>{}, llvm::DenseMap<uint16_t, uint16_t, KeyInfo<uint16_t>>{},
                    llvm::DenseMap<uint32_t, uint32_t, KeyInfo<uint32_t>>{}, llvm::DenseMap<uint64_t, uint64_t, KeyInfo<uint64_t>>{});
-    llvm::DenseMap<uint32_t, uint32_t> dmap;
-    dmap.reserve(1024 * 1024);
-
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

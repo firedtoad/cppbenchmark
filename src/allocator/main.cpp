@@ -141,7 +141,7 @@ static void BM_Foo(benchmark::State &state)
 
 BENCHMARK(BM_Foo);
 
-static void BM_lockless(benchmark::State &state)
+static void BM_malloc_free(benchmark::State &state)
 {
     for (auto _ : state)
     {
@@ -153,7 +153,7 @@ static void BM_lockless(benchmark::State &state)
     }
 }
 
-BENCHMARK(BM_lockless);
+BENCHMARK(BM_malloc_free);
 
 int main(int argc, char **argv)
 {

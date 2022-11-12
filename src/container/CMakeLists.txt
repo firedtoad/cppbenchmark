@@ -1,5 +1,6 @@
 find_package(absl REQUIRED)
 
+add_executable(list_pmr list/pmr.cpp)
 add_executable(list_insert list/insert.cpp)
 add_executable(list_remove list/remove.cpp)
 add_executable(list_range list/range.cpp)
