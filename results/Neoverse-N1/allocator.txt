@@ -1,0 +1,13 @@
+2022-11-12T14:43:16+08:00
+Running ./bin/allocator
+Run on (8 X 50 MHz CPU s)
+Load Average: 7.99, 4.61, 3.21
+---------------------------------------------------------
+Benchmark               Time             CPU   Iterations
+---------------------------------------------------------
+BM_Pool              28.0 ns         28.0 ns     24564293
+BM_Pool2             41.1 ns         41.1 ns     17141147
+BM_GCC               91.1 ns         91.1 ns      7683574
+BM_Boost             33.5 ns         33.5 ns     20809729
+BM_Foo               43.5 ns         43.4 ns     16117542
+BM_malloc_free       20.0 ns         19.9 ns     35174218

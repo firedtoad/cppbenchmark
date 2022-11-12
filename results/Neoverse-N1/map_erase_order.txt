@@ -1,0 +1,15 @@
+2022-11-12T14:40:41+08:00
+Running ./bin/map_erase_order
+Run on (8 X 50 MHz CPU s)
+Load Average: 5.66, 2.09, 2.27
+-------------------------------------------------------------------------------------------------------
+Benchmark                                                             Time             CPU   Iterations
+-------------------------------------------------------------------------------------------------------
+BenchEraseOrderMapInt<std::map<int, int>>                          1862 ns         1702 ns       417569
+BenchEraseOrderMapInt<tsl::ordered_map<int, int>>               2741789 ns      2534312 ns          295
+BenchEraseOrderMapInt<absl::btree_map<int, int>>                  13166 ns        11909 ns        58919
+BenchEraseOrderMapInt<phmap::btree_map<int, int>>                  7778 ns         7760 ns        88645
+BenchEraseOrderMapString<std::map<std::string, int>>               3121 ns         3104 ns       223494
+BenchEraseOrderMapString<tsl::ordered_map<std::string, int>>    6500255 ns      6462880 ns          121
+BenchEraseOrderMapString<absl::btree_map<std::string, int>>       12270 ns        12217 ns        56350
+BenchEraseOrderMapString<phmap::btree_map<std::string, int>>       8495 ns         8464 ns        80672

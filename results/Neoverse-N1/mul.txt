@@ -1,0 +1,11 @@
+2022-11-12T14:44:37+08:00
+Running ./bin/mul
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.39, 5.60, 3.68
+------------------------------------------------------
+Benchmark            Time             CPU   Iterations
+------------------------------------------------------
+calc_int          7.69 ns         7.67 ns     91380853
+calc_int64        7.25 ns         7.25 ns     96461729
+calc_float        8.58 ns         8.57 ns     82297173
+calc_double       8.32 ns         8.27 ns     85281030

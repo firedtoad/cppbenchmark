@@ -1,0 +1,14 @@
+2022-11-12T14:41:15+08:00
+Running ./bin/adt_set_order_find
+Run on (8 X 50 MHz CPU s)
+Load Average: 7.07, 2.83, 2.51
+---------------------------------------------------------------------------------------------
+Benchmark                                                   Time             CPU   Iterations
+---------------------------------------------------------------------------------------------
+BenchOrderSetInt<std::set<int>>                           689 ns          689 ns      1012626
+BenchOrderSetInt<tsl::ordered_set<int>>                   310 ns          310 ns      2247225
+BenchOrderSetInt<absl::btree_set<int>>                   4931 ns         4931 ns       141902
+BenchImmutableSetInt                                      643 ns          643 ns      1080864
+BenchOrderSetString<std::set<std::string>>               1213 ns         1213 ns       562266
+BenchOrderSetString<tsl::ordered_set<std::string>>        650 ns          650 ns      1067771
+BenchOrderSetString<absl::btree_set<std::string>>        3150 ns         3150 ns       221680

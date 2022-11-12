@@ -1,0 +1,13 @@
+2022-11-12T14:41:43+08:00
+Running ./bin/div
+Run on (8 X 50 MHz CPU s)
+Load Average: 7.39, 3.25, 2.66
+------------------------------------------------------
+Benchmark            Time             CPU   Iterations
+------------------------------------------------------
+calc              9.83 ns         9.83 ns     71363238
+calc1             10.7 ns         9.90 ns     70471028
+calc_int          9.22 ns         7.57 ns     91279901
+calc1_int         7.71 ns         7.71 ns     91956922
+calc_int64        7.41 ns         7.41 ns     95124102
+calc1_int64       7.33 ns         7.33 ns     95514424

@@ -1,0 +1,23 @@
+2022-11-12T14:43:38+08:00
+Running ./bin/size_dealloc
+Run on (8 X 50 MHz CPU s)
+Load Average: 9.08, 5.06, 3.39
+-----------------------------------------------------------------
+Benchmark                       Time             CPU   Iterations
+-----------------------------------------------------------------
+BM_Delete/1                  15.9 ns         15.9 ns     44072356
+BM_Delete/8                   110 ns          110 ns      6367295
+BM_Delete/64                  766 ns          766 ns       912291
+BM_Delete/512                6179 ns         6179 ns       113147
+BM_Delete/4096              49305 ns        49304 ns        14195
+BM_Delete/32768            398136 ns       398131 ns         1757
+BM_Delete/262144         24483801 ns     24483010 ns           28
+BM_Delete/1048576       104719932 ns    104716051 ns            7
+BM_DeleteSized/1              110 ns          110 ns      6310274
+BM_DeleteSized/8              822 ns          822 ns       855673
+BM_DeleteSized/64            6651 ns         6651 ns       104927
+BM_DeleteSized/512          53802 ns        53801 ns        13043
+BM_DeleteSized/4096        431004 ns       430991 ns         1626
+BM_DeleteSized/32768      3462151 ns      3462105 ns          203
+BM_DeleteSized/262144    49184865 ns     49184223 ns           14
+BM_DeleteSized/1048576  201627918 ns    201619840 ns            3

@@ -1,0 +1,20 @@
+16
+8
+2022-11-12T14:45:40+08:00
+Running ./bin/alloc
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.13, 6.07, 3.97
+---------------------------------------------------------------
+Benchmark                     Time             CPU   Iterations
+---------------------------------------------------------------
+BM_AllocSize/1             24.6 ns         24.6 ns     28436646
+BM_AllocSize/8             24.6 ns         24.6 ns     28408971
+BM_AllocSize/64            24.5 ns         24.5 ns     28565244
+BM_AllocSize/512           24.6 ns         24.6 ns     28496199
+BM_AllocSize/4096          54.2 ns         54.2 ns     12929471
+BM_AllocSize/32768         37.8 ns         37.8 ns     18470641
+BM_AllocSize/262144        40.3 ns         40.3 ns     17349309
+BM_AllocSize/1048576       40.3 ns         40.3 ns     17366455
+BM_FunctionStack           57.7 ns         57.7 ns     12092350
+BM_FunctionHeap            89.8 ns         89.8 ns      7761248
+BM_Lambda                  11.5 ns         11.5 ns     61062416

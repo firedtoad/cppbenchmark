@@ -1,0 +1,10 @@
+2022-11-12T14:44:40+08:00
+Running ./bin/Poly
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.36, 5.64, 3.70
+----------------------------------------------------------------
+Benchmark                      Time             CPU   Iterations
+----------------------------------------------------------------
+BenchPureCall/1024          6422 ns         6382 ns       109913
+BenchVirtualCall/1024       6481 ns         6449 ns       104921
+BenchCRTP/1024             10035 ns        10002 ns        66138

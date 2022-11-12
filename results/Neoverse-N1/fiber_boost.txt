@@ -1,0 +1,13 @@
+2022-11-12T14:43:52+08:00
+Running ./bin/fiber_boost
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.84, 5.20, 3.46
+--------------------------------------------------------------------
+Benchmark                          Time             CPU   Iterations
+--------------------------------------------------------------------
+BenchCallCcUnwind               9498 ns         9498 ns        73205
+BenchCallCc                      324 ns          324 ns      2155826
+BenchFiberCreateDetach           860 ns          860 ns       812014
+BenchFiberCreateJoin             902 ns          902 ns       774460
+BenchFiberUnBufferChannel        575 ns          575 ns      1218363
+BenchFiberBufferChannel          162 ns          162 ns      4321755

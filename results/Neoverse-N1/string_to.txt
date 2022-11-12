@@ -1,0 +1,23 @@
+2022-11-12T14:44:54+08:00
+Running ./bin/string_to
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.31, 5.72, 3.75
+--------------------------------------------------------------------------------------------
+Benchmark                                                  Time             CPU   Iterations
+--------------------------------------------------------------------------------------------
+BenchStreamStringTo<std::stringstream, uint64_t>         592 ns          592 ns      1177008
+BenchStreamStringTo<std::istringstream, uint64_t>        466 ns          466 ns      1499783
+BenchStreamStringToF<std::stringstream, float>           744 ns          743 ns       944821
+BenchStreamStringToF<std::istringstream, float>          621 ns          621 ns      1133539
+BenchStdAtol<uint64_t>                                  46.5 ns         46.5 ns     15059551
+BenchStdAtof<float>                                     92.7 ns         92.7 ns      7559826
+BenchStdStol<uint64_t>                                  68.4 ns         68.4 ns     10235552
+BenchStdStof<float>                                      120 ns          119 ns      5895525
+BenchStdCharConvInt<uint64_t>                            228 ns          227 ns      3078403
+BenchABCharConvIntF<float>                              61.3 ns         61.3 ns     11443279
+BenchBoostStringTo<uint64_t>                             301 ns          301 ns      2329294
+BenchBoostStringTof<float>                               625 ns          624 ns      1117366
+BenchAbSimpleToInt<uint64_t>                            54.5 ns         54.5 ns     12831398
+BenchAbSimpleToFloat<float>                             64.2 ns         64.1 ns     10922870
+BenchPBStrAppend<uint64_t>                              48.5 ns         48.5 ns     14447076
+BenchPBStrAppendF<float>                                48.3 ns         48.3 ns     14522908

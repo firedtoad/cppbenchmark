@@ -1,0 +1,27 @@
+2022-11-12T14:43:22+08:00
+Running ./bin/string_split
+Run on (8 X 50 MHz CPU s)
+Load Average: 7.99, 4.67, 3.23
+---------------------------------------------------------------------------
+Benchmark                                 Time             CPU   Iterations
+---------------------------------------------------------------------------
+BenchStringSplit/threads:1             2123 ns         2112 ns       332169
+BenchStringSplit/threads:2             1055 ns         2107 ns       332446
+BenchStringSplit/threads:4              826 ns         2103 ns       333336
+BenchStringSplit/threads:8              742 ns         2099 ns       333440
+BenchStringSplitStream/threads:1       1941 ns         1941 ns       361217
+BenchStringSplitStream/threads:2       1125 ns         1957 ns       357316
+BenchStringSplitStream/threads:4        921 ns         1972 ns       354516
+BenchStringSplitStream/threads:8        674 ns         1975 ns       354768
+BenchBoostSplit/threads:1             22078 ns        22056 ns        31750
+BenchBoostSplit/threads:2             11800 ns        21956 ns        31746
+BenchBoostSplit/threads:4              9818 ns        22033 ns        31740
+BenchBoostSplit/threads:8              7684 ns        22065 ns        31720
+BenchABSplit/threads:1                 1860 ns         1855 ns       377486
+BenchABSplit/threads:2                 1174 ns         1849 ns       378192
+BenchABSplit/threads:4                 1048 ns         1846 ns       378560
+BenchABSplit/threads:8                  603 ns         1848 ns       378144
+BenchPBSplit/threads:1                  834 ns          834 ns       839017
+BenchPBSplit/threads:2                  466 ns          825 ns       847962
+BenchPBSplit/threads:4                  368 ns          820 ns       853012
+BenchPBSplit/threads:8                  251 ns          816 ns       857440

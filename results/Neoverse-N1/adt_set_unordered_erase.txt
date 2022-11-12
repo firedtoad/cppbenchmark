@@ -1,0 +1,33 @@
+2022-11-12T14:47:59+08:00
+Running ./bin/adt_set_unordered_erase
+Run on (8 X 50 MHz CPU s)
+Load Average: 3.01, 5.07, 3.91
+------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                        Time             CPU   Iterations
+------------------------------------------------------------------------------------------------------------------
+BenchEraseUnOrderSetInt<std::unordered_set<int>>                               665 ns          665 ns      1135356
+BenchEraseUnOrderSetInt<ska::unordered_set<int>>                               389 ns          389 ns      1804177
+BenchEraseUnOrderSetInt<ska::flat_hash_set<int>>                               207 ns          207 ns      3382127
+BenchEraseUnOrderSetInt<ska::bytell_hash_set<int>>                             309 ns          309 ns      2274627
+BenchEraseUnOrderSetInt<phmap::flat_hash_set<int>>                             719 ns          719 ns       977088
+BenchEraseUnOrderSetInt<robin_hood::unordered_flat_set<int>>                   236 ns          236 ns      2966347
+BenchEraseUnOrderSetInt<spp::sparse_hash_set<int>>                             526 ns          526 ns      1329790
+BenchEraseUnOrderSetInt<tsl::bhopscotch_set<int>>                              417 ns          417 ns      1676586
+BenchEraseUnOrderSetInt<tsl::hopscotch_set<int>>                               412 ns          412 ns      1700582
+BenchEraseUnOrderSetInt<tsl::robin_set<int>>                                   231 ns          231 ns      3028626
+BenchEraseUnOrderSetInt<tsl::sparse_set<int>>                                 9709 ns         9709 ns        71834
+BenchEraseUnOrderSetInt<llvm::DenseSet<int>>                                   287 ns          287 ns      2472881
+BenchEraseVecSetInt<llvm::SetVector<int>>                                   192192 ns       192191 ns         3547
+BenchEraseSparseSetInt<llvm::SparseSet<unsigned>>                             4938 ns         4938 ns       141580
+BenchEraseUnOrderSetString<std::unordered_set<std::string>>                   1048 ns         1048 ns       666722
+BenchEraseUnOrderSetString<ska::unordered_set<std::string>>                    714 ns          714 ns       975905
+BenchEraseUnOrderSetString<ska::flat_hash_set<std::string>>                    554 ns          554 ns      1266980
+BenchEraseUnOrderSetString<ska::bytell_hash_set<std::string>>                  745 ns          745 ns       943035
+BenchEraseUnOrderSetString<phmap::flat_hash_set<std::string>>                 1056 ns         1056 ns       664724
+BenchEraseUnOrderSetString<robin_hood::unordered_flat_set<std::string>>        509 ns          509 ns      1380052
+BenchEraseUnOrderSetString<spp::sparse_hash_set<std::string>>                 1282 ns         1282 ns       494984
+BenchEraseUnOrderSetString<tsl::bhopscotch_set<std::string>>                   707 ns          707 ns       989324
+BenchEraseUnOrderSetString<tsl::hopscotch_set<std::string>>                    714 ns          714 ns       980594
+BenchEraseUnOrderSetString<tsl::robin_set<std::string>>                        670 ns          670 ns      1044652
+BenchEraseUnOrderSetString<tsl::sparse_set<std::string>>                      1780 ns         1780 ns       394889
+adt_set_unordered_erase: /usr/lib/llvm-11/include/llvm/ADT/DenseMap.h:408: void llvm::DenseMapBase<llvm::DenseMap<llvm::StringRef, llvm::detail::DenseSetEmpty, llvm::DenseMapInfo<llvm::StringRef>, llvm::detail::DenseSetPair<llvm::StringRef>>, llvm::StringRef, llvm::detail::DenseSetEmpty, llvm::DenseMapInfo<llvm::StringRef>, llvm::detail::DenseSetPair<llvm::StringRef>>::moveFromOldBuckets(BucketT *, BucketT *) [DerivedT = llvm::DenseMap<llvm::StringRef, llvm::detail::DenseSetEmpty, llvm::DenseMapInfo<llvm::StringRef>, llvm::detail::DenseSetPair<llvm::StringRef>>, KeyT = llvm::StringRef, ValueT = llvm::detail::DenseSetEmpty, KeyInfoT = llvm::DenseMapInfo<llvm::StringRef>, BucketT = llvm::detail::DenseSetPair<llvm::StringRef>]: Assertion `!FoundVal && "Key already in new map?"' failed.

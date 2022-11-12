@@ -1,0 +1,92 @@
+2022-11-12T16:57:39+08:00
+Running ./bin/adt_fast_set
+Run on (8 X 2400 MHz CPU s)
+CPU Caches:
+  L1 Data 64 KiB (x8)
+  L1 Instruction 64 KiB (x8)
+  L2 Unified 512 KiB (x8)
+  L3 Unified 32768 KiB (x1)
+Load Average: 7.57, 6.81, 5.47
+----------------------------------------------------------------------------------------------------------
+Benchmark                                                                Time             CPU   Iterations
+----------------------------------------------------------------------------------------------------------
+BenchInsert<fast_vector<uint32_t, uint32_t>>/1                        74.8 ns         74.8 ns      9366753
+BenchInsert<fast_vector<uint32_t, uint32_t>>/8                         506 ns          506 ns      1381579
+BenchInsert<fast_vector<uint32_t, uint32_t>>/64                       3581 ns         3580 ns       195211
+BenchInsert<fast_vector<uint32_t, uint32_t>>/512                     27222 ns        27215 ns        25718
+BenchInsert<fast_vector<uint32_t, uint32_t>>/1024                    53731 ns        53719 ns        13013
+BenchInsert<phmap::flat_hash_set<uint64_t>>/1                         46.7 ns         46.7 ns     14986289
+BenchInsert<phmap::flat_hash_set<uint64_t>>/8                          349 ns          349 ns      2005645
+BenchInsert<phmap::flat_hash_set<uint64_t>>/64                        2857 ns         2857 ns       244567
+BenchInsert<phmap::flat_hash_set<uint64_t>>/512                      22537 ns        22531 ns        31091
+BenchInsert<phmap::flat_hash_set<uint64_t>>/1024                     44598 ns        44580 ns        15697
+BenchInsert<llvm::SetVector<uint64_t>>/1                              71.5 ns         71.5 ns      9786334
+BenchInsert<llvm::SetVector<uint64_t>>/8                               243 ns          243 ns      2877547
+BenchInsert<llvm::SetVector<uint64_t>>/64                             2186 ns         2186 ns       320332
+BenchInsert<llvm::SetVector<uint64_t>>/512                           20770 ns        20765 ns        33720
+BenchInsert<llvm::SetVector<uint64_t>>/1024                          41383 ns        41371 ns        16921
+BenchInsert<tsl::ordered_set<uint64_t, PodHash, PodEqual>>/1          92.5 ns         92.5 ns      7569586
+BenchInsert<tsl::ordered_set<uint64_t, PodHash, PodEqual>>/8           516 ns          515 ns      1365165
+BenchInsert<tsl::ordered_set<uint64_t, PodHash, PodEqual>>/64         3537 ns         3536 ns       197949
+BenchInsert<tsl::ordered_set<uint64_t, PodHash, PodEqual>>/512       27756 ns        27752 ns        25218
+BenchInsert<tsl::ordered_set<uint64_t, PodHash, PodEqual>>/1024      55506 ns        55497 ns        12601
+BenchFind<fast_vector<uint32_t, uint32_t>>/1                          7.21 ns         7.20 ns     97102651
+BenchFind<fast_vector<uint32_t, uint32_t>>/8                          8.01 ns         8.01 ns     87897594
+BenchFind<fast_vector<uint32_t, uint32_t>>/64                         8.43 ns         8.42 ns     85557659
+BenchFind<fast_vector<uint32_t, uint32_t>>/512                        8.65 ns         8.65 ns     76021272
+BenchFind<fast_vector<uint32_t, uint32_t>>/1024                       9.74 ns         9.74 ns     79307074
+BenchFind<phmap::flat_hash_set<uint64_t>>/1                           7.51 ns         7.51 ns     92476618
+BenchFind<phmap::flat_hash_set<uint64_t>>/8                           8.17 ns         8.17 ns     65353814
+BenchFind<phmap::flat_hash_set<uint64_t>>/64                          8.92 ns         8.92 ns     83246351
+BenchFind<phmap::flat_hash_set<uint64_t>>/512                         9.12 ns         9.11 ns     78959459
+BenchFind<phmap::flat_hash_set<uint64_t>>/1024                        9.28 ns         9.28 ns     76848694
+BenchFindSetVector<llvm::SetVector<uint64_t>>/1                       4.31 ns         4.31 ns    162445938
+BenchFindSetVector<llvm::SetVector<uint64_t>>/8                       4.33 ns         4.33 ns    161827257
+BenchFindSetVector<llvm::SetVector<uint64_t>>/64                      4.33 ns         4.32 ns    161691747
+BenchFindSetVector<llvm::SetVector<uint64_t>>/512                     6.53 ns         6.53 ns    107196975
+BenchFindSetVector<llvm::SetVector<uint64_t>>/1024                    6.51 ns         6.51 ns    107475521
+BenchFind<tsl::ordered_set<Pod, PodHash, PodEqual>>/1                 7.77 ns         7.77 ns     90340765
+BenchFind<tsl::ordered_set<Pod, PodHash, PodEqual>>/8                 15.8 ns         15.8 ns     49313892
+BenchFind<tsl::ordered_set<Pod, PodHash, PodEqual>>/64                17.6 ns         17.6 ns     40919365
+BenchFind<tsl::ordered_set<Pod, PodHash, PodEqual>>/512               17.9 ns         17.8 ns     39081297
+BenchFind<tsl::ordered_set<Pod, PodHash, PodEqual>>/1024              17.8 ns         17.8 ns     39289983
+BenchRange<fast_vector<uint32_t, uint32_t>>/1                         1.16 ns         1.16 ns    605046590
+BenchRange<fast_vector<uint32_t, uint32_t>>/8                         5.21 ns         5.21 ns    134409041
+BenchRange<fast_vector<uint32_t, uint32_t>>/64                        48.2 ns         48.2 ns     14558316
+BenchRange<fast_vector<uint32_t, uint32_t>>/512                        365 ns          365 ns      1914983
+BenchRange<fast_vector<uint32_t, uint32_t>>/1024                       776 ns          776 ns       903076
+BenchRange<phmap::flat_hash_set<uint64_t>>/1                          3.93 ns         3.93 ns    178267818
+BenchRange<phmap::flat_hash_set<uint64_t>>/8                          28.3 ns         28.3 ns     34058288
+BenchRange<phmap::flat_hash_set<uint64_t>>/64                          253 ns          223 ns      2955364
+BenchRange<phmap::flat_hash_set<uint64_t>>/512                        2245 ns         1748 ns       394708
+BenchRange<phmap::flat_hash_set<uint64_t>>/1024                       4072 ns         4071 ns       182742
+BenchRange<llvm::SetVector<uint64_t>>/1                               1.84 ns         1.54 ns    453588354
+BenchRange<llvm::SetVector<uint64_t>>/8                               6.86 ns         6.86 ns    101985274
+BenchRange<llvm::SetVector<uint64_t>>/64                              23.1 ns         23.1 ns     30335046
+BenchRange<llvm::SetVector<uint64_t>>/512                              171 ns          161 ns      4363257
+BenchRange<llvm::SetVector<uint64_t>>/1024                             317 ns          317 ns      2210497
+BenchRange<tsl::ordered_set<uint64_t, PodHash, PodEqual>>/1           1.97 ns         1.93 ns    362933254
+BenchRange<tsl::ordered_set<uint64_t, PodHash, PodEqual>>/8           9.06 ns         8.10 ns     86385199
+BenchRange<tsl::ordered_set<uint64_t, PodHash, PodEqual>>/64          65.9 ns         65.9 ns     10736565
+BenchRange<tsl::ordered_set<uint64_t, PodHash, PodEqual>>/512          522 ns          461 ns      1525966
+BenchRange<tsl::ordered_set<uint64_t, PodHash, PodEqual>>/1024         923 ns          908 ns       773716
+BenchErase<fast_vector<uint32_t, uint32_t>>/1                         9.33 ns         9.33 ns     75540324
+BenchErase<fast_vector<uint32_t, uint32_t>>/8                         10.2 ns         10.2 ns     68436219
+BenchErase<fast_vector<uint32_t, uint32_t>>/64                        10.9 ns         10.9 ns     67987324
+BenchErase<fast_vector<uint32_t, uint32_t>>/512                       11.2 ns         10.8 ns     63803500
+BenchErase<fast_vector<uint32_t, uint32_t>>/1024                      11.4 ns         11.2 ns     63234366
+BenchErase<phmap::flat_hash_set<uint64_t>>/1                          8.18 ns         8.18 ns     85495400
+BenchErase<phmap::flat_hash_set<uint64_t>>/8                          8.71 ns         8.71 ns     69438803
+BenchErase<phmap::flat_hash_set<uint64_t>>/64                         8.92 ns         8.78 ns     79486382
+BenchErase<phmap::flat_hash_set<uint64_t>>/512                        9.98 ns         9.94 ns     73869257
+BenchErase<phmap::flat_hash_set<uint64_t>>/1024                       9.57 ns         9.57 ns     73647526
+BenchEraseSetVector<llvm::SetVector<uint64_t>>/1                      5.07 ns         5.06 ns    133677457
+BenchEraseSetVector<llvm::SetVector<uint64_t>>/8                      7.10 ns         7.10 ns     98057838
+BenchEraseSetVector<llvm::SetVector<uint64_t>>/64                     18.0 ns         18.0 ns     37111033
+BenchEraseSetVector<llvm::SetVector<uint64_t>>/512                    20.6 ns         20.6 ns     34063418
+BenchEraseSetVector<llvm::SetVector<uint64_t>>/1024                   25.2 ns         25.2 ns     27588883
+BenchErase<tsl::ordered_set<Pod, PodHash, PodEqual>>/1                6.91 ns         6.91 ns    101306697
+BenchErase<tsl::ordered_set<Pod, PodHash, PodEqual>>/8                16.2 ns         16.2 ns     44721513
+BenchErase<tsl::ordered_set<Pod, PodHash, PodEqual>>/64               17.5 ns         17.5 ns     42288195
+BenchErase<tsl::ordered_set<Pod, PodHash, PodEqual>>/512              17.2 ns         17.2 ns     41478055
+BenchErase<tsl::ordered_set<Pod, PodHash, PodEqual>>/1024             17.0 ns         17.0 ns     40752332

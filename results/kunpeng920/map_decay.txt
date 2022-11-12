@@ -1,0 +1,95 @@
+16
+16
+1
+1
+absl::container_internal::node_handle<absl::container_internal::set_params<unsigned char, std::less<unsigned char>, std::allocator<unsigned char>, 256, false>, absl::container_internal::set_params<unsigned char, std::less<unsigned char>, std::allocator<unsigned char>, 256, false>, std::allocator<unsigned char>, void> size 3
+absl::container_internal::node_handle<absl::container_internal::set_params<unsigned short, std::less<unsigned short>, std::allocator<unsigned short>, 256, false>, absl::container_internal::set_params<unsigned short, std::less<unsigned short>, std::allocator<unsigned short>, 256, false>, std::allocator<unsigned short>, void> size 4
+absl::container_internal::node_handle<absl::container_internal::set_params<unsigned int, std::less<unsigned int>, std::allocator<unsigned int>, 256, false>, absl::container_internal::set_params<unsigned int, std::less<unsigned int>, std::allocator<unsigned int>, 256, false>, std::allocator<unsigned int>, void> size 8
+absl::container_internal::node_handle<absl::container_internal::set_params<unsigned long, std::less<unsigned long>, std::allocator<unsigned long>, 256, false>, absl::container_internal::set_params<unsigned long, std::less<unsigned long>, std::allocator<unsigned long>, 256, false>, std::allocator<unsigned long>, void> size 16
+
+phmap::priv::node_handle<phmap::priv::FlatHashSetPolicy<unsigned char>, phmap::priv::hash_policy_traits<phmap::priv::FlatHashSetPolicy<unsigned char>, void>, std::allocator<unsigned char>, void> size 3
+phmap::priv::node_handle<phmap::priv::FlatHashSetPolicy<unsigned short>, phmap::priv::hash_policy_traits<phmap::priv::FlatHashSetPolicy<unsigned short>, void>, std::allocator<unsigned short>, void> size 4
+phmap::priv::node_handle<phmap::priv::FlatHashSetPolicy<unsigned int>, phmap::priv::hash_policy_traits<phmap::priv::FlatHashSetPolicy<unsigned int>, void>, std::allocator<unsigned int>, void> size 8
+phmap::priv::node_handle<phmap::priv::FlatHashSetPolicy<unsigned long>, phmap::priv::hash_policy_traits<phmap::priv::FlatHashSetPolicy<unsigned long>, void>, std::allocator<unsigned long>, void> size 16
+
+absl::container_internal::node_handle<absl::container_internal::FlatHashSetPolicy<unsigned char>, absl::container_internal::hash_policy_traits<absl::container_internal::FlatHashSetPolicy<unsigned char>, void>, std::allocator<unsigned char>, void> size 3
+absl::container_internal::node_handle<absl::container_internal::FlatHashSetPolicy<unsigned short>, absl::container_internal::hash_policy_traits<absl::container_internal::FlatHashSetPolicy<unsigned short>, void>, std::allocator<unsigned short>, void> size 4
+absl::container_internal::node_handle<absl::container_internal::FlatHashSetPolicy<unsigned int>, absl::container_internal::hash_policy_traits<absl::container_internal::FlatHashSetPolicy<unsigned int>, void>, std::allocator<unsigned int>, void> size 8
+absl::container_internal::node_handle<absl::container_internal::FlatHashSetPolicy<unsigned long>, absl::container_internal::hash_policy_traits<absl::container_internal::FlatHashSetPolicy<unsigned long>, void>, std::allocator<unsigned long>, void> size 16
+
+absl::container_internal::node_handle<absl::container_internal::NodeHashSetPolicy<unsigned char>, absl::container_internal::hash_policy_traits<absl::container_internal::NodeHashSetPolicy<unsigned char>, void>, std::allocator<unsigned char>, void> size 16
+absl::container_internal::node_handle<absl::container_internal::NodeHashSetPolicy<unsigned short>, absl::container_internal::hash_policy_traits<absl::container_internal::NodeHashSetPolicy<unsigned short>, void>, std::allocator<unsigned short>, void> size 16
+absl::container_internal::node_handle<absl::container_internal::NodeHashSetPolicy<unsigned int>, absl::container_internal::hash_policy_traits<absl::container_internal::NodeHashSetPolicy<unsigned int>, void>, std::allocator<unsigned int>, void> size 16
+absl::container_internal::node_handle<absl::container_internal::NodeHashSetPolicy<unsigned long>, absl::container_internal::hash_policy_traits<absl::container_internal::NodeHashSetPolicy<unsigned long>, void>, std::allocator<unsigned long>, void> size 16
+
+phmap::priv::node_handle<phmap::priv::FlatHashMapPolicy<unsigned char, unsigned char>, phmap::priv::hash_policy_traits<phmap::priv::FlatHashMapPolicy<unsigned char, unsigned char>, void>, std::allocator<std::pair<unsigned char const, unsigned char> >, void> size 4
+phmap::priv::node_handle<phmap::priv::FlatHashMapPolicy<unsigned short, unsigned short>, phmap::priv::hash_policy_traits<phmap::priv::FlatHashMapPolicy<unsigned short, unsigned short>, void>, std::allocator<std::pair<unsigned short const, unsigned short> >, void> size 6
+phmap::priv::node_handle<phmap::priv::FlatHashMapPolicy<unsigned int, unsigned int>, phmap::priv::hash_policy_traits<phmap::priv::FlatHashMapPolicy<unsigned int, unsigned int>, void>, std::allocator<std::pair<unsigned int const, unsigned int> >, void> size 12
+phmap::priv::node_handle<phmap::priv::FlatHashMapPolicy<unsigned long, unsigned long>, phmap::priv::hash_policy_traits<phmap::priv::FlatHashMapPolicy<unsigned long, unsigned long>, void>, std::allocator<std::pair<unsigned long const, unsigned long> >, void> size 24
+
+absl::container_internal::node_handle<absl::container_internal::map_params<unsigned char, unsigned char, std::less<unsigned char>, std::allocator<std::pair<unsigned char const, unsigned char> >, 256, false>, absl::container_internal::map_params<unsigned char, unsigned char, std::less<unsigned char>, std::allocator<std::pair<unsigned char const, unsigned char> >, 256, false>, std::allocator<std::pair<unsigned char const, unsigned char> >, void> size 4
+absl::container_internal::node_handle<absl::container_internal::map_params<unsigned short, unsigned short, std::less<unsigned short>, std::allocator<std::pair<unsigned short const, unsigned short> >, 256, false>, absl::container_internal::map_params<unsigned short, unsigned short, std::less<unsigned short>, std::allocator<std::pair<unsigned short const, unsigned short> >, 256, false>, std::allocator<std::pair<unsigned short const, unsigned short> >, void> size 6
+absl::container_internal::node_handle<absl::container_internal::map_params<unsigned int, unsigned int, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, unsigned int> >, 256, false>, absl::container_internal::map_params<unsigned int, unsigned int, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, unsigned int> >, 256, false>, std::allocator<std::pair<unsigned int const, unsigned int> >, void> size 12
+absl::container_internal::node_handle<absl::container_internal::map_params<unsigned long, unsigned long, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, unsigned long> >, 256, false>, absl::container_internal::map_params<unsigned long, unsigned long, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, unsigned long> >, 256, false>, std::allocator<std::pair<unsigned long const, unsigned long> >, void> size 24
+
+absl::container_internal::node_handle<absl::container_internal::FlatHashMapPolicy<unsigned char, unsigned char>, absl::container_internal::hash_policy_traits<absl::container_internal::FlatHashMapPolicy<unsigned char, unsigned char>, void>, std::allocator<std::pair<unsigned char const, unsigned char> >, void> size 4
+absl::container_internal::node_handle<absl::container_internal::FlatHashMapPolicy<unsigned short, unsigned short>, absl::container_internal::hash_policy_traits<absl::container_internal::FlatHashMapPolicy<unsigned short, unsigned short>, void>, std::allocator<std::pair<unsigned short const, unsigned short> >, void> size 6
+absl::container_internal::node_handle<absl::container_internal::FlatHashMapPolicy<unsigned int, unsigned int>, absl::container_internal::hash_policy_traits<absl::container_internal::FlatHashMapPolicy<unsigned int, unsigned int>, void>, std::allocator<std::pair<unsigned int const, unsigned int> >, void> size 12
+absl::container_internal::node_handle<absl::container_internal::FlatHashMapPolicy<unsigned long, unsigned long>, absl::container_internal::hash_policy_traits<absl::container_internal::FlatHashMapPolicy<unsigned long, unsigned long>, void>, std::allocator<std::pair<unsigned long const, unsigned long> >, void> size 24
+
+absl::container_internal::node_handle<absl::container_internal::NodeHashMapPolicy<unsigned char, unsigned char>, absl::container_internal::hash_policy_traits<absl::container_internal::NodeHashMapPolicy<unsigned char, unsigned char>, void>, std::allocator<std::pair<unsigned char const, unsigned char> >, void> size 16
+absl::container_internal::node_handle<absl::container_internal::NodeHashMapPolicy<unsigned short, unsigned short>, absl::container_internal::hash_policy_traits<absl::container_internal::NodeHashMapPolicy<unsigned short, unsigned short>, void>, std::allocator<std::pair<unsigned short const, unsigned short> >, void> size 16
+absl::container_internal::node_handle<absl::container_internal::NodeHashMapPolicy<unsigned int, unsigned int>, absl::container_internal::hash_policy_traits<absl::container_internal::NodeHashMapPolicy<unsigned int, unsigned int>, void>, std::allocator<std::pair<unsigned int const, unsigned int> >, void> size 16
+absl::container_internal::node_handle<absl::container_internal::NodeHashMapPolicy<unsigned long, unsigned long>, absl::container_internal::hash_policy_traits<absl::container_internal::NodeHashMapPolicy<unsigned long, unsigned long>, void>, std::allocator<std::pair<unsigned long const, unsigned long> >, void> size 16
+
+ska::flat_hash_set<unsigned char, std::hash<unsigned char>, std::equal_to<unsigned char>, std::allocator<unsigned char> > size 1
+ska::flat_hash_set<unsigned short, std::hash<unsigned short>, std::equal_to<unsigned short>, std::allocator<unsigned short> > size 2
+ska::flat_hash_set<unsigned int, std::hash<unsigned int>, std::equal_to<unsigned int>, std::allocator<unsigned int> > size 4
+ska::flat_hash_set<unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<unsigned long> > size 8
+
+ska::flat_hash_map<unsigned char, unsigned char, std::hash<unsigned char>, std::equal_to<unsigned char>, std::allocator<std::pair<unsigned char, unsigned char> > > size 2
+ska::flat_hash_map<unsigned short, unsigned short, std::hash<unsigned short>, std::equal_to<unsigned short>, std::allocator<std::pair<unsigned short, unsigned short> > > size 4
+ska::flat_hash_map<unsigned int, unsigned int, std::hash<unsigned int>, std::equal_to<unsigned int>, std::allocator<std::pair<unsigned int, unsigned int> > > size 8
+ska::flat_hash_map<unsigned long, unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long, unsigned long> > > size 16
+
+ska::unordered_set<unsigned char, std::hash<unsigned char>, std::equal_to<unsigned char>, std::allocator<unsigned char> > size 1
+ska::unordered_set<unsigned short, std::hash<unsigned short>, std::equal_to<unsigned short>, std::allocator<unsigned short> > size 2
+ska::unordered_set<unsigned int, std::hash<unsigned int>, std::equal_to<unsigned int>, std::allocator<unsigned int> > size 4
+ska::unordered_set<unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<unsigned long> > size 8
+
+ska::unordered_map<unsigned char, unsigned char, std::hash<unsigned char>, std::equal_to<unsigned char>, std::allocator<std::pair<unsigned char, unsigned char> > > size 2
+ska::unordered_map<unsigned short, unsigned short, std::hash<unsigned short>, std::equal_to<unsigned short>, std::allocator<std::pair<unsigned short, unsigned short> > > size 4
+ska::unordered_map<unsigned int, unsigned int, std::hash<unsigned int>, std::equal_to<unsigned int>, std::allocator<std::pair<unsigned int, unsigned int> > > size 8
+ska::unordered_map<unsigned long, unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long, unsigned long> > > size 16
+
+std::_Node_handle<unsigned char, unsigned char, std::allocator<std::__detail::_Hash_node<unsigned char, false> > > size 16
+std::_Node_handle<unsigned short, unsigned short, std::allocator<std::__detail::_Hash_node<unsigned short, false> > > size 16
+std::_Node_handle<unsigned int, unsigned int, std::allocator<std::__detail::_Hash_node<unsigned int, false> > > size 16
+std::_Node_handle<unsigned long, unsigned long, std::allocator<std::__detail::_Hash_node<unsigned long, false> > > size 16
+
+std::_Node_handle<unsigned char, std::pair<unsigned char const, unsigned char>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned char const, unsigned char>, false> > > size 32
+std::_Node_handle<unsigned short, std::pair<unsigned short const, unsigned short>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned short const, unsigned short>, false> > > size 32
+std::_Node_handle<unsigned int, std::pair<unsigned int const, unsigned int>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned int const, unsigned int>, false> > > size 32
+std::_Node_handle<unsigned long, std::pair<unsigned long const, unsigned long>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned long const, unsigned long>, false> > > size 32
+
+2022-11-12T16:58:43+08:00
+Running ./bin/map_decay
+Run on (8 X 2400 MHz CPU s)
+CPU Caches:
+  L1 Data 64 KiB (x8)
+  L1 Instruction 64 KiB (x8)
+  L2 Unified 512 KiB (x8)
+  L3 Unified 32768 KiB (x1)
+Load Average: 8.28, 7.17, 5.68
+-----------------------------------------------------------------------------------------------
+Benchmark                                                     Time             CPU   Iterations
+-----------------------------------------------------------------------------------------------
+BM_unmap<std::unordered_map<int, int>>                   653627 ns       650662 ns         1075
+BM_decay_map<std::unordered_map<int, int, Hasher>>    140689613 ns    140681974 ns            5
+BM_unmap<ska::unordered_map<int, int>>                   814118 ns       814108 ns          853
+BM_decay_map<ska::unordered_map<int, int, Hasher>>    126932554 ns    126932388 ns            5
+BM_unmap<ska::flat_hash_map<int, int>>                   310334 ns       310334 ns         2265
+BM_unmap<phmap::flat_hash_map<int, int>>                 358003 ns       358002 ns         1951
+BM_decay_map<phmap::flat_hash_map<int, int, Hasher>>  112797056 ns    112786287 ns            6
+BM_unmap<absl::flat_hash_map<int, int>>                  256997 ns       256992 ns         2721
+BM_decay_map<absl::flat_hash_map<int, int, Hasher>>   119401037 ns    119398915 ns            6

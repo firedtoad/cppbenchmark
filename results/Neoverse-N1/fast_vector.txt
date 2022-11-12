@@ -1,0 +1,47 @@
+2022-11-12T14:43:20+08:00
+Running ./bin/fast_vector
+Run on (8 X 50 MHz CPU s)
+Load Average: 7.99, 4.67, 3.23
+--------------------------------------------------------------------------------------------
+Benchmark                                                  Time             CPU   Iterations
+--------------------------------------------------------------------------------------------
+BenchInsert<fast_vector<uint64_t, uint64_t>>/1          1181 ns         1179 ns       592431
+BenchInsert<fast_vector<uint64_t, uint64_t>>/8          9698 ns         9695 ns        72488
+BenchInsert<fast_vector<uint64_t, uint64_t>>/64        73756 ns        73714 ns         9506
+BenchInsert<fast_vector<uint64_t, uint64_t>>/512      581181 ns       580954 ns         1202
+BenchInsert<fast_vector<uint64_t, uint64_t>>/1024    1406642 ns      1160204 ns          604
+BenchInsert<std::map<uint64_t, uint64_t>>/1              305 ns          304 ns      2300345
+BenchInsert<std::map<uint64_t, uint64_t>>/8             2987 ns         2985 ns       234413
+BenchInsert<std::map<uint64_t, uint64_t>>/64           28629 ns        28421 ns        24625
+BenchInsert<std::map<uint64_t, uint64_t>>/512         255892 ns       255635 ns         2739
+BenchInsert<std::map<uint64_t, uint64_t>>/1024        553439 ns       534823 ns         1310
+BenchFind<fast_vector<uint64_t, uint64_t>>/1             193 ns          174 ns      4040719
+BenchFind<fast_vector<uint64_t, uint64_t>>/8             177 ns          177 ns      3958785
+BenchFind<fast_vector<uint64_t, uint64_t>>/64            179 ns          179 ns      3952637
+BenchFind<fast_vector<uint64_t, uint64_t>>/512           199 ns          180 ns      3876229
+BenchFind<fast_vector<uint64_t, uint64_t>>/1024          181 ns          181 ns      3885501
+BenchFind<std::map<uint64_t, uint64_t>>/1               82.8 ns         79.9 ns      8969074
+BenchFind<std::map<uint64_t, uint64_t>>/8                141 ns          127 ns      5553512
+BenchFind<std::map<uint64_t, uint64_t>>/64               189 ns          188 ns      3715794
+BenchFind<std::map<uint64_t, uint64_t>>/512              254 ns          253 ns      2761740
+BenchFind<std::map<uint64_t, uint64_t>>/1024             273 ns          273 ns      2560032
+BenchRange<fast_vector<Pod, uint64_t>>/1                30.4 ns         30.3 ns     23300458
+BenchRange<fast_vector<Pod, uint64_t>>/8                85.5 ns         85.1 ns      8168882
+BenchRange<fast_vector<Pod, uint64_t>>/64                479 ns          479 ns      1460218
+BenchRange<fast_vector<Pod, uint64_t>>/512              3624 ns         3623 ns       193180
+BenchRange<fast_vector<Pod, uint64_t>>/1024             7215 ns         7214 ns        97009
+BenchRange<std::map<uint64_t, uint64_t>>/1              30.9 ns         30.9 ns     22686467
+BenchRange<std::map<uint64_t, uint64_t>>/8               124 ns          124 ns      5523897
+BenchRange<std::map<uint64_t, uint64_t>>/64             1033 ns         1033 ns       652735
+BenchRange<std::map<uint64_t, uint64_t>>/512            9159 ns         9159 ns        76422
+BenchRange<std::map<uint64_t, uint64_t>>/1024          18740 ns        18738 ns        37021
+BenchErase<fast_vector<uint64_t, uint64_t>>/1            174 ns          174 ns      4013174
+BenchErase<fast_vector<uint64_t, uint64_t>>/8            177 ns          177 ns      3954447
+BenchErase<fast_vector<uint64_t, uint64_t>>/64           180 ns          180 ns      3809916
+BenchErase<fast_vector<uint64_t, uint64_t>>/512          192 ns          191 ns      3658622
+BenchErase<fast_vector<uint64_t, uint64_t>>/1024         203 ns          203 ns      3448734
+BenchErase<std::map<uint64_t, uint64_t>>/1               101 ns          101 ns      6331090
+BenchErase<std::map<uint64_t, uint64_t>>/8               166 ns          166 ns      4057111
+BenchErase<std::map<uint64_t, uint64_t>>/64              218 ns          218 ns      3232087
+BenchErase<std::map<uint64_t, uint64_t>>/512             305 ns          297 ns      2374525
+BenchErase<std::map<uint64_t, uint64_t>>/1024            329 ns          329 ns      2113585

@@ -1,0 +1,17 @@
+2022-11-12T14:41:46+08:00
+Running ./bin/memory_copy
+Run on (8 X 50 MHz CPU s)
+Load Average: 7.68, 3.37, 2.70
+------------------------------------------------------------
+Benchmark                  Time             CPU   Iterations
+------------------------------------------------------------
+BenchMemCpy/1           18.0 ns         18.0 ns     38705776
+BenchMemCpy/8           16.7 ns         16.7 ns     41968832
+BenchMemCpy/64          17.8 ns         17.8 ns     39255668
+BenchMemCpy/512         29.8 ns         29.8 ns     22904200
+BenchMemCpy/1024        40.1 ns         40.0 ns     17474660
+BenchStdCopy/1          65.9 ns         65.8 ns     10642160
+BenchStdCopy/8          63.3 ns         63.3 ns     11085210
+BenchStdCopy/64         65.5 ns         65.4 ns     10713612
+BenchStdCopy/512        74.3 ns         74.3 ns      9421443
+BenchStdCopy/1024       84.4 ns         84.4 ns      8294578

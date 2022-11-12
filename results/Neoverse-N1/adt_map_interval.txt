@@ -1,0 +1,10 @@
+2022-11-12T14:47:36+08:00
+Running ./bin/adt_map_interval
+Run on (8 X 50 MHz CPU s)
+Load Average: 3.53, 5.30, 3.96
+--------------------------------------------------------------
+Benchmark                    Time             CPU   Iterations
+--------------------------------------------------------------
+BM_Interval/1              259 ns          259 ns      2720330
+BM_Interval/8              257 ns          257 ns      2640034
+adt_map_interval: /usr/lib/llvm-11/include/llvm/ADT/IntervalMap.h:635: unsigned int llvm::IntervalMapImpl::LeafNode<int, int, 16, llvm::IntervalMapInfo<int>>::insertFrom(unsigned int &, unsigned int, KeyT, KeyT, ValT) [KeyT = int, ValT = int, N = 16, Traits = llvm::IntervalMapInfo<int>]: Assertion `(i == Size || Traits::stopLess(b, start(i))) && "Overlapping insert"' failed.

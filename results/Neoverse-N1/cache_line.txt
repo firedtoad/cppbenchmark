@@ -1,0 +1,14 @@
+2022-11-12T14:41:44+08:00
+Running ./bin/cache_line
+Run on (8 X 50 MHz CPU s)
+Load Average: 7.39, 3.25, 2.66
+-------------------------------------------------------
+Benchmark             Time             CPU   Iterations
+-------------------------------------------------------
+BM_cache32K        18.0 ns         15.6 ns     45475712
+BM_cache262K       22.6 ns         20.2 ns     35881795
+BM_cache4M         84.2 ns         84.1 ns      8400050
+BM_cache8M         98.1 ns         98.0 ns      7169017
+BM_cache16M         109 ns          109 ns      6480989
+BM_cache32M         108 ns          108 ns      6573417
+BM_cache64M         111 ns          111 ns      6254698

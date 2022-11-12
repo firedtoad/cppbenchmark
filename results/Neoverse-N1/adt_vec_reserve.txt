@@ -1,0 +1,11 @@
+2022-11-12T14:44:33+08:00
+Running ./bin/adt_vec_reserve
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.43, 5.56, 3.65
+-----------------------------------------------------------------------------------------------
+Benchmark                                                     Time             CPU   Iterations
+-----------------------------------------------------------------------------------------------
+BM_erase<llvm::SmallVector<uint64_t, 1024>>/1024            217 ns          217 ns      3220940
+BM_erase<std::vector<uint64_t>>/1024                        318 ns          318 ns      2199068
+BM_eraseSwap<llvm::SmallVector<uint64_t, 1024>>/1024       86.9 ns         86.8 ns      8034234
+BM_eraseSwap<std::vector<uint64_t>>/1024                    102 ns          102 ns      6886998

@@ -1,0 +1,9 @@
+2022-11-12T14:40:12+08:00
+Running ./bin/vec_reserve
+Run on (8 X 50 MHz CPU s)
+Load Average: 0.13, 0.83, 1.88
+-----------------------------------------------------
+Benchmark           Time             CPU   Iterations
+-----------------------------------------------------
+BM_insert       14163 ns        14152 ns        49472
+BM_reserve      14922 ns        13887 ns        51065

@@ -1,0 +1,25 @@
+2022-11-12T14:43:15+08:00
+Running ./bin/linear
+Run on (8 X 50 MHz CPU s)
+Load Average: 7.99, 4.61, 3.21
+--------------------------------------------------------------
+Benchmark                    Time             CPU   Iterations
+--------------------------------------------------------------
+BM_IntervalPtr/1          23.4 ns         23.4 ns     30049630
+BM_IntervalPtr/8          80.6 ns         80.5 ns      8635152
+BM_IntervalPtr/64          463 ns          462 ns      1515834
+BM_IntervalPtr/512        3505 ns         3501 ns       200026
+BM_IntervalPtr/4096      28711 ns        28676 ns        24603
+BM_IntervalPtr/8192      57534 ns        57444 ns        12216
+BM_LinearPtr/1            23.2 ns         23.2 ns     30234488
+BM_LinearPtr/8            82.1 ns         82.0 ns      8541231
+BM_LinearPtr/64            607 ns          458 ns      1523412
+BM_LinearPtr/512          4569 ns         4569 ns       158488
+BM_LinearPtr/4096        33848 ns        29061 ns        24243
+BM_LinearPtr/8192        64664 ns        58012 ns        12032
+BM_LinearVal/1            22.8 ns         22.8 ns     30539573
+BM_LinearVal/8            77.8 ns         77.8 ns      9000608
+BM_LinearVal/64            448 ns          448 ns      1554714
+BM_LinearVal/512          3828 ns         3422 ns       205043
+BM_LinearVal/4096        31903 ns        27968 ns        25458
+BM_LinearVal/8192        55340 ns        55303 ns        12636

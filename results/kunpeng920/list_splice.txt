@@ -1,0 +1,61 @@
+2022-11-12T16:56:56+08:00
+Running ./bin/list_splice
+Run on (8 X 2400 MHz CPU s)
+CPU Caches:
+  L1 Data 64 KiB (x8)
+  L1 Instruction 64 KiB (x8)
+  L2 Unified 512 KiB (x8)
+  L3 Unified 32768 KiB (x1)
+Load Average: 7.16, 6.64, 5.36
+-------------------------------------------------------------------------
+Benchmark                               Time             CPU   Iterations
+-------------------------------------------------------------------------
+BenchListSplice/1                    5.13 ns         5.13 ns    137204029
+BenchListSplice/8                    5.11 ns         5.11 ns    138227181
+BenchListSplice/64                   5.08 ns         5.08 ns    136061536
+BenchListSplice/512                  5.11 ns         5.11 ns    138269092
+BenchListSplice/4096                 5.07 ns         5.07 ns    136474908
+BenchListSplice/32768                5.14 ns         5.14 ns    137422396
+BenchListSplice/65536                5.18 ns         5.18 ns    136929198
+BenchListSwap/1                      5.11 ns         5.11 ns    137678872
+BenchListSwap/8                      5.12 ns         5.12 ns    136967458
+BenchListSwap/64                     5.11 ns         5.11 ns    136457934
+BenchListSwap/512                    5.12 ns         5.12 ns    136757373
+BenchListSwap/4096                   5.12 ns         5.12 ns    136671075
+BenchListSwap/32768                  5.11 ns         5.11 ns    136746553
+BenchListSwap/65536                  5.11 ns         5.11 ns    136792329
+BenchDequeSwap/1                     3.52 ns         3.52 ns    199403294
+BenchDequeSwap/8                     3.55 ns         3.55 ns    197356389
+BenchDequeSwap/64                    3.61 ns         3.49 ns    200000274
+BenchDequeSwap/512                   3.54 ns         3.54 ns    200292926
+BenchDequeSwap/4096                  3.47 ns         3.47 ns    201756725
+BenchDequeSwap/32768                 3.53 ns         3.53 ns    199946174
+BenchDequeSwap/65536                 3.52 ns         3.52 ns    200033063
+BenchIntrusiveListSplice/1           4.33 ns         4.33 ns    161159683
+BenchIntrusiveListSplice/8           6.81 ns         6.81 ns    103011694
+BenchIntrusiveListSplice/64          50.7 ns         50.7 ns     13772947
+BenchIntrusiveListSplice/512          409 ns          409 ns      1713095
+BenchIntrusiveListSplice/4096        3192 ns         3192 ns       219237
+BenchIntrusiveListSplice/32768      36668 ns        36668 ns        19028
+BenchIntrusiveListSplice/65536      77354 ns        77353 ns         8991
+BenchIntrusiveListSwap/1             16.6 ns         16.6 ns     42688989
+BenchIntrusiveListSwap/8             15.3 ns         15.3 ns     45668565
+BenchIntrusiveListSwap/64            69.2 ns         69.2 ns     10339618
+BenchIntrusiveListSwap/512            411 ns          411 ns      1702808
+BenchIntrusiveListSwap/4096          3189 ns         3189 ns       219548
+BenchIntrusiveListSwap/32768        36741 ns        36619 ns        19080
+BenchIntrusiveListSwap/65536        74314 ns        74312 ns         9400
+BenchPlfListSplice/1                 12.5 ns         12.5 ns     55955527
+BenchPlfListSplice/8                 12.9 ns         12.8 ns     54332286
+BenchPlfListSplice/64                12.6 ns         12.6 ns     55491850
+BenchPlfListSplice/512               12.6 ns         12.6 ns     55630454
+BenchPlfListSplice/4096              12.6 ns         12.6 ns     55336931
+BenchPlfListSplice/32768             12.6 ns         12.6 ns     54684501
+BenchPlfListSplice/65536             12.9 ns         12.9 ns     54424709
+BenchPlfListSwap/1                   62.8 ns         62.8 ns     11148068
+BenchPlfListSwap/8                   62.8 ns         62.8 ns     11147035
+BenchPlfListSwap/64                  60.5 ns         60.5 ns     11598521
+BenchPlfListSwap/512                 62.8 ns         62.8 ns     11139361
+BenchPlfListSwap/4096                62.8 ns         62.7 ns     11150460
+BenchPlfListSwap/32768               62.8 ns         62.8 ns     11137753
+BenchPlfListSwap/65536               60.4 ns         60.4 ns     11144944

@@ -1,0 +1,7 @@
+0x16591e70
+void operator delete(void *, size_t) size 1
+static void *S::operator new[](size_t) size 18
+0x16591e78
+static void S::operator delete[](void *, size_t) size 18
+10
+0x16596f00 : 0x16594ec0 diff 8256 sz 322

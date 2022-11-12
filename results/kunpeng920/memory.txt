@@ -1,0 +1,27 @@
+std::_List_node<char> size 24
+std::_List_node<unsigned long> size 24
+std::_Rb_tree_node<std::pair<char, char> > size 40
+std::_Rb_tree_node<std::pair<unsigned long, char> > size 48
+std::__detail::_Hash_node<char, false> size 16
+std::__detail::_Hash_node<unsigned long, false> size 16
+__gnu_cxx::__aligned_buffer<char> size 1
+__gnu_cxx::__aligned_buffer<unsigned long> size 8
+phmap::priv::node_handle<phmap::priv::FlatHashSetPolicy<char>, phmap::priv::hash_policy_traits<phmap::priv::FlatHashSetPolicy<char>, void>, std::allocator<char>, void> size 3
+phmap::priv::node_handle<phmap::priv::FlatHashSetPolicy<unsigned long>, phmap::priv::hash_policy_traits<phmap::priv::FlatHashSetPolicy<unsigned long>, void>, std::allocator<unsigned long>, void> size 16
+CC size 24
+std::list cost memory 24576 alloc 1024
+std::deque cost memory 8976 alloc 19
+std::vector cost memory 8192 alloc 1
+std::map u16 cost memory 40960 alloc 1024
+std::map u64 cost memory 49152 alloc 1024
+std::set cost memory 40960 alloc 1024
+std::unordered_set cost memory 24632 alloc 1025
+std::unordered_map cost memory 32824 alloc 1025
+tsl::robin_map cost memory 24576 alloc 1
+tsl::robin_set cost memory 16384 alloc 1
+ska::flat_hash_map cost memory 24708 alloc 1
+ska::flat_hash_set cost memory 16472 alloc 1
+tsl::ordered_map cost memory 25600 alloc 21
+tsl::ordered_set cost memory 21200 alloc 12
+phmap::flat_hash_map cost memory 18432 alloc 1
+phmap::flat_hash_set cost memory 10244 alloc 1

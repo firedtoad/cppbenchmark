@@ -1,0 +1,8 @@
+clocks per s = 1000000 
+rdtsc_overhead set to 0
+populate_int32divbyconstant(iarray32, N)                    	:  0.001  (clock units)  per operation (best) 	0.001  (clock units)  per operation (avg) 
+populate_int64(inum64, iarray64, N)                         	:  0.002  (clock units)  per operation (best) 	0.002  (clock units)  per operation (avg) 
+populate_float64(inum64, farray64, N)                       	:  0.007  (clock units)  per operation (best) 	0.007  (clock units)  per operation (avg) 
+populate_int32(inum64, iarray32, N)                         	:  0.003  (clock units)  per operation (best) 	0.003  (clock units)  per operation (avg) 
+populate_int32viafloat64(inum64, iarray32, N)               	:  0.007  (clock units)  per operation (best) 	0.007  (clock units)  per operation (avg) 
+populate_float32(inum64, farray32, N)                       	:  0.004  (clock units)  per operation (best) 	0.005  (clock units)  per operation (avg) 

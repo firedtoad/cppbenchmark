@@ -1,0 +1,18 @@
+2022-11-12T16:59:59+08:00
+Running ./bin/map_find_hetero
+Run on (8 X 2400 MHz CPU s)
+CPU Caches:
+  L1 Data 64 KiB (x8)
+  L1 Instruction 64 KiB (x8)
+  L2 Unified 512 KiB (x8)
+  L3 Unified 32768 KiB (x1)
+Load Average: 9.72, 7.83, 6.03
+------------------------------------------------------------------------------------------------------------
+Benchmark                                                                  Time             CPU   Iterations
+------------------------------------------------------------------------------------------------------------
+BenchStringLess                                                         17.8 ns         17.8 ns     34410990
+BenchStringCompare                                                      25.7 ns         25.7 ns     28442999
+BenchOrderMapStringSSO<std::map<std::string, int>>                       705 ns          705 ns      1190768
+BenchOrderMapStringSSO<std::map<std::string, int, std::less<>>>          830 ns          830 ns       790397
+BenchOrderMapStringNoSSO<std::map<std::string, int>>                     982 ns          982 ns       780183
+BenchOrderMapStringNoSSO<std::map<std::string, int, std::less<>>>       1071 ns         1071 ns       731531

@@ -1,0 +1,10 @@
+2022-11-12T14:40:38+08:00
+Running ./bin/set_reserve
+Run on (8 X 50 MHz CPU s)
+Load Average: 4.85, 1.87, 2.20
+------------------------------------------------------------------------------
+Benchmark                                    Time             CPU   Iterations
+------------------------------------------------------------------------------
+BM_insert<std::unordered_set<int>>    18579447 ns     18557906 ns           38
+BM_reserve<std::unordered_set<int>>   17168352 ns     15805959 ns           45
+BM_reserve<tsl::ordered_set<int>>     19839542 ns     16231104 ns           43

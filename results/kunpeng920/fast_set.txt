@@ -1,0 +1,72 @@
+2022-11-12T16:58:45+08:00
+Running ./bin/fast_set
+Run on (8 X 2400 MHz CPU s)
+CPU Caches:
+  L1 Data 64 KiB (x8)
+  L1 Instruction 64 KiB (x8)
+  L2 Unified 512 KiB (x8)
+  L3 Unified 32768 KiB (x1)
+Load Average: 8.28, 7.17, 5.68
+-----------------------------------------------------------------------------------------------------
+Benchmark                                                           Time             CPU   Iterations
+-----------------------------------------------------------------------------------------------------
+BenchInsert<fast_vector<Pod, uint64_t>>/1                         107 ns          107 ns      6592748
+BenchInsert<fast_vector<Pod, uint64_t>>/8                        1230 ns         1230 ns       568246
+BenchInsert<fast_vector<Pod, uint64_t>>/64                       9907 ns         9907 ns        70247
+BenchInsert<fast_vector<Pod, uint64_t>>/512                    363066 ns       363060 ns         1920
+BenchInsert<fast_vector<Pod, uint64_t>>/1024                   796042 ns       795739 ns          882
+BenchInsert<std::set<Pod>>/1                                     95.5 ns         95.5 ns      7323958
+BenchInsert<std::set<Pod>>/8                                     1211 ns         1211 ns       575973
+BenchInsert<std::set<Pod>>/64                                   10151 ns        10151 ns        69267
+BenchInsert<std::set<Pod>>/512                                 112076 ns       111994 ns         6263
+BenchInsert<std::set<Pod>>/1024                                259103 ns       259098 ns         2712
+BenchInsert<tsl::ordered_set<Pod, PodHash, PodEqual>>/1           145 ns          145 ns      4829233
+BenchInsert<tsl::ordered_set<Pod, PodHash, PodEqual>>/8          1121 ns         1121 ns       622873
+BenchInsert<tsl::ordered_set<Pod, PodHash, PodEqual>>/64         9800 ns         9800 ns        71421
+BenchInsert<tsl::ordered_set<Pod, PodHash, PodEqual>>/512       80358 ns        80358 ns         8700
+BenchInsert<tsl::ordered_set<Pod, PodHash, PodEqual>>/1024     171470 ns       171467 ns         4042
+BenchFind<fast_vector<Pod, uint64_t>>/1                          7.26 ns         7.26 ns     96595265
+BenchFind<fast_vector<Pod, uint64_t>>/8                          8.03 ns         8.03 ns     87564031
+BenchFind<fast_vector<Pod, uint64_t>>/64                         8.32 ns         8.32 ns     78418404
+BenchFind<fast_vector<Pod, uint64_t>>/512                        9.07 ns         9.07 ns     80021153
+BenchFind<fast_vector<Pod, uint64_t>>/1024                       9.61 ns         9.61 ns     77668205
+BenchFind<std::set<Pod>>/1                                       6.14 ns         6.14 ns     93926044
+BenchFind<std::set<Pod>>/8                                       17.5 ns         17.5 ns     81041743
+BenchFind<std::set<Pod>>/64                                      24.0 ns         24.0 ns     34310180
+BenchFind<std::set<Pod>>/512                                     69.9 ns         69.9 ns     10860229
+BenchFind<std::set<Pod>>/1024                                    85.2 ns         85.2 ns      8112542
+BenchFind<tsl::ordered_set<Pod, PodHash, PodEqual>>/1            8.18 ns         8.17 ns     85524909
+BenchFind<tsl::ordered_set<Pod, PodHash, PodEqual>>/8            16.2 ns         16.2 ns     43965734
+BenchFind<tsl::ordered_set<Pod, PodHash, PodEqual>>/64           17.4 ns         17.2 ns     37908579
+BenchFind<tsl::ordered_set<Pod, PodHash, PodEqual>>/512          18.2 ns         18.1 ns     38745239
+BenchFind<tsl::ordered_set<Pod, PodHash, PodEqual>>/1024         18.2 ns         18.1 ns     38683221
+BenchRange<fast_vector<Pod, uint64_t>>/1                         1.55 ns         1.54 ns    453392571
+BenchRange<fast_vector<Pod, uint64_t>>/8                         4.06 ns         4.06 ns    172654663
+BenchRange<fast_vector<Pod, uint64_t>>/64                        26.9 ns         26.8 ns     26172111
+BenchRange<fast_vector<Pod, uint64_t>>/512                        336 ns          336 ns      2088481
+BenchRange<fast_vector<Pod, uint64_t>>/1024                      1196 ns         1196 ns       584643
+BenchRange<std::set<Pod>>/1                                      4.63 ns         4.63 ns    151239999
+BenchRange<std::set<Pod>>/8                                      47.1 ns         47.1 ns     15824084
+BenchRange<std::set<Pod>>/64                                      403 ns          403 ns      1709936
+BenchRange<std::set<Pod>>/512                                    6396 ns         6396 ns       107726
+BenchRange<std::set<Pod>>/1024                                  15838 ns        15838 ns        44031
+BenchRange<tsl::ordered_set<Pod, PodHash, PodEqual>>/1           1.93 ns         1.93 ns    362566444
+BenchRange<tsl::ordered_set<Pod, PodHash, PodEqual>>/8           9.83 ns         9.83 ns     70952739
+BenchRange<tsl::ordered_set<Pod, PodHash, PodEqual>>/64          77.5 ns         77.5 ns      9023973
+BenchRange<tsl::ordered_set<Pod, PodHash, PodEqual>>/512          813 ns          722 ns       982705
+BenchRange<tsl::ordered_set<Pod, PodHash, PodEqual>>/1024        2242 ns         1861 ns       381621
+BenchErase<fast_vector<Pod, uint64_t>>/1                         10.8 ns         10.6 ns     66012520
+BenchErase<fast_vector<Pod, uint64_t>>/8                         11.8 ns         11.3 ns     61839455
+BenchErase<fast_vector<Pod, uint64_t>>/64                        14.4 ns         12.1 ns     54608778
+BenchErase<fast_vector<Pod, uint64_t>>/512                       15.2 ns         14.8 ns     51200169
+BenchErase<fast_vector<Pod, uint64_t>>/1024                      16.4 ns         16.4 ns     41845266
+BenchErase<std::set<Pod>>/1                                      9.91 ns         9.10 ns    110715996
+BenchErase<std::set<Pod>>/8                                      21.8 ns         19.1 ns     36815323
+BenchErase<std::set<Pod>>/64                                     33.5 ns         33.5 ns     20846365
+BenchErase<std::set<Pod>>/512                                    93.2 ns         93.2 ns      7519980
+BenchErase<std::set<Pod>>/1024                                    147 ns          123 ns      5818871
+BenchErase<tsl::ordered_set<Pod, PodHash, PodEqual>>/1           11.2 ns         10.9 ns     64541857
+BenchErase<tsl::ordered_set<Pod, PodHash, PodEqual>>/8           14.4 ns         14.4 ns     49803075
+BenchErase<tsl::ordered_set<Pod, PodHash, PodEqual>>/64          16.9 ns         16.9 ns     39009795
+BenchErase<tsl::ordered_set<Pod, PodHash, PodEqual>>/512         84.8 ns         84.8 ns      8265803
+BenchErase<tsl::ordered_set<Pod, PodHash, PodEqual>>/1024         394 ns          394 ns      1818358

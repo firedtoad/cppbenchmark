@@ -1,0 +1,10 @@
+2022-11-12T14:42:18+08:00
+Running ./bin/string_view
+Run on (8 X 50 MHz CPU s)
+Load Average: 7.86, 3.83, 2.88
+---------------------------------------------------------
+Benchmark               Time             CPU   Iterations
+---------------------------------------------------------
+BenchAddConst         129 ns          129 ns      5402900
+BenchAddRaw           122 ns          122 ns      5750753
+BenchAddRValue        125 ns          125 ns      5598490

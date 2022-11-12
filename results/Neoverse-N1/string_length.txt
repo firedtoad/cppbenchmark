@@ -1,0 +1,25 @@
+2022-11-12T14:44:24+08:00
+Running ./bin/string_length
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.51, 5.47, 3.61
+----------------------------------------------------------------
+Benchmark                      Time             CPU   Iterations
+----------------------------------------------------------------
+BenchNaiveStrlen/1          8.73 ns         8.68 ns     80601518
+BenchNaiveStrlen/8          18.3 ns         18.3 ns     38240383
+BenchNaiveStrlen/64          131 ns          131 ns      5353591
+BenchNaiveStrlen/512         520 ns          517 ns      1354758
+BenchNaiveStrlen/4096        517 ns          517 ns      1354526
+BenchNaiveStrlen/8192        520 ns          517 ns      1354392
+BenchSysStrlen/1            9.02 ns         9.02 ns     77663044
+BenchSysStrlen/8            9.07 ns         9.02 ns     77658529
+BenchSysStrlen/64           12.4 ns         12.4 ns     56629796
+BenchSysStrlen/512          20.7 ns         20.6 ns     33891300
+BenchSysStrlen/4096         20.6 ns         20.6 ns     33924235
+BenchSysStrlen/8192         20.6 ns         20.6 ns     33902882
+BenchWrapStrLen/1           10.1 ns         10.0 ns     69870349
+BenchWrapStrLen/8           10.1 ns         10.1 ns     69866945
+BenchWrapStrLen/64          13.4 ns         13.4 ns     52424498
+BenchWrapStrLen/512         22.2 ns         22.2 ns     31594698
+BenchWrapStrLen/4096        22.3 ns         22.2 ns     31563749
+BenchWrapStrLen/8192        22.3 ns         22.2 ns     31570639

@@ -1,0 +1,15 @@
+2022-11-12T14:40:12+08:00
+Running ./bin/string_cat
+Run on (8 X 50 MHz CPU s)
+Load Average: 0.13, 0.83, 1.88
+---------------------------------------------------------------
+Benchmark                     Time             CPU   Iterations
+---------------------------------------------------------------
+BenchStrNCat               54.6 ns         54.5 ns     13147525
+BenchStdStringCat          95.2 ns         95.2 ns      6901091
+BenchStreamStringCat        638 ns          578 ns      1195322
+BenchBoostStrCat            759 ns          757 ns       918282
+BenchAbStrCat               126 ns          101 ns      6966488
+BenchPBStrCat              98.2 ns         82.3 ns      8515214
+BenchAbStrFormat            200 ns          200 ns      3508906
+BenchFormat                 350 ns          313 ns      2236668

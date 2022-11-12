@@ -1,0 +1,9 @@
+2022-11-12T14:44:52+08:00
+Running ./bin/function_lambda
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.31, 5.72, 3.75
+------------------------------------------------------
+Benchmark            Time             CPU   Iterations
+------------------------------------------------------
+BM_array          25.1 ns         25.1 ns     27916256
+BM_function       91.1 ns         90.8 ns      7641217

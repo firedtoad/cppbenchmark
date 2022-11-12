@@ -1,0 +1,13 @@
+2022-11-12T14:44:16+08:00
+Running ./bin/map_find_hetero
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.55, 5.43, 3.58
+------------------------------------------------------------------------------------------------------------
+Benchmark                                                                  Time             CPU   Iterations
+------------------------------------------------------------------------------------------------------------
+BenchStringLess                                                         98.1 ns         97.4 ns      6748762
+BenchStringCompare                                                      96.1 ns         96.0 ns      7409349
+BenchOrderMapStringSSO<std::map<std::string, int>>                      1220 ns         1219 ns       572083
+BenchOrderMapStringSSO<std::map<std::string, int, std::less<>>>         1323 ns         1322 ns       531060
+BenchOrderMapStringNoSSO<std::map<std::string, int>>                    1465 ns         1464 ns       468694
+BenchOrderMapStringNoSSO<std::map<std::string, int, std::less<>>>       1425 ns         1424 ns       493180

@@ -1,0 +1,10 @@
+2022-11-12T14:41:50+08:00
+Running ./bin/predict
+Run on (8 X 50 MHz CPU s)
+Load Average: 7.70, 3.45, 2.73
+-----------------------------------------------------
+Benchmark           Time             CPU   Iterations
+-----------------------------------------------------
+BM_seq         889342 ns       889338 ns          785
+BM_alter       921858 ns       921854 ns          759
+BM_rand       1411791 ns      1411781 ns          495

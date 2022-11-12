@@ -1,0 +1,13 @@
+2022-11-12T14:45:59+08:00
+Running ./bin/spsc
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.10, 6.17, 4.04
+-----------------------------------------------------
+Benchmark           Time             CPU   Iterations
+-----------------------------------------------------
+Boost_Spsc        129 ns          129 ns      5400091
+SPSCQueue        97.6 ns         97.5 ns      7192352
+RWQueue           277 ns          277 ns      2525591
+RBQueue           135 ns          135 ns      5145217
+VYQueue           184 ns          184 ns      3806485
+TBBQueue          487 ns          487 ns      1435111

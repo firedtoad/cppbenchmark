@@ -1,0 +1,14 @@
+2022-11-12T17:00:02+08:00
+Running ./bin/branch
+Run on (8 X 2400 MHz CPU s)
+CPU Caches:
+  L1 Data 64 KiB (x8)
+  L1 Instruction 64 KiB (x8)
+  L2 Unified 512 KiB (x8)
+  L3 Unified 32768 KiB (x1)
+Load Average: 9.58, 7.83, 6.04
+--------------------------------------------------------------
+Benchmark                    Time             CPU   Iterations
+--------------------------------------------------------------
+BM_DeleteNullptr           271 ns          271 ns      2578036
+BM_DeleteVecNullptr        103 ns          103 ns      6819056

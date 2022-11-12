@@ -1,0 +1,21 @@
+2022-11-12T14:46:10+08:00
+Running ./bin/string_move
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.08, 6.26, 4.10
+-------------------------------------------------------------------
+Benchmark                         Time             CPU   Iterations
+-------------------------------------------------------------------
+BenchStringMove<LogCopy>        294 ns          294 ns      2326590
+BenchStringMove<LogMove>        271 ns          271 ns      2574276
+BenchCopy                       107 ns          107 ns      6537037
+BenchRvo                       57.1 ns         57.1 ns     12265321
+BenchUnmapCopy/1                537 ns          537 ns      1300956
+BenchUnmapCopy/8                547 ns          547 ns      1279299
+BenchUnmapCopy/64               603 ns          603 ns      1155226
+BenchUnmapCopy/512              667 ns          667 ns      1058766
+BenchUnmapCopy/1024             711 ns          711 ns       983611
+BenchUnmapRvo/1                 539 ns          539 ns      1299220
+BenchUnmapRvo/8                 541 ns          541 ns      1292892
+BenchUnmapRvo/64                570 ns          570 ns      1226132
+BenchUnmapRvo/512               573 ns          573 ns      1216784
+BenchUnmapRvo/1024              616 ns          616 ns      1140811

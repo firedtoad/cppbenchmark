@@ -1,0 +1,24 @@
+2022-11-12T14:44:42+08:00
+Running ./bin/string_from
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.36, 5.64, 3.70
+----------------------------------------------------------------------------------------------
+Benchmark                                                    Time             CPU   Iterations
+----------------------------------------------------------------------------------------------
+BenchStreamStringFrom<std::stringstream, uint64_t>         654 ns          653 ns      1064070
+BenchStreamStringFrom<std::ostringstream, uint64_t>        536 ns          535 ns      1306475
+BenchStreamStringFromF<std::stringstream, float>           979 ns          977 ns       715926
+BenchStreamStringFromF<std::ostringstream, float>          860 ns          860 ns       813563
+BenchItoa<uint64_t>                                        124 ns          124 ns      5627042
+BenchGcvt<float>                                           480 ns          480 ns      1456870
+BenchToString<uint64_t>                                    172 ns          172 ns      4066268
+BenchToStringF<float>                                      783 ns          783 ns       892401
+BenchStdToChars<uint64_t>                                  144 ns          144 ns      4853603
+BenchStdToCharsF<float>                                    144 ns          144 ns      4847897
+BenchBoostStringFrom<std::string>                          403 ns          403 ns      1737286
+BenchBoostStringTof<std::string>                           712 ns          711 ns       981962
+BenchAbFastIntToBuffer<uint64_t>                          22.5 ns         22.5 ns     31141788
+BenchAbSixDigitsToBuffer<float>                           22.7 ns         22.7 ns     30818736
+BenchAbStrFormat<uint64_t>                                 126 ns          126 ns      5542535
+BenchAbStrFormatF<float>                                   169 ns          169 ns      4144455
+BenchPBSimpleItoa<uint64_t>                               29.2 ns         29.2 ns     23966280

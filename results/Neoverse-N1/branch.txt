@@ -1,0 +1,9 @@
+2022-11-12T14:41:02+08:00
+Running ./bin/branch
+Run on (8 X 50 MHz CPU s)
+Load Average: 6.39, 2.49, 2.40
+--------------------------------------------------------------
+Benchmark                    Time             CPU   Iterations
+--------------------------------------------------------------
+BM_DeleteNullptr           251 ns          251 ns      2787947
+BM_DeleteVecNullptr        413 ns          412 ns      1703592

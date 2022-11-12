@@ -1,0 +1,9 @@
+2022-11-12T14:41:12+08:00
+Running ./bin/fiber_brpc
+Run on (8 X 50 MHz CPU s)
+Load Average: 6.64, 2.67, 2.46
+----------------------------------------------------------
+Benchmark                Time             CPU   Iterations
+----------------------------------------------------------
+BenchBackground       2562 ns         1876 ns       412275
+BenchUrgent           2615 ns         2227 ns       328880

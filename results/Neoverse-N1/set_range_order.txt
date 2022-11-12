@@ -1,0 +1,15 @@
+2022-11-12T14:41:31+08:00
+Running ./bin/set_range_order
+Run on (8 X 50 MHz CPU s)
+Load Average: 7.27, 3.08, 2.60
+--------------------------------------------------------------------------------------------------
+Benchmark                                                        Time             CPU   Iterations
+--------------------------------------------------------------------------------------------------
+BenchRangeOrderSetInt<std::set<int>>                       1154625 ns      1154599 ns          596
+BenchRangeOrderSetInt<tsl::ordered_set<int>>               1016745 ns      1016711 ns          694
+BenchRangeOrderSetInt<absl::btree_set<int>>               38962690 ns     38962111 ns           18
+BenchRangeOrderSetInt<phmap::btree_set<int>>               6628612 ns      6628508 ns          105
+BenchRangeOrderSetString<std::set<std::string>>           10305664 ns     10305528 ns           67
+BenchRangeOrderSetString<tsl::ordered_set<std::string>>    1695420 ns      1695315 ns          412
+BenchRangeOrderSetString<absl::btree_set<std::string>>    82609191 ns     82606550 ns            8
+BenchRangeOrderSetString<phmap::btree_set<std::string>>   21640281 ns     21639634 ns           32

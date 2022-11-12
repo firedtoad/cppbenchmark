@@ -1,0 +1,28 @@
+2022-11-12T14:45:13+08:00
+Running ./bin/handler
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.22, 5.87, 3.84
+---------------------------------------------------------
+Benchmark               Time             CPU   Iterations
+---------------------------------------------------------
+BM_map/1              114 ns          114 ns      6142750
+BM_map/8              161 ns          161 ns      4345393
+BM_map/64             220 ns          220 ns      3171704
+BM_map/512            281 ns          281 ns      2493050
+BM_map/4096           367 ns          367 ns      1902104
+BM_map/32768          725 ns          724 ns       959052
+BM_map/65536          979 ns          979 ns       720486
+BM_unmap/1            130 ns          130 ns      5432058
+BM_unmap/8            130 ns          130 ns      5418720
+BM_unmap/64           130 ns          130 ns      5419010
+BM_unmap/512          130 ns          130 ns      5388615
+BM_unmap/4096         141 ns          141 ns      4954969
+BM_unmap/32768        187 ns          187 ns      3757868
+BM_unmap/65536        272 ns          272 ns      2605987
+BM_array/1           20.4 ns         20.4 ns     34282710
+BM_array/8           20.3 ns         20.3 ns     34492478
+BM_array/64          20.3 ns         20.3 ns     34487624
+BM_array/512         20.4 ns         20.4 ns     34377540
+BM_array/4096        20.4 ns         20.4 ns     34340740
+BM_array/32768       22.7 ns         22.7 ns     30797854
+BM_array/65536       23.5 ns         23.5 ns     29712762

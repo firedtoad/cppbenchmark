@@ -1,0 +1,36 @@
+2022-11-12T16:58:59+08:00
+Running ./bin/format
+Run on (8 X 2400 MHz CPU s)
+CPU Caches:
+  L1 Data 64 KiB (x8)
+  L1 Instruction 64 KiB (x8)
+  L2 Unified 512 KiB (x8)
+  L3 Unified 32768 KiB (x1)
+Load Average: 8.21, 7.21, 5.72
+----------------------------------------------------------------------------------------------
+Benchmark                                                    Time             CPU   Iterations
+----------------------------------------------------------------------------------------------
+BenchStreamStringFrom<std::stringstream, uint64_t>         796 ns          796 ns       878913
+BenchStreamStringFrom<std::ostringstream, uint64_t>        630 ns          630 ns      1111780
+BenchStreamStringFromF<std::stringstream, float>          1401 ns         1401 ns       499079
+BenchStreamStringFromF<std::ostringstream, float>         1260 ns         1260 ns       553130
+BenchToString<uint64_t>                                    175 ns          175 ns      3984452
+BenchToStringF<float>                                      840 ns          840 ns       832754
+BenchStdToChars<uint64_t>                                 27.5 ns         27.5 ns     25406048
+BenchBoostStringFrom<std::string>                          143 ns          143 ns      4890348
+BenchBoostStringTof<std::string>                           793 ns          793 ns       882479
+BenchAbFastIntToBuffer<uint64_t>                           118 ns          118 ns      5940989
+BenchAbSixDigitsToBuffer<float>                            120 ns          120 ns      5814581
+BenchAbStrFormat<uint64_t>                                 704 ns          703 ns       989870
+BenchAbStrFormatF<float>                                  1108 ns         1108 ns       631808
+BenchFollyTo<uint64_t>                                     114 ns          114 ns      6143578
+BenchFollyTof<float>                                       200 ns          200 ns      3490733
+BenchFollyToInt<uint64_t>                                 41.0 ns         41.0 ns     17073694
+BenchFollyToFloat<float>                                   221 ns          221 ns      3152188
+BenchAbSimpleToInt<uint64_t>                               240 ns          240 ns      2920496
+BenchAbSimpleToFloat<float>                                839 ns          839 ns       840835
+BenchStringSplitStream/threads:1                          1168 ns         1168 ns       598368
+BenchStringSplitStream/threads:2                           686 ns         1150 ns       610834
+BenchStringSplitStream/threads:4                           527 ns         1141 ns       613660
+BenchStringSplitStream/threads:8                           392 ns         1136 ns       615128
+0

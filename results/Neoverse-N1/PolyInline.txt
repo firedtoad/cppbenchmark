@@ -1,0 +1,9 @@
+2022-11-12T14:45:10+08:00
+Running ./bin/PolyInline
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.22, 5.87, 3.84
+----------------------------------------------------------------
+Benchmark                      Time             CPU   Iterations
+----------------------------------------------------------------
+BenchPureCall/1024          3193 ns         3191 ns       219366
+BenchVirtualCall/1024       3285 ns         3281 ns       213304

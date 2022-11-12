@@ -1,0 +1,91 @@
+2022-11-12T16:56:45+08:00
+Running ./bin/sorted_set
+Run on (8 X 2400 MHz CPU s)
+CPU Caches:
+  L1 Data 64 KiB (x8)
+  L1 Instruction 64 KiB (x8)
+  L2 Unified 512 KiB (x8)
+  L3 Unified 32768 KiB (x1)
+Load Average: 6.92, 6.56, 5.31
+--------------------------------------------------------------------------------------------------------
+Benchmark                                                              Time             CPU   Iterations
+--------------------------------------------------------------------------------------------------------
+BenchInsert<sorted_vector<uint64_t>>/1                              30.5 ns         30.5 ns     22961759
+BenchInsert<sorted_vector<uint64_t>>/8                               275 ns          275 ns      2543116
+BenchInsert<sorted_vector<uint64_t>>/64                             2814 ns         2813 ns       248413
+BenchInsert<sorted_vector<uint64_t>>/512                           45155 ns        45149 ns        15489
+BenchInsert<sorted_vector<uint64_t>>/1024                         134492 ns       134473 ns         5198
+BenchInsert<std::set<uint64_t>>/1                                   34.9 ns         34.9 ns     20111119
+BenchInsert<std::set<uint64_t>>/8                                    458 ns          458 ns      1529117
+BenchInsert<std::set<uint64_t>>/64                                  5891 ns         5890 ns       118880
+BenchInsert<std::set<uint64_t>>/512                                54929 ns        54904 ns        12726
+BenchInsert<std::set<uint64_t>>/1024                              113579 ns       113558 ns         6162
+BenchInsert<tsl::ordered_set<uint64_t>>/1                           93.5 ns         93.4 ns      7507213
+BenchInsert<tsl::ordered_set<uint64_t>>/8                            514 ns          514 ns      1363150
+BenchInsert<tsl::ordered_set<uint64_t>>/64                          3508 ns         3508 ns       199549
+BenchInsert<tsl::ordered_set<uint64_t>>/512                        27624 ns        27619 ns        25340
+BenchInsert<tsl::ordered_set<uint64_t>>/1024                       55269 ns        55259 ns        12676
+BenchInsertPod<sorted_vector<Pod>>/1                                30.5 ns         30.5 ns     22970969
+BenchInsertPod<sorted_vector<Pod>>/8                                 272 ns          272 ns      2575743
+BenchInsertPod<sorted_vector<Pod>>/64                               3035 ns         3035 ns       230743
+BenchInsertPod<sorted_vector<Pod>>/512                             52300 ns        52292 ns        13377
+BenchInsertPod<sorted_vector<Pod>>/1024                           161048 ns       161034 ns         4347
+BenchInsertPodMap<sorted_vector_map<uint64_t, PodMap>>/8             273 ns          273 ns      2554279
+BenchInsertPodMap<sorted_vector_map<uint64_t, PodMap>>/64           3034 ns         3034 ns       230546
+BenchInsertPodMap<sorted_vector_map<uint64_t, PodMap>>/512         51880 ns        51875 ns        13480
+BenchInsertPodMap<sorted_vector_map<uint64_t, PodMap>>/1024       160209 ns       160183 ns         4371
+BenchInsertPod<std::set<Pod>>/1                                     33.6 ns         33.6 ns     20754334
+BenchInsertPod<std::set<Pod>>/8                                      457 ns          457 ns      1533344
+BenchInsertPod<std::set<Pod>>/64                                    5907 ns         5907 ns       118276
+BenchInsertPod<std::set<Pod>>/512                                  55343 ns        55335 ns        12664
+BenchInsertPod<std::set<Pod>>/1024                                115504 ns       115493 ns         6057
+BenchInsertPod<tsl::ordered_set<Pod, PodHash, PodEqual>>/1          93.7 ns         93.7 ns      7478296
+BenchInsertPod<tsl::ordered_set<Pod, PodHash, PodEqual>>/8           532 ns          532 ns      1316555
+BenchInsertPod<tsl::ordered_set<Pod, PodHash, PodEqual>>/64         3580 ns         3580 ns       195492
+BenchInsertPod<tsl::ordered_set<Pod, PodHash, PodEqual>>/512       28711 ns        28708 ns        24373
+BenchInsertPod<tsl::ordered_set<Pod, PodHash, PodEqual>>/1024      57474 ns        57468 ns        12168
+BenchFind<sorted_vector<uint64_t>>/1                                5.39 ns         5.39 ns    106562580
+BenchFind<sorted_vector<uint64_t>>/8                                12.5 ns         12.5 ns     48925033
+BenchFind<sorted_vector<uint64_t>>/64                               17.0 ns         17.0 ns     41486991
+BenchFind<sorted_vector<uint64_t>>/512                              25.1 ns         25.1 ns     27865167
+BenchFind<sorted_vector<uint64_t>>/1024                             29.8 ns         29.7 ns     23416201
+BenchFind<std::set<uint64_t>>/1                                     6.63 ns         6.63 ns    105102517
+BenchFind<std::set<uint64_t>>/8                                     14.6 ns         14.6 ns     45032002
+BenchFind<std::set<uint64_t>>/64                                    25.3 ns         25.3 ns     28892146
+BenchFind<std::set<uint64_t>>/512                                   39.5 ns         39.5 ns     17839941
+BenchFind<std::set<uint64_t>>/1024                                  42.9 ns         42.9 ns     15907651
+BenchFind<tsl::ordered_set<uint64_t>>/1                             7.40 ns         7.40 ns     94661881
+BenchFind<tsl::ordered_set<uint64_t>>/8                             14.9 ns         14.9 ns     40571782
+BenchFind<tsl::ordered_set<uint64_t>>/64                            17.5 ns         17.5 ns     38929774
+BenchFind<tsl::ordered_set<uint64_t>>/512                           18.3 ns         18.3 ns     38056645
+BenchFind<tsl::ordered_set<uint64_t>>/1024                          18.6 ns         18.6 ns     38700322
+BenchRange<sorted_vector<uint64_t>>/1                               1.64 ns         1.64 ns    426967642
+BenchRange<sorted_vector<uint64_t>>/8                               13.4 ns         13.4 ns     52249018
+BenchRange<sorted_vector<uint64_t>>/64                              23.2 ns         23.2 ns     30121740
+BenchRange<sorted_vector<uint64_t>>/512                              165 ns          165 ns      4232688
+BenchRange<sorted_vector<uint64_t>>/1024                             323 ns          323 ns      2227910
+BenchRange<std::set<uint64_t>>/1                                    4.63 ns         4.63 ns    151289723
+BenchRange<std::set<uint64_t>>/8                                    44.6 ns         44.6 ns     15569072
+BenchRange<std::set<uint64_t>>/64                                    393 ns          393 ns      1779462
+BenchRange<std::set<uint64_t>>/512                                  3645 ns         3644 ns       195091
+BenchRange<std::set<uint64_t>>/1024                                 8048 ns         8047 ns        86924
+BenchRange<tsl::ordered_set<uint64_t>>/1                            1.55 ns         1.55 ns    453098130
+BenchRange<tsl::ordered_set<uint64_t>>/8                            7.02 ns         7.02 ns     99670135
+BenchRange<tsl::ordered_set<uint64_t>>/64                           62.4 ns         62.4 ns     11193178
+BenchRange<tsl::ordered_set<uint64_t>>/512                           436 ns          435 ns      1619584
+BenchRange<tsl::ordered_set<uint64_t>>/1024                          854 ns          854 ns       814340
+BenchErase<sorted_vector<uint64_t>>/1                               3.86 ns         3.86 ns    181269519
+BenchErase<sorted_vector<uint64_t>>/8                               7.13 ns         7.13 ns     97812917
+BenchErase<sorted_vector<uint64_t>>/64                              14.9 ns         14.9 ns     46806337
+BenchErase<sorted_vector<uint64_t>>/512                             29.6 ns         29.6 ns     21383884
+BenchErase<sorted_vector<uint64_t>>/1024                            80.9 ns         80.9 ns      6253253
+BenchErase<std::set<uint64_t>>/1                                    8.04 ns         8.04 ns     66267798
+BenchErase<std::set<uint64_t>>/8                                    20.4 ns         20.4 ns     34828832
+BenchErase<std::set<uint64_t>>/64                                   33.4 ns         33.4 ns     20172580
+BenchErase<std::set<uint64_t>>/512                                  55.0 ns         55.0 ns     12510408
+BenchErase<std::set<uint64_t>>/1024                                 64.2 ns         64.2 ns     10858629
+BenchErase<tsl::ordered_set<uint64_t>>/1                            10.8 ns         10.8 ns     65221276
+BenchErase<tsl::ordered_set<uint64_t>>/8                            16.6 ns         16.6 ns     41203243
+BenchErase<tsl::ordered_set<uint64_t>>/64                           17.2 ns         17.2 ns     40470042
+BenchErase<tsl::ordered_set<uint64_t>>/512                          28.9 ns         28.9 ns     24339359
+BenchErase<tsl::ordered_set<uint64_t>>/1024                         62.5 ns         62.5 ns     11230270

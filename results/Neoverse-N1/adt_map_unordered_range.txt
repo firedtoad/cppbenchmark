@@ -1,0 +1,37 @@
+2022-11-12T14:45:33+08:00
+Running ./bin/adt_map_unordered_range
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.16, 6.00, 3.93
+-----------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                             Time             CPU   Iterations
+-----------------------------------------------------------------------------------------------------------------------
+BenchRangeUnOrderMapInt<std::unordered_map<int, int>>                           1053585 ns      1053069 ns          689
+BenchRangeUnOrderMapInt<ska::unordered_map<int, int>>                           2336633 ns      2335112 ns          339
+BenchRangeUnOrderMapInt<ska::flat_hash_map<int, int>>                           1224883 ns      1224315 ns          571
+BenchRangeUnOrderMapInt<ska::bytell_hash_map<int, int>>                         1591035 ns      1590313 ns          440
+BenchRangeUnOrderMapInt<phmap::flat_hash_map<int, int>>                         1898699 ns      1897974 ns          369
+BenchRangeUnOrderMapInt<robin_hood::unordered_flat_map<int, int>>               1529427 ns      1528862 ns          457
+BenchRangeUnOrderMapInt<spp::sparse_hash_map<int, int>>                         1314623 ns      1314086 ns          533
+BenchRangeUnOrderMapInt<tsl::bhopscotch_map<int, int>>                          2941824 ns      2940420 ns          237
+BenchRangeUnOrderMapInt<tsl::hopscotch_map<int, int>>                           2989651 ns      2988370 ns          233
+BenchRangeUnOrderMapInt<tsl::robin_map<int, int>>                               1341037 ns      1340470 ns          523
+BenchRangeUnOrderMapInt<tsl::sparse_map<int, int>>                              1071381 ns      1071101 ns          642
+BenchRangeUnOrderMapInt<llvm::DenseMap<int, int>>                               3373018 ns      3371799 ns          207
+BenchRangeUnOrderMapInt<llvm::MapVector<int, int>>                               454828 ns       454740 ns         1539
+BenchRangeIndexedMap<llvm::IndexedMap<int>>                                     1043495 ns      1043323 ns          671
+BenchRangeUnOrderMapString<std::unordered_map<std::string, int>>                2302281 ns      2300909 ns          280
+BenchRangeUnOrderMapString<ska::unordered_map<std::string, int>>                4797043 ns      4794542 ns          142
+BenchRangeUnOrderMapString<ska::flat_hash_map<std::string, int>>                1788513 ns      1787678 ns          392
+BenchRangeUnOrderMapString<ska::bytell_hash_map<std::string, int>>              2160000 ns      2159019 ns          324
+BenchRangeUnOrderMapString<phmap::flat_hash_map<std::string, int>>              1931790 ns      1931001 ns          362
+BenchRangeUnOrderMapString<robin_hood::unordered_flat_map<std::string, int>>    1592390 ns      1591645 ns          428
+BenchRangeUnOrderMapString<spp::sparse_hash_map<std::string, int>>              1614578 ns      1613543 ns          426
+BenchRangeUnOrderMapString<tsl::bhopscotch_map<std::string, int>>               3793554 ns      3791813 ns          183
+BenchRangeUnOrderMapString<tsl::hopscotch_map<std::string, int>>                3768790 ns      3767014 ns          186
+BenchRangeUnOrderMapString<tsl::robin_map<std::string, int>>                    2061421 ns      2060549 ns          340
+BenchRangeUnOrderMapString<tsl::sparse_map<std::string, int>>                   1152468 ns      1151757 ns          607
+BenchRangeUnOrderMapString<llvm::DenseMap<llvm::StringRef, int>>                7019126 ns      7016275 ns          100
+BenchRangeUnOrderMapString<llvm::MapVector<llvm::StringRef, int>>                350323 ns       350161 ns         2001
+BenchRangeCharKeyMap<tsl::htrie_map<char, int>>                                 8255129 ns      8251338 ns           85
+BenchRangeCharKeyMap<tsl::array_map<char, int>>                                 9579035 ns      9574657 ns           73
+BenchRangeIndexedMapString<llvm::IndexedMap<std::string>>                       1111164 ns      1110720 ns          622

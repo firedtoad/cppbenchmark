@@ -1,0 +1,11 @@
+2022-11-12T14:45:09+08:00
+Running ./bin/adt_vec_row_col
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.24, 5.83, 3.82
+------------------------------------------------------
+Benchmark            Time             CPU   Iterations
+------------------------------------------------------
+BM_rowSmall   13002298 ns     12985280 ns           54
+BM_colSmall   16493275 ns     16466418 ns           42
+BM_row        43717212 ns     43696085 ns           16
+BM_col       266565356 ns    266436093 ns            3

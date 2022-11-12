@@ -1,0 +1,61 @@
+67892022-11-12T17:00:21+08:00
+Running ./bin/adt_list_remove
+Run on (8 X 2400 MHz CPU s)
+CPU Caches:
+  L1 Data 64 KiB (x8)
+  L1 Instruction 64 KiB (x8)
+  L2 Unified 512 KiB (x8)
+  L3 Unified 32768 KiB (x1)
+Load Average: 9.13, 7.84, 6.08
+-------------------------------------------------------------------------
+Benchmark                               Time             CPU   Iterations
+-------------------------------------------------------------------------
+BenchListRemove/1                     357 ns          360 ns      1945077
+BenchListRemove/8                     598 ns          600 ns      1164121
+BenchListRemove/64                   3562 ns         3565 ns       196262
+BenchListRemove/512                107967 ns       107966 ns         6493
+BenchListRemove/4096             23443200 ns     23441667 ns           30
+BenchListRemove/32768          1794327857 ns   1794259590 ns            1
+BenchListRemove/65536          2.5924e+10 ns   2.4876e+10 ns            1
+BenchForwardListRemove/1              392 ns          353 ns      1980678
+BenchForwardListRemove/8              644 ns          647 ns      1079918
+BenchForwardListRemove/64            7454 ns         7459 ns        93742
+BenchForwardListRemove/512         557196 ns       544709 ns         1278
+BenchForwardListRemove/4096      33135647 ns     23695683 ns           22
+BenchForwardListRemove/32768   6809255736 ns   6350816230 ns            1
+BenchForwardListRemove/65536   4.0373e+10 ns   3.9827e+10 ns            1
+BenchBUListRemove/1                   350 ns          352 ns      1986940
+BenchBUListRemove/8                   371 ns          374 ns      1871952
+BenchBUListRemove/64                  715 ns          718 ns       977347
+BenchBUListRemove/512                3292 ns         3297 ns       212988
+BenchBUListRemove/4096              28137 ns        28143 ns        25078
+BenchBUListRemove/32768            207151 ns       207200 ns         3394
+BenchBUListRemove/65536            447505 ns       447534 ns         1559
+BenchIntrusiveListRemove/1            353 ns          356 ns      1958856
+BenchIntrusiveListRemove/8            501 ns          503 ns      1389939
+BenchIntrusiveListRemove/64          2726 ns         2730 ns       256291
+BenchIntrusiveListRemove/512       102667 ns       102678 ns         6829
+BenchIntrusiveListRemove/4096     7734730 ns      7734915 ns           91
+BenchIntrusiveListRemove/32768  713849837 ns    713848940 ns            1
+BenchIntrusiveListRemove/65536 3425872143 ns   3425840230 ns            1
+BenchPlfListRemove/1                  377 ns          379 ns      1846007
+BenchPlfListRemove/8                  549 ns          551 ns      1274713
+BenchPlfListRemove/64                3605 ns         3607 ns       194111
+BenchPlfListRemove/512             111013 ns       111025 ns         6299
+BenchPlfListRemove/4096          11196609 ns     11196929 ns           62
+BenchPlfListRemove/32768       1025385657 ns   1025384170 ns            1
+BenchPlfListRemove/65536       4658921513 ns   4658906020 ns            1
+BenchAdtListRemove/1                  354 ns          356 ns      1963909
+BenchAdtListRemove/8                  570 ns          573 ns      1215983
+BenchAdtListRemove/64                7038 ns         7041 ns        99383
+BenchAdtListRemove/512             314631 ns       314665 ns         2225
+BenchAdtListRemove/4096          44225773 ns     44226441 ns           16
+BenchAdtListRemove/32768       2973340506 ns   2973334910 ns            1
+BenchAdtListRemove/65536       3.3121e+10 ns   3.3120e+10 ns            1
+BenchAdtSimpleListRemove/1            352 ns          356 ns      1964543
+BenchAdtSimpleListRemove/8            493 ns          496 ns      1410084
+BenchAdtSimpleListRemove/64          6307 ns         6310 ns       110911
+BenchAdtSimpleListRemove/512       306613 ns       306630 ns         2282
+BenchAdtSimpleListRemove/4096    27951757 ns     27951613 ns           25
+BenchAdtSimpleListRemove/32768 2212561676 ns   2212557620 ns            1
+BenchAdtSimpleListRemove/65536 1.0737e+10 ns   1.0737e+10 ns            1

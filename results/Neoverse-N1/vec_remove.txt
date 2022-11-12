@@ -1,0 +1,10 @@
+2022-11-12T14:46:06+08:00
+Running ./bin/vec_remove
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.09, 6.23, 4.08
+------------------------------------------------------
+Benchmark            Time             CPU   Iterations
+------------------------------------------------------
+BM_erase          4622 ns         4622 ns       150747
+BM_swap_pop        121 ns          120 ns      5820882
+BM_list           1877 ns         1872 ns       372892

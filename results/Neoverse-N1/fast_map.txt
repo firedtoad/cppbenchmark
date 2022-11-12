@@ -1,0 +1,47 @@
+2022-11-12T14:40:49+08:00
+Running ./bin/fast_map
+Run on (8 X 50 MHz CPU s)
+Load Average: 5.93, 2.21, 2.31
+-------------------------------------------------------------------------------------------
+Benchmark                                                 Time             CPU   Iterations
+-------------------------------------------------------------------------------------------
+BenchInsert<fast_vector_map<uint64_t, Pod>>/1          1185 ns         1173 ns       596654
+BenchInsert<fast_vector_map<uint64_t, Pod>>/8          9774 ns         9763 ns        71764
+BenchInsert<fast_vector_map<uint64_t, Pod>>/64        75290 ns        74670 ns         9380
+BenchInsert<fast_vector_map<uint64_t, Pod>>/512      588253 ns       586170 ns         1193
+BenchInsert<fast_vector_map<uint64_t, Pod>>/1024    1181999 ns      1171462 ns          598
+BenchInsert<std::map<uint64_t, uint64_t>>/1             316 ns          314 ns      2229954
+BenchInsert<std::map<uint64_t, uint64_t>>/8            2970 ns         2968 ns       235790
+BenchInsert<std::map<uint64_t, uint64_t>>/64          28213 ns        27968 ns        25058
+BenchInsert<std::map<uint64_t, uint64_t>>/512        256457 ns       253374 ns         2765
+BenchInsert<std::map<uint64_t, uint64_t>>/1024       533652 ns       530397 ns         1319
+BenchFind<fast_vector_map<uint64_t, Pod>>/1             177 ns          175 ns      3988239
+BenchFind<fast_vector_map<uint64_t, Pod>>/8             178 ns          178 ns      3934985
+BenchFind<fast_vector_map<uint64_t, Pod>>/64            180 ns          178 ns      3930231
+BenchFind<fast_vector_map<uint64_t, Pod>>/512           185 ns          184 ns      3823546
+BenchFind<fast_vector_map<uint64_t, Pod>>/1024          182 ns          181 ns      3825785
+BenchFind<std::map<uint64_t, uint64_t>>/1              70.2 ns         69.5 ns     10312158
+BenchFind<std::map<uint64_t, uint64_t>>/8               125 ns          125 ns      5498177
+BenchFind<std::map<uint64_t, uint64_t>>/64              182 ns          181 ns      3870695
+BenchFind<std::map<uint64_t, uint64_t>>/512             242 ns          242 ns      2867548
+BenchFind<std::map<uint64_t, uint64_t>>/1024            264 ns          263 ns      2663337
+BenchRange<fast_vector_map<uint64_t, Pod>>/1           32.9 ns         32.7 ns     21317943
+BenchRange<fast_vector_map<uint64_t, Pod>>/8            107 ns          107 ns      6469477
+BenchRange<fast_vector_map<uint64_t, Pod>>/64           624 ns          620 ns      1126765
+BenchRange<fast_vector_map<uint64_t, Pod>>/512         4766 ns         4739 ns       147742
+BenchRange<fast_vector_map<uint64_t, Pod>>/1024        9452 ns         9447 ns        74099
+BenchRange<std::map<uint64_t, Pod>>/1                  33.6 ns         32.9 ns     21347810
+BenchRange<std::map<uint64_t, Pod>>/8                   151 ns          147 ns      4825842
+BenchRange<std::map<uint64_t, Pod>>/64                 1248 ns         1217 ns       588046
+BenchRange<std::map<uint64_t, Pod>>/512               10536 ns        10523 ns        65842
+BenchRange<std::map<uint64_t, Pod>>/1024              21954 ns        21931 ns        31929
+BenchErase<fast_vector_map<uint64_t, Pod>>/1            177 ns          177 ns      3949195
+BenchErase<fast_vector_map<uint64_t, Pod>>/8            180 ns          180 ns      3882866
+BenchErase<fast_vector_map<uint64_t, Pod>>/64           187 ns          187 ns      3860350
+BenchErase<fast_vector_map<uint64_t, Pod>>/512          195 ns          195 ns      3578892
+BenchErase<fast_vector_map<uint64_t, Pod>>/1024         208 ns          207 ns      3370736
+BenchErase<std::map<uint64_t, uint64_t>>/1              102 ns          101 ns      6082985
+BenchErase<std::map<uint64_t, uint64_t>>/8              168 ns          167 ns      4190390
+BenchErase<std::map<uint64_t, uint64_t>>/64             219 ns          219 ns      3146855
+BenchErase<std::map<uint64_t, uint64_t>>/512            297 ns          296 ns      2358655
+BenchErase<std::map<uint64_t, uint64_t>>/1024           330 ns          330 ns      2138920

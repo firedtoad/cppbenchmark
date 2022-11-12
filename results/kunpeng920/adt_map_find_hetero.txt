@@ -1,0 +1,20 @@
+2022-11-12T16:58:03+08:00
+Running ./bin/adt_map_find_hetero
+Run on (8 X 2400 MHz CPU s)
+CPU Caches:
+  L1 Data 64 KiB (x8)
+  L1 Instruction 64 KiB (x8)
+  L2 Unified 512 KiB (x8)
+  L3 Unified 32768 KiB (x1)
+Load Average: 7.72, 6.91, 5.54
+----------------------------------------------------------------------------------------------------
+Benchmark                                                          Time             CPU   Iterations
+----------------------------------------------------------------------------------------------------
+BenchStringMapSSO<std::map<std::string, int>>                    697 ns          697 ns      1000950
+BenchStringMapSSO<std::unordered_map<std::string, int>>          214 ns          214 ns      2923882
+BenchStringMapSSO<llvm::DenseMap<llvm::StringRef, int>>         92.6 ns         92.6 ns      7943457
+BenchStringMapSSO<llvm::StringMap<int>>                          168 ns          168 ns      4096938
+BenchStringMapNoSSO<std::map<std::string, int>>                 1073 ns         1073 ns       663481
+BenchStringMapNoSSO<std::unordered_map<std::string, int>>        505 ns          504 ns      1313407
+BenchStringMapNoSSO<llvm::DenseMap<llvm::StringRef, int>>        175 ns          175 ns      3232540
+BenchStringMapNoSSO<llvm::StringMap<int>>                        237 ns          237 ns      3140101

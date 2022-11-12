@@ -1,0 +1,36 @@
+llvm::detail::DenseSetPair<unsigned char> size 1
+llvm::detail::DenseSetPair<unsigned short> size 2
+llvm::detail::DenseSetPair<unsigned int> size 4
+llvm::detail::DenseSetPair<unsigned long> size 8
+
+llvm::detail::DenseMapPair<unsigned char, unsigned char> size 2
+llvm::detail::DenseMapPair<unsigned short, unsigned short> size 4
+llvm::detail::DenseMapPair<unsigned int, unsigned int> size 8
+llvm::detail::DenseMapPair<unsigned long, unsigned long> size 16
+
+std::pair<unsigned char, unsigned char> size 2
+std::pair<unsigned short, unsigned short> size 4
+std::pair<unsigned int, unsigned int> size 8
+std::pair<unsigned long, unsigned long> size 16
+
+llvm::detail::DenseMapPair<unsigned char, unsigned char> size 2
+llvm::detail::DenseMapPair<unsigned short, unsigned short> size 4
+llvm::detail::DenseMapPair<unsigned int, unsigned int> size 8
+llvm::detail::DenseMapPair<unsigned long, unsigned long> size 16
+
+2022-11-12T16:56:38+08:00
+Running ./bin/adt_map_decay
+Run on (8 X 2400 MHz CPU s)
+CPU Caches:
+  L1 Data 64 KiB (x8)
+  L1 Instruction 64 KiB (x8)
+  L2 Unified 512 KiB (x8)
+  L3 Unified 32768 KiB (x1)
+Load Average: 6.82, 6.54, 5.30
+------------------------------------------------------------
+Benchmark                  Time             CPU   Iterations
+------------------------------------------------------------
+BM_unmap               29123 ns        29123 ns        24019
+BM_decay_map       143373145 ns    143369354 ns            5
+BM_DenseMap            19467 ns        19467 ns        35894
+BM_Decay_DenseMap   93530808 ns     93530818 ns            6

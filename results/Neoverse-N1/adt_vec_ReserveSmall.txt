@@ -1,0 +1,11 @@
+2022-11-12T14:46:04+08:00
+Running ./bin/adt_vec_ReserveSmall
+Run on (8 X 50 MHz CPU s)
+Load Average: 8.09, 6.20, 4.06
+------------------------------------------------------------------------------------------------------
+Benchmark                                                            Time             CPU   Iterations
+------------------------------------------------------------------------------------------------------
+BenchReserve<std::vector<uint32_t>>/65536                      1688889 ns      1687981 ns          419
+BenchReserveSmall<llvm::SmallVector<uint32_t, 65536>>/65536    1598489 ns      1598251 ns          437
+BenchReserve<std::vector<uint64_t>>/65536                      1695717 ns      1695411 ns          409
+BenchReserveSmall<llvm::SmallVector<uint64_t, 65536>>/65536    1577877 ns      1577590 ns          444

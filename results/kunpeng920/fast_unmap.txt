@@ -1,0 +1,112 @@
+2022-11-12T16:56:10+08:00
+Running ./bin/fast_unmap
+Run on (8 X 2400 MHz CPU s)
+CPU Caches:
+  L1 Data 64 KiB (x8)
+  L1 Instruction 64 KiB (x8)
+  L2 Unified 512 KiB (x8)
+  L3 Unified 32768 KiB (x1)
+Load Average: 6.06, 6.38, 5.21
+------------------------------------------------------------------------------------------------
+Benchmark                                                      Time             CPU   Iterations
+------------------------------------------------------------------------------------------------
+BenchInsert<fast_vector_map<uint64_t, Pod>>/1                268 ns          267 ns      2615277
+BenchInsert<fast_vector_map<uint64_t, Pod>>/8               1269 ns         1269 ns       559295
+BenchInsert<fast_vector_map<uint64_t, Pod>>/64              9427 ns         9424 ns        74200
+BenchInsert<fast_vector_map<uint64_t, Pod>>/512            86179 ns        86148 ns         7317
+BenchInsert<fast_vector_map<uint64_t, Pod>>/1024          195380 ns       195282 ns         3623
+BenchInsert<ska::flat_hash_map<uint64_t, Pod>>/1             215 ns          215 ns      3182661
+BenchInsert<ska::flat_hash_map<uint64_t, Pod>>/8             990 ns          989 ns       708815
+BenchInsert<ska::flat_hash_map<uint64_t, Pod>>/64           8389 ns         8385 ns        83333
+BenchInsert<ska::flat_hash_map<uint64_t, Pod>>/512         91532 ns        91488 ns         7637
+BenchInsert<ska::flat_hash_map<uint64_t, Pod>>/1024       209942 ns       209852 ns         3336
+BenchInsert<ska::bytell_hash_map<uint64_t, Pod>>/1           195 ns          195 ns      3595609
+BenchInsert<ska::bytell_hash_map<uint64_t, Pod>>/8           933 ns          932 ns       750667
+BenchInsert<ska::bytell_hash_map<uint64_t, Pod>>/64         7615 ns         7613 ns        91798
+BenchInsert<ska::bytell_hash_map<uint64_t, Pod>>/512       82381 ns        82343 ns         8516
+BenchInsert<ska::bytell_hash_map<uint64_t, Pod>>/1024     177628 ns       177549 ns         3930
+BenchInsert<std::unordered_map<uint64_t, Pod>>/1             286 ns          286 ns      2445263
+BenchInsert<std::unordered_map<uint64_t, Pod>>/8            1507 ns         1506 ns       462677
+BenchInsert<std::unordered_map<uint64_t, Pod>>/64          11519 ns        11516 ns        60877
+BenchInsert<std::unordered_map<uint64_t, Pod>>/512        106876 ns       106839 ns         6569
+BenchInsert<std::unordered_map<uint64_t, Pod>>/1024       274511 ns       274396 ns         2560
+BenchInsert<tsl::robin_map<uint64_t, Pod>>/1                 224 ns          224 ns      3116892
+BenchInsert<tsl::robin_map<uint64_t, Pod>>/8                1095 ns         1094 ns       640636
+BenchInsert<tsl::robin_map<uint64_t, Pod>>/64               9234 ns         9228 ns        75700
+BenchInsert<tsl::robin_map<uint64_t, Pod>>/512            104429 ns       104366 ns         6783
+BenchInsert<tsl::robin_map<uint64_t, Pod>>/1024           239598 ns       239449 ns         2915
+BenchFind<fast_vector_map<uint64_t, Pod>>/1                 7.23 ns         7.23 ns     96661225
+BenchFind<fast_vector_map<uint64_t, Pod>>/8                 8.00 ns         8.00 ns     87873076
+BenchFind<fast_vector_map<uint64_t, Pod>>/64                8.65 ns         8.65 ns     75519208
+BenchFind<fast_vector_map<uint64_t, Pod>>/512               8.83 ns         8.83 ns     75448563
+BenchFind<fast_vector_map<uint64_t, Pod>>/1024              9.13 ns         9.13 ns     71580227
+BenchFind<ska::flat_hash_map<uint64_t, Pod>>/1              11.6 ns         11.6 ns     60251972
+BenchFind<ska::flat_hash_map<uint64_t, Pod>>/8              15.3 ns         15.3 ns     53826619
+BenchFind<ska::flat_hash_map<uint64_t, Pod>>/64             15.2 ns         15.2 ns     50455243
+BenchFind<ska::flat_hash_map<uint64_t, Pod>>/512            19.1 ns         19.1 ns     37849495
+BenchFind<ska::flat_hash_map<uint64_t, Pod>>/1024           17.4 ns         17.4 ns     39487847
+BenchFind<ska::bytell_hash_map<uint64_t, Pod>>/1            11.8 ns         11.8 ns     59556647
+BenchFind<ska::bytell_hash_map<uint64_t, Pod>>/8            10.9 ns         10.9 ns     59373382
+BenchFind<ska::bytell_hash_map<uint64_t, Pod>>/64           11.7 ns         11.7 ns     59541540
+BenchFind<ska::bytell_hash_map<uint64_t, Pod>>/512          14.4 ns         14.4 ns     47032669
+BenchFind<ska::bytell_hash_map<uint64_t, Pod>>/1024         13.8 ns         13.8 ns     50477732
+BenchFind<std::unordered_map<uint64_t, Pod>>/1              11.6 ns         11.6 ns     60275137
+BenchFind<std::unordered_map<uint64_t, Pod>>/8              14.3 ns         14.3 ns     41596774
+BenchFind<std::unordered_map<uint64_t, Pod>>/64             19.2 ns         19.2 ns     36784537
+BenchFind<std::unordered_map<uint64_t, Pod>>/512            23.2 ns         23.2 ns     32153929
+BenchFind<std::unordered_map<uint64_t, Pod>>/1024           24.1 ns         24.1 ns     28678789
+BenchFind<tsl::robin_map<uint64_t, Pod>>/1                  10.5 ns         10.5 ns     66439538
+BenchFind<tsl::robin_map<uint64_t, Pod>>/8                  12.1 ns         12.1 ns     51585331
+BenchFind<tsl::robin_map<uint64_t, Pod>>/64                 13.3 ns         13.3 ns     51680762
+BenchFind<tsl::robin_map<uint64_t, Pod>>/512                18.2 ns         18.2 ns     38814652
+BenchFind<tsl::robin_map<uint64_t, Pod>>/1024               17.1 ns         17.1 ns     40158661
+BenchRange<fast_vector_map<uint64_t, Pod>>/1                1.54 ns         1.54 ns    453580800
+BenchRange<fast_vector_map<uint64_t, Pod>>/8                4.06 ns         4.05 ns    172607990
+BenchRange<fast_vector_map<uint64_t, Pod>>/64               27.0 ns         26.8 ns     26076472
+BenchRange<fast_vector_map<uint64_t, Pod>>/512               330 ns          330 ns      2124908
+BenchRange<fast_vector_map<uint64_t, Pod>>/1024             1120 ns         1119 ns       632071
+BenchRange<ska::flat_hash_map<uint64_t, Pod>>/1             3.67 ns         3.67 ns    194781476
+BenchRange<ska::flat_hash_map<uint64_t, Pod>>/8             30.4 ns         30.4 ns     17182307
+BenchRange<ska::flat_hash_map<uint64_t, Pod>>/64             294 ns          294 ns      4922903
+BenchRange<ska::flat_hash_map<uint64_t, Pod>>/512           2426 ns         2425 ns       290190
+BenchRange<ska::flat_hash_map<uint64_t, Pod>>/1024          5694 ns         5691 ns       128078
+BenchRange<ska::bytell_hash_map<uint64_t, Pod>>/1           3.10 ns         3.10 ns    231764212
+BenchRange<ska::bytell_hash_map<uint64_t, Pod>>/8           23.9 ns         23.9 ns     29380034
+BenchRange<ska::bytell_hash_map<uint64_t, Pod>>/64           175 ns          174 ns      3963354
+BenchRange<ska::bytell_hash_map<uint64_t, Pod>>/512         2012 ns         2011 ns       334822
+BenchRange<ska::bytell_hash_map<uint64_t, Pod>>/1024        7460 ns         7456 ns        85110
+BenchRange<std::unordered_map<uint64_t, Pod>>/1            0.964 ns        0.964 ns    726225454
+BenchRange<std::unordered_map<uint64_t, Pod>>/8             7.45 ns         7.45 ns     94015068
+BenchRange<std::unordered_map<uint64_t, Pod>>/64             101 ns          101 ns      6916868
+BenchRange<std::unordered_map<uint64_t, Pod>>/512           3395 ns         3394 ns       208939
+BenchRange<std::unordered_map<uint64_t, Pod>>/1024          8912 ns         8909 ns        79584
+BenchRange<tsl::robin_map<uint64_t, Pod>>/1                 4.03 ns         4.03 ns    171945500
+BenchRange<tsl::robin_map<uint64_t, Pod>>/8                 22.3 ns         22.3 ns     29284555
+BenchRange<tsl::robin_map<uint64_t, Pod>>/64                 201 ns          201 ns      3616249
+BenchRange<tsl::robin_map<uint64_t, Pod>>/512               2213 ns         2212 ns       315548
+BenchRange<tsl::robin_map<uint64_t, Pod>>/1024              5917 ns         5915 ns       116327
+BenchErase<fast_vector_map<uint64_t, Pod>>/1                10.7 ns         10.7 ns     65301163
+BenchErase<fast_vector_map<uint64_t, Pod>>/8                11.3 ns         11.3 ns     61903986
+BenchErase<fast_vector_map<uint64_t, Pod>>/64               13.3 ns         13.2 ns     54887780
+BenchErase<fast_vector_map<uint64_t, Pod>>/512              14.7 ns         14.7 ns     46296759
+BenchErase<fast_vector_map<uint64_t, Pod>>/1024             17.3 ns         17.3 ns     39508748
+BenchErase<ska::flat_hash_map<uint64_t, Pod>>/1             12.7 ns         12.7 ns     55205073
+BenchErase<ska::flat_hash_map<uint64_t, Pod>>/8             13.5 ns         13.5 ns     44532078
+BenchErase<ska::flat_hash_map<uint64_t, Pod>>/64            15.8 ns         15.8 ns     43616851
+BenchErase<ska::flat_hash_map<uint64_t, Pod>>/512           21.0 ns         21.0 ns     31809280
+BenchErase<ska::flat_hash_map<uint64_t, Pod>>/1024          22.8 ns         22.7 ns     30240238
+BenchErase<ska::bytell_hash_map<uint64_t, Pod>>/1           11.3 ns         11.3 ns     62140594
+BenchErase<ska::bytell_hash_map<uint64_t, Pod>>/8           10.8 ns         10.8 ns     64131018
+BenchErase<ska::bytell_hash_map<uint64_t, Pod>>/64          11.3 ns         11.3 ns     61322225
+BenchErase<ska::bytell_hash_map<uint64_t, Pod>>/512         15.7 ns         15.7 ns     45119931
+BenchErase<ska::bytell_hash_map<uint64_t, Pod>>/1024        17.2 ns         17.2 ns     40952894
+BenchErase<std::unordered_map<uint64_t, Pod>>/1             11.6 ns         11.6 ns     60184928
+BenchErase<std::unordered_map<uint64_t, Pod>>/8             16.9 ns         16.9 ns     41220081
+BenchErase<std::unordered_map<uint64_t, Pod>>/64            18.6 ns         18.6 ns     39980332
+BenchErase<std::unordered_map<uint64_t, Pod>>/512           25.2 ns         25.2 ns     27215402
+BenchErase<std::unordered_map<uint64_t, Pod>>/1024          29.1 ns         29.0 ns     24619727
+BenchErase<tsl::robin_map<uint64_t, Pod>>/1                 12.9 ns         12.9 ns     54181907
+BenchErase<tsl::robin_map<uint64_t, Pod>>/8                 13.7 ns         13.7 ns     45674745
+BenchErase<tsl::robin_map<uint64_t, Pod>>/64                15.8 ns         15.8 ns     45890430
+BenchErase<tsl::robin_map<uint64_t, Pod>>/512               25.2 ns         25.1 ns     29428361
+BenchErase<tsl::robin_map<uint64_t, Pod>>/1024              24.9 ns         24.9 ns     28085045
