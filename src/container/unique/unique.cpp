@@ -17,6 +17,7 @@
 #include <set>
 #include <unordered_set>
 #include <vector>
+#include <list>
 
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
@@ -40,7 +41,22 @@ static inline unsigned long random_()
     return xorshf96();
 }
 
-static void BM_SortUnique(benchmark::State &state)
+static void BM_SortUniqueList(benchmark::State &state)
+{
+    std::list<int> vi(state.range(0));
+    for (auto &it : vi)
+    {
+        it = random_() % state.range();
+    }
+    for (auto _ : state)
+    {
+        auto vec = vi;
+        vec.sort();
+        vec.erase(std::unique(vec.begin(), vec.end()), vec.end());
+    }
+}
+
+static void BM_SortUniqueVector(benchmark::State &state)
 {
     std::vector<int> vi(state.range(0));
     for (auto &it : vi)
@@ -89,7 +105,8 @@ template <class S> static void BM_UniqueManually(benchmark::State &state)
     }
 }
 
-BENCHMARK(BM_SortUnique)->Range(128, 1 << 20);
+BENCHMARK(BM_SortUniqueList)->Range(128, 1 << 20);
+BENCHMARK(BM_SortUniqueVector)->Range(128, 1 << 20);
 BENCHMARK_TEMPLATE(BM_UniqueConstructor, std::set<int>)->Range(128, 1 << 20);
 BENCHMARK_TEMPLATE(BM_UniqueConstructor, std::unordered_set<int>)->Range(128, 1 << 20);
 BENCHMARK_TEMPLATE(BM_UniqueManually, std::set<int>)->Range(128, 1 << 20);

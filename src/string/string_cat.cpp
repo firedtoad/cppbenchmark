@@ -19,6 +19,8 @@
 #include <boost/algorithm/string.hpp>
 #include <fmt/format.h>
 #include <google/protobuf/stubs/strutil.h>
+#include <google/protobuf/repeated_field.h>
+#include <google/protobuf/repeated_ptr_field.h>
 #include <random>
 #include <sstream>
 
@@ -114,12 +116,27 @@ static void BenchFormat(benchmark::State &state)
     }
 }
 BENCHMARK(BenchFormat);
-
+#include "utils/rss.h"
+const int SIZE=1024*100;
 int main(int argc, char **argv)
 {
 
     tag  = std::to_string(std::mt19937_64{std::random_device{}()}());
     tag1 = std::to_string(std::mt19937_64{std::random_device{}()}());
+
+    rusage rUsage;
+    FillRSS(rUsage);
+    google::protobuf::RepeatedField<int> rf;
+    for(auto i{0};i<SIZE;i++)
+    {
+        rf.Add(i);
+    }
+    printUsage(rUsage);
+    FillRSS(rUsage);
+    google::protobuf::RepeatedField<int> rf1;
+    rf1.Resize(SIZE,{});
+    printUsage(rUsage);
+
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

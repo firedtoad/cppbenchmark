@@ -99,7 +99,7 @@ BENCHMARK_TEMPLATE(BM_decay_map, phmap::flat_hash_map<int, int, Hasher>);
 
 BENCHMARK_TEMPLATE(BM_unmap, absl::flat_hash_map<int, int>);
 BENCHMARK_TEMPLATE(BM_decay_map, absl::flat_hash_map<int, int, Hasher>);
-#include "utils/utils.h"
+#include "utils/rss.h"
 
 static size_t memAlloc;
 static size_t alloc;

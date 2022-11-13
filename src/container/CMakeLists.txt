@@ -15,6 +15,9 @@ add_executable(map_range_unorder map/unorder_range.cpp)
 add_executable(map_erase_unorder map/unorder_erase.cpp)
 add_executable(map_decay map/decay.cpp)
 add_executable(map_reserve map/reserve.cpp)
+add_executable(map_pmr_order map/order_pmr.cpp)
+add_executable(map_pmr_unorder map/unorder_pmr.cpp)
+
 
 target_link_libraries(map_find_hetero PRIVATE absl::flat_hash_map)
 target_link_libraries(map_find_order PRIVATE absl::flat_hash_map)
@@ -26,6 +29,7 @@ target_link_libraries(map_erase_unorder PRIVATE absl::flat_hash_map)
 target_link_libraries(map_decay PRIVATE absl::flat_hash_map)
 target_link_libraries(map_reserve PRIVATE absl::flat_hash_map)
 
+
 add_executable(set_find_order set/order_find.cpp)
 add_executable(set_range_order set/order_range.cpp)
 add_executable(set_erase_order set/order_erase.cpp)
@@ -33,6 +37,8 @@ add_executable(set_find_unorder set/unorder_find.cpp)
 add_executable(set_range_unorder set/unorder_range.cpp)
 add_executable(set_erase_unorder set/unorder_erase.cpp)
 add_executable(set_reserve set/reserve.cpp)
+add_executable(set_pmr_order set/order_pmr.cpp)
+add_executable(set_pmr_unorder set/unorder_pmr.cpp)
 
 target_link_libraries(set_find_order PRIVATE absl::flat_hash_set)
 target_link_libraries(set_range_order PRIVATE absl::flat_hash_set)
@@ -43,6 +49,7 @@ target_link_libraries(set_erase_unorder PRIVATE absl::flat_hash_set)
 target_link_libraries(set_reserve PRIVATE absl::flat_hash_set)
 
 
+add_executable(vec_dimension vector/dimension.cpp)
 add_executable(vec_vectors vector/vectors.cpp)
 add_executable(vec_remove vector/remove.cpp)
 add_executable(vec_reserve vector/reserve.cpp)

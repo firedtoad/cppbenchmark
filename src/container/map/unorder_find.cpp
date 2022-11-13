@@ -74,7 +74,6 @@ template <class M> static void BenchUnOrderMapInt(benchmark::State &state)
 }
 
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, std::unordered_map<int, int>);
-
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, ska::unordered_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, ska::flat_hash_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, ska::bytell_hash_map<int, int>);
@@ -106,6 +105,26 @@ template <class M> static void BenchUnOrderMapString(benchmark::State &state)
     }
 }
 
+template <class M> static void BenchUnOrderMapStringLoadFactor(benchmark::State &state)
+{
+    M m;
+    m.reserve(65536);
+    std::vector<std::string> keys(65536);
+    m.max_load_factor(0.8);
+    for (auto i = 0; i < 65536; i++)
+    {
+        keys[i]    = "12345678901234561234567890123456" + std::to_string(_random());
+        m[keys[i]] = i;
+    }
+    for (auto _ : state)
+    {
+        auto kIndex = _random() % 65536;
+        auto c      = m.find(keys[kIndex].c_str());
+        benchmark::DoNotOptimize(c);
+    }
+}
+
+
 template <class M> static void BenchCharKeyMap(benchmark::State &state)
 {
     M m;
@@ -125,6 +144,8 @@ template <class M> static void BenchCharKeyMap(benchmark::State &state)
 }
 
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, std::unordered_map<std::string, int>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapStringLoadFactor, std::unordered_map<std::string, int>);
+
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, ska::unordered_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, ska::flat_hash_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, ska::bytell_hash_map<std::string, int>);
@@ -141,6 +162,7 @@ BENCHMARK_TEMPLATE(BenchCharKeyMap, tsl::array_map<char, int>);
 
 int main(int argc, char **argv)
 {
+    std::unique_ptr<int> up;
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;
