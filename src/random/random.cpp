@@ -16,8 +16,10 @@
 #include "pcg_extras.hpp"
 #include "pcg_random.hpp"
 #include "pcg_uint128.hpp"
+#include "pcg_variants.h"
 #include <absl/random/random.h>
 #include <benchmark/benchmark.h>
+#include <bitset>
 #include <boost/random.hpp>
 #include <functional>
 #include <random>
@@ -134,6 +136,63 @@ BENCHMARK_TEMPLATE(BenchAbRandom, pcg64_fast, absl::log_uniform_int_distribution
 
 int main(int argc, char **argv)
 {
+    //    pcg_engines::setseq_rxs_m_xs_16_16 ss;
+    //    ss.seed(time(nullptr));
+    //    {
+    //
+    //        pcg16i_random_t rng;
+    //        pcg16i_srandom_r(&rng, 0, 0);
+    //        std::cout << rng.state << " " << rng.inc << '\n';
+    //        pcg16i_advance_r(&rng, 65535);
+    //        std::cout << rng.state << " " << rng.inc << '\n';
+    //        std::cout << "0 " << pcg16i_random_r(&rng) << '\n';
+    //        std::cout << "1 " << pcg16i_random_r(&rng) << '\n';
+    //        std::cout << "0 " << pcg16i_random_r(&rng) << '\n';
+    //        std::cout << "1 " << pcg16i_random_r(&rng) << '\n';
+    //        std::cout << "1 " << pcg16i_random_r(&rng) << '\n';
+    //        std::cout << "1 " << pcg16i_random_r(&rng) << '\n';
+    //        std::cout << "1 " << pcg16i_random_r(&rng) << '\n';
+    //        std::unordered_map<uint16_t, uint16_t> mp;
+    //        for (auto i{0}; i < 100000; i++)
+    //        {
+    //            auto s = pcg16i_random_r(&rng);
+    //            if (mp[s]++ == 1)
+    //            {
+    //                std::cout << i << ' ' << s << '\n';
+    //                break;
+    //            }
+    //        }
+    //    }
+
+//    {
+//        pcg32i_random_t rng;
+//        pcg32i_srandom_r(&rng, 0, 0);
+//        std::vector<uint8_t> bset(size_t(UINT32_MAX) + 100, 0);
+//        for (size_t i{0}; i < size_t(UINT32_MAX) + 100; i++)
+//        {
+//            auto s = pcg32i_random_r(&rng);
+//            if (bset[s])
+//            {
+//                std::cout << i << ' ' << s << '\n';
+//                break;
+//            }
+//            bset[s] = 1;
+//        }
+//    }
+//    {
+//        std::linear_congruential_engine<uint32_t, 75, 74, 65537> lce;
+//        lce.seed(123456);
+//        std::unordered_map<uint16_t, uint16_t> mp;
+//        for (auto i{0}; i < 100000; i++)
+//        {
+//            auto s = lce();
+//            if (mp[s]++ == 1)
+//            {
+//                std::cout << i << ' ' << s << '\n';
+//                break;
+//            }
+//        }
+//    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

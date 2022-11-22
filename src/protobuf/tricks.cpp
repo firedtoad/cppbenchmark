@@ -32,7 +32,24 @@ static void BenchCopy(benchmark::State &state)
         benchmark::DoNotOptimize(report1.attackerform_size() + report1.defenderform_size());
     }
 }
-BENCHMARK(BenchCopy)->Range(1, 65536);
+BENCHMARK(BenchCopy)->Range(1, 1024);
+
+static void BenchSwap(benchmark::State &state)
+{
+    pb_report::Ground report;
+    for (auto i = 0; i < state.range(0); i++)
+    {
+        report.add_attackerform()->add_units();
+        report.add_defenderform()->add_units();
+    }
+    pb_report::Ground report1;
+    for (auto _ : state)
+    {
+         report1.Swap(&report);
+        benchmark::DoNotOptimize(report1.attackerform_size() + report1.defenderform_size());
+    }
+}
+BENCHMARK(BenchSwap)->Range(1, 1024);
 
 static void BenchAddAllocate(benchmark::State &state)
 {
@@ -56,7 +73,7 @@ static void BenchAddAllocate(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchAddAllocate)->Range(1, 65536);
+BENCHMARK(BenchAddAllocate)->Range(1, 1024);
 const int SIZE = 65536;
 int main(int argc, char **argv)
 {

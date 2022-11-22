@@ -21,7 +21,7 @@
 #include <sys/resource.h>
 #include <sys/time.h>
 
-template <class Tp> inline __attribute__((always_inline)) void DoNotOptimize(Tp &value)
+template <class Tp> inline __attribute__((always_inline)) void DoNotOptimize(Tp &&value)
 {
 #if defined(__clang__)
     asm volatile("" : "+r,m"(value) : : "memory");
@@ -91,5 +91,5 @@ int main(int argc, char *argv[])
     llvm::Twine t2 = s4;
     llvm::Twine t3 = t1 + t2;
     printUsage(usage);
-    DoNotOptimize(t3);
+    DoNotOptimize(t3.str());
 }
