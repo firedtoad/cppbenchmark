@@ -30,6 +30,7 @@
 
 #include "flat_hash_map.hpp"
 #include "parallel_hashmap/phmap.h"
+#include <malloc.h>
 
 const int PAGE_SIZE = sysconf(_SC_PAGESIZE);
 
@@ -84,6 +85,9 @@ void FillRSS(rusage &rUsage)
         newRss = getThreadRss();
         DoNotOptimize(p);
     }
+    auto info = mallinfo();
+    p         = (char *)calloc(info.fordblks, 1);
+    DoNotOptimize(p);
 }
 
 const int SIZE = 1024 * 1024;

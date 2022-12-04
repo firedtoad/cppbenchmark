@@ -46,7 +46,7 @@ static inline uint64_t _random()
 template <class M> static void BenchOrderMapInt(benchmark::State &state)
 {
     M m;
-    std::vector<int> keys;
+    std::vector<uint64_t> keys;
     keys.reserve(65536);
     for (auto i = 0; i < 65536; i++)
     {
@@ -97,9 +97,9 @@ BENCHMARK_TEMPLATE(BenchOrderMapString, tsl::ordered_map<std::string, int, std::
 BENCHMARK_TEMPLATE(BenchOrderMapString, absl::btree_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchOrderMapString, phmap::btree_map<std::string, int>);
 // BENCHMARK_TEMPLATE(BenchOrderMapString, boost::container::small_flat_map<std::string, int, 1024>);
+
 int main(int argc, char **argv)
 {
-
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

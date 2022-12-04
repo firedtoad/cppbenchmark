@@ -20,6 +20,7 @@
 #include <boost/container/flat_map.hpp>
 #include <folly/FBString.h>
 #include <folly/container/heap_vector_types.h>
+#include <folly/container/F14Map.h>
 #include <folly/sorted_vector_types.h>
 #include <iostream>
 #include <map>
@@ -83,6 +84,7 @@ BENCHMARK_TEMPLATE(BenchInsert, std::map<uint32_t, uint32_t>)->Range(1, 1 << 10)
 BENCHMARK_TEMPLATE(BenchInsert, boost::container::flat_map<uint32_t, uint32_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsert, eastl::vector_map<uint32_t, uint32_t>)->Range(1, 1 << 10);
 
+BENCHMARK_TEMPLATE(BenchInsert, folly::F14FastMap<uint32_t, uint32_t>)->Range(1, 1 << 10);
 template <typename V> static void BenchFind(benchmark::State &state)
 {
     V v;
@@ -104,6 +106,7 @@ BENCHMARK_TEMPLATE(BenchFind, folly::heap_vector_map<uint64_t, Pod>)->Range(1, 1
 BENCHMARK_TEMPLATE(BenchFind, std::map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFind, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFind, eastl::vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchFind, folly::F14FastMap<uint64_t, Pod>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchRange(benchmark::State &state)
 {
@@ -130,6 +133,7 @@ BENCHMARK_TEMPLATE(BenchRange, folly::heap_vector_map<uint64_t, Pod>)->Range(1, 
 BENCHMARK_TEMPLATE(BenchRange, std::map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRange, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRange, eastl::vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchRange, folly::F14FastMap<uint64_t, Pod>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchErase(benchmark::State &state)
 {
@@ -156,6 +160,7 @@ BENCHMARK_TEMPLATE(BenchErase, folly::heap_vector_map<uint64_t, Pod>)->Range(1, 
 BENCHMARK_TEMPLATE(BenchErase, std::map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchErase, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchErase, eastl::vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchErase, folly::F14FastMap<uint64_t, Pod>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchStringFind(benchmark::State &state)
 {

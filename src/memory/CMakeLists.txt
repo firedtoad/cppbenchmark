@@ -10,4 +10,6 @@ target_compile_options(size_allocator PRIVATE -fsized-deallocation)
 
 add_executable(overhead overhead.cpp)
 add_executable(overhead_tc overhead_tc.cpp)
+add_executable(overhead_je overhead_je.cpp)
 target_link_libraries(overhead_tc PRIVATE tcmalloc)
+target_link_libraries(overhead_je PRIVATE jemalloc dl)

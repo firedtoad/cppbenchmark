@@ -18,6 +18,7 @@ add_executable(map_reserve map/reserve.cpp)
 add_executable(map_pmr_order map/order_pmr.cpp)
 add_executable(map_pmr_unorder map/unorder_pmr.cpp)
 
+add_executable(map_combine map/combine.cpp)
 
 target_link_libraries(map_find_hetero PRIVATE absl::flat_hash_map)
 target_link_libraries(map_find_order PRIVATE absl::flat_hash_map)
