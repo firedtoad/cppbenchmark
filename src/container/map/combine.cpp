@@ -15,6 +15,8 @@
 
 #include <benchmark/benchmark.h>
 #include <map>
+#include <parallel_hashmap/phmap.h>
+#include <sstream>
 #include <unordered_map>
 
 static inline uint64_t xor_shift96()
@@ -95,10 +97,14 @@ BENCHMARK_TEMPLATE(BenchTwiceMapInt, std::map<uint32_t, std::map<uint32_t, uint3
 BENCHMARK_TEMPLATE(BenchCombineMapInt, std::unordered_map<uint64_t, uint64_t>);
 BENCHMARK_TEMPLATE(BenchTwiceMapInt, std::unordered_map<uint32_t, std::unordered_map<uint32_t, uint32_t>>);
 
+BENCHMARK_TEMPLATE(BenchCombineMapInt, phmap::flat_hash_map<uint64_t, uint64_t>);
+BENCHMARK_TEMPLATE(BenchTwiceMapInt, phmap::flat_hash_map<uint32_t, phmap::flat_hash_map<uint32_t, uint32_t>>);
 
 int main(int argc, char **argv)
 {
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
+    std::ostringstream  oss;
+    oss<<std::string("11");
     return 0;
 }

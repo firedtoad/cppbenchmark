@@ -98,6 +98,61 @@ BENCHMARK_TEMPLATE(BenchOrderMapString, absl::btree_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchOrderMapString, phmap::btree_map<std::string, int>);
 // BENCHMARK_TEMPLATE(BenchOrderMapString, boost::container::small_flat_map<std::string, int, 1024>);
 
+template <class M> static void BenchCombineMapInt(benchmark::State &state)
+{
+    M m;
+    std::vector<uint64_t> keys;
+    keys.reserve(65536);
+    for (auto i = 0; i < 65536; i++)
+    {
+        auto r = _random();
+        keys.push_back(r);
+        m[r] = i;
+    }
+    for (auto _ : state)
+    {
+        auto idx = keys[_random() % 65536];
+        auto c   = m.find(idx);
+        auto v   = c->second;
+        benchmark::DoNotOptimize(v);
+    }
+}
+
+template <class M> static void BenchTwiceMapInt(benchmark::State &state)
+{
+    M m;
+    std::vector<uint64_t> keys;
+    keys.reserve(65536);
+    for (auto i = 0; i < 65536; i++)
+    {
+        auto r     = _random();
+        uint32_t f = r >> 32;
+        uint32_t s = r & 0xFFFFFFFF;
+        keys.push_back(r);
+        m[f][s] = i;
+    }
+    for (auto _ : state)
+    {
+        auto idx   = keys[_random() % 65536];
+        uint32_t f = idx >> 32;
+        uint32_t s = idx & 0xFFFFFFFF;
+
+        auto c = m.find(f);
+        if (c != m.end())
+        {
+            auto d = c->second.find(s);
+            auto v = d->second;
+            benchmark::DoNotOptimize(v);
+        }
+    }
+}
+
+BENCHMARK_TEMPLATE(BenchCombineMapInt, std::map<uint64_t, uint64_t>);
+BENCHMARK_TEMPLATE(BenchTwiceMapInt, std::map<uint32_t, std::map<uint32_t, uint32_t>>);
+
+BENCHMARK_TEMPLATE(BenchCombineMapInt, std::unordered_map<uint64_t, uint64_t>);
+BENCHMARK_TEMPLATE(BenchTwiceMapInt, std::unordered_map<uint32_t, std::unordered_map<uint32_t, uint32_t>>);
+
 int main(int argc, char **argv)
 {
     benchmark::Initialize(&argc, argv);

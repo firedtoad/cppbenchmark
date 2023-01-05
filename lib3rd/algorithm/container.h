@@ -1993,4 +1993,28 @@ OutputIt c_partial_sum(const InputSequence& input, OutputIt output_first,
                             output_first, std::forward<BinaryOp>(op));
 }
 
+constexpr uint32_t LSHIFT_UINT16 =  sizeof(uint16_t) * __CHAR_BIT__;
+constexpr uint32_t LSHIFT_UINT32 =  sizeof(uint32_t) * __CHAR_BIT__;
+constexpr uint32_t LSHIFT_UINT48 =  (sizeof(uint32_t) + sizeof(uint16_t)) * __CHAR_BIT__;
+
+inline uint64_t combineIndex(uint32_t key1, uint32_t key2)
+{
+  return uint64_t(key1) << LSHIFT_UINT32 | key2;
+}
+
+inline uint32_t combineIndex(uint16_t key1, uint16_t key2)
+{
+  return uint32_t(key1) << LSHIFT_UINT16 | key2;
+}
+
+inline uint64_t combineIndex(uint32_t key1, uint16_t key2, uint16_t key3)
+{
+  return uint64_t(key1) << LSHIFT_UINT32 | uint64_t(key2) << LSHIFT_UINT16 | key3;
+}
+
+inline uint64_t combineIndex(uint16_t key1, uint16_t key2, uint16_t key3, uint16_t key4)
+{
+  return uint64_t(key1) << LSHIFT_UINT48  | uint64_t(key2) <<  LSHIFT_UINT32 | uint64_t(key3) << LSHIFT_UINT16 | key4;
+}
+
 #endif  // ABSL_ALGORITHM_CONTAINER_H_

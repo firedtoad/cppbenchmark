@@ -66,6 +66,36 @@ static void BenchStreamStringCat(benchmark::State &state)
 }
 BENCHMARK(BenchStreamStringCat);
 
+static void BenchStaticStreamStringCat(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        thread_local static std::stringstream ss;
+        ss.str("");
+        ss.clear();
+        ss << tag << ":" << tag1 << tag1;
+        auto r = ss.str();
+        benchmark::DoNotOptimize(r);
+    }
+}
+BENCHMARK(BenchStaticStreamStringCat);
+
+
+static void BenchFmtAppend(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        fmt::basic_memory_buffer<char> buffer;
+        buffer.append(tag);
+        buffer.push_back(':');
+        buffer.append(tag1);
+        buffer.append(tag1);
+        auto r=fmt::to_string(buffer);
+        benchmark::DoNotOptimize(r);
+    }
+}
+BENCHMARK(BenchFmtAppend);
+
 static void BenchBoostStrCat(benchmark::State &state)
 {
 
@@ -111,6 +141,7 @@ static void BenchFormat(benchmark::State &state)
 {
     for (auto _ : state)
     {
+
         auto r = fmt::format("{}{}{}{}", tag, ":", tag1, tag1);
         benchmark::DoNotOptimize(r);
     }
