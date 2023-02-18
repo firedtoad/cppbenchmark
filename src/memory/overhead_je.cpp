@@ -115,18 +115,18 @@ int main(int argc, char **argv)
         //        }, nullptr,"Jgmdablx");
     }
 
-//    rusage usage{};
-//    FillRSS(usage);
-//    std::vector<uint8_t> vecu8;
-//    vecu8.resize(SIZE);
-//    std::cout << "vector of u8 " << SIZE << '\n';
-//    printUsage(usage);
-//
-//    FillRSS(usage);
-//    std::vector<uint64_t> vec;
-//    vec.resize(SIZE);
-//    std::cout << "vector of u64 " << SIZE << '\n';
-//    printUsage(usage);
+    rusage usage{};
+    FillRSS(usage);
+    std::vector<uint8_t> vecu8;
+    vecu8.resize(SIZE);
+    std::cout << "vector of u8 " << SIZE << '\n';
+    printUsage(usage);
+
+    FillRSS(usage);
+    std::vector<uint64_t> vec;
+    vec.resize(SIZE);
+    std::cout << "vector of u64 " << SIZE << '\n';
+    printUsage(usage);
 
     auto sz = 0;
     do

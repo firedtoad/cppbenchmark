@@ -212,10 +212,10 @@ BENCHMARK_TEMPLATE(BenchUnOrderMapString, absl::flat_hash_map<std::string, int, 
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, absl::flat_hash_map<std::string, int, Hasher>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, tsl::robin_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, tsl::robin_map<std::string, int, Hasher>);
-
+template <class M>
 static void BenchFlatMapString(benchmark::State &state)
 {
-    butil::FlatMap<std::string, int> m;
+    M m;
     m.init(65536);
     std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
@@ -232,28 +232,10 @@ static void BenchFlatMapString(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchFlatMapString);
+BENCHMARK_TEMPLATE(BenchFlatMapString,butil::FlatMap<std::string, int>);
+BENCHMARK_TEMPLATE(BenchFlatMapString,butil::FlatMap<std::string, int, std::hash<std::string>>);
+BENCHMARK_TEMPLATE(BenchFlatMapString,butil::FlatMap<std::string,int, Hasher>);
 
-static void BenchFlatMapStringStandHash(benchmark::State &state)
-{
-    butil::FlatMap<std::string, int, std::hash<std::string>> m;
-    m.init(65536);
-    std::vector<std::string> keys(65536);
-    for (auto i = 0; i < 65536; i++)
-    {
-        keys[i] = std::to_string(random_());
-        //    auto sKey = std::to_string(i);
-        m[keys[i]] = i;
-    }
-    for (auto _ : state)
-    {
-        auto kIndex = random_() % 65536;
-        auto c      = m.seek(keys[kIndex]);
-        benchmark::DoNotOptimize(c);
-    }
-}
-
-BENCHMARK(BenchFlatMapStringStandHash);
 
 int main(int argc, char **argv)
 {
