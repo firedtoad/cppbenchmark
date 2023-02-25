@@ -11,6 +11,8 @@ llvm_map_components_to_libnames(llvm_libs support core irreader)
 include_directories(${LLVM_INCLUDE_DIRS})
 link_libraries(${llvm_libs})
 
+add_executable(adt_functional container/functional/functional.cpp)
+
 add_executable(adt_list_insert container/list/insert.cpp)
 add_executable(adt_list_range container/list/range.cpp)
 add_executable(adt_list_remove container/list/remove.cpp)
