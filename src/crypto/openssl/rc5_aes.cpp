@@ -19,9 +19,41 @@
 #include <openssl/crypto.h>
 #include <openssl/evp.h>
 #include <openssl/rc5.h>
+#include <openssl/rc4.h>
 #include <vector>
 
 static unsigned char str_key[16];
+
+static void BM_OPEN_RC4(benchmark::State &state)
+{
+    RC4_KEY key{};
+    RC4_set_key(&key, 16, str_key);
+    for (auto _ : state)
+    {
+        uint8_t out[16];
+        RC4(&key,16,out,out);
+        benchmark::DoNotOptimize(out);
+    }
+}
+
+BENCHMARK(BM_OPEN_RC4);
+
+static void BM_RC4_EVP(benchmark::State &state)
+{
+    EVP_CIPHER_CTX ctx;
+    EVP_CIPHER_CTX_init(&ctx);
+    uint8_t iv[16];
+    EVP_EncryptInit_ex(&ctx, EVP_rc4_40(), NULL,str_key, iv);
+    uint8_t in[16];
+    for (auto _ : state)
+    {
+        uint8_t out[16];
+        int l;
+        EVP_EncryptUpdate(&ctx, out, &l, in, 16);
+        benchmark::DoNotOptimize(out);
+    }
+}
+BENCHMARK(BM_RC4_EVP);
 
 static void BM_OPEN_RC5(benchmark::State &state)
 {
@@ -36,6 +68,24 @@ static void BM_OPEN_RC5(benchmark::State &state)
 }
 
 BENCHMARK(BM_OPEN_RC5);
+
+static void BM_RC5_EVP(benchmark::State &state)
+{
+    EVP_CIPHER_CTX ctx;
+    EVP_CIPHER_CTX_init(&ctx);
+    uint8_t iv[16];
+    EVP_EncryptInit_ex(&ctx, EVP_rc5_32_12_16_cbc(), NULL,str_key, iv);
+    uint8_t in[16];
+    for (auto _ : state)
+    {
+        uint8_t out[16];
+        int l;
+        EVP_EncryptUpdate(&ctx, out, &l, in, 16);
+        benchmark::DoNotOptimize(out);
+    }
+}
+BENCHMARK(BM_RC5_EVP);
+
 
 static void BM_AES(benchmark::State &state)
 {
