@@ -1,3 +1,5 @@
 add_executable(function_lambda function.cpp)
-add_executable(handler handler.cpp)
+add_executable(handler handler.cpp )
 add_executable(long_jump long_jump.cpp)
+add_executable(segvcatch_bench segvcatch_bench.cpp segvcatch.cpp)
+target_compile_options(segvcatch_bench PRIVATE -fnon-call-exceptions)
