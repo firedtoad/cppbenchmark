@@ -21,7 +21,7 @@ type Result struct {
 }
 
 var (
-    reAddEXE = regexp.MustCompile(`add_executable\((.+?)\s(.*?)\)`)
+    reAddEXE = regexp.MustCompile(`add_executable\((.+?)\s(.*?)\s*\)`)
     results  = map[string]Result{}
 )
 
@@ -75,13 +75,15 @@ func processCMake(value string) {
     }
 
     for _, v := range res {
-
-        results[v[1]] = Result{
-            name:      v[1],
-            category:  category,
-            nameLower: strings.ToLower(v[1]),
-            parent:    parent,
-            file:      v[2],
+        files := strings.Split(v[2], " ")
+        if len(files) > 0 {
+            results[v[1]] = Result{
+                name:      v[1],
+                category:  category,
+                nameLower: strings.ToLower(v[1]),
+                parent:    parent,
+                file:      files[0],
+            }
         }
     }
 }
