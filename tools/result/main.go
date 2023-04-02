@@ -16,6 +16,7 @@ type Result struct {
     category  string
     nameLower string
     file      string
+    parent    string
     results   []string
 }
 
@@ -79,7 +80,8 @@ func processCMake(value string) {
             name:      v[1],
             category:  category,
             nameLower: strings.ToLower(v[1]),
-            file:      parent + v[2],
+            parent:    parent,
+            file:      v[2],
         }
     }
 }
@@ -108,7 +110,8 @@ func ProcessResultFile(parent, file string) {
     baseName := BaseName(base)
     if val, ok := results[baseName]; ok {
         resultUrl := "results/" + parent + "/" + base
-        val.results = append(val.results, "["+resultUrl+"]"+"("+resultUrl+")")
+        result := parent + "/" + base
+        val.results = append(val.results, "["+result+"]"+"("+resultUrl+")")
         results[baseName] = val
     }
 }
@@ -149,7 +152,8 @@ func WriteResult() {
     for _, v := range slice {
         if len(v.results) > 0 {
             res := strings.Join(v.results, "<br/>")
-            rFile := "[" + v.file + "](" + v.file + ")"
+            bFile := filepath.Base(v.file)
+            rFile := "[" + bFile + "](" + v.parent + v.file + ")"
             data := append([]string{}, "", v.category, v.name, rFile, res, "")
             rData := strings.Join(data, "|")
             sb.WriteString(rData)
