@@ -1,0 +1,28 @@
+2023-04-02T04:44:05-04:00
+Running ./bin/dimension
+Run on (8 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 1.00, 1.00, 1.03
+---------------------------------------------------------
+Benchmark               Time             CPU   Iterations
+---------------------------------------------------------
+BM_ONE/1             20.3 ns         20.2 ns     33871978
+BM_ONE/8              121 ns          121 ns      5841893
+BM_ONE/64             918 ns          917 ns       761430
+BM_ONE/512           7263 ns         7260 ns        96284
+BM_ONE/4096         58079 ns        58045 ns        12062
+BM_ONE/32768       475191 ns       474926 ns         1508
+BM_ONE/262144     3733839 ns      3732323 ns          188
+BM_ONE/1048576   15206345 ns     15197487 ns           47
+BM_TWO/1             19.7 ns         19.7 ns     34445624
+BM_TWO/8              162 ns          162 ns      4342003
+BM_TWO/64            1269 ns         1268 ns       553887
+BM_TWO/512          10120 ns        10113 ns        68223
+BM_TWO/4096         80950 ns        80904 ns         8662
+BM_TWO/32768       653524 ns       653247 ns         1072
+BM_TWO/262144     5337701 ns      5335154 ns          132
+BM_TWO/1048576   21590125 ns     21578796 ns           33

@@ -17,11 +17,7 @@ std::map u64 cost memory 49152 alloc 1024
 std::set cost memory 40960 alloc 1024
 std::unordered_set cost memory 24632 alloc 1025
 std::unordered_map cost memory 32824 alloc 1025
-tsl::robin_map cost memory 24576 alloc 1
-tsl::robin_set cost memory 16384 alloc 1
 ska::flat_hash_map cost memory 24708 alloc 1
 ska::flat_hash_set cost memory 16472 alloc 1
-tsl::ordered_map cost memory 25600 alloc 21
-tsl::ordered_set cost memory 21200 alloc 12
 phmap::flat_hash_map cost memory 18440 alloc 1
 phmap::flat_hash_set cost memory 10252 alloc 1

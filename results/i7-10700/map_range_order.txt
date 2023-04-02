@@ -1,21 +1,21 @@
-2022-11-11T10:57:38-05:00
+2023-04-02T04:48:38-04:00
 Running ./bin/map_range_order
-Run on (4 X 2904 MHz CPU s)
+Run on (8 X 2904 MHz CPU s)
 CPU Caches:
-  L1 Data 32 KiB (x4)
-  L1 Instruction 32 KiB (x4)
-  L2 Unified 256 KiB (x4)
-  L3 Unified 16384 KiB (x4)
-Load Average: 4.09, 3.91, 2.77
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 1.00, 1.00, 1.01
 -------------------------------------------------------------------------------------------------------
 Benchmark                                                             Time             CPU   Iterations
 -------------------------------------------------------------------------------------------------------
-BenchRangeOrderMapInt<std::map<int, int>>                        303855 ns       303761 ns         1930
-BenchRangeOrderVectorInt<std::vector<std::pair<int, int>>>         8780 ns         8777 ns        79291
-BenchRangeOrderMapInt<tsl::ordered_map<int, int>>                 30269 ns        30146 ns        21062
-BenchRangeOrderMapInt<absl::btree_map<int, int>>                  68788 ns        68771 ns         8515
-BenchRangeOrderMapInt<phmap::btree_map<int, int>>                 58717 ns        58463 ns        10638
-BenchRangeOrderMapString<std::map<std::string, int>>            1984241 ns      1983525 ns          355
-BenchRangeOrderMapString<tsl::ordered_map<std::string, int>>      79710 ns        79349 ns         7738
-BenchRangeOrderMapString<absl::btree_map<std::string, int>>      437090 ns       435269 ns         1692
-BenchRangeOrderMapString<phmap::btree_map<std::string, int>>     417437 ns       415689 ns         1683
+BenchRangeOrderMapInt<std::map<int, int>>                        913459 ns       912936 ns          854
+BenchRangeOrderVectorInt<std::vector<std::pair<int, int>>>       403131 ns       402895 ns         1737
+BenchRangeOrderMapInt<tsl::ordered_map<int, int>>                687283 ns       686832 ns         1019
+BenchRangeOrderMapInt<absl::btree_map<int, int>>                7173935 ns      7169999 ns           97
+BenchRangeOrderMapInt<phmap::btree_map<int, int>>               4035713 ns      4033232 ns          170
+BenchRangeOrderMapString<std::map<std::string, int>>            4838924 ns      4835792 ns          128
+BenchRangeOrderMapString<tsl::ordered_map<std::string, int>>     919796 ns       919422 ns          744
+BenchRangeOrderMapString<absl::btree_map<std::string, int>>    12827236 ns     12820066 ns           55
+BenchRangeOrderMapString<phmap::btree_map<std::string, int>>    8344968 ns      8340586 ns           87

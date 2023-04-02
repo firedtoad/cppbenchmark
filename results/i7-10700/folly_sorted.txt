@@ -1,143 +1,163 @@
 0
-2022-11-11T10:55:41-05:00
+2023-04-02T04:44:20-04:00
 Running ./bin/folly_sorted
-Run on (4 X 2904 MHz CPU s)
+Run on (8 X 2904 MHz CPU s)
 CPU Caches:
-  L1 Data 32 KiB (x4)
-  L1 Instruction 32 KiB (x4)
-  L2 Unified 256 KiB (x4)
-  L3 Unified 16384 KiB (x4)
-Load Average: 4.37, 3.81, 2.58
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 1.00, 1.00, 1.03
 -----------------------------------------------------------------------------------------------------------
 Benchmark                                                                 Time             CPU   Iterations
 -----------------------------------------------------------------------------------------------------------
-BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/1                   16.5 ns         16.5 ns     41484024
-BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/8                    168 ns          168 ns      4550063
-BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/64                  2088 ns         2087 ns       330751
-BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/512                27295 ns        27277 ns        26777
-BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/1024               79826 ns        70456 ns        10772
-BenchInsert<folly::sorted_vector_map<uint32_t, uint32_t>>/1            22.5 ns         17.5 ns     37542236
-BenchInsert<folly::sorted_vector_map<uint32_t, uint32_t>>/8             168 ns          168 ns      4135024
-BenchInsert<folly::sorted_vector_map<uint32_t, uint32_t>>/64           3530 ns         2423 ns       271878
-BenchInsert<folly::sorted_vector_map<uint32_t, uint32_t>>/512         29796 ns        29782 ns        23927
-BenchInsert<folly::sorted_vector_map<uint32_t, uint32_t>>/1024        93067 ns        73078 ns         9693
-BenchInsert<folly::heap_vector_map<uint32_t, uint32_t>>/1              19.9 ns         17.7 ns     44887482
-BenchInsert<folly::heap_vector_map<uint32_t, uint32_t>>/8               416 ns          319 ns      2128541
-BenchInsert<folly::heap_vector_map<uint32_t, uint32_t>>/64            10766 ns         8085 ns        85526
-BenchInsert<folly::heap_vector_map<uint32_t, uint32_t>>/512          329450 ns       301004 ns         2596
-BenchInsert<folly::heap_vector_map<uint32_t, uint32_t>>/1024        1646507 ns      1036936 ns          634
-BenchInsert<std::map<uint32_t, uint32_t>>/1                            20.9 ns         20.9 ns     34500533
-BenchInsert<std::map<uint32_t, uint32_t>>/8                             291 ns          291 ns      2507423
-BenchInsert<std::map<uint32_t, uint32_t>>/64                           3964 ns         3964 ns       164188
-BenchInsert<std::map<uint32_t, uint32_t>>/512                         35579 ns        35576 ns        19526
-BenchInsert<std::map<uint32_t, uint32_t>>/1024                        79429 ns        79366 ns         8853
-BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/1          18.1 ns         18.1 ns     36310616
-BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/8           211 ns          211 ns      3765138
-BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/64         2457 ns         2457 ns       279703
-BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/512       30568 ns        30545 ns        23646
-BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/1024      76499 ns        76492 ns        10077
-BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/1                   18.7 ns         18.7 ns     35744763
-BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/8                    177 ns          177 ns      3515804
-BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/64                  2589 ns         2587 ns       285672
-BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/512                31706 ns        31702 ns        22906
-BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/1024               80857 ns        80854 ns         8795
-BenchFind<sorted_vector_map<uint64_t, Pod>>/1                          3.01 ns         3.01 ns    246584490
-BenchFind<sorted_vector_map<uint64_t, Pod>>/8                          11.1 ns         11.1 ns     57862570
-BenchFind<sorted_vector_map<uint64_t, Pod>>/64                         21.7 ns         21.6 ns     32547054
-BenchFind<sorted_vector_map<uint64_t, Pod>>/512                        35.1 ns         35.1 ns     19552695
-BenchFind<sorted_vector_map<uint64_t, Pod>>/1024                       38.9 ns         38.9 ns     16890619
-BenchFind<folly::sorted_vector_map<uint64_t, Pod>>/1                   5.11 ns         5.11 ns    100000000
-BenchFind<folly::sorted_vector_map<uint64_t, Pod>>/8                   10.5 ns         10.5 ns     70655879
-BenchFind<folly::sorted_vector_map<uint64_t, Pod>>/64                  20.9 ns         20.9 ns     32149255
-BenchFind<folly::sorted_vector_map<uint64_t, Pod>>/512                 36.1 ns         36.0 ns     20419390
-BenchFind<folly::sorted_vector_map<uint64_t, Pod>>/1024                38.8 ns         38.8 ns     17975503
-BenchFind<folly::heap_vector_map<uint64_t, Pod>>/1                     5.64 ns         5.64 ns    100000000
-BenchFind<folly::heap_vector_map<uint64_t, Pod>>/8                     7.17 ns         7.17 ns     79711120
-BenchFind<folly::heap_vector_map<uint64_t, Pod>>/64                    16.9 ns         16.9 ns     42479686
-BenchFind<folly::heap_vector_map<uint64_t, Pod>>/512                   20.5 ns         20.5 ns     34252774
-BenchFind<folly::heap_vector_map<uint64_t, Pod>>/1024                  21.3 ns         21.3 ns     32461919
-BenchFind<std::map<uint64_t, Pod>>/1                                   4.35 ns         4.35 ns    203213293
-BenchFind<std::map<uint64_t, Pod>>/8                                   7.38 ns         7.37 ns     89518729
-BenchFind<std::map<uint64_t, Pod>>/64                                  17.5 ns         17.5 ns     51465655
-BenchFind<std::map<uint64_t, Pod>>/512                                 24.5 ns         24.5 ns     29524042
-BenchFind<std::map<uint64_t, Pod>>/1024                                25.2 ns         25.2 ns     26124980
-BenchFind<boost::container::flat_map<uint64_t, Pod>>/1                 5.99 ns         5.98 ns    296370560
-BenchFind<boost::container::flat_map<uint64_t, Pod>>/8                 10.3 ns         10.3 ns     75134349
-BenchFind<boost::container::flat_map<uint64_t, Pod>>/64                19.7 ns         19.7 ns     35843193
-BenchFind<boost::container::flat_map<uint64_t, Pod>>/512               35.6 ns         35.5 ns     19356633
-BenchFind<boost::container::flat_map<uint64_t, Pod>>/1024              39.3 ns         39.3 ns     17775450
-BenchFind<eastl::vector_map<uint64_t, Pod>>/1                          4.70 ns         4.70 ns    176455916
-BenchFind<eastl::vector_map<uint64_t, Pod>>/8                          12.9 ns         12.9 ns     64399701
-BenchFind<eastl::vector_map<uint64_t, Pod>>/64                         24.3 ns         24.3 ns     27050871
-BenchFind<eastl::vector_map<uint64_t, Pod>>/512                        39.3 ns         39.3 ns     17064933
-BenchFind<eastl::vector_map<uint64_t, Pod>>/1024                       41.5 ns         41.5 ns     16280802
-BenchRange<sorted_vector_map<uint64_t, Pod>>/1                        0.751 ns        0.751 ns    950547456
-BenchRange<sorted_vector_map<uint64_t, Pod>>/8                         2.16 ns         2.16 ns    337174002
-BenchRange<sorted_vector_map<uint64_t, Pod>>/64                        16.5 ns         16.5 ns     41729440
-BenchRange<sorted_vector_map<uint64_t, Pod>>/512                       67.9 ns         67.9 ns     10966517
-BenchRange<sorted_vector_map<uint64_t, Pod>>/1024                       130 ns          130 ns      5767214
-BenchRange<folly::sorted_vector_map<uint64_t, Pod>>/1                 0.737 ns        0.737 ns   1000000000
-BenchRange<folly::sorted_vector_map<uint64_t, Pod>>/8                  2.10 ns         2.10 ns    350592747
-BenchRange<folly::sorted_vector_map<uint64_t, Pod>>/64                 13.4 ns         13.3 ns     51486676
-BenchRange<folly::sorted_vector_map<uint64_t, Pod>>/512                67.8 ns         67.7 ns     10726074
-BenchRange<folly::sorted_vector_map<uint64_t, Pod>>/1024                128 ns          128 ns      5007054
-BenchRange<folly::heap_vector_map<uint64_t, Pod>>/1                    4.73 ns         4.72 ns    161242807
-BenchRange<folly::heap_vector_map<uint64_t, Pod>>/8                    30.3 ns         30.2 ns     24462867
-BenchRange<folly::heap_vector_map<uint64_t, Pod>>/64                    265 ns          265 ns      2391040
-BenchRange<folly::heap_vector_map<uint64_t, Pod>>/512                  2175 ns         2175 ns       326439
-BenchRange<folly::heap_vector_map<uint64_t, Pod>>/1024                 4393 ns         4390 ns       153241
-BenchRange<std::map<uint64_t, Pod>>/1                                  1.89 ns         1.89 ns    384800560
-BenchRange<std::map<uint64_t, Pod>>/8                                  17.7 ns         17.7 ns     40284454
-BenchRange<std::map<uint64_t, Pod>>/64                                  160 ns          160 ns      4178806
-BenchRange<std::map<uint64_t, Pod>>/512                                1482 ns         1482 ns       493620
-BenchRange<std::map<uint64_t, Pod>>/1024                               4412 ns         4412 ns       148301
-BenchRange<boost::container::flat_map<uint64_t, Pod>>/1               0.751 ns        0.751 ns   1000000000
-BenchRange<boost::container::flat_map<uint64_t, Pod>>/8                2.37 ns         2.37 ns    319267467
-BenchRange<boost::container::flat_map<uint64_t, Pod>>/64               16.0 ns         16.0 ns     44742439
-BenchRange<boost::container::flat_map<uint64_t, Pod>>/512              69.8 ns         69.8 ns     11023516
-BenchRange<boost::container::flat_map<uint64_t, Pod>>/1024              132 ns          132 ns      5164054
-BenchRange<eastl::vector_map<uint64_t, Pod>>/1                        0.758 ns        0.757 ns    958377921
-BenchRange<eastl::vector_map<uint64_t, Pod>>/8                         2.25 ns         2.25 ns    292379666
-BenchRange<eastl::vector_map<uint64_t, Pod>>/64                        15.3 ns         15.3 ns     41844586
-BenchRange<eastl::vector_map<uint64_t, Pod>>/512                       66.2 ns         66.2 ns     10964059
-BenchRange<eastl::vector_map<uint64_t, Pod>>/1024                       135 ns          135 ns      4942437
-BenchErase<sorted_vector_map<uint64_t, Pod>>/1                         5.84 ns         5.84 ns    177961465
-BenchErase<sorted_vector_map<uint64_t, Pod>>/8                         11.0 ns         11.0 ns     56791217
-BenchErase<sorted_vector_map<uint64_t, Pod>>/64                        25.9 ns         25.9 ns     27503602
-BenchErase<sorted_vector_map<uint64_t, Pod>>/512                       38.4 ns         38.4 ns     17744207
-BenchErase<sorted_vector_map<uint64_t, Pod>>/1024                      47.7 ns         47.7 ns     14769266
-BenchErase<folly::sorted_vector_map<uint64_t, Pod>>/1                  6.00 ns         6.00 ns    112275834
-BenchErase<folly::sorted_vector_map<uint64_t, Pod>>/8                  12.3 ns         12.3 ns     59386047
-BenchErase<folly::sorted_vector_map<uint64_t, Pod>>/64                 25.6 ns         25.6 ns     26782161
-BenchErase<folly::sorted_vector_map<uint64_t, Pod>>/512                42.0 ns         42.0 ns     17016408
-BenchErase<folly::sorted_vector_map<uint64_t, Pod>>/1024               53.3 ns         53.2 ns     10881581
-BenchErase<folly::heap_vector_map<uint64_t, Pod>>/1                    4.97 ns         4.97 ns    268854813
-BenchErase<folly::heap_vector_map<uint64_t, Pod>>/8                    9.88 ns         9.87 ns     59455719
-BenchErase<folly::heap_vector_map<uint64_t, Pod>>/64                   18.1 ns         18.1 ns     41470395
-BenchErase<folly::heap_vector_map<uint64_t, Pod>>/512                  36.9 ns         36.8 ns     18810978
-BenchErase<folly::heap_vector_map<uint64_t, Pod>>/1024                 97.5 ns         97.5 ns      7897355
-BenchErase<std::map<uint64_t, Pod>>/1                                  6.49 ns         6.49 ns    148628561
-BenchErase<std::map<uint64_t, Pod>>/8                                  13.6 ns         13.6 ns     57423858
-BenchErase<std::map<uint64_t, Pod>>/64                                 23.7 ns         23.7 ns     29272333
-BenchErase<std::map<uint64_t, Pod>>/512                                42.6 ns         42.6 ns     17346624
-BenchErase<std::map<uint64_t, Pod>>/1024                               49.1 ns         49.1 ns     14520990
-BenchErase<boost::container::flat_map<uint64_t, Pod>>/1                4.26 ns         4.26 ns    166673846
-BenchErase<boost::container::flat_map<uint64_t, Pod>>/8                9.55 ns         9.55 ns     73401218
-BenchErase<boost::container::flat_map<uint64_t, Pod>>/64               21.8 ns         21.8 ns     34045896
-BenchErase<boost::container::flat_map<uint64_t, Pod>>/512              38.8 ns         38.8 ns     18789020
-BenchErase<boost::container::flat_map<uint64_t, Pod>>/1024             50.4 ns         50.4 ns     14435056
-BenchErase<eastl::vector_map<uint64_t, Pod>>/1                         3.68 ns         3.67 ns    173829101
-BenchErase<eastl::vector_map<uint64_t, Pod>>/8                         13.3 ns         13.3 ns     52092299
-BenchErase<eastl::vector_map<uint64_t, Pod>>/64                        25.3 ns         25.3 ns     27702090
-BenchErase<eastl::vector_map<uint64_t, Pod>>/512                       42.7 ns         42.7 ns     16944152
-BenchErase<eastl::vector_map<uint64_t, Pod>>/1024                      49.5 ns         49.5 ns     12840173
-BenchStringFind<std::string>/128                                       1530 ns         1529 ns       615193
-BenchStringFind<std::string>/512                                       5754 ns         5754 ns       117811
-BenchStringFind<std::string>/4096                                     53191 ns        53189 ns        13153
-BenchStringFind<std::string>/32768                                   427028 ns       427022 ns         1604
-BenchStringFind<std::string>/65536                                   917694 ns       917569 ns          623
-BenchStringFind<folly::fbstring>/128                                    668 ns          668 ns      1246844
-BenchStringFind<folly::fbstring>/512                                   3989 ns         3989 ns       130894
-BenchStringFind<folly::fbstring>/4096                                 48825 ns        48791 ns        13752
-BenchStringFind<folly::fbstring>/32768                               738192 ns       738160 ns         1000
-BenchStringFind<folly::fbstring>/65536                              1439476 ns      1438734 ns          737
+BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/1                    239 ns          239 ns      3279298
+BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/8                   1826 ns         1826 ns       391727
+BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/64                 16639 ns        16639 ns        42151
+BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/512               165732 ns       165710 ns         4212
+BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/1024              357742 ns       357709 ns         1959
+BenchInsert<folly::sorted_vector_map<uint32_t, uint32_t>>/1             251 ns          251 ns      2844766
+BenchInsert<folly::sorted_vector_map<uint32_t, uint32_t>>/8            2096 ns         2095 ns       333831
+BenchInsert<folly::sorted_vector_map<uint32_t, uint32_t>>/64          23411 ns        23410 ns        29960
+BenchInsert<folly::sorted_vector_map<uint32_t, uint32_t>>/512        502422 ns       502427 ns         1394
+BenchInsert<folly::sorted_vector_map<uint32_t, uint32_t>>/1024      1929909 ns      1929921 ns          410
+BenchInsert<folly::heap_vector_map<uint32_t, uint32_t>>/1               271 ns          271 ns      2558626
+BenchInsert<folly::heap_vector_map<uint32_t, uint32_t>>/8              3682 ns         3681 ns       189485
+BenchInsert<folly::heap_vector_map<uint32_t, uint32_t>>/64            64829 ns        64830 ns        10903
+BenchInsert<folly::heap_vector_map<uint32_t, uint32_t>>/512         2565285 ns      2565305 ns          274
+BenchInsert<folly::heap_vector_map<uint32_t, uint32_t>>/1024        9726290 ns      9725734 ns           71
+BenchInsert<std::map<uint32_t, uint32_t>>/1                             212 ns          212 ns      3302595
+BenchInsert<std::map<uint32_t, uint32_t>>/8                            2046 ns         2046 ns       344251
+BenchInsert<std::map<uint32_t, uint32_t>>/64                          19753 ns        19752 ns        35419
+BenchInsert<std::map<uint32_t, uint32_t>>/512                        180487 ns       180480 ns         3877
+BenchInsert<std::map<uint32_t, uint32_t>>/1024                       380499 ns       380486 ns         1845
+BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/1           361 ns          361 ns      1939516
+BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/8          3324 ns         3324 ns       210211
+BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/64        30240 ns        30238 ns        23147
+BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/512      483458 ns       483462 ns         1444
+BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/1024    1501740 ns      1501695 ns          465
+BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/1                    163 ns          163 ns      4301709
+BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/8                   1269 ns         1269 ns       551440
+BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/64                 15505 ns        15505 ns        45178
+BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/512               427292 ns       427280 ns         1638
+BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/1024             1515002 ns      1514952 ns          463
+BenchInsert<folly::F14FastMap<uint32_t, uint32_t>>/1                    525 ns          525 ns      1334443
+BenchInsert<folly::F14FastMap<uint32_t, uint32_t>>/8                   3798 ns         3798 ns       184322
+BenchInsert<folly::F14FastMap<uint32_t, uint32_t>>/64                 34780 ns        34779 ns        20131
+BenchInsert<folly::F14FastMap<uint32_t, uint32_t>>/512               268791 ns       268766 ns         2603
+BenchInsert<folly::F14FastMap<uint32_t, uint32_t>>/1024              536104 ns       536088 ns         1310
+BenchFind<sorted_vector_map<uint64_t, Pod>>/1                          63.9 ns         63.9 ns     10341436
+BenchFind<sorted_vector_map<uint64_t, Pod>>/8                           108 ns          108 ns      6723651
+BenchFind<sorted_vector_map<uint64_t, Pod>>/64                          165 ns          165 ns      4258151
+BenchFind<sorted_vector_map<uint64_t, Pod>>/512                         226 ns          226 ns      3099521
+BenchFind<sorted_vector_map<uint64_t, Pod>>/1024                        245 ns          245 ns      2853775
+BenchFind<folly::sorted_vector_map<uint64_t, Pod>>/1                   68.9 ns         68.9 ns     10787297
+BenchFind<folly::sorted_vector_map<uint64_t, Pod>>/8                    107 ns          107 ns      6378483
+BenchFind<folly::sorted_vector_map<uint64_t, Pod>>/64                   167 ns          167 ns      4185560
+BenchFind<folly::sorted_vector_map<uint64_t, Pod>>/512                  230 ns          230 ns      3032421
+BenchFind<folly::sorted_vector_map<uint64_t, Pod>>/1024                 251 ns          251 ns      2789923
+BenchFind<folly::heap_vector_map<uint64_t, Pod>>/1                     73.5 ns         73.5 ns      9183055
+BenchFind<folly::heap_vector_map<uint64_t, Pod>>/8                      117 ns          117 ns      6178790
+BenchFind<folly::heap_vector_map<uint64_t, Pod>>/64                     146 ns          146 ns      4786510
+BenchFind<folly::heap_vector_map<uint64_t, Pod>>/512                    181 ns          181 ns      3845334
+BenchFind<folly::heap_vector_map<uint64_t, Pod>>/1024                   196 ns          196 ns      3512381
+BenchFind<std::map<uint64_t, Pod>>/1                                   41.7 ns         41.7 ns     17032368
+BenchFind<std::map<uint64_t, Pod>>/8                                   70.0 ns         70.0 ns     10252501
+BenchFind<std::map<uint64_t, Pod>>/64                                   117 ns          117 ns      6093408
+BenchFind<std::map<uint64_t, Pod>>/512                                  164 ns          164 ns      4292528
+BenchFind<std::map<uint64_t, Pod>>/1024                                 180 ns          180 ns      3880206
+BenchFind<boost::container::flat_map<uint64_t, Pod>>/1                 68.5 ns         68.5 ns     10316385
+BenchFind<boost::container::flat_map<uint64_t, Pod>>/8                 96.2 ns         96.2 ns      6802494
+BenchFind<boost::container::flat_map<uint64_t, Pod>>/64                 155 ns          155 ns      4537988
+BenchFind<boost::container::flat_map<uint64_t, Pod>>/512                209 ns          209 ns      3356930
+BenchFind<boost::container::flat_map<uint64_t, Pod>>/1024               225 ns          225 ns      3096379
+BenchFind<eastl::vector_map<uint64_t, Pod>>/1                          37.6 ns         37.6 ns     18613872
+BenchFind<eastl::vector_map<uint64_t, Pod>>/8                          57.0 ns         57.0 ns     11898181
+BenchFind<eastl::vector_map<uint64_t, Pod>>/64                         93.4 ns         93.4 ns      7691750
+BenchFind<eastl::vector_map<uint64_t, Pod>>/512                         134 ns          134 ns      5167745
+BenchFind<eastl::vector_map<uint64_t, Pod>>/1024                        151 ns          151 ns      4635435
+BenchFind<folly::F14FastMap<uint64_t, Pod>>/1                          65.9 ns         65.9 ns     10636838
+BenchFind<folly::F14FastMap<uint64_t, Pod>>/8                          68.9 ns         68.9 ns     10140337
+BenchFind<folly::F14FastMap<uint64_t, Pod>>/64                         68.9 ns         68.9 ns     10174629
+BenchFind<folly::F14FastMap<uint64_t, Pod>>/512                        70.2 ns         70.2 ns      9972940
+BenchFind<folly::F14FastMap<uint64_t, Pod>>/1024                       71.2 ns         71.2 ns      9847874
+BenchRange<sorted_vector_map<uint64_t, Pod>>/1                         20.3 ns         20.3 ns     34928898
+BenchRange<sorted_vector_map<uint64_t, Pod>>/8                         61.8 ns         61.8 ns     11333966
+BenchRange<sorted_vector_map<uint64_t, Pod>>/64                         410 ns          410 ns      1741222
+BenchRange<sorted_vector_map<uint64_t, Pod>>/512                       3211 ns         3211 ns       200336
+BenchRange<sorted_vector_map<uint64_t, Pod>>/1024                      6105 ns         6105 ns       114609
+BenchRange<folly::sorted_vector_map<uint64_t, Pod>>/1                  21.0 ns         21.0 ns     33419431
+BenchRange<folly::sorted_vector_map<uint64_t, Pod>>/8                  62.2 ns         62.2 ns     11216893
+BenchRange<folly::sorted_vector_map<uint64_t, Pod>>/64                  404 ns          404 ns      1732066
+BenchRange<folly::sorted_vector_map<uint64_t, Pod>>/512                3063 ns         3063 ns       228511
+BenchRange<folly::sorted_vector_map<uint64_t, Pod>>/1024               6118 ns         6117 ns       114432
+BenchRange<folly::heap_vector_map<uint64_t, Pod>>/1                    67.9 ns         67.9 ns     10292793
+BenchRange<folly::heap_vector_map<uint64_t, Pod>>/8                     292 ns          292 ns      2393557
+BenchRange<folly::heap_vector_map<uint64_t, Pod>>/64                   2186 ns         2185 ns       320014
+BenchRange<folly::heap_vector_map<uint64_t, Pod>>/512                 17336 ns        17336 ns        40445
+BenchRange<folly::heap_vector_map<uint64_t, Pod>>/1024                34671 ns        34669 ns        20175
+BenchRange<std::map<uint64_t, Pod>>/1                                  22.6 ns         22.6 ns     31058761
+BenchRange<std::map<uint64_t, Pod>>/8                                  86.3 ns         86.3 ns      8054851
+BenchRange<std::map<uint64_t, Pod>>/64                                  638 ns          638 ns      1030921
+BenchRange<std::map<uint64_t, Pod>>/512                                6356 ns         6356 ns       111803
+BenchRange<std::map<uint64_t, Pod>>/1024                              13989 ns        13988 ns        49800
+BenchRange<boost::container::flat_map<uint64_t, Pod>>/1                33.5 ns         33.5 ns     20972678
+BenchRange<boost::container::flat_map<uint64_t, Pod>>/8                70.5 ns         70.5 ns      9931521
+BenchRange<boost::container::flat_map<uint64_t, Pod>>/64                376 ns          376 ns      1863185
+BenchRange<boost::container::flat_map<uint64_t, Pod>>/512              2864 ns         2864 ns       258358
+BenchRange<boost::container::flat_map<uint64_t, Pod>>/1024             5506 ns         5506 ns       126666
+BenchRange<eastl::vector_map<uint64_t, Pod>>/1                         6.47 ns         6.47 ns    110011691
+BenchRange<eastl::vector_map<uint64_t, Pod>>/8                         17.1 ns         17.1 ns     40893912
+BenchRange<eastl::vector_map<uint64_t, Pod>>/64                         132 ns          132 ns      5345506
+BenchRange<eastl::vector_map<uint64_t, Pod>>/512                        967 ns          967 ns       723591
+BenchRange<eastl::vector_map<uint64_t, Pod>>/1024                      1929 ns         1929 ns       361733
+BenchRange<folly::F14FastMap<uint64_t, Pod>>/1                         59.9 ns         59.9 ns     10381628
+BenchRange<folly::F14FastMap<uint64_t, Pod>>/8                          354 ns          354 ns      2197455
+BenchRange<folly::F14FastMap<uint64_t, Pod>>/64                        2849 ns         2849 ns       232704
+BenchRange<folly::F14FastMap<uint64_t, Pod>>/512                      23549 ns        23548 ns        27482
+BenchRange<folly::F14FastMap<uint64_t, Pod>>/1024                     47250 ns        47248 ns        14688
+BenchErase<sorted_vector_map<uint64_t, Pod>>/1                         77.6 ns         77.6 ns      9455202
+BenchErase<sorted_vector_map<uint64_t, Pod>>/8                          123 ns          123 ns      6023263
+BenchErase<sorted_vector_map<uint64_t, Pod>>/64                         178 ns          178 ns      3728649
+BenchErase<sorted_vector_map<uint64_t, Pod>>/512                        244 ns          244 ns      2852787
+BenchErase<sorted_vector_map<uint64_t, Pod>>/1024                       269 ns          269 ns      2597816
+BenchErase<folly::sorted_vector_map<uint64_t, Pod>>/1                  78.1 ns         78.1 ns      9317657
+BenchErase<folly::sorted_vector_map<uint64_t, Pod>>/8                   121 ns          121 ns      5941777
+BenchErase<folly::sorted_vector_map<uint64_t, Pod>>/64                  178 ns          178 ns      4011060
+BenchErase<folly::sorted_vector_map<uint64_t, Pod>>/512                 268 ns          268 ns      2664317
+BenchErase<folly::sorted_vector_map<uint64_t, Pod>>/1024                347 ns          347 ns      2017442
+BenchErase<folly::heap_vector_map<uint64_t, Pod>>/1                    97.0 ns         97.0 ns      7263418
+BenchErase<folly::heap_vector_map<uint64_t, Pod>>/8                     126 ns          126 ns      5645117
+BenchErase<folly::heap_vector_map<uint64_t, Pod>>/64                    164 ns          164 ns      4303762
+BenchErase<folly::heap_vector_map<uint64_t, Pod>>/512                   379 ns          379 ns      1825161
+BenchErase<folly::heap_vector_map<uint64_t, Pod>>/1024                  988 ns          988 ns       743043
+BenchErase<std::map<uint64_t, Pod>>/1                                  56.6 ns         56.6 ns     13210875
+BenchErase<std::map<uint64_t, Pod>>/8                                  87.6 ns         87.6 ns      8487754
+BenchErase<std::map<uint64_t, Pod>>/64                                  145 ns          145 ns      4811037
+BenchErase<std::map<uint64_t, Pod>>/512                                 205 ns          205 ns      3422810
+BenchErase<std::map<uint64_t, Pod>>/1024                                230 ns          230 ns      3077095
+BenchErase<boost::container::flat_map<uint64_t, Pod>>/1                76.3 ns         76.3 ns      8943835
+BenchErase<boost::container::flat_map<uint64_t, Pod>>/8                 108 ns          108 ns      6428582
+BenchErase<boost::container::flat_map<uint64_t, Pod>>/64                167 ns          167 ns      4232750
+BenchErase<boost::container::flat_map<uint64_t, Pod>>/512               245 ns          245 ns      2912724
+BenchErase<boost::container::flat_map<uint64_t, Pod>>/1024              322 ns          322 ns      1904888
+BenchErase<eastl::vector_map<uint64_t, Pod>>/1                         37.3 ns         37.3 ns     18044480
+BenchErase<eastl::vector_map<uint64_t, Pod>>/8                         65.1 ns         65.1 ns     11404757
+BenchErase<eastl::vector_map<uint64_t, Pod>>/64                        97.0 ns         97.0 ns      7313366
+BenchErase<eastl::vector_map<uint64_t, Pod>>/512                        160 ns          160 ns      4362823
+BenchErase<eastl::vector_map<uint64_t, Pod>>/1024                       240 ns          240 ns      2932490
+BenchErase<folly::F14FastMap<uint64_t, Pod>>/1                         64.2 ns         64.2 ns     10913483
+BenchErase<folly::F14FastMap<uint64_t, Pod>>/8                         67.2 ns         67.2 ns     10461877
+BenchErase<folly::F14FastMap<uint64_t, Pod>>/64                        67.8 ns         67.8 ns     10318929
+BenchErase<folly::F14FastMap<uint64_t, Pod>>/512                       71.8 ns         71.8 ns      9854854
+BenchErase<folly::F14FastMap<uint64_t, Pod>>/1024                      75.4 ns         75.4 ns      9303434
+BenchStringFind<std::string>/128                                       1518 ns         1518 ns       554672
+BenchStringFind<std::string>/512                                       5642 ns         5642 ns       118932
+BenchStringFind<std::string>/4096                                     41755 ns        41752 ns        16524
+BenchStringFind<std::string>/32768                                   343996 ns       343985 ns         2030
+BenchStringFind<std::string>/65536                                   693878 ns       693852 ns         1012
+BenchStringFind<folly::fbstring>/128                                   3249 ns         3249 ns       210385
+BenchStringFind<folly::fbstring>/512                                  20575 ns        20574 ns        61098
+BenchStringFind<folly::fbstring>/4096                                191543 ns       191537 ns         6479
+BenchStringFind<folly::fbstring>/32768                               872268 ns       872246 ns          827
+BenchStringFind<folly::fbstring>/65536                              2421776 ns      2421792 ns          243

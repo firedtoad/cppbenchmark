@@ -1,0 +1,63 @@
+2220primary
+vector of u8 1048576
+user cpu : 0s 0us
+sys cpu : 0s 285us
+max rss : 792 kb / 0.773438 MB
+page reclaims : 261
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+vector of u64 1048576
+user cpu : 0s 0us
+sys cpu : 0s 110us
+max rss : 10248 kb / 10.0078 MB
+page reclaims : 6
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+need 1 real 8 over head 7
+need 8 real 8 over head 0
+need 9 real 16 over head 7
+need 16 real 16 over head 0
+need 17 real 32 over head 15
+need 32 real 32 over head 0
+need 33 real 48 over head 15
+need 48 real 48 over head 0
+need 49 real 64 over head 15
+need 64 real 64 over head 0
+need 65 real 80 over head 15
+need 80 real 80 over head 0
+need 81 real 96 over head 15
+need 96 real 96 over head 0
+need 97 real 112 over head 15
+need 112 real 112 over head 0
+need 113 real 128 over head 15
+need 128 real 128 over head 0
+need 129 real 160 over head 31
+need 160 real 160 over head 0
+need 161 real 192 over head 31
+need 192 real 192 over head 0
+need 193 real 224 over head 31
+need 224 real 224 over head 0
+need 225 real 256 over head 31
+need 256 real 256 over head 0
+need 257 real 320 over head 63
+need 320 real 320 over head 0
+need 321 real 384 over head 63
+need 384 real 384 over head 0
+need 385 real 448 over head 63
+need 448 real 448 over head 0
+need 449 real 512 over head 63
+need 512 real 512 over head 0
+need 513 real 640 over head 127
+need 640 real 640 over head 0
+need 641 real 768 over head 127
+need 768 real 768 over head 0
+need 769 real 896 over head 127
+need 896 real 896 over head 0
+need 897 real 1024 over head 127
+need 1024 real 1024 over head 0
+need 1025 real 1280 over head 255
+need 1280 real 1280 over head 0

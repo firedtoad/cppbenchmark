@@ -1,19 +1,19 @@
-2022-11-11T10:53:59-05:00
+2023-04-02T04:38:55-04:00
 Running ./bin/mt19937
-Run on (4 X 2904 MHz CPU s)
+Run on (8 X 2904 MHz CPU s)
 CPU Caches:
-  L1 Data 32 KiB (x4)
-  L1 Instruction 32 KiB (x4)
-  L2 Unified 256 KiB (x4)
-  L3 Unified 16384 KiB (x4)
-Load Average: 4.12, 3.56, 2.36
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 1.02, 1.01, 1.07
 ----------------------------------------------------------------------------------
 Benchmark                                        Time             CPU   Iterations
 ----------------------------------------------------------------------------------
-BenchEngine<std::mt19937>                     2.78 ns         2.77 ns    252575029
-BenchEngine<std::mt19937_64>                  2.57 ns         2.57 ns    281244601
-BenchEngine<std::minstd_rand>                 3.87 ns         3.87 ns    178236813
-BenchEngine<std::default_random_engine>       3.82 ns         3.81 ns    181665945
-BenchEngine<__gnu_cxx::sfmt19937>             1.45 ns         1.44 ns    486441878
-BenchEngine<__gnu_cxx::sfmt19937_64>          1.71 ns         1.71 ns    408795172
-BenchSFMT                                     1.72 ns         1.72 ns    427536121
+BenchEngine<std::mt19937>                     1.87 ns         1.87 ns    374662360
+BenchEngine<std::mt19937_64>                  1.91 ns         1.91 ns    364968491
+BenchEngine<std::minstd_rand>                 3.84 ns         3.84 ns    182051652
+BenchEngine<std::default_random_engine>       3.83 ns         3.83 ns    182510060
+BenchEngine<__gnu_cxx::sfmt19937>             1.47 ns         1.47 ns    476082658
+BenchEngine<__gnu_cxx::sfmt19937_64>          1.77 ns         1.77 ns    394526019
+BenchSFMT                                     1.64 ns         1.64 ns    425474407

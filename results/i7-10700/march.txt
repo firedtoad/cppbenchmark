@@ -1,14 +1,14 @@
-2022-11-11T10:54:41-05:00
+2023-04-02T04:39:17-04:00
 Running ./bin/march
-Run on (4 X 2904 MHz CPU s)
+Run on (8 X 2904 MHz CPU s)
 CPU Caches:
-  L1 Data 32 KiB (x4)
-  L1 Instruction 32 KiB (x4)
-  L2 Unified 256 KiB (x4)
-  L3 Unified 16384 KiB (x4)
-Load Average: 4.06, 3.62, 2.44
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 1.01, 1.01, 1.07
 -----------------------------------------------------
 Benchmark           Time             CPU   Iterations
 -----------------------------------------------------
-BM_count         1.46 ns         1.46 ns    469692624
-BM_bcount        1.51 ns         1.51 ns    469728249
+BM_count         13.2 ns         13.2 ns     52981979
+BM_bcount        2.06 ns         2.06 ns    340158061

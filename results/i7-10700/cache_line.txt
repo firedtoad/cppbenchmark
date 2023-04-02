@@ -1,19 +1,19 @@
-2022-11-11T10:49:23-05:00
+2023-04-02T04:11:03-04:00
 Running ./bin/cache_line
-Run on (4 X 2904 MHz CPU s)
+Run on (8 X 2904 MHz CPU s)
 CPU Caches:
-  L1 Data 32 KiB (x4)
-  L1 Instruction 32 KiB (x4)
-  L2 Unified 256 KiB (x4)
-  L3 Unified 16384 KiB (x4)
-Load Average: 3.14, 2.46, 1.68
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 1.00, 1.00, 1.48
 -------------------------------------------------------
 Benchmark             Time             CPU   Iterations
 -------------------------------------------------------
-BM_cache32K        1.61 ns         1.61 ns    456547570
-BM_cache262K       2.19 ns         2.19 ns    308162807
-BM_cache4M         2.25 ns         2.25 ns    335465474
-BM_cache8M         4.18 ns         4.18 ns    167043854
-BM_cache16M        10.0 ns         10.0 ns     73527531
-BM_cache32M        15.6 ns         15.6 ns     45847922
-BM_cache64M        16.5 ns         16.5 ns     45492383
+BM_cache32K        1.52 ns         1.52 ns    463543263
+BM_cache262K       2.50 ns         2.50 ns    283916250
+BM_cache4M         2.75 ns         2.75 ns    258289311
+BM_cache8M         5.12 ns         5.12 ns    100000000
+BM_cache16M        9.80 ns         9.80 ns     74627911
+BM_cache32M        10.2 ns         10.2 ns     67956992
+BM_cache64M        12.8 ns         12.8 ns     55483101

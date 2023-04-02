@@ -62,34 +62,34 @@ ska::unordered_map<unsigned short, unsigned short, std::hash<unsigned short>, st
 ska::unordered_map<unsigned int, unsigned int, std::hash<unsigned int>, std::equal_to<unsigned int>, std::allocator<std::pair<unsigned int, unsigned int> > > size 8
 ska::unordered_map<unsigned long, unsigned long, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long, unsigned long> > > size 16
 
-std::_Node_handle<unsigned char, unsigned char, std::allocator<std::__detail::_Hash_node<unsigned char, false> > > size 16
-std::_Node_handle<unsigned short, unsigned short, std::allocator<std::__detail::_Hash_node<unsigned short, false> > > size 16
-std::_Node_handle<unsigned int, unsigned int, std::allocator<std::__detail::_Hash_node<unsigned int, false> > > size 16
-std::_Node_handle<unsigned long, unsigned long, std::allocator<std::__detail::_Hash_node<unsigned long, false> > > size 16
+std::_Node_handle<unsigned char, unsigned char, std::allocator<std::__detail::_Hash_node<unsigned char, false> > > size 8
+std::_Node_handle<unsigned short, unsigned short, std::allocator<std::__detail::_Hash_node<unsigned short, false> > > size 8
+std::_Node_handle<unsigned int, unsigned int, std::allocator<std::__detail::_Hash_node<unsigned int, false> > > size 8
+std::_Node_handle<unsigned long, unsigned long, std::allocator<std::__detail::_Hash_node<unsigned long, false> > > size 8
 
-std::_Node_handle<unsigned char, std::pair<unsigned char const, unsigned char>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned char const, unsigned char>, false> > > size 32
-std::_Node_handle<unsigned short, std::pair<unsigned short const, unsigned short>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned short const, unsigned short>, false> > > size 32
-std::_Node_handle<unsigned int, std::pair<unsigned int const, unsigned int>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned int const, unsigned int>, false> > > size 32
-std::_Node_handle<unsigned long, std::pair<unsigned long const, unsigned long>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned long const, unsigned long>, false> > > size 32
+std::_Node_handle<unsigned char, std::pair<unsigned char const, unsigned char>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned char const, unsigned char>, false> > > size 24
+std::_Node_handle<unsigned short, std::pair<unsigned short const, unsigned short>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned short const, unsigned short>, false> > > size 24
+std::_Node_handle<unsigned int, std::pair<unsigned int const, unsigned int>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned int const, unsigned int>, false> > > size 24
+std::_Node_handle<unsigned long, std::pair<unsigned long const, unsigned long>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned long const, unsigned long>, false> > > size 24
 
-2022-11-11T10:55:06-05:00
+2023-04-02T04:35:24-04:00
 Running ./bin/map_decay
-Run on (4 X 2904 MHz CPU s)
+Run on (8 X 2904 MHz CPU s)
 CPU Caches:
-  L1 Data 32 KiB (x4)
-  L1 Instruction 32 KiB (x4)
-  L2 Unified 256 KiB (x4)
-  L3 Unified 16384 KiB (x4)
-Load Average: 4.66, 3.79, 2.53
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 1.00, 1.00, 1.08
 -----------------------------------------------------------------------------------------------
 Benchmark                                                     Time             CPU   Iterations
 -----------------------------------------------------------------------------------------------
-BM_unmap<std::unordered_map<int, int>>                   336924 ns       336726 ns         2021
-BM_decay_map<std::unordered_map<int, int, Hasher>>    117354356 ns    117276490 ns            6
-BM_unmap<ska::unordered_map<int, int>>                   455760 ns       455489 ns         1520
-BM_decay_map<ska::unordered_map<int, int, Hasher>>     75189902 ns     75144146 ns           10
-BM_unmap<ska::flat_hash_map<int, int>>                   196565 ns       196431 ns         2795
-BM_unmap<phmap::flat_hash_map<int, int>>                 104423 ns       104362 ns         7013
-BM_decay_map<phmap::flat_hash_map<int, int, Hasher>>   42471772 ns     42446203 ns           13
-BM_unmap<absl::flat_hash_map<int, int>>                  150670 ns       150536 ns         4833
-BM_decay_map<absl::flat_hash_map<int, int, Hasher>>    44502854 ns     44474621 ns           17
+BM_unmap<std::unordered_map<int, int>>                  1975962 ns      1975943 ns          367
+BM_decay_map<std::unordered_map<int, int, Hasher>>   1453959712 ns   1453922385 ns            1
+BM_unmap<ska::unordered_map<int, int>>                  1294976 ns      1294951 ns          544
+BM_decay_map<ska::unordered_map<int, int, Hasher>>    432664430 ns    432655323 ns            2
+BM_unmap<ska::flat_hash_map<int, int>>                  1312999 ns      1312972 ns          542
+BM_unmap<phmap::flat_hash_map<int, int>>                4534324 ns      4534221 ns          154
+BM_decay_map<phmap::flat_hash_map<int, int, Hasher>> 4298350339 ns   4298193724 ns            1
+BM_unmap<absl::flat_hash_map<int, int>>                 6473188 ns      6473129 ns          109
+BM_decay_map<absl::flat_hash_map<int, int, Hasher>>  8398038017 ns   8397931789 ns            1

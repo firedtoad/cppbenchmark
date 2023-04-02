@@ -17,6 +17,7 @@
 #include <absl/strings/numbers.h>
 #include <benchmark/benchmark.h>
 #include <boost/lexical_cast.hpp>
+#include <fast_float/fast_float.h>
 #include <charconv>
 #include <cmath>
 #include <google/protobuf/stubs/strutil.h>
@@ -88,7 +89,7 @@ template <typename T> static void BenchStdStol(benchmark::State &state)
 }
 BENCHMARK_TEMPLATE(BenchStdStol, uint64_t);
 
-template <typename T> static void BenchStdStof(benchmark::State &state)
+template <typename T> static void BenchStdStoFloat(benchmark::State &state)
 {
     for (auto _ : state)
     {
@@ -96,7 +97,7 @@ template <typename T> static void BenchStdStof(benchmark::State &state)
         benchmark::DoNotOptimize(r);
     }
 }
-BENCHMARK_TEMPLATE(BenchStdStof, float);
+BENCHMARK_TEMPLATE(BenchStdStoFloat, float);
 
 template <typename T> static void BenchStdCharConvInt(benchmark::State &state)
 {
@@ -109,6 +110,32 @@ template <typename T> static void BenchStdCharConvInt(benchmark::State &state)
 }
 
 BENCHMARK_TEMPLATE(BenchStdCharConvInt, uint64_t);
+
+template <typename T> static void BenchStdCharConvFloat(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        T r{};
+        std::from_chars(tag.data(), tag.data() + tag.size(), r, std::chars_format::general);
+        benchmark::DoNotOptimize(r);
+    }
+}
+
+BENCHMARK_TEMPLATE(BenchStdCharConvFloat, float);
+
+template <typename T> static void BenchFastFloat(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        T r{};
+        fast_float::from_chars(tag.data(), tag.data() + tag.size(), r, fast_float::chars_format::general);
+        benchmark::DoNotOptimize(r);
+    }
+}
+
+BENCHMARK_TEMPLATE(BenchFastFloat, float);
+
+
 
 template <typename T> static void BenchABCharConvIntF(benchmark::State &state)
 {

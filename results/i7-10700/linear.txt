@@ -1,30 +1,30 @@
-2022-11-11T10:58:51-05:00
+2023-04-02T04:51:50-04:00
 Running ./bin/linear
-Run on (4 X 2904 MHz CPU s)
+Run on (8 X 2904 MHz CPU s)
 CPU Caches:
-  L1 Data 32 KiB (x4)
-  L1 Instruction 32 KiB (x4)
-  L2 Unified 256 KiB (x4)
-  L3 Unified 16384 KiB (x4)
-Load Average: 4.02, 3.94, 2.87
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 1.00, 1.00, 1.00
 --------------------------------------------------------------
 Benchmark                    Time             CPU   Iterations
 --------------------------------------------------------------
-BM_IntervalPtr/1         0.535 ns        0.535 ns   1000000000
-BM_IntervalPtr/8          2.78 ns         2.78 ns    274677995
-BM_IntervalPtr/64         26.3 ns         26.3 ns     28547365
-BM_IntervalPtr/512         180 ns          180 ns      3643923
-BM_IntervalPtr/4096       2188 ns         2187 ns       303005
-BM_IntervalPtr/8192       5010 ns         5010 ns       136271
-BM_LinearPtr/1           0.551 ns        0.551 ns   1000000000
-BM_LinearPtr/8            2.80 ns         2.80 ns    258289697
-BM_LinearPtr/64           25.9 ns         25.9 ns     29285026
-BM_LinearPtr/512           178 ns          178 ns      3943523
-BM_LinearPtr/4096         1557 ns         1557 ns       453086
-BM_LinearPtr/8192         3041 ns         3041 ns       220467
-BM_LinearVal/1           0.831 ns        0.831 ns    887173417
-BM_LinearVal/8            2.63 ns         2.63 ns    260816027
-BM_LinearVal/64           13.2 ns         13.2 ns     49671688
-BM_LinearVal/512          97.1 ns         97.0 ns      7600998
-BM_LinearVal/4096         1224 ns         1224 ns       594079
-BM_LinearVal/8192         2743 ns         2743 ns       268857
+BM_IntervalPtr/1         0.553 ns        0.553 ns   1000000000
+BM_IntervalPtr/8          3.21 ns         3.21 ns    220479314
+BM_IntervalPtr/64         25.9 ns         25.9 ns     27035277
+BM_IntervalPtr/512         162 ns          162 ns      4317040
+BM_IntervalPtr/4096       1929 ns         1928 ns       364604
+BM_IntervalPtr/8192       5593 ns         5593 ns       132989
+BM_LinearPtr/1           0.554 ns        0.554 ns   1000000000
+BM_LinearPtr/8            2.56 ns         2.56 ns    272837045
+BM_LinearPtr/64           23.9 ns         23.9 ns     29246563
+BM_LinearPtr/512           159 ns          159 ns      4394541
+BM_LinearPtr/4096         1412 ns         1412 ns       496920
+BM_LinearPtr/8192         2887 ns         2887 ns       238990
+BM_LinearVal/1           0.498 ns        0.498 ns   1000000000
+BM_LinearVal/8            2.20 ns         2.20 ns    320022537
+BM_LinearVal/64           22.5 ns         22.5 ns     31033629
+BM_LinearVal/512           153 ns          153 ns      4634778
+BM_LinearVal/4096         1524 ns         1524 ns       469871
+BM_LinearVal/8192         3914 ns         3914 ns       179216

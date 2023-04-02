@@ -1,0 +1,22 @@
+2023-04-02T04:42:07-04:00
+Running ./bin/vec_dimension
+Run on (8 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 1.00, 1.00, 1.05
+------------------------------------------------------------------------------
+Benchmark                                    Time             CPU   Iterations
+------------------------------------------------------------------------------
+BenchFindDimension<1024, 1024>/1          33.3 ns         33.2 ns     23035074
+BenchFindDimension<1024, 1024>/8           194 ns          194 ns      3865161
+BenchFindDimension<1024, 1024>/64         1414 ns         1413 ns       524218
+BenchFindDimension<1024, 1024>/512       12614 ns        12606 ns        57521
+BenchFindDimension<1024, 1024>/1024      23005 ns        22989 ns        30928
+BenchFindLinear<1024, 1024>/1             32.1 ns         32.1 ns     20355093
+BenchFindLinear<1024, 1024>/8              174 ns          174 ns      4030380
+BenchFindLinear<1024, 1024>/64            1309 ns         1308 ns       543656
+BenchFindLinear<1024, 1024>/512          10407 ns        10400 ns        71196
+BenchFindLinear<1024, 1024>/1024         20741 ns        20728 ns        34428

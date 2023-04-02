@@ -1,0 +1,11 @@
+2023-04-02T04:54:47-04:00
+Running ./bin/segvcatch_bench
+Run on (8 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 1.18, 1.19, 1.08
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Segmentation fault

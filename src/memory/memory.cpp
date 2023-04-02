@@ -216,24 +216,24 @@ int main(int argc, char **argv)
     memAlloc = 0;
     alloc    = 0;
     {
-        tsl::robin_map<uint32_t, uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
-        v.reserve(1024);
-        for (auto i = 0; i < 1024; i++)
-        {
-            v[i] = i;
-        }
-        std::cout << "tsl::robin_map cost memory " << memAlloc << " alloc " << alloc << '\n';
+//        tsl::robin_map<uint32_t, uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
+//        v.reserve(1024);
+//        for (auto i = 0; i < 1024; i++)
+//        {
+//            v[i] = i;
+//        }
+//        std::cout << "tsl::robin_map cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
     memAlloc = 0;
     alloc    = 0;
     {
-        tsl::robin_set<uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
-        v.reserve(1024);
-        for (auto i = 0; i < 1024; i++)
-        {
-            v.insert(i);
-        }
-        std::cout << "tsl::robin_set cost memory " << memAlloc << " alloc " << alloc << '\n';
+//        tsl::robin_set<uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
+//        v.reserve(1024);
+//        for (auto i = 0; i < 1024; i++)
+//        {
+//            v.insert(i);
+//        }
+//        std::cout << "tsl::robin_set cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
     memAlloc = 0;
     alloc    = 0;
@@ -260,24 +260,24 @@ int main(int argc, char **argv)
     memAlloc = 0;
     alloc    = 0;
     {
-        tsl::ordered_map<uint32_t, uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<std::pair<uint32_t, uint32_t>>> v;
-        v.reserve(1024);
-        for (auto i = 0; i < 1024; i++)
-        {
-            v[i] = i;
-        }
-        std::cout << "tsl::ordered_map cost memory " << memAlloc << " alloc " << alloc << '\n';
+//        tsl::ordered_map<uint32_t, uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<std::pair<uint32_t, uint32_t>>> v;
+//        v.reserve(1024);
+//        for (auto i = 0; i < 1024; i++)
+//        {
+//            v[i] = i;
+//        }
+//        std::cout << "tsl::ordered_map cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
     memAlloc = 0;
     alloc    = 0;
     {
-        tsl::ordered_set<uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
-        v.reserve(1024);
-        for (auto i = 0; i < 1024; i++)
-        {
-            v.insert(i);
-        }
-        std::cout << "tsl::ordered_set cost memory " << memAlloc << " alloc " << alloc << '\n';
+//        tsl::ordered_set<uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
+//        v.reserve(1024);
+//        for (auto i = 0; i < 1024; i++)
+//        {
+//            v.insert(i);
+//        }
+//        std::cout << "tsl::ordered_set cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
     memAlloc = 0;
     alloc    = 0;

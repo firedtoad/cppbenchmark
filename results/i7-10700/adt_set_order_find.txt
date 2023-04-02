@@ -1,19 +1,19 @@
-2022-11-11T10:52:06-05:00
+2023-04-02T04:19:48-04:00
 Running ./bin/adt_set_order_find
-Run on (4 X 2904 MHz CPU s)
+Run on (8 X 2904 MHz CPU s)
 CPU Caches:
-  L1 Data 32 KiB (x4)
-  L1 Instruction 32 KiB (x4)
-  L2 Unified 256 KiB (x4)
-  L3 Unified 16384 KiB (x4)
-Load Average: 4.78, 3.36, 2.15
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 1.00, 1.00, 1.25
 ---------------------------------------------------------------------------------------------
 Benchmark                                                   Time             CPU   Iterations
 ---------------------------------------------------------------------------------------------
-BenchOrderSetInt<std::set<int>>                           151 ns          150 ns      4634262
-BenchOrderSetInt<tsl::ordered_set<int>>                  13.0 ns         13.0 ns     51987949
-BenchOrderSetInt<absl::btree_set<int>>                   60.8 ns         60.7 ns     10994527
-BenchImmutableSetInt                                      119 ns          118 ns      6166173
-BenchOrderSetString<std::set<std::string>>                292 ns          291 ns      2436263
-BenchOrderSetString<tsl::ordered_set<std::string>>       56.3 ns         56.3 ns     10000000
-BenchOrderSetString<absl::btree_set<std::string>>         293 ns          292 ns      2563863
+BenchOrderSetInt<std::set<int>>                           370 ns          370 ns      1958353
+BenchOrderSetInt<tsl::ordered_set<int>>                   173 ns          173 ns      3325974
+BenchOrderSetInt<absl::btree_set<int>>                   3049 ns         3049 ns       229169
+BenchImmutableSetInt                                      357 ns          357 ns      1845038
+BenchOrderSetString<std::set<std::string>>                831 ns          831 ns       968845
+BenchOrderSetString<tsl::ordered_set<std::string>>        335 ns          335 ns      2050661
+BenchOrderSetString<absl::btree_set<std::string>>        1823 ns         1822 ns       385474

@@ -1,32 +1,32 @@
-2022-11-11T10:56:31-05:00
+2023-04-02T04:43:14-04:00
 Running ./bin/rapid_boost
-Run on (4 X 2904 MHz CPU s)
+Run on (8 X 2904 MHz CPU s)
 CPU Caches:
-  L1 Data 32 KiB (x4)
-  L1 Instruction 32 KiB (x4)
-  L2 Unified 256 KiB (x4)
-  L3 Unified 16384 KiB (x4)
-Load Average: 4.28, 3.89, 2.67
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 1.00, 1.00, 1.04
 -----------------------------------------------------------------
 Benchmark                       Time             CPU   Iterations
 -----------------------------------------------------------------
-BenchYYJson/1                77.4 ns         77.1 ns      9985938
-BenchYYJson/8                 358 ns          358 ns      1888078
-BenchYYJson/64               2805 ns         2794 ns       248045
-BenchYYJson/128              5091 ns         5089 ns       100000
-BenchRapid/1                  107 ns          107 ns      6600715
-BenchRapid/8                  615 ns          615 ns      1269564
-BenchRapid/64                3644 ns         3642 ns       182654
-BenchRapid/128               8231 ns         8198 ns        97329
-BenchRapidReserve/1           150 ns          150 ns      5421416
-BenchRapidReserve/8           509 ns          506 ns      1000000
-BenchRapidReserve/64         4136 ns         4115 ns       180261
-BenchRapidReserve/128        7528 ns         7525 ns        82941
-BenchRapidDocument/1          222 ns          221 ns      3354937
-BenchRapidDocument/8          923 ns          923 ns       700116
-BenchRapidDocument/64        5384 ns         5363 ns       134046
-BenchRapidDocument/128      11036 ns        11030 ns        65826
-BenchBoostJson/1              196 ns          195 ns      3743753
-BenchBoostJson/8             1105 ns         1104 ns       623650
-BenchBoostJson/64           11569 ns        11552 ns        56451
-BenchBoostJson/128          21335 ns        21242 ns        31792
+BenchYYJson/1                63.0 ns         62.9 ns     11124183
+BenchYYJson/8                 354 ns          354 ns      2102450
+BenchYYJson/64               2564 ns         2563 ns       249716
+BenchYYJson/128              4816 ns         4814 ns       145036
+BenchRapid/1                  105 ns          105 ns      6837930
+BenchRapid/8                  530 ns          529 ns      1293376
+BenchRapid/64                3584 ns         3583 ns       195295
+BenchRapid/128               7014 ns         7010 ns        99641
+BenchRapidReserve/1           130 ns          130 ns      5372558
+BenchRapidReserve/8           476 ns          476 ns      1472690
+BenchRapidReserve/64         3450 ns         3448 ns       203717
+BenchRapidReserve/128        6816 ns         6812 ns        86701
+BenchRapidDocument/1          210 ns          210 ns      3413742
+BenchRapidDocument/8          870 ns          870 ns       815773
+BenchRapidDocument/64        5126 ns         5124 ns       135251
+BenchRapidDocument/128       9771 ns         9765 ns        71983
+BenchBoostJson/1              187 ns          187 ns      3758872
+BenchBoostJson/8              983 ns          982 ns       715181
+BenchBoostJson/64           10507 ns        10500 ns        66935
+BenchBoostJson/128          19657 ns        19648 ns        35547

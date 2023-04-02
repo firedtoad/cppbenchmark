@@ -1,15 +1,15 @@
-2022-11-11T10:57:35-05:00
+2023-04-02T04:20:46-04:00
 Running ./bin/set_reserve
-Run on (4 X 2904 MHz CPU s)
+Run on (8 X 2904 MHz CPU s)
 CPU Caches:
-  L1 Data 32 KiB (x4)
-  L1 Instruction 32 KiB (x4)
-  L2 Unified 256 KiB (x4)
-  L3 Unified 16384 KiB (x4)
-Load Average: 4.10, 3.91, 2.76
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 1.00, 1.00, 1.24
 ------------------------------------------------------------------------------
 Benchmark                                    Time             CPU   Iterations
 ------------------------------------------------------------------------------
-BM_insert<std::unordered_set<int>>     2664995 ns      2654486 ns          283
-BM_reserve<std::unordered_set<int>>    2472854 ns      2471976 ns          284
-BM_reserve<tsl::ordered_set<int>>       638613 ns       635790 ns         1218
+BM_insert<std::unordered_set<int>>    13170437 ns     13170282 ns           53
+BM_reserve<std::unordered_set<int>>   11078419 ns     11077621 ns           64
+BM_reserve<tsl::ordered_set<int>>      9314339 ns      9314066 ns           75

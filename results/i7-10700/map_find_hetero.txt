@@ -1,18 +1,18 @@
-2022-11-11T10:51:20-05:00
+2023-04-02T04:19:41-04:00
 Running ./bin/map_find_hetero
-Run on (4 X 2904 MHz CPU s)
+Run on (8 X 2904 MHz CPU s)
 CPU Caches:
-  L1 Data 32 KiB (x4)
-  L1 Instruction 32 KiB (x4)
-  L2 Unified 256 KiB (x4)
-  L3 Unified 16384 KiB (x4)
-Load Average: 3.91, 2.98, 1.97
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 1.00, 1.00, 1.26
 ------------------------------------------------------------------------------------------------------------
 Benchmark                                                                  Time             CPU   Iterations
 ------------------------------------------------------------------------------------------------------------
-BenchStringLess                                                         9.94 ns         9.94 ns     82436500
-BenchStringCompare                                                      17.0 ns         17.0 ns     43467522
-BenchOrderMapStringSSO<std::map<std::string, int>>                       351 ns          351 ns      1749230
-BenchOrderMapStringSSO<std::map<std::string, int, std::less<>>>          373 ns          373 ns      1987143
-BenchOrderMapStringNoSSO<std::map<std::string, int>>                     578 ns          578 ns      1122436
-BenchOrderMapStringNoSSO<std::map<std::string, int, std::less<>>>        582 ns          582 ns      1094878
+BenchStringLess                                                         26.4 ns         26.4 ns     26591712
+BenchStringCompare                                                      32.2 ns         32.2 ns     21675085
+BenchOrderMapStringSSO<std::map<std::string, int>>                       653 ns          653 ns      1077265
+BenchOrderMapStringSSO<std::map<std::string, int, std::less<>>>          735 ns          735 ns       922239
+BenchOrderMapStringNoSSO<std::map<std::string, int>>                     806 ns          806 ns       859662
+BenchOrderMapStringNoSSO<std::map<std::string, int, std::less<>>>        902 ns          902 ns       759181

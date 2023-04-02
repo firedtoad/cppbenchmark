@@ -1,0 +1,57 @@
+131072
+131072
+user cpu : 0s 3785us
+sys cpu : 0s 16182us
+max rss : 33792 kb / 33 MB
+page reclaims : 8460
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+0
+131072
+user cpu : 0s 11809us
+sys cpu : 0s 11992us
+max rss : 33792 kb / 33 MB
+page reclaims : 8458
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+0
+131072
+user cpu : 0s 22us
+sys cpu : 0s 3946us
+max rss : 2112 kb / 2.0625 MB
+page reclaims : 560
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+2023-04-02T04:52:49-04:00
+Running ./bin/pb_tricks
+Run on (8 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 2.27, 1.28, 1.09
+----------------------------------------------------------------
+Benchmark                      Time             CPU   Iterations
+----------------------------------------------------------------
+BenchCopy/1                  151 ns          151 ns      4663561
+BenchCopy/8                 1416 ns         1416 ns       492731
+BenchCopy/64               12286 ns        12286 ns        57184
+BenchCopy/512             109960 ns       109959 ns         6447
+BenchCopy/1024            204790 ns       204790 ns         3429
+BenchSwap/1                 3.61 ns         3.61 ns    193636593
+BenchSwap/8                 3.61 ns         3.61 ns    194378652
+BenchSwap/64                3.81 ns         3.81 ns    193895064
+BenchSwap/512               3.65 ns         3.65 ns    170487557
+BenchSwap/1024              3.62 ns         3.62 ns    184382670
+BenchAddAllocate/1          38.1 ns         38.1 ns     18224306
+BenchAddAllocate/8           153 ns          153 ns      4674588
+BenchAddAllocate/64          453 ns          453 ns      1545852
+BenchAddAllocate/512        3046 ns         3046 ns       251230
+BenchAddAllocate/1024       7355 ns         7355 ns       100296

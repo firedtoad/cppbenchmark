@@ -13,6 +13,7 @@
 // limitations under the License.
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
+#include <array>
 #include <benchmark/benchmark.h>
 
 struct MyData0

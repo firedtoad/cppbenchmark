@@ -16,6 +16,7 @@
 #include <absl/strings/str_format.h>
 #include <benchmark/benchmark.h>
 #include <boost/format.hpp>
+#include <charconv>
 #include <fmt/format.h>
 #include <random>
 #include <sstream>
@@ -80,6 +81,31 @@ template <typename T> static void BenchSnprintfFloat(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BenchSnprintfFloat, float);
 
+template <typename T> static void BenchStdToCharsInt(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        char buff[256]{};
+        auto r = std::to_chars(buff, buff + 256, tag);
+        benchmark::DoNotOptimize(r);
+    }
+}
+
+BENCHMARK_TEMPLATE(BenchStdToCharsInt, uint64_t);
+
+template <typename T> static void BenchStdToCharsFloat(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        char buff[256]{};
+        auto r = std::to_chars(buff, buff + 256, tagf);
+        benchmark::DoNotOptimize(r);
+    }
+}
+
+BENCHMARK_TEMPLATE(BenchStdToCharsFloat, float );
+
+
 template <typename T> static void BenchBoostStringFormat(benchmark::State &state)
 {
     for (auto _ : state)
@@ -113,7 +139,7 @@ template <typename T> static void BenchFmtStrFormat(benchmark::State &state)
 }
 BENCHMARK_TEMPLATE(BenchFmtStrFormat, uint64_t);
 
-template <typename T> static void BenchFmtStrFormatf(benchmark::State &state)
+template <typename T> static void BenchFmtStrFormatFloat(benchmark::State &state)
 {
     for (auto _ : state)
     {
@@ -121,7 +147,7 @@ template <typename T> static void BenchFmtStrFormatf(benchmark::State &state)
         benchmark::DoNotOptimize(r);
     }
 }
-BENCHMARK_TEMPLATE(BenchFmtStrFormatf, float);
+BENCHMARK_TEMPLATE(BenchFmtStrFormatFloat, float);
 
 template <typename T> static void BenchAbStrFormat(benchmark::State &state)
 {

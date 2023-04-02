@@ -1,15 +1,15 @@
-2022-11-11T10:52:08-05:00
+2023-04-02T04:22:24-04:00
 Running ./bin/predict
-Run on (4 X 2904 MHz CPU s)
+Run on (8 X 2904 MHz CPU s)
 CPU Caches:
-  L1 Data 32 KiB (x4)
-  L1 Instruction 32 KiB (x4)
-  L2 Unified 256 KiB (x4)
-  L3 Unified 16384 KiB (x4)
-Load Average: 4.78, 3.36, 2.15
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 1.15, 1.09, 1.25
 -----------------------------------------------------
 Benchmark           Time             CPU   Iterations
 -----------------------------------------------------
-BM_seq         123790 ns       123684 ns         5294
-BM_alter       119784 ns       119666 ns         6026
-BM_rand        365258 ns       364961 ns         1961
+BM_seq         113690 ns       113619 ns         6141
+BM_alter       114248 ns       114193 ns         6169
+BM_rand        353529 ns       353285 ns         1957

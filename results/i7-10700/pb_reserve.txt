@@ -1,0 +1,42 @@
+user cpu : 0s 3841us
+sys cpu : 0s 11524us
+max rss : 34044 kb / 33.2461 MB
+page reclaims : 8899
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+user cpu : 0s 3945us
+sys cpu : 0s 7941us
+max rss : 34320 kb / 33.5156 MB
+page reclaims : 8591
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+2023-04-02T04:54:33-04:00
+Running ./bin/pb_reserve
+Run on (8 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 1.24, 1.20, 1.08
+-------------------------------------------------------------
+Benchmark                   Time             CPU   Iterations
+-------------------------------------------------------------
+BenchAdd/1                132 ns          132 ns      5285787
+BenchAdd/8               1038 ns         1038 ns       678606
+BenchAdd/64              8128 ns         8128 ns        79378
+BenchAdd/512            95657 ns        95659 ns         7385
+BenchAdd/4096         1205880 ns      1205858 ns          587
+BenchAdd/32768       15939689 ns     15938255 ns           43
+BenchAdd/65536       32453444 ns     32453560 ns           25
+BenchReserve/1            131 ns          131 ns      5330138
+BenchReserve/8           1037 ns         1037 ns       673403
+BenchReserve/64          8342 ns         8342 ns        85167
+BenchReserve/512        95411 ns        95411 ns         7508
+BenchReserve/4096      807127 ns       807112 ns          867
+BenchReserve/32768   15580254 ns     15579541 ns           45
+BenchReserve/65536   33046428 ns     33046395 ns           21

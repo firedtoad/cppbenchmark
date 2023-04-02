@@ -17,3 +17,5 @@ target_link_libraries(string_from PRIVATE absl::strings absl::str_format absl::s
 target_link_libraries(string_to PRIVATE absl::strings absl::str_format absl::strings_internal absl::throw_delegate fmt protobuf )
 target_link_libraries(string_format PRIVATE absl::strings absl::str_format absl::strings_internal absl::throw_delegate fmt protobuf )
 target_link_libraries(string_cat PRIVATE absl::strings absl::str_format absl::strings_internal absl::throw_delegate fmt protobuf )
+
+target_compile_features(string_to PRIVATE cxx_std_20)

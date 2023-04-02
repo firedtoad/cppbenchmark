@@ -1,52 +1,52 @@
-2022-11-11T10:56:54-05:00
+2023-04-02T04:40:10-04:00
 Running ./bin/sorted_unset
-Run on (4 X 2904 MHz CPU s)
+Run on (8 X 2904 MHz CPU s)
 CPU Caches:
-  L1 Data 32 KiB (x4)
-  L1 Instruction 32 KiB (x4)
-  L2 Unified 256 KiB (x4)
-  L3 Unified 16384 KiB (x4)
-Load Average: 4.20, 3.90, 2.70
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 0.95, 0.99, 1.06
 -----------------------------------------------------------------------------------------
 Benchmark                                               Time             CPU   Iterations
 -----------------------------------------------------------------------------------------
-BenchInsert<sorted_vector<uint64_t>>/1               15.4 ns         15.4 ns     39134733
-BenchInsert<sorted_vector<uint64_t>>/8                164 ns          164 ns      4576637
-BenchInsert<sorted_vector<uint64_t>>/64              2122 ns         2121 ns       325758
-BenchInsert<sorted_vector<uint64_t>>/512            25153 ns        25135 ns        27482
-BenchInsert<sorted_vector<uint64_t>>/1024           68580 ns        68536 ns         9470
-BenchInsert<std::unordered_set<uint64_t>>/1          61.9 ns         61.9 ns     12562286
-BenchInsert<std::unordered_set<uint64_t>>/8           312 ns          312 ns      2042316
-BenchInsert<std::unordered_set<uint64_t>>/64         3794 ns         3793 ns       179684
-BenchInsert<std::unordered_set<uint64_t>>/512       36378 ns        36357 ns        20207
-BenchInsert<std::unordered_set<uint64_t>>/1024      71510 ns        71482 ns         9793
-BenchFind<sorted_vector<uint64_t>>/1                 5.54 ns         5.54 ns    100000000
-BenchFind<sorted_vector<uint64_t>>/8                 13.1 ns         13.1 ns     65329841
-BenchFind<sorted_vector<uint64_t>>/64                26.2 ns         26.2 ns     30078627
-BenchFind<sorted_vector<uint64_t>>/512               38.3 ns         38.3 ns     18571803
-BenchFind<sorted_vector<uint64_t>>/1024              42.3 ns         42.3 ns     16601995
-BenchFind<std::unordered_set<uint64_t>>/1            3.91 ns         3.90 ns    177643268
-BenchFind<std::unordered_set<uint64_t>>/8            10.9 ns         10.9 ns     54763019
-BenchFind<std::unordered_set<uint64_t>>/64           10.4 ns         10.4 ns     66033778
-BenchFind<std::unordered_set<uint64_t>>/512          16.2 ns         16.2 ns     43955046
-BenchFind<std::unordered_set<uint64_t>>/1024         17.1 ns         17.1 ns     42926702
-BenchRange<sorted_vector<uint64_t>>/1               0.810 ns        0.810 ns    963663462
-BenchRange<sorted_vector<uint64_t>>/8                2.14 ns         2.14 ns    338229822
-BenchRange<sorted_vector<uint64_t>>/64               4.70 ns         4.69 ns    144541521
-BenchRange<sorted_vector<uint64_t>>/512              33.3 ns         33.2 ns     21393104
-BenchRange<sorted_vector<uint64_t>>/1024             69.2 ns         69.1 ns     11318697
-BenchRange<std::unordered_set<uint64_t>>/1          0.424 ns        0.424 ns   1000000000
-BenchRange<std::unordered_set<uint64_t>>/8           2.66 ns         2.66 ns    258835453
-BenchRange<std::unordered_set<uint64_t>>/64          60.1 ns         60.1 ns     11785659
-BenchRange<std::unordered_set<uint64_t>>/512          473 ns          473 ns      1499617
-BenchRange<std::unordered_set<uint64_t>>/1024        1213 ns         1212 ns       580611
-BenchErase<sorted_vector<uint64_t>>/1                2.79 ns         2.79 ns    244453866
-BenchErase<sorted_vector<uint64_t>>/8                3.79 ns         3.79 ns    168816440
-BenchErase<sorted_vector<uint64_t>>/64               5.87 ns         5.87 ns    128302210
-BenchErase<sorted_vector<uint64_t>>/512              10.0 ns         10.0 ns     54850049
-BenchErase<sorted_vector<uint64_t>>/1024             14.8 ns         14.7 ns     44374782
-BenchErase<std::unordered_set<uint64_t>>/1           5.60 ns         5.60 ns    131632046
-BenchErase<std::unordered_set<uint64_t>>/8           14.8 ns         14.8 ns     45658090
-BenchErase<std::unordered_set<uint64_t>>/64          12.4 ns         12.4 ns     59231213
-BenchErase<std::unordered_set<uint64_t>>/512         18.4 ns         18.4 ns     37873190
-BenchErase<std::unordered_set<uint64_t>>/1024        19.8 ns         19.8 ns     36528319
+BenchInsert<sorted_vector<uint64_t>>/1                194 ns          194 ns      3617013
+BenchInsert<sorted_vector<uint64_t>>/8               1608 ns         1607 ns       436186
+BenchInsert<sorted_vector<uint64_t>>/64             14947 ns        14940 ns        46887
+BenchInsert<sorted_vector<uint64_t>>/512           150666 ns       150579 ns         4646
+BenchInsert<sorted_vector<uint64_t>>/1024          354712 ns       354398 ns         2123
+BenchInsert<std::unordered_set<uint64_t>>/1           279 ns          279 ns      2520879
+BenchInsert<std::unordered_set<uint64_t>>/8          1526 ns         1525 ns       457779
+BenchInsert<std::unordered_set<uint64_t>>/64        15596 ns        15586 ns        44716
+BenchInsert<std::unordered_set<uint64_t>>/512      120482 ns       120411 ns         5828
+BenchInsert<std::unordered_set<uint64_t>>/1024     241699 ns       241582 ns         2901
+BenchFind<sorted_vector<uint64_t>>/1                 63.2 ns         63.1 ns     11213026
+BenchFind<sorted_vector<uint64_t>>/8                  101 ns          101 ns      7101971
+BenchFind<sorted_vector<uint64_t>>/64                 153 ns          153 ns      4574666
+BenchFind<sorted_vector<uint64_t>>/512                217 ns          217 ns      3251584
+BenchFind<sorted_vector<uint64_t>>/1024               235 ns          235 ns      2979946
+BenchFind<std::unordered_set<uint64_t>>/1            36.0 ns         36.0 ns     19463652
+BenchFind<std::unordered_set<uint64_t>>/8            64.7 ns         64.6 ns     10973295
+BenchFind<std::unordered_set<uint64_t>>/64           59.5 ns         59.5 ns     11764477
+BenchFind<std::unordered_set<uint64_t>>/512          80.3 ns         80.3 ns      8717286
+BenchFind<std::unordered_set<uint64_t>>/1024         80.7 ns         80.7 ns      8631312
+BenchRange<sorted_vector<uint64_t>>/1                20.8 ns         20.8 ns     33631799
+BenchRange<sorted_vector<uint64_t>>/8                62.2 ns         62.2 ns     11279800
+BenchRange<sorted_vector<uint64_t>>/64                402 ns          402 ns      1741133
+BenchRange<sorted_vector<uint64_t>>/512              3045 ns         3043 ns       226943
+BenchRange<sorted_vector<uint64_t>>/1024             6065 ns         6062 ns       115014
+BenchRange<std::unordered_set<uint64_t>>/1           29.3 ns         29.3 ns     25607116
+BenchRange<std::unordered_set<uint64_t>>/8            112 ns          112 ns      6134572
+BenchRange<std::unordered_set<uint64_t>>/64           724 ns          724 ns       985425
+BenchRange<std::unordered_set<uint64_t>>/512         5547 ns         5544 ns       127127
+BenchRange<std::unordered_set<uint64_t>>/1024       11980 ns        11973 ns        58432
+BenchErase<sorted_vector<uint64_t>>/1                55.1 ns         55.0 ns     12804556
+BenchErase<sorted_vector<uint64_t>>/8                81.3 ns         81.3 ns      8560072
+BenchErase<sorted_vector<uint64_t>>/64                132 ns          132 ns      5208997
+BenchErase<sorted_vector<uint64_t>>/512               213 ns          213 ns      2722867
+BenchErase<sorted_vector<uint64_t>>/1024              387 ns          387 ns      1596762
+BenchErase<std::unordered_set<uint64_t>>/1           33.3 ns         33.3 ns     20970880
+BenchErase<std::unordered_set<uint64_t>>/8           61.8 ns         61.8 ns     11349536
+BenchErase<std::unordered_set<uint64_t>>/64          57.2 ns         57.1 ns     12281949
+BenchErase<std::unordered_set<uint64_t>>/512         80.6 ns         80.6 ns      8631347
+BenchErase<std::unordered_set<uint64_t>>/1024        82.7 ns         82.7 ns      8471559

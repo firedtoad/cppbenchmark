@@ -1,33 +1,33 @@
-2022-11-11T10:49:59-05:00
+2023-04-02T04:14:08-04:00
 Running ./bin/handler
-Run on (4 X 2904 MHz CPU s)
+Run on (8 X 2904 MHz CPU s)
 CPU Caches:
-  L1 Data 32 KiB (x4)
-  L1 Instruction 32 KiB (x4)
-  L2 Unified 256 KiB (x4)
-  L3 Unified 16384 KiB (x4)
-Load Average: 3.58, 2.65, 1.77
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 1.00, 1.00, 1.39
 ---------------------------------------------------------
 Benchmark               Time             CPU   Iterations
 ---------------------------------------------------------
-BM_map/1             7.88 ns         7.87 ns     92939906
-BM_map/8             11.2 ns         11.1 ns     55863304
-BM_map/64            27.1 ns         27.0 ns     25901522
-BM_map/512           34.8 ns         34.8 ns     19138628
-BM_map/4096          74.0 ns         73.6 ns     10101522
-BM_map/32768          157 ns          157 ns      4293087
-BM_map/65536          212 ns          211 ns      3777335
-BM_unmap/1           10.1 ns         10.0 ns     64826270
-BM_unmap/8           9.11 ns         9.10 ns     70922048
-BM_unmap/64          9.42 ns         9.34 ns     76982070
-BM_unmap/512         9.04 ns         9.04 ns     75607114
-BM_unmap/4096        11.2 ns         11.2 ns     70342332
-BM_unmap/32768       15.5 ns         15.5 ns     38611011
-BM_unmap/65536       16.5 ns         16.5 ns     45342115
-BM_array/1           8.12 ns         8.12 ns     87856912
-BM_array/8           8.26 ns         8.23 ns     88216523
-BM_array/64          8.12 ns         8.12 ns     85994207
-BM_array/512         8.34 ns         8.33 ns     83681831
-BM_array/4096        8.30 ns         8.26 ns     90544142
-BM_array/32768       8.28 ns         8.28 ns     84463700
-BM_array/65536       8.42 ns         8.38 ns     87253093
+BM_map/1             7.72 ns         7.73 ns     83012458
+BM_map/8             11.1 ns         11.1 ns     63877937
+BM_map/64            27.8 ns         27.8 ns     25350010
+BM_map/512           36.6 ns         36.6 ns     18490780
+BM_map/4096          72.0 ns         72.0 ns      9816769
+BM_map/32768          196 ns          195 ns      3453601
+BM_map/65536          253 ns          253 ns      2992166
+BM_unmap/1           9.70 ns         9.69 ns     71824325
+BM_unmap/8           9.60 ns         9.60 ns     73017832
+BM_unmap/64          9.61 ns         9.61 ns     72676176
+BM_unmap/512         9.64 ns         9.63 ns     72889720
+BM_unmap/4096        9.83 ns         9.83 ns     71435120
+BM_unmap/32768       16.0 ns         16.0 ns     41513623
+BM_unmap/65536       16.4 ns         16.4 ns     42842523
+BM_array/1           7.83 ns         7.83 ns     89774065
+BM_array/8           7.88 ns         7.87 ns     89812371
+BM_array/64          7.90 ns         7.90 ns     89387693
+BM_array/512         7.92 ns         7.91 ns     89047850
+BM_array/4096        7.81 ns         7.81 ns     89476283
+BM_array/32768       7.77 ns         7.77 ns     90110501
+BM_array/65536       7.74 ns         7.73 ns     90976708
