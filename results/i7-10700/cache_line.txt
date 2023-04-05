@@ -1,4 +1,4 @@
-2023-04-02T04:11:03-04:00
+2023-04-05T08:43:26-04:00
 Running ./bin/cache_line
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,14 +6,16 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 1.00, 1.00, 1.48
--------------------------------------------------------
-Benchmark             Time             CPU   Iterations
--------------------------------------------------------
-BM_cache32K        1.52 ns         1.52 ns    463543263
-BM_cache262K       2.50 ns         2.50 ns    283916250
-BM_cache4M         2.75 ns         2.75 ns    258289311
-BM_cache8M         5.12 ns         5.12 ns    100000000
-BM_cache16M        9.80 ns         9.80 ns     74627911
-BM_cache32M        10.2 ns         10.2 ns     67956992
-BM_cache64M        12.8 ns         12.8 ns     55483101
+Load Average: 3.99, 3.52, 3.24
+-----------------------------------------------------------------------------
+Benchmark                                   Time             CPU   Iterations
+-----------------------------------------------------------------------------
+BM_CacheSpeed<S<32 * 1024>>              2.05 ns         2.05 ns    426032380
+BM_CacheSpeed<S<256 * 1024>>             3.18 ns         3.18 ns    228430328
+BM_CacheSpeed<S<1024 * 1024>>            3.17 ns         3.17 ns    213829887
+BM_CacheSpeed<S<2 * 1024 * 1024>>        3.05 ns         3.05 ns    218498350
+BM_CacheSpeed<S<4 * 1024 * 1024>>        3.38 ns         3.38 ns    213001835
+BM_CacheSpeed<S<8 * 1024 * 1024>>        6.55 ns         6.55 ns     89705438
+BM_CacheSpeed<S<16 * 1024 * 1024>>       12.8 ns         12.8 ns     59022934
+BM_CacheSpeed<S<32 * 1024 * 1024>>       16.0 ns         16.0 ns     49830046
+BM_CacheSpeed<S<64 * 1024 * 1024>>       17.1 ns         17.1 ns     40443080

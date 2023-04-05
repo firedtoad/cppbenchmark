@@ -15,132 +15,50 @@
 
 #include <benchmark/benchmark.h>
 #include <iostream>
+#include <numeric>
+#include <random>
+#include <unistd.h>
 #include <vector>
 
-const static int DIV = 1;
-
-struct cache
+struct CacheLine
 {
-    uint8_t c[1];
+    uint64_t c[8]{};
 };
-
-static inline uint64_t xor_shift96()
-{ /* A George Marsaglia generator, period 2^96-1 */
-    static uint64_t x = 123456789, y = 362436069, z = 521288629;
-    uint64_t t;
-
-    x ^= x << 16;
-    x ^= x >> 5;
-    x ^= x << 1;
-
-    t = x;
-    x = y;
-    y = z;
-
-    z = t ^ x ^ y;
-    return z;
-}
-
-static inline uint64_t _random()
+template <size_t N> struct S
 {
-    return xor_shift96();
-}
-
-static void BM_cache32K(benchmark::State &state)
+    size_t size = N;
+};
+template <typename T> static void BM_CacheSpeed(benchmark::State &state)
 {
-    const int N = 32 * 1024 / DIV;
-    std::vector<cache> cache;
-    cache.resize(N);
+    T t;
+    const static int DIV = 64;
+    int count            = t.size / DIV;
+    std::vector<CacheLine> cache(count);
+    std::vector<uint64_t> indices(count);
+    std::iota(indices.begin(), indices.end(), 0);
+    std::random_device rd;
+    std::shuffle(indices.begin(), indices.end(), rd);
+    size_t i = 0;
     for (auto _ : state)
     {
-        int idx      = _random() % N;
-        const auto c = cache[idx];
+        int idx = indices[i];
+        auto c  = cache[idx];
         benchmark::DoNotOptimize(c);
-    }
-}
-static void BM_cache262K(benchmark::State &state)
-{
-    const int N = 262 * 1024 / DIV;
-    std::vector<cache> cache;
-    cache.resize(N);
-    for (auto _ : state)
-    {
-        int idx      = _random() % N;
-        const auto c = cache[idx];
-        benchmark::DoNotOptimize(c);
+        benchmark::DoNotOptimize(idx);
+        i = i < indices.size() - 1 ? ++i : 0;
     }
 }
 
-static void BM_cache4M(benchmark::State &state)
-{
-    const int N = 4096 * 1024 / DIV;
-    std::vector<cache> cache;
-    cache.resize(N);
-    for (auto _ : state)
-    {
-        int idx      = _random() % N;
-        const auto c = cache[idx];
-        benchmark::DoNotOptimize(c);
-    }
-}
-static void BM_cache8M(benchmark::State &state)
-{
-    const int N = 8192 * 1024 / DIV;
-    std::vector<cache> cache;
-    cache.resize(N);
-    for (auto _ : state)
-    {
-        int idx      = _random() % N;
-        const auto c = cache[idx];
-        benchmark::DoNotOptimize(c);
-    }
-}
-static void BM_cache16M(benchmark::State &state)
-{
-    const int N = 16384 * 1024 / DIV;
-    std::vector<cache> cache;
-    cache.resize(N);
+BENCHMARK_TEMPLATE(BM_CacheSpeed, S<32 * 1024>);
+BENCHMARK_TEMPLATE(BM_CacheSpeed, S<256 * 1024>);
+BENCHMARK_TEMPLATE(BM_CacheSpeed, S<1024 * 1024>);
+BENCHMARK_TEMPLATE(BM_CacheSpeed, S<2 * 1024 * 1024>);
+BENCHMARK_TEMPLATE(BM_CacheSpeed, S<4 * 1024 * 1024>);
+BENCHMARK_TEMPLATE(BM_CacheSpeed, S<8 * 1024 * 1024>);
+BENCHMARK_TEMPLATE(BM_CacheSpeed, S<16 * 1024 * 1024>);
+BENCHMARK_TEMPLATE(BM_CacheSpeed, S<32 * 1024 * 1024>);
+BENCHMARK_TEMPLATE(BM_CacheSpeed, S<64 * 1024 * 1024>);
 
-    for (auto _ : state)
-    {
-        int idx      = _random() % N;
-        const auto c = cache[idx];
-        benchmark::DoNotOptimize(c);
-    }
-}
-static void BM_cache32M(benchmark::State &state)
-{
-    const int N = 32768 * 1024 / DIV;
-    std::vector<cache> cache;
-    cache.resize(N);
-    for (auto _ : state)
-    {
-        int idx      = _random() % N;
-        const auto c = cache[idx];
-        benchmark::DoNotOptimize(c);
-    }
-}
-
-static void BM_cache64M(benchmark::State &state)
-{
-    const int N = 65536 * 1024 / DIV;
-    std::vector<cache> cache;
-    cache.resize(N);
-    for (auto _ : state)
-    {
-        int idx      = _random() % N;
-        const auto c = cache[idx];
-        benchmark::DoNotOptimize(c);
-    }
-}
-
-BENCHMARK(BM_cache32K);
-BENCHMARK(BM_cache262K);
-BENCHMARK(BM_cache4M);
-BENCHMARK(BM_cache8M);
-BENCHMARK(BM_cache16M);
-BENCHMARK(BM_cache32M);
-BENCHMARK(BM_cache64M);
 int main(int argc, char **argv)
 {
     benchmark::Initialize(&argc, argv);

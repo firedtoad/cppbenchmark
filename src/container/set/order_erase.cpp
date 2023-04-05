@@ -82,16 +82,14 @@ BENCHMARK_TEMPLATE(BenchEraseOrderSetInt, tsl::ordered_set<int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderSetInt, tsl::ordered_set<int>);
 BENCHMARK_TEMPLATE(BenchEraseOrderSetInt, absl::btree_set<int>);
 BENCHMARK_TEMPLATE(BenchEraseOrderSetInt, phmap::btree_set<int>);
-
+std::vector<std::string> keys(65536);
 template <class S> static void BenchEraseOrderSetString(benchmark::State &state)
 {
     S s;
-    std::vector<std::string> keys(65536);
+
     for (auto i = 0; i < 65536; i++)
     {
-        auto sKey = "12345678901234561234567890123456" + std::to_string(_random());
-        keys[i]   = sKey;
-        s.insert(sKey);
+        s.insert(keys[i]);
     }
     for (auto _ : state)
     {
@@ -106,12 +104,9 @@ template <class S> static void BenchEraseOrderSetString(benchmark::State &state)
 template <class S> static void BenchEraseUnorderSetString(benchmark::State &state)
 {
     S s;
-    std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto sKey = "12345678901234561234567890123456" + std::to_string(_random());
-        keys[i]   = sKey;
-        s.insert(sKey);
+        s.insert(keys[i]);
     }
     for (auto _ : state)
     {
@@ -131,6 +126,10 @@ BENCHMARK_TEMPLATE(BenchEraseOrderSetString, phmap::btree_set<std::string>);
 
 int main(int argc, char **argv)
 {
+    for (auto i = 0; i < 65536; i++)
+    {
+        keys[i] = "12345678901234561234567890123456" + std::to_string(_random());
+    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

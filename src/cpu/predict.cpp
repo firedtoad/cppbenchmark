@@ -15,6 +15,7 @@
 
 #include <algorithm>
 #include <benchmark/benchmark.h>
+#include <random>
 #include <vector>
 
 using Fn = int (*)();
@@ -87,7 +88,8 @@ static void BM_rand(benchmark::State &state)
         }
         it = b;
     }
-    std::random_shuffle(callers.begin(), callers.end());
+    std::random_device rd;
+    std::shuffle(callers.begin(), callers.end(),rd);
     for (auto _ : state)
     {
         for (auto &it : callers)

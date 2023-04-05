@@ -41,17 +41,13 @@ static inline uint64_t _random()
     return xor_shift96();
 }
 
-
+std::vector<uint64_t> keys(65536);
 template <class M> static void BenchCombineMapInt(benchmark::State &state)
 {
     M m;
-    std::vector<uint64_t> keys;
-    keys.reserve(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto r = _random();
-        keys.push_back(r);
-        m[r] = i;
+        m[keys[i]] = i;
     }
     for (auto _ : state)
     {
@@ -65,15 +61,12 @@ template <class M> static void BenchCombineMapInt(benchmark::State &state)
 template <class M> static void BenchTwiceMapInt(benchmark::State &state)
 {
     M m;
-    std::vector<uint64_t> keys;
-    keys.reserve(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto r     = _random();
+        auto r     = keys[i];
         uint32_t f = r >> 32;
         uint32_t s = r & 0xFFFFFFFF;
-        keys.push_back(r);
-        m[f][s] = i;
+        m[f][s]    = i;
     }
     for (auto _ : state)
     {
@@ -102,9 +95,12 @@ BENCHMARK_TEMPLATE(BenchTwiceMapInt, phmap::flat_hash_map<uint32_t, phmap::flat_
 
 int main(int argc, char **argv)
 {
+    for (auto i = 0; i < 65536; i++)
+    {
+        keys[i] = _random();
+    }
+
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
-    std::ostringstream  oss;
-    oss<<std::string("11");
     return 0;
 }

@@ -81,14 +81,12 @@ BENCHMARK_TEMPLATE(BenchRangeOrderVectorInt, std::vector<std::pair<int, int>>);
 BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, tsl::ordered_map<int, int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, absl::btree_map<int, int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, phmap::btree_map<int, int>);
-
+std::vector<std::string> keys(65536);
 template <class M> static void BenchRangeOrderMapString(benchmark::State &state)
 {
     M m;
-    std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]    = "12345678901234561234567890123456" + std::to_string(_random());
         m[keys[i]] = i;
     }
     int r{};
@@ -109,6 +107,10 @@ BENCHMARK_TEMPLATE(BenchRangeOrderMapString, phmap::btree_map<std::string, int>)
 
 int main(int argc, char **argv)
 {
+    for (auto i = 0; i < 65536; i++)
+    {
+        keys[i] = "12345678901234561234567890123456" + std::to_string(_random());
+    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

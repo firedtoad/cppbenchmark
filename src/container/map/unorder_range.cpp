@@ -105,15 +105,14 @@ static void BenchRangeFlatMapInt(benchmark::State &state)
 }
 
 BENCHMARK(BenchRangeFlatMapInt);
-
+std::vector<std::string> keys(65536);
 template <class M> static void BenchRangeUnOrderMapString(benchmark::State &state)
 {
     M m;
     m.reserve(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto sKey = "12345678901234561234567890123456" + std::to_string(_random());
-        m[sKey]   = i;
+        m[keys[i]]   = i;
     }
     int r{};
     for (auto _ : state)
@@ -129,12 +128,10 @@ template <class M> static void BenchRangeUnOrderMapString(benchmark::State &stat
 template <class M> static void BenchRangeCharKeyMap(benchmark::State &state)
 {
     M m;
-    std::vector<std::string> keys(65536);
+
     for (auto i = 0; i < 65536; i++)
     {
-        auto sKey = "12345678901234561234567890123456" + std::to_string(_random());
-        ;
-        m[sKey] = i;
+        m[keys[i]] = i;
     }
     int r{};
     for (auto _ : state)
@@ -168,9 +165,7 @@ static void BenchRangeFlatMapString(benchmark::State &state)
     m.init(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto sKey = "12345678901234561234567890123456" + std::to_string(_random());
-        ;
-        m[sKey] = i;
+        m[keys[i]] = i;
     }
     int r{};
     for (auto _ : state)
@@ -187,6 +182,10 @@ BENCHMARK(BenchRangeFlatMapString);
 
 int main(int argc, char **argv)
 {
+    for (auto i = 0; i < 65536; i++)
+    {
+        keys[i] = "12345678901234561234567890123456" + std::to_string(_random());
+    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

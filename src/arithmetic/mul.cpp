@@ -36,6 +36,11 @@ __attribute__((noinline)) int64_t calc_64(int64_t x, int64_t y)
     return x * y;
 }
 
+__attribute__((noinline)) int64_t calc_64d(int64_t x, double y)
+{
+    return x * y;
+}
+
 static void calc_int(benchmark::State &state)
 {
     int d = 1;
@@ -59,6 +64,18 @@ static void calc_int64(benchmark::State &state)
 }
 
 BENCHMARK(calc_int64);
+
+static void calc_int64d(benchmark::State &state)
+{
+    int64_t d = 1;
+    for (auto _ : state)
+    {
+        benchmark::DoNotOptimize(calc_64d(d + 100000, d));
+        d++;
+    }
+}
+
+BENCHMARK(calc_int64d);
 
 static void calc_float(benchmark::State &state)
 {
@@ -84,4 +101,9 @@ static void calc_double(benchmark::State &state)
 
 BENCHMARK(calc_double);
 
-BENCHMARK_MAIN();
+int main(int argc, char **argv)
+{
+    benchmark::Initialize(&argc, argv);
+    benchmark::RunSpecifiedBenchmarks();
+    return 0;
+}

@@ -1,4 +1,4 @@
-2023-04-02T04:23:33-04:00
+2023-04-05T08:40:58-04:00
 Running ./bin/adt_fast_map
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,67 +6,67 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 1.07, 1.08, 1.23
+Load Average: 2.85, 3.15, 3.09
 ---------------------------------------------------------------------------------------------------------------------------------------
 Benchmark                                                                                             Time             CPU   Iterations
 ---------------------------------------------------------------------------------------------------------------------------------------
-BenchInsert<fast_vector_map<uint64_t, uint64_t>>/1024                                            770090 ns       769530 ns          958
-BenchInsert<fast_vector_map<uint64_t, uint64_t>>/4096                                           2981463 ns      2981494 ns          235
-BenchInsert<fast_vector_map<uint64_t, uint64_t>>/32768                                         24123643 ns     24105055 ns           29
-BenchInsert<fast_vector_map<uint64_t, uint64_t>>/262144                                       194646396 ns    194649980 ns            4
-BenchInsert<fast_vector_map<uint64_t, uint64_t>>/1048576                                      783401558 ns    782866330 ns            1
-BenchInsert<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/1024        303240 ns       303243 ns         2310
-BenchInsert<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/4096       1233147 ns      1232206 ns          568
-BenchInsert<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/32768     10112275 ns     10112344 ns           70
-BenchInsert<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/262144    88214964 ns     88215028 ns            8
-BenchInsert<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/1048576  401911486 ns    401914775 ns            2
-BenchInsert<llvm::MapVector<uint64_t, uint64_t>>/1024                                            306567 ns       306569 ns         2284
-BenchInsert<llvm::MapVector<uint64_t, uint64_t>>/4096                                           1245806 ns      1244839 ns          562
-BenchInsert<llvm::MapVector<uint64_t, uint64_t>>/32768                                         10307122 ns     10307207 ns           69
-BenchInsert<llvm::MapVector<uint64_t, uint64_t>>/262144                                        88923614 ns     88846200 ns            7
-BenchInsert<llvm::MapVector<uint64_t, uint64_t>>/1048576                                      400111794 ns    400114162 ns            2
-BenchFind<fast_vector_map<uint64_t, uint64_t>>/1024                                                 106 ns          106 ns      6600501
-BenchFind<fast_vector_map<uint64_t, uint64_t>>/4096                                                 107 ns          107 ns      6522581
-BenchFind<fast_vector_map<uint64_t, uint64_t>>/32768                                                112 ns          112 ns      6264479
-BenchFind<fast_vector_map<uint64_t, uint64_t>>/262144                                               124 ns          124 ns      5590166
-BenchFind<fast_vector_map<uint64_t, uint64_t>>/1048576                                              159 ns          159 ns      4444911
-BenchFind<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/1024             146 ns          146 ns      4779577
-BenchFind<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/4096             151 ns          151 ns      4644400
-BenchFind<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/32768            164 ns          164 ns      4318603
-BenchFind<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/262144           202 ns          202 ns      3366312
-BenchFind<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/1048576          287 ns          287 ns      2405394
-BenchFind<llvm::MapVector<uint64_t, uint64_t>>/1024                                                 150 ns          150 ns      4646016
-BenchFind<llvm::MapVector<uint64_t, uint64_t>>/4096                                                 154 ns          154 ns      4532918
-BenchFind<llvm::MapVector<uint64_t, uint64_t>>/32768                                                166 ns          166 ns      4216092
-BenchFind<llvm::MapVector<uint64_t, uint64_t>>/262144                                               220 ns          220 ns      3279519
-BenchFind<llvm::MapVector<uint64_t, uint64_t>>/1048576                                              295 ns          295 ns      2354489
-BenchRange<fast_vector_map<uint64_t, uint64_t>>/1024                                               6092 ns         6087 ns       115031
-BenchRange<fast_vector_map<uint64_t, uint64_t>>/4096                                              24359 ns        24358 ns        28756
-BenchRange<fast_vector_map<uint64_t, uint64_t>>/32768                                            197421 ns       197272 ns         3547
-BenchRange<fast_vector_map<uint64_t, uint64_t>>/262144                                          1589878 ns      1589903 ns          440
-BenchRange<fast_vector_map<uint64_t, uint64_t>>/1048576                                         6609025 ns      6608892 ns          106
-BenchRange<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/1024           6043 ns         6043 ns       116427
-BenchRange<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/4096          24125 ns        24107 ns        29024
-BenchRange<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/32768        194787 ns       194783 ns         3594
-BenchRange<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/262144      1575800 ns      1575764 ns          446
-BenchRange<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/1048576     6554173 ns      6554051 ns          107
-BenchRange<llvm::MapVector<uint64_t, uint64_t>>/1024                                               6126 ns         6126 ns       114202
-BenchRange<llvm::MapVector<uint64_t, uint64_t>>/4096                                              24471 ns        24452 ns        28594
-BenchRange<llvm::MapVector<uint64_t, uint64_t>>/32768                                            197887 ns       197882 ns         3538
-BenchRange<llvm::MapVector<uint64_t, uint64_t>>/262144                                          1599761 ns      1599733 ns          438
-BenchRange<llvm::MapVector<uint64_t, uint64_t>>/1048576                                         6645304 ns      6639956 ns          105
-BenchErase<fast_vector_map<uint64_t, uint64_t>>/1024                                                104 ns          104 ns      6736860
-BenchErase<fast_vector_map<uint64_t, uint64_t>>/4096                                                155 ns          155 ns      4503376
-BenchErase<fast_vector_map<uint64_t, uint64_t>>/32768                                               472 ns          472 ns      1478018
-BenchErase<fast_vector_map<uint64_t, uint64_t>>/262144                                             1035 ns         1035 ns       667748
-BenchErase<fast_vector_map<uint64_t, uint64_t>>/1048576                                            1049 ns         1048 ns       674461
-BenchErase<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/1024            117 ns          117 ns      5979095
-BenchErase<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/4096            133 ns          133 ns      5255658
-BenchErase<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/32768           225 ns          225 ns      3106135
-BenchErase<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/262144          429 ns          429 ns      1626069
-BenchErase<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/1048576         429 ns          429 ns      1629865
-BenchErase<llvm::MapVector<uint64_t, uint64_t>>/1024                                                953 ns          953 ns       748491
-BenchErase<llvm::MapVector<uint64_t, uint64_t>>/4096                                              12680 ns        12671 ns        57316
-BenchErase<llvm::MapVector<uint64_t, uint64_t>>/32768                                            566847 ns       566829 ns         1176
-BenchErase<llvm::MapVector<uint64_t, uint64_t>>/262144                                          2809933 ns      2807713 ns          244
-BenchErase<llvm::MapVector<uint64_t, uint64_t>>/1048576                                         2865130 ns      2865178 ns          244
+BenchInsert<fast_vector_map<uint64_t, uint64_t>>/1024                                             27275 ns        27256 ns        26340
+BenchInsert<fast_vector_map<uint64_t, uint64_t>>/4096                                            189124 ns       188966 ns         3711
+BenchInsert<fast_vector_map<uint64_t, uint64_t>>/32768                                          1620359 ns      1618990 ns          420
+BenchInsert<fast_vector_map<uint64_t, uint64_t>>/262144                                        15007469 ns     14968941 ns           44
+BenchInsert<fast_vector_map<uint64_t, uint64_t>>/1048576                                       63926119 ns     63842434 ns           10
+BenchInsert<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/1024         31635 ns        31607 ns        19547
+BenchInsert<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/4096        139165 ns       138967 ns         5031
+BenchInsert<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/32768      1270278 ns      1268218 ns          552
+BenchInsert<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/262144    14241088 ns     14226495 ns           44
+BenchInsert<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/1048576  100318745 ns    100064128 ns            6
+BenchInsert<llvm::MapVector<uint64_t, uint64_t>>/1024                                             32197 ns        32146 ns        21375
+BenchInsert<llvm::MapVector<uint64_t, uint64_t>>/4096                                            144616 ns       144471 ns         4907
+BenchInsert<llvm::MapVector<uint64_t, uint64_t>>/32768                                          1298686 ns      1297594 ns          556
+BenchInsert<llvm::MapVector<uint64_t, uint64_t>>/262144                                        14099811 ns     14085417 ns           48
+BenchInsert<llvm::MapVector<uint64_t, uint64_t>>/1048576                                      103309982 ns    103115940 ns            8
+BenchFind<fast_vector_map<uint64_t, uint64_t>>/1024                                                11.2 ns         11.2 ns     54907782
+BenchFind<fast_vector_map<uint64_t, uint64_t>>/4096                                                11.1 ns         11.1 ns     59567774
+BenchFind<fast_vector_map<uint64_t, uint64_t>>/32768                                               14.4 ns         14.4 ns     59216989
+BenchFind<fast_vector_map<uint64_t, uint64_t>>/262144                                              18.9 ns         18.9 ns     37895341
+BenchFind<fast_vector_map<uint64_t, uint64_t>>/1048576                                             27.0 ns         26.9 ns     28915871
+BenchFind<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/1024            23.2 ns         23.2 ns     28964597
+BenchFind<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/4096            25.2 ns         25.2 ns     28014902
+BenchFind<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/32768           34.6 ns         34.6 ns     20755091
+BenchFind<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/262144          48.2 ns         48.1 ns     15926645
+BenchFind<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/1048576          125 ns          125 ns      4551308
+BenchFind<llvm::MapVector<uint64_t, uint64_t>>/1024                                                22.6 ns         22.5 ns     32341037
+BenchFind<llvm::MapVector<uint64_t, uint64_t>>/4096                                                26.8 ns         26.8 ns     27268747
+BenchFind<llvm::MapVector<uint64_t, uint64_t>>/32768                                               36.3 ns         36.2 ns     19022587
+BenchFind<llvm::MapVector<uint64_t, uint64_t>>/262144                                              59.2 ns         59.2 ns     11227375
+BenchFind<llvm::MapVector<uint64_t, uint64_t>>/1048576                                             89.9 ns         89.8 ns      7864928
+BenchRange<fast_vector_map<uint64_t, uint64_t>>/1024                                                314 ns          314 ns      2302115
+BenchRange<fast_vector_map<uint64_t, uint64_t>>/4096                                               1362 ns         1361 ns       497945
+BenchRange<fast_vector_map<uint64_t, uint64_t>>/32768                                             13427 ns        13410 ns        54663
+BenchRange<fast_vector_map<uint64_t, uint64_t>>/262144                                           107166 ns       106943 ns         6222
+BenchRange<fast_vector_map<uint64_t, uint64_t>>/1048576                                          767638 ns       766096 ns          849
+BenchRange<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/1024            327 ns          327 ns      2306489
+BenchRange<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/4096           1501 ns         1498 ns       476770
+BenchRange<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/32768         12510 ns        12499 ns        58434
+BenchRange<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/262144       109325 ns       109222 ns         6054
+BenchRange<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/1048576      773971 ns       772973 ns          938
+BenchRange<llvm::MapVector<uint64_t, uint64_t>>/1024                                                332 ns          331 ns      2040068
+BenchRange<llvm::MapVector<uint64_t, uint64_t>>/4096                                               1448 ns         1446 ns       528328
+BenchRange<llvm::MapVector<uint64_t, uint64_t>>/32768                                             15758 ns        15735 ns        55027
+BenchRange<llvm::MapVector<uint64_t, uint64_t>>/262144                                           114988 ns       114834 ns         6932
+BenchRange<llvm::MapVector<uint64_t, uint64_t>>/1048576                                          809292 ns       808100 ns          842
+BenchErase<fast_vector_map<uint64_t, uint64_t>>/1024                                               7.66 ns         7.65 ns    105496880
+BenchErase<fast_vector_map<uint64_t, uint64_t>>/4096                                               10.8 ns         10.8 ns     53758308
+BenchErase<fast_vector_map<uint64_t, uint64_t>>/32768                                              28.8 ns         28.8 ns     24041434
+BenchErase<fast_vector_map<uint64_t, uint64_t>>/262144                                             55.5 ns         55.4 ns     10000000
+BenchErase<fast_vector_map<uint64_t, uint64_t>>/1048576                                            56.1 ns         56.1 ns     10752870
+BenchErase<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/1024           14.5 ns         14.5 ns     42672629
+BenchErase<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/4096           17.6 ns         17.5 ns     43570103
+BenchErase<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/32768          22.6 ns         22.6 ns     25736019
+BenchErase<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/262144         45.8 ns         45.8 ns     15188479
+BenchErase<fast_vector_map<uint64_t, uint64_t, llvm::DenseMap<uint64_t, uint32_t>>>/1048576        42.3 ns         42.3 ns     15071599
+BenchErase<llvm::MapVector<uint64_t, uint64_t>>/1024                                                132 ns          131 ns      5336947
+BenchErase<llvm::MapVector<uint64_t, uint64_t>>/4096                                               2138 ns         2138 ns       350151
+BenchErase<llvm::MapVector<uint64_t, uint64_t>>/32768                                            107363 ns       107268 ns         6460
+BenchErase<llvm::MapVector<uint64_t, uint64_t>>/262144                                           261762 ns       261766 ns         2648
+BenchErase<llvm::MapVector<uint64_t, uint64_t>>/1048576                                          260860 ns       260644 ns         2611

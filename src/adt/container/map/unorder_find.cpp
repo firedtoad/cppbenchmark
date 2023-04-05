@@ -55,22 +55,19 @@ static inline unsigned long _random()
 {
     return xorshf96();
 }
-
+std::vector<std::string> keys(65536);
+std::vector<int> ikeys(65536);
 template <class M> static void BenchUnOrderMapInt(benchmark::State &state)
 {
     M m;
-    std::vector<int> keys;
     m.reserve(65536);
-    keys.reserve(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto r = _random();
-        keys.push_back(r);
-        m[r] = i;
+        m[ikeys[i]] = i;
     }
     for (auto _ : state)
     {
-        auto idx = keys[_random() % 65536];
+        auto idx = ikeys[_random() % 65536];
         auto c   = m.find(idx);
         auto v   = c->second;
         benchmark::DoNotOptimize(v);
@@ -95,18 +92,14 @@ BENCHMARK_TEMPLATE(BenchUnOrderMapInt, llvm::MapVector<int, int>);
 template <class M> static void BenchIndexedMap(benchmark::State &state)
 {
     M m;
-    std::vector<int> keys;
     m.resize(65536);
-    keys.reserve(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto r = _random();
-        keys.push_back(r % 65536);
-        m[i] = r;
+        m[i] = i;
     }
     for (auto _ : state)
     {
-        auto idx = keys[_random() % 65536];
+        auto idx = ikeys[_random() % 65536];
         auto c   = m[idx];
         benchmark::DoNotOptimize(c);
     }
@@ -118,18 +111,14 @@ template <class M> static void BenchUnOrderMapString(benchmark::State &state)
 {
     M m;
     m.reserve(65536);
-    std::vector<std::string> keys(65536);
-    int k = 1000000;
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]            = "12345678901234561234567890123456" + std::to_string(k++);
-        m[keys[i].c_str()] = i;
+        m[keys[i]] = i;
     }
-
     for (auto _ : state)
     {
         auto kIndex = _random() % 65536;
-        auto c      = m.find(keys[kIndex].c_str());
+        auto c      = m.find(keys[kIndex]);
         benchmark::DoNotOptimize(c);
     }
 }
@@ -137,18 +126,15 @@ template <class M> static void BenchUnOrderMapString(benchmark::State &state)
 template <class M> static void BenchCharKeyMap(benchmark::State &state)
 {
     M m;
-    std::vector<std::string> keys(65536);
-    int k = 1000000;
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]            = "12345678901234561234567890123456" + std::to_string(k++);
-        m[keys[i].c_str()] = i;
+        m[keys[i]] = i;
     }
 
     for (auto _ : state)
     {
         auto kIndex = _random() % 65536;
-        auto c      = m.find(keys[kIndex].c_str());
+        auto c      = m.find(keys[kIndex]);
         benchmark::DoNotOptimize(c);
     }
 }
@@ -170,18 +156,15 @@ BENCHMARK_TEMPLATE(BenchUnOrderMapString, llvm::MapVector<llvm::StringRef, int>)
 template <class M> static void BenchStringMapNoSSO(benchmark::State &state)
 {
     M m;
-    std::vector<std::string> keys(65536);
-    int k = 1000000;
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]            = "12345678901234561234567890123456" + std::to_string(k++);
-        m[keys[i].c_str()] = i;
+        m[keys[i]] = i;
     }
 
     for (auto _ : state)
     {
         auto kIndex = _random() % 65536;
-        auto c      = m.find(keys[kIndex].c_str());
+        auto c      = m.find(keys[kIndex]);
         benchmark::DoNotOptimize(c);
     }
 }
@@ -191,19 +174,14 @@ BENCHMARK_TEMPLATE(BenchStringMapNoSSO, llvm::StringMap<int>);
 template <class M> static void BenchIndexedMapString(benchmark::State &state)
 {
     M m;
-    std::vector<int> keys;
     m.resize(65536);
-    keys.reserve(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto r   = _random();
-        auto val = "12345678901234561234567890123456" + std::to_string(r);
-        keys.push_back(r % 65536);
-        m[i] = val;
+        m[ikeys[i]] = {};
     }
     for (auto _ : state)
     {
-        auto idx = keys[_random() % 65536];
+        auto idx = ikeys[_random() % 65536];
         auto c   = m[idx];
         benchmark::DoNotOptimize(c);
     }
@@ -216,6 +194,11 @@ BENCHMARK_TEMPLATE(BenchCharKeyMap, tsl::array_map<char, int>);
 
 int main(int argc, char **argv)
 {
+    for (auto i = 0; i < 65536; i++)
+    {
+        keys[i]  = "12345678901234561234567890123456" + std::to_string(+_random());
+        ikeys[i] = _random();
+    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

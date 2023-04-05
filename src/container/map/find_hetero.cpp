@@ -38,14 +38,9 @@ static inline uint64_t _random()
 {
     return xor_shift96();
 }
-
+std::vector<std::string> keys(65536);
 static void BenchStringLess(benchmark::State &state)
 {
-    std::vector<std::string> keys(65536);
-    for (auto i = 0; i < 65536; i++)
-    {
-        keys[i] = std::to_string(i % 65536);
-    }
     for (auto _ : state)
     {
         auto kIndex  = _random() % 65536;
@@ -56,11 +51,6 @@ static void BenchStringLess(benchmark::State &state)
 
 static void BenchStringCompare(benchmark::State &state)
 {
-    std::vector<std::string> keys(65536);
-    for (auto i = 0; i < 65536; i++)
-    {
-        keys[i] = std::to_string(i % 65536);
-    }
     for (auto _ : state)
     {
         auto kIndex  = _random() % 65536;
@@ -75,11 +65,8 @@ BENCHMARK(BenchStringCompare);
 template <class M> static void BenchOrderMapStringSSO(benchmark::State &state)
 {
     M m;
-    std::vector<std::string> keys(65536);
-    int k = 1000000;
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]    = std::to_string(k++);
         m[keys[i]] = i;
     }
     for (auto _ : state)
@@ -92,18 +79,13 @@ template <class M> static void BenchOrderMapStringSSO(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BenchOrderMapStringSSO, std::map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchOrderMapStringSSO, std::map<std::string, int, std::less<>>);
-
 template <class M> static void BenchOrderMapStringNoSSO(benchmark::State &state)
 {
     M m;
-    std::vector<std::string> keys(65536);
-    int k = 1000000;
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]    = "12345678901234561234567890123456" + std::to_string(k++);
         m[keys[i]] = i;
     }
-
     for (auto _ : state)
     {
         auto kIndex = _random() % 65536;
@@ -116,6 +98,10 @@ BENCHMARK_TEMPLATE(BenchOrderMapStringNoSSO, std::map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchOrderMapStringNoSSO, std::map<std::string, int, std::less<>>);
 int main(int argc, char **argv)
 {
+    for (auto i = 0; i < 65536; i++)
+    {
+        keys[i]    = "12345678901234561234567890123456" + std::to_string(_random());
+    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

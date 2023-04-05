@@ -49,7 +49,7 @@ static inline unsigned long random_()
 {
     return xorshf96();
 }
-
+std::vector<std::string> vec;
 void init(std::vector<std::string> &v1)
 {
     v1.resize(N);
@@ -58,10 +58,9 @@ void init(std::vector<std::string> &v1)
         v1[i] = "12345678901234561234567890123456" + std::to_string(random_());
     }
 }
+
 static void BM_StdHash(benchmark::State &state)
 {
-    std::vector<std::string> vec;
-    init(vec);
     auto idx = random_() % vec.size();
     for (auto _ : state)
     {
@@ -73,8 +72,6 @@ BENCHMARK(BM_StdHash);
 
 static void BM_StdHashFnv(benchmark::State &state)
 {
-    std::vector<std::string> vec;
-    init(vec);
     auto idx = random_() % vec.size();
     for (auto _ : state)
     {
@@ -86,8 +83,6 @@ BENCHMARK(BM_StdHashFnv);
 
 static void BM_CityHash(benchmark::State &state)
 {
-    std::vector<std::string> vec;
-    init(vec);
     auto idx = random_() % vec.size();
     for (auto _ : state)
     {
@@ -100,8 +95,6 @@ BENCHMARK(BM_CityHash);
 
 static void BM_Murmur(benchmark::State &state)
 {
-    std::vector<std::string> vec;
-    init(vec);
     auto idx = random_() % vec.size();
     for (auto _ : state)
     {
@@ -115,8 +108,6 @@ BENCHMARK(BM_Murmur);
 
 static void BM_WyHash(benchmark::State &state)
 {
-    std::vector<std::string> vec;
-    init(vec);
     auto idx = random_() % vec.size();
     for (auto _ : state)
     {
@@ -129,8 +120,8 @@ BENCHMARK(BM_WyHash);
 
 static void BM_XXHash(benchmark::State &state)
 {
-    std::vector<std::string> vec;
-    init(vec);
+
+
     auto idx = random_() % vec.size();
     for (auto _ : state)
     {
@@ -143,8 +134,7 @@ BENCHMARK(BM_XXHash);
 
 static void BM_AbseilHash(benchmark::State &state)
 {
-    std::vector<std::string> vec;
-    init(vec);
+
     auto idx = random_() % vec.size();
     for (auto _ : state)
     {
@@ -157,8 +147,6 @@ BENCHMARK(BM_AbseilHash);
 
 static void BM_DefaultHash(benchmark::State &state)
 {
-    std::vector<std::string> vec;
-    init(vec);
     auto idx = random_() % vec.size();
     for (auto _ : state)
     {
@@ -182,15 +170,14 @@ struct Hasher
         //    return out;
     }
 };
-
+std::vector<std::string> keys(65536);
 template <class M> static void BenchUnOrderMapString(benchmark::State &state)
 {
     M m;
     m.reserve(65536);
-    std::vector<std::string> keys(65536);
+
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]    = "12345678901234561234567890123456" + std::to_string(random_());
         m[keys[i]] = i;
     }
     for (auto _ : state)
@@ -217,11 +204,8 @@ static void BenchFlatMapString(benchmark::State &state)
 {
     M m;
     m.init(65536);
-    std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i] = std::to_string(random_());
-        //    auto sKey = std::to_string(i);
         m[keys[i]] = i;
     }
     for (auto _ : state)
@@ -239,6 +223,11 @@ BENCHMARK_TEMPLATE(BenchFlatMapString,butil::FlatMap<std::string,int, Hasher>);
 
 int main(int argc, char **argv)
 {
+    init(vec);
+    for (auto i = 0; i < 65536; i++)
+    {
+        keys[i] = "12345678901234561234567890123456"+std::to_string(random_());
+    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

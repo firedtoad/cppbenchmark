@@ -1,4 +1,4 @@
-2023-04-02T04:42:17-04:00
+2023-04-05T08:40:06-04:00
 Running ./bin/set_find_order
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,17 +6,17 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 1.00, 1.00, 1.04
+Load Average: 0.82, 2.94, 3.02
 --------------------------------------------------------------------------------------------------
 Benchmark                                                        Time             CPU   Iterations
 --------------------------------------------------------------------------------------------------
-BenchOrderSetInt<std::set<int>>                                366 ns          366 ns      1897684
-BenchOrderSetInt<std::set<int, std::less<>>>                   512 ns          512 ns      1310328
-BenchOrderSetInt<tsl::ordered_set<int>>                        173 ns          173 ns      4082376
-BenchOrderSetInt<absl::btree_set<int>>                        3118 ns         3118 ns       226410
-BenchOrderSetInt<phmap::btree_set<int>>                       1864 ns         1864 ns       370226
-BenchOrderSetString<std::set<std::string>>                     900 ns          900 ns       738063
-BenchOrderSetString<std::set<std::string, std::less<>>>       1077 ns         1077 ns       614990
-BenchOrderSetString<tsl::ordered_set<std::string>>             459 ns          459 ns      1512806
-BenchOrderSetString<absl::btree_set<std::string>>             2155 ns         2155 ns       321074
-BenchOrderSetString<phmap::btree_set<std::string>>            1765 ns         1765 ns       396470
+BenchOrderSetInt<std::set<int>>                                144 ns          144 ns      4612328
+BenchOrderSetInt<std::set<int, std::less<>>>                   170 ns          170 ns      4015996
+BenchOrderSetInt<tsl::ordered_set<int>>                       14.3 ns         14.3 ns     43487299
+BenchOrderSetInt<absl::btree_set<int>>                        66.7 ns         66.7 ns     11450763
+BenchOrderSetInt<phmap::btree_set<int>>                       62.5 ns         62.5 ns     11930164
+BenchOrderSetString<std::set<std::string>>                    1117 ns         1117 ns       578267
+BenchOrderSetString<std::set<std::string, std::less<>>>       1159 ns         1159 ns       616948
+BenchOrderSetString<tsl::ordered_set<std::string>>             246 ns          246 ns      3441967
+BenchOrderSetString<absl::btree_set<std::string>>              601 ns          601 ns      1170646
+BenchOrderSetString<phmap::btree_set<std::string>>             505 ns          505 ns      1312585

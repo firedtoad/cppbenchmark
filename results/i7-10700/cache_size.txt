@@ -1,0 +1,48 @@
+2023-04-05T08:46:09-04:00
+Running ./bin/cache_size
+Run on (8 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 4.12, 3.80, 3.40
+----------------------------------------------------------------
+Benchmark                      Time             CPU   Iterations
+----------------------------------------------------------------
+BM_CacheLine/32768          1.66 ns         1.66 ns    417560158
+BM_CacheLine/294912         2.59 ns         2.59 ns    240184641
+BM_CacheLine/557056         3.60 ns         3.60 ns    208095271
+BM_CacheLine/819200         3.51 ns         3.51 ns    194857737
+BM_CacheLine/2097152        3.81 ns         3.81 ns    160440639
+BM_CacheLine/4194304        3.72 ns         3.72 ns    168913742
+BM_CacheLine/6291456        5.56 ns         5.56 ns    100000000
+BM_CacheLine/8388608        9.40 ns         9.39 ns     53943210
+BM_CacheLine/10485760       9.67 ns         9.67 ns     67164649
+BM_CacheLine/12582912       13.6 ns         13.6 ns     61440035
+BM_CacheLine/14680064       13.8 ns         13.7 ns     59767128
+BM_CacheLine/16777216       17.0 ns         17.0 ns     37296111
+BM_CacheLine/18874368       15.1 ns         15.0 ns     42653083
+BM_CacheLine/20971520       14.6 ns         14.6 ns     50713195
+BM_CacheLine/23068672       16.7 ns         16.7 ns     41860413
+BM_CacheLine/25165824       19.4 ns         19.4 ns     31036358
+BM_CacheLine/27262976       16.8 ns         16.8 ns     39370484
+BM_CacheLine/29360128       19.1 ns         19.1 ns     35496010
+BM_CacheLine/31457280       16.9 ns         16.9 ns     39988587
+BM_CacheLine/33554432       16.0 ns         16.0 ns     46372423
+BM_CacheLine/35651584       16.0 ns         16.0 ns     41782640
+BM_CacheLine/37748736       16.5 ns         16.5 ns     41369758
+BM_CacheLine/39845888       19.6 ns         19.6 ns     40176459
+BM_CacheLine/41943040       20.1 ns         20.1 ns     35366565
+BM_CacheLine/44040192       18.9 ns         18.9 ns     39107301
+BM_CacheLine/46137344       18.9 ns         18.9 ns     36594275
+BM_CacheLine/48234496       19.5 ns         19.5 ns     45663484
+BM_CacheLine/50331648       20.6 ns         20.6 ns     34680194
+BM_CacheLine/52428800       19.6 ns         19.6 ns     36313910
+BM_CacheLine/54525952       19.5 ns         19.5 ns     35646049
+BM_CacheLine/56623104       16.7 ns         16.7 ns     40299865
+BM_CacheLine/58720256       15.9 ns         15.8 ns     39164797
+BM_CacheLine/60817408       17.2 ns         17.2 ns     39973514
+BM_CacheLine/62914560       16.6 ns         16.6 ns     37635036
+BM_CacheLine/65011712       17.4 ns         17.4 ns     41626792
+BM_CacheLine/67108864       16.7 ns         16.7 ns     36992588

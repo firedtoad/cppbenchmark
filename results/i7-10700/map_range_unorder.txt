@@ -1,1 +1,40 @@
-./bin/map_range_unorder: symbol lookup error: /usr/local/lib/libbrpc.so: undefined symbol: _dl_sym, version GLIBC_PRIVATE
+2023-04-05T08:49:12-04:00
+Running ./bin/map_range_unorder
+Run on (8 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 4.58, 4.13, 3.60
+-----------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                             Time             CPU   Iterations
+-----------------------------------------------------------------------------------------------------------------------
+BenchRangeUnOrderMapInt<std::unordered_map<int, int>>                            115079 ns       115077 ns         6109
+BenchRangeUnOrderMapInt<ska::unordered_map<int, int>>                            146286 ns       146281 ns         4598
+BenchRangeUnOrderMapInt<ska::flat_hash_map<int, int>>                             86122 ns        86121 ns         9154
+BenchRangeUnOrderMapInt<ska::bytell_hash_map<int, int>>                          176236 ns       176239 ns         3579
+BenchRangeUnOrderMapInt<phmap::flat_hash_map<int, int>>                          272024 ns       272027 ns         2585
+BenchRangeUnOrderMapInt<absl::flat_hash_map<int, int>>                           239259 ns       239263 ns         3166
+BenchRangeUnOrderMapInt<robin_hood::unordered_flat_map<int, int>>                166472 ns       166466 ns         4228
+BenchRangeUnOrderMapInt<spp::sparse_hash_map<int, int>>                           77225 ns        77227 ns        10362
+BenchRangeUnOrderMapInt<tsl::bhopscotch_map<int, int>>                           160209 ns       160209 ns         3692
+BenchRangeUnOrderMapInt<tsl::hopscotch_map<int, int>>                            140116 ns       140118 ns         6448
+BenchRangeUnOrderMapInt<tsl::robin_map<int, int>>                                105297 ns       105298 ns         5844
+BenchRangeUnOrderMapInt<tsl::sparse_map<int, int>>                                58253 ns        58254 ns        10000
+BenchRangeFlatMapInt                                                              50589 ns        50590 ns        13278
+BenchRangeUnOrderMapString<std::unordered_map<std::string, int>>                 788379 ns       788375 ns          834
+BenchRangeUnOrderMapString<ska::unordered_map<std::string, int>>                 708079 ns       708075 ns          956
+BenchRangeUnOrderMapString<ska::flat_hash_map<std::string, int>>                 457837 ns       457839 ns         1472
+BenchRangeUnOrderMapString<ska::bytell_hash_map<std::string, int>>               608656 ns       608661 ns         1074
+BenchRangeUnOrderMapString<phmap::flat_hash_map<std::string, int>>               300932 ns       300934 ns         2444
+BenchRangeUnOrderMapString<absl::flat_hash_map<std::string, int>>                297217 ns       297222 ns         2288
+BenchRangeUnOrderMapString<robin_hood::unordered_flat_map<std::string, int>>     170748 ns       170741 ns         4133
+BenchRangeUnOrderMapString<spp::sparse_hash_map<std::string, int>>               160546 ns       160548 ns         4240
+BenchRangeUnOrderMapString<tsl::bhopscotch_map<std::string, int>>                542261 ns       542251 ns         1197
+BenchRangeUnOrderMapString<tsl::hopscotch_map<std::string, int>>                 532178 ns       532183 ns         1255
+BenchRangeUnOrderMapString<tsl::robin_map<std::string, int>>                     519986 ns       519995 ns         1376
+BenchRangeUnOrderMapString<tsl::sparse_map<std::string, int>>                     93149 ns        93141 ns         6966
+BenchRangeCharKeyMap<tsl::htrie_map<char, int>>                                  588680 ns       588681 ns         1203
+BenchRangeCharKeyMap<tsl::array_map<char, int>>                                  523658 ns       523664 ns         1387
+BenchRangeFlatMapString                                                          650412 ns       650392 ns         1048

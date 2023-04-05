@@ -1,4 +1,4 @@
-2023-04-02T04:10:06-04:00
+2023-04-05T08:40:19-04:00
 Running ./bin/adt_map_find_hetero
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,15 +6,15 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 1.00, 1.00, 1.52
+Load Average: 1.52, 2.99, 3.03
 ----------------------------------------------------------------------------------------------------
 Benchmark                                                          Time             CPU   Iterations
 ----------------------------------------------------------------------------------------------------
-BenchStringMapSSO<std::map<std::string, int>>                    650 ns          650 ns      1097770
-BenchStringMapSSO<std::unordered_map<std::string, int>>          296 ns          296 ns      1996220
-BenchStringMapSSO<llvm::DenseMap<llvm::StringRef, int>>          225 ns          225 ns      3002454
-BenchStringMapSSO<llvm::StringMap<int>>                         96.8 ns         96.8 ns      6574096
-BenchStringMapNoSSO<std::map<std::string, int>>                  868 ns          868 ns       855473
-BenchStringMapNoSSO<std::unordered_map<std::string, int>>        504 ns          504 ns      1320423
-BenchStringMapNoSSO<llvm::DenseMap<llvm::StringRef, int>>        352 ns          352 ns      1889710
-BenchStringMapNoSSO<llvm::StringMap<int>>                        155 ns          155 ns      4591968
+BenchStringMapSSO<std::map<std::string, int>>                    395 ns          395 ns      1761113
+BenchStringMapSSO<std::unordered_map<std::string, int>>         98.6 ns         98.6 ns      8468710
+BenchStringMapSSO<llvm::DenseMap<llvm::StringRef, int>>         45.3 ns         45.3 ns     15373805
+BenchStringMapSSO<llvm::StringMap<int>>                         56.7 ns         56.7 ns     11396446
+BenchStringMapNoSSO<std::map<std::string, int>>                  955 ns          954 ns       765308
+BenchStringMapNoSSO<std::unordered_map<std::string, int>>        311 ns          311 ns      2287087
+BenchStringMapNoSSO<llvm::DenseMap<llvm::StringRef, int>>       95.7 ns         95.7 ns      7783201
+BenchStringMapNoSSO<llvm::StringMap<int>>                        149 ns          149 ns      4475247

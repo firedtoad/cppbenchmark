@@ -38,6 +38,21 @@ static void BM_OPEN_RC4(benchmark::State &state)
 
 BENCHMARK(BM_OPEN_RC4);
 
+static void BM_OPEN_RC4_ONCE(benchmark::State &state)
+{
+
+    for (auto _ : state)
+    {
+        RC4_KEY key{};
+        RC4_set_key(&key, 16, str_key);
+        uint8_t out[16];
+        RC4(&key,16,out,out);
+        benchmark::DoNotOptimize(out);
+    }
+}
+
+BENCHMARK(BM_OPEN_RC4_ONCE);
+
 static void BM_RC4_EVP(benchmark::State &state)
 {
     EVP_CIPHER_CTX ctx;

@@ -1,4 +1,4 @@
-2023-04-02T04:20:35-04:00
+2023-04-05T08:47:26-04:00
 Running ./bin/adt_set_order_range
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,14 +6,14 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 1.00, 1.00, 1.24
+Load Average: 4.30, 3.92, 3.48
 --------------------------------------------------------------------------------------------------
 Benchmark                                                        Time             CPU   Iterations
 --------------------------------------------------------------------------------------------------
-BenchRangeOrderSetInt<std::set<int>>                       1032956 ns      1032300 ns          542
-BenchRangeOrderSetInt<tsl::ordered_set<int>>                673325 ns       673001 ns         1042
-BenchRangeOrderSetInt<absl::btree_set<int>>                6912943 ns      6909748 ns          101
-BenchRangeImmutableSetInt                                 12398793 ns     12390980 ns           57
-BenchRangeOrderSetString<std::set<std::string>>            1521077 ns      1520083 ns          462
-BenchRangeOrderSetString<tsl::ordered_set<std::string>>    1138733 ns      1138167 ns          614
-BenchRangeOrderSetString<absl::btree_set<std::string>>    10124100 ns     10119104 ns           69
+BenchRangeOrderSetInt<std::set<int>>                        311512 ns       311513 ns         1756
+BenchRangeOrderSetInt<tsl::ordered_set<int>>                 30828 ns        30829 ns        24652
+BenchRangeOrderSetInt<absl::btree_set<int>>                  70117 ns        70117 ns        12400
+BenchRangeImmutableSetInt                                   883930 ns       883936 ns          840
+BenchRangeOrderSetString<std::set<std::string>>             804901 ns       804885 ns          723
+BenchRangeOrderSetString<tsl::ordered_set<std::string>>     362949 ns       362947 ns         1840
+BenchRangeOrderSetString<absl::btree_set<std::string>>      428363 ns       428357 ns         1669

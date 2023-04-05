@@ -1,4 +1,4 @@
-2023-04-02T04:44:05-04:00
+2023-04-05T08:46:30-04:00
 Running ./bin/dimension
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,23 +6,23 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 1.00, 1.00, 1.03
+Load Average: 4.23, 3.85, 3.42
 ---------------------------------------------------------
 Benchmark               Time             CPU   Iterations
 ---------------------------------------------------------
-BM_ONE/1             20.3 ns         20.2 ns     33871978
-BM_ONE/8              121 ns          121 ns      5841893
-BM_ONE/64             918 ns          917 ns       761430
-BM_ONE/512           7263 ns         7260 ns        96284
-BM_ONE/4096         58079 ns        58045 ns        12062
-BM_ONE/32768       475191 ns       474926 ns         1508
-BM_ONE/262144     3733839 ns      3732323 ns          188
-BM_ONE/1048576   15206345 ns     15197487 ns           47
-BM_TWO/1             19.7 ns         19.7 ns     34445624
-BM_TWO/8              162 ns          162 ns      4342003
-BM_TWO/64            1269 ns         1268 ns       553887
-BM_TWO/512          10120 ns        10113 ns        68223
-BM_TWO/4096         80950 ns        80904 ns         8662
-BM_TWO/32768       653524 ns       653247 ns         1072
-BM_TWO/262144     5337701 ns      5335154 ns          132
-BM_TWO/1048576   21590125 ns     21578796 ns           33
+BM_ONE/1             21.5 ns         21.5 ns     32399052
+BM_ONE/8              132 ns          132 ns      5381504
+BM_ONE/64             976 ns          976 ns       719999
+BM_ONE/512           7581 ns         7581 ns        93413
+BM_ONE/4096         58725 ns        58725 ns        12019
+BM_ONE/32768       485918 ns       485923 ns         1428
+BM_ONE/262144     3833133 ns      3833001 ns          183
+BM_ONE/1048576   15103992 ns     15104245 ns           45
+BM_TWO/1             22.1 ns         22.1 ns     31381984
+BM_TWO/8              182 ns          182 ns      3921517
+BM_TWO/64            1389 ns         1389 ns       514005
+BM_TWO/512          11487 ns        11487 ns        63706
+BM_TWO/4096         92322 ns        92319 ns         7638
+BM_TWO/32768       721364 ns       721376 ns          973
+BM_TWO/262144     6054156 ns      6054246 ns          120
+BM_TWO/1048576   25472168 ns     25472215 ns           28

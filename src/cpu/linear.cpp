@@ -14,8 +14,6 @@
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
 #include <benchmark/benchmark.h>
-#include <iostream>
-
 #include <vector>
 
 struct S
@@ -33,19 +31,20 @@ static void BM_IntervalPtr(benchmark::State &state)
     {
         cache.emplace_back(new S);
     }
-    uint64_t sum{};
+
     for (auto _ : state)
     {
+        uint64_t sum{};
         for (auto &s : cache)
         {
             sum += s->s;
         }
+        benchmark::DoNotOptimize(sum);
     }
     for (auto &s : cache)
     {
         delete s;
     }
-    benchmark::DoNotOptimize(sum);
 }
 
 static void BM_LinearPtr(benchmark::State &state)
@@ -58,16 +57,17 @@ static void BM_LinearPtr(benchmark::State &state)
     {
         cache.emplace_back(&ss[i]);
     }
-    uint64_t sum{};
+
     for (auto _ : state)
     {
+        uint64_t sum{};
         for (auto &s : cache)
         {
             sum += s->s;
         }
+        benchmark::DoNotOptimize(sum);
     }
     delete[] ss;
-    benchmark::DoNotOptimize(sum);
 }
 
 static void BM_LinearVal(benchmark::State &state)
@@ -80,15 +80,15 @@ static void BM_LinearVal(benchmark::State &state)
         cache.emplace_back();
     }
 
-    uint64_t sum{};
     for (auto _ : state)
     {
+        uint64_t sum{};
         for (auto &s : cache)
         {
             sum += s.s;
         }
+        benchmark::DoNotOptimize(sum);
     }
-    benchmark::DoNotOptimize(sum);
 }
 
 BENCHMARK(BM_IntervalPtr)->Range(1, 1 << 13);

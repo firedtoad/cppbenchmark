@@ -17,7 +17,7 @@
 #include <csignal>
 #include <iostream>
 #include <setjmp.h>
-thread_local  jmp_buf buf{};
+thread_local jmp_buf buf{};
 thread_local sigset_t _sigset;
 void sigsegv(int)
 {
@@ -26,6 +26,21 @@ void sigsegv(int)
 }
 int *p = nullptr;
 int *d = new int{0};
+static void BM_LongJumpNoJump(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        if (setjmp(buf) == 0)
+        {
+            benchmark::DoNotOptimize(p);
+        }
+        else
+        {
+            benchmark::DoNotOptimize(buf);
+        }
+    }
+}
+
 static void BM_LongJump(benchmark::State &state)
 {
     for (auto _ : state)
@@ -41,19 +56,20 @@ static void BM_LongJump(benchmark::State &state)
         }
     }
 }
-
+BENCHMARK(BM_LongJumpNoJump);
 BENCHMARK(BM_LongJump);
 
-static void BM_TryCatch(benchmark::State &state)
+
+static void BM_TryCatchNoThrow(benchmark::State &state)
 {
 
     for (auto _ : state)
     {
         try
         {
-            throw d;
-//            benchmark::DoNotOptimize(*d);
-        }catch (int* ptr)
+            benchmark::DoNotOptimize(p);
+        }
+        catch (int *ptr)
         {
             benchmark::DoNotOptimize(ptr);
         }
@@ -63,13 +79,34 @@ static void BM_TryCatch(benchmark::State &state)
         }
         catch (...)
         {
-
         }
     }
 }
 
-BENCHMARK(BM_TryCatch);
+static void BM_TryCatch(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        try
+        {
+            throw d;
+        }
+        catch (int *ptr)
+        {
+            benchmark::DoNotOptimize(ptr);
+        }
+        catch (std::exception &e)
+        {
+            benchmark::DoNotOptimize(e);
+        }
+        catch (...)
+        {
+        }
+    }
+}
 
+BENCHMARK(BM_TryCatchNoThrow);
+BENCHMARK(BM_TryCatch);
 
 int main(int argc, char **argv)
 {

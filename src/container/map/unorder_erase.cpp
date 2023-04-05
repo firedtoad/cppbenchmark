@@ -51,6 +51,7 @@ static inline unsigned long _random()
 {
     return xorshf96();
 }
+std::vector<std::string> keys(65536);
 
 template <class M> static void BenchEraseUnOrderMapInt(benchmark::State &state)
 {
@@ -88,14 +89,10 @@ template <class M> static void BenchEraseUnOrderMapString(benchmark::State &stat
 {
     M m;
     m.reserve(65536);
-    std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto sKey = "12345678901234561234567890123456" + std::to_string(_random());
-        keys[i]   = sKey;
-        m[sKey]   = i;
+        m[keys[i]]   = i;
     }
-    int r{};
     for (auto _ : state)
     {
         auto r  = keys[_random() % 65536];
@@ -104,21 +101,18 @@ template <class M> static void BenchEraseUnOrderMapString(benchmark::State &stat
         {
             m[r] = 0;
         }
+        benchmark::DoNotOptimize(r);
     }
-    benchmark::DoNotOptimize(r);
+
 }
 
 template <class M> static void BenchEraseCharKeyMap(benchmark::State &state)
 {
     M m;
-    std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto sKey = "12345678901234561234567890123456" + std::to_string(_random());
-        keys[i]   = sKey;
-        m[sKey]   = i;
+        m[keys[i]]   = i;
     }
-    int r{};
     for (auto _ : state)
     {
         auto r  = keys[_random() % 65536];
@@ -127,8 +121,8 @@ template <class M> static void BenchEraseCharKeyMap(benchmark::State &state)
         {
             m[r] = 0;
         }
+        benchmark::DoNotOptimize(r);
     }
-    benchmark::DoNotOptimize(r);
 }
 
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapString, std::unordered_map<std::string, int>);
@@ -148,6 +142,11 @@ BENCHMARK_TEMPLATE(BenchEraseCharKeyMap, tsl::array_map<char, int>);
 
 int main(int argc, char **argv)
 {
+
+    for (auto i = 0; i < 65536; i++)
+    {
+         keys[i] = "12345678901234561234567890123456" + std::to_string(_random());
+    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

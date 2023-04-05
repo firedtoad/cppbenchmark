@@ -60,14 +60,13 @@ BENCHMARK_TEMPLATE(BenchOrderSetInt, std::set<int, std::less<>>);
 BENCHMARK_TEMPLATE(BenchOrderSetInt, tsl::ordered_set<int>);
 BENCHMARK_TEMPLATE(BenchOrderSetInt, absl::btree_set<int>);
 BENCHMARK_TEMPLATE(BenchOrderSetInt, phmap::btree_set<int>);
-
+std::vector<std::string> keys(65536);
 template <class M> static void BenchOrderSetString(benchmark::State &state)
 {
     M m;
-    std::vector<std::string> keys(65536);
+
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i] = "12345678901234561234567890123456" + std::to_string(_random());
         m.insert(keys[i]);
     }
     for (auto _ : state)
@@ -86,6 +85,10 @@ BENCHMARK_TEMPLATE(BenchOrderSetString, phmap::btree_set<std::string>);
 
 int main(int argc, char **argv)
 {
+    for (auto i = 0; i < 65536; i++)
+    {
+        keys[i] = "12345678901234561234567890123456" + std::to_string(_random());
+    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

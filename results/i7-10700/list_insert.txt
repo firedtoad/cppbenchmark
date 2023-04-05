@@ -1,4 +1,4 @@
-2023-04-02T04:53:04-04:00
+2023-04-05T08:50:25-04:00
 Running ./bin/list_insert
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,49 +6,49 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 1.99, 1.26, 1.09
+Load Average: 4.66, 4.24, 3.68
 -------------------------------------------------------------------------
 Benchmark                               Time             CPU   Iterations
 -------------------------------------------------------------------------
-BenchListInsert/1                     117 ns          117 ns      6011896
-BenchListInsert/8                     750 ns          750 ns       940682
-BenchListInsert/64                   5827 ns         5827 ns       119041
-BenchListInsert/512                 46065 ns        46065 ns        15077
-BenchListInsert/4096               371886 ns       371881 ns         1882
-BenchListInsert/32768             3001072 ns      3000935 ns          234
-BenchListInsert/65536             6082326 ns      6082230 ns          115
-BenchDequeInsert/1                    217 ns          217 ns      3218258
-BenchDequeInsert/8                    596 ns          596 ns      1166408
-BenchDequeInsert/64                  4050 ns         4050 ns       182641
-BenchDequeInsert/512                30239 ns        30238 ns        23018
-BenchDequeInsert/4096              237247 ns       237248 ns         2953
-BenchDequeInsert/32768            2021016 ns      2020961 ns          356
-BenchDequeInsert/65536            3867118 ns      3867173 ns          174
-BenchVectorInsert/1                   150 ns          150 ns      4701218
-BenchVectorInsert/8                   523 ns          523 ns      1336384
-BenchVectorInsert/64                 3403 ns         3403 ns       206489
-BenchVectorInsert/512               26002 ns        26003 ns        26954
-BenchVectorInsert/4096             207131 ns       207120 ns         3375
-BenchVectorInsert/32768           1666175 ns      1666195 ns          420
-BenchVectorInsert/65536           3343855 ns      3343461 ns          210
-BenchBUListInsert/1                   137 ns          137 ns      5085409
-BenchBUListInsert/8                   236 ns          236 ns      2962911
-BenchBUListInsert/64                  965 ns          965 ns       725750
-BenchBUListInsert/512                6811 ns         6812 ns       102812
-BenchBUListInsert/4096              53230 ns        53228 ns        13129
-BenchBUListInsert/32768            430433 ns       430439 ns         1629
-BenchBUListInsert/65536            865786 ns       865752 ns          811
-BenchIntrusiveListInsert/1            196 ns          196 ns      3568762
-BenchIntrusiveListInsert/8            614 ns          614 ns      1139868
-BenchIntrusiveListInsert/64          3501 ns         3501 ns       199631
-BenchIntrusiveListInsert/512        26101 ns        26100 ns        26859
-BenchIntrusiveListInsert/4096      207925 ns       207928 ns         3372
-BenchIntrusiveListInsert/32768    1686666 ns      1686602 ns          418
-BenchIntrusiveListInsert/65536    3367185 ns      3367234 ns          206
-BenchPlfListInsert/1                  208 ns          208 ns      3332615
-BenchPlfListInsert/8                  707 ns          707 ns      1003719
-BenchPlfListInsert/64                4805 ns         4805 ns       145772
-BenchPlfListInsert/512              34408 ns        34408 ns        20351
-BenchPlfListInsert/4096            291453 ns       291447 ns         2525
-BenchPlfListInsert/32768          2155359 ns      2155387 ns          325
-BenchPlfListInsert/65536          4333162 ns      4333051 ns          159
+BenchListInsert/1                    16.0 ns         16.0 ns     46254721
+BenchListInsert/8                     126 ns          126 ns      5156825
+BenchListInsert/64                   1198 ns         1198 ns       481049
+BenchListInsert/512                  9405 ns         9405 ns        80282
+BenchListInsert/4096                74873 ns        74874 ns         7868
+BenchListInsert/32768              703787 ns       703799 ns          963
+BenchListInsert/65536             1380308 ns      1380319 ns          524
+BenchDequeInsert/1                   40.4 ns         40.4 ns     23800199
+BenchDequeInsert/8                   53.3 ns         53.3 ns     12012132
+BenchDequeInsert/64                   221 ns          221 ns      3182872
+BenchDequeInsert/512                 2173 ns         2173 ns       322923
+BenchDequeInsert/4096               18138 ns        18138 ns        42131
+BenchDequeInsert/32768             155217 ns       155217 ns         4876
+BenchDequeInsert/65536             325780 ns       325777 ns         2153
+BenchVectorInsert/1                  16.7 ns         16.7 ns     48164707
+BenchVectorInsert/8                  28.3 ns         28.3 ns     22639528
+BenchVectorInsert/64                  184 ns          184 ns      4328550
+BenchVectorInsert/512                1004 ns         1004 ns       689729
+BenchVectorInsert/4096               8637 ns         8637 ns        82025
+BenchVectorInsert/32768             84565 ns        84566 ns         7062
+BenchVectorInsert/65536            154325 ns       154330 ns         4116
+BenchBUListInsert/1                  20.7 ns         20.7 ns     33881400
+BenchBUListInsert/8                  32.0 ns         32.0 ns     22285377
+BenchBUListInsert/64                  128 ns          128 ns      6005503
+BenchBUListInsert/512                 867 ns          867 ns       748342
+BenchBUListInsert/4096               8426 ns         8426 ns        88340
+BenchBUListInsert/32768             79883 ns        79884 ns         8509
+BenchBUListInsert/65536            166595 ns       166598 ns         4089
+BenchIntrusiveListInsert/1           15.4 ns         15.4 ns     42561118
+BenchIntrusiveListInsert/8           28.3 ns         28.3 ns     23319970
+BenchIntrusiveListInsert/64           189 ns          189 ns      3321178
+BenchIntrusiveListInsert/512         1218 ns         1218 ns       520645
+BenchIntrusiveListInsert/4096       13133 ns        13133 ns        50133
+BenchIntrusiveListInsert/32768     125349 ns       125352 ns         4885
+BenchIntrusiveListInsert/65536     277828 ns       277834 ns         2591
+BenchPlfListInsert/1                 33.5 ns         33.5 ns     21052182
+BenchPlfListInsert/8                 93.5 ns         93.5 ns      7603634
+BenchPlfListInsert/64                 688 ns          688 ns      1252447
+BenchPlfListInsert/512               4750 ns         4751 ns       148904
+BenchPlfListInsert/4096             38457 ns        38458 ns        18004
+BenchPlfListInsert/32768           332165 ns       332172 ns         2196
+BenchPlfListInsert/65536           699531 ns       699545 ns         1020

@@ -51,22 +51,19 @@ static inline unsigned long _random()
 {
     return xorshf96();
 }
-
+std::vector<int> ikeys(65536);
 template <class M> static void BenchUnOrderSetInt(benchmark::State &state)
 {
     M m;
-    std::vector<int> keys;
+
     m.reserve(65536);
-    keys.reserve(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto r = _random();
-        keys.push_back(r);
-        m.insert(r);
+        m.insert(ikeys[i]);
     }
     for (auto _ : state)
     {
-        auto idx = keys[_random() % 65536];
+        auto idx = ikeys[_random() % 65536];
         auto c   = m.find(idx);
         benchmark::DoNotOptimize(c);
     }
@@ -84,15 +81,13 @@ BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::bhopscotch_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::hopscotch_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::robin_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::sparse_set<int>);
-
+std::vector<std::string> keys(65536);
 template <class M> static void BenchUnOrderSetString(benchmark::State &state)
 {
     M m;
     m.reserve(65536);
-    std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i] = "12345678901234561234567890123456" + std::to_string(_random());
         m.insert(keys[i]);
     }
     for (auto _ : state)
@@ -105,11 +100,9 @@ template <class M> static void BenchUnOrderSetString(benchmark::State &state)
 template <class M> static void BenchCharKeySet(benchmark::State &state)
 {
     M m;
-    std::vector<std::string> keys(65536);
 
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i] = "12345678901234561234567890123456" + std::to_string(_random());
         m.insert(keys[i]);
     }
     for (auto _ : state)
@@ -137,6 +130,11 @@ BENCHMARK_TEMPLATE(BenchCharKeySet, tsl::array_set<char>);
 
 int main(int argc, char **argv)
 {
+    for (auto i = 0; i < 65536; i++)
+    {
+        keys[i]  = "12345678901234561234567890123456" + std::to_string(_random());
+        ikeys[i] = _random();
+    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

@@ -33,6 +33,7 @@ static void BM_row(benchmark::State &state)
         {
             for (auto j = 0; j < col; j++)
             {
+               // __builtin_prefetch(&cache[i][j],0,1);
                 sum += cache[i][j];
             }
         }
@@ -56,8 +57,10 @@ static void BM_col(benchmark::State &state)
         {
             for (auto j = 0; j < row; j++)
             {
+                // __builtin_prefetch(&cache[j][i],0,1);
                 sum += cache[j][i];
             }
+
         }
     }
     benchmark::DoNotOptimize(sum);

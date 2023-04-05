@@ -83,15 +83,13 @@ BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, tsl::bhopscotch_set<int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, tsl::hopscotch_set<int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, tsl::robin_set<int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, tsl::sparse_set<int>);
-
+std::vector<std::string> keys(65536);
 template <class M> static void BenchRangeUnOrderSetString(benchmark::State &state)
 {
     M m;
-    std::vector<std::string> keys(65536);
     m.reserve(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i] = "12345678901234561234567890123456" + std::to_string(_random());
         m.insert(keys[i]);
     }
     std::string r{};
@@ -108,10 +106,9 @@ template <class M> static void BenchRangeUnOrderSetString(benchmark::State &stat
 template <class M> static void BenchRangeCharKeySet(benchmark::State &state)
 {
     M m;
-    std::vector<std::string> keys(65536);
+
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i] = "12345678901234561234567890123456" + std::to_string(_random());
         m.insert(keys[i]);
     }
     std::string r{};
@@ -142,6 +139,10 @@ BENCHMARK_TEMPLATE(BenchRangeCharKeySet, tsl::array_set<char>);
 
 int main(int argc, char **argv)
 {
+    for (auto i = 0; i < 65536; i++)
+    {
+        keys[i] = "12345678901234561234567890123456" + std::to_string(_random());
+    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
 

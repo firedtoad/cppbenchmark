@@ -1,0 +1,40 @@
+2023-04-05T08:50:42-04:00
+Running ./bin/map_find_unordered_smart
+Run on (8 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 4.52, 4.22, 3.69
+----------------------------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                                              Time             CPU   Iterations
+----------------------------------------------------------------------------------------------------------------------------------------
+BenchUnOrderMapString<std::unordered_map<std::string, int>>                                          314 ns          314 ns      2830237
+BenchUnOrderMapStringSmart<std::unordered_map<std::string, std::shared_ptr<int>>>                    340 ns          340 ns      1918751
+BenchUnOrderMapString<ska::unordered_map<std::string, int>>                                          263 ns          263 ns      2294829
+BenchUnOrderMapStringSmart<ska::unordered_map<std::string, std::shared_ptr<int>>>                    220 ns          220 ns      3559643
+BenchUnOrderMapString<ska::flat_hash_map<std::string, int>>                                          214 ns          214 ns      4083478
+BenchUnOrderMapStringSmart<ska::flat_hash_map<std::string, std::shared_ptr<int>>>                    282 ns          282 ns      2680104
+BenchUnOrderMapString<ska::bytell_hash_map<std::string, int>>                                        255 ns          255 ns      2770835
+BenchUnOrderMapStringSmart<ska::bytell_hash_map<std::string, std::shared_ptr<int>>>                  252 ns          252 ns      3265158
+BenchUnOrderMapString<phmap::flat_hash_map<std::string, int>>                                        161 ns          161 ns      3841655
+BenchUnOrderMapStringSmart<phmap::flat_hash_map<std::string, std::shared_ptr<int>>>                  174 ns          174 ns      3692931
+BenchUnOrderMapString<absl::flat_hash_map<std::string, int>>                                         151 ns          151 ns      4437562
+BenchUnOrderMapStringSmart<absl::flat_hash_map<std::string, std::shared_ptr<int>>>                   182 ns          182 ns      3459480
+BenchUnOrderMapString<robin_hood::unordered_flat_map<std::string, int>>                              235 ns          235 ns      2556030
+BenchUnOrderMapStringSmart<robin_hood::unordered_flat_map<std::string, std::shared_ptr<int>>>        280 ns          280 ns      2700652
+BenchUnOrderMapString<spp::sparse_hash_map<std::string, int>>                                        257 ns          257 ns      2867926
+BenchUnOrderMapStringSmart<spp::sparse_hash_map<std::string, std::shared_ptr<int>>>                  259 ns          259 ns      2526543
+BenchUnOrderMapString<tsl::bhopscotch_map<std::string, int>>                                         266 ns          266 ns      3359161
+BenchUnOrderMapStringSmart<tsl::bhopscotch_map<std::string, std::shared_ptr<int>>>                   304 ns          304 ns      2807503
+BenchUnOrderMapString<tsl::hopscotch_map<std::string, int>>                                          300 ns          300 ns      2360584
+BenchUnOrderMapStringSmart<tsl::hopscotch_map<std::string, std::shared_ptr<int>>>                    314 ns          314 ns      2123536
+BenchUnOrderMapString<tsl::robin_map<std::string, int>>                                              333 ns          333 ns      2385389
+BenchUnOrderMapStringSmart<tsl::robin_map<std::string, std::shared_ptr<int>>>                        328 ns          328 ns      2167477
+BenchUnOrderMapString<tsl::sparse_map<std::string, int>>                                             300 ns          300 ns      2221537
+BenchUnOrderMapStringSmart<tsl::sparse_map<std::string, std::shared_ptr<int>>>                       332 ns          332 ns      2084776
+BenchCharKeyMap<tsl::htrie_map<char, int>>                                                           350 ns          350 ns      2214741
+BenchCharKeyMapSmart<tsl::htrie_map<char, std::shared_ptr<int>>>                                     315 ns          315 ns      2158964
+BenchCharKeyMap<tsl::array_map<char, int>>                                                           148 ns          148 ns      4101585
+BenchCharKeyMapSmart<tsl::array_map<char, std::shared_ptr<int>>>                                     157 ns          157 ns      3998751

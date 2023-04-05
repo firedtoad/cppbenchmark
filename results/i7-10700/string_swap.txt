@@ -1,4 +1,4 @@
-2023-04-02T04:54:45-04:00
+2023-04-05T08:53:04-04:00
 Running ./bin/string_swap
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,9 +6,9 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 1.18, 1.19, 1.08
+Load Average: 5.24, 4.43, 3.84
 --------------------------------------------------------------
 Benchmark                    Time             CPU   Iterations
 --------------------------------------------------------------
-BenchStringSwap           2.88 ns         2.88 ns    242598340
-BenchStringSwapMove       2.89 ns         2.89 ns    242400801
+BenchStringSwap           3.69 ns         3.69 ns    223995469
+BenchStringSwapMove       3.39 ns         3.39 ns    176346022

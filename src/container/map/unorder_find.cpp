@@ -52,21 +52,19 @@ static inline unsigned long _random()
     return xorshf96();
 }
 
+std::vector<std::string> keys(65536);
+std::vector<int> ikeys(65536);
 template <class M> static void BenchUnOrderMapInt(benchmark::State &state)
 {
     M m;
-    std::vector<int> keys;
     m.reserve(65536);
-    keys.reserve(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto r = _random();
-        keys.push_back(r);
-        m[r] = i;
+        m[ikeys[i]] = i;
     }
     for (auto _ : state)
     {
-        auto idx = keys[_random() % 65536];
+        auto idx = ikeys[_random() % 65536];
         auto c   = m.find(idx);
         auto v   = c->second;
         benchmark::DoNotOptimize(v);
@@ -91,10 +89,8 @@ template <class M> static void BenchUnOrderMapString(benchmark::State &state)
 {
     M m;
     m.reserve(65536);
-    std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]    = "12345678901234561234567890123456" + std::to_string(_random());
         m[keys[i]] = i;
     }
     for (auto _ : state)
@@ -109,11 +105,9 @@ template <class M> static void BenchUnOrderMapStringLoadFactor(benchmark::State 
 {
     M m;
     m.reserve(65536);
-    std::vector<std::string> keys(65536);
     m.max_load_factor(0.8);
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]    = "12345678901234561234567890123456" + std::to_string(_random());
         m[keys[i]] = i;
     }
     for (auto _ : state)
@@ -124,15 +118,11 @@ template <class M> static void BenchUnOrderMapStringLoadFactor(benchmark::State 
     }
 }
 
-
 template <class M> static void BenchCharKeyMap(benchmark::State &state)
 {
     M m;
-    std::vector<std::string> keys(65536);
-    int k = 1000000;
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]    = "12345678901234561234567890123456" + std::to_string(k++);
         m[keys[i]] = i;
     }
     for (auto _ : state)
@@ -162,7 +152,11 @@ BENCHMARK_TEMPLATE(BenchCharKeyMap, tsl::array_map<char, int>);
 
 int main(int argc, char **argv)
 {
-    std::unique_ptr<int> up;
+    for (auto i = 0; i < 65536; i++)
+    {
+        keys[i]  = "12345678901234561234567890123456" + std::to_string(_random());
+        ikeys[i] = _random();
+    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

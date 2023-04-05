@@ -41,21 +41,17 @@ static inline uint64_t _random()
 {
     return xor_shift96();
 }
-
+std::vector<int> ikeys(65536);
 template <class M> static void BenchOrderMapInt(benchmark::State &state)
 {
     M m;
-    std::vector<int> keys;
-    keys.reserve(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        auto r = _random();
-        keys.push_back(r);
-        m[r] = i;
+        m[ikeys[i]] = i;
     }
     for (auto _ : state)
     {
-        auto idx = keys[_random() % 65536];
+        auto idx = ikeys[_random() % 65536];
         auto c   = m.find(idx);
         auto v   = c->second;
         benchmark::DoNotOptimize(v);
@@ -73,33 +69,28 @@ static void BenchImmutableMapInt(benchmark::State &state)
 {
     llvm::ImmutableMap<int, int>::Factory factory;
 
-    std::vector<int> keys;
-    keys.reserve(65536);
     auto m = factory.getEmptyMap();
     for (auto i = 0; i < 65536; i++)
     {
         auto r = _random();
-        keys.push_back(r);
         m = factory.add(m, r, i);
     }
 
     for (auto _ : state)
     {
-        auto idx = keys[_random() % 65536];
+        auto idx = ikeys[_random() % 65536];
         auto c   = m.lookup(idx);
         benchmark::DoNotOptimize(c);
     }
 }
 
 BENCHMARK(BenchImmutableMapInt);
-
+std::vector<std::string> keys(65536);
 template <class M> static void BenchOrderMapString(benchmark::State &state)
 {
     M m;
-    std::vector<std::string> keys(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]            = "12345678901234561234567890123456" + std::to_string(_random());
         m[keys[i].c_str()] = i;
     }
     for (auto _ : state)
@@ -118,7 +109,10 @@ BENCHMARK_TEMPLATE(BenchOrderMapString, absl::btree_map<std::string, int>);
 
 int main(int argc, char **argv)
 {
-
+    for (auto i = 0; i < 65536; i++)
+    {
+        keys[i] = "12345678901234561234567890123456" + std::to_string(_random());
+    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

@@ -1,4 +1,4 @@
-2023-04-02T04:51:50-04:00
+2023-04-05T08:45:35-04:00
 Running ./bin/linear
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,25 +6,25 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 1.00, 1.00, 1.00
+Load Average: 4.21, 3.78, 3.38
 --------------------------------------------------------------
 Benchmark                    Time             CPU   Iterations
 --------------------------------------------------------------
-BM_IntervalPtr/1         0.553 ns        0.553 ns   1000000000
-BM_IntervalPtr/8          3.21 ns         3.21 ns    220479314
-BM_IntervalPtr/64         25.9 ns         25.9 ns     27035277
-BM_IntervalPtr/512         162 ns          162 ns      4317040
-BM_IntervalPtr/4096       1929 ns         1928 ns       364604
-BM_IntervalPtr/8192       5593 ns         5593 ns       132989
-BM_LinearPtr/1           0.554 ns        0.554 ns   1000000000
-BM_LinearPtr/8            2.56 ns         2.56 ns    272837045
-BM_LinearPtr/64           23.9 ns         23.9 ns     29246563
-BM_LinearPtr/512           159 ns          159 ns      4394541
-BM_LinearPtr/4096         1412 ns         1412 ns       496920
-BM_LinearPtr/8192         2887 ns         2887 ns       238990
-BM_LinearVal/1           0.498 ns        0.498 ns   1000000000
-BM_LinearVal/8            2.20 ns         2.20 ns    320022537
-BM_LinearVal/64           22.5 ns         22.5 ns     31033629
-BM_LinearVal/512           153 ns          153 ns      4634778
-BM_LinearVal/4096         1524 ns         1524 ns       469871
-BM_LinearVal/8192         3914 ns         3914 ns       179216
+BM_IntervalPtr/1         0.753 ns        0.753 ns    953710957
+BM_IntervalPtr/8          3.29 ns         3.29 ns    209380261
+BM_IntervalPtr/64         32.4 ns         32.4 ns     23663916
+BM_IntervalPtr/512         213 ns          213 ns      3637731
+BM_IntervalPtr/4096       2562 ns         2562 ns       287784
+BM_IntervalPtr/8192       6059 ns         6058 ns       113217
+BM_LinearPtr/1           0.852 ns        0.852 ns    648088272
+BM_LinearPtr/8            3.31 ns         3.31 ns    209927221
+BM_LinearPtr/64           34.0 ns         34.0 ns     21019141
+BM_LinearPtr/512           232 ns          232 ns      3687254
+BM_LinearPtr/4096         2022 ns         2022 ns       356541
+BM_LinearPtr/8192         3666 ns         3666 ns       196679
+BM_LinearVal/1           0.802 ns        0.802 ns    907451357
+BM_LinearVal/8            3.41 ns         3.41 ns    197918618
+BM_LinearVal/64           26.9 ns         26.9 ns     22587871
+BM_LinearVal/512           182 ns          182 ns      3802556
+BM_LinearVal/4096         1894 ns         1893 ns       359086
+BM_LinearVal/8192         4770 ns         4770 ns       164406

@@ -1,4 +1,4 @@
-2023-04-02T04:53:45-04:00
+2023-04-05T08:48:52-04:00
 Running ./bin/set_erase_order
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,17 +6,17 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 1.51, 1.23, 1.09
+Load Average: 4.55, 4.08, 3.57
 ----------------------------------------------------------------------------------------------------
 Benchmark                                                          Time             CPU   Iterations
 ----------------------------------------------------------------------------------------------------
-BenchEraseOrderSetInt<std::set<int>>                             883 ns          883 ns       770327
-BenchEraseOrderSetInt<tsl::ordered_set<int>>                 2055053 ns      2055075 ns          330
-BenchEraseUnOrderSetInt<tsl::ordered_set<int>>                   834 ns          834 ns       845407
-BenchEraseOrderSetInt<absl::btree_set<int>>                     8637 ns         8637 ns        82441
-BenchEraseOrderSetInt<phmap::btree_set<int>>                    5234 ns         5233 ns       132893
-BenchEraseOrderSetString<std::set<std::string>>                 1853 ns         1852 ns       374423
-BenchEraseOrderSetString<tsl::ordered_set<std::string>>      3493399 ns      3493399 ns          201
-BenchEraseUnorderSetString<tsl::ordered_set<std::string>>       1322 ns         1322 ns       544338
-BenchEraseOrderSetString<absl::btree_set<std::string>>          5918 ns         5918 ns       111536
-BenchEraseOrderSetString<phmap::btree_set<std::string>>         4308 ns         4308 ns       158498
+BenchEraseOrderSetInt<std::set<int>>                             272 ns          272 ns      2477487
+BenchEraseOrderSetInt<tsl::ordered_set<int>>                   58429 ns        58430 ns        12256
+BenchEraseUnOrderSetInt<tsl::ordered_set<int>>                  82.7 ns         82.7 ns      9827846
+BenchEraseOrderSetInt<absl::btree_set<int>>                      191 ns          191 ns      3676182
+BenchEraseOrderSetInt<phmap::btree_set<int>>                     171 ns          171 ns      3924873
+BenchEraseOrderSetString<std::set<std::string>>                 1120 ns         1120 ns       670738
+BenchEraseOrderSetString<tsl::ordered_set<std::string>>      1242090 ns      1242081 ns          584
+BenchEraseUnorderSetString<tsl::ordered_set<std::string>>        573 ns          573 ns      1219833
+BenchEraseOrderSetString<absl::btree_set<std::string>>          1121 ns         1121 ns       598792
+BenchEraseOrderSetString<phmap::btree_set<std::string>>         1039 ns         1039 ns       740758

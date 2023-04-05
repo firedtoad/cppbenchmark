@@ -64,18 +64,15 @@ BENCHMARK_TEMPLATE(BenchEraseOrderMapInt, std::map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseOrderMapInt, tsl::ordered_map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseOrderMapInt, absl::btree_map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseOrderMapInt, phmap::btree_map<int, int>);
-
+std::vector<std::string> keys(65536);
 template <class M> static void BenchEraseOrderMapString(benchmark::State &state)
 {
     M m;
-    std::vector<std::string> keys(65536);
+
     for (auto i = 0; i < 65536; i++)
     {
-        auto sKey = "12345678901234561234567890123456" + std::to_string(_random());
-        keys[i]   = sKey;
-        m[sKey]   = i;
+        m[keys[i]] = i;
     }
-    int r{};
     for (auto _ : state)
     {
         auto r  = keys[_random() % 65536];
@@ -84,8 +81,8 @@ template <class M> static void BenchEraseOrderMapString(benchmark::State &state)
         {
             m[r] = 0;
         }
+        benchmark::DoNotOptimize(r);
     }
-    benchmark::DoNotOptimize(r);
 }
 
 BENCHMARK_TEMPLATE(BenchEraseOrderMapString, std::map<std::string, int>);
@@ -95,6 +92,10 @@ BENCHMARK_TEMPLATE(BenchEraseOrderMapString, phmap::btree_map<std::string, int>)
 
 int main(int argc, char **argv)
 {
+    for (auto i = 0; i < 65536; i++)
+    {
+        keys[i] = "12345678901234561234567890123456" + std::to_string(_random());
+    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

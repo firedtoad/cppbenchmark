@@ -50,7 +50,7 @@ uint32_t count(uint32_t n)
     return count;
 }
 
-uint32_t bcount(uint32_t n)
+uint32_t built_in_count(uint32_t n)
 {
     return __builtin_popcount(n);
 }
@@ -70,37 +70,16 @@ static void BM_bcount(benchmark::State &state)
 
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(bcount(random_()));
+        benchmark::DoNotOptimize(built_in_count(random_()));
     }
 }
 
 BENCHMARK(BM_bcount);
 
-struct S
-{
-    S()
-    {
-        std::atexit([] { std::cout << __PRETTY_FUNCTION__ << '\n'; });
-        std::cout << __PRETTY_FUNCTION__ << '\n';
-    }
-    ~S()
-    {
-        std::cout << __PRETTY_FUNCTION__ << '\n';
-    }
-};
-
-S &CreateS()
-{
-    auto p = new S();
-    return *p;
-}
 
 int main(int argc, char **argv)
 {
-
-    ::benchmark::Initialize(&argc, argv);
-    if (::benchmark::ReportUnrecognizedArguments(argc, argv))
-        return 1;
-    ::benchmark::RunSpecifiedBenchmarks();
+    benchmark::Initialize(&argc, argv);
+    benchmark::RunSpecifiedBenchmarks();
     return 0;
 }
