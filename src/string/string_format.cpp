@@ -110,7 +110,6 @@ template <typename T> static void BenchBoostStringFormat(benchmark::State &state
 {
     for (auto _ : state)
     {
-        ;
         auto r = (boost::format{"%d"} % tag).str();
         benchmark::DoNotOptimize(r);
     }

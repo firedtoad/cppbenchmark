@@ -1,5 +1,6 @@
 find_package(absl REQUIRED)
 add_executable(format format.cpp)
+add_executable(conventions conventions.cpp)
 add_executable(string_view string_view.cpp)
 add_executable(string_split string_split.cpp)
 add_executable(string_from string_from.cpp)
