@@ -94,7 +94,8 @@ BENCHMARK(VYQueue);
 
 static void TBBQueue(benchmark::State &state)
 {
-    static tbb::strict_ppl::concurrent_queue<S> tbbQueue;
+    static tbb::concurrent_bounded_queue<S> tbbQueue;
+    tbbQueue.set_capacity(100000);
     for (auto _ : state)
     {
         S s;

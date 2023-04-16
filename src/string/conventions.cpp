@@ -73,7 +73,7 @@ template <typename T> static void BenchStdToChars(benchmark::State &state)
 {
     for (auto _ : state)
     {
-        std::string buff(std::__detail::__to_chars_len(tag),'\0');
+        std::string buff(std::__detail::__to_chars_len(tag), '\0');
         std::__detail::__to_chars_10_impl(buff.data(), buff.size(), tag);
         benchmark::DoNotOptimize(buff);
     }
@@ -84,9 +84,12 @@ template <typename T> static void BenchStdToCharsF(benchmark::State &state)
 {
     for (auto _ : state)
     {
-        std::string buff(std::__detail::__to_chars_len(tag),'\0');
+        const int __n = __gnu_cxx::__numeric_traits<T>::__max_exponent10 + 20;
+        std::array<char, __n> buff;
         auto r = std::to_chars(buff.data(), buff.data() + buff.size(), tagf);
+        std::string ret(buff.data(), r.ptr);
         benchmark::DoNotOptimize(r);
+        benchmark::DoNotOptimize(ret);
     }
 }
 
@@ -149,7 +152,7 @@ template <typename T> static void BenchStdFromCharsF(benchmark::State &state)
     for (auto _ : state)
     {
         T r{};
-        std::from_chars(stag.data(), stag.data() + stag.size(), r);
+        std::from_chars(stagf.data(), stagf.data() + stagf.size(), r);
         benchmark::DoNotOptimize(r);
     }
 }
@@ -164,5 +167,6 @@ int main(int argc, char **argv)
     stagf = std::to_string(std::mt19937_64{std::random_device{}()}());
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
+    std::__throw_bad_array_new_length();
     return 0;
 }
