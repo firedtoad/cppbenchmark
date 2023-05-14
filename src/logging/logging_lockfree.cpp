@@ -33,6 +33,7 @@ static void BM_SpdLog(benchmark::State &state)
         SPDLOG_INFO("simple message {} {} {} {}", i++, j++, k++, ss);
     }
 }
+BENCHMARK(BM_SpdLog);
 BENCHMARK(BM_SpdLog)->ThreadRange(1,8);
 
 static void BM_SpdLogAsync(benchmark::State &state)
@@ -48,6 +49,7 @@ static void BM_SpdLogAsync(benchmark::State &state)
     }
 }
 
+BENCHMARK(BM_SpdLogAsync);
 BENCHMARK(BM_SpdLogAsync)->ThreadRange(1,8);
 
 int main(int argc, char **argv)
