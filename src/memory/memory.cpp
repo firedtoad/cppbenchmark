@@ -19,7 +19,6 @@
 #include "tsl/ordered_set.h"
 #include "tsl/robin_map.h"
 #include "tsl/robin_set.h"
-#include <cxxabi.h>
 #include <deque>
 #include <iostream>
 #include <list>
@@ -29,6 +28,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+#include "utils/symbol.h"
 
 static size_t memAlloc;
 static size_t alloc;
@@ -108,15 +108,6 @@ struct CC
     char c;
 };
 
-std::string demangle(const char *name)
-{
-    int status                       = -4;
-    char *res                        = abi::__cxa_demangle(name, NULL, NULL, &status);
-    const char *const demangled_name = (status == 0) ? res : name;
-    std::string ret_val(demangled_name);
-    free(res);
-    return ret_val;
-}
 
 template <typename... T> void PrintSize(T &&...t)
 {

@@ -23,9 +23,11 @@
 #include "tsl/robin_map.h"
 #include "tsl/sparse_map.h"
 #include "unordered_map.hpp"
+#include "utils/symbol.h"
 #include <absl/container/flat_hash_map.h>
 #include <benchmark/benchmark.h>
 #include <unordered_map>
+#include <utils/rss.h>
 
 template <class M> static void BM_reserve(benchmark::State &state)
 {
@@ -53,8 +55,34 @@ BENCHMARK_TEMPLATE(BM_reserve, tsl::hopscotch_map<int, int>)->Range(1 << 10, 1 <
 BENCHMARK_TEMPLATE(BM_reserve, tsl::robin_map<int, int>)->Range(1 << 10, 1 << 20);
 BENCHMARK_TEMPLATE(BM_reserve, tsl::sparse_map<int, int>)->Range(1 << 10, 1 << 20);
 
+template <class M, size_t N> void BM_Memory()
+{
+    rusage rusage;
+    FillRSS(rusage);
+    M m;
+    std::cout << demangle(typeid(m).name()) << " memory " << '\n';
+    for (size_t i = 0; i < N; i++)
+    {
+        m[i] = i;
+    }
+    PrintUsage(rusage);
+}
+
 int main(int argc, char **argv)
 {
+
+    BM_Memory<std::unordered_map<int, int>, 1 << 20>();
+    BM_Memory<ska::unordered_map<int, int>, 1 << 20>();
+    BM_Memory<ska::flat_hash_map<int, int>, 1 << 20>();
+    BM_Memory<ska::bytell_hash_map<int, int>, 1 << 20>();
+    BM_Memory<phmap::flat_hash_map<int, int>, 1 << 20>();
+    BM_Memory<absl::flat_hash_map<int, int>, 1 << 20>();
+    BM_Memory<robin_hood::unordered_flat_map<int, int>, 1 << 20>();
+    BM_Memory<spp::sparse_hash_map<int, int>, 1 << 20>();
+    BM_Memory<tsl::bhopscotch_map<int, int>, 1 << 20>();
+    BM_Memory<tsl::hopscotch_map<int, int>, 1 << 20>();
+    BM_Memory<tsl::robin_map<int, int>, 1 << 20>();
+    BM_Memory<tsl::sparse_map<int, int>, 1 << 20>();
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

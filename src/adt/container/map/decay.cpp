@@ -14,21 +14,13 @@
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
 #include <benchmark/benchmark.h>
-#include <cxxabi.h>
 #include <iostream>
 #include <llvm/ADT/DenseMap.h>
 #include <llvm/ADT/DenseSet.h>
 #include <llvm/ADT/simple_ilist.h>
 #include <unordered_map>
-std::string demangle(const char *name)
-{
-    int status                       = -4;
-    char *res                        = abi::__cxa_demangle(name, NULL, NULL, &status);
-    const char *const demangled_name = (status == 0) ? res : name;
-    std::string ret_val(demangled_name);
-    free(res);
-    return ret_val;
-}
+#include "utils/symbol.h"
+
 template <typename... T> void PrintVector(T &&...t)
 {
     (..., (std::cout << demangle(typeid(t).name()) << " size " << sizeof(typename T::value_type) << '\n'));

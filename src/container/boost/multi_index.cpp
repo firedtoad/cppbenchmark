@@ -47,8 +47,7 @@ using MultiContainer = boost::multi_index::multi_index_container<
 
 template <typename V>
 using MultiHashContainer = boost::multi_index::multi_index_container<
-    V, boost::multi_index::indexed_by<boost::multi_index::hashed_unique<boost::multi_index::member<V, uint32_t, &V::first>>
-                                     >>;
+    V, boost::multi_index::indexed_by<boost::multi_index::hashed_unique<boost::multi_index::member<V, uint32_t, &V::first>>>>;
 
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
@@ -109,11 +108,11 @@ template <typename V> static void BenchInsertMulti(benchmark::State &state)
     }
 }
 
-// BENCHMARK_TEMPLATE(BenchInsert, sorted_vector_map<uint32_t, uint32_t>)->Range(1, 1 << 10);
-// BENCHMARK_TEMPLATE(BenchInsert, std::map<uint32_t, uint32_t>)->Range(1, 1 << 10);
-// BENCHMARK_TEMPLATE(BenchInsert, boost::container::flat_map<uint32_t, uint32_t>)->Range(1, 1 << 10);
-// BENCHMARK_TEMPLATE(BenchInsertMulti, MultiContainer<std::pair<uint32_t, uint32_t>>)->Range(1, 1 << 10);
-// BENCHMARK_TEMPLATE(BenchInsertMulti, MultiHashContainer<std::pair<uint32_t, uint32_t>>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsert, sorted_vector_map<uint32_t, uint32_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsert, std::map<uint32_t, uint32_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsert, boost::container::flat_map<uint32_t, uint32_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsertMulti, MultiContainer<std::pair<uint32_t, uint32_t>>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsertMulti, MultiHashContainer<std::pair<uint32_t, uint32_t>>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchFind(benchmark::State &state)
 {
@@ -164,9 +163,9 @@ template <typename V> static void BenchFindMultiHash(benchmark::State &state)
     vx.template get<0>().find(std::pair{1, 1});
 }
 
-// BENCHMARK_TEMPLATE(BenchFind, sorted_vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
-// BENCHMARK_TEMPLATE(BenchFind, std::map<uint64_t, Pod>)->Range(1, 1 << 10);
-// BENCHMARK_TEMPLATE(BenchFind, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchFind, sorted_vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchFind, std::map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchFind, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFindMulti, MultiContainer<std::pair<uint32_t, Pod>>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFindMultiHash, MultiHashContainer<std::pair<uint32_t, Pod>>)->Range(1, 1 << 10);
 
@@ -210,9 +209,9 @@ template <typename V, size_t N> static void BenchRangeMulti(benchmark::State &st
     benchmark::DoNotOptimize(sum);
 }
 
-// BENCHMARK_TEMPLATE(BenchRange, sorted_vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
-// BENCHMARK_TEMPLATE(BenchRange, std::map<uint64_t, Pod>)->Range(1, 1 << 10);
-// BENCHMARK_TEMPLATE(BenchRange, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchRange, sorted_vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchRange, std::map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchRange, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRangeMulti, MultiContainer<std::pair<uint32_t, Pod>>, 0)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRangeMulti, MultiContainer<std::pair<uint32_t, Pod>>, 1)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRangeMulti, MultiHashContainer<std::pair<uint32_t, Pod>>, 0)->Range(1, 1 << 10);
@@ -256,17 +255,17 @@ template <typename V> static void BenchEraseMulti(benchmark::State &state)
     }
 }
 
-// BENCHMARK_TEMPLATE(BenchErase, sorted_vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
-// BENCHMARK_TEMPLATE(BenchErase, std::map<uint64_t, Pod>)->Range(1, 1 << 10);
-// BENCHMARK_TEMPLATE(BenchErase, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 10);
-// BENCHMARK_TEMPLATE(BenchEraseMulti, MultiContainer<std::pair<uint32_t, Pod>>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchErase, sorted_vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchErase, std::map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchErase, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchEraseMulti, MultiContainer<std::pair<uint32_t, Pod>>)->Range(1, 1 << 10);
 
 int main(int argc, char **argv)
 {
     {
         rusage rUsage{};
         FillRSS(rUsage);
-//        MultiHashContainer<std::pair<uint32_t, Pod>> v;
+        //        MultiHashContainer<std::pair<uint32_t, Pod>> v;
         MultiContainer<std::pair<uint32_t, Pod>> v;
         for (auto i = 0; i < 1024 * 1024; i++)
         {

@@ -28,28 +28,21 @@
 // Author dietoad@gmail.com && firedtoad@gmail.com
 #include <any>
 #include <benchmark/benchmark.h>
-#include <cxxabi.h>
 #include <iostream>
 #include <memory>
 #include <optional>
 #include <utils/rss.h>
 #include <variant>
 #include <vector>
+#include "utils/symbol.h"
+
 
 struct Point3D
 {
     float x, y, z;
 };
 
-std::string demangle(const char *name)
-{
-    int status                       = -4;
-    char *res                        = abi::__cxa_demangle(name, NULL, NULL, &status);
-    const char *const demangled_name = (status == 0) ? res : name;
-    std::string ret_val(demangled_name);
-    free(res);
-    return ret_val;
-}
+
 template <typename... T> void PrintList(T &&...t)
 {
     (..., (std::cout << demangle(typeid(t).name()) << " size " << sizeof(t) << '\n'));
