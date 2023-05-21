@@ -50,7 +50,7 @@ inline void FillRSS(rusage &rUsage)
         p      = (char *)calloc(sz, 4096);
         DoNotOptimize(p);
     }
-    auto info = mallinfo();
+    auto info = mallinfo2();
     p         = (char *)calloc(info.fordblks, 1);
     DoNotOptimize(p);
 }
@@ -62,7 +62,7 @@ inline std::string operator-(const timeval tv1, const timeval tv2)
     return std::to_string(res.tv_sec) + "s " + std::to_string(res.tv_usec) + "us";
 }
 
-inline void printUsage(struct rusage &rUsage)
+inline void PrintUsage(struct rusage &rUsage)
 {
     rusage usage{};
     getrusage(RUSAGE_THREAD, &usage);

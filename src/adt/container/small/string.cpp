@@ -56,7 +56,7 @@ std::string operator-(const timeval tv1, const timeval tv2)
     timersub(&tv1, &tv2, &res);
     return std::to_string(res.tv_sec) + "s " + std::to_string(res.tv_usec) + "us";
 }
-void printUsage(struct rusage &rUsage)
+void PrintUsage(struct rusage &rUsage)
 {
     rusage usage{};
     getrusage(RUSAGE_THREAD, &usage);
@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
     {
         svec[i].resize(15);
     }
-    printUsage(usage);
+    PrintUsage(usage);
     FillRSS(usage);
     llvm::SmallVector<llvm::SmallString<16>, SIZE> ssvec;
     ssvec.resize(SIZE);
@@ -94,6 +94,6 @@ int main(int argc, char *argv[])
     {
         ssvec[i].resize(16);
     }
-    printUsage(usage);
+    PrintUsage(usage);
     return 0;
 }

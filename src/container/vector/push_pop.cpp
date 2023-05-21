@@ -15,9 +15,10 @@
 
 #include <benchmark/benchmark.h>
 #include <deque>
+#include <experimental/memory_resource>
 #include <ext/pool_allocator.h>
 #include <list>
-#include <experimental/memory_resource>
+#include <memory_resource>
 #include <queue>
 #include <string>
 #include <vector>
@@ -105,7 +106,6 @@ template <typename V> static void BenchPushErase(benchmark::State &state)
     }
 }
 
-#if (((__GNUC__ * 100) + __GNUC_MINOR__) >= 900)
 template <typename V> static void BenchPmrPushErase(benchmark::State &state)
 {
     std::vector<int> buff(state.range(0));
@@ -122,8 +122,6 @@ template <typename V> static void BenchPmrPushErase(benchmark::State &state)
     }
 }
 
-BENCHMARK_TEMPLATE(BenchPmrPushErase, std::pmr::vector<Pod>)->Range(1, 65536);
-#endif
 
 BENCHMARK_TEMPLATE(BenchPushPop, std::list<int>)->Range(1, 65536);
 BENCHMARK_TEMPLATE(BenchPushPop, std::list<int, __gnu_cxx::__pool_alloc<int>>)->Range(1, 65536);
@@ -131,7 +129,7 @@ BENCHMARK_TEMPLATE(BenchQueuePushPop, std::queue<int>)->Range(1, 65536);
 BENCHMARK_TEMPLATE(BenchPushPop, std::deque<int>)->Range(1, 65536);
 BENCHMARK_TEMPLATE(BenchPushPop, std::deque<int, __gnu_cxx::__pool_alloc<int>>)->Range(1, 65536);
 BENCHMARK_TEMPLATE(BenchPushErase, std::vector<Pod>)->Range(1, 65536);
-
+BENCHMARK_TEMPLATE(BenchPmrPushErase, std::pmr::vector<Pod>)->Range(1, 65536);
 
 
 int main(int argc, char **argv)

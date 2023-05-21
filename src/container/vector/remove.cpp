@@ -19,7 +19,7 @@
 #include <string>
 #include <vector>
 
-constexpr int N = 1000;
+constexpr int N = 1<<20;
 
 void init(std::vector<std::string> &v1)
 {

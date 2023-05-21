@@ -56,7 +56,7 @@ std::string operator-(const timeval tv1, const timeval tv2)
     timersub(&tv1, &tv2, &res);
     return std::to_string(res.tv_sec) + "s " + std::to_string(res.tv_usec) + "us";
 }
-void printUsage(struct rusage &rUsage)
+void PrintUsage(struct rusage &rUsage)
 {
     rusage usage{};
     getrusage(RUSAGE_THREAD, &usage);
@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
     std::string s1;
     s1.resize(SIZE_1M);
     std::string s2 = s + s1;
-    printUsage(usage);
+    PrintUsage(usage);
     DoNotOptimize(s2);
     FillRSS(usage);
     std::string s3;
@@ -90,6 +90,6 @@ int main(int argc, char *argv[])
     llvm::Twine t1 = s3;
     llvm::Twine t2 = s4;
     llvm::Twine t3 = t1 + t2;
-    printUsage(usage);
+    PrintUsage(usage);
     DoNotOptimize(t3.str());
 }

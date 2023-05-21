@@ -18,6 +18,8 @@
 #include <unordered_set>
 #include <vector>
 #include <list>
+#include <iostream>
+#include <variant>
 
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
@@ -83,7 +85,7 @@ template <class S> static void BM_UniqueConstructor(benchmark::State &state)
         auto vec = vi;
         S s(vec.begin(), vec.end());
         vec.assign(s.begin(), s.end());
-        std::sort(vec.begin(), vec.end());
+//        std::sort(vec.begin(), vec.end());
     }
 }
 
@@ -101,7 +103,7 @@ template <class S> static void BM_UniqueManually(benchmark::State &state)
         for (int i : vec)
             s.insert(i);
         vec.assign(s.begin(), s.end());
-        std::sort(vec.begin(), vec.end());
+//        std::sort(vec.begin(), vec.end());
     }
 }
 
@@ -114,7 +116,11 @@ BENCHMARK_TEMPLATE(BM_UniqueManually, std::unordered_set<int>)->Range(128, 1 << 
 
 int main(int argc, char **argv)
 {
+    std::variant<int64_t,std::string> s;
+    s="aaa";
+    std::cout<<std::get<1>(s)<<'\n';
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
+
     return 0;
 }

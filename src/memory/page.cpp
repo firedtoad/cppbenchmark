@@ -26,6 +26,6 @@ int main(int argc, char **argv)
         p[0] = 'c';
         p += 4096;
     }
-    printUsage(usage);
+    PrintUsage(usage);
     return 0;
 }

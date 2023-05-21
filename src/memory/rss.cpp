@@ -57,7 +57,7 @@ std::string operator-(const timeval tv1, const timeval tv2)
     return std::to_string(res.tv_sec) + "s " + std::to_string(res.tv_usec) + "us";
 }
 
-void printUsage(struct rusage &rUsage)
+void PrintUsage(struct rusage &rUsage)
 {
     rusage usage{};
     getrusage(RUSAGE_THREAD, &usage);
@@ -98,43 +98,43 @@ int main(int argc, char *argv[])
     std::vector<uint8_t> vecu8;
     vecu8.resize(SIZE);
     std::cout << "vector of u8 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     std::vector<uint64_t> vec;
     vec.resize(SIZE);
     std::cout << "vector of u64 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     std::deque<uint8_t> dequ8;
     dequ8.resize(SIZE);
     std::cout << "deque of u8 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     std::deque<uint64_t> dequ64;
     dequ64.resize(SIZE);
     std::cout << "deque of u64 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     std::list<uint8_t> li;
     li.resize(SIZE);
     std::cout << "list of u8 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     std::list<uint16_t> li16;
     li16.resize(SIZE);
     std::cout << "list of u16 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     std::list<uint64_t> li64;
     li64.resize(SIZE);
     std::cout << "list of u64 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     std::set<uint32_t> s32;
@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
         s32.insert(i);
     }
     std::cout << "set of u32 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     std::set<uint64_t> s64;
@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
         s64.insert(i);
     }
     std::cout << "set of u64 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     std::map<uint32_t, uint32_t> m32;
@@ -161,7 +161,7 @@ int main(int argc, char *argv[])
         m32[i] = i;
     }
     std::cout << "map of u32 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     std::map<uint64_t, uint64_t> m64;
@@ -170,7 +170,7 @@ int main(int argc, char *argv[])
         m64[i] = i;
     }
     std::cout << "map of u64 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     std::unordered_set<uint32_t> us32;
@@ -180,7 +180,7 @@ int main(int argc, char *argv[])
         us32.insert(i);
     }
     std::cout << "uset of u32 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     std::unordered_set<uint64_t> us64;
@@ -190,7 +190,7 @@ int main(int argc, char *argv[])
         us64.insert(i);
     }
     std::cout << "uset of u64 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     std::unordered_map<uint32_t, uint32_t> um32;
@@ -200,7 +200,7 @@ int main(int argc, char *argv[])
         um32[i] = i;
     }
     std::cout << "umap of u32 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     std::unordered_map<uint64_t, uint64_t> um64;
@@ -210,7 +210,7 @@ int main(int argc, char *argv[])
         um64[i] = i;
     }
     std::cout << "umap of u64 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     ska::flat_hash_set<uint32_t> flat_set_32;
@@ -220,7 +220,7 @@ int main(int argc, char *argv[])
         flat_set_32.insert(i);
     }
     std::cout << "ska flat set of u32 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     ska::flat_hash_set<uint64_t> flat_set_64;
@@ -230,7 +230,7 @@ int main(int argc, char *argv[])
         flat_set_64.insert(i);
     }
     std::cout << "ska flat set of u64 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     phmap::flat_hash_set<uint32_t> ph_flat_set_32;
@@ -240,7 +240,7 @@ int main(int argc, char *argv[])
         ph_flat_set_32.insert(i);
     }
     std::cout << "ph flat set of u32 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     phmap::flat_hash_set<uint64_t> ph_flat_set_64;
@@ -250,7 +250,7 @@ int main(int argc, char *argv[])
         ph_flat_set_64.insert(i);
     }
     std::cout << "ph flat set of u64 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     ska::flat_hash_map<uint32_t, uint32_t> flat_map_32;
@@ -260,7 +260,7 @@ int main(int argc, char *argv[])
         flat_map_32[i] = i;
     }
     std::cout << "ska flat map of u32 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     ska::flat_hash_map<uint64_t, uint64_t> flat_map_64;
@@ -270,7 +270,7 @@ int main(int argc, char *argv[])
         flat_map_64[i] = i;
     }
     std::cout << "ska flat map of u64 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     phmap::flat_hash_map<uint32_t, uint32_t> ph_flat_map_32;
@@ -280,7 +280,7 @@ int main(int argc, char *argv[])
         ph_flat_map_32[i] = i;
     }
     std::cout << "ph flat map of u32 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     phmap::flat_hash_map<uint64_t, uint64_t> ph_flat_map_64;
@@ -290,7 +290,7 @@ int main(int argc, char *argv[])
         ph_flat_map_64[i] = i;
     }
     std::cout << "ph flat map of u64 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     return 0;
 }

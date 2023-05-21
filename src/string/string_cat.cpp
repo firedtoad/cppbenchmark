@@ -162,11 +162,11 @@ int main(int argc, char **argv)
     {
         rf.Add(i);
     }
-    printUsage(rUsage);
+    PrintUsage(rUsage);
     FillRSS(rUsage);
     google::protobuf::RepeatedField<int> rf1;
     rf1.Resize(SIZE,{});
-    printUsage(rUsage);
+    PrintUsage(rUsage);
 
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();

@@ -19,6 +19,7 @@
 #endif
 
 #include <memory>
+#include <mutex>
 #include <utility>
 
 #if defined(PHMAP_USE_ABSL_HASH) && !defined(ABSL_HASH_HASH_H_)
@@ -106,6 +107,25 @@ template <class Key, class Value, class Hash = phmap::priv::hash_default_hash<Ke
           size_t N    = 4,                                                           // 2**N submaps
           class Mutex = phmap::NullMutex>                                            // use std::mutex to enable internal locks
 class parallel_node_hash_map;
+
+// -----------------------------------------------------------------------------
+// phmap::parallel_*_hash_* using std::mutex by default
+// -----------------------------------------------------------------------------
+template <class T, class Hash = phmap::priv::hash_default_hash<T>, class Eq = phmap::priv::hash_default_eq<T>,
+          class Alloc = phmap::priv::Allocator<T>, size_t N = 4>
+using parallel_flat_hash_set_m = parallel_flat_hash_set<T, Hash, Eq, Alloc, N, std::mutex>;
+
+template <class K, class V, class Hash = phmap::priv::hash_default_hash<K>, class Eq = phmap::priv::hash_default_eq<K>,
+          class Alloc = phmap::priv::Allocator<phmap::priv::Pair<const K, V>>, size_t N = 4>
+using parallel_flat_hash_map_m = parallel_flat_hash_map<K, V, Hash, Eq, Alloc, N, std::mutex>;
+
+template <class T, class Hash = phmap::priv::hash_default_hash<T>, class Eq = phmap::priv::hash_default_eq<T>,
+          class Alloc = phmap::priv::Allocator<T>, size_t N = 4>
+using parallel_node_hash_set_m = parallel_node_hash_set<T, Hash, Eq, Alloc, N, std::mutex>;
+
+template <class K, class V, class Hash = phmap::priv::hash_default_hash<K>, class Eq = phmap::priv::hash_default_eq<K>,
+          class Alloc = phmap::priv::Allocator<phmap::priv::Pair<const K, V>>, size_t N = 4>
+using parallel_node_hash_map_m = parallel_node_hash_map<K, V, Hash, Eq, Alloc, N, std::mutex>;
 
 // ------------- forward declarations for btree containers ----------------------------------
 template <typename Key, typename Compare = phmap::Less<Key>, typename Alloc = phmap::Allocator<Key>> class btree_set;

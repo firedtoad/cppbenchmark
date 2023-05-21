@@ -18,7 +18,7 @@
 #include <boost/fiber/detail/spinlock.hpp>
 #include <boost/fiber/detail/spinlock_ttas.hpp>
 #include <boost/smart_ptr/detail/spinlock.hpp>
-#include <boost/smart_ptr/detail/spinlock_std_atomic.hpp>
+//#include <boost/smart_ptr/detail/spinlock_std_atomic.hpp>
 template <typename T> void benchmark_mutex_lock_unlock(benchmark::State &state)
 {
     static T m;

@@ -87,7 +87,7 @@ inline std::string operator-(const timeval tv1, const timeval tv2)
     return std::to_string(res.tv_sec) + "s " + std::to_string(res.tv_usec) + "us";
 }
 
-inline void printUsage(struct rusage &rUsage)
+inline void PrintUsage(struct rusage &rUsage)
 {
     rusage usage{};
     getrusage(RUSAGE_THREAD, &usage);
@@ -120,13 +120,13 @@ int main(int argc, char **argv)
     std::vector<uint8_t> vecu8;
     vecu8.resize(SIZE);
     std::cout << "vector of u8 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     FillRSS(usage);
     std::vector<uint64_t> vec;
     vec.resize(SIZE);
     std::cout << "vector of u64 " << SIZE << '\n';
-    printUsage(usage);
+    PrintUsage(usage);
 
     auto sz = 0;
     do

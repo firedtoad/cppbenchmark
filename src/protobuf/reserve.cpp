@@ -25,13 +25,29 @@ static void BenchAdd(benchmark::State &state)
         pb_report::Ground report;
         for (auto i = 0; i < state.range(0); i++)
         {
-            report.add_attackerform()->add_units();;
-            report.add_defenderform()->add_units();;
+            report.add_attackerform()->add_units();
+            report.add_defenderform()->add_units();
         }
-        benchmark::DoNotOptimize(report.attackerform_size()+report.defenderform_size());
+        benchmark::DoNotOptimize(report.attackerform_size() + report.defenderform_size());
     }
 }
 BENCHMARK(BenchAdd)->Range(1, 65536);
+
+static void BenchAddArena(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        google::protobuf::Arena arena;
+        pb_report::Ground &report = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(&arena);
+        for (auto i = 0; i < state.range(0); i++)
+        {
+            report.add_attackerform()->add_units();
+            report.add_defenderform()->add_units();
+        }
+        benchmark::DoNotOptimize(report.attackerform_size() + report.defenderform_size());
+    }
+}
+BENCHMARK(BenchAddArena)->Range(1, 65536);
 
 static void BenchReserve(benchmark::State &state)
 {
@@ -43,16 +59,35 @@ static void BenchReserve(benchmark::State &state)
         report.mutable_attackerform()->Reserve(state.range(0));
         for (auto i = 0; i < state.range(0); i++)
         {
-            report.add_attackerform()->add_units();;
-            report.add_defenderform()->add_units();;
+            report.add_attackerform()->add_units();
+            report.add_defenderform()->add_units();
         }
-        benchmark::DoNotOptimize(report.attackerform_size()+report.defenderform_size());
+        benchmark::DoNotOptimize(report.attackerform_size() + report.defenderform_size());
     }
 }
 
 BENCHMARK(BenchReserve)->Range(1, 65536);
 
-const int SIZE = 65536 ;
+static void BenchReserveArena(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        google::protobuf::Arena arena;
+        pb_report::Ground &report = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(&arena);
+        report.mutable_attackerform()->Reserve(state.range(0));
+        report.mutable_attackerform()->Reserve(state.range(0));
+        for (auto i = 0; i < state.range(0); i++)
+        {
+            report.add_attackerform()->add_units();
+            report.add_defenderform()->add_units();
+        }
+        benchmark::DoNotOptimize(report.attackerform_size() + report.defenderform_size());
+    }
+}
+
+BENCHMARK(BenchReserveArena)->Range(1, 65536);
+
+const int SIZE = 65536;
 int main(int argc, char **argv)
 {
     rusage rUsage;
@@ -63,8 +98,8 @@ int main(int argc, char **argv)
         report.add_attackerform()->add_units();
         report.add_defenderform()->add_units();
     }
-    benchmark::DoNotOptimize(report.attackerform_size()+report.defenderform_size());
-    printUsage(rUsage);
+    benchmark::DoNotOptimize(report.attackerform_size() + report.defenderform_size());
+    PrintUsage(rUsage);
     FillRSS(rUsage);
 
     pb_report::Ground report1;
@@ -72,11 +107,25 @@ int main(int argc, char **argv)
     report1.mutable_attackerform()->Reserve(SIZE);
     for (auto i = 0; i < SIZE; i++)
     {
-        report1.add_attackerform()->add_units();;
-        report1.add_defenderform()->add_units();;
+        report1.add_attackerform()->add_units();
+        report1.add_defenderform()->add_units();
     }
-    benchmark::DoNotOptimize(report.attackerform_size()+report.defenderform_size());
-    printUsage(rUsage);
+    benchmark::DoNotOptimize(report.attackerform_size() + report.defenderform_size());
+    PrintUsage(rUsage);
+    {
+        FillRSS(rUsage);
+        google::protobuf::Arena arena;
+        pb_report::Ground &report = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(&arena);
+        report.mutable_attackerform()->Reserve(SIZE);
+        report.mutable_attackerform()->Reserve(SIZE);
+        for (auto i = 0; i < SIZE; i++)
+        {
+            report.add_attackerform()->add_units();
+            report.add_defenderform()->add_units();
+        }
+        PrintUsage(rUsage);
+    }
+
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

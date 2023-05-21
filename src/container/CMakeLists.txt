@@ -1,5 +1,7 @@
 find_package(absl REQUIRED)
 
+add_executable(boost_multi_index boost/multi_index.cpp)
+
 add_executable(list_pmr list/pmr.cpp)
 add_executable(list_insert list/insert.cpp)
 add_executable(list_remove list/remove.cpp)
@@ -66,6 +68,8 @@ add_executable(sorted_unset sorted/sorted_unset.cpp)
 add_executable(sorted_unmap sorted/sorted_unmap.cpp)
 
 add_executable(vec_unique unique/unique.cpp)
+
+add_executable(value_variant_any value/variant_any.cpp)
 
 add_executable(fast_set vfast/fast_set.cpp)
 add_executable(fast_map vfast/fast_map.cpp)
