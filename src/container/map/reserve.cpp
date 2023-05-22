@@ -55,18 +55,7 @@ BENCHMARK_TEMPLATE(BM_reserve, tsl::hopscotch_map<int, int>)->Range(1 << 10, 1 <
 BENCHMARK_TEMPLATE(BM_reserve, tsl::robin_map<int, int>)->Range(1 << 10, 1 << 20);
 BENCHMARK_TEMPLATE(BM_reserve, tsl::sparse_map<int, int>)->Range(1 << 10, 1 << 20);
 
-template <class M, size_t N> void BM_Memory()
-{
-    rusage rusage;
-    FillRSS(rusage);
-    M m;
-    std::cout << demangle(typeid(m).name()) << " memory " << '\n';
-    for (size_t i = 0; i < N; i++)
-    {
-        m[i] = i;
-    }
-    PrintUsage(rusage);
-}
+
 
 int main(int argc, char **argv)
 {
@@ -83,6 +72,20 @@ int main(int argc, char **argv)
     BM_Memory<tsl::hopscotch_map<int, int>, 1 << 20>();
     BM_Memory<tsl::robin_map<int, int>, 1 << 20>();
     BM_Memory<tsl::sparse_map<int, int>, 1 << 20>();
+
+    BM_MemoryString<std::unordered_map<std::string, int>, 1 << 20>();
+    BM_MemoryString<ska::unordered_map<std::string, int>, 1 << 20>();
+    BM_MemoryString<ska::flat_hash_map<std::string, int>, 1 << 20>();
+    BM_MemoryString<ska::bytell_hash_map<std::string, int>, 1 << 20>();
+    BM_MemoryString<phmap::flat_hash_map<std::string, int>, 1 << 20>();
+    BM_MemoryString<absl::flat_hash_map<std::string, int>, 1 << 20>();
+    BM_MemoryString<robin_hood::unordered_flat_map<std::string, int>, 1 << 20>();
+    BM_MemoryString<spp::sparse_hash_map<std::string, int>, 1 << 20>();
+    BM_MemoryString<tsl::bhopscotch_map<std::string, int>, 1 << 20>();
+    BM_MemoryString<tsl::hopscotch_map<std::string, int>, 1 << 20>();
+    BM_MemoryString<tsl::robin_map<std::string, int>, 1 << 20>();
+    BM_MemoryString<tsl::sparse_map<std::string, int>, 1 << 20>();
+
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

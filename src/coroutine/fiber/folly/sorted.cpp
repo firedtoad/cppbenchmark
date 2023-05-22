@@ -18,15 +18,13 @@
 #include <EASTL/vector_set.h>
 #include <benchmark/benchmark.h>
 #include <boost/container/flat_map.hpp>
-#include <boost/multi_index_container.hpp>
-#include <boost/multi_index/hashed_index.hpp>
-#include <boost/multi_index/member.hpp>
 #include <folly/FBString.h>
 #include <folly/container/heap_vector_types.h>
 #include <folly/container/F14Map.h>
 #include <folly/sorted_vector_types.h>
 #include <iostream>
 #include <map>
+#include "utils/rss.h"
 
 void *operator new[](size_t size, const char * /*pName*/, int /*flags*/, unsigned /*debugFlags*/, const char * /*file*/, int /*line*/)
 {
@@ -186,6 +184,14 @@ BENCHMARK_TEMPLATE(BenchStringFind, folly::fbstring)->Range(128, 1 << 16);
 int main(int argc, char **argv)
 {
     std::cout << std::is_trivially_copyable_v<std::pair<uint64_t, Pod>> << '\n';
+    BM_Memory<sorted_vector_map<uint64_t, uint64_t>,1<<20>();
+    BM_Memory<folly::sorted_vector_map<uint64_t, uint64_t>,1<<20>();
+    BM_Memory<std::map<uint64_t, uint64_t>,1<<20>();
+    BM_Memory<boost::container::flat_map<uint64_t, uint64_t>,1<<20>();
+    BM_Memory<eastl::vector_map<uint64_t, uint64_t>,1<<20>();
+    BM_Memory<folly::F14FastMap<uint64_t, uint64_t>,1<<20>();
+    BM_Memory<folly::F14ValueMap<uint64_t, uint64_t>,1<<20>();
+
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

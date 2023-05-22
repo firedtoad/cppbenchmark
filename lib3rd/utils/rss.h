@@ -22,6 +22,7 @@
 #include <string>
 #include <sys/resource.h>
 #include <sys/time.h>
+#include "symbol.h"
 
 template <class Tp> inline __attribute__((always_inline)) void DoNotOptimize(Tp &value)
 {
@@ -75,6 +76,31 @@ inline void PrintUsage(struct rusage &rUsage)
     std::cout << "involuntary switches : " << usage.ru_nivcsw - rUsage.ru_nivcsw << '\n';
     std::cout << '\n';
     std::cout.flush();
+}
+template <class M, size_t N> void BM_Memory()
+{
+    rusage rusage;
+    FillRSS(rusage);
+    M m;
+    std::cout << demangle(typeid(m).name()) << " memory " << '\n';
+    for (size_t i = 0; i < N; i++)
+    {
+        m[i] = i;
+    }
+    PrintUsage(rusage);
+}
+
+template <class M, size_t N> void BM_MemoryString()
+{
+    rusage rusage;
+    FillRSS(rusage);
+    M m;
+    std::cout << demangle(typeid(m).name()) << " memory " << '\n';
+    for (size_t i = 0; i < N; i++)
+    {
+        m[std::to_string(i)] = i;
+    }
+    PrintUsage(rusage);
 }
 
 #endif // BENCH_UTILS_H

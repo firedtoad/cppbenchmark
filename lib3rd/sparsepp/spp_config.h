@@ -36,7 +36,7 @@
 
 #ifndef SPP_ALLOC_SZ
 // must be power of 2 (0 = agressive alloc, 1 = smallest memory usage, 2 = good compromise)
-#define SPP_ALLOC_SZ 0
+#define SPP_ALLOC_SZ 1
 #endif
 
 #ifndef SPP_STORE_NUM_ITEMS
