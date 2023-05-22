@@ -41,7 +41,8 @@ static void BenchAddConst(benchmark::State &state)
     std::string tag = "123456789012345";
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(AddTag(tag));
+        auto r=AddTag(tag);
+        benchmark::DoNotOptimize(r);
     }
 }
 
@@ -52,7 +53,8 @@ static void BenchAddRaw(benchmark::State &state)
     std::string_view strTag = "123456789012345";
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(AddTag(strTag));
+        auto r=AddTag(strTag);
+        benchmark::DoNotOptimize(r);
     }
 }
 

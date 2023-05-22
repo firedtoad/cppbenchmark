@@ -54,7 +54,8 @@ static void BM_array(benchmark::State &state)
         auto idx = _random() % 65536;
         if (array_handler[idx])
         {
-            benchmark::DoNotOptimize(array_handler[idx]());
+            auto r=array_handler[idx]();
+            benchmark::DoNotOptimize(r);
         }
     }
 }
@@ -71,7 +72,8 @@ static void BM_function(benchmark::State &state)
         auto idx = _random() % 65536;
         if (handlers[idx])
         {
-            benchmark::DoNotOptimize(handlers[idx]());
+            auto r=handlers[idx]();
+            benchmark::DoNotOptimize(r);
         }
     }
 }
@@ -99,7 +101,7 @@ static void BM_FunctionStack(benchmark::State &state)
         auto ret = CallFunction(
             [p, &umap]
             {
-                benchmark::DoNotOptimize(p);
+                benchmark::DoNotOptimize(*p);
                 benchmark::DoNotOptimize(umap);
             });
         benchmark::DoNotOptimize(ret);
@@ -118,8 +120,8 @@ static void BM_FunctionHeap(benchmark::State &state)
         auto ret = CallFunction(
             [p, p1, &umap]
             {
-                benchmark::DoNotOptimize(p);
-                benchmark::DoNotOptimize(p1);
+                benchmark::DoNotOptimize(*p);
+                benchmark::DoNotOptimize(*p1);
                 benchmark::DoNotOptimize(umap);
             });
         benchmark::DoNotOptimize(ret);
@@ -139,8 +141,8 @@ static void BM_Lambda(benchmark::State &state)
             [p, p1, &umap]
             {
                 benchmark::DoNotOptimize(umap);
-                benchmark::DoNotOptimize(p);
-                benchmark::DoNotOptimize(p1);
+                benchmark::DoNotOptimize(*p);
+                benchmark::DoNotOptimize(*p1);
             });
         benchmark::DoNotOptimize(ret);
     }

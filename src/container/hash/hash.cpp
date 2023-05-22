@@ -64,7 +64,8 @@ static void BM_StdHash(benchmark::State &state)
     auto idx = random_() % vec.size();
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(std::_Hash_impl{}.hash(vec[idx]));
+        auto r=std::_Hash_impl{}.hash(vec[idx]);
+        benchmark::DoNotOptimize(r);
     }
 }
 
@@ -75,7 +76,8 @@ static void BM_StdHashFnv(benchmark::State &state)
     auto idx = random_() % vec.size();
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(std::_Fnv_hash_impl{}.hash(vec[idx]));
+        auto r=std::_Fnv_hash_impl{}.hash(vec[idx]);
+        benchmark::DoNotOptimize(r);
     }
 }
 

@@ -15,7 +15,7 @@
 
 #include <folly/Chrono.h>
 #include <folly/Random.h>
-#include <folly/io/async/AsyncSocket.h>
+//#include <folly/io/async/AsyncSocket.h>
 #include <folly/io/async/EventBase.h>
 #include <folly/io/async/HHWheelTimer.h>
 #include <iostream>

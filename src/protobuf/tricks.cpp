@@ -30,7 +30,7 @@ static void BenchCopy(benchmark::State &state)
     for (auto _ : state)
     {
         report1 = report;
-        benchmark::DoNotOptimize(report1.attackerform_size() + report1.defenderform_size());
+        benchmark::DoNotOptimize(report1);
     }
 }
 
@@ -49,7 +49,7 @@ static void BenchCopyArena(benchmark::State &state)
     for (auto _ : state)
     {
         report1 = report;
-        benchmark::DoNotOptimize(report1.attackerform_size() + report1.defenderform_size());
+        benchmark::DoNotOptimize(report1);
     }
 }
 
@@ -68,7 +68,7 @@ static void BenchCopyArena(benchmark::State &state)
      for (auto _ : state)
      {
          report1 = report;
-         benchmark::DoNotOptimize(report1.attackerform_size() + report1.defenderform_size());
+         benchmark::DoNotOptimize(report1);
      }
  }
 
@@ -86,7 +86,7 @@ static void BenchSwap(benchmark::State &state)
     for (auto _ : state)
     {
         report1.Swap(&report);
-        benchmark::DoNotOptimize(report1.attackerform_size() + report1.defenderform_size());
+        benchmark::DoNotOptimize(report1);
     }
 }
 
@@ -105,7 +105,7 @@ static void BenchSwapArena(benchmark::State &state)
     for (auto _ : state)
     {
         report1.Swap(&report);
-        benchmark::DoNotOptimize(report1.attackerform_size() + report1.defenderform_size());
+        benchmark::DoNotOptimize(report1);
     }
 }
 
@@ -124,7 +124,7 @@ static void BenchSwapArenaDifferent(benchmark::State &state)
     for (auto _ : state)
     {
         report1.Swap(&report);
-        benchmark::DoNotOptimize(report1.attackerform_size() + report1.defenderform_size());
+        benchmark::DoNotOptimize(report1);
     }
 }
 
@@ -148,7 +148,7 @@ static void BenchAddAllocate(benchmark::State &state)
         }
         report1.mutable_attackerform()->ExtractSubrange(0, report1.attackerform_size(), nullptr);
         report1.mutable_defenderform()->ExtractSubrange(0, report1.defenderform_size(), nullptr);
-        benchmark::DoNotOptimize(report1.attackerform_size() + report1.defenderform_size());
+        benchmark::DoNotOptimize(report1);
         report1.Clear();
     }
 }
@@ -173,7 +173,7 @@ static void BenchAddAllocateArena(benchmark::State &state)
         }
         report1.mutable_attackerform()->ExtractSubrange(0, report1.attackerform_size(), nullptr);
         report1.mutable_defenderform()->ExtractSubrange(0, report1.defenderform_size(), nullptr);
-        benchmark::DoNotOptimize(report1.attackerform_size() + report1.defenderform_size());
+        benchmark::DoNotOptimize(report1);
         report1.Clear();
     }
 }
@@ -189,13 +189,13 @@ int main(int argc, char **argv)
         report.add_attackerform()->add_units();
         report.add_defenderform()->add_units();
     }
-    benchmark::DoNotOptimize(report.attackerform_size() + report.defenderform_size());
+    benchmark::DoNotOptimize(report);
     rusage rUsage;
     {
 
         FillRSS(rUsage);
         pb_report::Ground report1 = report;
-        benchmark::DoNotOptimize(report1.attackerform_size() + report1.defenderform_size());
+        benchmark::DoNotOptimize(report1);
         std::cout << report1.attackerform_size() + report1.defenderform_size() << '\n';
         std::cout << report.attackerform_size() + report.defenderform_size() << '\n';
         PrintUsage(rUsage);
@@ -204,7 +204,7 @@ int main(int argc, char **argv)
         FillRSS(rUsage);
         pb_report::Ground report1 = report;
         report1.Clear();
-        benchmark::DoNotOptimize(report1.attackerform_size() + report1.defenderform_size());
+        benchmark::DoNotOptimize(report1);
         std::cout << report1.attackerform_size() + report1.defenderform_size() << '\n';
         std::cout << report.attackerform_size() + report.defenderform_size() << '\n';
         PrintUsage(rUsage);
@@ -219,7 +219,7 @@ int main(int argc, char **argv)
         }
         report1.mutable_attackerform()->UnsafeArenaExtractSubrange(0, report1.attackerform_size(), nullptr);
         report1.mutable_defenderform()->UnsafeArenaExtractSubrange(0, report1.defenderform_size(), nullptr);
-        benchmark::DoNotOptimize(report1.attackerform_size() + report1.defenderform_size());
+        benchmark::DoNotOptimize(report1);
         std::cout << report1.attackerform_size() + report1.defenderform_size() << '\n';
         std::cout << report.attackerform_size() + report.defenderform_size() << '\n';
         PrintUsage(rUsage);

@@ -48,7 +48,8 @@ static void BM_seq(benchmark::State &state)
     {
         for (auto &it : callers)
         {
-            benchmark::DoNotOptimize(it());
+            auto r = it();
+            benchmark::DoNotOptimize(r);
         }
     }
 }
@@ -70,7 +71,8 @@ static void BM_alter(benchmark::State &state)
     {
         for (auto &it : callers)
         {
-            benchmark::DoNotOptimize(it());
+            auto r = it();
+            benchmark::DoNotOptimize(r);
         }
     }
 }
@@ -89,12 +91,13 @@ static void BM_rand(benchmark::State &state)
         it = b;
     }
     std::random_device rd;
-    std::shuffle(callers.begin(), callers.end(),rd);
+    std::shuffle(callers.begin(), callers.end(), rd);
     for (auto _ : state)
     {
         for (auto &it : callers)
         {
-            benchmark::DoNotOptimize(it());
+            auto r = it();
+            benchmark::DoNotOptimize(r);
         }
     }
 }

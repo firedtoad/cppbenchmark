@@ -19,7 +19,7 @@
 #include "rapidjson/writer.h"
 #include "yyjson.h"
 #include <benchmark/benchmark.h>
-#include <boost/json/src.hpp>
+//#include <boost/json/src.hpp>
 #include <iostream>
 #include <sstream>
 
@@ -83,7 +83,7 @@ static void BenchRapid(benchmark::State &state)
             writer.Uint64(i);
         }
         writer.EndObject();
-        benchmark::DoNotOptimize(buffer.GetString());
+        benchmark::DoNotOptimize(buffer);
     }
 }
 
@@ -101,7 +101,7 @@ static void BenchRapidReserve(benchmark::State &state)
             writer.Uint64(i);
         }
         writer.EndObject();
-        benchmark::DoNotOptimize(buffer.GetString());
+        benchmark::DoNotOptimize(buffer);
     }
 }
 
@@ -123,7 +123,7 @@ static void BenchRapidDocument(benchmark::State &state)
         rapidjson::StringBuffer buffer;
         rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
         doc.Accept(writer);
-        benchmark::DoNotOptimize(buffer.GetString());
+        benchmark::DoNotOptimize(buffer);
     }
 }
 
@@ -131,22 +131,22 @@ BENCHMARK(BenchRapid)->Range(1, 128);
 BENCHMARK(BenchRapidReserve)->Range(1, 128);
 BENCHMARK(BenchRapidDocument)->Range(1, 128);
 
-static void BenchBoostJson(benchmark::State &state)
-{
-    std::ostringstream oss;
-    for (auto _ : state)
-    {
-        boost::json::object object(boost::json::make_shared_resource<boost::json::monotonic_resource>());
-        for (auto i = 0; i < state.range(0); i++)
-        {
-            object[std::to_string(_random())] = i;
-        }
-        oss << object;
-        oss.str("");
-    }
-}
+//static void BenchBoostJson(benchmark::State &state)
+//{
+//    std::ostringstream oss;
+//    for (auto _ : state)
+//    {
+//        boost::json::object object(boost::json::make_shared_resource<boost::json::monotonic_resource>());
+//        for (auto i = 0; i < state.range(0); i++)
+//        {
+//            object[std::to_string(_random())] = i;
+//        }
+//        oss << object;
+//        oss.str("");
+//    }
+//}
 
-BENCHMARK(BenchBoostJson)->Range(1, 128);
+//BENCHMARK(BenchBoostJson)->Range(1, 128);
 int main(int argc, char **argv)
 {
     benchmark::Initialize(&argc, argv);

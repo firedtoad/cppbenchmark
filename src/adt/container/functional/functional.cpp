@@ -58,7 +58,7 @@ static void BM_FunctionStack(benchmark::State &state)
         auto ret = CallFunction(
             [p, &umap]
             {
-                benchmark::DoNotOptimize(p);
+                benchmark::DoNotOptimize(*p);
                 benchmark::DoNotOptimize(umap);
             });
         benchmark::DoNotOptimize(ret);
@@ -77,8 +77,8 @@ static void BM_FunctionHeap(benchmark::State &state)
         auto ret = CallFunction(
             [p, p1, &umap]
             {
-                benchmark::DoNotOptimize(p);
-                benchmark::DoNotOptimize(p1);
+                benchmark::DoNotOptimize(*p);
+                benchmark::DoNotOptimize(*p1);
                 benchmark::DoNotOptimize(umap);
             });
         benchmark::DoNotOptimize(ret);
@@ -95,7 +95,7 @@ static void BM_FunctionRefStack(benchmark::State &state)
         auto ret = CallFunctionRef(
             [p, &umap]
             {
-                benchmark::DoNotOptimize(p);
+                benchmark::DoNotOptimize(*p);
                 benchmark::DoNotOptimize(umap);
             });
         benchmark::DoNotOptimize(ret);
@@ -113,8 +113,8 @@ static void BM_FunctionRefHeap(benchmark::State &state)
         auto ret = CallFunctionRef(
             [p, p1, &umap]
             {
-                benchmark::DoNotOptimize(p);
-                benchmark::DoNotOptimize(p1);
+                benchmark::DoNotOptimize(*p);
+                benchmark::DoNotOptimize(*p1);
                 benchmark::DoNotOptimize(umap);
             });
         benchmark::DoNotOptimize(ret);
@@ -134,8 +134,8 @@ static void BM_Lambda(benchmark::State &state)
             [p, p1, &umap]
             {
                 benchmark::DoNotOptimize(umap);
-                benchmark::DoNotOptimize(p);
-                benchmark::DoNotOptimize(p1);
+                benchmark::DoNotOptimize(*p);
+                benchmark::DoNotOptimize(*p1);
             });
         benchmark::DoNotOptimize(ret);
     }

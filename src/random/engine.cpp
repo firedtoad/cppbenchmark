@@ -27,8 +27,8 @@ template <typename G> static void BenchSeed(benchmark::State &state)
     std::random_device rd;
     for (auto _ : state)
     {
-
-        benchmark::DoNotOptimize(rd());
+        auto r=rd();
+        benchmark::DoNotOptimize(r);
     }
 }
 
@@ -40,7 +40,8 @@ template <typename G> static void BenchSeedStatic(benchmark::State &state)
     for (auto _ : state)
     {
         thread_local static std::random_device rd;
-        benchmark::DoNotOptimize(rd());
+        auto r=rd();
+        benchmark::DoNotOptimize(r);
     }
 }
 
@@ -51,7 +52,8 @@ template <typename G> static void BenchEngine(benchmark::State &state)
     for (auto _ : state)
     {
         G gen{};
-        benchmark::DoNotOptimize(gen());
+        auto r=gen();
+        benchmark::DoNotOptimize(r);
     }
 }
 
@@ -81,7 +83,8 @@ template <typename P> static void BenchPCG(benchmark::State &state)
     {
         P p;
         //    p.seed(pcg_extras::seed_seq_from<std::random_device>());
-        benchmark::DoNotOptimize(p());
+        auto r=p();
+        benchmark::DoNotOptimize(r);
     }
 }
 
@@ -144,7 +147,8 @@ template <typename P> static void BenchABEngine(benchmark::State &state)
     P pcg;
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(pcg());
+        auto r=pcg();
+        benchmark::DoNotOptimize(r);
     }
 }
 

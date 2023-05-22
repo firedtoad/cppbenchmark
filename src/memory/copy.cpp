@@ -26,7 +26,7 @@ static void BenchMemCpy(benchmark::State &state)
     for (auto _ : state)
     {
         memcpy(dst.data(), cache.data(), cache.size());
-        benchmark::DoNotOptimize(dst.size());
+        benchmark::DoNotOptimize(dst);
     }
 }
 
@@ -39,7 +39,7 @@ static void BenchStdCopy(benchmark::State &state)
     for (auto _ : state)
     {
         std::copy(cache.begin(), cache.end(), dst.data());
-        benchmark::DoNotOptimize(dst.size());
+        benchmark::DoNotOptimize(dst);
     }
 }
 

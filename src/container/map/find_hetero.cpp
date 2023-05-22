@@ -45,7 +45,8 @@ static void BenchStringLess(benchmark::State &state)
     {
         auto kIndex  = _random() % 65536;
         auto kIndex1 = _random() % 65536;
-        benchmark::DoNotOptimize(keys[kIndex] < keys[kIndex1]);
+        auto r       = keys[kIndex] < keys[kIndex1];
+        benchmark::DoNotOptimize(r);
     }
 }
 
@@ -55,7 +56,8 @@ static void BenchStringCompare(benchmark::State &state)
     {
         auto kIndex  = _random() % 65536;
         auto kIndex1 = _random() % 65536;
-        benchmark::DoNotOptimize(keys[kIndex] < keys[kIndex1].c_str());
+        auto r       = keys[kIndex] < keys[kIndex1].c_str();
+        benchmark::DoNotOptimize(r);
     }
 }
 
@@ -100,7 +102,7 @@ int main(int argc, char **argv)
 {
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i]    = "12345678901234561234567890123456" + std::to_string(_random());
+        keys[i] = "12345678901234561234567890123456" + std::to_string(_random());
     }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();

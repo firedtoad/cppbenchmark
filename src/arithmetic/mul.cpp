@@ -46,7 +46,8 @@ static void calc_int(benchmark::State &state)
     int d = 1;
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(calc_32(d + 100000, d));
+        auto r=calc_32(d + 100000, d);
+        benchmark::DoNotOptimize(r);
         d++;
     }
 }
@@ -58,7 +59,8 @@ static void calc_int64(benchmark::State &state)
     int64_t d = 1;
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(calc_64(d + 100000, d));
+        auto r=calc_64(d + 100000, d);
+        benchmark::DoNotOptimize(r);
         d++;
     }
 }
@@ -70,7 +72,8 @@ static void calc_int64d(benchmark::State &state)
     int64_t d = 1;
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(calc_64d(d + 100000, d));
+        auto r=calc_64d(d + 100000, d);
+        benchmark::DoNotOptimize(r);
         d++;
     }
 }
@@ -82,7 +85,8 @@ static void calc_float(benchmark::State &state)
     float d = 1;
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(calc_float(d + 100000, d));
+        auto r=calc_float(d + 100000, d);
+        benchmark::DoNotOptimize(r);
         d++;
     }
 }
@@ -94,7 +98,8 @@ static void calc_double(benchmark::State &state)
     double d = 1;
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(calc_double(d + 100000, d));
+        auto r=calc_double(d + 100000, d);
+        benchmark::DoNotOptimize(r);
         d++;
     }
 }

@@ -30,7 +30,8 @@ static void BenchCRandom(benchmark::State &state)
     srand(std::random_device{}());
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(rand());
+        auto r=rand();
+        benchmark::DoNotOptimize(r);
     }
 }
 
@@ -40,7 +41,8 @@ template <typename G, typename D> static void BenchStdRandom(benchmark::State &s
     for (auto _ : state)
     {
         D dis(INT_MIN, INT_MAX);
-        benchmark::DoNotOptimize(dis(gen));
+        auto r = dis(gen);
+        benchmark::DoNotOptimize(r);
     }
 }
 
@@ -76,7 +78,8 @@ template <typename G, typename D> static void BenchBoostRandom(benchmark::State 
     for (auto _ : state)
     {
         D dis(INT_MIN, INT_MAX);
-        benchmark::DoNotOptimize(dis(gen));
+        auto r=dis(gen);
+        benchmark::DoNotOptimize(r);
     }
 }
 
@@ -106,7 +109,8 @@ template <typename P, typename D> static void BenchAbRandom(benchmark::State &st
     for (auto _ : state)
     {
         D dis(INT_MIN, INT_MAX);
-        benchmark::DoNotOptimize(dis(p));
+        auto r=dis(p);
+        benchmark::DoNotOptimize(r);
     }
 }
 
@@ -164,35 +168,35 @@ int main(int argc, char **argv)
     //        }
     //    }
 
-//    {
-//        pcg32i_random_t rng;
-//        pcg32i_srandom_r(&rng, 0, 0);
-//        std::vector<uint8_t> bset(size_t(UINT32_MAX) + 100, 0);
-//        for (size_t i{0}; i < size_t(UINT32_MAX) + 100; i++)
-//        {
-//            auto s = pcg32i_random_r(&rng);
-//            if (bset[s])
-//            {
-//                std::cout << i << ' ' << s << '\n';
-//                break;
-//            }
-//            bset[s] = 1;
-//        }
-//    }
-//    {
-//        std::linear_congruential_engine<uint32_t, 75, 74, 65537> lce;
-//        lce.seed(123456);
-//        std::unordered_map<uint16_t, uint16_t> mp;
-//        for (auto i{0}; i < 100000; i++)
-//        {
-//            auto s = lce();
-//            if (mp[s]++ == 1)
-//            {
-//                std::cout << i << ' ' << s << '\n';
-//                break;
-//            }
-//        }
-//    }
+    //    {
+    //        pcg32i_random_t rng;
+    //        pcg32i_srandom_r(&rng, 0, 0);
+    //        std::vector<uint8_t> bset(size_t(UINT32_MAX) + 100, 0);
+    //        for (size_t i{0}; i < size_t(UINT32_MAX) + 100; i++)
+    //        {
+    //            auto s = pcg32i_random_r(&rng);
+    //            if (bset[s])
+    //            {
+    //                std::cout << i << ' ' << s << '\n';
+    //                break;
+    //            }
+    //            bset[s] = 1;
+    //        }
+    //    }
+    //    {
+    //        std::linear_congruential_engine<uint32_t, 75, 74, 65537> lce;
+    //        lce.seed(123456);
+    //        std::unordered_map<uint16_t, uint16_t> mp;
+    //        for (auto i{0}; i < 100000; i++)
+    //        {
+    //            auto s = lce();
+    //            if (mp[s]++ == 1)
+    //            {
+    //                std::cout << i << ' ' << s << '\n';
+    //                break;
+    //            }
+    //        }
+    //    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

@@ -36,7 +36,8 @@ template <typename T> static void BenchShare(benchmark::State &state)
     {
         for (auto i = 0; i < state.range(0); i++)
         {
-            benchmark::DoNotOptimize(data[idx].n++);
+            data[idx].n++;
+            benchmark::DoNotOptimize(data[idx].n);
         }
     }
     state.SetItemsProcessed(100000);
@@ -51,7 +52,8 @@ template <typename T> static void BenchNoShare(benchmark::State &state)
     {
         for (auto i = 0; i < state.range(0); i++)
         {
-            benchmark::DoNotOptimize(data[idx].n++);
+            data[idx].n++;
+            benchmark::DoNotOptimize(data[idx].n);
         }
     }
     state.SetItemsProcessed(100000);

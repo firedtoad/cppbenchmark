@@ -60,7 +60,8 @@ static void BM_count(benchmark::State &state)
 
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(count(random_()));
+        auto r= count(random_());
+        benchmark::DoNotOptimize(r);
     }
 }
 
@@ -70,7 +71,8 @@ static void BM_bcount(benchmark::State &state)
 
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(built_in_count(random_()));
+        auto r= built_in_count(random_());
+        benchmark::DoNotOptimize(r);
     }
 }
 

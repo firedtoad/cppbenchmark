@@ -24,6 +24,7 @@
 #include <folly/sorted_vector_types.h>
 #include <iostream>
 #include <map>
+#include <unordered_map>
 #include "utils/rss.h"
 
 void *operator new[](size_t size, const char * /*pName*/, int /*flags*/, unsigned /*debugFlags*/, const char * /*file*/, int /*line*/)
@@ -174,7 +175,8 @@ template <typename V> static void BenchStringFind(benchmark::State &state)
 
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(s.find(needle));
+        auto it=s.find(needle);
+        benchmark::DoNotOptimize(it);
     }
 }
 
@@ -187,6 +189,7 @@ int main(int argc, char **argv)
     BM_Memory<sorted_vector_map<uint64_t, uint64_t>,1<<20>();
     BM_Memory<folly::sorted_vector_map<uint64_t, uint64_t>,1<<20>();
     BM_Memory<std::map<uint64_t, uint64_t>,1<<20>();
+    BM_Memory<std::unordered_map<uint64_t, uint64_t>,1<<20>();
     BM_Memory<boost::container::flat_map<uint64_t, uint64_t>,1<<20>();
     BM_Memory<eastl::vector_map<uint64_t, uint64_t>,1<<20>();
     BM_Memory<folly::F14FastMap<uint64_t, uint64_t>,1<<20>();

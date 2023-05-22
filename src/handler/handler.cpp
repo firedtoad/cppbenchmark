@@ -60,7 +60,8 @@ static void BM_map(benchmark::State &state)
         const auto it = map_handler.find(idx);
         if (it != map_handler.end())
         {
-            benchmark::DoNotOptimize(it->second());
+            auto r=it->second();
+            benchmark::DoNotOptimize(r);
         }
     }
 }
@@ -79,7 +80,8 @@ static void BM_unmap(benchmark::State &state)
         const auto it = unmap_handler.find(idx);
         if (it != unmap_handler.end())
         {
-            benchmark::DoNotOptimize(it->second());
+            auto r=it->second();
+            benchmark::DoNotOptimize(r);
         }
     }
 }
@@ -95,7 +97,8 @@ static void BM_array(benchmark::State &state)
         auto idx = _random() % state.range();
         if (array_handler[idx])
         {
-            benchmark::DoNotOptimize(array_handler[idx]());
+            auto r=array_handler[idx]();
+            benchmark::DoNotOptimize(r);
         }
     }
 }

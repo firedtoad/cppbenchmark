@@ -42,9 +42,9 @@ struct mallinfo
     int keepcost; /* top-most, releasable (via malloc_trim) space */
 };
 
-extern "C" struct mallinfo je_mallinfo();
+//extern "C" struct mallinfo je_mallinfo();
 
-#define mallinfo je_mallinfo
+//#define mallinfo je_mallinfo
 
 template <class Tp> inline __attribute__((always_inline)) void DoNotOptimize(Tp &value)
 {

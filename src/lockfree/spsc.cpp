@@ -35,7 +35,8 @@ static void Boost_Spsc(benchmark::State &state)
     {
         S s;
         queue.push(s);
-        benchmark::DoNotOptimize(queue.pop(s));
+        auto r = queue.pop(s);
+        benchmark::DoNotOptimize(r);
     }
 }
 
@@ -47,7 +48,8 @@ static void SPSCQueue(benchmark::State &state)
     for (auto _ : state)
     {
         spsc.push({});
-        benchmark::DoNotOptimize(spsc.front());
+        auto f = spsc.front();
+        benchmark::DoNotOptimize(f);
         spsc.pop();
     }
 }
@@ -60,7 +62,8 @@ static void RWQueue(benchmark::State &state)
     for (auto _ : state)
     {
         rwQueue.enqueue({});
-        benchmark::DoNotOptimize(rwQueue.pop());
+        auto p = rwQueue.pop();
+        benchmark::DoNotOptimize(p);
     }
 }
 
@@ -73,7 +76,8 @@ static void RBQueue(benchmark::State &state)
     {
         S s;
         rbQueue.push(s);
-        benchmark::DoNotOptimize(rbQueue.pop(s));
+        auto q = rbQueue.pop(s);
+        benchmark::DoNotOptimize(q);
     }
 }
 
@@ -86,7 +90,8 @@ static void VYQueue(benchmark::State &state)
     {
         S s;
         vyQueue.push(s);
-        benchmark::DoNotOptimize(vyQueue.pop());
+        auto q = vyQueue.pop();
+        benchmark::DoNotOptimize(q);
     }
 }
 
@@ -100,7 +105,8 @@ static void TBBQueue(benchmark::State &state)
     {
         S s;
         tbbQueue.push({});
-        benchmark::DoNotOptimize(tbbQueue.try_pop(s));
+        auto q = tbbQueue.try_pop(s);
+        benchmark::DoNotOptimize(q);
     }
 }
 

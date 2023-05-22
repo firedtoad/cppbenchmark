@@ -37,14 +37,17 @@
 #include <boost/multi_index/ordered_index.hpp>
 #include <boost/multi_index_container.hpp>
 
-#include <boost/multi_index/sequenced_index.hpp>
 #include <boost/multi_index/random_access_index.hpp>
+#include <boost/multi_index/sequenced_index.hpp>
+#include <boost/scope_exit.hpp>
 #include <map>
 #include <utils/rss.h>
 
 template <typename V>
-using MultiContainer = boost::multi_index::multi_index_container<
-    V, boost::multi_index::indexed_by<boost::multi_index::ordered_unique<boost::multi_index::identity<V>>, boost::multi_index::sequenced<>,boost::multi_index::random_access<>>>;
+using MultiContainer =
+    boost::multi_index::multi_index_container<V,
+                                              boost::multi_index::indexed_by<boost::multi_index::ordered_unique<boost::multi_index::identity<V>>,
+                                                                             boost::multi_index::sequenced<>, boost::multi_index::random_access<>>>;
 
 template <typename V>
 using MultiHashContainer = boost::multi_index::multi_index_container<
@@ -130,7 +133,7 @@ template <typename V> static void BenchFind(benchmark::State &state)
     }
 }
 
-template <typename V,size_t N> static void BenchFindMulti(benchmark::State &state)
+template <typename V, size_t N> static void BenchFindMulti(benchmark::State &state)
 {
     V v;
     for (auto i = 0; i < state.range(0); i++)
@@ -165,7 +168,7 @@ template <typename V> static void BenchFindMultiHash(benchmark::State &state)
 BENCHMARK_TEMPLATE(BenchFind, sorted_vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFind, std::map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFind, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 10);
-BENCHMARK_TEMPLATE(BenchFindMulti, MultiContainer<std::pair<uint32_t, Pod>>,0)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchFindMulti, MultiContainer<std::pair<uint32_t, Pod>>, 0)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFindMultiHash, MultiHashContainer<std::pair<uint32_t, Pod>>)->Range(1, 1 << 10);
 
 template <typename V> static void BenchRange(benchmark::State &state)
@@ -259,27 +262,44 @@ BENCHMARK_TEMPLATE(BenchErase, sorted_vector_map<uint64_t, Pod>)->Range(1, 1 << 
 BENCHMARK_TEMPLATE(BenchErase, std::map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchErase, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchEraseMulti, MultiContainer<std::pair<uint32_t, Pod>>)->Range(1, 1 << 10);
+#include <boost/scope_exit.hpp>
 
 int main(int argc, char **argv)
 {
     {
+
         rusage rUsage{};
-        FillRSS(rUsage);
-        //        MultiHashContainer<std::pair<uint32_t, Pod>> v;
-        MultiContainer<std::pair<uint32_t, Pod>> v;
-        for (auto i = 0; i < 1024 * 1024; i++)
+
         {
-            v.emplace(i, i);
+            FillRSS(rUsage);
+            BOOST_SCOPE_EXIT(rUsage)
+            {
+                PrintUsage(rUsage);
+            }
+            BOOST_SCOPE_EXIT_END
+            //        MultiHashContainer<std::pair<uint32_t, Pod>> v;
+            MultiContainer<std::pair<uint32_t, Pod>> v;
+            for (auto i = 0; i < 1024 * 1024; i++)
+            {
+                v.emplace(i, i);
+            }
         }
-        PrintUsage(rUsage);
-        FillRSS(rUsage);
-        sorted_vector_map<uint64_t, Pod> sv;
-        for (auto i = 0; i < 1024 * 1024; i++)
         {
-            sv[i] = i;
+            FillRSS(rUsage);
+            BOOST_SCOPE_EXIT(rUsage)
+            {
+                PrintUsage(rUsage);
+            }
+            BOOST_SCOPE_EXIT_END
+            sorted_vector_map<uint64_t, Pod> sv;
+            for (auto i = 0; i < 1024 * 1024; i++)
+            {
+                sv[i] = i;
+            }
         }
-        PrintUsage(rUsage);
+
     }
+
 
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();

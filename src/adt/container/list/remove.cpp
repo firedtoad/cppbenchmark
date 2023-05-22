@@ -119,7 +119,7 @@ static void BenchBUListRemove(benchmark::State &state)
         state.ResumeTiming();
         while (!v.empty())
         {
-            benchmark::DoNotOptimize(v.head());
+            benchmark::DoNotOptimize(*v.head());
             v.head()->RemoveFromList();
         }
     }

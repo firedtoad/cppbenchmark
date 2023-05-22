@@ -643,9 +643,9 @@ namespace eastl
 			typedef void* (*ManagerFuncPtr)(void*, void*, typename Base::ManagerOperations);
 			typedef R (*InvokeFuncPtr)(Args..., const FunctorStorageType&);
 
-			EA_DISABLE_GCC_WARNING(-Wreturn-type);
-			EA_DISABLE_CLANG_WARNING(-Wreturn-type);
-			EA_DISABLE_VC_WARNING(4716); // 'function' must return a value
+			EA_DISABLE_GCC_WARNING(-Wreturn-type)
+			EA_DISABLE_CLANG_WARNING(-Wreturn-type)
+			EA_DISABLE_VC_WARNING(4716) // 'function' must return a value
 			// We cannot assume that R is default constructible.
 			// This function is called only when the function object CANNOT be called because it is empty,
 			// it will always throw or assert so we never use the return value anyways and neither should the caller.
@@ -657,9 +657,9 @@ namespace eastl
 					EASTL_ASSERT_MSG(false, "function_detail call on an empty function_detail<R(Args..)>");
 				#endif
 			};
-			EA_RESTORE_VC_WARNING();
-			EA_RESTORE_CLANG_WARNING();
-			EA_RESTORE_GCC_WARNING();
+			EA_RESTORE_VC_WARNING()
+			EA_RESTORE_CLANG_WARNING()
+			EA_RESTORE_GCC_WARNING()
 
 
 			ManagerFuncPtr mMgrFuncPtr = nullptr;

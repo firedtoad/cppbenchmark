@@ -33,7 +33,9 @@ static void Boost_Mpmc(benchmark::State &state)
     {
         S s;
         mpmc.push(s);
-        benchmark::DoNotOptimize(mpmc.pop(s));
+        auto q=mpmc.pop(s);
+        benchmark::DoNotOptimize(q);
+        benchmark::DoNotOptimize(s);
     }
 }
 
@@ -46,7 +48,9 @@ static void MPMCQueue(benchmark::State &state)
     {
         S s;
         rmpmc.push(s);
-        benchmark::DoNotOptimize(rmpmc.try_pop(s));
+        auto q=rmpmc.try_pop(s);
+        benchmark::DoNotOptimize(q);
+        benchmark::DoNotOptimize(s);
     }
 }
 
@@ -58,8 +62,10 @@ static void CCQueue(benchmark::State &state)
     for (auto _ : state)
     {
         S s;
-        benchmark::DoNotOptimize(ccQueue.enqueue(s));
-        benchmark::DoNotOptimize(ccQueue.try_dequeue(s));
+        ccQueue.enqueue(s);
+        auto b = ccQueue.try_dequeue(s);
+        benchmark::DoNotOptimize(b);
+        benchmark::DoNotOptimize(s);
     }
 }
 
@@ -71,8 +77,9 @@ static void VYQueue(benchmark::State &state)
     for (auto _ : state)
     {
         S s;
-        benchmark::DoNotOptimize(vyQueue.push(s));
-        benchmark::DoNotOptimize(vyQueue.pop());
+        vyQueue.push(s);
+        auto q = vyQueue.pop();
+        benchmark::DoNotOptimize(q);
     }
 }
 
@@ -86,7 +93,8 @@ static void TBBQueue(benchmark::State &state)
     {
         S s;
         tbbQueue.push(s);
-        benchmark::DoNotOptimize(tbbQueue.try_pop(s));
+        auto q = tbbQueue.try_pop(s);
+        benchmark::DoNotOptimize(q);
     }
 }
 

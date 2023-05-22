@@ -30,7 +30,8 @@ void BM_branchless(benchmark::State& state) {
     long* m = v3.data();
     for (auto _ : state) {
         for (size_t i = 0; i < N; ++i) {
-            benchmark::DoNotOptimize(binpow(b[i], e[i], m[i]));
+            auto r=binpow(b[i], e[i], m[i]);
+            benchmark::DoNotOptimize(r);
         }
         benchmark::ClobberMemory();
     }

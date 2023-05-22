@@ -109,7 +109,7 @@ static void BenchUnmapCopy(benchmark::State &state)
         Pod p;
         p.ReSize(state.range(0));
         umap.insert(std::make_pair(1, p));
-        benchmark::DoNotOptimize(umap.size());
+        benchmark::DoNotOptimize(umap);
     }
 }
 
@@ -121,7 +121,7 @@ static void BenchUnmapRvo(benchmark::State &state)
         Pod p;
         p.ReSize(state.range(0));
         umap[1].Swap(p);
-        benchmark::DoNotOptimize(umap.size());
+        benchmark::DoNotOptimize(umap);
     }
 }
 BENCHMARK(BenchUnmapCopy)->Range(1, 1 << 10);

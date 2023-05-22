@@ -28,7 +28,7 @@ static void BenchAdd(benchmark::State &state)
             report.add_attackerform()->add_units();
             report.add_defenderform()->add_units();
         }
-        benchmark::DoNotOptimize(report.attackerform_size() + report.defenderform_size());
+        benchmark::DoNotOptimize(report);
     }
 }
 BENCHMARK(BenchAdd)->Range(1, 65536);
@@ -44,7 +44,7 @@ static void BenchAddArena(benchmark::State &state)
             report.add_attackerform()->add_units();
             report.add_defenderform()->add_units();
         }
-        benchmark::DoNotOptimize(report.attackerform_size() + report.defenderform_size());
+        benchmark::DoNotOptimize(report);
     }
 }
 BENCHMARK(BenchAddArena)->Range(1, 65536);
@@ -62,7 +62,7 @@ static void BenchReserve(benchmark::State &state)
             report.add_attackerform()->add_units();
             report.add_defenderform()->add_units();
         }
-        benchmark::DoNotOptimize(report.attackerform_size() + report.defenderform_size());
+        benchmark::DoNotOptimize(report);
     }
 }
 
@@ -81,7 +81,7 @@ static void BenchReserveArena(benchmark::State &state)
             report.add_attackerform()->add_units();
             report.add_defenderform()->add_units();
         }
-        benchmark::DoNotOptimize(report.attackerform_size() + report.defenderform_size());
+        benchmark::DoNotOptimize(report);
     }
 }
 
@@ -98,7 +98,7 @@ int main(int argc, char **argv)
         report.add_attackerform()->add_units();
         report.add_defenderform()->add_units();
     }
-    benchmark::DoNotOptimize(report.attackerform_size() + report.defenderform_size());
+    benchmark::DoNotOptimize(report);
     PrintUsage(rUsage);
     FillRSS(rUsage);
 
@@ -110,7 +110,7 @@ int main(int argc, char **argv)
         report1.add_attackerform()->add_units();
         report1.add_defenderform()->add_units();
     }
-    benchmark::DoNotOptimize(report.attackerform_size() + report.defenderform_size());
+    benchmark::DoNotOptimize(report);
     PrintUsage(rUsage);
     {
         FillRSS(rUsage);

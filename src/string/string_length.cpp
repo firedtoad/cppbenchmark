@@ -39,7 +39,8 @@ static void BenchNaiveStrlen(benchmark::State &state)
     std::iota(tag.begin(), tag.end(), 1);
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(StrLen(tag.c_str()));
+        auto l=StrLen(tag.c_str());
+        benchmark::DoNotOptimize(l);
     }
 }
 BENCHMARK(BenchNaiveStrlen)->Range(1, 8192);
@@ -51,7 +52,8 @@ static void BenchSysStrlen(benchmark::State &state)
     std::iota(tag.begin(), tag.end(), 1);
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(strlen(tag.c_str()));
+        auto l=strlen(tag.c_str());
+        benchmark::DoNotOptimize(l);
     }
 }
 
@@ -63,7 +65,8 @@ static void BenchWrapStrLen(benchmark::State &state)
     std::iota(tag.begin(), tag.end(), 1);
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(WrapStrLen(tag.c_str()));
+        auto l=WrapStrLen(tag.c_str());
+        benchmark::DoNotOptimize(l);
     }
 }
 

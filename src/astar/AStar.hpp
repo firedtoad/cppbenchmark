@@ -17,6 +17,10 @@
 #define __ASTAR_HPP__
 
 #include "parallel_hashmap/phmap.h"
+#include <unordered_map>
+#include <unordered_set>
+#include "tsl/sparse_map.h"
+#include "tsl/sparse_set.h"
 #include <functional>
 #include <vector>
 
@@ -56,8 +60,13 @@ struct CoordHash
 };
 
 using NodeHeap = std::vector<Node *>;
+//using CoordMap = std::unordered_map<Vec2i, Node *, CoordHash>;
+//using CordSet  = std::unordered_set<Vec2i, CoordHash>;
 using CoordMap = phmap::flat_hash_map<Vec2i, Node *, CoordHash>;
 using CordSet  = phmap::flat_hash_set<Vec2i, CoordHash>;
+//using CoordMap = tsl::sparse_map<Vec2i, Node *, CoordHash>;
+//using CordSet  = tsl::sparse_set<Vec2i, CoordHash>;
+
 class Generator
 {
     bool detectCollision(const Vec2i &coordinates_);

@@ -16,6 +16,7 @@
 #include "bytell_hash_map.hpp"
 #include "flat_hash_map.hpp"
 #include "parallel_hashmap/phmap.h"
+#include "parallel_hashmap/btree.h"
 #include "robin_hood.h"
 #include "sparsepp/spp.h"
 #include "tsl/bhopscotch_map.h"
@@ -26,6 +27,7 @@
 #include "utils/symbol.h"
 #include <absl/container/flat_hash_map.h>
 #include <benchmark/benchmark.h>
+#include <map>
 #include <unordered_map>
 #include <utils/rss.h>
 
@@ -55,10 +57,60 @@ BENCHMARK_TEMPLATE(BM_reserve, tsl::hopscotch_map<int, int>)->Range(1 << 10, 1 <
 BENCHMARK_TEMPLATE(BM_reserve, tsl::robin_map<int, int>)->Range(1 << 10, 1 << 20);
 BENCHMARK_TEMPLATE(BM_reserve, tsl::sparse_map<int, int>)->Range(1 << 10, 1 << 20);
 
+template <class M, size_t N> void BM_MemoryStringShared()
+{
+    rusage rusage;
+    FillRSS(rusage);
+    M m;
+    std::cout << demangle(typeid(m).name()) << " memory " << '\n';
+    for (size_t i = 0; i < N; i++)
+    {
+        m[std::to_string(i)] = std::make_shared<int>(i);
+    }
+    PrintUsage(rusage);
+}
 
+template <class M, size_t N> void BM_MemoryStringUnique()
+{
+    rusage rusage;
+    FillRSS(rusage);
+    M m;
+    std::cout << demangle(typeid(m).name()) << " memory " << '\n';
+    for (size_t i = 0; i < N; i++)
+    {
+        m[std::to_string(i)] = std::make_unique<int>(i);
+    }
+    PrintUsage(rusage);
+}
+template <class M, size_t N> void BM_MemoryStringPtr()
+{
+    rusage rusage;
+    FillRSS(rusage);
+    M m;
+    std::cout << demangle(typeid(m).name()) << " memory " << '\n';
+    std::vector<int> v(N);
+    for (size_t i = 0; i < N; i++)
+    {
+        m[std::to_string(i)] = &v[i];
+    }
+    PrintUsage(rusage);
+
+}
 
 int main(int argc, char **argv)
 {
+    {
+        tsl::sparse_map<std::string, int> spp;
+        auto &r            = spp["1234566"];
+        auto it            = spp.emplace("123456", 1);
+        r                  = 1;
+        (*it.first).second = 10;
+    }
+    {
+        std::unordered_map<std::string, int> ss;
+        auto it            = ss.emplace("123456", 1);
+        (*it.first).second = 10;
+    }
 
     BM_Memory<std::unordered_map<int, int>, 1 << 20>();
     BM_Memory<ska::unordered_map<int, int>, 1 << 20>();
@@ -73,7 +125,16 @@ int main(int argc, char **argv)
     BM_Memory<tsl::robin_map<int, int>, 1 << 20>();
     BM_Memory<tsl::sparse_map<int, int>, 1 << 20>();
 
+    BM_MemoryString<std::map<std::string, int>, 1 << 20>();
+    BM_MemoryString<phmap::btree_map<std::string, int>, 1 << 20>();
+    BM_MemoryStringShared<std::map<std::string, std::shared_ptr<int>>, 1 << 20>();
+    BM_MemoryStringShared<phmap::btree_map<std::string, std::shared_ptr<int>>, 1 << 20>();
+    BM_MemoryStringShared<tsl::sparse_map<std::string, std::shared_ptr<int>>, 1 << 20>();
+    BM_MemoryStringUnique<tsl::sparse_map<std::string, std::unique_ptr<int>>, 1 << 20>();
+    BM_MemoryStringPtr<tsl::sparse_map<std::string, int *>, 1 << 20>();
     BM_MemoryString<std::unordered_map<std::string, int>, 1 << 20>();
+    BM_MemoryStringShared<std::unordered_map<std::string, std::shared_ptr<int>>, 1 << 20>();
+    BM_MemoryStringUnique<std::unordered_map<std::string, std::unique_ptr<int>>, 1 << 20>();
     BM_MemoryString<ska::unordered_map<std::string, int>, 1 << 20>();
     BM_MemoryString<ska::flat_hash_map<std::string, int>, 1 << 20>();
     BM_MemoryString<ska::bytell_hash_map<std::string, int>, 1 << 20>();

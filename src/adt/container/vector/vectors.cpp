@@ -60,7 +60,8 @@ template <typename V> static void BenchAccumulate(benchmark::State &state)
     }
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(std::accumulate(v.begin(), v.end(), 0));
+        auto r = std::accumulate(v.begin(), v.end(), 0);
+        benchmark::DoNotOptimize(r);
     }
 }
 BENCHMARK_TEMPLATE(BenchAccumulate, std::vector<int>)->Range(2, 1024);
@@ -76,7 +77,8 @@ template <typename V> static void BenchAccumulateReverse(benchmark::State &state
     }
     for (auto _ : state)
     {
-        benchmark::DoNotOptimize(std::accumulate(v.rbegin(), v.rend(), 0));
+        auto r = std::accumulate(v.rbegin(), v.rend(), 0);
+        benchmark::DoNotOptimize(r);
     }
 }
 

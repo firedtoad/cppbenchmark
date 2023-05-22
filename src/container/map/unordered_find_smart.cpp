@@ -66,10 +66,11 @@ template <class M> static void BenchUnOrderMapString(benchmark::State &state)
     for (auto _ : state)
     {
         auto kIndex = _random() % 65536;
-        auto c      = m.find(keys[kIndex].c_str());
-        if (c != m.end())
+        auto it      = m.find(keys[kIndex].c_str());
+        if (it != m.end())
         {
-            benchmark::DoNotOptimize(c->second);
+            auto r=it->second;
+            benchmark::DoNotOptimize(r);
         }
     }
 }
