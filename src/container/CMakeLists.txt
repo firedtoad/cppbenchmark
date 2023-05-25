@@ -1,6 +1,7 @@
 find_package(absl REQUIRED)
 
-add_executable(boost_multi_index boost/multi_index.cpp)
+add_executable(boost_multi_index_map boost/multi_index_map.cpp)
+add_executable(boost_multi_index_set boost/multi_index_set.cpp)
 
 add_executable(list_pmr list/pmr.cpp)
 add_executable(list_insert list/insert.cpp)

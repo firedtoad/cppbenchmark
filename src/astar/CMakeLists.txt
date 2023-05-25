@@ -10,6 +10,8 @@ include_directories(${LLVM_INCLUDE_DIRS})
 link_libraries(${llvm_libs})
 
 add_executable(astar bench_astar.cpp AStar.cpp)
+target_link_libraries(astar PRIVATE folly double-conversion boost_program_options boost_context boost_filesystem boost_system boost_atomic.a gflags glog ssl crypto unwind fmt event dl )
+
 #target_link_libraries(astar PRIVATE absl_raw_hash_set absl_low_level_hash absl_hash)
 
 

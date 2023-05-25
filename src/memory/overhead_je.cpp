@@ -71,10 +71,8 @@ inline void FillRSS(rusage &rUsage)
     {
         newRss = getThreadRss(rUsage);
         p      = (char *)calloc(sz, 4096);
-        pthread_yield();
         DoNotOptimize(p);
     }
-
     auto info = mallinfo();
     p         = (char *)calloc(info.fordblks, 1);
     DoNotOptimize(p);

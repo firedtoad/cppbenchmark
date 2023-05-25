@@ -46,9 +46,9 @@ struct mallinfo
     int keepcost; /* top-most, releasable (via malloc_trim) space */
 };
 
-//extern "C" struct mallinfo je_mallinfo();
+extern "C" struct mallinfo je_mallinfo();
 
-//#define mallinfo je_mallinfo
+#define mallinfo je_mallinfo
 
 template <class Tp> inline __attribute__((always_inline)) void DoNotOptimize(Tp &value)
 {
@@ -75,10 +75,8 @@ inline void FillRSS(rusage &rUsage)
     {
         newRss = getThreadRss(rUsage);
         p      = (char *)calloc(sz, 4096);
-        pthread_yield();
         DoNotOptimize(p);
     }
-
     auto info = mallinfo();
     p         = (char *)calloc(info.fordblks, 1);
     DoNotOptimize(p);
@@ -123,14 +121,14 @@ int main(int argc, char *argv[])
     PrintUsage(usage);
 
     FillRSS(usage);
-    std::deque<uint8_t> dequ8;
-    dequ8.resize(SIZE);
+    std::deque<uint8_t> deque8;
+    deque8.resize(SIZE);
     std::cout << "deque of u8 " << SIZE << '\n';
     PrintUsage(usage);
 
     FillRSS(usage);
-    std::deque<uint64_t> dequ64;
-    dequ64.resize(SIZE);
+    std::deque<uint64_t> deque64;
+    deque64.resize(SIZE);
     std::cout << "deque of u64 " << SIZE << '\n';
     PrintUsage(usage);
 

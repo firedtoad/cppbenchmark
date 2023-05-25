@@ -13,15 +13,19 @@
 // limitations under the License.
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
-#ifndef __ASTAR_HPP__
-#define __ASTAR_HPP__
+#ifndef A_STAR_HPP_H
+#define A_STAR_HPP_H
 
 #include "parallel_hashmap/phmap.h"
-#include <unordered_map>
-#include <unordered_set>
 #include "tsl/sparse_map.h"
 #include "tsl/sparse_set.h"
+#include <folly/container/F14Map.h>
+#include <folly/container/F14Set.h>
 #include <functional>
+#include <llvm/ADT/DenseMap.h>
+#include <llvm/ADT/SparseSet.h>
+#include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 namespace AStar
@@ -55,17 +59,39 @@ struct CoordHash
 {
     size_t operator()(const Vec2i &coord) const
     {
+        //        return phmap::HashState::combine(31,coord.x,coord.y);
         return (size_t(coord.x) * 32) + coord.y;
+    }
+    static inline Vec2i getEmptyKey()
+    {
+        return {-1, -1};
+    }
+    static inline Vec2i getTombstoneKey()
+    {
+        return {-2, -2};
+    }
+    static unsigned getHashValue(const Vec2i &coord)
+    {
+        return (size_t(coord.x) * 31) + coord.y;
+    }
+    static bool isEqual(const Vec2i &LHS, const Vec2i &RHS)
+    {
+        return LHS == RHS;
     }
 };
 
 using NodeHeap = std::vector<Node *>;
-//using CoordMap = std::unordered_map<Vec2i, Node *, CoordHash>;
-//using CordSet  = std::unordered_set<Vec2i, CoordHash>;
-using CoordMap = phmap::flat_hash_map<Vec2i, Node *, CoordHash>;
-using CordSet  = phmap::flat_hash_set<Vec2i, CoordHash>;
-//using CoordMap = tsl::sparse_map<Vec2i, Node *, CoordHash>;
-//using CordSet  = tsl::sparse_set<Vec2i, CoordHash>;
+// using CoordMap = std::unordered_map<Vec2i, Node *, CoordHash>;
+// using CordSet  = std::unordered_set<Vec2i, CoordHash>;
+// using CoordMap = phmap::flat_hash_map<Vec2i, Node *, CoordHash>;
+// using CordSet  = phmap::flat_hash_set<Vec2i, CoordHash>;
+// using CoordMap = tsl::sparse_map<Vec2i, Node *, CoordHash>;
+// using CordSet  = tsl::sparse_set<Vec2i, CoordHash>;
+using CoordMap = folly::F14FastMap<Vec2i, Node *, CoordHash>;
+using CordSet  = folly::F14FastSet<Vec2i, CoordHash>;
+
+//using CoordMap = llvm::DenseMap<Vec2i, Node *,CoordHash>;
+//using CordSet  = phmap::flat_hash_set<Vec2i, CoordHash>;
 
 class Generator
 {
@@ -113,4 +139,4 @@ class Heuristic
 };
 } // namespace AStar
 
-#endif // __ASTAR_HPP__
+#endif // A_STAR_HPP_H

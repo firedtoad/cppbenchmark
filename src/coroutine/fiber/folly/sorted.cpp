@@ -26,6 +26,7 @@
 #include <map>
 #include <unordered_map>
 #include "utils/rss.h"
+#include "tsl/sparse_map.h"
 
 void *operator new[](size_t size, const char * /*pName*/, int /*flags*/, unsigned /*debugFlags*/, const char * /*file*/, int /*line*/)
 {
@@ -83,6 +84,7 @@ BENCHMARK_TEMPLATE(BenchInsert, sorted_vector_map<uint32_t, uint32_t>)->Range(1,
 BENCHMARK_TEMPLATE(BenchInsert, folly::sorted_vector_map<uint32_t, uint32_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsert, folly::heap_vector_map<uint32_t, uint32_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsert, std::map<uint32_t, uint32_t>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchInsert, tsl::sparse_map<uint32_t, uint32_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsert, boost::container::flat_map<uint32_t, uint32_t>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchInsert, eastl::vector_map<uint32_t, uint32_t>)->Range(1, 1 << 10);
 
@@ -106,6 +108,7 @@ BENCHMARK_TEMPLATE(BenchFind, sorted_vector_map<uint64_t, Pod>)->Range(1, 1 << 1
 BENCHMARK_TEMPLATE(BenchFind, folly::sorted_vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFind, folly::heap_vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFind, std::map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchFind, tsl::sparse_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFind, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFind, eastl::vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchFind, folly::F14FastMap<uint64_t, Pod>)->Range(1, 1 << 10);
@@ -133,6 +136,7 @@ BENCHMARK_TEMPLATE(BenchRange, sorted_vector_map<uint64_t, Pod>)->Range(1, 1 << 
 BENCHMARK_TEMPLATE(BenchRange, folly::sorted_vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRange, folly::heap_vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRange, std::map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchRange, tsl::sparse_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRange, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRange, eastl::vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchRange, folly::F14FastMap<uint64_t, Pod>)->Range(1, 1 << 10);
@@ -160,6 +164,7 @@ BENCHMARK_TEMPLATE(BenchErase, sorted_vector_map<uint64_t, Pod>)->Range(1, 1 << 
 BENCHMARK_TEMPLATE(BenchErase, folly::sorted_vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchErase, folly::heap_vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchErase, std::map<uint64_t, Pod>)->Range(1, 1 << 10);
+BENCHMARK_TEMPLATE(BenchErase, tsl::sparse_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchErase, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchErase, eastl::vector_map<uint64_t, Pod>)->Range(1, 1 << 10);
 BENCHMARK_TEMPLATE(BenchErase, folly::F14FastMap<uint64_t, Pod>)->Range(1, 1 << 10);

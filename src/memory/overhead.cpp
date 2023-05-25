@@ -25,7 +25,11 @@ int main(int argc, char **argv)
         sz        = malloc_usable_size(p);
         auto real = *(size_t *)(p - 8);
         std::cout << "need " << need << " real " << real - 1 << " over head " << real - need - 1 << " usable " << sz << '\n';
-
+        p    = (char *)malloc(sz);
+        need = sz;
+        sz   = malloc_usable_size(p);
+        real = *(size_t *)(p - 8);
+        std::cout << "need " << need << " real " << real - 1 << " over head " << real - need - 1 << " usable " << sz << '\n';
     } while (sz <= 1024);
 
     return 0;
