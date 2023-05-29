@@ -552,17 +552,6 @@ namespace eastl
 	inline EA_CONSTEXPR bool operator>=(const optional<T>& lhs, const optional<T>& rhs)
 		{ return !(lhs < rhs);	}
 
-#if defined(EA_COMPILER_HAS_THREE_WAY_COMPARISON)
-	template <class T, class U=T> requires std::three_way_comparable_with<T, U>
-	inline EA_CONSTEXPR std::compare_three_way_result_t<T, U> operator<=>(const optional<T>& lhs, const optional<U>& rhs)
-		{
-		    if (lhs && rhs)
-		    {
-		        return *lhs <=> *rhs;
-		    }
-		    return lhs.has_value() <=> rhs.has_value();
-		}
-#endif
 
     ///////////////////////////////////////////////////////////////////////////////
 	// Compare an optional object with a nullopt
@@ -570,11 +559,7 @@ namespace eastl
     template <class T>
     inline EA_CONSTEXPR bool operator==(const optional<T>& opt, eastl::nullopt_t) EA_NOEXCEPT
 		{ return !opt; }
-#if defined(EA_COMPILER_HAS_THREE_WAY_COMPARISON)
-    template <class T>
-    inline EA_CONSTEXPR std::strong_ordering operator<=>(const optional<T>& opt, eastl::nullopt_t) EA_NOEXCEPT
-		{ return opt.has_value() <=> false; }
-#else
+
     template <class T>
     inline EA_CONSTEXPR bool operator==(eastl::nullopt_t, const optional<T>& opt) EA_NOEXCEPT
 		{ return !opt; }
@@ -618,7 +603,7 @@ namespace eastl
     template <class T>
     inline EA_CONSTEXPR bool operator>=(eastl::nullopt_t, const optional<T>& opt) EA_NOEXCEPT
 		{ return !opt; }
-#endif
+
 
     ///////////////////////////////////////////////////////////////////////////////
     // Compare an optional object with a T
@@ -671,11 +656,6 @@ namespace eastl
     inline EA_CONSTEXPR bool operator>=(const T& value, const optional<T>& opt)
 		{ return !(value < opt);  }
 
-#if defined(EA_COMPILER_HAS_THREE_WAY_COMPARISON)
-    template <class T, class U=T> requires std::three_way_comparable_with<T, U>
-    inline EA_CONSTEXPR std::compare_three_way_result_t<T, U> operator<=>(const optional<T>& opt, const U& value)
-		{ return (opt.has_value()) ? *opt <=> value : std::strong_ordering::less; }
-#endif
 
     ///////////////////////////////////////////////////////////////////////////////
 	/// hash

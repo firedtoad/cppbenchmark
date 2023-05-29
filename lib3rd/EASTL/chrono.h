@@ -50,6 +50,9 @@
 
 #if defined(EA_PLATFORM_MICROSOFT) && !defined(EA_PLATFORM_MINGW)
 	// Nothing to do
+#elif defined(EA_PLATFORM_SONY)
+	#include <Dinkum/threads/xtimec.h>
+	#include <kernel.h>
 #elif defined(EA_PLATFORM_APPLE)
 	#include <mach/mach_time.h>
 #elif defined(EA_PLATFORM_POSIX) || defined(EA_PLATFORM_MINGW) || defined(EA_PLATFORM_ANDROID) 
@@ -311,7 +314,7 @@ namespace chrono
 	duration<typename eastl::common_type<Rep1, Rep2>::type, Period1> EASTL_FORCE_INLINE
 	operator*(const duration<Rep1, Period1>& lhs, const Rep2& rhs)
 	{
-		typedef duration<typename eastl::common_type<Rep1, Rep2>::type, Period1> common_duration_t;
+		typedef typename duration<eastl::common_type<Rep1, Rep2>, Period1>::type common_duration_t;
 		return common_duration_t(common_duration_t(lhs).count() * rhs);
 	}
 
@@ -545,11 +548,11 @@ namespace chrono
 		#if defined(EA_PLATFORM_MICROSOFT) && !defined(EA_PLATFORM_MINGW)
 			#define EASTL_NS_PER_TICK 1 
 		#elif defined EA_PLATFORM_SONY
-			#define EASTL_NS_PER_TICK 1
+			#define EASTL_NS_PER_TICK _XTIME_NSECS_PER_TICK
 		#elif defined EA_PLATFORM_POSIX
 			#define EASTL_NS_PER_TICK _XTIME_NSECS_PER_TICK
 		#else
-			#define EASTL_NS_PER_TICK 100
+			#define EASTL_NS_PER_TICK 100 
 		#endif
 
 		#if defined(EA_PLATFORM_POSIX) 
@@ -571,7 +574,7 @@ namespace chrono
 			{
 				LARGE_INTEGER frequency;
 				QueryPerformanceFrequency(&frequency);
-				return double(1000000000.0L / (long double)frequency.QuadPart);  // nanoseconds per tick
+				return double(1000000000.0L / frequency.QuadPart);  // nanoseconds per tick
 			};
 
 			auto queryCounter = []
@@ -584,23 +587,11 @@ namespace chrono
 			EA_DISABLE_VC_WARNING(4640)  // warning C4640: construction of local static object is not thread-safe (VS2013)
 			static auto frequency = queryFrequency(); // cache cpu frequency on first call
 			EA_RESTORE_VC_WARNING()
-			return uint64_t(frequency * (double)queryCounter());
-		#elif defined EA_PLATFORM_SONY
-			static_assert(false, "Implementing GetTicks() requires first party support");
-			return 0;
+			return uint64_t(frequency * queryCounter());
+        #elif defined EA_PLATFORM_SONY
+			return sceKernelGetProcessTimeCounter();
 		#elif defined(EA_PLATFORM_APPLE)
-			auto queryTimeInfo = []
-			{
-				mach_timebase_info_data_t info;
-				mach_timebase_info(&info);
-				return info;
-			};
-			
-			static auto timeInfo = queryTimeInfo();
-			uint64_t t = mach_absolute_time();
-			t *= timeInfo.numer;
-			t /= timeInfo.denom;
-			return t;
+		   return mach_absolute_time();
 		#elif defined(EA_PLATFORM_POSIX) // Posix means Linux, Unix, and Macintosh OSX, among others (including Linux-based mobile platforms).
 			#if (defined(CLOCK_REALTIME) || defined(CLOCK_MONOTONIC))
 				timespec ts;

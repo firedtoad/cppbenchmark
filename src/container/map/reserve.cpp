@@ -82,6 +82,7 @@ template <class M, size_t N> void BM_MemoryStringUnique()
     }
     PrintUsage(rusage);
 }
+
 template <class M, size_t N> void BM_MemoryStringPtr()
 {
     rusage rusage;

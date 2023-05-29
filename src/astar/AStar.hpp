@@ -17,13 +17,11 @@
 #define A_STAR_HPP_H
 
 #include "parallel_hashmap/phmap.h"
-#include "tsl/sparse_map.h"
-#include "tsl/sparse_set.h"
-#include <folly/container/F14Map.h>
-#include <folly/container/F14Set.h>
+//#include "tsl/sparse_map.h"
+//#include "tsl/sparse_set.h"
+//#include <folly/container/F14Map.h>
+//#include <folly/container/F14Set.h>
 #include <functional>
-#include <llvm/ADT/DenseMap.h>
-#include <llvm/ADT/SparseSet.h>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
@@ -83,12 +81,12 @@ struct CoordHash
 using NodeHeap = std::vector<Node *>;
 // using CoordMap = std::unordered_map<Vec2i, Node *, CoordHash>;
 // using CordSet  = std::unordered_set<Vec2i, CoordHash>;
-// using CoordMap = phmap::flat_hash_map<Vec2i, Node *, CoordHash>;
-// using CordSet  = phmap::flat_hash_set<Vec2i, CoordHash>;
+ using CoordMap = phmap::flat_hash_map<Vec2i, Node *, CoordHash>;
+ using CordSet  = phmap::flat_hash_set<Vec2i, CoordHash>;
 // using CoordMap = tsl::sparse_map<Vec2i, Node *, CoordHash>;
 // using CordSet  = tsl::sparse_set<Vec2i, CoordHash>;
-using CoordMap = folly::F14FastMap<Vec2i, Node *, CoordHash>;
-using CordSet  = folly::F14FastSet<Vec2i, CoordHash>;
+//using CoordMap = folly::F14FastMap<Vec2i, Node *, CoordHash>;
+//using CordSet  = folly::F14FastSet<Vec2i, CoordHash>;
 
 //using CoordMap = llvm::DenseMap<Vec2i, Node *,CoordHash>;
 //using CordSet  = phmap::flat_hash_set<Vec2i, CoordHash>;

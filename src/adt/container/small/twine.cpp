@@ -46,7 +46,7 @@ inline void FillRSS(rusage &rUsage)
         p      = (char *)calloc(sz, 4096);
         DoNotOptimize(p);
     }
-    auto info = mallinfo();
+    auto info = mallinfo2();
     p         = (char *)calloc(info.fordblks, 1);
     DoNotOptimize(p);
 }
