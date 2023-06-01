@@ -1,0 +1,61 @@
+67892023-06-01T20:35:44+08:00
+Running ./bin/list_remove
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 20.97, 17.77, 14.90
+-------------------------------------------------------------------------
+Benchmark                               Time             CPU   Iterations
+-------------------------------------------------------------------------
+BenchListRemove/1                     181 ns          184 ns      4047997
+BenchListRemove/8                     314 ns          306 ns      2282734
+BenchListRemove/64                   1907 ns         1909 ns       382251
+BenchListRemove/512                 69114 ns        69143 ns        10244
+BenchListRemove/4096             12262331 ns     12263834 ns           51
+BenchListRemove/32768           716975051 ns    716504507 ns            1
+BenchListRemove/65536          6217244625 ns   6215800568 ns            1
+BenchForwardListRemove/1              155 ns          156 ns      4455887
+BenchForwardListRemove/8              198 ns          200 ns      3648698
+BenchForwardListRemove/64             426 ns          426 ns      1607616
+BenchForwardListRemove/512           2270 ns         2274 ns       324154
+BenchForwardListRemove/4096         16766 ns        16767 ns        39120
+BenchForwardListRemove/32768       139021 ns       138896 ns         4948
+BenchForwardListRemove/65536       283799 ns       283580 ns         2565
+BenchDequeRemove/1                    157 ns          158 ns      4406670
+BenchDequeRemove/8                    253 ns          253 ns      2770679
+BenchDequeRemove/64                  1309 ns         1310 ns       649699
+BenchDequeRemove/512                12423 ns        12421 ns        56105
+BenchDequeRemove/4096              318851 ns       318879 ns         2250
+BenchDequeRemove/32768           16894136 ns     16884927 ns           41
+BenchDequeRemove/65536           67015474 ns     67016158 ns           10
+BenchVectorRemove/1                   147 ns          149 ns      4802414
+BenchVectorRemove/8                   159 ns          159 ns      4424020
+BenchVectorRemove/64                  243 ns          244 ns      2856760
+BenchVectorRemove/512                 940 ns          940 ns       746217
+BenchVectorRemove/4096               6472 ns         6449 ns       107730
+BenchVectorRemove/32768             50747 ns        50727 ns        13857
+BenchVectorRemove/65536            101914 ns       101821 ns         6863
+BenchBUListRemove/1                   153 ns          147 ns      4746763
+BenchBUListRemove/8                   164 ns          165 ns      4243755
+BenchBUListRemove/64                  287 ns          288 ns      2520406
+BenchBUListRemove/512                1056 ns         1056 ns       667831
+BenchBUListRemove/4096               6837 ns         6836 ns       105585
+BenchBUListRemove/32768             54805 ns        54799 ns        13482
+BenchBUListRemove/65536            108263 ns       108265 ns         6380
+BenchIntrusiveListRemove/1            148 ns          149 ns      4635082
+BenchIntrusiveListRemove/8            231 ns          222 ns      3179051
+BenchIntrusiveListRemove/64          1382 ns         1385 ns       498598
+BenchIntrusiveListRemove/512        54373 ns        54387 ns        12916
+BenchIntrusiveListRemove/4096     4536642 ns      4536954 ns          147
+BenchIntrusiveListRemove/32768  409130672 ns    409130643 ns            2
+BenchIntrusiveListRemove/65536 1633267866 ns   1633269339 ns            1
+BenchPlfListRemove/1                  152 ns          153 ns      4576532
+BenchPlfListRemove/8                  237 ns          238 ns      2906642
+BenchPlfListRemove/64                1967 ns         1969 ns       355649
+BenchPlfListRemove/512              67054 ns        67066 ns        10466
+BenchPlfListRemove/4096           7299322 ns      7299856 ns           98
+BenchPlfListRemove/32768        514918277 ns    514902570 ns            1
+BenchPlfListRemove/65536       2293304305 ns   2293306211 ns            1

@@ -1,0 +1,54 @@
+2023-06-01T20:27:38+08:00
+Running ./bin/mutex
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 15.07, 12.95, 12.32
+-----------------------------------------------------------------------------------------------------------------
+Benchmark                                                                       Time             CPU   Iterations
+-----------------------------------------------------------------------------------------------------------------
+benchmark_mutex_lock_unlock<std::mutex>/threads:1                            4.13 ns         4.13 ns    148298453
+benchmark_mutex_lock_unlock<std::mutex>/threads:16                           38.0 ns          228 ns      3308064
+benchmark_mutex_lock_unlock<std::shared_mutex>/threads:1                     20.6 ns         20.6 ns     33685891
+benchmark_mutex_lock_unlock<std::shared_mutex>/threads:16                     461 ns         3819 ns       160000
+benchmark_mutex_lock_unlock<std::recursive_mutex>/threads:1                  14.0 ns         14.0 ns     44562697
+benchmark_mutex_lock_unlock<std::recursive_mutex>/threads:16                 34.4 ns          201 ns      2687488
+benchmark_mutex_lock_unlock<pthread_mutex>/threads:1                         14.4 ns         14.3 ns     48923676
+benchmark_mutex_lock_unlock<pthread_mutex>/threads:16                        48.3 ns          316 ns      1600000
+benchmark_mutex_lock_unlock<pthread_mutex_recursive>/threads:1               14.8 ns         14.8 ns     37127163
+benchmark_mutex_lock_unlock<pthread_mutex_recursive>/threads:16              53.1 ns          391 ns      1600000
+benchmark_mutex_lock_unlock<pthread_mutex_adaptive>/threads:1                13.0 ns         13.0 ns     52891304
+benchmark_mutex_lock_unlock<pthread_mutex_adaptive>/threads:16               48.8 ns          342 ns      2204032
+benchmark_mutex_lock_unlock<futex_mutex>/threads:1                           10.0 ns         10.0 ns     70494503
+benchmark_mutex_lock_unlock<futex_mutex>/threads:16                          31.3 ns          205 ns      3740400
+benchmark_mutex_lock_unlock<spin_to_futex_mutex>/threads:1                   10.5 ns         10.5 ns     69745367
+benchmark_mutex_lock_unlock<spin_to_futex_mutex>/threads:16                  30.1 ns          192 ns      5384448
+benchmark_mutex_lock_unlock<ticket_spinlock>/threads:1                       6.26 ns         6.26 ns    109002469
+benchmark_mutex_lock_unlock<ticket_spinlock>/threads:16                      1233 ns         9981 ns       246464
+benchmark_mutex_lock_unlock<ticket_mutex>/threads:1                          9.02 ns         9.02 ns     76252116
+benchmark_mutex_lock_unlock<ticket_mutex>/threads:16                        91710 ns        87458 ns        16000
+benchmark_mutex_lock_unlock<semaphore_mutex>/threads:1                       15.5 ns         15.5 ns     32759880
+benchmark_mutex_lock_unlock<semaphore_mutex>/threads:16                       161 ns         1319 ns       472896
+benchmark_mutex_lock_unlock<spinlock>/threads:1                              5.91 ns         5.90 ns    119723761
+benchmark_mutex_lock_unlock<spinlock>/threads:16                             39.7 ns          376 ns      1600000
+benchmark_mutex_lock_unlock<spinlock_amd>/threads:1                          6.26 ns         6.26 ns    111092252
+benchmark_mutex_lock_unlock<spinlock_amd>/threads:16                         79.9 ns          791 ns      1660560
+benchmark_mutex_lock_unlock<spinlock_test_and_set>/threads:1                 5.75 ns         5.75 ns    123394695
+benchmark_mutex_lock_unlock<spinlock_test_and_set>/threads:16                21.9 ns          196 ns      3222688
+benchmark_mutex_lock_unlock<spinlock_test_and_set_once>/threads:1            5.75 ns         5.74 ns    118637185
+benchmark_mutex_lock_unlock<spinlock_test_and_set_once>/threads:16           15.0 ns          130 ns      3866960
+benchmark_mutex_lock_unlock<spinlock_compare_exchange>/threads:1             6.03 ns         6.03 ns    115485746
+benchmark_mutex_lock_unlock<spinlock_compare_exchange>/threads:16            15.3 ns          132 ns      4471664
+benchmark_mutex_lock_unlock<spinlock_compare_exchange_only>/threads:1        6.02 ns         6.01 ns    110164360
+benchmark_mutex_lock_unlock<spinlock_compare_exchange_only>/threads:16       23.0 ns          205 ns      4463712
+benchmark_mutex_lock_unlock<terrible_spinlock>/threads:1                     5.52 ns         5.52 ns    117707545
+benchmark_mutex_lock_unlock<terrible_spinlock>/threads:16                    96.5 ns          884 ns       964240
+benchmark_mutex_lock_unlock<boost::detail::spinlock>/threads:1               5.75 ns         5.75 ns    123650651
+benchmark_mutex_lock_unlock<boost::detail::spinlock>/threads:16              5.31 ns         7.30 ns    101048416
+benchmark_shared_mutex_lock_shared                                           15.1 ns         15.1 ns     35952947
+benchmark_semaphore_release_and_acquire                                      15.4 ns         15.4 ns     45082737
+benchmark_custom_semaphore_release_and_acquire                               23.9 ns         23.9 ns     30681765
+benchmark_yield                                                               196 ns          196 ns      3956252

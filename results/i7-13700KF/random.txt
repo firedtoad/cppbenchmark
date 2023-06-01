@@ -1,0 +1,64 @@
+2023-06-01T20:32:31+08:00
+Running ./bin/random
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 19.09, 16.28, 13.90
+----------------------------------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                                                    Time             CPU   Iterations
+----------------------------------------------------------------------------------------------------------------------------------------------
+BenchCRandom                                                                                              11.2 ns         11.2 ns     58672115
+BenchStdRandom<std::minstd_rand0, std::uniform_int_distribution<>>                                        17.6 ns         17.6 ns     39160792
+BenchStdRandom<std::minstd_rand0, std::uniform_real_distribution<>>                                       58.0 ns         58.0 ns     13141577
+BenchStdRandom<std::minstd_rand0, std::normal_distribution<>>                                              159 ns          159 ns      4484237
+BenchStdRandom<std::minstd_rand, std::uniform_int_distribution<>>                                         17.2 ns         17.2 ns     42792602
+BenchStdRandom<std::minstd_rand, std::uniform_real_distribution<>>                                        50.1 ns         50.1 ns     10000000
+BenchStdRandom<std::minstd_rand, std::normal_distribution<>>                                               155 ns          155 ns      4173743
+BenchStdRandom<std::mt19937, std::uniform_int_distribution<>>                                             3.44 ns         3.44 ns    210559270
+BenchStdRandom<std::mt19937, std::uniform_real_distribution<>>                                            51.8 ns         51.8 ns     12068560
+BenchStdRandom<std::mt19937, std::normal_distribution<>>                                                   161 ns          161 ns      4477863
+BenchStdRandom<std::mt19937_64, std::uniform_int_distribution<>>                                          1.78 ns         1.78 ns    388525165
+BenchStdRandom<std::mt19937_64, std::uniform_real_distribution<>>                                         49.7 ns         49.7 ns     14803442
+BenchStdRandom<std::mt19937_64, std::normal_distribution<>>                                                171 ns          169 ns      4816325
+BenchStdRandom<pcg32_fast, std::uniform_int_distribution<>>                                              0.781 ns        0.781 ns    975955115
+BenchStdRandom<pcg32_fast, std::uniform_real_distribution<>>                                              51.5 ns         51.5 ns     10000000
+BenchStdRandom<pcg32_fast, std::normal_distribution<>>                                                     157 ns          157 ns      3772827
+BenchStdRandom<pcg64_fast, std::uniform_int_distribution<>>                                               1.16 ns         1.15 ns    773776699
+BenchStdRandom<pcg64_fast, std::uniform_real_distribution<>>                                              53.0 ns         53.0 ns     10000000
+BenchStdRandom<pcg64_fast, std::normal_distribution<>>                                                     151 ns          151 ns      4131556
+BenchBoostRandom<boost::minstd_rand0, boost::random::uniform_int_distribution<>>                          14.3 ns         14.2 ns     54748736
+BenchBoostRandom<boost::minstd_rand0, boost::random::uniform_real_distribution<>>                         3.02 ns         3.02 ns    233048134
+BenchBoostRandom<boost::minstd_rand0, boost::random::normal_distribution<>>                               36.5 ns         36.5 ns     19375882
+BenchBoostRandom<boost::minstd_rand, boost::random::uniform_int_distribution<>>                           14.2 ns         14.2 ns     52293280
+BenchBoostRandom<boost::minstd_rand, boost::random::uniform_real_distribution<>>                          3.02 ns         3.02 ns    240938960
+BenchBoostRandom<boost::minstd_rand, boost::random::normal_distribution<>>                                38.2 ns         38.2 ns     19180688
+BenchBoostRandom<boost::mt19937, boost::random::uniform_int_distribution<>>                               2.09 ns         2.06 ns    355390719
+BenchBoostRandom<boost::mt19937, boost::random::uniform_real_distribution<>>                              2.87 ns         2.87 ns    258292147
+BenchBoostRandom<boost::mt19937, boost::random::normal_distribution<>>                                    8.51 ns         8.51 ns     89230626
+BenchBoostRandom<boost::mt19937_64, boost::random::uniform_int_distribution<>>                            1.55 ns         1.55 ns    578189170
+BenchBoostRandom<boost::mt19937_64, boost::random::uniform_real_distribution<>>                           3.31 ns         3.30 ns    206245152
+BenchBoostRandom<boost::mt19937_64, boost::random::normal_distribution<>>                                 4.38 ns         4.38 ns    192270989
+BenchBoostRandom<boost::mt11213b, boost::random::uniform_int_distribution<>>                              2.24 ns         2.24 ns    320748383
+BenchBoostRandom<boost::mt11213b, boost::random::uniform_real_distribution<>>                             2.79 ns         2.79 ns    273037453
+BenchBoostRandom<boost::mt11213b, boost::random::normal_distribution<>>                                   8.66 ns         8.66 ns     93144127
+BenchAbRandom<absl::random_internal::pcg32_2018_engine, absl::uniform_int_distribution<>>                0.956 ns        0.956 ns    755233251
+BenchAbRandom<absl::random_internal::pcg32_2018_engine, absl::uniform_real_distribution<>>                2.47 ns         2.47 ns    299719160
+BenchAbRandom<absl::random_internal::pcg32_2018_engine, absl::log_uniform_int_distribution<>>             3.98 ns         3.98 ns    149699288
+BenchAbRandom<absl::random_internal::pcg64_2018_engine, absl::uniform_int_distribution<>>                 1.26 ns         1.26 ns    527411242
+BenchAbRandom<absl::random_internal::pcg64_2018_engine, absl::uniform_real_distribution<>>                1.77 ns         1.77 ns    399991580
+BenchAbRandom<absl::random_internal::pcg64_2018_engine, absl::log_uniform_int_distribution<>>             4.83 ns         4.83 ns    148509737
+BenchAbRandom<absl::random_internal::randen_engine<uint32_t>, absl::uniform_int_distribution<>>           2.42 ns         2.42 ns    292872275
+BenchAbRandom<absl::random_internal::randen_engine<uint32_t>, absl::uniform_real_distribution<>>          4.03 ns         4.03 ns    148028814
+BenchAbRandom<absl::random_internal::randen_engine<uint32_t>, absl::log_uniform_int_distribution<>>       15.3 ns         15.3 ns     46799518
+BenchAbRandom<absl::random_internal::randen_engine<uint64_t>, absl::uniform_int_distribution<>>           3.50 ns         3.50 ns    190844469
+BenchAbRandom<absl::random_internal::randen_engine<uint64_t>, absl::uniform_real_distribution<>>          3.15 ns         3.15 ns    238214714
+BenchAbRandom<absl::random_internal::randen_engine<uint64_t>, absl::log_uniform_int_distribution<>>       15.7 ns         15.7 ns     41470108
+BenchAbRandom<pcg32_fast, absl::uniform_int_distribution<>>                                              0.744 ns        0.744 ns    720223642
+BenchAbRandom<pcg32_fast, absl::uniform_real_distribution<>>                                              1.93 ns         1.93 ns    397674529
+BenchAbRandom<pcg32_fast, absl::log_uniform_int_distribution<>>                                           3.63 ns         3.63 ns    183402186
+BenchAbRandom<pcg64_fast, absl::uniform_int_distribution<>>                                               1.14 ns         1.14 ns    648834363
+BenchAbRandom<pcg64_fast, absl::uniform_real_distribution<>>                                              1.61 ns         1.61 ns    519893460
+BenchAbRandom<pcg64_fast, absl::log_uniform_int_distribution<>>                                           4.52 ns         4.52 ns    163255269

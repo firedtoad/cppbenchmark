@@ -1,0 +1,22 @@
+2023-06-01T20:32:31+08:00
+Running ./bin/set_erase_order
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 19.09, 16.28, 13.90
+----------------------------------------------------------------------------------------------------
+Benchmark                                                          Time             CPU   Iterations
+----------------------------------------------------------------------------------------------------
+BenchEraseOrderSetInt<std::set<int>>                             211 ns          211 ns      3341605
+BenchEraseOrderSetInt<tsl::ordered_set<int>>                   34539 ns        34538 ns        19644
+BenchEraseUnOrderSetInt<tsl::ordered_set<int>>                  29.1 ns         29.1 ns     18650303
+BenchEraseOrderSetInt<absl::btree_set<int>>                      160 ns          160 ns      4782595
+BenchEraseOrderSetInt<phmap::btree_set<int>>                     148 ns          148 ns      5144117
+BenchEraseOrderSetString<std::set<std::string>>                 1064 ns         1064 ns       621852
+BenchEraseOrderSetString<tsl::ordered_set<std::string>>       830617 ns       830620 ns          774
+BenchEraseUnorderSetString<tsl::ordered_set<std::string>>        311 ns          311 ns      2593611
+BenchEraseOrderSetString<absl::btree_set<std::string>>           689 ns          689 ns      1101503
+BenchEraseOrderSetString<phmap::btree_set<std::string>>          702 ns          702 ns      1130841

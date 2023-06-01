@@ -1,0 +1,22 @@
+2023-06-01T20:35:26+08:00
+Running ./bin/memory_copy
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 18.28, 17.09, 14.62
+------------------------------------------------------------
+Benchmark                  Time             CPU   Iterations
+------------------------------------------------------------
+BenchMemCpy/1          0.990 ns        0.990 ns    565418797
+BenchMemCpy/8          0.845 ns        0.845 ns    721943360
+BenchMemCpy/64         0.943 ns        0.943 ns    661495067
+BenchMemCpy/512         3.43 ns         3.43 ns    206776237
+BenchMemCpy/1024        7.06 ns         7.06 ns    117033467
+BenchStdCopy/1          1.18 ns         1.18 ns    616529485
+BenchStdCopy/8         0.841 ns        0.841 ns    683967768
+BenchStdCopy/64        0.984 ns        0.984 ns    734569155
+BenchStdCopy/512        3.68 ns         3.68 ns    200529328
+BenchStdCopy/1024       6.81 ns         6.80 ns     92859240

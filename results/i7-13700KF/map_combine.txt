@@ -1,0 +1,18 @@
+2023-06-01T20:35:35+08:00
+Running ./bin/map_combine
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 18.80, 17.23, 14.70
+-------------------------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                                           Time             CPU   Iterations
+-------------------------------------------------------------------------------------------------------------------------------------
+BenchCombineMapInt<std::map<uint64_t, uint64_t>>                                                 86.7 ns         86.6 ns      9828861
+BenchTwiceMapInt<std::map<uint32_t, std::map<uint32_t, uint32_t>>>                                103 ns          103 ns      7035111
+BenchCombineMapInt<std::unordered_map<uint64_t, uint64_t>>                                       14.3 ns         14.3 ns     58375130
+BenchTwiceMapInt<std::unordered_map<uint32_t, std::unordered_map<uint32_t, uint32_t>>>           36.5 ns         36.5 ns     17720517
+BenchCombineMapInt<phmap::flat_hash_map<uint64_t, uint64_t>>                                     5.59 ns         5.59 ns    121691696
+BenchTwiceMapInt<phmap::flat_hash_map<uint32_t, phmap::flat_hash_map<uint32_t, uint32_t>>>       34.1 ns         34.1 ns     24190076

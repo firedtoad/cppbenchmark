@@ -1,0 +1,32 @@
+2023-06-01T20:35:36+08:00
+Running ./bin/false_share
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 18.80, 17.23, 14.70
+----------------------------------------------------------------------------------------------------------
+Benchmark                                                Time             CPU   Iterations UserCounters...
+----------------------------------------------------------------------------------------------------------
+BenchShare<cache_unaligned>/100000/threads:1        163726 ns       163603 ns         4386 items_per_second=139.36k/s
+BenchShare<cache_unaligned>/100000/threads:2         88711 ns       177411 ns         4166 items_per_second=270.601k/s
+BenchShare<cache_unaligned>/100000/threads:4         50299 ns       201147 ns         4252 items_per_second=467.685k/s
+BenchShare<cache_unaligned>/100000/threads:8         35879 ns       263849 ns         3024 items_per_second=1002.66k/s
+BenchShare<cache_unaligned>/100000/threads:16        22189 ns       207245 ns         3072 items_per_second=2.51313M/s
+BenchShare<cache_aligned>/100000/threads:1          157634 ns       157632 ns         4526 items_per_second=140.166k/s
+BenchShare<cache_aligned>/100000/threads:2           82184 ns       164098 ns         4214 items_per_second=289.222k/s
+BenchShare<cache_aligned>/100000/threads:4           40448 ns       161584 ns         4524 items_per_second=547.191k/s
+BenchShare<cache_aligned>/100000/threads:8           22918 ns       162468 ns         4592 items_per_second=1072.31k/s
+BenchShare<cache_aligned>/100000/threads:16          17126 ns       164414 ns         4224 items_per_second=2.30386M/s
+BenchNoShare<cache_unaligned>/100000/threads:1      161205 ns       161204 ns         4461 items_per_second=139.057k/s
+BenchNoShare<cache_unaligned>/100000/threads:2       81140 ns       162280 ns         4452 items_per_second=276.827k/s
+BenchNoShare<cache_unaligned>/100000/threads:4       40567 ns       161639 ns         4328 items_per_second=571.775k/s
+BenchNoShare<cache_unaligned>/100000/threads:8       23189 ns       171976 ns         4384 items_per_second=1061.09k/s
+BenchNoShare<cache_unaligned>/100000/threads:16      19345 ns       171490 ns         4432 items_per_second=2.10514M/s
+BenchNoShare<cache_aligned>/100000/threads:1        181119 ns       180977 ns         4460 items_per_second=123.891k/s
+BenchNoShare<cache_aligned>/100000/threads:2         81094 ns       162172 ns         4200 items_per_second=293.633k/s
+BenchNoShare<cache_aligned>/100000/threads:4         43045 ns       171850 ns         3376 items_per_second=689.459k/s
+BenchNoShare<cache_aligned>/100000/threads:8         22501 ns       161169 ns         3416 items_per_second=1.45308M/s
+BenchNoShare<cache_aligned>/100000/threads:16        17072 ns       168151 ns         4336 items_per_second=2.19448M/s

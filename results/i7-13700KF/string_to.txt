@@ -1,0 +1,30 @@
+2023-06-01T20:35:20+08:00
+Running ./bin/string_to
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 17.96, 17.00, 14.58
+--------------------------------------------------------------------------------------------
+Benchmark                                                  Time             CPU   Iterations
+--------------------------------------------------------------------------------------------
+BenchStreamStringTo<std::stringstream, uint64_t>         255 ns          255 ns      2779513
+BenchStreamStringTo<std::istringstream, uint64_t>        213 ns          213 ns      3449430
+BenchStreamStringToF<std::stringstream, float>           356 ns          356 ns      2178508
+BenchStreamStringToF<std::istringstream, float>          302 ns          302 ns      2066333
+BenchStdAtol<uint64_t>                                  23.1 ns         23.1 ns     35857985
+BenchStdAtof<float>                                     37.3 ns         37.3 ns     18314540
+BenchStdStol<uint64_t>                                  23.1 ns         23.1 ns     31812710
+BenchStdStoFloat<float>                                 42.1 ns         42.1 ns     17173361
+BenchStdCharConvInt<uint64_t>                           10.9 ns         10.9 ns     56795544
+BenchStdCharConvFloat<float>                            11.0 ns         11.0 ns     69441395
+BenchFastFloat<float>                                   16.6 ns         16.6 ns     40002734
+BenchABCharConvIntF<float>                              27.1 ns         27.1 ns     25901532
+BenchBoostStringTo<uint64_t>                            30.7 ns         30.7 ns     23246096
+BenchBoostStringTof<float>                               240 ns          240 ns      3115388
+BenchAbSimpleToInt<uint64_t>                            15.2 ns         15.2 ns     46785900
+BenchAbSimpleToFloat<float>                             33.1 ns         33.1 ns     18631335
+BenchPBStrAppend<uint64_t>                              16.7 ns         16.7 ns     44271204
+BenchPBStrAppendF<float>                                19.0 ns         19.0 ns     39830298

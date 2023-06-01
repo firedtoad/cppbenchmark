@@ -1,0 +1,49 @@
+aaa
+2023-06-01T20:33:45+08:00
+Running ./bin/vec_unique
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 18.58, 16.66, 14.22
+------------------------------------------------------------------------------------------------
+Benchmark                                                      Time             CPU   Iterations
+------------------------------------------------------------------------------------------------
+BM_SortUniqueList/128                                       5211 ns         5211 ns       136329
+BM_SortUniqueList/512                                      21677 ns        21677 ns        30043
+BM_SortUniqueList/4096                                    353788 ns       353775 ns         2034
+BM_SortUniqueList/32768                                  4186928 ns      4186845 ns          184
+BM_SortUniqueList/262144                                73156719 ns     73155183 ns           11
+BM_SortUniqueList/1048576                              536939612 ns    536914967 ns            1
+BM_SortUniqueVector/128                                      506 ns          506 ns      1268121
+BM_SortUniqueVector/512                                     2594 ns         2594 ns       254517
+BM_SortUniqueVector/4096                                  124940 ns       124938 ns         5240
+BM_SortUniqueVector/32768                                1460042 ns      1459953 ns          529
+BM_SortUniqueVector/262144                              13661266 ns     13660664 ns           53
+BM_SortUniqueVector/1048576                             57790258 ns     57789389 ns           13
+BM_UniqueConstructor<std::set<int>>/128                     2600 ns         2600 ns       294571
+BM_UniqueConstructor<std::set<int>>/512                    16367 ns        16367 ns        48053
+BM_UniqueConstructor<std::set<int>>/4096                  325667 ns       325668 ns         1864
+BM_UniqueConstructor<std::set<int>>/32768                3800184 ns      3799988 ns          194
+BM_UniqueConstructor<std::set<int>>/262144              54983276 ns     54982941 ns           12
+BM_UniqueConstructor<std::set<int>>/1048576            638721982 ns    638723253 ns            1
+BM_UniqueConstructor<std::unordered_set<int>>/128           1807 ns         1807 ns       335441
+BM_UniqueConstructor<std::unordered_set<int>>/512           9869 ns         9869 ns        71607
+BM_UniqueConstructor<std::unordered_set<int>>/4096        114867 ns       114867 ns         6678
+BM_UniqueConstructor<std::unordered_set<int>>/32768      1163337 ns      1163314 ns          565
+BM_UniqueConstructor<std::unordered_set<int>>/262144    13632767 ns     13632808 ns           45
+BM_UniqueConstructor<std::unordered_set<int>>/1048576  123247889 ns    123248148 ns            5
+BM_UniqueManually<std::set<int>>/128                        2311 ns         2311 ns       302672
+BM_UniqueManually<std::set<int>>/512                       17100 ns        17100 ns        39690
+BM_UniqueManually<std::set<int>>/4096                     319450 ns       319447 ns         2229
+BM_UniqueManually<std::set<int>>/32768                   3391981 ns      3391984 ns          199
+BM_UniqueManually<std::set<int>>/262144                 49324749 ns     49324861 ns           15
+BM_UniqueManually<std::set<int>>/1048576               486880879 ns    486879293 ns            2
+BM_UniqueManually<std::unordered_set<int>>/128              1649 ns         1649 ns       420120
+BM_UniqueManually<std::unordered_set<int>>/512             10973 ns        10973 ns        59103
+BM_UniqueManually<std::unordered_set<int>>/4096           114093 ns       114093 ns         4831
+BM_UniqueManually<std::unordered_set<int>>/32768         1245397 ns      1245355 ns          612
+BM_UniqueManually<std::unordered_set<int>>/262144       15100288 ns     15099962 ns           48
+BM_UniqueManually<std::unordered_set<int>>/1048576     131269229 ns    131264976 ns            6

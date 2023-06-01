@@ -1,0 +1,80 @@
+2023-06-01T20:31:43+08:00
+Running ./bin/engine
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 16.85, 15.39, 13.51
+--------------------------------------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                                                        Time             CPU   Iterations
+--------------------------------------------------------------------------------------------------------------------------------------------------
+BenchSeed<std::random_device>                                                                                 1922 ns         1922 ns       375080
+BenchSeedStatic<std::random_device>                                                                           1919 ns         1919 ns       380182
+BenchEngine<std::ranlux24_base>                                                                               41.6 ns         41.6 ns     17370670
+BenchEngine<std::ranlux48_base>                                                                               42.4 ns         42.4 ns     16085195
+BenchEngine<std::ranlux24>                                                                                    38.8 ns         38.8 ns     17702369
+BenchEngine<std::ranlux48>                                                                                    44.2 ns         44.2 ns     16570467
+BenchEngine<std::knuth_b>                                                                                      680 ns          679 ns      1038281
+BenchEngine<std::minstd_rand0>                                                                               0.240 ns        0.237 ns   1000000000
+BenchEngine<std::minstd_rand>                                                                                0.214 ns        0.213 ns   1000000000
+BenchEngine<std::mt19937>                                                                                     1184 ns         1184 ns       650530
+BenchEngine<std::mt19937_64>                                                                                   622 ns          622 ns      1169595
+BenchEngine<__gnu_cxx::sfmt19937>                                                                             1121 ns         1120 ns       572812
+BenchEngine<__gnu_cxx::sfmt19937_64>                                                                          1101 ns         1087 ns       632482
+BenchEngine<boost::minstd_rand0>                                                                             0.223 ns        0.223 ns   1000000000
+BenchEngine<boost::minstd_rand>                                                                              0.218 ns        0.218 ns   1000000000
+BenchEngine<boost::rand48>                                                                                   0.221 ns        0.221 ns   1000000000
+BenchEngine<boost::mt19937>                                                                                   1111 ns         1111 ns       518017
+BenchEngine<boost::mt19937_64>                                                                                 902 ns          902 ns       857023
+BenchEngine<boost::mt11213b>                                                                                   759 ns          759 ns      1145300
+BenchPCG<pcg32>                                                                                              0.220 ns        0.220 ns   1000000000
+BenchPCG<pcg32_oneseq>                                                                                       0.217 ns        0.217 ns   1000000000
+BenchPCG<pcg32_unique>                                                                                       0.516 ns        0.516 ns   1000000000
+BenchPCG<pcg32_fast>                                                                                         0.218 ns        0.218 ns   1000000000
+BenchPCG<pcg64>                                                                                              0.252 ns        0.252 ns   1000000000
+BenchPCG<pcg64_oneseq>                                                                                       0.239 ns        0.239 ns   1000000000
+BenchPCG<pcg64_unique>                                                                                       0.536 ns        0.536 ns   1000000000
+BenchPCG<pcg64_fast>                                                                                         0.224 ns        0.224 ns   1000000000
+BenchPCG<pcg8_once_insecure>                                                                                 0.231 ns        0.231 ns   1000000000
+BenchPCG<pcg16_once_insecure>                                                                                0.214 ns        0.214 ns   1000000000
+BenchPCG<pcg32_once_insecure>                                                                                0.227 ns        0.227 ns   1000000000
+BenchPCG<pcg64_once_insecure>                                                                                0.227 ns        0.227 ns   1000000000
+BenchPCG<pcg8_oneseq_once_insecure>                                                                          0.234 ns        0.234 ns   1000000000
+BenchPCG<pcg16_oneseq_once_insecure>                                                                         0.228 ns        0.228 ns   1000000000
+BenchPCG<pcg32_oneseq_once_insecure>                                                                         0.270 ns        0.270 ns   1000000000
+BenchPCG<pcg64_oneseq_once_insecure>                                                                         0.271 ns        0.271 ns   1000000000
+BenchPCG<pcg32_k2>                                                                                           0.256 ns        0.256 ns   1000000000
+BenchPCG<pcg32_k2_fast>                                                                                      0.215 ns        0.215 ns   1000000000
+BenchPCG<pcg32_k64>                                                                                           55.3 ns         55.3 ns     13311615
+BenchPCG<pcg32_k64_oneseq>                                                                                    38.1 ns         38.1 ns     22438286
+BenchPCG<pcg32_k64_fast>                                                                                      57.0 ns         57.0 ns     13863112
+BenchPCG<pcg32_c64>                                                                                           55.3 ns         55.2 ns     13877992
+BenchPCG<pcg32_c64_oneseq>                                                                                    53.8 ns         53.8 ns     12305373
+BenchPCG<pcg32_c64_fast>                                                                                      31.0 ns         31.0 ns     17970804
+BenchPCG<pcg64_k32>                                                                                           41.1 ns         41.1 ns     16614266
+BenchPCG<pcg64_k32_oneseq>                                                                                    47.6 ns         47.2 ns     17103589
+BenchPCG<pcg64_k32_fast>                                                                                      27.6 ns         27.5 ns     26871466
+BenchPCG<pcg64_c32>                                                                                           37.8 ns         37.8 ns     18781985
+BenchPCG<pcg64_c32_oneseq>                                                                                    40.9 ns         40.9 ns     13548074
+BenchPCG<pcg64_c32_fast>                                                                                      26.9 ns         26.9 ns     25856834
+BenchPCG<pcg32_k1024>                                                                                          962 ns          962 ns       737269
+BenchPCG<pcg32_k1024_fast>                                                                                     963 ns          963 ns       774015
+BenchPCG<pcg32_c1024>                                                                                          970 ns          970 ns       766559
+BenchPCG<pcg32_c1024_fast>                                                                                     975 ns          975 ns       775819
+BenchPCG<pcg64_k1024>                                                                                         1413 ns         1408 ns       422942
+BenchPCG<pcg64_k1024_fast>                                                                                    1381 ns         1378 ns       462323
+BenchPCG<pcg64_c1024>                                                                                         1312 ns         1312 ns       453246
+BenchPCG<pcg64_c1024_fast>                                                                                    1314 ns         1314 ns       496986
+BenchPCG<pcg32_k16384>                                                                                       16299 ns        16297 ns        47778
+BenchPCG<pcg32_k16384_fast>                                                                                  15319 ns        15317 ns        46416
+BenchABEngine<absl::random_internal::pcg32_2018_engine>                                                      0.930 ns        0.930 ns    732707192
+BenchABEngine<absl::random_internal::pcg64_2018_engine>                                                       1.22 ns         1.22 ns    565799293
+BenchABEngine<absl::random_internal::randen_engine<uint32_t>>                                                 2.33 ns         2.33 ns    218879121
+BenchABEngine<absl::random_internal::randen_engine<uint64_t>>                                                 2.94 ns         2.94 ns    242858457
+BenchABEngine<absl::random_internal::RandenPool<uint64_t>>                                                    17.7 ns         17.7 ns     42407867
+BenchABEngine<absl::random_internal::NonsecureURBGBase<absl::random_internal::pcg32_2018_engine>>            0.972 ns        0.972 ns    756327514
+BenchABEngine<absl::random_internal::NonsecureURBGBase<absl::random_internal::pcg64_2018_engine>>             1.20 ns         1.20 ns    632134969
+BenchABEngine<absl::random_internal::NonsecureURBGBase<absl::random_internal::randen_engine<uint32_t>>>       2.54 ns         2.54 ns    298393983
+BenchABEngine<absl::random_internal::NonsecureURBGBase<absl::random_internal::randen_engine<uint64_t>>>       3.15 ns         3.15 ns    254607301

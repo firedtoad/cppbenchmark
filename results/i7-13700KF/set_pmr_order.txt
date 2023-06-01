@@ -1,0 +1,42 @@
+2023-06-01T20:27:56+08:00
+Running ./bin/set_pmr_order
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 16.44, 13.33, 12.45
+------------------------------------------------------------------------------------
+Benchmark                                          Time             CPU   Iterations
+------------------------------------------------------------------------------------
+BM_Insert<std::set<int>>/1024                  50327 ns        49889 ns        13949
+BM_Insert<std::set<int>>/4096                 249073 ns       249073 ns         2870
+BM_Insert<std::set<int>>/32768               3274066 ns      3273367 ns          228
+BM_Insert<std::set<int>>/262144             35085702 ns     35085182 ns           21
+BM_Insert<std::set<int>>/1048576           175691420 ns    175668485 ns            4
+BM_PMR_Insert<std::pmr::set<int>>/1024         49588 ns        49587 ns        15406
+BM_PMR_Insert<std::pmr::set<int>>/4096        207852 ns       207850 ns         3425
+BM_PMR_Insert<std::pmr::set<int>>/32768      2156161 ns      2156130 ns          289
+BM_PMR_Insert<std::pmr::set<int>>/262144    30202986 ns     30202378 ns           22
+BM_PMR_Insert<std::pmr::set<int>>/1048576  158377853 ns    158374253 ns            4
+BM_Range<std::set<int>>/1024                    2801 ns         2801 ns       184999
+BM_Range<std::set<int>>/4096                   16477 ns        16477 ns        56560
+BM_Range<std::set<int>>/32768                 148848 ns       148849 ns         6587
+BM_Range<std::set<int>>/262144               3050509 ns      3050510 ns          557
+BM_Range<std::set<int>>/1048576             12110396 ns     12110430 ns           99
+BM_PMR_Range<std::pmr::set<int>>/1024           2924 ns         2924 ns       236860
+BM_PMR_Range<std::pmr::set<int>>/4096          12292 ns        12292 ns        58011
+BM_PMR_Range<std::pmr::set<int>>/32768        103887 ns       103886 ns         7170
+BM_PMR_Range<std::pmr::set<int>>/262144       901774 ns       901774 ns          710
+BM_PMR_Range<std::pmr::set<int>>/1048576     5477079 ns      5477082 ns          138
+BM_Find<std::set<int>>/1024                     27.9 ns         27.9 ns     22107822
+BM_Find<std::set<int>>/4096                     39.3 ns         39.3 ns     15308346
+BM_Find<std::set<int>>/32768                    55.7 ns         55.7 ns     12181310
+BM_Find<std::set<int>>/262144                    186 ns          186 ns      3429300
+BM_Find<std::set<int>>/1048576                   499 ns          499 ns      1980105
+BM_PMR_Find<std::pmr::set<int>>/1024            26.6 ns         26.6 ns     25558923
+BM_PMR_Find<std::pmr::set<int>>/4096            38.2 ns         38.2 ns     16991597
+BM_PMR_Find<std::pmr::set<int>>/32768           54.5 ns         54.5 ns     10000000
+BM_PMR_Find<std::pmr::set<int>>/262144           125 ns          125 ns      6488422
+BM_PMR_Find<std::pmr::set<int>>/1048576          338 ns          338 ns      2306855

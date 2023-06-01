@@ -1,0 +1,8 @@
+clocks per s = 1000000 
+rdtsc_overhead set to 41
+populate_int32divbyconstant(iarray32, N)                    	:  0.565 cycles per operation (best) 	0.573 cycles per operation (avg) 
+populate_int64(inum64, iarray64, N)                         	:  4.295 cycles per operation (best) 	5.120 cycles per operation (avg) 
+populate_float64(inum64, farray64, N)                       	:  2.890 cycles per operation (best) 	4.129 cycles per operation (avg) 
+populate_int32(inum64, iarray32, N)                         	:  4.280 cycles per operation (best) 	4.296 cycles per operation (avg) 
+populate_int32viafloat64(inum64, iarray32, N)               	:  2.890 cycles per operation (best) 	14.426 cycles per operation (avg) 
+populate_float32(inum64, farray32, N)                       	:  2.906 cycles per operation (best) 	3.089 cycles per operation (avg) 

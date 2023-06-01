@@ -1,0 +1,21 @@
+2023-06-01T20:27:24+08:00
+Running ./bin/adt_map_order_find
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 13.58, 12.58, 12.19
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                                                                                                                                                     Time             CPU   Iterations
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+BenchOrderMapInt<std::map<int, int>>                                                                                                                                                                       2.96 ns         2.96 ns    234709351
+BenchOrderMapInt<tsl::ordered_map<int, int>>                                                                                                                                                               5.71 ns         5.71 ns    100000000
+BenchOrderMapInt<tsl::ordered_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair< int, int>>, std::vector<std::pair< int, int>>>>                                                  2.96 ns         2.96 ns    194882870
+BenchOrderMapInt<absl::btree_map<int, int>>                                                                                                                                                                3.11 ns         3.11 ns    249774005
+BenchImmutableMapInt                                                                                                                                                                                       22.8 ns         22.8 ns     31840207
+BenchOrderMapString<std::map<std::string, int>>                                                                                                                                                            1877 ns         1877 ns       340024
+BenchOrderMapString<tsl::ordered_map<std::string, int>>                                                                                                                                                     370 ns          370 ns      1927092
+BenchOrderMapString<tsl::ordered_map<std::string, int, std::hash<std::string>, std::equal_to<std::string>, std::allocator<std::pair< std::string, int>>, std::vector<std::pair< std::string, int>>>>        192 ns          192 ns      3208875
+BenchOrderMapString<absl::btree_map<std::string, int>>                                                                                                                                                      475 ns          475 ns      1318555

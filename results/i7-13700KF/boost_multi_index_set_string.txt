@@ -1,0 +1,214 @@
+user cpu : 1s 203846us
+sys cpu : 0s 34733us
+max rss : 140276 kb / 136.988 MB
+page reclaims : 36211
+page faults : 0
+voluntary switches : 0
+involuntary switches : 18
+
+user cpu : 0s 455212us
+sys cpu : 0s 65692us
+max rss : 110600 kb / 108.008 MB
+page reclaims : 23564
+page faults : 0
+voluntary switches : 0
+involuntary switches : 6
+
+user cpu : 0s 81000us
+sys cpu : 0s 32136us
+max rss : 83476 kb / 81.5195 MB
+page reclaims : 17296
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+user cpu : 0s 180105us
+sys cpu : 0s 52570us
+max rss : 73128 kb / 71.4141 MB
+page reclaims : 18324
+page faults : 0
+voluntary switches : 0
+involuntary switches : 3
+
+2023-06-01T20:30:13+08:00
+Running ./bin/boost_multi_index_set_string
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 16.67, 14.80, 13.14
+----------------------------------------------------------------------------------------------------
+Benchmark                                                          Time             CPU   Iterations
+----------------------------------------------------------------------------------------------------
+BenchInsert<std::set<std::string>>/1                            27.6 ns         27.6 ns     23611984
+BenchInsert<std::set<std::string>>/8                             362 ns          362 ns      1912943
+BenchInsert<std::set<std::string>>/64                           4157 ns         4155 ns       168047
+BenchInsert<std::set<std::string>>/512                         64352 ns        64272 ns        10666
+BenchInsert<std::set<std::string>>/1024                       162898 ns       162838 ns         4127
+BenchInsert<std::unordered_set<std::string>>/1                  52.6 ns         52.6 ns     15450195
+BenchInsert<std::unordered_set<std::string>>/8                   330 ns          330 ns      1992911
+BenchInsert<std::unordered_set<std::string>>/64                 2870 ns         2868 ns       263095
+BenchInsert<std::unordered_set<std::string>>/512               39624 ns        39612 ns        18990
+BenchInsert<std::unordered_set<std::string>>/1024              83998 ns        83325 ns         9436
+BenchInsert<tsl::ordered_set<std::string>>/1                    61.2 ns         61.2 ns     11279177
+BenchInsert<tsl::ordered_set<std::string>>/8                     363 ns          362 ns      1922758
+BenchInsert<tsl::ordered_set<std::string>>/64                   2212 ns         2209 ns       294787
+BenchInsert<tsl::ordered_set<std::string>>/512                 23223 ns        23210 ns        34597
+BenchInsert<tsl::ordered_set<std::string>>/1024                45075 ns        45054 ns        16638
+BenchInsert<tsl::sparse_set<std::string>>/1                     57.8 ns         57.7 ns     10162203
+BenchInsert<tsl::sparse_set<std::string>>/8                      512 ns          511 ns      1000000
+BenchInsert<tsl::sparse_set<std::string>>/64                    4448 ns         4446 ns       173697
+BenchInsert<tsl::sparse_set<std::string>>/512                  58931 ns        58903 ns        13482
+BenchInsert<tsl::sparse_set<std::string>>/1024                132924 ns       132856 ns         6102
+BenchInsert<boost::container::flat_set<std::string>>/1          27.6 ns         27.6 ns     28257238
+BenchInsert<boost::container::flat_set<std::string>>/8           308 ns          308 ns      2190998
+BenchInsert<boost::container::flat_set<std::string>>/64         4975 ns         4972 ns       124188
+BenchInsert<boost::container::flat_set<std::string>>/512      122007 ns       121881 ns         5306
+BenchInsert<boost::container::flat_set<std::string>>/1024     395096 ns       395088 ns         1613
+BenchInsertMulti<MultiContainer<std::string>>/1                 61.0 ns         61.0 ns     10076334
+BenchInsertMulti<MultiContainer<std::string>>/8                  336 ns          336 ns      1761776
+BenchInsertMulti<MultiContainer<std::string>>/64                5138 ns         5138 ns       100000
+BenchInsertMulti<MultiContainer<std::string>>/512              93822 ns        93820 ns         6850
+BenchInsertMulti<MultiContainer<std::string>>/1024            233614 ns       233609 ns         3474
+BenchInsertMulti<MultiHashContainer<std::string>>/1             85.9 ns         85.8 ns      7930014
+BenchInsertMulti<MultiHashContainer<std::string>>/8              569 ns          569 ns       951925
+BenchInsertMulti<MultiHashContainer<std::string>>/64            7327 ns         7327 ns       103616
+BenchInsertMulti<MultiHashContainer<std::string>>/512          98211 ns        98210 ns         8069
+BenchInsertMulti<MultiHashContainer<std::string>>/1024        210345 ns       210345 ns         3545
+BenchInsert<eastl::vector_set<std::string>>/1                   26.0 ns         26.0 ns     28006077
+BenchInsert<eastl::vector_set<std::string>>/8                    278 ns          278 ns      2711263
+BenchInsert<eastl::vector_set<std::string>>/64                  3415 ns         3415 ns       178505
+BenchInsert<eastl::vector_set<std::string>>/512                98507 ns        98503 ns         6121
+BenchInsert<eastl::vector_set<std::string>>/1024              404780 ns       404770 ns         1614
+BenchFind<std::set<std::string>>/1                              12.5 ns         12.5 ns     61456407
+BenchFind<std::set<std::string>>/8                              41.1 ns         41.1 ns     24812984
+BenchFind<std::set<std::string>>/64                              103 ns          103 ns      8939060
+BenchFind<std::set<std::string>>/512                             161 ns          161 ns      3830315
+BenchFind<std::set<std::string>>/1024                            176 ns          176 ns      3854388
+BenchFind<std::unordered_set<std::string>>/1                    2.93 ns         2.93 ns    221642334
+BenchFind<std::unordered_set<std::string>>/8                    24.8 ns         24.8 ns     30651165
+BenchFind<std::unordered_set<std::string>>/64                   32.5 ns         32.5 ns     22151380
+BenchFind<std::unordered_set<std::string>>/512                  42.1 ns         42.1 ns     18260620
+BenchFind<std::unordered_set<std::string>>/1024                 42.5 ns         42.5 ns     15872640
+BenchFind<tsl::ordered_set<std::string>>/1                      30.4 ns         30.4 ns     21089163
+BenchFind<tsl::ordered_set<std::string>>/8                      43.8 ns         43.8 ns     12553514
+BenchFind<tsl::ordered_set<std::string>>/64                     38.3 ns         38.3 ns     17572871
+BenchFind<tsl::ordered_set<std::string>>/512                    36.2 ns         36.2 ns     20612172
+BenchFind<tsl::ordered_set<std::string>>/1024                   42.7 ns         42.7 ns     19518385
+BenchFind<tsl::sparse_set<std::string>>/1                       44.5 ns         44.5 ns     12410517
+BenchFind<tsl::sparse_set<std::string>>/8                       38.7 ns         38.7 ns     16231156
+BenchFind<tsl::sparse_set<std::string>>/64                      47.2 ns         47.2 ns     15371775
+BenchFind<tsl::sparse_set<std::string>>/512                     54.1 ns         54.1 ns     10000000
+BenchFind<tsl::sparse_set<std::string>>/1024                    44.4 ns         44.4 ns     14248547
+BenchFind<boost::container::flat_set<std::string>>/1            11.7 ns         11.7 ns     65637233
+BenchFind<boost::container::flat_set<std::string>>/8            70.1 ns         70.1 ns     16095940
+BenchFind<boost::container::flat_set<std::string>>/64            127 ns          127 ns      5225222
+BenchFind<boost::container::flat_set<std::string>>/512           213 ns          213 ns      2605361
+BenchFind<boost::container::flat_set<std::string>>/1024          166 ns          166 ns      3882291
+BenchFindMulti<MultiContainer<std::string>, 0>/1                15.4 ns         15.4 ns     64679336
+BenchFindMulti<MultiContainer<std::string>, 0>/8                51.2 ns         51.2 ns     10000000
+BenchFindMulti<MultiContainer<std::string>, 0>/64               85.1 ns         85.1 ns      7874415
+BenchFindMulti<MultiContainer<std::string>, 0>/512               112 ns          112 ns      5570747
+BenchFindMulti<MultiContainer<std::string>, 0>/1024              139 ns          139 ns      5342440
+BenchFindMultiHash<MultiHashContainer<std::string>>/1            101 ns          101 ns      9562150
+BenchFindMultiHash<MultiHashContainer<std::string>>/8            108 ns          108 ns      6793384
+BenchFindMultiHash<MultiHashContainer<std::string>>/64           118 ns          118 ns      6294127
+BenchFindMultiHash<MultiHashContainer<std::string>>/512          106 ns          106 ns      5629280
+BenchFindMultiHash<MultiHashContainer<std::string>>/1024         113 ns          113 ns      5632288
+BenchFind<eastl::vector_set<std::string>>/1                     15.3 ns         15.3 ns     33920594
+BenchFind<eastl::vector_set<std::string>>/8                     54.1 ns         54.1 ns     10000000
+BenchFind<eastl::vector_set<std::string>>/64                    90.0 ns         90.0 ns      7920534
+BenchFind<eastl::vector_set<std::string>>/512                    157 ns          157 ns      4563863
+BenchFind<eastl::vector_set<std::string>>/1024                   206 ns          206 ns      3435497
+BenchRange<std::set<std::string>>/1                             3.45 ns         3.45 ns    199096467
+BenchRange<std::set<std::string>>/8                             41.7 ns         41.7 ns     16818407
+BenchRange<std::set<std::string>>/64                             339 ns          339 ns      2052301
+BenchRange<std::set<std::string>>/512                           2984 ns         2984 ns       242397
+BenchRange<std::set<std::string>>/1024                          6117 ns         6117 ns       109480
+BenchRange<std::unordered_set<std::string>>/1                   3.04 ns         3.04 ns    235173024
+BenchRange<std::unordered_set<std::string>>/8                   35.5 ns         35.5 ns     20533822
+BenchRange<std::unordered_set<std::string>>/64                   169 ns          169 ns      3720941
+BenchRange<std::unordered_set<std::string>>/512                 1808 ns         1808 ns       385262
+BenchRange<std::unordered_set<std::string>>/1024                3911 ns         3911 ns       135372
+BenchRange<tsl::ordered_set<std::string>>/1                     3.03 ns         3.03 ns    244967735
+BenchRange<tsl::ordered_set<std::string>>/8                     32.7 ns         32.7 ns     23549199
+BenchRange<tsl::ordered_set<std::string>>/64                     247 ns          247 ns      2559984
+BenchRange<tsl::ordered_set<std::string>>/512                   2137 ns         2137 ns       377852
+BenchRange<tsl::ordered_set<std::string>>/1024                  3324 ns         3322 ns       176526
+BenchRange<tsl::sparse_set<std::string>>/1                      3.73 ns         3.73 ns    213055401
+BenchRange<tsl::sparse_set<std::string>>/8                      34.4 ns         34.4 ns     18380662
+BenchRange<tsl::sparse_set<std::string>>/64                      240 ns          240 ns      3186653
+BenchRange<tsl::sparse_set<std::string>>/512                    2402 ns         2374 ns       290828
+BenchRange<tsl::sparse_set<std::string>>/1024                   3271 ns         3270 ns       212446
+BenchRange<boost::container::flat_set<std::string>>/1           2.85 ns         2.85 ns    225685440
+BenchRange<boost::container::flat_set<std::string>>/8           38.2 ns         38.2 ns     18944822
+BenchRange<boost::container::flat_set<std::string>>/64           183 ns          183 ns      4293882
+BenchRange<boost::container::flat_set<std::string>>/512         1416 ns         1416 ns       495355
+BenchRange<boost::container::flat_set<std::string>>/1024        3119 ns         3117 ns       240690
+BenchRangeMulti<MultiContainer<std::string>, 0>/1               5.52 ns         5.52 ns    121729316
+BenchRangeMulti<MultiContainer<std::string>, 0>/8               37.1 ns         37.1 ns     21267718
+BenchRangeMulti<MultiContainer<std::string>, 0>/64               303 ns          303 ns      2509653
+BenchRangeMulti<MultiContainer<std::string>, 0>/512             3278 ns         3264 ns       198357
+BenchRangeMulti<MultiContainer<std::string>, 0>/1024            6641 ns         6636 ns       100090
+BenchRangeMulti<MultiContainer<std::string>, 1>/1               4.79 ns         4.78 ns    155636941
+BenchRangeMulti<MultiContainer<std::string>, 1>/8               35.5 ns         35.5 ns     19858591
+BenchRangeMulti<MultiContainer<std::string>, 1>/64               218 ns          216 ns      3673991
+BenchRangeMulti<MultiContainer<std::string>, 1>/512             2422 ns         2421 ns       244652
+BenchRangeMulti<MultiContainer<std::string>, 1>/1024            4720 ns         4718 ns       153718
+BenchRangeMulti<MultiContainer<std::string>, 2>/1               3.60 ns         3.60 ns    168451535
+BenchRangeMulti<MultiContainer<std::string>, 2>/8               35.6 ns         35.6 ns     17953385
+BenchRangeMulti<MultiContainer<std::string>, 2>/64               256 ns          254 ns      3014820
+BenchRangeMulti<MultiContainer<std::string>, 2>/512             2455 ns         2453 ns       270692
+BenchRangeMulti<MultiContainer<std::string>, 2>/1024            5407 ns         5405 ns       100000
+BenchRangeMulti<MultiHashContainer<std::string>, 0>/1           6.79 ns         6.79 ns     94646324
+BenchRangeMulti<MultiHashContainer<std::string>, 0>/8           41.0 ns         41.0 ns     16661248
+BenchRangeMulti<MultiHashContainer<std::string>, 0>/64           250 ns          250 ns      2883754
+BenchRangeMulti<MultiHashContainer<std::string>, 0>/512         3014 ns         3013 ns       235291
+BenchRangeMulti<MultiHashContainer<std::string>, 0>/1024        6951 ns         6948 ns       103241
+BenchRangeSet<eastl::vector_set<std::string>>/1                 30.2 ns         30.2 ns     34729964
+BenchRangeSet<eastl::vector_set<std::string>>/8                  212 ns          211 ns      5265876
+BenchRangeSet<eastl::vector_set<std::string>>/64                1083 ns         1081 ns       529853
+BenchRangeSet<eastl::vector_set<std::string>>/512              15505 ns        15495 ns        67032
+BenchRangeSet<eastl::vector_set<std::string>>/1024             22257 ns        22242 ns        27785
+BenchErase<std::set<std::string>>/1                             13.8 ns         13.7 ns     44078503
+BenchErase<std::set<std::string>>/8                             55.0 ns         54.9 ns     15114734
+BenchErase<std::set<std::string>>/64                             104 ns          104 ns      6669906
+BenchErase<std::set<std::string>>/512                            169 ns          169 ns      3459033
+BenchErase<std::set<std::string>>/1024                           177 ns          176 ns      3805158
+BenchErase<std::unordered_set<std::string>>/1                   3.47 ns         3.46 ns    273974761
+BenchErase<std::unordered_set<std::string>>/8                   28.0 ns         28.0 ns     27384853
+BenchErase<std::unordered_set<std::string>>/64                  32.7 ns         32.7 ns     22295695
+BenchErase<std::unordered_set<std::string>>/512                 40.8 ns         40.7 ns     17002627
+BenchErase<std::unordered_set<std::string>>/1024                39.4 ns         39.4 ns     16276553
+BenchErase<tsl::ordered_set<std::string>>/1                     32.6 ns         32.6 ns     23686713
+BenchErase<tsl::ordered_set<std::string>>/8                     41.5 ns         41.5 ns     12489577
+BenchErase<tsl::ordered_set<std::string>>/64                    38.8 ns         38.7 ns     18649971
+BenchErase<tsl::ordered_set<std::string>>/512                   70.1 ns         70.1 ns      8711761
+BenchErase<tsl::ordered_set<std::string>>/1024                   140 ns          140 ns      4359269
+BenchErase<tsl::sparse_set<std::string>>/1                      31.2 ns         31.2 ns     18835506
+BenchErase<tsl::sparse_set<std::string>>/8                      37.4 ns         37.4 ns     17976861
+BenchErase<tsl::sparse_set<std::string>>/64                     43.5 ns         43.5 ns     17440109
+BenchErase<tsl::sparse_set<std::string>>/512                    48.0 ns         48.0 ns     14934575
+BenchErase<tsl::sparse_set<std::string>>/1024                   52.0 ns         51.9 ns     10000000
+BenchErase<boost::container::flat_set<std::string>>/1           14.6 ns         14.6 ns     49546881
+BenchErase<boost::container::flat_set<std::string>>/8           50.2 ns         50.2 ns     12492367
+BenchErase<boost::container::flat_set<std::string>>/64          92.3 ns         92.3 ns      7898456
+BenchErase<boost::container::flat_set<std::string>>/512          145 ns          143 ns      5393133
+BenchErase<boost::container::flat_set<std::string>>/1024         181 ns          181 ns      4404191
+BenchErase<eastl::vector_set<std::string>>/1                    11.9 ns         11.9 ns     72126230
+BenchErase<eastl::vector_set<std::string>>/8                    44.5 ns         44.5 ns     16798200
+BenchErase<eastl::vector_set<std::string>>/64                   74.9 ns         74.9 ns     10426443
+BenchErase<eastl::vector_set<std::string>>/512                   124 ns          124 ns      6276528
+BenchErase<eastl::vector_set<std::string>>/1024                  154 ns          154 ns      4694014
+BenchEraseMulti<MultiContainer<std::string>>/1                  11.6 ns         11.6 ns     58519295
+BenchEraseMulti<MultiContainer<std::string>>/8                  46.1 ns         46.1 ns     15500651
+BenchEraseMulti<MultiContainer<std::string>>/64                 87.3 ns         87.3 ns      6782581
+BenchEraseMulti<MultiContainer<std::string>>/512                 145 ns          145 ns      4845809
+BenchEraseMulti<MultiContainer<std::string>>/1024                169 ns          169 ns      3799263
+BenchEraseMulti<eastl::vector_set<std::string>>/1               12.4 ns         12.4 ns     44169734
+BenchEraseMulti<eastl::vector_set<std::string>>/8               42.4 ns         42.4 ns     16465270
+BenchEraseMulti<eastl::vector_set<std::string>>/64              72.4 ns         72.4 ns     10217942
+BenchEraseMulti<eastl::vector_set<std::string>>/512              119 ns          119 ns      6158815
+BenchEraseMulti<eastl::vector_set<std::string>>/1024             153 ns          153 ns      4676477

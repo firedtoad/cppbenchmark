@@ -1,0 +1,61 @@
+2023-06-01T20:32:28+08:00
+Running ./bin/vec_push_pop
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 19.09, 16.28, 13.90
+------------------------------------------------------------------------------------------------------------
+Benchmark                                                                  Time             CPU   Iterations
+------------------------------------------------------------------------------------------------------------
+BenchPushPop<std::list<int>>/1                                          11.9 ns         11.9 ns     65859381
+BenchPushPop<std::list<int>>/8                                          99.7 ns         99.7 ns      7012537
+BenchPushPop<std::list<int>>/64                                          915 ns          915 ns       914400
+BenchPushPop<std::list<int>>/512                                        6041 ns         6041 ns       108234
+BenchPushPop<std::list<int>>/4096                                      53289 ns        53288 ns        10000
+BenchPushPop<std::list<int>>/32768                                    425901 ns       425902 ns         1530
+BenchPushPop<std::list<int>>/65536                                    853021 ns       853015 ns          903
+BenchPushPop<std::list<int, __gnu_cxx::__pool_alloc<int>>>/1            20.9 ns         20.9 ns     36645862
+BenchPushPop<std::list<int, __gnu_cxx::__pool_alloc<int>>>/8             149 ns          149 ns      5047182
+BenchPushPop<std::list<int, __gnu_cxx::__pool_alloc<int>>>/64            947 ns          947 ns       747175
+BenchPushPop<std::list<int, __gnu_cxx::__pool_alloc<int>>>/512          7651 ns         7651 ns        71520
+BenchPushPop<std::list<int, __gnu_cxx::__pool_alloc<int>>>/4096        59789 ns        59789 ns        13510
+BenchPushPop<std::list<int, __gnu_cxx::__pool_alloc<int>>>/32768      466242 ns       466243 ns         1490
+BenchPushPop<std::list<int, __gnu_cxx::__pool_alloc<int>>>/65536      954105 ns       954099 ns          823
+BenchQueuePushPop<std::queue<int>>/1                                    2.09 ns         2.09 ns    337940861
+BenchQueuePushPop<std::queue<int>>/8                                    17.2 ns         17.2 ns     42413892
+BenchQueuePushPop<std::queue<int>>/64                                    162 ns          162 ns      4904168
+BenchQueuePushPop<std::queue<int>>/512                                  1130 ns         1130 ns       646081
+BenchQueuePushPop<std::queue<int>>/4096                                 9423 ns         9423 ns        74955
+BenchQueuePushPop<std::queue<int>>/32768                               74005 ns        74006 ns         8840
+BenchQueuePushPop<std::queue<int>>/65536                              150286 ns       150286 ns         4352
+BenchPushPop<std::deque<int>>/1                                         2.07 ns         2.07 ns    363968759
+BenchPushPop<std::deque<int>>/8                                         16.2 ns         16.2 ns     42678236
+BenchPushPop<std::deque<int>>/64                                         147 ns          147 ns      4767178
+BenchPushPop<std::deque<int>>/512                                       1296 ns         1296 ns       614090
+BenchPushPop<std::deque<int>>/4096                                      9635 ns         9635 ns        71074
+BenchPushPop<std::deque<int>>/32768                                    73434 ns        73434 ns         9996
+BenchPushPop<std::deque<int>>/65536                                   152356 ns       152356 ns         4762
+BenchPushPop<std::deque<int, __gnu_cxx::__pool_alloc<int>>>/1           2.00 ns         2.00 ns    337274841
+BenchPushPop<std::deque<int, __gnu_cxx::__pool_alloc<int>>>/8           16.7 ns         16.7 ns     45831513
+BenchPushPop<std::deque<int, __gnu_cxx::__pool_alloc<int>>>/64           143 ns          143 ns      5174741
+BenchPushPop<std::deque<int, __gnu_cxx::__pool_alloc<int>>>/512         1182 ns         1182 ns       631479
+BenchPushPop<std::deque<int, __gnu_cxx::__pool_alloc<int>>>/4096        9497 ns         9497 ns        75378
+BenchPushPop<std::deque<int, __gnu_cxx::__pool_alloc<int>>>/32768      76406 ns        76376 ns         8796
+BenchPushPop<std::deque<int, __gnu_cxx::__pool_alloc<int>>>/65536     151201 ns       151150 ns         4742
+BenchPushErase<std::vector<Pod>>/1                                      5.18 ns         5.18 ns    145304550
+BenchPushErase<std::vector<Pod>>/8                                      42.9 ns         42.9 ns     16503760
+BenchPushErase<std::vector<Pod>>/64                                     1140 ns         1140 ns       691186
+BenchPushErase<std::vector<Pod>>/512                                    7176 ns         7176 ns        92393
+BenchPushErase<std::vector<Pod>>/4096                                 109119 ns       109118 ns         7665
+BenchPushErase<std::vector<Pod>>/32768                               1406818 ns      1406787 ns          463
+BenchPushErase<std::vector<Pod>>/65536                               5387500 ns      5387523 ns          100
+BenchPmrPushErase<std::pmr::vector<Pod>>/1                              13.0 ns         13.0 ns     51844920
+BenchPmrPushErase<std::pmr::vector<Pod>>/8                              95.5 ns         95.5 ns      6995959
+BenchPmrPushErase<std::pmr::vector<Pod>>/64                             1501 ns         1501 ns       419651
+BenchPmrPushErase<std::pmr::vector<Pod>>/512                            9030 ns         9030 ns        66389
+BenchPmrPushErase<std::pmr::vector<Pod>>/4096                         123835 ns       123836 ns         5515
+BenchPmrPushErase<std::pmr::vector<Pod>>/32768                       2529441 ns      2529425 ns          329
+BenchPmrPushErase<std::pmr::vector<Pod>>/65536                       5924742 ns      5924699 ns          125

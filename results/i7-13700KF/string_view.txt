@@ -1,0 +1,15 @@
+2023-06-01T20:27:24+08:00
+Running ./bin/string_view
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 13.58, 12.58, 12.19
+---------------------------------------------------------
+Benchmark               Time             CPU   Iterations
+---------------------------------------------------------
+BenchAddConst        11.2 ns         11.2 ns     61100758
+BenchAddRaw          9.69 ns         9.69 ns     83901303
+BenchAddRValue       6.75 ns         6.75 ns    103499345

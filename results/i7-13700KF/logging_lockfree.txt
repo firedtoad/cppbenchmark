@@ -1,0 +1,22 @@
+2023-06-01T20:27:24+08:00
+Running ./bin/logging_lockfree
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 13.58, 12.58, 12.19
+-------------------------------------------------------------------
+Benchmark                         Time             CPU   Iterations
+-------------------------------------------------------------------
+BM_SpdLog                       267 ns          253 ns      2282977
+BM_SpdLog/threads:1             336 ns          334 ns      2932538
+BM_SpdLog/threads:2             409 ns          563 ns      1691416
+BM_SpdLog/threads:4             477 ns          813 ns      1127188
+BM_SpdLog/threads:8             393 ns         1237 ns       841528
+BM_SpdLogAsync                  217 ns          217 ns      3432320
+BM_SpdLogAsync/threads:1        413 ns          411 ns      3077344
+BM_SpdLogAsync/threads:2        183 ns          365 ns      2706014
+BM_SpdLogAsync/threads:4        154 ns          605 ns       964484
+BM_SpdLogAsync/threads:8        117 ns          758 ns       782032

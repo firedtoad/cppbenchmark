@@ -1,0 +1,18 @@
+int main(int, char **)134
+int main(int, char **)146
+2023-06-01T20:33:51+08:00
+Running ./bin/long_jump
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 18.69, 16.72, 14.25
+-------------------------------------------------------------
+Benchmark                   Time             CPU   Iterations
+-------------------------------------------------------------
+BM_LongJumpNoJump        1.75 ns         1.75 ns    463968231
+BM_LongJump               907 ns          907 ns       855563
+BM_TryCatchNoThrow      0.219 ns        0.219 ns   1000000000
+BM_TryCatch               557 ns          557 ns      1281953

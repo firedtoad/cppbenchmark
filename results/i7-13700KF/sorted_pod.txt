@@ -1,0 +1,108 @@
+1
+0
+1
+1
+1
+1
+1
+0
+0
+1
+1
+0
+2023-06-01T20:30:19+08:00
+Running ./bin/sorted_pod
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 17.02, 14.90, 13.18
+-----------------------------------------------------------------------------------------------------------------
+Benchmark                                                                       Time             CPU   Iterations
+-----------------------------------------------------------------------------------------------------------------
+BenchInsertPod<std::vector<NonPod>>/2                                        85.8 ns         85.8 ns      8695470
+BenchInsertPod<std::vector<NonPod>>/8                                         968 ns          968 ns       757635
+BenchInsertPod<std::vector<NonPod>>/64                                       7439 ns         7439 ns        85765
+BenchInsertPod<std::vector<NonPod>>/512                                     98554 ns        98554 ns         7389
+BenchInsertPod<std::vector<NonPod>>/4096                                  4219646 ns      4218808 ns          167
+BenchInsertPod<std::vector<NonPod>>/32768                                36794336 ns     36789337 ns           19
+BenchInsertPod<std::vector<NonPod>>/65536                                99056862 ns     99054587 ns            6
+BenchInsertPod<std::vector<Pod>>/2                                           80.7 ns         80.7 ns      9503350
+BenchInsertPod<std::vector<Pod>>/8                                            994 ns          994 ns       761168
+BenchInsertPod<std::vector<Pod>>/64                                          7611 ns         7611 ns        91390
+BenchInsertPod<std::vector<Pod>>/512                                       102815 ns       102813 ns         7280
+BenchInsertPod<std::vector<Pod>>/4096                                     4907053 ns      4905748 ns          129
+BenchInsertPod<std::vector<Pod>>/32768                                   39106395 ns     39099636 ns           18
+BenchInsertPod<std::vector<Pod>>/65536                                  123880265 ns    123878439 ns            6
+BenchInsertPod<std::vector<TriviallyCopy>>/2                                 86.5 ns         86.5 ns      9371928
+BenchInsertPod<std::vector<TriviallyCopy>>/8                                 1007 ns         1007 ns       756198
+BenchInsertPod<std::vector<TriviallyCopy>>/64                                7663 ns         7663 ns        94721
+BenchInsertPod<std::vector<TriviallyCopy>>/512                              96464 ns        96464 ns         7333
+BenchInsertPod<std::vector<TriviallyCopy>>/4096                           5672713 ns      5672156 ns          147
+BenchInsertPod<std::vector<TriviallyCopy>>/32768                         95690278 ns     95677146 ns            7
+BenchInsertPod<std::vector<TriviallyCopy>>/65536                        198280208 ns    198277926 ns            3
+BenchInsertPod<std::vector<NoTriviallyCopy>>/2                               86.6 ns         86.6 ns      6517539
+BenchInsertPod<std::vector<NoTriviallyCopy>>/8                               1003 ns         1003 ns       732496
+BenchInsertPod<std::vector<NoTriviallyCopy>>/64                              8603 ns         8603 ns        90879
+BenchInsertPod<std::vector<NoTriviallyCopy>>/512                            99989 ns        99989 ns         7064
+BenchInsertPod<std::vector<NoTriviallyCopy>>/4096                         4977399 ns      4937385 ns          163
+BenchInsertPod<std::vector<NoTriviallyCopy>>/32768                       71193180 ns     71192629 ns           10
+BenchInsertPod<std::vector<NoTriviallyCopy>>/65536                      171528762 ns    171527461 ns            4
+BenchInsertPod<std::vector<std::pair<int, TriviallyCopy>>>/2                  192 ns          192 ns      3993755
+BenchInsertPod<std::vector<std::pair<int, TriviallyCopy>>>/8                 1167 ns         1167 ns       628715
+BenchInsertPod<std::vector<std::pair<int, TriviallyCopy>>>/64                9926 ns         9926 ns        71317
+BenchInsertPod<std::vector<std::pair<int, TriviallyCopy>>>/512             117374 ns       117372 ns         6117
+BenchInsertPod<std::vector<std::pair<int, TriviallyCopy>>>/4096           4400131 ns      4399705 ns          125
+BenchInsertPod<std::vector<std::pair<int, TriviallyCopy>>>/32768         88237476 ns     87252176 ns            6
+BenchInsertPod<std::vector<std::pair<int, TriviallyCopy>>>/65536        189626735 ns    189599761 ns            3
+BenchInsertPod<std::vector<std::pair<const int, TriviallyCopy>>>/2            172 ns          172 ns      3579459
+BenchInsertPod<std::vector<std::pair<const int, TriviallyCopy>>>/8           1170 ns         1170 ns       572233
+BenchInsertPod<std::vector<std::pair<const int, TriviallyCopy>>>/64          9848 ns         9846 ns        66252
+BenchInsertPod<std::vector<std::pair<const int, TriviallyCopy>>>/512       121202 ns       121066 ns         6055
+BenchInsertPod<std::vector<std::pair<const int, TriviallyCopy>>>/4096    12202630 ns     12199911 ns           56
+BenchInsertPod<std::vector<std::pair<const int, TriviallyCopy>>>/32768   98670642 ns     98669591 ns            6
+BenchInsertPod<std::vector<std::pair<const int, TriviallyCopy>>>/65536  186581705 ns    186580363 ns            3
+BenchUninitializedCopy<NonPod>/2                                              111 ns          111 ns      6441145
+BenchUninitializedCopy<NonPod>/8                                             1286 ns         1286 ns       585438
+BenchUninitializedCopy<NonPod>/64                                            9282 ns         9282 ns        78780
+BenchUninitializedCopy<NonPod>/512                                         183587 ns       183584 ns         3919
+BenchUninitializedCopy<NonPod>/4096                                       4040276 ns      4040136 ns          205
+BenchUninitializedCopy<NonPod>/32768                                     31301404 ns     31301140 ns           23
+BenchUninitializedCopy<NonPod>/65536                                     59981947 ns     59980758 ns            9
+BenchUninitializedCopy<Pod>/2                                                 103 ns          103 ns      5853572
+BenchUninitializedCopy<Pod>/8                                                1156 ns         1156 ns       617913
+BenchUninitializedCopy<Pod>/64                                               8701 ns         8701 ns        82570
+BenchUninitializedCopy<Pod>/512                                            152299 ns       152298 ns         4895
+BenchUninitializedCopy<Pod>/4096                                          2208631 ns      2208508 ns          250
+BenchUninitializedCopy<Pod>/32768                                        20654561 ns     20654094 ns           39
+BenchUninitializedCopy<Pod>/65536                                        36747727 ns     36745994 ns           19
+BenchUninitializedCopy<TriviallyCopy>/2                                       102 ns          102 ns      5899161
+BenchUninitializedCopy<TriviallyCopy>/8                                      1153 ns         1153 ns       622238
+BenchUninitializedCopy<TriviallyCopy>/64                                     8963 ns         8963 ns        76984
+BenchUninitializedCopy<TriviallyCopy>/512                                  157159 ns       157143 ns         3816
+BenchUninitializedCopy<TriviallyCopy>/4096                                2036814 ns      2036820 ns          395
+BenchUninitializedCopy<TriviallyCopy>/32768                              18402956 ns     18402750 ns           35
+BenchUninitializedCopy<TriviallyCopy>/65536                              38601607 ns     38600987 ns           18
+BenchUninitializedCopy<NoTriviallyCopy>/2                                     116 ns          116 ns      6307962
+BenchUninitializedCopy<NoTriviallyCopy>/8                                    1267 ns         1267 ns       589925
+BenchUninitializedCopy<NoTriviallyCopy>/64                                   9222 ns         9222 ns        74091
+BenchUninitializedCopy<NoTriviallyCopy>/512                                169442 ns       169438 ns         4010
+BenchUninitializedCopy<NoTriviallyCopy>/4096                              4694303 ns      4694269 ns          154
+BenchUninitializedCopy<NoTriviallyCopy>/32768                            31707725 ns     31707455 ns           21
+BenchUninitializedCopy<NoTriviallyCopy>/65536                            66025942 ns     66024707 ns           11
+BenchUninitializedCopy<std::pair<int, TriviallyCopy>>/2                       108 ns          108 ns      6215019
+BenchUninitializedCopy<std::pair<int, TriviallyCopy>>/8                      1200 ns         1200 ns       593979
+BenchUninitializedCopy<std::pair<int, TriviallyCopy>>/64                     9264 ns         9264 ns        65922
+BenchUninitializedCopy<std::pair<int, TriviallyCopy>>/512                  165778 ns       165778 ns         4022
+BenchUninitializedCopy<std::pair<int, TriviallyCopy>>/4096                3709705 ns      3709627 ns          178
+BenchUninitializedCopy<std::pair<int, TriviallyCopy>>/32768              32400228 ns     32399137 ns           21
+BenchUninitializedCopy<std::pair<int, TriviallyCopy>>/65536              77845660 ns     77844740 ns           11
+BenchUninitializedCopy<std::pair<const int, TriviallyCopy>>/2                 109 ns          109 ns      6003590
+BenchUninitializedCopy<std::pair<const int, TriviallyCopy>>/8                1226 ns         1226 ns       580858
+BenchUninitializedCopy<std::pair<const int, TriviallyCopy>>/64               9038 ns         9038 ns        76872
+BenchUninitializedCopy<std::pair<const int, TriviallyCopy>>/512            170625 ns       170626 ns         4077
+BenchUninitializedCopy<std::pair<const int, TriviallyCopy>>/4096          4696825 ns      4696786 ns          156
+BenchUninitializedCopy<std::pair<const int, TriviallyCopy>>/32768        29976827 ns     29976571 ns           22
+BenchUninitializedCopy<std::pair<const int, TriviallyCopy>>/65536        71712128 ns     71711554 ns           13

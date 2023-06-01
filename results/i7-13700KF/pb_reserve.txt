@@ -1,0 +1,64 @@
+user cpu : 0s 0us
+sys cpu : 0s 14373us
+max rss : 34080 kb / 33.2812 MB
+page reclaims : 8908
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+user cpu : 0s 0us
+sys cpu : 0s 8390us
+max rss : 34320 kb / 33.5156 MB
+page reclaims : 8587
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+user cpu : 0s 2360us
+sys cpu : 0s 13194us
+max rss : 30096 kb / 29.3906 MB
+page reclaims : 7527
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+2023-06-01T20:27:24+08:00
+Running ./bin/pb_reserve
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 13.58, 12.58, 12.19
+------------------------------------------------------------------
+Benchmark                        Time             CPU   Iterations
+------------------------------------------------------------------
+BenchAdd/1                     137 ns          137 ns      5199145
+BenchAdd/8                    1195 ns         1195 ns       593381
+BenchAdd/64                   8109 ns         8109 ns        80016
+BenchAdd/512                106310 ns       106302 ns         9323
+BenchAdd/4096              1457866 ns      1457819 ns          454
+BenchAdd/32768            17025721 ns     17003546 ns           43
+BenchAdd/65536            33182535 ns     33172985 ns           22
+BenchAddArena/1               95.8 ns         95.8 ns      7804688
+BenchAddArena/8                394 ns          394 ns      1746668
+BenchAddArena/64              2037 ns         2036 ns       373893
+BenchAddArena/512            16508 ns        16508 ns        39777
+BenchAddArena/4096          497138 ns       497120 ns         1251
+BenchAddArena/32768        5650443 ns      5650082 ns          132
+BenchAddArena/65536       11383145 ns     11382774 ns           53
+BenchReserve/1                 105 ns          105 ns      6816593
+BenchReserve/8                 980 ns          980 ns       789072
+BenchReserve/64              10108 ns        10107 ns        73287
+BenchReserve/512             87273 ns        87267 ns         6467
+BenchReserve/4096          1317165 ns      1316985 ns          461
+BenchReserve/32768        16554962 ns     16554849 ns           42
+BenchReserve/65536        35820659 ns     35812961 ns           19
+BenchReserveArena/1           95.5 ns         95.2 ns      6718867
+BenchReserveArena/8            457 ns          457 ns      1590887
+BenchReserveArena/64          2544 ns         2535 ns       322255
+BenchReserveArena/512        20372 ns        20372 ns        35354
+BenchReserveArena/4096      155265 ns       155266 ns         5201
+BenchReserveArena/32768    4968521 ns      4968254 ns          136
+BenchReserveArena/65536   11585023 ns     11527438 ns           54

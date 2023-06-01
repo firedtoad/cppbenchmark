@@ -1,0 +1,222 @@
+user cpu : 0s 858353us
+sys cpu : 0s 27744us
+max rss : 73912 kb / 72.1797 MB
+page reclaims : 19086
+page faults : 0
+voluntary switches : 0
+involuntary switches : 4
+
+user cpu : 0s 348971us
+sys cpu : 0s 33170us
+max rss : 107696 kb / 105.172 MB
+page reclaims : 22875
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+user cpu : 0s 8909us
+sys cpu : 0s 1970us
+max rss : 4096 kb / 4 MB
+page reclaims : 65
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+user cpu : 0s 34717us
+sys cpu : 0s 8359us
+max rss : 20644 kb / 20.1602 MB
+page reclaims : 1622
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+user cpu : 0s 29320us
+sys cpu : 0s 2691us
+max rss : 6600 kb / 6.44531 MB
+page reclaims : 1675
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+2023-06-01T20:32:38+08:00
+Running ./bin/boost_multi_index_set
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 19.08, 16.32, 13.93
+-------------------------------------------------------------------------------------------------
+Benchmark                                                       Time             CPU   Iterations
+-------------------------------------------------------------------------------------------------
+BenchInsert<sorted_vector<uint32_t>>/1                       12.8 ns         12.8 ns     59163855
+BenchInsert<sorted_vector<uint32_t>>/8                        160 ns          160 ns      4505323
+BenchInsert<sorted_vector<uint32_t>>/64                      2067 ns         2067 ns       345997
+BenchInsert<sorted_vector<uint32_t>>/512                    24606 ns        24606 ns        28695
+BenchInsert<sorted_vector<uint32_t>>/1024                   57415 ns        57414 ns        12233
+BenchInsert<std::set<uint32_t>>/1                            12.8 ns         12.8 ns     49463337
+BenchInsert<std::set<uint32_t>>/8                             229 ns          229 ns      3041397
+BenchInsert<std::set<uint32_t>>/64                           3332 ns         3332 ns       177275
+BenchInsert<std::set<uint32_t>>/512                         33859 ns        33859 ns        21059
+BenchInsert<std::set<uint32_t>>/1024                        71175 ns        71175 ns         9945
+BenchInsert<tsl::ordered_set<uint32_t>>/1                    35.3 ns         35.3 ns     18819861
+BenchInsert<tsl::ordered_set<uint32_t>>/8                     260 ns          260 ns      2623553
+BenchInsert<tsl::ordered_set<uint32_t>>/64                   1895 ns         1895 ns       354234
+BenchInsert<tsl::ordered_set<uint32_t>>/512                 16467 ns        16467 ns        42399
+BenchInsert<tsl::ordered_set<uint32_t>>/1024                30603 ns        30603 ns        23422
+BenchInsert<tsl::sparse_set<uint32_t>>/1                     34.9 ns         34.9 ns     18373005
+BenchInsert<tsl::sparse_set<uint32_t>>/8                      300 ns          300 ns      2462254
+BenchInsert<tsl::sparse_set<uint32_t>>/64                    2621 ns         2621 ns       272672
+BenchInsert<tsl::sparse_set<uint32_t>>/512                  21409 ns        21409 ns        33314
+BenchInsert<tsl::sparse_set<uint32_t>>/1024                 41096 ns        41096 ns        17825
+BenchInsert<boost::container::flat_set<uint32_t>>/1          13.1 ns         13.1 ns     46704256
+BenchInsert<boost::container::flat_set<uint32_t>>/8           189 ns          189 ns      3693829
+BenchInsert<boost::container::flat_set<uint32_t>>/64         2112 ns         2112 ns       369394
+BenchInsert<boost::container::flat_set<uint32_t>>/512       24834 ns        24834 ns        30689
+BenchInsert<boost::container::flat_set<uint32_t>>/1024      55534 ns        55534 ns        10000
+BenchInsertMulti<MultiContainer<uint32_t>>/1                 43.5 ns         43.5 ns     15922181
+BenchInsertMulti<MultiContainer<uint32_t>>/8                  291 ns          291 ns      2323735
+BenchInsertMulti<MultiContainer<uint32_t>>/64                5414 ns         5414 ns       100000
+BenchInsertMulti<MultiContainer<uint32_t>>/512              58033 ns        58033 ns        13637
+BenchInsertMulti<MultiContainer<uint32_t>>/1024            113669 ns       113665 ns         6485
+BenchInsertMulti<MultiHashContainer<uint32_t>>/1             30.7 ns         30.7 ns     25352402
+BenchInsertMulti<MultiHashContainer<uint32_t>>/8              137 ns          137 ns      5259517
+BenchInsertMulti<MultiHashContainer<uint32_t>>/64            1797 ns         1797 ns       460683
+BenchInsertMulti<MultiHashContainer<uint32_t>>/512          23677 ns        23677 ns        28321
+BenchInsertMulti<MultiHashContainer<uint32_t>>/1024         50756 ns        50756 ns        10000
+BenchInsert<eastl::vector_set<uint64_t>>/1                   13.4 ns         13.4 ns     51772802
+BenchInsert<eastl::vector_set<uint64_t>>/8                    146 ns          146 ns      5110448
+BenchInsert<eastl::vector_set<uint64_t>>/64                  1997 ns         1997 ns       382427
+BenchInsert<eastl::vector_set<uint64_t>>/512                25787 ns        25787 ns        25917
+BenchInsert<eastl::vector_set<uint64_t>>/1024               57805 ns        57804 ns        12490
+BenchFind<sorted_vector<uint64_t>>/1                         5.27 ns         5.27 ns    100000000
+BenchFind<sorted_vector<uint64_t>>/8                         9.97 ns         9.97 ns     60047912
+BenchFind<sorted_vector<uint64_t>>/64                        24.7 ns         24.7 ns     28161183
+BenchFind<sorted_vector<uint64_t>>/512                       38.5 ns         38.5 ns     17690496
+BenchFind<sorted_vector<uint64_t>>/1024                      45.5 ns         45.5 ns     15909704
+BenchFind<std::set<uint64_t>>/1                              2.33 ns         2.33 ns    351217488
+BenchFind<std::set<uint64_t>>/8                              9.99 ns        10.00 ns    139932018
+BenchFind<std::set<uint64_t>>/64                             12.9 ns         12.9 ns     51840240
+BenchFind<std::set<uint64_t>>/512                            19.4 ns         19.4 ns     26522867
+BenchFind<std::set<uint64_t>>/1024                           27.0 ns         27.0 ns     27151863
+BenchFind<tsl::ordered_set<uint32_t>>/1                      5.29 ns         5.29 ns    100000000
+BenchFind<tsl::ordered_set<uint32_t>>/8                      8.33 ns         8.33 ns     70513790
+BenchFind<tsl::ordered_set<uint32_t>>/64                     10.7 ns         10.7 ns     57209664
+BenchFind<tsl::ordered_set<uint32_t>>/512                    11.4 ns         11.4 ns     61173570
+BenchFind<tsl::ordered_set<uint32_t>>/1024                   11.4 ns         11.4 ns     55952868
+BenchFind<tsl::sparse_set<uint32_t>>/1                       7.17 ns         7.17 ns     93488290
+BenchFind<tsl::sparse_set<uint32_t>>/8                       9.52 ns         9.52 ns     60547556
+BenchFind<tsl::sparse_set<uint32_t>>/64                      10.2 ns         10.2 ns     61180144
+BenchFind<tsl::sparse_set<uint32_t>>/512                     10.5 ns         10.5 ns     70586015
+BenchFind<tsl::sparse_set<uint32_t>>/1024                    10.6 ns         10.6 ns     71589934
+BenchFind<boost::container::flat_set<uint64_t>>/1            5.81 ns         5.81 ns    134304635
+BenchFind<boost::container::flat_set<uint64_t>>/8            9.89 ns         9.89 ns     70502798
+BenchFind<boost::container::flat_set<uint64_t>>/64           25.5 ns         25.5 ns     26907743
+BenchFind<boost::container::flat_set<uint64_t>>/512          38.1 ns         38.1 ns     17858821
+BenchFind<boost::container::flat_set<uint64_t>>/1024         44.8 ns         44.8 ns     16105414
+BenchFindMulti<MultiContainer<uint64_t>, 0>/1                4.07 ns         4.07 ns    164540511
+BenchFindMulti<MultiContainer<uint64_t>, 0>/8                12.6 ns         12.6 ns     60761098
+BenchFindMulti<MultiContainer<uint64_t>, 0>/64               21.3 ns         21.3 ns     33173130
+BenchFindMulti<MultiContainer<uint64_t>, 0>/512              38.0 ns         38.0 ns     19001161
+BenchFindMulti<MultiContainer<uint64_t>, 0>/1024             47.3 ns         47.3 ns     15113374
+BenchFindMultiHash<MultiHashContainer<uint64_t>>/1           2.62 ns         2.62 ns    293497322
+BenchFindMultiHash<MultiHashContainer<uint64_t>>/8           3.65 ns         3.65 ns    185604800
+BenchFindMultiHash<MultiHashContainer<uint64_t>>/64          8.94 ns         8.94 ns     85269549
+BenchFindMultiHash<MultiHashContainer<uint64_t>>/512         8.07 ns         8.07 ns     85710773
+BenchFindMultiHash<MultiHashContainer<uint64_t>>/1024        9.36 ns         9.36 ns     80402002
+BenchFind<eastl::vector_set<uint64_t>>/1                     3.91 ns         3.91 ns    200143435
+BenchFind<eastl::vector_set<uint64_t>>/8                     11.2 ns         11.2 ns     62415833
+BenchFind<eastl::vector_set<uint64_t>>/64                    20.1 ns         20.1 ns     33932889
+BenchFind<eastl::vector_set<uint64_t>>/512                   34.2 ns         34.2 ns     19717480
+BenchFind<eastl::vector_set<uint64_t>>/1024                  40.1 ns         40.1 ns     17624141
+BenchRange<sorted_vector<uint32_t>>/1                       0.556 ns        0.556 ns   1000000000
+BenchRange<sorted_vector<uint32_t>>/8                        1.76 ns         1.76 ns    325304694
+BenchRange<sorted_vector<uint32_t>>/64                       3.69 ns         3.69 ns    186251259
+BenchRange<sorted_vector<uint32_t>>/512                      9.65 ns         9.65 ns     63761091
+BenchRange<sorted_vector<uint32_t>>/1024                     18.1 ns         18.1 ns     38575242
+BenchRange<std::set<uint32_t>>/1                             1.16 ns         1.16 ns    733677938
+BenchRange<std::set<uint32_t>>/8                             17.4 ns         17.4 ns     36898495
+BenchRange<std::set<uint32_t>>/64                             155 ns          155 ns      4911167
+BenchRange<std::set<uint32_t>>/512                           1306 ns         1306 ns       562757
+BenchRange<std::set<uint32_t>>/1024                          3130 ns         3130 ns       222902
+BenchRange<tsl::ordered_set<uint32_t>>/1                    0.400 ns        0.400 ns   1000000000
+BenchRange<tsl::ordered_set<uint32_t>>/8                     3.64 ns         3.64 ns    183081484
+BenchRange<tsl::ordered_set<uint32_t>>/64                    23.0 ns         23.0 ns     33170853
+BenchRange<tsl::ordered_set<uint32_t>>/512                    153 ns          153 ns      4950765
+BenchRange<tsl::ordered_set<uint32_t>>/1024                   325 ns          325 ns      2246966
+BenchRange<tsl::sparse_set<uint32_t>>/1                      1.21 ns         1.21 ns    646396742
+BenchRange<tsl::sparse_set<uint32_t>>/8                      4.00 ns         4.00 ns    192300934
+BenchRange<tsl::sparse_set<uint32_t>>/64                     24.7 ns         24.7 ns     30032621
+BenchRange<tsl::sparse_set<uint32_t>>/512                     183 ns          183 ns      3740530
+BenchRange<tsl::sparse_set<uint32_t>>/1024                    368 ns          368 ns      1692759
+BenchRange<boost::container::flat_set<uint32_t>>/1          0.745 ns        0.745 ns   1000000000
+BenchRange<boost::container::flat_set<uint32_t>>/8           1.92 ns         1.92 ns    367938004
+BenchRange<boost::container::flat_set<uint32_t>>/64          3.74 ns         3.74 ns    189574575
+BenchRange<boost::container::flat_set<uint32_t>>/512         13.0 ns         13.0 ns     59440382
+BenchRange<boost::container::flat_set<uint32_t>>/1024        25.4 ns         25.4 ns     29262020
+BenchRangeMulti<MultiContainer<uint32_t>, 0>/1               1.00 ns         1.00 ns    609042759
+BenchRangeMulti<MultiContainer<uint32_t>, 0>/8               9.02 ns         9.02 ns     77689842
+BenchRangeMulti<MultiContainer<uint32_t>, 0>/64               144 ns          144 ns      3714367
+BenchRangeMulti<MultiContainer<uint32_t>, 0>/512             1402 ns         1402 ns       514337
+BenchRangeMulti<MultiContainer<uint32_t>, 0>/1024            4420 ns         4420 ns       162120
+BenchRangeMulti<MultiContainer<uint32_t>, 1>/1              0.473 ns        0.473 ns   1000000000
+BenchRangeMulti<MultiContainer<uint32_t>, 1>/8               3.41 ns         3.41 ns    224776069
+BenchRangeMulti<MultiContainer<uint32_t>, 1>/64              73.4 ns         73.4 ns      9416559
+BenchRangeMulti<MultiContainer<uint32_t>, 1>/512              946 ns          946 ns       760478
+BenchRangeMulti<MultiContainer<uint32_t>, 1>/1024            3021 ns         3021 ns       239431
+BenchRangeMulti<MultiContainer<uint32_t>, 2>/1              0.448 ns        0.448 ns   1000000000
+BenchRangeMulti<MultiContainer<uint32_t>, 2>/8               5.06 ns         5.06 ns    141602218
+BenchRangeMulti<MultiContainer<uint32_t>, 2>/64               132 ns          132 ns      4330292
+BenchRangeMulti<MultiContainer<uint32_t>, 2>/512             1657 ns         1657 ns       455927
+BenchRangeMulti<MultiContainer<uint32_t>, 2>/1024            4036 ns         4036 ns       191932
+BenchRangeMulti<MultiHashContainer<uint32_t>, 0>/1          0.556 ns        0.556 ns   1000000000
+BenchRangeMulti<MultiHashContainer<uint32_t>, 0>/8           7.02 ns         7.02 ns    104828713
+BenchRangeMulti<MultiHashContainer<uint32_t>, 0>/64           164 ns          164 ns      4543342
+BenchRangeMulti<MultiHashContainer<uint32_t>, 0>/512         1677 ns         1677 ns       406156
+BenchRangeMulti<MultiHashContainer<uint32_t>, 0>/1024        3834 ns         3834 ns       186933
+BenchRangeSet<eastl::vector_set<uint32_t>>/1                0.587 ns        0.587 ns   1000000000
+BenchRangeSet<eastl::vector_set<uint32_t>>/8                 1.93 ns         1.93 ns    386943293
+BenchRangeSet<eastl::vector_set<uint32_t>>/64                3.68 ns         3.68 ns    178852524
+BenchRangeSet<eastl::vector_set<uint32_t>>/512               8.93 ns         8.93 ns     88637967
+BenchRangeSet<eastl::vector_set<uint32_t>>/1024              28.2 ns         28.2 ns     31095752
+BenchErase<sorted_vector<uint64_t>>/1                        1.86 ns         1.86 ns    341527239
+BenchErase<sorted_vector<uint64_t>>/8                        2.50 ns         2.50 ns    276912109
+BenchErase<sorted_vector<uint64_t>>/64                       4.19 ns         4.19 ns    185311409
+BenchErase<sorted_vector<uint64_t>>/512                      5.97 ns         5.97 ns    115160754
+BenchErase<sorted_vector<uint64_t>>/1024                     9.64 ns         9.64 ns     59875338
+BenchErase<std::set<uint64_t>>/1                             5.79 ns         5.79 ns    100000000
+BenchErase<std::set<uint64_t>>/8                             12.3 ns         12.3 ns     50292752
+BenchErase<std::set<uint64_t>>/64                            22.8 ns         22.8 ns     28948923
+BenchErase<std::set<uint64_t>>/512                           38.0 ns         38.0 ns     18191872
+BenchErase<std::set<uint64_t>>/1024                          41.8 ns         41.8 ns     14199431
+BenchErase<tsl::ordered_set<uint32_t>>/1                     7.35 ns         7.35 ns     93846758
+BenchErase<tsl::ordered_set<uint32_t>>/8                     10.6 ns         10.6 ns     83838370
+BenchErase<tsl::ordered_set<uint32_t>>/64                    10.1 ns         10.1 ns     72434323
+BenchErase<tsl::ordered_set<uint32_t>>/512                   15.3 ns         15.3 ns     46054391
+BenchErase<tsl::ordered_set<uint32_t>>/1024                  25.8 ns         25.8 ns     23810686
+BenchErase<tsl::sparse_set<uint32_t>>/1                      6.29 ns         6.29 ns    118667673
+BenchErase<tsl::sparse_set<uint32_t>>/8                      8.19 ns         8.19 ns     81796560
+BenchErase<tsl::sparse_set<uint32_t>>/64                     10.4 ns         10.4 ns     67660726
+BenchErase<tsl::sparse_set<uint32_t>>/512                    11.1 ns         11.1 ns     63971525
+BenchErase<tsl::sparse_set<uint32_t>>/1024                   11.5 ns         11.5 ns     67830616
+BenchErase<boost::container::flat_set<uint64_t>>/1           3.53 ns         3.53 ns    160817048
+BenchErase<boost::container::flat_set<uint64_t>>/8           12.7 ns         12.7 ns     59593265
+BenchErase<boost::container::flat_set<uint64_t>>/64          21.3 ns         21.3 ns     30167063
+BenchErase<boost::container::flat_set<uint64_t>>/512         34.8 ns         34.8 ns     20038754
+BenchErase<boost::container::flat_set<uint64_t>>/1024        40.7 ns         40.7 ns     17761913
+BenchErase<eastl::vector_set<uint64_t>>/1                    3.80 ns         3.80 ns    189295746
+BenchErase<eastl::vector_set<uint64_t>>/8                    11.4 ns         11.4 ns     84298550
+BenchErase<eastl::vector_set<uint64_t>>/64                   19.4 ns         19.4 ns     40626445
+BenchErase<eastl::vector_set<uint64_t>>/512                  32.7 ns         32.7 ns     21663008
+BenchErase<eastl::vector_set<uint64_t>>/1024                 41.0 ns         40.9 ns     17128051
+BenchEraseMulti<MultiContainer<uint64_t>>/1                  5.43 ns         5.43 ns    100000000
+BenchEraseMulti<MultiContainer<uint64_t>>/8                  11.8 ns         11.8 ns     59591249
+BenchEraseMulti<MultiContainer<uint64_t>>/64                 24.8 ns         24.8 ns     29015069
+BenchEraseMulti<MultiContainer<uint64_t>>/512                42.2 ns         42.2 ns     16928037
+BenchEraseMulti<MultiContainer<uint64_t>>/1024               60.4 ns         60.4 ns     12719623
+BenchEraseMulti<eastl::vector_set<uint32_t>>/1               4.09 ns         4.09 ns    149873740
+BenchEraseMulti<eastl::vector_set<uint32_t>>/8               10.8 ns         10.8 ns     61613315
+BenchEraseMulti<eastl::vector_set<uint32_t>>/64              22.2 ns         22.2 ns     37651952
+BenchEraseMulti<eastl::vector_set<uint32_t>>/512             38.0 ns         38.0 ns     20793048
+BenchEraseMulti<eastl::vector_set<uint32_t>>/1024            43.7 ns         43.6 ns     16792950

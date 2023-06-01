@@ -1,0 +1,13 @@
+2023-06-01T20:29:22+08:00
+Running ./bin/07b_binpow_branchless
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 17.57, 14.51, 12.95
+------------------------------------------------------------------------------
+Benchmark                    Time             CPU   Iterations UserCounters...
+------------------------------------------------------------------------------
+BM_branchless/65536   13385399 ns     13383290 ns           58 items_per_second=4.89685M/s

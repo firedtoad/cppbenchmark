@@ -1,0 +1,19 @@
+2023-06-01T20:31:47+08:00
+Running ./bin/adt_set_order_find
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 16.85, 15.39, 13.51
+---------------------------------------------------------------------------------------------
+Benchmark                                                   Time             CPU   Iterations
+---------------------------------------------------------------------------------------------
+BenchOrderSetInt<std::set<int>>                          72.3 ns         72.3 ns     10159651
+BenchOrderSetInt<tsl::ordered_set<int>>                  5.76 ns         5.76 ns    100000000
+BenchOrderSetInt<absl::btree_set<int>>                   61.6 ns         61.6 ns     11646679
+BenchImmutableSetInt                                     67.7 ns         67.7 ns     10017814
+BenchOrderSetString<std::set<std::string>>                296 ns          296 ns      2552024
+BenchOrderSetString<tsl::ordered_set<std::string>>       47.9 ns         47.9 ns     15674581
+BenchOrderSetString<absl::btree_set<std::string>>         175 ns          175 ns      3590010

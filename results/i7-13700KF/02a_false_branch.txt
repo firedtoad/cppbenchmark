@@ -1,0 +1,13 @@
+2023-06-01T20:31:38+08:00
+Running ./bin/02a_false_branch
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 16.92, 15.38, 13.50
+----------------------------------------------------------------------------------
+Benchmark                        Time             CPU   Iterations UserCounters...
+----------------------------------------------------------------------------------
+BM_false_branch/4194304   15296784 ns     15296665 ns           45 items_per_second=274.197M/s

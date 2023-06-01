@@ -1,0 +1,56 @@
+std::vector<unsigned char, std::allocator<unsigned char> > size 1
+std::vector<unsigned short, std::allocator<unsigned short> > size 2
+std::vector<unsigned int, std::allocator<unsigned int> > size 4
+std::vector<unsigned long, std::allocator<unsigned long> > size 8
+
+std::deque<unsigned char, std::allocator<unsigned char> > size 1
+std::deque<unsigned short, std::allocator<unsigned short> > size 2
+std::deque<unsigned int, std::allocator<unsigned int> > size 4
+std::deque<unsigned long, std::allocator<unsigned long> > size 8
+
+std::queue<unsigned char, std::deque<unsigned char, std::allocator<unsigned char> > > size 1
+std::queue<unsigned short, std::deque<unsigned short, std::allocator<unsigned short> > > size 2
+std::queue<unsigned int, std::deque<unsigned int, std::allocator<unsigned int> > > size 4
+std::queue<unsigned long, std::deque<unsigned long, std::allocator<unsigned long> > > size 8
+
+std::_Node_handle<unsigned char, unsigned char, std::allocator<std::_Rb_tree_node<unsigned char> > > size 8
+std::_Node_handle<unsigned short, unsigned short, std::allocator<std::_Rb_tree_node<unsigned short> > > size 8
+std::_Node_handle<unsigned int, unsigned int, std::allocator<std::_Rb_tree_node<unsigned int> > > size 8
+std::_Node_handle<unsigned long, unsigned long, std::allocator<std::_Rb_tree_node<unsigned long> > > size 8
+
+std::_Rb_tree_node<unsigned char> size 40
+std::_Rb_tree_node<unsigned short> size 40
+std::_Rb_tree_node<unsigned int> size 40
+std::_Rb_tree_node<unsigned long> size 40
+
+std::_Node_handle<unsigned char, std::pair<unsigned char const, unsigned char>, std::allocator<std::_Rb_tree_node<std::pair<unsigned char const, unsigned char> > > > size 24
+std::_Node_handle<unsigned short, std::pair<unsigned short const, unsigned short>, std::allocator<std::_Rb_tree_node<std::pair<unsigned short const, unsigned short> > > > size 24
+std::_Node_handle<unsigned int, std::pair<unsigned int const, unsigned int>, std::allocator<std::_Rb_tree_node<std::pair<unsigned int const, unsigned int> > > > size 24
+std::_Node_handle<unsigned long, std::pair<unsigned long const, unsigned long>, std::allocator<std::_Rb_tree_node<std::pair<unsigned long const, unsigned long> > > > size 24
+
+std::_Rb_tree_node<std::pair<unsigned char, unsigned char> > size 40
+std::_Rb_tree_node<std::pair<unsigned short, unsigned short> > size 40
+std::_Rb_tree_node<std::pair<unsigned int, unsigned int> > size 40
+std::_Rb_tree_node<std::pair<unsigned long, unsigned long> > size 48
+
+std::_Node_handle<unsigned char, unsigned char, std::allocator<std::__detail::_Hash_node<unsigned char, false> > > size 8
+std::_Node_handle<unsigned short, unsigned short, std::allocator<std::__detail::_Hash_node<unsigned short, false> > > size 8
+std::_Node_handle<unsigned int, unsigned int, std::allocator<std::__detail::_Hash_node<unsigned int, false> > > size 8
+std::_Node_handle<unsigned long, unsigned long, std::allocator<std::__detail::_Hash_node<unsigned long, false> > > size 8
+std::_Node_handle<unsigned long, unsigned long, std::allocator<std::__detail::_Hash_node<unsigned long, false> > > size 8
+
+std::__detail::_Hash_node<unsigned char, false> size 16
+std::__detail::_Hash_node<unsigned short, false> size 16
+std::__detail::_Hash_node<unsigned int, false> size 16
+std::__detail::_Hash_node<unsigned long, false> size 16
+
+std::_Node_handle<unsigned char, std::pair<unsigned char const, unsigned char>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned char const, unsigned char>, false> > > size 24
+std::_Node_handle<unsigned short, std::pair<unsigned short const, unsigned short>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned short const, unsigned short>, false> > > size 24
+std::_Node_handle<unsigned int, std::pair<unsigned int const, unsigned int>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned int const, unsigned int>, false> > > size 24
+std::_Node_handle<unsigned long, std::pair<unsigned long const, unsigned long>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned long const, unsigned long>, false> > > size 24
+
+std::__detail::_Hash_node<std::pair<unsigned char, unsigned char>, false> size 16
+std::__detail::_Hash_node<std::pair<unsigned short, unsigned short>, false> size 16
+std::__detail::_Hash_node<std::pair<unsigned int, unsigned int>, false> size 16
+std::__detail::_Hash_node<std::pair<unsigned long, unsigned long>, false> size 24
+

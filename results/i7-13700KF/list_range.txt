@@ -1,0 +1,61 @@
+2023-06-01T20:32:51+08:00
+Running ./bin/list_range
+Run on (16 X 3417.6 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 19.22, 16.49, 14.02
+------------------------------------------------------------------------
+Benchmark                              Time             CPU   Iterations
+------------------------------------------------------------------------
+BenchListRange/1                   0.402 ns        0.402 ns   1000000000
+BenchListRange/8                    3.03 ns         3.03 ns    217752082
+BenchListRange/64                   50.5 ns         50.5 ns     10000000
+BenchListRange/512                   573 ns          573 ns      1287060
+BenchListRange/4096                10188 ns        10186 ns       115403
+BenchListRange/32768               95350 ns        95337 ns        18547
+BenchListRange/65536              205296 ns       205261 ns         8686
+BenchForwardListRange/1            0.264 ns        0.264 ns   1000000000
+BenchForwardListRange/8             2.74 ns         2.74 ns    283450057
+BenchForwardListRange/64            40.6 ns         40.6 ns     18794142
+BenchForwardListRange/512            629 ns          629 ns      1235474
+BenchForwardListRange/4096         13184 ns        13182 ns       100000
+BenchForwardListRange/32768       108639 ns       108621 ns        16003
+BenchForwardListRange/65536       218855 ns       218822 ns         8607
+BenchDequeRange/1                  0.490 ns        0.490 ns   1000000000
+BenchDequeRange/8                   3.97 ns         3.97 ns    168987660
+BenchDequeRange/64                  23.4 ns         23.4 ns     32739591
+BenchDequeRange/512                  146 ns          146 ns      4210810
+BenchDequeRange/4096                1089 ns         1089 ns       698438
+BenchDequeRange/32768               9342 ns         9341 ns        90904
+BenchDequeRange/65536              17387 ns        17384 ns        46950
+BenchVectorRange/1                 0.462 ns        0.461 ns   1000000000
+BenchVectorRange/8                  1.87 ns         1.87 ns    376824554
+BenchVectorRange/64                 12.5 ns         12.5 ns     56257916
+BenchVectorRange/512                66.6 ns         66.5 ns     10357610
+BenchVectorRange/4096                767 ns          767 ns       937108
+BenchVectorRange/32768              5117 ns         5117 ns       100000
+BenchVectorRange/65536             13465 ns        13459 ns        59592
+BenchBUListRange/1                 0.246 ns        0.246 ns   1000000000
+BenchBUListRange/8                  2.62 ns         2.62 ns    282518858
+BenchBUListRange/64                 52.4 ns         52.4 ns     14793542
+BenchBUListRange/512                 567 ns          567 ns      1255720
+BenchBUListRange/4096               4625 ns         4624 ns       152098
+BenchBUListRange/32768             38574 ns        38569 ns        17406
+BenchBUListRange/65536             78502 ns        78492 ns         9409
+BenchIntrusiveListRange/1          0.274 ns        0.274 ns   1000000000
+BenchIntrusiveListRange/8           2.62 ns         2.62 ns    250210001
+BenchIntrusiveListRange/64          44.5 ns         44.5 ns     16392090
+BenchIntrusiveListRange/512          576 ns          576 ns      1216487
+BenchIntrusiveListRange/4096        4461 ns         4460 ns       154256
+BenchIntrusiveListRange/32768      37191 ns        37185 ns        16327
+BenchIntrusiveListRange/65536      82802 ns        82703 ns         9608
+BenchPlfListRange/1                0.292 ns        0.292 ns   1000000000
+BenchPlfListRange/8                 2.58 ns         2.58 ns    270082644
+BenchPlfListRange/64                37.5 ns         37.5 ns     17893284
+BenchPlfListRange/512                555 ns          555 ns      1250564
+BenchPlfListRange/4096              5111 ns         5110 ns       100000
+BenchPlfListRange/32768            40466 ns        40461 ns        19420
+BenchPlfListRange/65536            80237 ns        80225 ns         9312
