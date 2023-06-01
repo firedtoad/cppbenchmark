@@ -435,7 +435,7 @@ template <typename ValueType, unsigned int NeighborhoodSize, bool StoreHash> cla
  * it should be a list<ValueType> or a set<Key>/map<Key, T>.
  */
 template <class ValueType, class KeySelect, class ValueSelect, class Hash, class KeyEqual, class Allocator, unsigned int NeighborhoodSize,
-          bool StoreHash, class GrowthPolicy, class OverflowContainer>
+          bool StoreHash, class GrowthPolicy, class OverflowContainer,class ValueTypeIt>
 class hopscotch_hash : private Hash, private KeyEqual, private GrowthPolicy
 {
   private:
@@ -460,6 +460,12 @@ class hopscotch_hash : private Hash, private KeyEqual, private GrowthPolicy
     using const_pointer   = const value_type *;
     using iterator        = hopscotch_iterator<false>;
     using const_iterator  = hopscotch_iterator<true>;
+
+    using value_type_it   = ValueTypeIt;
+    using reference_it       = value_type_it &;
+    using const_reference_it = const value_type_it &;
+    using pointer_it         = value_type_it *;
+    using const_pointer_it   = const value_type_it *;
 
   private:
     using hopscotch_bucket    = tsl::detail_hopscotch_hash::hopscotch_bucket<ValueType, NeighborhoodSize, StoreHash>;
@@ -506,10 +512,10 @@ class hopscotch_hash : private Hash, private KeyEqual, private GrowthPolicy
 
       public:
         using iterator_category = std::forward_iterator_tag;
-        using value_type        = const typename hopscotch_hash::value_type;
+        using value_type        = const typename hopscotch_hash::value_type_it;
         using difference_type   = std::ptrdiff_t;
-        using reference         = value_type &;
-        using pointer           = value_type *;
+        using reference         = typename std::conditional<IsConst, typename hopscotch_hash::const_reference_it, typename hopscotch_hash::reference_it>::type;
+        using pointer           = typename std::conditional<IsConst, typename hopscotch_hash::const_pointer_it, typename hopscotch_hash::pointer_it>::type;
 
         hopscotch_iterator() noexcept {}
 
@@ -551,20 +557,20 @@ class hopscotch_hash : private Hash, private KeyEqual, private GrowthPolicy
         {
             if (m_buckets_iterator != m_buckets_end_iterator)
             {
-                return m_buckets_iterator->value();
+                return reinterpret_cast<reference>(m_buckets_iterator->value());
             }
 
-            return *m_overflow_iterator;
+            return reinterpret_cast<reference>(*m_overflow_iterator);
         }
 
         pointer operator->() const
         {
             if (m_buckets_iterator != m_buckets_end_iterator)
             {
-                return std::addressof(m_buckets_iterator->value());
+                return reinterpret_cast<pointer>(std::addressof(m_buckets_iterator->value()));
             }
 
-            return std::addressof(*m_overflow_iterator);
+            return reinterpret_cast<pointer>(std::addressof(*m_overflow_iterator));
         }
 
         hopscotch_iterator &operator++()

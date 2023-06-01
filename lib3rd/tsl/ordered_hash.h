@@ -154,6 +154,14 @@ template <class T, class Deserializer> static T deserialize_value(Deserializer &
 #endif
 }
 
+template <typename T> struct is_pair : std::false_type
+{
+};
+template <typename T, typename U> struct is_pair<std::pair<T, U>> : std::true_type
+{
+};
+template <typename T> inline constexpr bool is_pair_v = is_pair<T>::value;
+
 /**
  * Each bucket entry stores an index which is the index in m_values
  * corresponding to the bucket's value and a hash (which may be truncated to 32
@@ -293,7 +301,8 @@ template <class IndexType> class bucket_entry
  * To resolve collisions in the buckets array, the structures use robin hood
  * linear probing with backward shift deletion.
  */
-template <class ValueType, class KeySelect, class ValueSelect, class Hash, class KeyEqual, class Allocator, class ValueTypeContainer, class IndexType>
+template <class ValueType, class KeySelect, class ValueSelect, class Hash, class KeyEqual, class Allocator, class ValueTypeContainer, class IndexType,
+          class ValueTypeIt>
 class ordered_hash : private Hash, private KeyEqual
 {
   private:
@@ -334,6 +343,12 @@ class ordered_hash : private Hash, private KeyEqual
 
     using values_container_type = ValueTypeContainer;
 
+    using value_type_it   = ValueTypeIt;
+    using reference_it       = value_type_it &;
+    using const_reference_it = const value_type_it &;
+    using pointer_it         = value_type_it *;
+    using const_pointer_it   = const value_type_it *;
+
   public:
     template <bool IsConst> class ordered_iterator
     {
@@ -347,10 +362,10 @@ class ordered_hash : private Hash, private KeyEqual
 
       public:
         using iterator_category = std::random_access_iterator_tag;
-        using value_type        = typename ordered_hash::value_type;
+        using value_type        = typename ordered_hash::value_type_it;
         using difference_type   = typename iterator::difference_type;
-        using reference         = typename std::conditional<IsConst, typename ordered_hash::const_reference, typename ordered_hash::reference>::type;
-        using pointer           = typename std::conditional<IsConst, typename ordered_hash::const_pointer, typename ordered_hash::pointer>::type;
+        using reference         = typename std::conditional<IsConst, typename ordered_hash::const_reference_it, typename ordered_hash::reference_it>::type;
+        using pointer           = typename std::conditional<IsConst, typename ordered_hash::const_pointer_it, typename ordered_hash::pointer_it>::type;
 
         ordered_iterator() noexcept {}
 
@@ -384,11 +399,11 @@ class ordered_hash : private Hash, private KeyEqual
 
         reference operator*() const
         {
-            return *m_iterator;
+            return reinterpret_cast<reference>(*m_iterator);
         }
         pointer operator->() const
         {
-            return m_iterator.operator->();
+            return reinterpret_cast<pointer>(std::addressof(*m_iterator));
         }
 
         ordered_iterator &operator++()

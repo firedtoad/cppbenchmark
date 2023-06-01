@@ -117,7 +117,7 @@ class hopscotch_map
 
     using overflow_container_type = std::list<std::pair<Key, T>, Allocator>;
     using ht = detail_hopscotch_hash::hopscotch_hash<std::pair<Key, T>, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, NeighborhoodSize,
-                                                     StoreHash, GrowthPolicy, overflow_container_type>;
+                                                     StoreHash, GrowthPolicy, overflow_container_type,std::pair<const Key, T>>;
 
   public:
     using key_type        = typename ht::key_type;

@@ -113,7 +113,7 @@ class ordered_map
         }
     };
 
-    using ht = detail_ordered_hash::ordered_hash<std::pair<Key, T>, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType>;
+    using ht = detail_ordered_hash::ordered_hash<std::pair<Key, T>, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType,std::pair<const Key, T>>;
 
   public:
     using key_type               = typename ht::key_type;

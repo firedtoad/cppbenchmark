@@ -287,6 +287,14 @@ template <class T, class Deserializer> static T deserialize_value(Deserializer &
 #endif
 }
 
+template <typename T> struct is_pair : std::false_type
+{
+};
+template <typename T, typename U> struct is_pair<std::pair<T, U>> : std::true_type
+{
+};
+template <typename T> inline constexpr bool is_pair_v = is_pair<T>::value;
+
 /**
  * WARNING: the sparse_array class doesn't free the ressources allocated through
  * the allocator passed in parameter in each method. You have to manually call
@@ -1035,7 +1043,7 @@ template <typename T, typename Allocator, tsl::sh::sparsity Sparsity> class spar
  * `sparse_array::index_in_sparse_bucket(ibucket)`.
  */
 template <class ValueType, class KeySelect, class ValueSelect, class Hash, class KeyEqual, class Allocator, class GrowthPolicy,
-          tsl::sh::exception_safety ExceptionSafety, tsl::sh::sparsity Sparsity, tsl::sh::probing Probing>
+          tsl::sh::exception_safety ExceptionSafety, tsl::sh::sparsity Sparsity, tsl::sh::probing Probing, class ValueTypeIt>
 class sparse_hash : private Allocator, private Hash, private KeyEqual, private GrowthPolicy
 {
   private:
@@ -1060,6 +1068,12 @@ class sparse_hash : private Allocator, private Hash, private KeyEqual, private G
     using const_pointer   = const value_type *;
     using iterator        = sparse_iterator<false>;
     using const_iterator  = sparse_iterator<true>;
+
+    using value_type_it   = ValueTypeIt;
+    using reference_it       = value_type_it &;
+    using const_reference_it = const value_type_it &;
+    using pointer_it         = value_type_it *;
+    using const_pointer_it   = const value_type_it *;
 
   private:
     using sparse_array = tsl::detail_sparse_hash::sparse_array<ValueType, Allocator, Sparsity>;
@@ -1098,10 +1112,10 @@ class sparse_hash : private Allocator, private Hash, private KeyEqual, private G
 
       public:
         using iterator_category = std::forward_iterator_tag;
-        using value_type        = typename sparse_hash::value_type;
+        using value_type        = typename sparse_hash::value_type_it;
         using difference_type   = std::ptrdiff_t;
-        using reference         = typename std::conditional<IsConst, typename sparse_hash::const_reference, typename sparse_hash::reference>::type;
-        using pointer           = typename std::conditional<IsConst, typename sparse_hash::const_pointer, typename sparse_hash::pointer>::type;
+        using reference         = typename std::conditional<IsConst, typename sparse_hash::const_reference_it, typename sparse_hash::reference_it>::type;
+        using pointer           = typename std::conditional<IsConst, typename sparse_hash::const_pointer_it, typename sparse_hash::pointer_it>::type;
 
         sparse_iterator() noexcept {}
 
@@ -1136,12 +1150,12 @@ class sparse_hash : private Allocator, private Hash, private KeyEqual, private G
 
         reference operator*() const
         {
-            return *m_sparse_array_it;
+            return reinterpret_cast<reference>(*m_sparse_array_it);
         }
 
         pointer operator->() const
         {
-            return std::addressof(*m_sparse_array_it);
+            return reinterpret_cast<pointer>(std::addressof(*m_sparse_array_it));
         }
 
         sparse_iterator &operator++()
@@ -1224,7 +1238,7 @@ class sparse_hash : private Allocator, private Hash, private KeyEqual, private G
 
         // Check in the constructor instead of outside of a function to avoid
         // compilation issues when value_type is not complete.
-        static_assert(std::is_nothrow_move_constructible<value_type>::value || std::is_copy_constructible<value_type>::value,
+        static_assert(std::is_nothrow_move_constructible<ValueType>::value || std::is_copy_constructible<ValueType>::value,
                       "Key, and T if present, must be nothrow move constructible "
                       "and/or copy constructible.");
     }

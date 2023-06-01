@@ -20,6 +20,7 @@
 struct Pod
 {
     uint64_t i;
+    uint64_t c[1024];
     Pod() noexcept = default;
     explicit Pod(uint64_t i_) noexcept : i(i_) {}
     Pod(const Pod &pod) noexcept            = default;
@@ -31,6 +32,7 @@ struct Pod
 struct NonPod
 {
     uint64_t i        = 0;
+    uint64_t c[1024];
     NonPod() noexcept = default;
     explicit NonPod(uint64_t i_) noexcept : i(i_) {}
     NonPod(const NonPod &p) noexcept            = default;
@@ -42,13 +44,13 @@ struct NonPod
 struct TriviallyCopy
 {
     uint64_t i;
-    uint64_t c[7];
+    uint64_t c[1024];
 };
 
 struct NoTriviallyCopy
 {
     uint64_t i;
-    uint64_t c[7];
+    uint64_t c[1024];
     ~NoTriviallyCopy() {}
 };
 
@@ -58,6 +60,7 @@ template <typename V> static void BenchInsertPod(benchmark::State &state)
     for (auto _ : state)
     {
         V v;
+        v.reserve(state.range(0));
         for (auto i = 0; i < state.range(0); i++)
         {
             v.push_back({});
@@ -98,10 +101,16 @@ int main(int argc, char **argv)
 {
     std::cout << std::is_pod_v<Pod> << '\n';
     std::cout << std::is_pod_v<NonPod> << '\n';
+    std::cout << std::is_standard_layout_v<Pod> << '\n';
+    std::cout << std::is_standard_layout_v<NonPod> << '\n';
+    std::cout << std::is_trivially_copyable_v<Pod> << '\n';
+    std::cout << std::is_trivially_copyable_v<NonPod> << '\n';
     std::cout << std::is_trivially_copyable_v<TriviallyCopy> << '\n';
     std::cout << std::is_trivially_copyable_v<NoTriviallyCopy> << '\n';
     std::cout << std::is_trivially_copyable_v<std::pair<int, TriviallyCopy>> << '\n';
     std::cout << std::is_trivially_copyable_v<std::pair<const int, TriviallyCopy>> << '\n';
+    std::cout << std::is_move_assignable_v<std::pair<int, TriviallyCopy>> << '\n';
+    std::cout << std::is_move_assignable_v<std::pair<const int, TriviallyCopy>> << '\n';
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

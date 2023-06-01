@@ -24,11 +24,23 @@
 #include "tsl/htrie_set.h"
 #include "tsl/robin_set.h"
 #include "tsl/sparse_set.h"
+#include "tsl/ordered_set.h"
 #include "unordered_map.hpp"
 #include <absl/container/flat_hash_set.h>
 #include <benchmark/benchmark.h>
 #include <iostream>
 #include <unordered_set>
+
+#include <boost/multi_index/hashed_index.hpp>
+#include <boost/multi_index/identity.hpp>
+#include <boost/multi_index/member.hpp>
+#include <boost/multi_index_container.hpp>
+#include <boost/multi_index/sequenced_index.hpp>
+
+template <typename T>
+using MapList =
+    boost::multi_index_container<T, boost::multi_index::indexed_by<boost::multi_index::hashed_unique<boost::multi_index::identity<T>, std::hash<T>>,
+                                                                   boost::multi_index::sequenced<>>>;
 
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
@@ -81,6 +93,9 @@ BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::bhopscotch_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::hopscotch_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::robin_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::sparse_set<int>);
+BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::ordered_set<int>);
+BENCHMARK_TEMPLATE(BenchUnOrderSetInt, MapList<int>);
+
 std::vector<std::string> keys(65536);
 template <class M> static void BenchUnOrderSetString(benchmark::State &state)
 {
@@ -125,6 +140,8 @@ BENCHMARK_TEMPLATE(BenchUnOrderSetString, tsl::bhopscotch_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, tsl::hopscotch_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, tsl::robin_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, tsl::sparse_set<std::string>);
+BENCHMARK_TEMPLATE(BenchUnOrderSetString, tsl::ordered_set<std::string>);
+BENCHMARK_TEMPLATE(BenchUnOrderSetString, MapList<std::string>);
 BENCHMARK_TEMPLATE(BenchCharKeySet, tsl::htrie_set<char>);
 BENCHMARK_TEMPLATE(BenchCharKeySet, tsl::array_set<char>);
 
@@ -135,6 +152,8 @@ int main(int argc, char **argv)
         keys[i]  = "12345678901234561234567890123456" + std::to_string(_random());
         ikeys[i] = _random();
     }
+
+
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

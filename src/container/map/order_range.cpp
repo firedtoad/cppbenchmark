@@ -16,6 +16,7 @@
 #include "absl/container/btree_map.h"
 #include "parallel_hashmap/btree.h"
 #include "tsl/ordered_map.h"
+#include "tsl/sparse_map.h"
 #include <benchmark/benchmark.h>
 #include <iostream>
 #include <map>
@@ -79,6 +80,7 @@ template <class M> static void BenchRangeOrderVectorInt(benchmark::State &state)
 BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, std::map<int, int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderVectorInt, std::vector<std::pair<int, int>>);
 BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, tsl::ordered_map<int, int>);
+BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, tsl::sparse_map<int, int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, absl::btree_map<int, int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, phmap::btree_map<int, int>);
 std::vector<std::string> keys(65536);

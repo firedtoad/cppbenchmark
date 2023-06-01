@@ -364,7 +364,8 @@ template <typename ValueType, bool StoreHash> class bucket_entry : public bucket
  *
  * Behaviour is undefined if the destructor of `ValueType` throws.
  */
-template <class ValueType, class KeySelect, class ValueSelect, class Hash, class KeyEqual, class Allocator, bool StoreHash, class GrowthPolicy>
+template <class ValueType, class KeySelect, class ValueSelect, class Hash, class KeyEqual, class Allocator, bool StoreHash, class GrowthPolicy,
+          class ValueTypeIt>
 class robin_hash : private Hash, private KeyEqual, private GrowthPolicy
 {
   private:
@@ -387,8 +388,14 @@ class robin_hash : private Hash, private KeyEqual, private GrowthPolicy
     using const_reference = const value_type &;
     using pointer         = value_type *;
     using const_pointer   = const value_type *;
-    using iterator        = robin_iterator<false>;
-    using const_iterator  = robin_iterator<true>;
+    using iterator       = robin_iterator<false>;
+    using const_iterator = robin_iterator<true>;
+
+    using value_type_it   = ValueTypeIt;
+    using reference_it       = value_type_it &;
+    using const_reference_it = const value_type_it &;
+    using pointer_it         = value_type_it *;
+    using const_pointer_it   = const value_type_it *;
 
   private:
     /**
@@ -464,10 +471,10 @@ class robin_hash : private Hash, private KeyEqual, private GrowthPolicy
 
       public:
         using iterator_category = std::forward_iterator_tag;
-        using value_type        = typename robin_hash::value_type;
+        using value_type        = typename robin_hash::value_type_it;
         using difference_type   = std::ptrdiff_t;
-        using reference         = typename std::conditional<IsConst, typename robin_hash::const_reference, typename robin_hash::reference>::type;
-        using pointer           = typename std::conditional<IsConst, typename robin_hash::const_pointer, typename robin_hash::pointer>::type;
+        using reference         = typename std::conditional<IsConst, typename robin_hash::const_reference_it, typename robin_hash::reference_it>::type;
+        using pointer           = typename std::conditional<IsConst, typename robin_hash::const_pointer_it, typename robin_hash::pointer_it>::type;
 
         robin_iterator() noexcept {}
 
@@ -501,12 +508,12 @@ class robin_hash : private Hash, private KeyEqual, private GrowthPolicy
 
         reference operator*() const
         {
-            return m_bucket->value();
+            return reinterpret_cast<reference>(m_bucket->value());
         }
 
         pointer operator->() const
         {
-            return std::addressof(m_bucket->value());
+            return reinterpret_cast<pointer>(std::addressof(m_bucket->value()));
         }
 
         robin_iterator &operator++()

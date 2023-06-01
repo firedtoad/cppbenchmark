@@ -77,7 +77,7 @@ inline void PrintUsage(struct rusage &rUsage)
     std::cout << '\n';
     std::cout.flush();
 }
-template <class M, size_t N> void BM_Memory()
+template <class M, size_t N> void BM_MemoryMap()
 {
     rusage rusage;
     FillRSS(rusage);
@@ -90,7 +90,7 @@ template <class M, size_t N> void BM_Memory()
     PrintUsage(rusage);
 }
 
-template <class M, size_t N> void BM_MemoryString()
+template <class M, size_t N> void BM_MemoryStringMap()
 {
     rusage rusage;
     FillRSS(rusage);
@@ -99,6 +99,32 @@ template <class M, size_t N> void BM_MemoryString()
     for (size_t i = 0; i < N; i++)
     {
         m[std::to_string(i)] = i;
+    }
+    PrintUsage(rusage);
+}
+
+template <class M, size_t N> void BM_MemorySet()
+{
+    rusage rusage;
+    FillRSS(rusage);
+    M m;
+    std::cout << demangle(typeid(m).name()) << " memory " << '\n';
+    for (size_t i = 0; i < N; i++)
+    {
+        m.insert(i);
+    }
+    PrintUsage(rusage);
+}
+
+template <class M, size_t N> void BM_MemoryStringSet()
+{
+    rusage rusage;
+    FillRSS(rusage);
+    M m;
+    std::cout << demangle(typeid(m).name()) << " memory " << '\n';
+    for (size_t i = 0; i < N; i++)
+    {
+        m.insert(std::to_string(i));
     }
     PrintUsage(rusage);
 }

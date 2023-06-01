@@ -191,14 +191,14 @@ BENCHMARK_TEMPLATE(BenchStringFind, folly::fbstring)->Range(128, 1 << 16);
 int main(int argc, char **argv)
 {
     std::cout << std::is_trivially_copyable_v<std::pair<uint64_t, Pod>> << '\n';
-    BM_Memory<sorted_vector_map<uint64_t, uint64_t>,1<<20>();
-    BM_Memory<folly::sorted_vector_map<uint64_t, uint64_t>,1<<20>();
-    BM_Memory<std::map<uint64_t, uint64_t>,1<<20>();
-    BM_Memory<std::unordered_map<uint64_t, uint64_t>,1<<20>();
-    BM_Memory<boost::container::flat_map<uint64_t, uint64_t>,1<<20>();
-    BM_Memory<eastl::vector_map<uint64_t, uint64_t>,1<<20>();
-    BM_Memory<folly::F14FastMap<uint64_t, uint64_t>,1<<20>();
-    BM_Memory<folly::F14ValueMap<uint64_t, uint64_t>,1<<20>();
+    BM_MemoryMap<sorted_vector_map<uint64_t, uint64_t>, 1 << 20>();
+    BM_MemoryMap<folly::sorted_vector_map<uint64_t, uint64_t>, 1 << 20>();
+    BM_MemoryMap<std::map<uint64_t, uint64_t>, 1 << 20>();
+    BM_MemoryMap<std::unordered_map<uint64_t, uint64_t>, 1 << 20>();
+    BM_MemoryMap<boost::container::flat_map<uint64_t, uint64_t>, 1 << 20>();
+    BM_MemoryMap<eastl::vector_map<uint64_t, uint64_t>, 1 << 20>();
+    BM_MemoryMap<folly::F14FastMap<uint64_t, uint64_t>, 1 << 20>();
+    BM_MemoryMap<folly::F14ValueMap<uint64_t, uint64_t>, 1 << 20>();
 
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();

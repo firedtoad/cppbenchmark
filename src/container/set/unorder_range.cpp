@@ -23,12 +23,23 @@
 #include "tsl/bhopscotch_set.h"
 #include "tsl/hopscotch_set.h"
 #include "tsl/htrie_set.h"
+#include "tsl/ordered_set.h"
 #include "tsl/robin_set.h"
 #include "tsl/sparse_set.h"
 #include "unordered_map.hpp"
 #include <benchmark/benchmark.h>
+#include <boost/multi_index/hashed_index.hpp>
+#include <boost/multi_index/identity.hpp>
+#include <boost/multi_index/member.hpp>
+#include <boost/multi_index/sequenced_index.hpp>
+#include <boost/multi_index_container.hpp>
 #include <iostream>
 #include <unordered_set>
+
+template <typename T>
+using MapList =
+    boost::multi_index_container<T, boost::multi_index::indexed_by<boost::multi_index::hashed_unique<boost::multi_index::identity<T>, std::hash<T>>,
+                                                                   boost::multi_index::sequenced<>>>;
 
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
@@ -80,9 +91,12 @@ BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, absl::flat_hash_set<int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, robin_hood::unordered_flat_set<int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, spp::sparse_hash_set<int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, tsl::bhopscotch_set<int>);
+BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, tsl::ordered_set<int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, tsl::hopscotch_set<int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, tsl::robin_set<int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, tsl::sparse_set<int>);
+BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, MapList<int>);
+
 std::vector<std::string> keys(65536);
 template <class M> static void BenchRangeUnOrderSetString(benchmark::State &state)
 {
@@ -96,6 +110,25 @@ template <class M> static void BenchRangeUnOrderSetString(benchmark::State &stat
     for (auto _ : state)
     {
         for (auto &it : m)
+        {
+            r = it;
+        }
+    }
+    benchmark::DoNotOptimize(r);
+}
+
+template <class M> static void BenchRangeUnOrderSetStringMulti(benchmark::State &state)
+{
+    M m;
+    m.reserve(65536);
+    for (auto i = 0; i < 65536; i++)
+    {
+        m.insert(keys[i]);
+    }
+    std::string r{};
+    for (auto _ : state)
+    {
+        for (auto &it : m.template get<1>())
         {
             r = it;
         }
@@ -130,10 +163,13 @@ BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, phmap::flat_hash_set<std::string>
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, absl::flat_hash_set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, robin_hood::unordered_flat_set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, spp::sparse_hash_set<std::string>);
+BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, tsl::ordered_set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, tsl::bhopscotch_set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, tsl::hopscotch_set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, tsl::robin_set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, tsl::sparse_set<std::string>);
+BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, MapList<std::string>);
+BENCHMARK_TEMPLATE(BenchRangeUnOrderSetStringMulti, MapList<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeCharKeySet, tsl::htrie_set<char>);
 BENCHMARK_TEMPLATE(BenchRangeCharKeySet, tsl::array_set<char>);
 

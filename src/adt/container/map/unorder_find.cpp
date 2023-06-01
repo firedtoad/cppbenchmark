@@ -99,7 +99,7 @@ template <class M> static void BenchIndexedMap(benchmark::State &state)
     }
     for (auto _ : state)
     {
-        auto idx = ikeys[_random() % 65536];
+        auto idx = _random() % 65536;
         auto c   = m[idx];
         benchmark::DoNotOptimize(c);
     }
@@ -177,11 +177,11 @@ template <class M> static void BenchIndexedMapString(benchmark::State &state)
     m.resize(65536);
     for (auto i = 0; i < 65536; i++)
     {
-        m[ikeys[i]] = {};
+        m[i] = {};
     }
     for (auto _ : state)
     {
-        auto idx = ikeys[_random() % 65536];
+        auto idx = _random() % 65536;
         auto c   = m[idx];
         benchmark::DoNotOptimize(c);
     }

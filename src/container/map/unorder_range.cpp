@@ -25,6 +25,7 @@
 #include "tsl/htrie_map.h"
 #include "tsl/robin_map.h"
 #include "tsl/sparse_map.h"
+#include "tsl/ordered_map.h"
 #include "unordered_map.hpp"
 #include <absl/container/flat_hash_map.h>
 #include <benchmark/benchmark.h>

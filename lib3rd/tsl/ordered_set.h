@@ -97,7 +97,7 @@ class ordered_set
         }
     };
 
-    using ht = detail_ordered_hash::ordered_hash<Key, KeySelect, void, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType>;
+    using ht = detail_ordered_hash::ordered_hash<Key, KeySelect, void, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType,Key>;
 
   public:
     using key_type               = typename ht::key_type;

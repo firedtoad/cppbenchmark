@@ -19,6 +19,17 @@
 #include <benchmark/benchmark.h>
 #include <iostream>
 
+#include <boost/multi_index/hashed_index.hpp>
+#include <boost/multi_index/identity.hpp>
+#include <boost/multi_index/member.hpp>
+#include <boost/multi_index_container.hpp>
+#include <boost/multi_index/sequenced_index.hpp>
+
+template <typename T>
+using MapList =
+    boost::multi_index_container<T, boost::multi_index::indexed_by<boost::multi_index::hashed_unique<boost::multi_index::identity<T>, std::hash<T>>,
+                                                                   boost::multi_index::sequenced<>>>;
+
 static inline uint64_t xor_shift96()
 { /* A George Marsaglia generator, period 2^96-1 */
     static uint64_t x = 123456789, y = 362436069, z = 521288629;
@@ -60,6 +71,7 @@ BENCHMARK_TEMPLATE(BenchOrderSetInt, std::set<int, std::less<>>);
 BENCHMARK_TEMPLATE(BenchOrderSetInt, tsl::ordered_set<int>);
 BENCHMARK_TEMPLATE(BenchOrderSetInt, absl::btree_set<int>);
 BENCHMARK_TEMPLATE(BenchOrderSetInt, phmap::btree_set<int>);
+BENCHMARK_TEMPLATE(BenchOrderSetInt, MapList<int>);
 std::vector<std::string> keys(65536);
 template <class M> static void BenchOrderSetString(benchmark::State &state)
 {
@@ -82,6 +94,7 @@ BENCHMARK_TEMPLATE(BenchOrderSetString, std::set<std::string, std::less<>>);
 BENCHMARK_TEMPLATE(BenchOrderSetString, tsl::ordered_set<std::string>);
 BENCHMARK_TEMPLATE(BenchOrderSetString, absl::btree_set<std::string>);
 BENCHMARK_TEMPLATE(BenchOrderSetString, phmap::btree_set<std::string>);
+BENCHMARK_TEMPLATE(BenchOrderSetString, MapList<std::string>);
 
 int main(int argc, char **argv)
 {

@@ -16,7 +16,10 @@
 #include "absl/container/btree_map.h"
 #include "absl/container/node_hash_map.h"
 #include "parallel_hashmap/btree.h"
+#include "sparsepp/spp.h"
 #include "tsl/ordered_map.h"
+#include "tsl/ordered_set.h"
+#include "tsl/sparse_map.h"
 #include <benchmark/benchmark.h>
 #include <iostream>
 #include <map>
@@ -42,7 +45,7 @@ static inline uint64_t _random()
 {
     return xor_shift96();
 }
-std::vector<uint64_t> ikeys;
+std::vector<uint64_t> ikeys(65536);
 template <class M> static void BenchOrderMapInt(benchmark::State &state)
 {
     M m;
@@ -149,6 +152,54 @@ int main(int argc, char **argv)
         keys[i]  = "12345678901234561234567890123456" + std::to_string(_random());
         ikeys[i] = _random();
     }
+    //    {
+    //        phmap::btree_map<std::string, int> map;
+    //        auto it          = map.emplace("abc", 1);
+    //        it.first->first  = "avc";
+    //        it.first->second = 1;
+    //    }
+    //
+    //    {
+    //        phmap::btree_set<std::string> map;
+    //        auto it          = map.emplace("abc");
+    //        it.first="123";
+    //    }
+    //
+    //    {
+    //        std::map<std::string, int> map;
+    //        auto it          = map.emplace("abc", 1);
+    //        it.first->first  = "avc";
+    //        it.first->second = 1;
+    //    }
+    {
+        std::unordered_set<std::string> map;
+        auto it = map.emplace("abc");
+        //            it.first="abc";
+    }
+
+    {
+        tsl::sparse_map<int, int> map;
+        auto it          = map.emplace(1, 1);
+//        it.first->first  = 2;
+        it.first->second = 1;
+    }
+
+    {
+        tsl::ordered_map<std::string, int> map;
+        auto it = map.emplace("abc", 1);
+        //        it.first->first="abc";
+        it.first->second = 1;
+    }
+    {
+        tsl::ordered_set<std::string> map;
+        auto it = map.emplace("abc");
+    }
+    //    {
+    //        spp::sparse_hash_map<int, int> map;
+    //        auto it          = map.emplace(1, 1);
+    //        it.first->first=1;
+    //        it.first->second=1;
+    //    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

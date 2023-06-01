@@ -167,6 +167,5 @@ int main(int argc, char **argv)
     stagf = std::to_string(std::mt19937_64{std::random_device{}()}());
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
-    std::__throw_bad_array_new_length();
     return 0;
 }

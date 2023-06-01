@@ -99,7 +99,7 @@ class bhopscotch_map
     // Optimize.
     using overflow_container_type = std::map<Key, T, Compare, Allocator>;
     using ht = detail_hopscotch_hash::hopscotch_hash<std::pair<const Key, T>, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, NeighborhoodSize,
-                                                     StoreHash, GrowthPolicy, overflow_container_type>;
+                                                     StoreHash, GrowthPolicy, overflow_container_type,std::pair<const Key, T>>;
 
   public:
     using key_type        = typename ht::key_type;

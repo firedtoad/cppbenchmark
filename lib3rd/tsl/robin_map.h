@@ -123,7 +123,7 @@ class robin_map
         }
     };
 
-    using ht = detail_robin_hash::robin_hash<std::pair<Key, T>, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy>;
+    using ht = detail_robin_hash::robin_hash<std::pair<Key, T>, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy,std::pair<const Key, T>>;
 
   public:
     using key_type        = typename ht::key_type;
