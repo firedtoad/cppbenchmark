@@ -47,6 +47,11 @@
 #define TSL_HH_NO_RANGE_ERASE_WITH_CONST_ITERATOR
 #endif
 
+#ifdef _MSC_VER
+#undef min
+#undef max
+#endif
+
 namespace tsl
 {
 namespace detail_hopscotch_hash

@@ -41,6 +41,11 @@
 #include <utility>
 #include <vector>
 
+#ifdef _MSC_VER
+#undef min
+#undef max
+#endif
+
 /**
  * Macros for compatibility with GCC 4.8
  */

@@ -13,6 +13,14 @@
 // limitations under the License.
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
+#include "SortedVector.h"
+#include "parallel_hashmap/btree.h"
+#include "parallel_hashmap/phmap.h"
+#include "tsl/ordered_map.h"
+#include "tsl/ordered_set.h"
+#include "tsl/sparse_map.h"
+#include "tsl/sparse_set.h"
+#include "utils/rss.h"
 #include <EASTL/vector_map.h>
 #include <benchmark/benchmark.h>
 #include <boost/container/flat_map.hpp>
@@ -23,12 +31,6 @@
 #include <iostream>
 #include <map>
 #include <unordered_map>
-#include "tsl/sparse_map.h"
-#include "tsl/ordered_map.h"
-#include "utils/rss.h"
-#include "parallel_hashmap/phmap.h"
-#include "parallel_hashmap/btree.h"
-#include "SortedVector.h"
 
 void *operator new[](size_t size, const char * /*pName*/, int /*flags*/, unsigned /*debugFlags*/, const char * /*file*/, int /*line*/)
 {
@@ -152,7 +154,6 @@ template <typename V> static void BenchRange(benchmark::State &state)
     benchmark::DoNotOptimize(sum);
 
     phmap::flat_hash_map<std::string, uint32_t> pm;
-
 }
 
 BENCHMARK_TEMPLATE(BenchRange, sorted_vector_map<std::string, Pod>)->Range(1, 1 << 16);
@@ -223,14 +224,19 @@ int main(int argc, char **argv)
     std::cout << std::is_trivially_copyable_v<std::pair<std::string, Pod>> << '\n';
     //    BM_MemoryStringMap<sorted_vector_map<std::string, uint64_t>, 1 << 20>();
     //    BM_MemoryStringMap<folly::sorted_vector_map<std::string, uint64_t>, 1 << 20>();
-    BM_MemoryStringMap<std::map<std::string, uint64_t>, 1 << 20,false>();
+    BM_MemoryStringMap<std::map<std::string, uint64_t>, 1 << 20, false>();
     BM_MemoryStringMap<std::unordered_map<std::string, uint64_t>, 1 << 20>();
+    BM_MemoryStringMap<tsl::sparse_map<std::string, uint64_t>, 1 << 20, false>();
     BM_MemoryStringMap<tsl::sparse_map<std::string, uint64_t>, 1 << 20>();
+    BM_MemoryStringMap<tsl::sparse_pg_map<std::string, uint64_t>, 1 << 20>();
+    BM_MemoryStringMap<tsl::ordered_map<std::string, uint64_t>, 1 << 20, false>();
     BM_MemoryStringMap<tsl::ordered_map<std::string, uint64_t>, 1 << 20>();
     //    BM_MemoryStringMap<boost::container::flat_map<std::string, uint64_t>, 1 << 20>();
     //    BM_MemoryStringMap<eastl::vector_map<std::string, uint64_t>, 1 << 20>();
     BM_MemoryStringMap<folly::F14FastMap<std::string, uint64_t>, 1 << 20>();
     BM_MemoryStringMap<folly::F14ValueMap<std::string, uint64_t>, 1 << 20>();
+
+
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

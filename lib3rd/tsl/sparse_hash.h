@@ -46,6 +46,8 @@
 
 #ifdef _MSC_VER
 #include <intrin.h> // For __cpuid, __popcnt and __popcnt64
+#undef min
+#undef max
 #endif
 
 #ifdef TSL_DEBUG

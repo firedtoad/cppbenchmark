@@ -41,6 +41,11 @@
 
 #include "array_growth_policy.h"
 
+#ifdef _MSC_VER
+#undef min
+#undef max
+#endif
+
 /*
  * __has_include is a bit useless
  * (https://gcc.gnu.org/bugzilla/show_bug.cgi?id=79433), check also __cplusplus

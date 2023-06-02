@@ -42,6 +42,11 @@
 
 #include "robin_growth_policy.h"
 
+#ifdef _MSC_VER
+#undef min
+#undef max
+#endif
+
 namespace tsl
 {
 
