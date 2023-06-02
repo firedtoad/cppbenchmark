@@ -99,7 +99,7 @@ class bhopscotch_map
     // Optimize.
     using overflow_container_type = std::map<Key, T, Compare, Allocator>;
     using ht = detail_hopscotch_hash::hopscotch_hash<std::pair<const Key, T>, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, NeighborhoodSize,
-                                                     StoreHash, GrowthPolicy, overflow_container_type,std::pair<const Key, T>>;
+                                                     StoreHash, GrowthPolicy, overflow_container_type, std::pair<const Key, T>>;
 
   public:
     using key_type        = typename ht::key_type;
@@ -132,6 +132,8 @@ class bhopscotch_map
     bhopscotch_map(size_type bucket_count, const Allocator &alloc) : bhopscotch_map(bucket_count, Hash(), KeyEqual(), alloc) {}
 
     bhopscotch_map(size_type bucket_count, const Hash &hash, const Allocator &alloc) : bhopscotch_map(bucket_count, hash, KeyEqual(), alloc) {}
+
+    bhopscotch_map(const bhopscotch_map &other, const Allocator &alloc) : m_ht(other.m_ht, alloc) {}
 
     explicit bhopscotch_map(const Allocator &alloc) : bhopscotch_map(ht::DEFAULT_INIT_BUCKETS_SIZE, alloc) {}
 

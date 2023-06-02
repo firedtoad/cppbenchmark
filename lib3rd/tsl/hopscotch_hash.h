@@ -29,12 +29,12 @@
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
-#include <exception>
 #include <functional>
 #include <initializer_list>
 #include <iterator>
 #include <limits>
 #include <memory>
+#include <new>
 #include <stdexcept>
 #include <tuple>
 #include <type_traits>
@@ -335,13 +335,21 @@ template <typename ValueType, unsigned int NeighborhoodSize, bool StoreHash> cla
     value_type &value() noexcept
     {
         tsl_hh_assert(!empty());
+#if defined(__cplusplus) && __cplusplus >= 201703L
+        return *std::launder(reinterpret_cast<value_type *>(std::addressof(m_value)));
+#else
         return *reinterpret_cast<value_type *>(std::addressof(m_value));
+#endif
     }
 
     const value_type &value() const noexcept
     {
         tsl_hh_assert(!empty());
+#if defined(__cplusplus) && __cplusplus >= 201703L
+        return *std::launder(reinterpret_cast<const value_type *>(std::addressof(m_value)));
+#else
         return *reinterpret_cast<const value_type *>(std::addressof(m_value));
+#endif
     }
 
     template <typename... Args> void set_value_of_empty_bucket(truncated_hash_type hash, Args &&...value_type_args)
@@ -435,7 +443,7 @@ template <typename ValueType, unsigned int NeighborhoodSize, bool StoreHash> cla
  * it should be a list<ValueType> or a set<Key>/map<Key, T>.
  */
 template <class ValueType, class KeySelect, class ValueSelect, class Hash, class KeyEqual, class Allocator, unsigned int NeighborhoodSize,
-          bool StoreHash, class GrowthPolicy, class OverflowContainer,class ValueTypeIt>
+          bool StoreHash, class GrowthPolicy, class OverflowContainer, class ValueTypeIt>
 class hopscotch_hash : private Hash, private KeyEqual, private GrowthPolicy
 {
   private:
@@ -461,7 +469,7 @@ class hopscotch_hash : private Hash, private KeyEqual, private GrowthPolicy
     using iterator        = hopscotch_iterator<false>;
     using const_iterator  = hopscotch_iterator<true>;
 
-    using value_type_it   = ValueTypeIt;
+    using value_type_it      = ValueTypeIt;
     using reference_it       = value_type_it &;
     using const_reference_it = const value_type_it &;
     using pointer_it         = value_type_it *;
@@ -512,10 +520,11 @@ class hopscotch_hash : private Hash, private KeyEqual, private GrowthPolicy
 
       public:
         using iterator_category = std::forward_iterator_tag;
-        using value_type        = const typename hopscotch_hash::value_type_it;
+        using value_type        = typename hopscotch_hash::value_type_it;
         using difference_type   = std::ptrdiff_t;
-        using reference         = typename std::conditional<IsConst, typename hopscotch_hash::const_reference_it, typename hopscotch_hash::reference_it>::type;
-        using pointer           = typename std::conditional<IsConst, typename hopscotch_hash::const_pointer_it, typename hopscotch_hash::pointer_it>::type;
+        using reference =
+            typename std::conditional<IsConst, typename hopscotch_hash::const_reference_it, typename hopscotch_hash::reference_it>::type;
+        using pointer = typename std::conditional<IsConst, typename hopscotch_hash::const_pointer_it, typename hopscotch_hash::pointer_it>::type;
 
         hopscotch_iterator() noexcept {}
 
@@ -673,11 +682,13 @@ class hopscotch_hash : private Hash, private KeyEqual, private GrowthPolicy
                       "move constructible.");
     }
 
-    hopscotch_hash(const hopscotch_hash &other)
-        : Hash(other), KeyEqual(other), GrowthPolicy(other), m_buckets_data(other.m_buckets_data), m_overflow_elements(other.m_overflow_elements),
-          m_buckets(m_buckets_data.empty() ? static_empty_bucket_ptr() : m_buckets_data.data()), m_nb_elements(other.m_nb_elements),
-          m_min_load_threshold_rehash(other.m_min_load_threshold_rehash), m_max_load_threshold_rehash(other.m_max_load_threshold_rehash),
-          m_max_load_factor(other.m_max_load_factor)
+    hopscotch_hash(const hopscotch_hash &other) : hopscotch_hash(other, other.get_allocator()) {}
+
+    hopscotch_hash(const hopscotch_hash &other, const Allocator &alloc)
+        : Hash(other), KeyEqual(other), GrowthPolicy(other), m_buckets_data(other.m_buckets_data, alloc),
+          m_overflow_elements(other.m_overflow_elements), m_buckets(m_buckets_data.empty() ? static_empty_bucket_ptr() : m_buckets_data.data()),
+          m_nb_elements(other.m_nb_elements), m_min_load_threshold_rehash(other.m_min_load_threshold_rehash),
+          m_max_load_threshold_rehash(other.m_max_load_threshold_rehash), m_max_load_factor(other.m_max_load_factor)
     {
     }
 

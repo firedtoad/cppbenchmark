@@ -107,7 +107,7 @@ class robin_set
         }
     };
 
-    using ht = detail_robin_hash::robin_hash<Key, KeySelect, void, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy,Key>;
+    using ht = detail_robin_hash::robin_hash<Key, KeySelect, void, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy, Key>;
 
   public:
     using key_type        = typename ht::key_type;

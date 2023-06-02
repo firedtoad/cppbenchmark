@@ -95,6 +95,16 @@ class ordered_map
         {
             return key_value.first;
         }
+
+        const key_type &operator()(const std::pair<const Key, T> &key_value) const noexcept
+        {
+            return key_value.first;
+        }
+
+        const key_type &operator()(std::pair<const Key, T> &key_value) noexcept
+        {
+            return key_value.first;
+        }
     };
 
     class ValueSelect
@@ -113,7 +123,8 @@ class ordered_map
         }
     };
 
-    using ht = detail_ordered_hash::ordered_hash<std::pair<Key, T>, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType,std::pair<const Key, T>>;
+    using ht = detail_ordered_hash::ordered_hash<std::pair<Key, T>, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType,
+                                                 std::pair<const Key, T>>;
 
   public:
     using key_type               = typename ht::key_type;
@@ -390,8 +401,8 @@ class ordered_map
      * When erasing an element, the insert order will be preserved and no holes
      * will be present in the container returned by 'values_container()'.
      *
-     * The method is in O(n), if the order is not important 'unordered_erase(...)'
-     * method is faster with an O(1) average complexity.
+     * The method is in O(bucket_count()), if the order is not important
+     * 'unordered_erase(...)' method is faster with an O(1) average complexity.
      */
     iterator erase(iterator pos)
     {
@@ -457,6 +468,20 @@ class ordered_map
     size_type erase(const K &key, std::size_t precalculated_hash)
     {
         return m_ht.erase(key, precalculated_hash);
+    }
+
+    /**
+     * @copydoc erase(iterator pos)
+     *
+     * Erases all elements that satisfy the predicate pred. The method is in
+     * O(n). Note that the function only has the strong exception guarantee if
+     * the Predicate, Hash, and Key predicates and moves of keys and values do
+     * not throw. If an exception is raised, the object is in an invalid state.
+     * It can still be cleared and destroyed without leaking memory.
+     */
+    template <class Predicate> friend size_type erase_if(ordered_map &map, Predicate pred)
+    {
+        return map.m_ht.erase_if(pred);
     }
 
     void swap(ordered_map &other)
@@ -883,6 +908,16 @@ class ordered_map
         return m_ht.values_container();
     }
 
+    /**
+     * Release the container in which the values are stored.
+     *
+     * The map is empty after this operation.
+     */
+    values_container_type release()
+    {
+        return m_ht.release();
+    }
+
     template <class U = values_container_type, typename std::enable_if<tsl::detail_ordered_hash::is_vector<U>::value>::type * = nullptr>
     size_type capacity() const noexcept
     {
@@ -898,7 +933,7 @@ class ordered_map
      * Insert the value before pos shifting all the elements on the right of pos
      * (including pos) one position to the right.
      *
-     * Amortized linear time-complexity in the distance between pos and end().
+     * O(bucket_count()) runtime complexity.
      */
     std::pair<iterator, bool> insert_at_position(const_iterator pos, const value_type &value)
     {

@@ -69,9 +69,7 @@
 #define TSL_OH_THROW_OR_TERMINATE(ex, msg) throw ex(msg)
 #else
 #define TSL_OH_NO_EXCEPTIONS
-#ifdef NDEBUG
-#define TSL_OH_THROW_OR_TERMINATE(ex, msg) std::terminate()
-#else
+#ifdef TSL_DEBUG
 #include <iostream>
 #define TSL_OH_THROW_OR_TERMINATE(ex, msg)                                                                                                           \
     do                                                                                                                                               \
@@ -79,6 +77,8 @@
         std::cerr << msg << std::endl;                                                                                                               \
         std::terminate();                                                                                                                            \
     } while (0)
+#else
+#define TSL_OH_THROW_OR_TERMINATE(ex, msg) std::terminate()
 #endif
 #endif
 
@@ -153,14 +153,6 @@ template <class T, class Deserializer> static T deserialize_value(Deserializer &
     return deserializer.Deserializer::template operator()<T>();
 #endif
 }
-
-template <typename T> struct is_pair : std::false_type
-{
-};
-template <typename T, typename U> struct is_pair<std::pair<T, U>> : std::true_type
-{
-};
-template <typename T> inline constexpr bool is_pair_v = is_pair<T>::value;
 
 /**
  * Each bucket entry stores an index which is the index in m_values
@@ -343,7 +335,7 @@ class ordered_hash : private Hash, private KeyEqual
 
     using values_container_type = ValueTypeContainer;
 
-    using value_type_it   = ValueTypeIt;
+    using value_type_it      = ValueTypeIt;
     using reference_it       = value_type_it &;
     using const_reference_it = const value_type_it &;
     using pointer_it         = value_type_it *;
@@ -364,8 +356,8 @@ class ordered_hash : private Hash, private KeyEqual
         using iterator_category = std::random_access_iterator_tag;
         using value_type        = typename ordered_hash::value_type_it;
         using difference_type   = typename iterator::difference_type;
-        using reference         = typename std::conditional<IsConst, typename ordered_hash::const_reference_it, typename ordered_hash::reference_it>::type;
-        using pointer           = typename std::conditional<IsConst, typename ordered_hash::const_pointer_it, typename ordered_hash::pointer_it>::type;
+        using reference = typename std::conditional<IsConst, typename ordered_hash::const_reference_it, typename ordered_hash::reference_it>::type;
+        using pointer   = typename std::conditional<IsConst, typename ordered_hash::const_pointer_it, typename ordered_hash::pointer_it>::type;
 
         ordered_iterator() noexcept {}
 
@@ -432,7 +424,7 @@ class ordered_hash : private Hash, private KeyEqual
 
         reference operator[](difference_type n) const
         {
-            return m_iterator[n];
+            return reinterpret_cast<reference>(m_iterator[n]);
         }
 
         ordered_iterator &operator+=(difference_type n)
@@ -1092,6 +1084,18 @@ class ordered_hash : private Hash, private KeyEqual
         return m_values;
     }
 
+    values_container_type release()
+    {
+        values_container_type ret;
+        for (auto &bucket : m_buckets_data)
+        {
+            bucket.clear();
+        }
+        m_grow_on_next_insert = false;
+        std::swap(ret, m_values);
+        return ret;
+    }
+
     template <class U = values_container_type, typename std::enable_if<is_vector<U>::value>::type * = nullptr>
     const typename values_container_type::value_type *data() const noexcept
     {
@@ -1184,6 +1188,51 @@ class ordered_hash : private Hash, private KeyEqual
         erase_value_from_bucket(it_bucket_key);
 
         return 1;
+    }
+
+    /**
+     * Remove all entries for which the given predicate matches.
+     */
+    template <class Predicate> size_type erase_if(Predicate &pred)
+    {
+        // Get the bucket associated with the given element.
+        auto get_bucket = [this](typename values_container_type::iterator it) { return find_key(KeySelect()(*it), hash_key(KeySelect()(*it))); };
+        // Clear a bucket without touching the container holding the values.
+        auto clear_bucket = [this](typename buckets_container_type::iterator it)
+        {
+            tsl_oh_assert(it != m_buckets_data.end());
+            it->clear();
+            backward_shift(std::size_t(std::distance(m_buckets_data.begin(), it)));
+        };
+        // Ensure that only const references are passed to the predicate.
+        auto cpred = [&pred](typename values_container_type::const_reference x) { return pred(x); };
+
+        // Find first element that matches the predicate.
+        const auto last = m_values.end();
+        auto first      = std::find_if(m_values.begin(), last, cpred);
+        if (first == last)
+        {
+            return 0;
+        }
+        // Remove all elements that match the predicate.
+        clear_bucket(get_bucket(first));
+        for (auto it = std::next(first); it != last; ++it)
+        {
+            auto it_bucket = get_bucket(it);
+            if (cpred(*it))
+            {
+                clear_bucket(it_bucket);
+            }
+            else
+            {
+                it_bucket->set_index(static_cast<index_type>(std::distance(m_values.begin(), first)));
+                *first++ = std::move(*it);
+            }
+        }
+        // Resize the vector and return the number of deleted elements.
+        auto deleted = static_cast<size_type>(std::distance(first, last));
+        m_values.erase(first, last);
+        return deleted;
     }
 
     template <class Serializer> void serialize(Serializer &serializer) const
@@ -1369,7 +1418,7 @@ class ordered_hash : private Hash, private KeyEqual
          */
         if (it_bucket->index() != m_values.size())
         {
-            shift_indexes_in_buckets(it_bucket->index(), -1);
+            shift_indexes_in_buckets(it_bucket->index() + 1, -1);
         }
 
         // Mark the bucket as empty and do a backward shift of the values on the
@@ -1379,28 +1428,22 @@ class ordered_hash : private Hash, private KeyEqual
     }
 
     /**
-     * Go through each value from [from_ivalue, m_values.size()) in m_values and
-     * for each bucket corresponding to the value, shift the index by delta.
+     * Shift any index >= index_above_or_equal in m_buckets_data by delta.
      *
      * delta must be equal to 1 or -1.
      */
-    void shift_indexes_in_buckets(index_type from_ivalue, int delta) noexcept
+    void shift_indexes_in_buckets(index_type index_above_or_equal, int delta) noexcept
     {
         tsl_oh_assert(delta == 1 || delta == -1);
 
-        for (std::size_t ivalue = from_ivalue; ivalue < m_values.size(); ivalue++)
+        for (bucket_entry &bucket : m_buckets_data)
         {
-            // All the values in m_values have been shifted by delta. Find the bucket
-            // corresponding to the value m_values[ivalue]
-            const index_type old_index = static_cast<index_type>(ivalue - delta);
-
-            std::size_t ibucket = bucket_for_hash(hash_key(KeySelect()(m_values[ivalue])));
-            while (m_buckets[ibucket].index() != old_index)
+            if (!bucket.empty() && bucket.index() >= index_above_or_equal)
             {
-                ibucket = next_bucket(ibucket);
+                tsl_oh_assert(delta >= 0 || bucket.index() >= static_cast<index_type>(-delta));
+                tsl_oh_assert(delta <= 0 || (bucket_entry::max_size() - bucket.index()) >= static_cast<index_type>(delta));
+                bucket.set_index(static_cast<index_type>(bucket.index() + delta));
             }
-
-            m_buckets[ibucket].set_index(index_type(ivalue));
         }
     }
 
@@ -1501,16 +1544,16 @@ class ordered_hash : private Hash, private KeyEqual
         m_values.emplace(insert_position, std::forward<Args>(value_type_args)...);
 #endif
 
-        insert_index(ibucket, dist_from_ideal_bucket, index_insert_position, bucket_entry::truncate_hash(hash));
-
         /*
          * The insertion didn't happend at the end of the m_values container,
          * we need to shift the indexes in m_buckets_data.
          */
         if (index_insert_position != m_values.size() - 1)
         {
-            shift_indexes_in_buckets(index_insert_position + 1, 1);
+            shift_indexes_in_buckets(index_insert_position, 1);
         }
+
+        insert_index(ibucket, dist_from_ideal_bucket, index_insert_position, bucket_entry::truncate_hash(hash));
 
         return std::make_pair(iterator(m_values.begin() + index_insert_position), true);
     }

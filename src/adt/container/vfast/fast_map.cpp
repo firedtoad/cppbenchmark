@@ -65,7 +65,7 @@ template <typename V> static void BenchInsert(benchmark::State &state)
     for (auto _ : state)
     {
         V v;
-        //        v.reserve(state.range(0));
+        v.reserve(state.range(0));
         for (auto i = 0; i < state.range(0); i++)
         {
             uint64_t r = _random();

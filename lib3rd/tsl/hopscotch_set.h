@@ -101,7 +101,7 @@ class hopscotch_set
 
     using overflow_container_type = std::list<Key, Allocator>;
     using ht = detail_hopscotch_hash::hopscotch_hash<Key, KeySelect, void, Hash, KeyEqual, Allocator, NeighborhoodSize, StoreHash, GrowthPolicy,
-                                                     overflow_container_type,Key>;
+                                                     overflow_container_type, Key>;
 
   public:
     using key_type        = typename ht::key_type;
@@ -132,6 +132,8 @@ class hopscotch_set
     hopscotch_set(size_type bucket_count, const Allocator &alloc) : hopscotch_set(bucket_count, Hash(), KeyEqual(), alloc) {}
 
     hopscotch_set(size_type bucket_count, const Hash &hash, const Allocator &alloc) : hopscotch_set(bucket_count, hash, KeyEqual(), alloc) {}
+
+    hopscotch_set(const hopscotch_set &other, const Allocator &alloc) : m_ht(other.m_ht, alloc) {}
 
     explicit hopscotch_set(const Allocator &alloc) : hopscotch_set(ht::DEFAULT_INIT_BUCKETS_SIZE, alloc) {}
 

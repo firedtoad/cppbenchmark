@@ -33,7 +33,6 @@
 #include <iterator>
 #include <limits>
 #include <memory>
-#include <stdexcept>
 #include <tuple>
 #include <type_traits>
 #include <utility>
@@ -255,14 +254,14 @@ template <typename T, typename U> static T numeric_cast(U value, const char *err
     T ret = static_cast<T>(value);
     if (static_cast<U>(ret) != value)
     {
-        throw std::runtime_error(error_message);
+        TSL_SH_THROW_OR_ABORT(std::runtime_error, error_message);
     }
 
     const bool is_same_signedness =
         (std::is_unsigned<T>::value && std::is_unsigned<U>::value) || (std::is_signed<T>::value && std::is_signed<U>::value);
     if (!is_same_signedness && (ret < T{}) != (value < U{}))
     {
-        throw std::runtime_error(error_message);
+        TSL_SH_THROW_OR_ABORT(std::runtime_error, error_message);
     }
 
     return ret;
@@ -286,14 +285,6 @@ template <class T, class Deserializer> static T deserialize_value(Deserializer &
     return deserializer.Deserializer::template operator()<T>();
 #endif
 }
-
-template <typename T> struct is_pair : std::false_type
-{
-};
-template <typename T, typename U> struct is_pair<std::pair<T, U>> : std::true_type
-{
-};
-template <typename T> inline constexpr bool is_pair_v = is_pair<T>::value;
 
 /**
  * WARNING: the sparse_array class doesn't free the ressources allocated through
@@ -431,7 +422,7 @@ template <typename T, typename Allocator, tsl::sh::sparsity Sparsity> class spar
 
         m_values = alloc.allocate(m_capacity);
         tsl_sh_assert(m_values != nullptr); // allocate should throw if there is a failure
-        try
+        TSL_SH_TRY
         {
             for (size_type i = 0; i < other.m_nb_elements; i++)
             {
@@ -439,10 +430,10 @@ template <typename T, typename Allocator, tsl::sh::sparsity Sparsity> class spar
                 m_nb_elements++;
             }
         }
-        catch (...)
+        TSL_SH_CATCH(...)
         {
             clear(alloc);
-            throw;
+            TSL_SH_RETRHOW;
         }
     }
 
@@ -469,7 +460,7 @@ template <typename T, typename Allocator, tsl::sh::sparsity Sparsity> class spar
 
         m_values = alloc.allocate(m_capacity);
         tsl_sh_assert(m_values != nullptr); // allocate should throw if there is a failure
-        try
+        TSL_SH_TRY
         {
             for (size_type i = 0; i < other.m_nb_elements; i++)
             {
@@ -477,10 +468,10 @@ template <typename T, typename Allocator, tsl::sh::sparsity Sparsity> class spar
                 m_nb_elements++;
             }
         }
-        catch (...)
+        TSL_SH_CATCH(...)
         {
             clear(alloc);
-            throw;
+            TSL_SH_RETRHOW;
         }
     }
 
@@ -663,8 +654,8 @@ template <typename T, typename Allocator, tsl::sh::sparsity Sparsity> class spar
 
         if (sparse_bucket_size > BITMAP_NB_BITS)
         {
-            throw std::runtime_error("Deserialized sparse_bucket_size is too big for the platform. "
-                                     "Maximum should be BITMAP_NB_BITS.");
+            TSL_SH_THROW_OR_ABORT(std::runtime_error, "Deserialized sparse_bucket_size is too big for the platform. "
+                                                      "Maximum should be BITMAP_NB_BITS.");
         }
 
         sparse_array sarray;
@@ -679,7 +670,7 @@ template <typename T, typename Allocator, tsl::sh::sparsity Sparsity> class spar
         sarray.m_capacity = numeric_cast<size_type>(sparse_bucket_size, "Deserialized sparse_bucket_size is too big.");
         sarray.m_values   = alloc.allocate(sarray.m_capacity);
 
-        try
+        TSL_SH_TRY
         {
             for (size_type ivalue = 0; ivalue < sarray.m_capacity; ivalue++)
             {
@@ -687,10 +678,10 @@ template <typename T, typename Allocator, tsl::sh::sparsity Sparsity> class spar
                 sarray.m_nb_elements++;
             }
         }
-        catch (...)
+        TSL_SH_CATCH(...)
         {
             sarray.clear(alloc);
-            throw;
+            TSL_SH_RETRHOW;
         }
 
         return sarray;
@@ -837,18 +828,18 @@ template <typename T, typename Allocator, tsl::sh::sparsity Sparsity> class spar
             destroy_value(alloc, m_values + i - 1);
         }
 
-        try
+        TSL_SH_TRY
         {
             construct_value(alloc, m_values + offset, std::forward<Args>(value_args)...);
         }
-        catch (...)
+        TSL_SH_CATCH(...)
         {
             for (size_type i = offset; i < m_nb_elements; i++)
             {
                 construct_value(alloc, m_values + i, std::move(m_values[i + 1]));
                 destroy_value(alloc, m_values + i + 1);
             }
-            throw;
+            TSL_SH_RETRHOW;
         }
     }
 
@@ -861,14 +852,14 @@ template <typename T, typename Allocator, tsl::sh::sparsity Sparsity> class spar
         // Allocate should throw if there is a failure
         tsl_sh_assert(new_values != nullptr);
 
-        try
+        TSL_SH_TRY
         {
             construct_value(alloc, new_values + offset, std::forward<Args>(value_args)...);
         }
-        catch (...)
+        TSL_SH_CATCH(...)
         {
             alloc.deallocate(new_values, new_capacity);
-            throw;
+            TSL_SH_RETRHOW;
         }
 
         // Should not throw from here
@@ -898,7 +889,7 @@ template <typename T, typename Allocator, tsl::sh::sparsity Sparsity> class spar
         tsl_sh_assert(new_values != nullptr);
 
         size_type nb_new_values = 0;
-        try
+        TSL_SH_TRY
         {
             for (size_type i = 0; i < offset; i++)
             {
@@ -915,10 +906,10 @@ template <typename T, typename Allocator, tsl::sh::sparsity Sparsity> class spar
                 nb_new_values++;
             }
         }
-        catch (...)
+        TSL_SH_CATCH(...)
         {
             destroy_and_deallocate_values(alloc, new_values, nb_new_values, new_capacity);
-            throw;
+            TSL_SH_RETRHOW;
         }
 
         tsl_sh_assert(nb_new_values == m_nb_elements + 1);
@@ -976,7 +967,7 @@ template <typename T, typename Allocator, tsl::sh::sparsity Sparsity> class spar
         tsl_sh_assert(new_values != nullptr);
 
         size_type nb_new_values = 0;
-        try
+        TSL_SH_TRY
         {
             for (size_type i = 0; i < m_nb_elements; i++)
             {
@@ -987,10 +978,10 @@ template <typename T, typename Allocator, tsl::sh::sparsity Sparsity> class spar
                 }
             }
         }
-        catch (...)
+        TSL_SH_CATCH(...)
         {
             destroy_and_deallocate_values(alloc, new_values, nb_new_values, new_capacity);
-            throw;
+            TSL_SH_RETRHOW;
         }
 
         tsl_sh_assert(nb_new_values == m_nb_elements - 1);
@@ -1069,7 +1060,7 @@ class sparse_hash : private Allocator, private Hash, private KeyEqual, private G
     using iterator        = sparse_iterator<false>;
     using const_iterator  = sparse_iterator<true>;
 
-    using value_type_it   = ValueTypeIt;
+    using value_type_it      = ValueTypeIt;
     using reference_it       = value_type_it &;
     using const_reference_it = const value_type_it &;
     using pointer_it         = value_type_it *;
@@ -1114,8 +1105,8 @@ class sparse_hash : private Allocator, private Hash, private KeyEqual, private G
         using iterator_category = std::forward_iterator_tag;
         using value_type        = typename sparse_hash::value_type_it;
         using difference_type   = std::ptrdiff_t;
-        using reference         = typename std::conditional<IsConst, typename sparse_hash::const_reference_it, typename sparse_hash::reference_it>::type;
-        using pointer           = typename std::conditional<IsConst, typename sparse_hash::const_pointer_it, typename sparse_hash::pointer_it>::type;
+        using reference = typename std::conditional<IsConst, typename sparse_hash::const_reference_it, typename sparse_hash::reference_it>::type;
+        using pointer   = typename std::conditional<IsConst, typename sparse_hash::const_pointer_it, typename sparse_hash::pointer_it>::type;
 
         sparse_iterator() noexcept {}
 
@@ -1213,7 +1204,7 @@ class sparse_hash : private Allocator, private Hash, private KeyEqual, private G
     {
         if (m_bucket_count > max_bucket_count())
         {
-            throw std::length_error("The map exceeds its maximum size.");
+            TSL_SH_THROW_OR_ABORT(std::length_error, "The map exceeds its maximum size.");
         }
 
         if (m_bucket_count > 0)
@@ -1238,7 +1229,7 @@ class sparse_hash : private Allocator, private Hash, private KeyEqual, private G
 
         // Check in the constructor instead of outside of a function to avoid
         // compilation issues when value_type is not complete.
-        static_assert(std::is_nothrow_move_constructible<ValueType>::value || std::is_copy_constructible<ValueType>::value,
+        static_assert(std::is_nothrow_move_constructible<value_type>::value || std::is_copy_constructible<value_type>::value,
                       "Key, and T if present, must be nothrow move constructible "
                       "and/or copy constructible.");
     }
@@ -1658,7 +1649,7 @@ class sparse_hash : private Allocator, private Hash, private KeyEqual, private G
         }
         else
         {
-            throw std::out_of_range("Couldn't find key.");
+            TSL_SH_THROW_OR_ABORT(std::out_of_range, "Couldn't find key.");
         }
     }
 
@@ -1878,17 +1869,17 @@ class sparse_hash : private Allocator, private Hash, private KeyEqual, private G
     {
         m_sparse_buckets_data.reserve(other.m_sparse_buckets_data.size());
 
-        try
+        TSL_SH_TRY
         {
             for (const auto &bucket : other.m_sparse_buckets_data)
             {
                 m_sparse_buckets_data.emplace_back(bucket, static_cast<Allocator &>(*this));
             }
         }
-        catch (...)
+        TSL_SH_CATCH(...)
         {
             clear();
-            throw;
+            TSL_SH_RETRHOW;
         }
 
         tsl_sh_assert(m_sparse_buckets_data.empty() || m_sparse_buckets_data.back().last());
@@ -1898,17 +1889,17 @@ class sparse_hash : private Allocator, private Hash, private KeyEqual, private G
     {
         m_sparse_buckets_data.reserve(other.m_sparse_buckets_data.size());
 
-        try
+        TSL_SH_TRY
         {
             for (auto &&bucket : other.m_sparse_buckets_data)
             {
                 m_sparse_buckets_data.emplace_back(std::move(bucket), static_cast<Allocator &>(*this));
             }
         }
-        catch (...)
+        TSL_SH_CATCH(...)
         {
             clear();
-            throw;
+            TSL_SH_RETRHOW;
         }
 
         tsl_sh_assert(m_sparse_buckets_data.empty() || m_sparse_buckets_data.back().last());
@@ -1916,16 +1907,6 @@ class sparse_hash : private Allocator, private Hash, private KeyEqual, private G
 
     template <class K, class... Args> std::pair<iterator, bool> insert_impl(const K &key, Args &&...value_type_args)
     {
-        if (size() >= m_load_threshold_rehash)
-        {
-            rehash_impl(GrowthPolicy::next_bucket_count());
-        }
-        else if (size() + m_nb_deleted_buckets >= m_load_threshold_clear_deleted)
-        {
-            clear_deleted_buckets();
-        }
-        tsl_sh_assert(!m_sparse_buckets_data.empty());
-
         /**
          * We must insert the value in the first empty or deleted bucket we find. If
          * we first find a deleted bucket, we still have to continue the search
@@ -1964,16 +1945,35 @@ class sparse_hash : private Allocator, private Hash, private KeyEqual, private G
                     index_in_sparse_bucket_first_deleted = index_in_sparse_bucket;
                 }
             }
-            else if (found_first_deleted_bucket)
-            {
-                auto it =
-                    insert_in_bucket(sparse_ibucket_first_deleted, index_in_sparse_bucket_first_deleted, std::forward<Args>(value_type_args)...);
-                m_nb_deleted_buckets--;
-
-                return it;
-            }
             else
             {
+                /**
+                 * At this point we are sure that the value does not exist
+                 * in the hash table.
+                 * First check if we satisfy load and delete thresholds, and if not,
+                 * rehash the hash table (and therefore start over). Otherwise, just
+                 * insert the value into the appropriate bucket.
+                 */
+                if (size() >= m_load_threshold_rehash)
+                {
+                    rehash_impl(GrowthPolicy::next_bucket_count());
+                    return insert_impl(key, std::forward<Args>(value_type_args)...);
+                }
+                else if (size() + m_nb_deleted_buckets >= m_load_threshold_clear_deleted)
+                {
+                    clear_deleted_buckets();
+                    return insert_impl(key, std::forward<Args>(value_type_args)...);
+                }
+
+                if (found_first_deleted_bucket)
+                {
+                    auto it =
+                        insert_in_bucket(sparse_ibucket_first_deleted, index_in_sparse_bucket_first_deleted, std::forward<Args>(value_type_args)...);
+                    m_nb_deleted_buckets--;
+
+                    return it;
+                }
+
                 return insert_in_bucket(sparse_ibucket, index_in_sparse_bucket, std::forward<Args>(value_type_args)...);
             }
 
@@ -2170,8 +2170,8 @@ class sparse_hash : private Allocator, private Hash, private KeyEqual, private G
         // If it doesn't match there is a problem with the file.
         if (version != SERIALIZATION_PROTOCOL_VERSION)
         {
-            throw std::runtime_error("Can't deserialize the sparse_map/set. The "
-                                     "protocol version header is invalid.");
+            TSL_SH_THROW_OR_ABORT(std::runtime_error, "Can't deserialize the sparse_map/set. The "
+                                                      "protocol version header is invalid.");
         }
 
         const slz_size_type bucket_count_ds    = deserialize_value<slz_size_type>(deserializer);
@@ -2198,13 +2198,13 @@ class sparse_hash : private Allocator, private Hash, private KeyEqual, private G
             // deserialization
             if (m_bucket_count != bucket_count_ds)
             {
-                throw std::runtime_error("The GrowthPolicy is not the same even though "
-                                         "hash_compatible is true.");
+                TSL_SH_THROW_OR_ABORT(std::runtime_error, "The GrowthPolicy is not the same even though "
+                                                          "hash_compatible is true.");
             }
 
             if (nb_sparse_buckets != sparse_array::nb_sparse_buckets(m_bucket_count))
             {
-                throw std::runtime_error("Deserialized nb_sparse_buckets is invalid.");
+                TSL_SH_THROW_OR_ABORT(std::runtime_error, "Deserialized nb_sparse_buckets is invalid.");
             }
 
             m_nb_elements        = numeric_cast<size_type>(nb_elements, "Deserialized nb_elements is too big.");
@@ -2225,9 +2225,9 @@ class sparse_hash : private Allocator, private Hash, private KeyEqual, private G
             this->max_load_factor(max_load_factor);
             if (load_factor() > this->max_load_factor())
             {
-                throw std::runtime_error("Invalid max_load_factor. Check that the serializer and "
-                                         "deserializer support "
-                                         "floats correctly as they can be converted implicitely to ints.");
+                TSL_SH_THROW_OR_ABORT(std::runtime_error, "Invalid max_load_factor. Check that the serializer and "
+                                                          "deserializer support "
+                                                          "floats correctly as they can be converted implicitely to ints.");
             }
         }
     }

@@ -105,7 +105,7 @@ class sparse_set
     };
 
     using ht = detail_sparse_hash::sparse_hash<Key, KeySelect, void, Hash, KeyEqual, Allocator, GrowthPolicy, ExceptionSafety, Sparsity,
-                                               tsl::sh::probing::quadratic,Key>;
+                                               tsl::sh::probing::quadratic, Key>;
 
   public:
     using key_type        = typename ht::key_type;

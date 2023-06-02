@@ -105,6 +105,16 @@ class robin_map
         {
             return key_value.first;
         }
+
+        const key_type &operator()(const std::pair<const Key, T> &key_value) const noexcept
+        {
+            return key_value.first;
+        }
+
+        const key_type &operator()(std::pair<const Key, T> &key_value) noexcept
+        {
+            return key_value.first;
+        }
     };
 
     class ValueSelect
@@ -123,7 +133,8 @@ class robin_map
         }
     };
 
-    using ht = detail_robin_hash::robin_hash<std::pair<Key, T>, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy,std::pair<const Key, T>>;
+    using ht = detail_robin_hash::robin_hash<std::pair<Key, T>, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy,
+                                             std::pair<const Key, T>>;
 
   public:
     using key_type        = typename ht::key_type;

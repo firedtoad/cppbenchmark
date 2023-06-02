@@ -23,7 +23,7 @@
 
 template <class T, class Compare = std::less<T>> struct sorted_vector
 {
-    static_assert(std::is_trivially_copyable<T>::value, "T must be trivially_copyable");
+    static_assert(std::is_trivially_copy_assignable<T>::value, "T must be trivially_copyable");
     using Vector = std::vector<T>;
 
     typedef typename Vector::iterator iterator;

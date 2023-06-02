@@ -32,7 +32,39 @@
 #include <iterator>
 #include <limits>
 #include <ratio>
+
+#ifndef TSL_NO_EXCEPTIONS
+#if (defined(__cpp_exceptions) || defined(__EXCEPTIONS) || (defined(_MSC_VER) && defined(_CPPUNWIND)))
+#define TSL_NO_EXCEPTIONS 0
+#else
+#define TSL_NO_EXCEPTIONS 1
+#endif
+#endif
+
+#if TSL_NO_EXCEPTIONS
+#include <cstdlib>
+#ifdef TSL_DEBUG
+#include <cstdio>
+#define TSL_SH_THROW_OR_ABORT(ex, msg)                                                                                                               \
+    do                                                                                                                                               \
+    {                                                                                                                                                \
+        std::fprintf(stderr, "error: %s\n", msg);                                                                                                    \
+        std::abort();                                                                                                                                \
+    } while (0)
+#else
+#define TSL_SH_THROW_OR_ABORT(ex, msg) std::abort()
+#endif
+#define TSL_SH_TRY if (true)
+#define TSL_SH_CATCH(x) if (false)
+#define TSL_SH_RETRHOW
+#else
 #include <stdexcept>
+
+#define TSL_SH_THROW_OR_ABORT(ex, msg) throw ex(msg)
+#define TSL_SH_TRY try
+#define TSL_SH_CATCH(x) catch (x)
+#define TSL_SH_RETRHOW throw
+#endif
 
 namespace tsl
 {
@@ -61,7 +93,7 @@ template <std::size_t GrowthFactor> class power_of_two_growth_policy
     {
         if (min_bucket_count_in_out > max_bucket_count())
         {
-            throw std::length_error("The hash table exceeds its maximum size.");
+            TSL_SH_THROW_OR_ABORT(std::length_error, "The hash table exceeds its maximum size.");
         }
 
         if (min_bucket_count_in_out > 0)
@@ -91,7 +123,7 @@ template <std::size_t GrowthFactor> class power_of_two_growth_policy
     {
         if ((m_mask + 1) > max_bucket_count() / GrowthFactor)
         {
-            throw std::length_error("The hash table exceeds its maximum size.");
+            TSL_SH_THROW_OR_ABORT(std::length_error, "The hash table exceeds its maximum size.");
         }
 
         return (m_mask + 1) * GrowthFactor;
@@ -161,7 +193,7 @@ template <class GrowthFactor = std::ratio<3, 2>> class mod_growth_policy
     {
         if (min_bucket_count_in_out > max_bucket_count())
         {
-            throw std::length_error("The hash table exceeds its maximum size.");
+            TSL_SH_THROW_OR_ABORT(std::length_error, "The hash table exceeds its maximum size.");
         }
 
         if (min_bucket_count_in_out > 0)
@@ -183,13 +215,13 @@ template <class GrowthFactor = std::ratio<3, 2>> class mod_growth_policy
     {
         if (m_mod == max_bucket_count())
         {
-            throw std::length_error("The hash table exceeds its maximum size.");
+            TSL_SH_THROW_OR_ABORT(std::length_error, "The hash table exceeds its maximum size.");
         }
 
         const double next_bucket_count = std::ceil(double(m_mod) * REHASH_SIZE_MULTIPLICATION_FACTOR);
         if (!std::isnormal(next_bucket_count))
         {
-            throw std::length_error("The hash table exceeds its maximum size.");
+            TSL_SH_THROW_OR_ABORT(std::length_error, "The hash table exceeds its maximum size.");
         }
 
         if (next_bucket_count > double(max_bucket_count()))
@@ -256,7 +288,7 @@ class prime_growth_policy
         auto it_prime = std::lower_bound(primes().begin(), primes().end(), min_bucket_count_in_out);
         if (it_prime == primes().end())
         {
-            throw std::length_error("The hash table exceeds its maximum size.");
+            TSL_SH_THROW_OR_ABORT(std::length_error, "The hash table exceeds its maximum size.");
         }
 
         m_iprime = static_cast<unsigned int>(std::distance(primes().begin(), it_prime));
@@ -279,7 +311,7 @@ class prime_growth_policy
     {
         if (m_iprime + 1 >= primes().size())
         {
-            throw std::length_error("The hash table exceeds its maximum size.");
+            TSL_SH_THROW_OR_ABORT(std::length_error, "The hash table exceeds its maximum size.");
         }
 
         return primes()[m_iprime + 1];

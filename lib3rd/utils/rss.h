@@ -15,6 +15,7 @@
 
 #ifndef BENCH_UTILS_H
 #define BENCH_UTILS_H
+#include "symbol.h"
 #include <iostream>
 #include <malloc.h>
 #include <stdint.h>
@@ -22,7 +23,6 @@
 #include <string>
 #include <sys/resource.h>
 #include <sys/time.h>
-#include "symbol.h"
 
 template <class Tp> inline __attribute__((always_inline)) void DoNotOptimize(Tp &value)
 {
@@ -77,11 +77,16 @@ inline void PrintUsage(struct rusage &rUsage)
     std::cout << '\n';
     std::cout.flush();
 }
-template <class M, size_t N> void BM_MemoryMap()
+
+template <class M, size_t N, bool reserve = true> void BM_MemoryMap()
 {
     rusage rusage;
     FillRSS(rusage);
     M m;
+    if constexpr (reserve)
+    {
+        m.reserve(N);
+    }
     std::cout << demangle(typeid(m).name()) << " memory " << '\n';
     for (size_t i = 0; i < N; i++)
     {
@@ -90,11 +95,15 @@ template <class M, size_t N> void BM_MemoryMap()
     PrintUsage(rusage);
 }
 
-template <class M, size_t N> void BM_MemoryStringMap()
+template <class M, size_t N,bool reserve = true> void BM_MemoryStringMap()
 {
     rusage rusage;
     FillRSS(rusage);
     M m;
+    if constexpr (reserve)
+    {
+        m.reserve(N);
+    }
     std::cout << demangle(typeid(m).name()) << " memory " << '\n';
     for (size_t i = 0; i < N; i++)
     {
@@ -103,11 +112,15 @@ template <class M, size_t N> void BM_MemoryStringMap()
     PrintUsage(rusage);
 }
 
-template <class M, size_t N> void BM_MemorySet()
+template <class M, size_t N,bool reserve = true> void BM_MemorySet()
 {
     rusage rusage;
     FillRSS(rusage);
     M m;
+    if constexpr (reserve)
+    {
+        m.reserve(N);
+    }
     std::cout << demangle(typeid(m).name()) << " memory " << '\n';
     for (size_t i = 0; i < N; i++)
     {
@@ -116,11 +129,15 @@ template <class M, size_t N> void BM_MemorySet()
     PrintUsage(rusage);
 }
 
-template <class M, size_t N> void BM_MemoryStringSet()
+template <class M, size_t N,bool reserve = true> void BM_MemoryStringSet()
 {
     rusage rusage;
     FillRSS(rusage);
     M m;
+    if constexpr (reserve)
+    {
+        m.reserve(N);
+    }
     std::cout << demangle(typeid(m).name()) << " memory " << '\n';
     for (size_t i = 0; i < N; i++)
     {

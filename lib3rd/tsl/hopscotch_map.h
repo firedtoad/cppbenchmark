@@ -97,6 +97,16 @@ class hopscotch_map
         {
             return key_value.first;
         }
+
+        const key_type &operator()(const std::pair<const Key, T> &key_value) const noexcept
+        {
+            return key_value.first;
+        }
+
+        const key_type &operator()(std::pair<const Key, T> &key_value) noexcept
+        {
+            return key_value.first;
+        }
     };
 
     class ValueSelect
@@ -117,7 +127,7 @@ class hopscotch_map
 
     using overflow_container_type = std::list<std::pair<Key, T>, Allocator>;
     using ht = detail_hopscotch_hash::hopscotch_hash<std::pair<Key, T>, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, NeighborhoodSize,
-                                                     StoreHash, GrowthPolicy, overflow_container_type,std::pair<const Key, T>>;
+                                                     StoreHash, GrowthPolicy, overflow_container_type, std::pair<const Key, T>>;
 
   public:
     using key_type        = typename ht::key_type;
@@ -151,6 +161,8 @@ class hopscotch_map
     hopscotch_map(size_type bucket_count, const Hash &hash, const Allocator &alloc) : hopscotch_map(bucket_count, hash, KeyEqual(), alloc) {}
 
     explicit hopscotch_map(const Allocator &alloc) : hopscotch_map(ht::DEFAULT_INIT_BUCKETS_SIZE, alloc) {}
+
+    hopscotch_map(const hopscotch_map &other, const Allocator &alloc) : m_ht(other.m_ht, alloc) {}
 
     template <class InputIt>
     hopscotch_map(InputIt first, InputIt last, size_type bucket_count = ht::DEFAULT_INIT_BUCKETS_SIZE, const Hash &hash = Hash(),

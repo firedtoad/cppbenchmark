@@ -80,7 +80,7 @@ class bhopscotch_set
 
     using overflow_container_type = std::set<Key, Compare, Allocator>;
     using ht = tsl::detail_hopscotch_hash::hopscotch_hash<Key, KeySelect, void, Hash, KeyEqual, Allocator, NeighborhoodSize, StoreHash, GrowthPolicy,
-                                                          overflow_container_type,const Key>;
+                                                          overflow_container_type, const Key>;
 
   public:
     using key_type        = typename ht::key_type;
@@ -114,6 +114,8 @@ class bhopscotch_set
     bhopscotch_set(size_type bucket_count, const Hash &hash, const Allocator &alloc) : bhopscotch_set(bucket_count, hash, KeyEqual(), alloc) {}
 
     explicit bhopscotch_set(const Allocator &alloc) : bhopscotch_set(ht::DEFAULT_INIT_BUCKETS_SIZE, alloc) {}
+
+    bhopscotch_set(const bhopscotch_set &other, const Allocator &alloc) : m_ht(other.m_ht, alloc) {}
 
     template <class InputIt>
     bhopscotch_set(InputIt first, InputIt last, size_type bucket_count = ht::DEFAULT_INIT_BUCKETS_SIZE, const Hash &hash = Hash(),

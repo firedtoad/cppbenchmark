@@ -119,13 +119,13 @@ int main(int argc, char **argv)
     BM_MemorySet<tsl::robin_set<int>, 1 << 20>();
     BM_MemorySet<tsl::sparse_set<int>, 1 << 20>();
     BM_MemorySet<tsl::ordered_set<int>, 1 << 20>();
-    BM_MemorySet<std::set<int>, 1 << 20>();
-    BM_MemorySet<MapList<int>, 1 << 20>();
-    BM_MemorySet<phmap::btree_set<int>, 1 << 20>();
+    BM_MemorySet<std::set<int>, 1 << 20,false>();
+    BM_MemorySet<MapList<int>, 1 << 20,false>();
+    BM_MemorySet<phmap::btree_set<int>, 1 << 20,false>();
 
-    BM_MemoryStringSet<std::set<std::string>, 1 << 20>();
+    BM_MemoryStringSet<std::set<std::string>, 1 << 20,false>();
     BM_MemoryStringSet<MapList<std::string>, 1 << 20>();
-    BM_MemoryStringSet<phmap::btree_set<std::string>, 1 << 20>();
+    BM_MemoryStringSet<phmap::btree_set<std::string>, 1 << 20,false>();
     BM_MemoryStringSet<std::unordered_set<std::string>, 1 << 20>();
     BM_MemoryStringSet<ska::unordered_set<std::string>, 1 << 20>();
     BM_MemoryStringSet<ska::flat_hash_set<std::string>, 1 << 20>();

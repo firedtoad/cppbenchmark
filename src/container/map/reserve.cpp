@@ -115,11 +115,11 @@ int main(int argc, char **argv)
     BM_MemoryMap<tsl::robin_map<int, int>, 1 << 20>();
     BM_MemoryMap<tsl::sparse_map<int, int>, 1 << 20>();
     BM_MemoryMap<tsl::ordered_map<int, int>, 1 << 20>();
-    BM_MemoryMap<std::map<int, int>, 1 << 20>();
-    BM_MemoryMap<phmap::btree_map<int, int>, 1 << 20>();
+    BM_MemoryMap<std::map<int, int>, 1 << 20, false>();
+    BM_MemoryMap<phmap::btree_map<int, int>, 1 << 20, false>();
 
-    BM_MemoryStringMap<std::map<std::string, int>, 1 << 20>();
-    BM_MemoryStringMap<phmap::btree_map<std::string, int>, 1 << 20>();
+    BM_MemoryStringMap<std::map<std::string, int>, 1 << 20, false>();
+    BM_MemoryStringMap<phmap::btree_map<std::string, int>, 1 << 20, false>();
     BM_MemoryStringShared<std::map<std::string, std::shared_ptr<int>>, 1 << 20>();
     BM_MemoryStringShared<phmap::btree_map<std::string, std::shared_ptr<int>>, 1 << 20>();
     BM_MemoryStringShared<tsl::sparse_map<std::string, std::shared_ptr<int>>, 1 << 20>();
