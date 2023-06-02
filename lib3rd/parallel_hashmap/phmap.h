@@ -2462,6 +2462,11 @@ template <class Policy, class Hash, class Eq, class Alloc> class raw_hash_set
         return std::get<0>(settings_);
     }
 
+    const size_t &growth_left() const
+    {
+        return std::get<0>(settings_);
+    }
+
     template <size_t N, template <class, class, class, class> class RefSet, class M, class P, class H, class E, class A>
     friend class parallel_hash_set;
 
