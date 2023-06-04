@@ -398,6 +398,7 @@ class ordered_hash : private Hash, private KeyEqual
         {
             return reinterpret_cast<reference>(*m_iterator);
         }
+
         pointer operator->() const
         {
             return reinterpret_cast<pointer>(std::addressof(*m_iterator));

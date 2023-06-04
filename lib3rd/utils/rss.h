@@ -23,6 +23,7 @@
 #include <string>
 #include <sys/resource.h>
 #include <sys/time.h>
+#include <vector>
 
 template <class Tp> inline __attribute__((always_inline)) void DoNotOptimize(Tp &value)
 {
@@ -39,6 +40,13 @@ inline uint64_t getThreadRss(rusage &rUsage)
     return rUsage.ru_maxrss;
 }
 
+#ifdef JE_MALLOC
+extern "C" struct mallinfo je_mallinfo();
+#define mallinfo je_mallinfo
+#endif
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 inline void FillRSS(rusage &rUsage)
 {
     auto rss        = getThreadRss(rUsage);
@@ -51,10 +59,12 @@ inline void FillRSS(rusage &rUsage)
         p      = (char *)calloc(sz, 4096);
         DoNotOptimize(p);
     }
-    auto info = mallinfo2();
+
+    auto info = mallinfo();
     p         = (char *)calloc(info.fordblks, 1);
     DoNotOptimize(p);
 }
+#pragma GCC diagnostic pop
 
 inline std::string operator-(const timeval tv1, const timeval tv2)
 {
@@ -78,72 +88,5 @@ inline void PrintUsage(struct rusage &rUsage)
     std::cout.flush();
 }
 
-template <class M, size_t N, bool reserve = true> void BM_MemoryMap()
-{
-    rusage rusage;
-    FillRSS(rusage);
-    M m;
-    if constexpr (reserve)
-    {
-        m.reserve(N);
-    }
-    std::cout << demangle(typeid(m).name()) << " memory " << '\n';
-    for (size_t i = 0; i < N; i++)
-    {
-        m[i] = i;
-    }
-    PrintUsage(rusage);
-}
-
-template <class M, size_t N,bool reserve = true> void BM_MemoryStringMap()
-{
-    rusage rusage;
-    FillRSS(rusage);
-    M m;
-    if constexpr (reserve)
-    {
-        m.reserve(N);
-    }
-    std::cout << demangle(typeid(m).name()) << " memory " << '\n';
-    for (size_t i = 0; i < N; i++)
-    {
-        m[std::to_string(i)] = i;
-    }
-    PrintUsage(rusage);
-}
-
-template <class M, size_t N,bool reserve = true> void BM_MemorySet()
-{
-    rusage rusage;
-    FillRSS(rusage);
-    M m;
-    if constexpr (reserve)
-    {
-        m.reserve(N);
-    }
-    std::cout << demangle(typeid(m).name()) << " memory " << '\n';
-    for (size_t i = 0; i < N; i++)
-    {
-        m.insert(i);
-    }
-    PrintUsage(rusage);
-}
-
-template <class M, size_t N,bool reserve = true> void BM_MemoryStringSet()
-{
-    rusage rusage;
-    FillRSS(rusage);
-    M m;
-    if constexpr (reserve)
-    {
-        m.reserve(N);
-    }
-    std::cout << demangle(typeid(m).name()) << " memory " << '\n';
-    for (size_t i = 0; i < N; i++)
-    {
-        m.insert(std::to_string(i));
-    }
-    PrintUsage(rusage);
-}
 
 #endif // BENCH_UTILS_H

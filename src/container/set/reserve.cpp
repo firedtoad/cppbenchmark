@@ -31,6 +31,7 @@
 #include <set>
 #include <unordered_set>
 #include <utils/rss.h>
+#include <utils/memory.h>
 
 template <class M> static void BM_insert(benchmark::State &state)
 {
@@ -81,47 +82,22 @@ struct Pod{
 
 int main(int argc, char **argv)
 {
-
-    {
-        std::vector<std::shared_ptr<int>> vec;
-        vec.resize(1 << 20);
-        rusage rusage;
-        FillRSS(rusage);
-        for(auto &it:vec)
-        {
-            it=std::make_shared<int>();
-        }
-        PrintUsage(rusage);
-    }
-
-    {
-        std::vector<std::unique_ptr<int>> vec;
-        vec.resize(1 << 20);
-        rusage rusage;
-        FillRSS(rusage);
-        for(auto &it:vec)
-        {
-            it=std::make_unique<int>();
-        }
-        PrintUsage(rusage);
-    }
-
-    BM_MemorySet<std::unordered_set<int>, 1 << 20>();
-    BM_MemorySet<ska::unordered_set<int>, 1 << 20>();
-    BM_MemorySet<ska::flat_hash_set<int>, 1 << 20>();
-    BM_MemorySet<ska::bytell_hash_set<int>, 1 << 20>();
-    BM_MemorySet<phmap::flat_hash_set<int>, 1 << 20>();
-    BM_MemorySet<absl::flat_hash_set<int>, 1 << 20>();
-    BM_MemorySet<robin_hood::unordered_flat_set<int>, 1 << 20>();
-    BM_MemorySet<spp::sparse_hash_set<int>, 1 << 20>();
-    BM_MemorySet<tsl::bhopscotch_set<int>, 1 << 20>();
-    BM_MemorySet<tsl::hopscotch_set<int>, 1 << 20>();
-    BM_MemorySet<tsl::robin_set<int>, 1 << 20>();
-    BM_MemorySet<tsl::sparse_set<int>, 1 << 20>();
-    BM_MemorySet<tsl::ordered_set<int>, 1 << 20>();
-    BM_MemorySet<std::set<int>, 1 << 20,false>();
-    BM_MemorySet<MapList<int>, 1 << 20,false>();
-    BM_MemorySet<phmap::btree_set<int>, 1 << 20,false>();
+    BM_MemoryIntSet<std::unordered_set<int>, 1 << 20>();
+    BM_MemoryIntSet<ska::unordered_set<int>, 1 << 20>();
+    BM_MemoryIntSet<ska::flat_hash_set<int>, 1 << 20>();
+    BM_MemoryIntSet<ska::bytell_hash_set<int>, 1 << 20>();
+    BM_MemoryIntSet<phmap::flat_hash_set<int>, 1 << 20>();
+    BM_MemoryIntSet<absl::flat_hash_set<int>, 1 << 20>();
+    BM_MemoryIntSet<robin_hood::unordered_flat_set<int>, 1 << 20>();
+    BM_MemoryIntSet<spp::sparse_hash_set<int>, 1 << 20>();
+    BM_MemoryIntSet<tsl::bhopscotch_set<int>, 1 << 20>();
+    BM_MemoryIntSet<tsl::hopscotch_set<int>, 1 << 20>();
+    BM_MemoryIntSet<tsl::robin_set<int>, 1 << 20>();
+    BM_MemoryIntSet<tsl::sparse_set<int>, 1 << 20>();
+    BM_MemoryIntSet<tsl::ordered_set<int>, 1 << 20>();
+    BM_MemoryIntSet<std::set<int>, 1 << 20,false>();
+    BM_MemoryIntSet<MapList<int>, 1 << 20,false>();
+    BM_MemoryIntSet<phmap::btree_set<int>, 1 << 20,false>();
 
     BM_MemoryStringSet<std::set<std::string>, 1 << 20,false>();
     BM_MemoryStringSet<MapList<std::string>, 1 << 20>();

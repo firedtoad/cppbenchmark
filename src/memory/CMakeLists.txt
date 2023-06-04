@@ -13,7 +13,20 @@ target_compile_options(size_allocator PRIVATE -fsized-deallocation)
 add_executable(overhead overhead.cpp)
 add_executable(overhead_tc overhead_tc.cpp)
 add_executable(overhead_je overhead_je.cpp)
+
+add_executable(rss_smart rss_smart.cpp)
+add_executable(rss_smart_tc rss_smart.cpp)
+add_executable(rss_smart_je rss_smart.cpp)
+
 target_link_libraries(overhead_tc PRIVATE tcmalloc)
+target_compile_definitions(overhead_je PRIVATE JE_MALLOC)
 target_link_libraries(overhead_je PRIVATE jemalloc dl)
+
+
 target_link_libraries(rss_tc PRIVATE tcmalloc dl)
 target_link_libraries(rss_je PRIVATE jemalloc dl)
+target_compile_definitions(rss_je PRIVATE JE_MALLOC)
+
+target_link_libraries(rss_smart_tc PRIVATE tcmalloc dl)
+target_link_libraries(rss_smart_je PRIVATE jemalloc dl)
+target_compile_definitions(rss_smart_je PRIVATE JE_MALLOC)

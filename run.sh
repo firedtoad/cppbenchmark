@@ -5,6 +5,7 @@ CORES=$(($(grep -c ^processor /proc/cpuinfo)))
 RESULTS_DIR=results/$CPU
 mkdir -p "$RESULTS_DIR"
 COMMANDS=""
+CORES=4
 CWD=$(pwd)
 for bench in $BENCHES; do
     RESULT_FILE=$RESULTS_DIR/$(basename "$bench")

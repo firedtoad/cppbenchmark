@@ -13,7 +13,7 @@
 // limitations under the License.
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
-#include "vector.hpp"
+#include "container/vector.hpp"
 #include <benchmark/benchmark.h>
 #include <numeric>
 #include <vector>

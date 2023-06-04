@@ -2,7 +2,7 @@ find_package(absl REQUIRED)
 
 add_executable(boost_multi_index_map boost/multi_index_map.cpp)
 add_executable(boost_multi_index_map_string boost/multi_index_map_string.cpp)
-add_executable(boost_multi_index_ranked boost/multi_index_ranked.cpp)
+#add_executable(boost_multi_index_ranked boost/multi_index_ranked.cpp)
 add_executable(boost_multi_index_set boost/multi_index_set.cpp)
 add_executable(boost_multi_index_set_string boost/multi_index_set_string.cpp)
 

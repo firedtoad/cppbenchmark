@@ -31,6 +31,7 @@
 #include <map>
 #include <unordered_map>
 #include <utils/rss.h>
+#include <utils/memory.h>
 
 template <class M> static void BM_reserve(benchmark::State &state)
 {

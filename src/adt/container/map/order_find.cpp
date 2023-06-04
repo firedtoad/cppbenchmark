@@ -73,7 +73,7 @@ static void BenchImmutableMapInt(benchmark::State &state)
     for (auto i = 0; i < 65536; i++)
     {
         auto r = _random();
-        m = factory.add(m, r, i);
+        m      = factory.add(m, r, i);
     }
 
     for (auto _ : state)
@@ -111,7 +111,8 @@ int main(int argc, char **argv)
 {
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i] = "12345678901234561234567890123456" + std::to_string(_random());
+        keys[i]  = "12345678901234561234567890123456" + std::to_string(_random());
+        ikeys[i] = _random();
     }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();

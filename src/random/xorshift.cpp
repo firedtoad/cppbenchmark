@@ -84,7 +84,7 @@ struct Xorshift8 {
             const int b = (i >> (3*1)) % 8;
             const int c = (i >> (3*2)) % 8;
             if(a >= c) { continue; }
-            Xorshift8 x { .a = a, .b = b, .c = c };
+            Xorshift8 x {  a,  b,  c };
             if(x.good()) {
                 xs.push_back(x);
             }
@@ -125,7 +125,7 @@ struct Xorshift16 {
             const int b = (i >> (4*1)) % 16;
             const int c = (i >> (4*2)) % 16;
             if(a >= c) { continue; }
-            Xorshift16 x { .a = a, .b = b, .c = c };
+            Xorshift16 x { a,  b,  c };
             if(x.good()) {
                 xs.push_back(x);
             }

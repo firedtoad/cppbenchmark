@@ -13,12 +13,13 @@
 // limitations under the License.
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
-#include "SortedVector.h"
+#include "container/SortedVector.h"
 #include "parallel_hashmap/btree.h"
 #include "parallel_hashmap/phmap.h"
 #include "tsl/ordered_map.h"
 #include "tsl/sparse_map.h"
 #include "utils/rss.h"
+#include "utils/memory.h"
 #include <EASTL/vector_map.h>
 #include <EASTL/vector_set.h>
 #include <benchmark/benchmark.h>
@@ -199,8 +200,6 @@ int main(int argc, char **argv)
     BM_MemoryMap<eastl::vector_map<uint64_t, uint64_t>, 1 << 20>();
     BM_MemoryMap<folly::F14FastMap<uint64_t, uint64_t>, 1 << 20>();
     BM_MemoryMap<folly::F14ValueMap<uint64_t, uint64_t>, 1 << 20>();
-
-
 
 
     benchmark::Initialize(&argc, argv);
