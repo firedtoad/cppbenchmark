@@ -1,0 +1,13 @@
+2023-06-04T20:22:36-04:00
+Running ./bin/07c_binpow2_branch
+Run on (8 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 4.19, 4.30, 3.75
+----------------------------------------------------------------------------
+Benchmark                  Time             CPU   Iterations UserCounters...
+----------------------------------------------------------------------------
+BM_branched/65536    2747076 ns      2747078 ns          276 items_per_second=23.8566M/s

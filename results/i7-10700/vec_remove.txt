@@ -1,4 +1,4 @@
-2023-04-05T08:45:31-04:00
+2023-06-04T20:13:09-04:00
 Running ./bin/vec_remove
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,10 +6,10 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.23, 3.77, 3.37
+Load Average: 4.29, 4.06, 3.15
 ------------------------------------------------------
 Benchmark            Time             CPU   Iterations
 ------------------------------------------------------
-BM_erase          1393 ns         1393 ns       468241
-BM_swap_pop       24.1 ns         24.1 ns     26774471
-BM_list           1170 ns         1170 ns       618362
+BM_erase       2075019 ns      2074829 ns          362
+BM_swap_pop       86.8 ns         86.7 ns      7910927
+BM_list        3966527 ns      3963362 ns          197

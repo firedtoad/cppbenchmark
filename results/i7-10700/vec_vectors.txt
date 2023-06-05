@@ -1,4 +1,4 @@
-2023-04-05T08:45:24-04:00
+2023-06-04T20:04:51-04:00
 Running ./bin/vec_vectors
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,57 +6,57 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.16, 3.75, 3.36
+Load Average: 4.60, 2.68, 2.22
 ----------------------------------------------------------------------------------------------------
 Benchmark                                                          Time             CPU   Iterations
 ----------------------------------------------------------------------------------------------------
-BenchInsert<std::vector<int>>/2                                 31.8 ns         31.8 ns     22955177
-BenchInsert<std::vector<int>>/8                                 65.6 ns         65.6 ns     11668419
-BenchInsert<std::vector<int>>/64                                 133 ns          133 ns      5382837
-BenchInsert<std::vector<int>>/512                                417 ns          417 ns      1677665
-BenchInsert<std::vector<int>>/1024                               698 ns          697 ns      1048507
-BenchInsert<llvm::SmallVector<int, 1024>>/2                     2.44 ns         2.44 ns    329591259
-BenchInsert<llvm::SmallVector<int, 1024>>/8                     8.90 ns         8.90 ns     91349137
-BenchInsert<llvm::SmallVector<int, 1024>>/64                    81.5 ns         81.5 ns      7879416
-BenchInsert<llvm::SmallVector<int, 1024>>/512                    600 ns          600 ns      1226281
-BenchInsert<llvm::SmallVector<int, 1024>>/1024                  1250 ns         1250 ns       579597
-BenchReserve<std::vector<int>>/2                                13.6 ns         13.6 ns     60057902
-BenchReserve<std::vector<int>>/8                                15.2 ns         15.2 ns     51667320
-BenchReserve<std::vector<int>>/64                               44.9 ns         44.9 ns     13752697
-BenchReserve<std::vector<int>>/512                               232 ns          232 ns      3057145
-BenchReserve<std::vector<int>>/1024                              419 ns          419 ns      1754005
-BenchReserve<llvm::SmallVector<int, 1024>>/2                    2.68 ns         2.68 ns    277107012
-BenchReserve<llvm::SmallVector<int, 1024>>/8                    8.12 ns         8.12 ns     72609016
-BenchReserve<llvm::SmallVector<int, 1024>>/64                   81.1 ns         81.1 ns      8321838
-BenchReserve<llvm::SmallVector<int, 1024>>/512                   608 ns          608 ns      1114319
-BenchReserve<llvm::SmallVector<int, 1024>>/1024                 1222 ns         1222 ns       570818
-BenchResize<std::vector<int>>/2                                 18.8 ns         18.8 ns     37610652
-BenchResize<std::vector<int>>/8                                 21.2 ns         21.2 ns     35678006
-BenchResize<std::vector<int>>/64                                21.9 ns         21.9 ns     40536998
-BenchResize<std::vector<int>>/512                               80.8 ns         80.8 ns      9651291
-BenchResize<std::vector<int>>/1024                               131 ns          131 ns      5261880
-BenchResize<llvm::SmallVector<int, 1024>>/2                     3.41 ns         3.41 ns    202911508
-BenchResize<llvm::SmallVector<int, 1024>>/8                     3.09 ns         3.09 ns    240521324
-BenchResize<llvm::SmallVector<int, 1024>>/64                    4.61 ns         4.61 ns    143412788
-BenchResize<llvm::SmallVector<int, 1024>>/512                   21.6 ns         21.6 ns     29510663
-BenchResize<llvm::SmallVector<int, 1024>>/1024                  76.1 ns         76.1 ns      8342093
-BenchAccumulate<std::vector<int>>/2                             1.02 ns         1.02 ns    712008030
-BenchAccumulate<std::vector<int>>/8                             2.18 ns         2.18 ns    293900362
-BenchAccumulate<std::vector<int>>/64                            4.52 ns         4.52 ns    150669466
-BenchAccumulate<std::vector<int>>/512                           24.6 ns         24.6 ns     26829836
-BenchAccumulate<std::vector<int>>/1024                          48.3 ns         48.3 ns     14817288
-BenchAccumulate<llvm::SmallVector<int, 1024>>/2                 1.16 ns         1.16 ns    478019427
-BenchAccumulate<llvm::SmallVector<int, 1024>>/8                 3.21 ns         3.21 ns    215856490
-BenchAccumulate<llvm::SmallVector<int, 1024>>/64                5.16 ns         5.16 ns    123376850
-BenchAccumulate<llvm::SmallVector<int, 1024>>/512               19.9 ns         19.9 ns     29632968
-BenchAccumulate<llvm::SmallVector<int, 1024>>/1024              50.7 ns         50.7 ns     14309744
-BenchAccumulateReverse<std::vector<int>>/2                      1.03 ns         1.03 ns    773591034
-BenchAccumulateReverse<std::vector<int>>/8                      2.24 ns         2.24 ns    341205492
-BenchAccumulateReverse<std::vector<int>>/64                     5.30 ns         5.30 ns    100000000
-BenchAccumulateReverse<std::vector<int>>/512                    40.1 ns         40.1 ns     17831851
-BenchAccumulateReverse<std::vector<int>>/1024                   80.2 ns         80.3 ns     10954035
-BenchAccumulateReverse<llvm::SmallVector<int, 1024>>/2          1.16 ns         1.16 ns    601925591
-BenchAccumulateReverse<llvm::SmallVector<int, 1024>>/8          2.87 ns         2.87 ns    259712389
-BenchAccumulateReverse<llvm::SmallVector<int, 1024>>/64         6.95 ns         6.95 ns     98597925
-BenchAccumulateReverse<llvm::SmallVector<int, 1024>>/512        45.0 ns         45.0 ns     16098962
-BenchAccumulateReverse<llvm::SmallVector<int, 1024>>/1024       72.8 ns         72.8 ns      7778116
+BenchInsert<std::vector<int>>/2                                 32.8 ns         32.8 ns     20973964
+BenchInsert<std::vector<int>>/8                                 71.6 ns         71.6 ns      9803616
+BenchInsert<std::vector<int>>/64                                 153 ns          153 ns      4212766
+BenchInsert<std::vector<int>>/512                                458 ns          458 ns      1362105
+BenchInsert<std::vector<int>>/1024                               757 ns          757 ns      1242780
+BenchInsert<llvm::SmallVector<int, 1024>>/2                     2.80 ns         2.80 ns    270589571
+BenchInsert<llvm::SmallVector<int, 1024>>/8                     9.68 ns         9.68 ns     70070121
+BenchInsert<llvm::SmallVector<int, 1024>>/64                    85.8 ns         85.8 ns      7786762
+BenchInsert<llvm::SmallVector<int, 1024>>/512                    644 ns          644 ns      1093887
+BenchInsert<llvm::SmallVector<int, 1024>>/1024                  1246 ns         1246 ns       544075
+BenchReserve<std::vector<int>>/2                                17.6 ns         17.6 ns     47524105
+BenchReserve<std::vector<int>>/8                                19.9 ns         19.9 ns     34947451
+BenchReserve<std::vector<int>>/64                               53.7 ns         53.7 ns     12332332
+BenchReserve<std::vector<int>>/512                               275 ns          275 ns      2011178
+BenchReserve<std::vector<int>>/1024                              623 ns          623 ns      1000000
+BenchReserve<llvm::SmallVector<int, 1024>>/2                    2.92 ns         2.92 ns    203288972
+BenchReserve<llvm::SmallVector<int, 1024>>/8                    9.39 ns         9.39 ns     69708662
+BenchReserve<llvm::SmallVector<int, 1024>>/64                   84.5 ns         84.5 ns      8480283
+BenchReserve<llvm::SmallVector<int, 1024>>/512                   626 ns          626 ns      1036026
+BenchReserve<llvm::SmallVector<int, 1024>>/1024                 1254 ns         1254 ns       578847
+BenchResize<std::vector<int>>/2                                 20.4 ns         20.4 ns     27146753
+BenchResize<std::vector<int>>/8                                 23.7 ns         23.7 ns     27586902
+BenchResize<std::vector<int>>/64                                24.1 ns         24.1 ns     29080019
+BenchResize<std::vector<int>>/512                               80.2 ns         80.2 ns      8663822
+BenchResize<std::vector<int>>/1024                               123 ns          123 ns      5346341
+BenchResize<llvm::SmallVector<int, 1024>>/2                     3.60 ns         3.60 ns    192335019
+BenchResize<llvm::SmallVector<int, 1024>>/8                     3.53 ns         3.53 ns    199009480
+BenchResize<llvm::SmallVector<int, 1024>>/64                    5.11 ns         5.11 ns    124223285
+BenchResize<llvm::SmallVector<int, 1024>>/512                   22.1 ns         22.1 ns     35350853
+BenchResize<llvm::SmallVector<int, 1024>>/1024                  64.9 ns         64.9 ns      9203206
+BenchAccumulate<std::vector<int>>/2                             1.16 ns         1.16 ns    653476450
+BenchAccumulate<std::vector<int>>/8                             3.02 ns         3.02 ns    265668966
+BenchAccumulate<std::vector<int>>/64                            3.87 ns         3.87 ns    177483078
+BenchAccumulate<std::vector<int>>/512                           15.0 ns         15.0 ns     48328435
+BenchAccumulate<std::vector<int>>/1024                          27.3 ns         27.3 ns     31165237
+BenchAccumulate<llvm::SmallVector<int, 1024>>/2                 1.99 ns         1.99 ns    402365430
+BenchAccumulate<llvm::SmallVector<int, 1024>>/8                 3.36 ns         3.36 ns    182859715
+BenchAccumulate<llvm::SmallVector<int, 1024>>/64                6.23 ns         6.23 ns    116043301
+BenchAccumulate<llvm::SmallVector<int, 1024>>/512               20.4 ns         20.4 ns     35193720
+BenchAccumulate<llvm::SmallVector<int, 1024>>/1024              35.6 ns         35.6 ns     17538327
+BenchAccumulateReverse<std::vector<int>>/2                      1.68 ns         1.68 ns    447141925
+BenchAccumulateReverse<std::vector<int>>/8                      3.44 ns         3.44 ns    207102587
+BenchAccumulateReverse<std::vector<int>>/64                     5.54 ns         5.54 ns    125464303
+BenchAccumulateReverse<std::vector<int>>/512                    21.1 ns         21.1 ns     23722807
+BenchAccumulateReverse<std::vector<int>>/1024                   53.3 ns         53.3 ns     15219185
+BenchAccumulateReverse<llvm::SmallVector<int, 1024>>/2          1.58 ns         1.58 ns    338999137
+BenchAccumulateReverse<llvm::SmallVector<int, 1024>>/8          3.30 ns         3.30 ns    171654559
+BenchAccumulateReverse<llvm::SmallVector<int, 1024>>/64         8.07 ns         8.07 ns    100000000
+BenchAccumulateReverse<llvm::SmallVector<int, 1024>>/512        27.7 ns         27.7 ns     31751686
+BenchAccumulateReverse<llvm::SmallVector<int, 1024>>/1024       52.1 ns         52.1 ns     13138477

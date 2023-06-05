@@ -1,0 +1,13 @@
+2023-06-04T20:22:17-04:00
+Running ./bin/06b_func_branchless
+Run on (8 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 4.27, 4.32, 3.74
+--------------------------------------------------------------------------------
+Benchmark                      Time             CPU   Iterations UserCounters...
+--------------------------------------------------------------------------------
+BM_branchless/4194304   21118688 ns     21117524 ns           32 items_per_second=198.617M/s

@@ -1,7 +1,7 @@
 user cpu : 0s 0us
 sys cpu : 0s 0us
-max rss : 676 kb / 0.660156 MB
-page reclaims : 254
+max rss : 680 kb / 0.664062 MB
+page reclaims : 263
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
@@ -9,12 +9,12 @@ involuntary switches : 0
 user cpu : 0s 0us
 sys cpu : 0s 0us
 max rss : 264 kb / 0.257812 MB
-page reclaims : 113
+page reclaims : 109
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
-2023-04-05T08:51:45-04:00
+2023-06-04T20:10:17-04:00
 Running ./bin/string_cat
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -22,17 +22,17 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.25, 4.21, 3.72
+Load Average: 4.23, 3.87, 2.91
 ---------------------------------------------------------------------
 Benchmark                           Time             CPU   Iterations
 ---------------------------------------------------------------------
-BenchStrNCat                     25.6 ns         25.6 ns     27079518
-BenchStdStringCat                68.8 ns         68.7 ns      9477116
-BenchStreamStringCat              441 ns          440 ns      1725650
-BenchStaticStreamStringCat       84.3 ns         84.2 ns      7825989
-BenchFmtAppend                   27.4 ns         27.3 ns     24652187
-BenchBoostStrCat                  154 ns          154 ns      5365404
-BenchAbStrCat                    39.6 ns         39.6 ns     15119344
-BenchPBStrCat                    38.3 ns         38.3 ns     18342774
-BenchAbStrFormat                 78.7 ns         78.7 ns      9482576
-BenchFormat                      92.8 ns         92.7 ns      8161210
+BenchStrNCat                     18.8 ns         18.8 ns     37004367
+BenchStdStringCat                80.0 ns         80.0 ns     13761300
+BenchStreamStringCat              457 ns          457 ns      1494625
+BenchStaticStreamStringCat       98.3 ns         98.3 ns      9033813
+BenchFmtAppend                   33.2 ns         33.2 ns     22681339
+BenchBoostStrCat                  203 ns          203 ns      4183814
+BenchAbStrCat                    45.7 ns         45.7 ns     12190446
+BenchPBStrCat                    41.3 ns         41.3 ns     16348073
+BenchAbStrFormat                 86.6 ns         86.6 ns      8985527
+BenchFormat                       100 ns          100 ns      7951745

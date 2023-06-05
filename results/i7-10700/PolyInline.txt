@@ -1,4 +1,4 @@
-2023-04-05T08:49:21-04:00
+2023-06-04T20:22:05-04:00
 Running ./bin/PolyInline
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,9 +6,9 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.53, 4.12, 3.60
+Load Average: 4.34, 4.34, 3.73
 ----------------------------------------------------------------
 Benchmark                      Time             CPU   Iterations
 ----------------------------------------------------------------
-BenchPureCall/1024          1194 ns         1192 ns       592950
-BenchVirtualCall/1024       1508 ns         1507 ns       415163
+BenchPureCall/1024          1169 ns         1169 ns       594226
+BenchVirtualCall/1024       1692 ns         1692 ns       406962

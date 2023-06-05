@@ -1,4 +1,4 @@
-2023-04-05T08:51:17-04:00
+2023-06-04T20:22:07-04:00
 Running ./bin/adt_vec_row_col
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,11 +6,11 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.42, 4.23, 3.71
+Load Average: 4.31, 4.33, 3.74
 ------------------------------------------------------
 Benchmark            Time             CPU   Iterations
 ------------------------------------------------------
-BM_rowSmall     331175 ns       331024 ns         2321
-BM_colSmall    1436443 ns      1435717 ns          477
-BM_row         7345439 ns      7340988 ns           93
-BM_col       126838333 ns    126781694 ns            6
+BM_rowSmall     349543 ns       349548 ns         1986
+BM_colSmall    2384796 ns      2384816 ns          267
+BM_row         8118722 ns      8118503 ns           91
+BM_col       137331280 ns    137331498 ns            5

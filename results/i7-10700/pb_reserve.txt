@@ -1,20 +1,28 @@
-user cpu : 0s 0us
-sys cpu : 0s 17870us
-max rss : 34044 kb / 33.2461 MB
-page reclaims : 8899
+user cpu : 0s 14716us
+sys cpu : 0s 0us
+max rss : 34040 kb / 33.2422 MB
+page reclaims : 8898
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
-user cpu : 0s 0us
-sys cpu : 0s 16137us
+user cpu : 0s 11894us
+sys cpu : 0s 3987us
 max rss : 34320 kb / 33.5156 MB
-page reclaims : 8591
+page reclaims : 8590
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
-2023-04-05T08:53:30-04:00
+user cpu : 0s 0us
+sys cpu : 0s 14273us
+max rss : 30096 kb / 29.3906 MB
+page reclaims : 7530
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+2023-06-04T20:17:47-04:00
 Running ./bin/pb_reserve
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -22,21 +30,35 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.82, 4.39, 3.84
--------------------------------------------------------------
-Benchmark                   Time             CPU   Iterations
--------------------------------------------------------------
-BenchAdd/1                163 ns          162 ns      4245180
-BenchAdd/8               1391 ns         1389 ns       550913
-BenchAdd/64              9942 ns         9931 ns        58588
-BenchAdd/512           122987 ns       122748 ns         5183
-BenchAdd/4096         1461016 ns      1459459 ns          553
-BenchAdd/32768       20282257 ns     20263739 ns           35
-BenchAdd/65536       40575616 ns     40500471 ns           16
-BenchReserve/1            175 ns          175 ns      3898884
-BenchReserve/8           1455 ns         1454 ns       622060
-BenchReserve/64         11024 ns        11014 ns        63438
-BenchReserve/512       122080 ns       121863 ns         4893
-BenchReserve/4096     1033598 ns      1032709 ns          764
-BenchReserve/32768   17431602 ns     17416746 ns           38
-BenchReserve/65536   38361359 ns     38292127 ns           18
+Load Average: 4.45, 4.41, 3.55
+------------------------------------------------------------------
+Benchmark                        Time             CPU   Iterations
+------------------------------------------------------------------
+BenchAdd/1                     243 ns          243 ns      3879572
+BenchAdd/8                    1567 ns         1567 ns       368729
+BenchAdd/64                  13336 ns        13337 ns        46643
+BenchAdd/512                156252 ns       156104 ns         4189
+BenchAdd/4096              1961843 ns      1961647 ns          347
+BenchAdd/32768            22349844 ns     22326217 ns           31
+BenchAdd/65536            43908704 ns     43907776 ns           15
+BenchAddArena/1                119 ns          118 ns      4620354
+BenchAddArena/8                821 ns          821 ns       738330
+BenchAddArena/64              4453 ns         4448 ns       147693
+BenchAddArena/512            31994 ns        31994 ns        23963
+BenchAddArena/4096          741671 ns       741623 ns          848
+BenchAddArena/32768        8690958 ns      8681373 ns           98
+BenchAddArena/65536       17205185 ns     17205501 ns           40
+BenchReserve/1                 229 ns          229 ns      4109820
+BenchReserve/8                1669 ns         1669 ns       354561
+BenchReserve/64              14062 ns        14051 ns        57593
+BenchReserve/512            173552 ns       173541 ns         4149
+BenchReserve/4096          2037631 ns      2035702 ns          354
+BenchReserve/32768        23189200 ns     23187569 ns           32
+BenchReserve/65536        46180374 ns     46139564 ns           15
+BenchReserveArena/1            125 ns          125 ns      4554771
+BenchReserveArena/8            714 ns          713 ns       941285
+BenchReserveArena/64          5178 ns         5172 ns       100000
+BenchReserveArena/512        33835 ns        33836 ns        18128
+BenchReserveArena/4096      319767 ns       319523 ns         2679
+BenchReserveArena/32768    8057221 ns      8057270 ns           96
+BenchReserveArena/65536   14107437 ns     14089879 ns           43

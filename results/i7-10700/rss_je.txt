@@ -1,60 +1,60 @@
 vector of u8 1048576
-user cpu : 0s 1us
+user cpu : 0s 0us
 sys cpu : 0s 0us
 max rss : 1116 kb / 1.08984 MB
-page reclaims : 264
+page reclaims : 265
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 vector of u64 1048576
 user cpu : 0s 0us
-sys cpu : 0s 794us
-max rss : 9252 kb / 9.03516 MB
-page reclaims : 284
+sys cpu : 0s 0us
+max rss : 8460 kb / 8.26172 MB
+page reclaims : 73
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 deque of u8 1048576
 user cpu : 0s 0us
-sys cpu : 0s 1us
-max rss : 8 kb / 0.0078125 MB
-page reclaims : 34
+sys cpu : 0s 0us
+max rss : 532 kb / 0.519531 MB
+page reclaims : 197
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 deque of u64 1048576
-user cpu : 0s 0us
-sys cpu : 0s 1us
-max rss : 10040 kb / 9.80469 MB
-page reclaims : 487
+user cpu : 0s 3886us
+sys cpu : 0s 0us
+max rss : 9500 kb / 9.27734 MB
+page reclaims : 347
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 list of u8 1048576
-user cpu : 0s 9451us
-sys cpu : 0s 10434us
-max rss : 30592 kb / 29.875 MB
+user cpu : 0s 20924us
+sys cpu : 0s 7650us
+max rss : 30572 kb / 29.8555 MB
 page reclaims : 1052
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 list of u16 1048576
-user cpu : 0s 22988us
-sys cpu : 0s 3544us
-max rss : 34900 kb / 34.082 MB
-page reclaims : 1115
+user cpu : 0s 19290us
+sys cpu : 0s 7705us
+max rss : 34896 kb / 34.0781 MB
+page reclaims : 1108
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 list of u64 1048576
-user cpu : 0s 19674us
-sys cpu : 0s 84us
+user cpu : 0s 27390us
+sys cpu : 0s 3975us
 max rss : 33516 kb / 32.7305 MB
 page reclaims : 783
 page faults : 0
@@ -62,144 +62,144 @@ voluntary switches : 0
 involuntary switches : 0
 
 set of u32 1048576
-user cpu : 0s 278827us
-sys cpu : 0s 7986us
-max rss : 49616 kb / 48.4531 MB
-page reclaims : 1171
-page faults : 0
-voluntary switches : 0
-involuntary switches : 0
-
-set of u64 1048576
-user cpu : 0s 278803us
-sys cpu : 0s 11925us
-max rss : 51120 kb / 49.9219 MB
-page reclaims : 541
-page faults : 0
-voluntary switches : 0
-involuntary switches : 0
-
-map of u32 1048576
-user cpu : 0s 282041us
-sys cpu : 0s 11881us
-max rss : 49088 kb / 47.9375 MB
-page reclaims : 534
+user cpu : 0s 283154us
+sys cpu : 0s 8406us
+max rss : 49640 kb / 48.4766 MB
+page reclaims : 1170
 page faults : 0
 voluntary switches : 0
 involuntary switches : 2
 
-map of u64 1048576
-user cpu : 0s 284950us
-sys cpu : 0s 11829us
-max rss : 49068 kb / 47.918 MB
-page reclaims : 534
+set of u64 1048576
+user cpu : 0s 268377us
+sys cpu : 0s 24014us
+max rss : 51360 kb / 50.1562 MB
+page reclaims : 537
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+map of u32 1048576
+user cpu : 0s 283865us
+sys cpu : 0s 16015us
+max rss : 49064 kb / 47.9141 MB
+page reclaims : 533
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
+map of u64 1048576
+user cpu : 0s 289691us
+sys cpu : 0s 16133us
+max rss : 49068 kb / 47.918 MB
+page reclaims : 533
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
 uset of u32 1048576
-user cpu : 0s 18485us
-sys cpu : 0s 11909us
-max rss : 26544 kb / 25.9219 MB
-page reclaims : 50
+user cpu : 0s 30564us
+sys cpu : 0s 3895us
+max rss : 26548 kb / 25.9258 MB
+page reclaims : 59
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 uset of u64 1048576
-user cpu : 0s 32040us
-sys cpu : 0s 3582us
-max rss : 28960 kb / 28.2812 MB
-page reclaims : 653
+user cpu : 0s 37586us
+sys cpu : 0s 116us
+max rss : 26816 kb / 26.1875 MB
+page reclaims : 652
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 umap of u32 1048576
-user cpu : 0s 23756us
-sys cpu : 0s 3745us
-max rss : 27004 kb / 26.3711 MB
+user cpu : 0s 18587us
+sys cpu : 0s 15871us
+max rss : 27000 kb / 26.3672 MB
 page reclaims : 141
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 umap of u64 1048576
-user cpu : 0s 16421us
-sys cpu : 0s 11756us
-max rss : 43924 kb / 42.8945 MB
-page reclaims : 278
+user cpu : 0s 37012us
+sys cpu : 0s 8075us
+max rss : 43960 kb / 42.9297 MB
+page reclaims : 279
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 ska flat set of u32 1048576
-user cpu : 0s 36002us
-sys cpu : 0s 3408us
-max rss : 18432 kb / 18 MB
-page reclaims : 10
+user cpu : 0s 38567us
+sys cpu : 0s 3877us
+max rss : 16652 kb / 16.2617 MB
+page reclaims : 77
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 ska flat set of u64 1048576
-user cpu : 0s 45126us
-sys cpu : 0s 7780us
-max rss : 32728 kb / 31.9609 MB
-page reclaims : 16
+user cpu : 0s 35755us
+sys cpu : 0s 3977us
+max rss : 34828 kb / 34.0117 MB
+page reclaims : 19
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 ph flat set of u32 1048576
-user cpu : 0s 22633us
-sys cpu : 0s 0us
-max rss : 10108 kb / 9.87109 MB
-page reclaims : 5
+user cpu : 0s 17129us
+sys cpu : 0s 4093us
+max rss : 12296 kb / 12.0078 MB
+page reclaims : 7
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 ph flat set of u64 1048576
-user cpu : 0s 12128us
-sys cpu : 0s 3943us
-max rss : 18268 kb / 17.8398 MB
-page reclaims : 9
+user cpu : 0s 19858us
+sys cpu : 0s 3984us
+max rss : 20488 kb / 20.0078 MB
+page reclaims : 11
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 ska flat map of u32 1048576
-user cpu : 0s 38647us
-sys cpu : 0s 3892us
-max rss : 26464 kb / 25.8438 MB
-page reclaims : 13
+user cpu : 0s 43736us
+sys cpu : 0s 3976us
+max rss : 26632 kb / 26.0078 MB
+page reclaims : 14
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 ska flat map of u64 1048576
-user cpu : 0s 43208us
-sys cpu : 0s 7933us
-max rss : 51048 kb / 49.8516 MB
+user cpu : 0s 51662us
+sys cpu : 0s 11956us
+max rss : 51080 kb / 49.8828 MB
 page reclaims : 25
 page faults : 0
 voluntary switches : 0
-involuntary switches : 0
+involuntary switches : 1
 
 ph flat map of u32 1048576
-user cpu : 0s 17127us
-sys cpu : 0s 3760us
-max rss : 18356 kb / 17.9258 MB
-page reclaims : 9
+user cpu : 0s 25070us
+sys cpu : 0s 4098us
+max rss : 20320 kb / 19.8438 MB
+page reclaims : 10
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 ph flat map of u64 1048576
-user cpu : 0s 22192us
-sys cpu : 0s 3846us
-max rss : 36668 kb / 35.8086 MB
+user cpu : 0s 33134us
+sys cpu : 0s 3977us
+max rss : 36784 kb / 35.9219 MB
 page reclaims : 18
 page faults : 0
 voluntary switches : 0

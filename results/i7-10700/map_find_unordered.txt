@@ -1,4 +1,4 @@
-2023-04-05T08:45:04-04:00
+2023-06-04T20:10:40-04:00
 Running ./bin/map_find_unordered
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,34 +6,34 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.12, 3.71, 3.34
+Load Average: 4.29, 3.91, 2.95
 ------------------------------------------------------------------------------------------------------------------
 Benchmark                                                                        Time             CPU   Iterations
 ------------------------------------------------------------------------------------------------------------------
-BenchUnOrderMapInt<std::unordered_map<int, int>>                              30.9 ns         30.8 ns     24506779
-BenchUnOrderMapInt<ska::unordered_map<int, int>>                              16.4 ns         16.3 ns     46276509
-BenchUnOrderMapInt<ska::flat_hash_map<int, int>>                              13.8 ns         13.8 ns     51707359
-BenchUnOrderMapInt<ska::bytell_hash_map<int, int>>                            11.4 ns         11.4 ns     50405882
-BenchUnOrderMapInt<phmap::flat_hash_map<int, int>>                            10.7 ns         10.6 ns     50386000
-BenchUnOrderMapInt<absl::flat_hash_map<int, int>>                             11.8 ns         11.8 ns     58436851
-BenchUnOrderMapInt<robin_hood::unordered_flat_map<int, int>>                  14.4 ns         14.3 ns     39955501
-BenchUnOrderMapInt<spp::sparse_hash_map<int, int>>                            21.6 ns         21.6 ns     32386917
-BenchUnOrderMapInt<tsl::bhopscotch_map<int, int>>                             11.2 ns         11.1 ns     59799190
-BenchUnOrderMapInt<tsl::hopscotch_map<int, int>>                              13.1 ns         13.1 ns     45119176
-BenchUnOrderMapInt<tsl::robin_map<int, int>>                                  11.4 ns         11.4 ns     61549517
-BenchUnOrderMapInt<tsl::sparse_map<int, int>>                                 18.3 ns         18.3 ns     35837679
-BenchUnOrderMapString<std::unordered_map<std::string, int>>                    268 ns          267 ns      2163032
-BenchUnOrderMapStringLoadFactor<std::unordered_map<std::string, int>>          243 ns          242 ns      3339772
-BenchUnOrderMapString<ska::unordered_map<std::string, int>>                    261 ns          261 ns      3102352
-BenchUnOrderMapString<ska::flat_hash_map<std::string, int>>                    277 ns          277 ns      2679279
-BenchUnOrderMapString<ska::bytell_hash_map<std::string, int>>                  272 ns          272 ns      2281466
-BenchUnOrderMapString<phmap::flat_hash_map<std::string, int>>                  197 ns          197 ns      3360143
-BenchUnOrderMapString<absl::flat_hash_map<std::string, int>>                   207 ns          207 ns      3302799
-BenchUnOrderMapString<robin_hood::unordered_flat_map<std::string, int>>        294 ns          294 ns      2312933
-BenchUnOrderMapString<spp::sparse_hash_map<std::string, int>>                  252 ns          252 ns      2731157
-BenchUnOrderMapString<tsl::bhopscotch_map<std::string, int>>                   203 ns          203 ns      3857415
-BenchUnOrderMapString<tsl::hopscotch_map<std::string, int>>                    184 ns          184 ns      3475674
-BenchUnOrderMapString<tsl::robin_map<std::string, int>>                        237 ns          236 ns      2781752
-BenchUnOrderMapString<tsl::sparse_map<std::string, int>>                       203 ns          203 ns      3459573
-BenchCharKeyMap<tsl::htrie_map<char, int>>                                     181 ns          181 ns      3890626
-BenchCharKeyMap<tsl::array_map<char, int>>                                    84.5 ns         84.5 ns      8041251
+BenchUnOrderMapInt<std::unordered_map<int, int>>                              41.7 ns         41.7 ns     16010145
+BenchUnOrderMapInt<ska::unordered_map<int, int>>                              17.6 ns         17.6 ns     43047599
+BenchUnOrderMapInt<ska::flat_hash_map<int, int>>                              13.5 ns         13.5 ns     57432146
+BenchUnOrderMapInt<ska::bytell_hash_map<int, int>>                            12.8 ns         12.8 ns     52981221
+BenchUnOrderMapInt<phmap::flat_hash_map<int, int>>                            12.8 ns         12.8 ns     49156367
+BenchUnOrderMapInt<absl::flat_hash_map<int, int>>                             11.1 ns         11.1 ns     52913095
+BenchUnOrderMapInt<robin_hood::unordered_flat_map<int, int>>                  15.8 ns         15.8 ns     51698814
+BenchUnOrderMapInt<spp::sparse_hash_map<int, int>>                            19.5 ns         19.5 ns     38413500
+BenchUnOrderMapInt<tsl::bhopscotch_map<int, int>>                             13.7 ns         13.7 ns     59151652
+BenchUnOrderMapInt<tsl::hopscotch_map<int, int>>                              12.4 ns         12.4 ns     48212029
+BenchUnOrderMapInt<tsl::robin_map<int, int>>                                  13.0 ns         13.0 ns     46742792
+BenchUnOrderMapInt<tsl::sparse_map<int, int>>                                 15.6 ns         15.6 ns     41111387
+BenchUnOrderMapString<std::unordered_map<std::string, int>>                    393 ns          393 ns      1894610
+BenchUnOrderMapStringLoadFactor<std::unordered_map<std::string, int>>          411 ns          411 ns      1618064
+BenchUnOrderMapString<ska::unordered_map<std::string, int>>                    369 ns          369 ns      1775592
+BenchUnOrderMapString<ska::flat_hash_map<std::string, int>>                    304 ns          304 ns      2741628
+BenchUnOrderMapString<ska::bytell_hash_map<std::string, int>>                  327 ns          327 ns      2513915
+BenchUnOrderMapString<phmap::flat_hash_map<std::string, int>>                  223 ns          223 ns      2928305
+BenchUnOrderMapString<absl::flat_hash_map<std::string, int>>                   217 ns          217 ns      3286023
+BenchUnOrderMapString<robin_hood::unordered_flat_map<std::string, int>>        306 ns          306 ns      2650051
+BenchUnOrderMapString<spp::sparse_hash_map<std::string, int>>                  267 ns          267 ns      2510600
+BenchUnOrderMapString<tsl::bhopscotch_map<std::string, int>>                   256 ns          256 ns      2485539
+BenchUnOrderMapString<tsl::hopscotch_map<std::string, int>>                    293 ns          293 ns      2821142
+BenchUnOrderMapString<tsl::robin_map<std::string, int>>                        331 ns          331 ns      2086260
+BenchUnOrderMapString<tsl::sparse_map<std::string, int>>                       294 ns          294 ns      2016083
+BenchCharKeyMap<tsl::htrie_map<char, int>>                                     286 ns          286 ns      2389283
+BenchCharKeyMap<tsl::array_map<char, int>>                                     152 ns          152 ns      5434606

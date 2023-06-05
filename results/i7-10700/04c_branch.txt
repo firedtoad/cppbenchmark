@@ -1,0 +1,13 @@
+2023-06-04T20:13:12-04:00
+Running ./bin/04c_branch
+Run on (8 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 4.27, 4.06, 3.15
+------------------------------------------------------------------------------
+Benchmark                    Time             CPU   Iterations UserCounters...
+------------------------------------------------------------------------------
+BM_branched/4194304   15361939 ns     15360038 ns           50 items_per_second=273.066M/s

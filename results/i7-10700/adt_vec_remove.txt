@@ -1,4 +1,4 @@
-2023-04-05T08:51:21-04:00
+2023-06-04T20:13:39-04:00
 Running ./bin/adt_vec_remove
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,12 +6,12 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.38, 4.23, 3.71
+Load Average: 4.37, 4.10, 3.19
 -----------------------------------------------------------
 Benchmark                 Time             CPU   Iterations
 -----------------------------------------------------------
-BM_erase               1737 ns         1738 ns       473470
-BM_eraseSmall          1567 ns         1567 ns       447501
-BM_swap_pop            24.3 ns         24.3 ns     29175238
-BM_swap_popSmall       28.4 ns         28.4 ns     21727670
-BM_list                1254 ns         1254 ns       589443
+BM_erase               1504 ns         1503 ns       406313
+BM_eraseSmall          1699 ns         1696 ns       380248
+BM_swap_pop            25.4 ns         25.4 ns     23841210
+BM_swap_popSmall       29.7 ns         29.7 ns     24165133
+BM_list                1172 ns         1171 ns       615274

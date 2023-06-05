@@ -1,4 +1,4 @@
-2023-04-05T08:40:42-04:00
+2023-06-04T20:17:17-04:00
 Running ./bin/adt_list_insert
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,56 +6,56 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 2.52, 3.10, 3.07
+Load Average: 4.74, 4.45, 3.53
 -------------------------------------------------------------------------
 Benchmark                               Time             CPU   Iterations
 -------------------------------------------------------------------------
-BenchListInsert/1                    13.2 ns         13.2 ns     48551871
-BenchListInsert/8                     113 ns          113 ns      4920091
-BenchListInsert/64                    991 ns          991 ns       692668
-BenchListInsert/512                  8299 ns         8299 ns        77606
-BenchListInsert/4096                74192 ns        74128 ns         8473
-BenchListInsert/32768              601962 ns       601938 ns         1159
-BenchListInsert/65536             1208315 ns      1208299 ns          571
-BenchBUListInsert/1                  21.5 ns         21.5 ns     32022577
-BenchBUListInsert/8                  30.5 ns         30.5 ns     20354962
-BenchBUListInsert/64                  122 ns          122 ns      5270808
-BenchBUListInsert/512                1003 ns         1003 ns       536853
-BenchBUListInsert/4096               9318 ns         9311 ns        81051
-BenchBUListInsert/32768             88342 ns        88343 ns         8822
-BenchBUListInsert/65536            154211 ns       154066 ns         4329
-BenchIntrusiveListInsert/1           15.2 ns         15.2 ns     44078898
-BenchIntrusiveListInsert/8           25.7 ns         25.7 ns     24090975
-BenchIntrusiveListInsert/64           186 ns          186 ns      3752322
-BenchIntrusiveListInsert/512         1166 ns         1166 ns       548669
-BenchIntrusiveListInsert/4096       12917 ns        12907 ns        52557
-BenchIntrusiveListInsert/32768     128407 ns       128409 ns         5960
-BenchIntrusiveListInsert/65536     300981 ns       300753 ns         2667
-BenchPlfListInsert/1                 39.5 ns         39.5 ns     20351131
-BenchPlfListInsert/8                 93.2 ns         93.1 ns      7757093
-BenchPlfListInsert/64                 794 ns          794 ns      1075608
-BenchPlfListInsert/512               7015 ns         7008 ns        92340
-BenchPlfListInsert/4096             53670 ns        53671 ns        10000
-BenchPlfListInsert/32768           430756 ns       430764 ns         1212
-BenchPlfListInsert/65536           731054 ns       730430 ns          859
-BenchAdtList/1                       14.4 ns         14.4 ns     45229247
-BenchAdtList/8                        103 ns          103 ns      6916048
-BenchAdtList/64                      1014 ns         1014 ns       842820
-BenchAdtList/512                     8365 ns         8365 ns        76090
-BenchAdtList/4096                   72514 ns        72449 ns         9870
-BenchAdtList/32768                 569955 ns       569960 ns         1049
-BenchAdtList/65536                1243493 ns      1242510 ns          630
-BenchAdtSimpleList/1                 21.9 ns         21.9 ns     33706824
-BenchAdtSimpleList/8                 33.5 ns         33.4 ns     18366631
-BenchAdtSimpleList/64                 146 ns          146 ns      4442060
-BenchAdtSimpleList/512                783 ns          783 ns       781956
-BenchAdtSimpleList/4096             11170 ns        11159 ns        54148
-BenchAdtSimpleList/32768            92813 ns        92814 ns         6776
-BenchAdtSimpleList/65536           157341 ns       157339 ns         3574
-BenchAdtImmutableList/1               175 ns          175 ns      4493108
-BenchAdtImmutableList/8               343 ns          343 ns      2141284
-BenchAdtImmutableList/64             1759 ns         1759 ns       372297
-BenchAdtImmutableList/512           22199 ns        22198 ns        30290
-BenchAdtImmutableList/4096         211532 ns       211524 ns         3490
-BenchAdtImmutableList/32768       2183503 ns      2183433 ns          385
-BenchAdtImmutableList/65536       4897119 ns      4897129 ns          147
+BenchListInsert/1                    15.5 ns         15.5 ns     32271287
+BenchListInsert/8                     140 ns          140 ns      4864663
+BenchListInsert/64                   1192 ns         1192 ns       555541
+BenchListInsert/512                 10264 ns        10264 ns        66322
+BenchListInsert/4096                90994 ns        90988 ns         8042
+BenchListInsert/32768              798204 ns       798199 ns         1089
+BenchListInsert/65536             1602553 ns      1602494 ns          417
+BenchBUListInsert/1                  25.2 ns         25.2 ns     23386236
+BenchBUListInsert/8                  37.6 ns         37.6 ns     18025222
+BenchBUListInsert/64                  118 ns          118 ns      6390537
+BenchBUListInsert/512                 828 ns          828 ns       853521
+BenchBUListInsert/4096               7512 ns         7512 ns        71821
+BenchBUListInsert/32768             84430 ns        84430 ns         9436
+BenchBUListInsert/65536            183426 ns       183425 ns         4478
+BenchIntrusiveListInsert/1           20.7 ns         20.7 ns     33702232
+BenchIntrusiveListInsert/8           34.8 ns         34.8 ns     22396749
+BenchIntrusiveListInsert/64           225 ns          225 ns      3124365
+BenchIntrusiveListInsert/512         1213 ns         1213 ns       509160
+BenchIntrusiveListInsert/4096       12702 ns        12702 ns        52630
+BenchIntrusiveListInsert/32768     139975 ns       139976 ns         4430
+BenchIntrusiveListInsert/65536     307109 ns       307092 ns         2498
+BenchPlfListInsert/1                 39.2 ns         39.2 ns     17597095
+BenchPlfListInsert/8                  107 ns          107 ns      6775247
+BenchPlfListInsert/64                 831 ns          831 ns       798388
+BenchPlfListInsert/512               6811 ns         6811 ns       112362
+BenchPlfListInsert/4096             49345 ns        49345 ns        14743
+BenchPlfListInsert/32768           436744 ns       436745 ns         1532
+BenchPlfListInsert/65536           802080 ns       801985 ns          698
+BenchAdtList/1                       14.4 ns         14.4 ns     52020365
+BenchAdtList/8                        113 ns          113 ns      6059312
+BenchAdtList/64                      1087 ns         1087 ns       681064
+BenchAdtList/512                    10822 ns        10822 ns        78706
+BenchAdtList/4096                   90829 ns        90829 ns         8658
+BenchAdtList/32768                 686642 ns       686655 ns         1038
+BenchAdtList/65536                1400732 ns      1400719 ns          537
+BenchAdtSimpleList/1                 25.3 ns         25.3 ns     27170571
+BenchAdtSimpleList/8                 34.4 ns         34.4 ns     18390144
+BenchAdtSimpleList/64                 135 ns          134 ns      4057749
+BenchAdtSimpleList/512                845 ns          845 ns       730957
+BenchAdtSimpleList/4096              9612 ns         9612 ns        69496
+BenchAdtSimpleList/32768            89236 ns        89238 ns         7502
+BenchAdtSimpleList/65536           178987 ns       178991 ns         3355
+BenchAdtImmutableList/1               190 ns          190 ns      3289000
+BenchAdtImmutableList/8               378 ns          378 ns      1793763
+BenchAdtImmutableList/64             2080 ns         2080 ns       419606
+BenchAdtImmutableList/512           28762 ns        28762 ns        23499
+BenchAdtImmutableList/4096         266442 ns       266444 ns         2773
+BenchAdtImmutableList/32768       2224725 ns      2224656 ns          305
+BenchAdtImmutableList/65536       5031901 ns      5031932 ns          138

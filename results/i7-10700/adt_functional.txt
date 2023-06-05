@@ -1,6 +1,6 @@
 16
 8
-2023-04-05T08:40:12-04:00
+2023-06-04T20:17:35-04:00
 Running ./bin/adt_functional
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -8,20 +8,20 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 1.31, 2.97, 3.03
+Load Average: 4.53, 4.42, 3.54
 ---------------------------------------------------------------
 Benchmark                     Time             CPU   Iterations
 ---------------------------------------------------------------
-BM_AllocSize/1             9.59 ns         9.59 ns     90767595
-BM_AllocSize/8             8.71 ns         8.71 ns     61121774
-BM_AllocSize/64            10.2 ns         10.2 ns     72510213
-BM_AllocSize/512           10.7 ns         10.7 ns     65241049
-BM_AllocSize/4096          22.3 ns         22.3 ns     34598644
-BM_AllocSize/32768         24.1 ns         24.1 ns     31796085
-BM_AllocSize/262144        21.4 ns         21.4 ns     30770567
-BM_AllocSize/1048576       21.8 ns         21.8 ns     28949538
-BM_FunctionStack           2.23 ns         2.23 ns    276919526
-BM_FunctionHeap            15.4 ns         15.4 ns     46650720
-BM_FunctionRefStack       0.518 ns        0.518 ns   1000000000
-BM_FunctionRefHeap        0.744 ns        0.744 ns   1000000000
-BM_Lambda                 0.740 ns        0.740 ns    971132733
+BM_AllocSize/1             10.7 ns         10.7 ns     50304269
+BM_AllocSize/8             11.0 ns         11.0 ns     71221457
+BM_AllocSize/64            13.4 ns         13.4 ns     55453060
+BM_AllocSize/512           12.4 ns         12.4 ns     54402315
+BM_AllocSize/4096          28.4 ns         28.4 ns     23582705
+BM_AllocSize/32768         28.1 ns         28.1 ns     26002297
+BM_AllocSize/262144        31.5 ns         31.5 ns     34270912
+BM_AllocSize/1048576       27.0 ns         27.0 ns     20768727
+BM_FunctionStack           2.86 ns         2.86 ns    277277604
+BM_FunctionHeap            17.7 ns         17.7 ns     43812495
+BM_FunctionRefStack       0.243 ns        0.243 ns   1000000000
+BM_FunctionRefHeap        0.277 ns        0.277 ns   1000000000
+BM_Lambda                 0.236 ns        0.236 ns   1000000000

@@ -1,4 +1,4 @@
-2023-04-05T08:47:28-04:00
+2023-06-04T20:18:15-04:00
 Running ./bin/multi_alu
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,10 +6,10 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.27, 3.93, 3.48
+Load Average: 4.40, 4.40, 3.57
 ----------------------------------------------------------------------
 Benchmark                            Time             CPU   Iterations
 ----------------------------------------------------------------------
-BM_SingleNoOptimize/1048576    4320601 ns      4316686 ns          161
-BM_Single/1048576              1860738 ns      1859259 ns          378
-BM_Multi/1048576               1881879 ns      1880366 ns          373
+BM_SingleNoOptimize/1048576    4652695 ns      4652567 ns          140
+BM_Single/1048576              2001220 ns      2001148 ns          364
+BM_Multi/1048576               2024502 ns      2024447 ns          344

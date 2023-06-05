@@ -1,4 +1,4 @@
-2023-04-05T08:42:45-04:00
+2023-06-04T20:18:18-04:00
 Running ./bin/vec_dimension
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,17 +6,17 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 3.97, 3.45, 3.21
+Load Average: 4.40, 4.40, 3.57
 ------------------------------------------------------------------------------
 Benchmark                                    Time             CPU   Iterations
 ------------------------------------------------------------------------------
-BenchFindDimension<1024, 1024>/1          3.00 ns         3.00 ns    225867308
-BenchFindDimension<1024, 1024>/8          22.8 ns         22.7 ns     29398841
-BenchFindDimension<1024, 1024>/64          186 ns          186 ns      3436816
-BenchFindDimension<1024, 1024>/512        1448 ns         1447 ns       426029
-BenchFindDimension<1024, 1024>/1024       3018 ns         3016 ns       242463
-BenchFindLinear<1024, 1024>/1             3.76 ns         3.76 ns    224720729
-BenchFindLinear<1024, 1024>/8             22.7 ns         22.6 ns     33367547
-BenchFindLinear<1024, 1024>/64             181 ns          181 ns      2953678
-BenchFindLinear<1024, 1024>/512           1269 ns         1268 ns       401870
-BenchFindLinear<1024, 1024>/1024          2497 ns         2493 ns       276558
+BenchFindDimension<1024, 1024>/1          3.68 ns         3.68 ns    187314107
+BenchFindDimension<1024, 1024>/8          23.9 ns         23.9 ns     25274088
+BenchFindDimension<1024, 1024>/64          232 ns          232 ns      3159965
+BenchFindDimension<1024, 1024>/512        1931 ns         1931 ns       407633
+BenchFindDimension<1024, 1024>/1024       3315 ns         3315 ns       226644
+BenchFindLinear<1024, 1024>/1             3.34 ns         3.34 ns    217516291
+BenchFindLinear<1024, 1024>/8             24.8 ns         24.8 ns     24204066
+BenchFindLinear<1024, 1024>/64             214 ns          214 ns      3408242
+BenchFindLinear<1024, 1024>/512           1593 ns         1593 ns       469543
+BenchFindLinear<1024, 1024>/1024          3457 ns         3457 ns       214065

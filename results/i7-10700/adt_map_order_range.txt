@@ -1,4 +1,4 @@
-2023-04-05T08:47:16-04:00
+2023-06-04T20:16:24-04:00
 Running ./bin/adt_map_order_range
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,15 +6,15 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.27, 3.90, 3.47
+Load Average: 5.51, 4.51, 3.49
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Benchmark                                                                                                                                                             Time             CPU   Iterations
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-BenchRangeOrderMapInt<std::map<int, int>>                                                                                                                        303064 ns       302764 ns         1783
-BenchRangeOrderMapInt<tsl::ordered_map<int, int>>                                                                                                                 32005 ns        31974 ns        18558
-BenchRangeOrderMapInt<tsl::ordered_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int, int>>, std::vector<std::pair<int, int>>>>      22298 ns        22274 ns        30843
-BenchRangeOrderMapInt<absl::btree_map<int, int>>                                                                                                                  71964 ns        71811 ns         8269
-BenchRangeImmutableMapInt                                                                                                                                        958366 ns       956801 ns          797
-BenchRangeOrderMapString<std::map<std::string, int>>                                                                                                             428086 ns       427724 ns         1659
-BenchRangeOrderMapString<tsl::ordered_map<std::string, int>>                                                                                                      50901 ns        50801 ns        11811
-BenchRangeOrderMapString<absl::btree_map<std::string, int>>                                                                                                      116182 ns       116056 ns         5325
+BenchRangeOrderMapInt<std::map<int, int>>                                                                                                                        321443 ns       321449 ns         2070
+BenchRangeOrderMapInt<tsl::ordered_map<int, int>>                                                                                                                 39276 ns        39276 ns        21999
+BenchRangeOrderMapInt<tsl::ordered_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int, int>>, std::vector<std::pair<int, int>>>>      18497 ns        18497 ns        38322
+BenchRangeOrderMapInt<absl::btree_map<int, int>>                                                                                                                  80416 ns        80414 ns         8226
+BenchRangeImmutableMapInt                                                                                                                                       1032233 ns      1032246 ns          633
+BenchRangeOrderMapString<std::map<std::string, int>>                                                                                                             405668 ns       405668 ns         1643
+BenchRangeOrderMapString<tsl::ordered_map<std::string, int>>                                                                                                      58193 ns        58194 ns        10000
+BenchRangeOrderMapString<absl::btree_map<std::string, int>>                                                                                                      122105 ns       122093 ns         5270

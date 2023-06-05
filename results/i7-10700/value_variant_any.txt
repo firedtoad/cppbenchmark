@@ -1,0 +1,61 @@
+std::variant<int, double, CopyableUniquePtr<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > size 16
+std::variant<int, double, std::shared_ptr<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > size 24
+std::variant<int, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool> size 40
+std::variant<int, int, short> size 8
+std::tuple<int, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > size 48
+std::any size 16
+std::optional<long> size 16
+std::optional<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > size 40
+std::unique_ptr<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::default_delete<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > size 8
+
+user cpu : 0s 0us
+sys cpu : 0s 3716us
+max rss : 40948 kb / 39.9883 MB
+page reclaims : 552
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+user cpu : 0s 0us
+sys cpu : 0s 3986us
+max rss : 16420 kb / 16.0352 MB
+page reclaims : 545
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+user cpu : 0s 3978us
+sys cpu : 0s 355us
+max rss : 16368 kb / 15.9844 MB
+page reclaims : 4114
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+
+1234567890123456
+
+1234567890123456
+2023-06-04T20:11:20-04:00
+Running ./bin/value_variant_any
+Run on (8 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 4.19, 3.94, 3.00
+-------------------------------------------------------------------------------------
+Benchmark                                           Time             CPU   Iterations
+-------------------------------------------------------------------------------------
+BM_Variant<std::string>                          25.1 ns         25.1 ns     24423319
+BM_Variant<std::unique_ptr<std::string>>         37.5 ns         37.4 ns     20558916
+BM_Variant<std::shared_ptr<std::string>>         36.3 ns         36.3 ns     20750416
+BM_Variant<std::optional<std::string>>           30.4 ns         30.4 ns     24357589
+BM_Variant<CopyableUniquePtr<std::string>>       44.9 ns         44.9 ns     13514862
+BM_Variant<int64_t>                             0.529 ns        0.529 ns   1000000000
+BM_Any                                           46.7 ns         46.7 ns     13878448
+BM_AnyPod                                        1.91 ns         1.91 ns    313350190
+BM_Optional                                      16.0 ns         16.0 ns     42725161
+BM_CopyableUniquePtrInt                         0.687 ns        0.687 ns   1000000000
+BM_CopyableUniquePtrString                       33.6 ns         33.6 ns     17810369

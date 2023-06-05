@@ -1,4 +1,4 @@
-2023-04-05T08:53:50-04:00
+2023-06-04T20:19:08-04:00
 Running ./bin/logging
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,8 +6,15 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.66, 4.39, 3.85
------------------------------------------------------
-Benchmark           Time             CPU   Iterations
------------------------------------------------------
-BM_SpdLog         416 ns          398 ns      1955316
+Load Average: 4.31, 4.37, 3.61
+-------------------------------------------------------------------
+Benchmark                         Time             CPU   Iterations
+-------------------------------------------------------------------
+BM_SpdLog/threads:1             325 ns          325 ns      2294090
+BM_SpdLog/threads:2             645 ns         1129 ns       632468
+BM_SpdLog/threads:4             699 ns         1828 ns       339056
+BM_SpdLog/threads:8             815 ns         2750 ns       268040
+BM_SpdLogAsync/threads:1        730 ns          611 ns      1039089
+BM_SpdLogAsync/threads:2        495 ns          768 ns       914436
+BM_SpdLogAsync/threads:4        478 ns         1395 ns       545356
+BM_SpdLogAsync/threads:8        434 ns         1519 ns       449336

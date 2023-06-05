@@ -1,4 +1,4 @@
-2023-04-05T08:50:58-04:00
+2023-06-04T20:14:10-04:00
 Running ./bin/map_pmr
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,27 +6,27 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.45, 4.23, 3.70
+Load Average: 4.35, 4.12, 3.23
 ----------------------------------------------------------------------------------------------------
 Benchmark                                                          Time             CPU   Iterations
 ----------------------------------------------------------------------------------------------------
-BM_reserve<std::unordered_map<int, int>>/1024                  39200 ns        39166 ns        19448
-BM_reserve<std::unordered_map<int, int>>/4096                 161049 ns       160924 ns         4924
-BM_reserve<std::unordered_map<int, int>>/32768               1399731 ns      1398367 ns          461
-BM_reserve<std::unordered_map<int, int>>/262144             11683355 ns     11661820 ns           57
-BM_reserve<std::unordered_map<int, int>>/1048576            48381383 ns     48339611 ns           15
-BM_PMR_reserve<std::pmr::unordered_map<int, int>>/1024         22796 ns        22776 ns        30980
-BM_PMR_reserve<std::pmr::unordered_map<int, int>>/4096         84504 ns        84352 ns         9145
-BM_PMR_reserve<std::pmr::unordered_map<int, int>>/32768       692764 ns       691407 ns         1288
-BM_PMR_reserve<std::pmr::unordered_map<int, int>>/262144     5768390 ns      5762273 ns          121
-BM_PMR_reserve<std::pmr::unordered_map<int, int>>/1048576   22829696 ns     22807020 ns           30
-BM_Range<std::unordered_map<int, int>>/1024                     1172 ns         1170 ns       553402
-BM_Range<std::unordered_map<int, int>>/4096                     6299 ns         6294 ns       107890
-BM_Range<std::unordered_map<int, int>>/32768                   58836 ns        58740 ns        12195
-BM_Range<std::unordered_map<int, int>>/262144                 704395 ns       703646 ns          907
-BM_Range<std::unordered_map<int, int>>/1048576               3779816 ns      3776181 ns          190
-BM_PMR_Range<std::pmr::unordered_map<int, int>>/1024             924 ns          923 ns       739585
-BM_PMR_Range<std::pmr::unordered_map<int, int>>/4096            3919 ns         3912 ns       180195
-BM_PMR_Range<std::pmr::unordered_map<int, int>>/32768          36963 ns        36932 ns        19042
-BM_PMR_Range<std::pmr::unordered_map<int, int>>/262144        369907 ns       369455 ns         1851
-BM_PMR_Range<std::pmr::unordered_map<int, int>>/1048576      1766661 ns      1764631 ns          386
+BM_reserve<std::unordered_map<int, int>>/1024                  42908 ns        42906 ns        13056
+BM_reserve<std::unordered_map<int, int>>/4096                 146346 ns       146350 ns         3627
+BM_reserve<std::unordered_map<int, int>>/32768               1526749 ns      1526676 ns          513
+BM_reserve<std::unordered_map<int, int>>/262144             11031826 ns     11031916 ns           58
+BM_reserve<std::unordered_map<int, int>>/1048576            47465402 ns     47466069 ns           13
+BM_PMR_reserve<std::pmr::unordered_map<int, int>>/1024         28094 ns        28093 ns        27122
+BM_PMR_reserve<std::pmr::unordered_map<int, int>>/4096        106723 ns       106725 ns         6652
+BM_PMR_reserve<std::pmr::unordered_map<int, int>>/32768       877654 ns       877607 ns          793
+BM_PMR_reserve<std::pmr::unordered_map<int, int>>/262144     6697680 ns      6697766 ns          128
+BM_PMR_reserve<std::pmr::unordered_map<int, int>>/1048576   28453484 ns     28452440 ns           25
+BM_Range<std::unordered_map<int, int>>/1024                     1369 ns         1369 ns       545513
+BM_Range<std::unordered_map<int, int>>/4096                     6072 ns         6072 ns       115587
+BM_Range<std::unordered_map<int, int>>/32768                   63030 ns        63031 ns        12141
+BM_Range<std::unordered_map<int, int>>/262144                 526678 ns       526684 ns         1321
+BM_Range<std::unordered_map<int, int>>/1048576               3656603 ns      3656675 ns          200
+BM_PMR_Range<std::pmr::unordered_map<int, int>>/1024             961 ns          961 ns       572961
+BM_PMR_Range<std::pmr::unordered_map<int, int>>/4096            3909 ns         3910 ns       176230
+BM_PMR_Range<std::pmr::unordered_map<int, int>>/32768          37162 ns        37160 ns        19354
+BM_PMR_Range<std::pmr::unordered_map<int, int>>/262144        319983 ns       319989 ns         2297
+BM_PMR_Range<std::pmr::unordered_map<int, int>>/1048576      1560225 ns      1560097 ns          440

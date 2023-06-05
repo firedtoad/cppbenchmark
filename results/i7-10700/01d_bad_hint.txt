@@ -1,0 +1,13 @@
+2023-06-04T20:04:51-04:00
+Running ./bin/01d_bad_hint
+Run on (8 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 4.60, 2.68, 2.22
+--------------------------------------------------------------------------------------
+Benchmark                            Time             CPU   Iterations UserCounters...
+--------------------------------------------------------------------------------------
+BM_branch_predicted/4194304    3155583 ns      3152297 ns          217 items_per_second=1.33055G/s

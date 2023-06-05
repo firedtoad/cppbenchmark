@@ -1,0 +1,27 @@
+2023-06-04T20:13:14-04:00
+Running ./bin/map_find_order
+Run on (8 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 4.27, 4.06, 3.15
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                                                                                                                                                   Time             CPU   Iterations
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+BenchOrderMapInt<std::map<int, int>>                                                                                                                                                                      139 ns          139 ns      5433907
+BenchOrderMapInt<tsl::ordered_map<int, int>>                                                                                                                                                             20.8 ns         20.8 ns     33241257
+BenchOrderMapInt<absl::btree_map<int, int>>                                                                                                                                                              82.1 ns         82.1 ns      8688481
+BenchOrderMapInt<phmap::btree_map<int, int>>                                                                                                                                                             80.4 ns         80.3 ns      9195210
+BenchOrderMapInt<tsl::ordered_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int, int>>, std::vector<std::pair<int, int>>>>                                                  19.1 ns         19.1 ns     36417057
+BenchOrderMapInt<absl::btree_map<int, int>>                                                                                                                                                              83.6 ns         83.6 ns      8344734
+BenchOrderMapString<std::map<std::string, int>>                                                                                                                                                           917 ns          917 ns       792569
+BenchOrderMapString<tsl::ordered_map<std::string, int>>                                                                                                                                                   196 ns          196 ns      2996273
+BenchOrderMapString<tsl::ordered_map<std::string, int, std::hash<std::string>, std::equal_to<std::string>, std::allocator<std::pair<std::string, int>>, std::vector<std::pair<std::string, int>>>>        258 ns          258 ns      3333091
+BenchOrderMapString<absl::btree_map<std::string, int>>                                                                                                                                                    633 ns          633 ns      1049834
+BenchOrderMapString<phmap::btree_map<std::string, int>>                                                                                                                                                   598 ns          598 ns      1275559
+BenchCombineMapInt<std::map<uint64_t, uint64_t>>                                                                                                                                                          199 ns          199 ns      3237641
+BenchTwiceMapInt<std::map<uint32_t, std::map<uint32_t, uint32_t>>>                                                                                                                                        324 ns          324 ns      2560411
+BenchCombineMapInt<std::unordered_map<uint64_t, uint64_t>>                                                                                                                                               28.9 ns         28.9 ns     22635599
+BenchTwiceMapInt<std::unordered_map<uint32_t, std::unordered_map<uint32_t, uint32_t>>>                                                                                                                   80.2 ns         80.2 ns      9666801

@@ -1,0 +1,24 @@
+2023-06-04T20:10:06-04:00
+Running ./bin/conventions
+Run on (8 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 4.27, 3.86, 2.89
+----------------------------------------------------------------------------
+Benchmark                                  Time             CPU   Iterations
+----------------------------------------------------------------------------
+BenchToString<uint64_t>                 37.8 ns         37.8 ns     19813365
+BenchToStringF<float>                    900 ns          900 ns       737491
+BenchBoostStringFrom<std::string>       85.6 ns         85.5 ns     11695002
+BenchBoostStringTof<std::string>         710 ns          710 ns       905813
+BenchStdToChars<uint64_t>               39.8 ns         39.8 ns     13534382
+BenchStdToCharsF<float>                 30.8 ns         30.8 ns     19391329
+BenchString2Int<uint64_t>               36.7 ns         36.7 ns     18541186
+BenchString2Float<float>                62.7 ns         62.6 ns     11485095
+BenchBoostFromString<uint64_t>          50.7 ns         50.7 ns     10000000
+BenchBoostFromStringF<float>             444 ns          444 ns      1898982
+BenchStdFromChars<uint64_t>             17.0 ns         17.0 ns     41575452
+BenchStdFromCharsF<float>               43.2 ns         43.2 ns     15681386

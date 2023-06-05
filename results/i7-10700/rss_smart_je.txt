@@ -1,0 +1,540 @@
+std::__cxx11::list<Small, std::allocator<Small> > size 1048576 memory 
+user cpu : 0s 18700us
+sys cpu : 0s 7696us
+max rss : 33108 kb / 32.332 MB
+page reclaims : 3686
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::__cxx11::list<std::shared_ptr<Small>, std::allocator<std::shared_ptr<Small> > > size 1048576 memory 
+user cpu : 0s 35873us
+sys cpu : 0s 11988us
+max rss : 68396 kb / 66.793 MB
+page reclaims : 3357
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::__cxx11::list<std::unique_ptr<Small, std::default_delete<Small> >, std::allocator<std::unique_ptr<Small, std::default_delete<Small> > > > size 1048576 memory 
+user cpu : 0s 32653us
+sys cpu : 0s 12231us
+max rss : 43036 kb / 42.0273 MB
+page reclaims : 1093
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::__cxx11::list<Big, std::allocator<Big> > size 1048576 memory 
+user cpu : 0s 15550us
+sys cpu : 0s 15770us
+max rss : 82468 kb / 80.5352 MB
+page reclaims : 1206
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::__cxx11::list<std::shared_ptr<Big>, std::allocator<std::shared_ptr<Big> > > size 1048576 memory 
+user cpu : 0s 48226us
+sys cpu : 0s 20111us
+max rss : 114892 kb / 112.199 MB
+page reclaims : 1170
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::__cxx11::list<std::unique_ptr<Big, std::default_delete<Big> >, std::allocator<std::unique_ptr<Big, std::default_delete<Big> > > > size 1048576 memory 
+user cpu : 0s 47923us
+sys cpu : 0s 27948us
+max rss : 101340 kb / 98.9648 MB
+page reclaims : 1839
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::deque<Small, std::allocator<Small> > size 1048576 memory 
+user cpu : 0s 4020us
+sys cpu : 0s 14us
+max rss : 8388 kb / 8.19141 MB
+page reclaims : 68
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::deque<std::shared_ptr<Small>, std::allocator<std::shared_ptr<Small> > > size 1048576 memory 
+user cpu : 0s 31901us
+sys cpu : 0s 0us
+max rss : 51324 kb / 50.1211 MB
+page reclaims : 611
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::deque<std::unique_ptr<Small, std::default_delete<Small> >, std::allocator<std::unique_ptr<Small, std::default_delete<Small> > > > size 1048576 memory 
+user cpu : 0s 23934us
+sys cpu : 0s 0us
+max rss : 14388 kb / 14.0508 MB
+page reclaims : 2610
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::deque<Big, std::allocator<Big> > size 1048576 memory 
+user cpu : 0s 11974us
+sys cpu : 0s 23939us
+max rss : 68112 kb / 66.5156 MB
+page reclaims : 17093
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::deque<std::shared_ptr<Big>, std::allocator<std::shared_ptr<Big> > > size 1048576 memory 
+user cpu : 0s 19922us
+sys cpu : 0s 35892us
+max rss : 99528 kb / 97.1953 MB
+page reclaims : 24898
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::deque<std::unique_ptr<Big, std::default_delete<Big> >, std::allocator<std::unique_ptr<Big, std::default_delete<Big> > > > size 1048576 memory 
+user cpu : 0s 24556us
+sys cpu : 0s 32292us
+max rss : 76032 kb / 74.25 MB
+page reclaims : 19042
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::vector<Small, std::allocator<Small> > size 1048576 memory 
+user cpu : 0s 0us
+sys cpu : 0s 0us
+max rss : 8188 kb / 7.99609 MB
+page reclaims : 2052
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::vector<std::shared_ptr<Small>, std::allocator<std::shared_ptr<Small> > > size 1048576 memory 
+user cpu : 0s 23934us
+sys cpu : 0s 11969us
+max rss : 50140 kb / 48.9648 MB
+page reclaims : 12550
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::vector<std::unique_ptr<Small, std::default_delete<Small> >, std::allocator<std::unique_ptr<Small, std::default_delete<Small> > > > size 1048576 memory 
+user cpu : 0s 23930us
+sys cpu : 0s 0us
+max rss : 16644 kb / 16.2539 MB
+page reclaims : 4226
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::vector<Big, std::allocator<Big> > size 1048576 memory 
+user cpu : 0s 3633us
+sys cpu : 0s 11739us
+max rss : 65476 kb / 63.9414 MB
+page reclaims : 16388
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::vector<std::shared_ptr<Big>, std::allocator<std::shared_ptr<Big> > > size 1048576 memory 
+user cpu : 0s 20670us
+sys cpu : 0s 24406us
+max rss : 98760 kb / 96.4453 MB
+page reclaims : 24835
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::vector<std::unique_ptr<Big, std::default_delete<Big> >, std::allocator<std::unique_ptr<Big, std::default_delete<Big> > > > size 1048576 memory 
+user cpu : 0s 35540us
+sys cpu : 0s 11719us
+max rss : 75764 kb / 73.9883 MB
+page reclaims : 18965
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::map<int, Small, std::less<int>, std::allocator<std::pair<int const, Small> > > size 1048576 memory 
+user cpu : 0s 203846us
+sys cpu : 0s 16022us
+max rss : 49636 kb / 48.4727 MB
+page reclaims : 12442
+page faults : 0
+voluntary switches : 0
+involuntary switches : 2
+
+std::map<int, std::shared_ptr<Small>, std::less<int>, std::allocator<std::pair<int const, std::shared_ptr<Small> > > > size 1048576 memory 
+user cpu : 0s 223976us
+sys cpu : 0s 44033us
+max rss : 101372 kb / 98.9961 MB
+page reclaims : 25395
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::map<int, std::unique_ptr<Small, std::default_delete<Small> >, std::less<int>, std::allocator<std::pair<int const, std::unique_ptr<Small, std::default_delete<Small> > > > > size 1048576 memory 
+user cpu : 0s 216237us
+sys cpu : 0s 12119us
+max rss : 58084 kb / 56.7227 MB
+page reclaims : 14557
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+std::map<int, Big, std::less<int>, std::allocator<std::pair<int const, Big> > > size 1048576 memory 
+user cpu : 0s 208113us
+sys cpu : 0s 20047us
+max rss : 115372 kb / 112.668 MB
+page reclaims : 28859
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+std::map<int, std::shared_ptr<Big>, std::less<int>, std::allocator<std::pair<int const, std::shared_ptr<Big> > > > size 1048576 memory 
+user cpu : 0s 219557us
+sys cpu : 0s 67873us
+max rss : 150284 kb / 146.762 MB
+page reclaims : 38089
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::map<int, std::unique_ptr<Big, std::default_delete<Big> >, std::less<int>, std::allocator<std::pair<int const, std::unique_ptr<Big, std::default_delete<Big> > > > > size 1048576 memory 
+user cpu : 0s 216248us
+sys cpu : 0s 36078us
+max rss : 117216 kb / 114.469 MB
+page reclaims : 29370
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_map<int, Small, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int const, Small> > > size 1048576 memory 
+user cpu : 0s 27928us
+sys cpu : 0s 7981us
+max rss : 41984 kb / 41 MB
+page reclaims : 10531
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_map<int, std::shared_ptr<Small>, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int const, std::shared_ptr<Small> > > > size 1048576 memory 
+user cpu : 0s 43850us
+sys cpu : 0s 27953us
+max rss : 75768 kb / 73.9922 MB
+page reclaims : 18995
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_map<int, std::unique_ptr<Small, std::default_delete<Small> >, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int const, std::unique_ptr<Small, std::default_delete<Small> > > > > size 1048576 memory 
+user cpu : 0s 63876us
+sys cpu : 0s 3972us
+max rss : 50424 kb / 49.2422 MB
+page reclaims : 12648
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_map<int, Big, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int const, Big> > > size 1048576 memory 
+user cpu : 0s 48628us
+sys cpu : 0s 20167us
+max rss : 90820 kb / 88.6914 MB
+page reclaims : 22714
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_map<int, std::shared_ptr<Big>, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int const, std::shared_ptr<Big> > > > size 1048576 memory 
+user cpu : 0s 71806us
+sys cpu : 0s 27946us
+max rss : 124608 kb / 121.688 MB
+page reclaims : 31181
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_map<int, std::unique_ptr<Big, std::default_delete<Big> >, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int const, std::unique_ptr<Big, std::default_delete<Big> > > > > size 1048576 memory 
+user cpu : 0s 39835us
+sys cpu : 0s 31948us
+max rss : 109824 kb / 107.25 MB
+page reclaims : 27458
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Small, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Small> > > size 1048576 memory 
+user cpu : 0s 316008us
+sys cpu : 0s 44026us
+max rss : 82368 kb / 80.4375 MB
+page reclaims : 20650
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<Small>, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::shared_ptr<Small> > > > size 1048576 memory 
+user cpu : 0s 411976us
+sys cpu : 0s 28013us
+max rss : 116428 kb / 113.699 MB
+page reclaims : 29113
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::unique_ptr<Small, std::default_delete<Small> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::unique_ptr<Small, std::default_delete<Small> > > > > size 1048576 memory 
+user cpu : 0s 363956us
+sys cpu : 0s 32001us
+max rss : 90816 kb / 88.6875 MB
+page reclaims : 22766
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Big, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Big> > > size 1048576 memory 
+user cpu : 0s 399817us
+sys cpu : 0s 43971us
+max rss : 135428 kb / 132.254 MB
+page reclaims : 33859
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<Big>, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::shared_ptr<Big> > > > size 1048576 memory 
+user cpu : 0s 375882us
+sys cpu : 0s 43984us
+max rss : 165004 kb / 161.137 MB
+page reclaims : 41299
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::unique_ptr<Big, std::default_delete<Big> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::unique_ptr<Big, std::default_delete<Big> > > > > size 1048576 memory 
+user cpu : 0s 395906us
+sys cpu : 0s 27994us
+max rss : 150216 kb / 146.695 MB
+page reclaims : 37581
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Small, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Small> > > size 1 memory 
+user cpu : 0s 0us
+sys cpu : 0s 0us
+max rss : 8 kb / 0.0078125 MB
+page reclaims : 5
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<Small>, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::shared_ptr<Small> > > > size 1 memory 
+user cpu : 0s 0us
+sys cpu : 0s 0us
+max rss : 8 kb / 0.0078125 MB
+page reclaims : 2
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::unique_ptr<Small, std::default_delete<Small> >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::unique_ptr<Small, std::default_delete<Small> > > > > size 1 memory 
+user cpu : 0s 0us
+sys cpu : 0s 0us
+max rss : 8 kb / 0.0078125 MB
+page reclaims : 4
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Big, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Big> > > size 1 memory 
+user cpu : 0s 0us
+sys cpu : 0s 0us
+max rss : 8 kb / 0.0078125 MB
+page reclaims : 1
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<Big>, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::shared_ptr<Big> > > > size 1 memory 
+user cpu : 0s 0us
+sys cpu : 0s 0us
+max rss : 8 kb / 0.0078125 MB
+page reclaims : 2
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::unique_ptr<Big, std::default_delete<Big> >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::unique_ptr<Big, std::default_delete<Big> > > > > size 1 memory 
+user cpu : 0s 0us
+sys cpu : 0s 0us
+max rss : 8 kb / 0.0078125 MB
+page reclaims : 1
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::set<Small, std::less<Small>, std::allocator<Small> > size 1048576 memory 
+user cpu : 0s 16765us
+sys cpu : 0s 143us
+max rss : 8 kb / 0.0078125 MB
+page reclaims : 2
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::set<std::shared_ptr<Small>, std::less<std::shared_ptr<Small> >, std::allocator<std::shared_ptr<Small> > > size 1048576 memory 
+user cpu : 0s 231397us
+sys cpu : 0s 23891us
+max rss : 83428 kb / 81.4727 MB
+page reclaims : 20905
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+std::set<std::unique_ptr<Small, std::default_delete<Small> >, std::less<std::unique_ptr<Small, std::default_delete<Small> > >, std::allocator<std::unique_ptr<Small, std::default_delete<Small> > > > size 1048576 memory 
+user cpu : 0s 220360us
+sys cpu : 0s 16069us
+max rss : 58084 kb / 56.7227 MB
+page reclaims : 14559
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::set<Big, std::less<Big>, std::allocator<Big> > size 1048576 memory 
+user cpu : 0s 251555us
+sys cpu : 0s 15927us
+max rss : 99268 kb / 96.9414 MB
+page reclaims : 24881
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+std::set<std::shared_ptr<Big>, std::less<std::shared_ptr<Big> >, std::allocator<std::shared_ptr<Big> > > size 1048576 memory 
+user cpu : 0s 240222us
+sys cpu : 0s 40038us
+max rss : 132264 kb / 129.164 MB
+page reclaims : 33090
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::set<std::unique_ptr<Big, std::default_delete<Big> >, std::less<std::unique_ptr<Big, std::default_delete<Big> > >, std::allocator<std::unique_ptr<Big, std::default_delete<Big> > > > size 1048576 memory 
+user cpu : 0s 236219us
+sys cpu : 0s 36038us
+max rss : 117216 kb / 114.469 MB
+page reclaims : 29370
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+std::unordered_set<Small, std::hash<Small>, std::equal_to<Small>, std::allocator<Small> > size 1048576 memory 
+user cpu : 0s 15952us
+sys cpu : 0s 0us
+max rss : 8188 kb / 7.99609 MB
+page reclaims : 2070
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_set<std::shared_ptr<Small>, std::hash<std::shared_ptr<Small> >, std::equal_to<std::shared_ptr<Small> >, std::allocator<std::shared_ptr<Small> > > size 1048576 memory 
+user cpu : 0s 76063us
+sys cpu : 0s 20002us
+max rss : 75764 kb / 73.9883 MB
+page reclaims : 18995
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_set<std::unique_ptr<Small, std::default_delete<Small> >, std::hash<std::unique_ptr<Small, std::default_delete<Small> > >, std::equal_to<std::unique_ptr<Small, std::default_delete<Small> > >, std::allocator<std::unique_ptr<Small, std::default_delete<Small> > > > size 1048576 memory 
+user cpu : 0s 59956us
+sys cpu : 0s 0us
+max rss : 33532 kb / 32.7461 MB
+page reclaims : 8414
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_set<Big, std::hash<Big>, std::equal_to<Big>, std::allocator<Big> > size 1048576 memory 
+user cpu : 0s 51482us
+sys cpu : 0s 19904us
+max rss : 90816 kb / 88.6875 MB
+page reclaims : 22718
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+std::unordered_set<std::shared_ptr<Big>, std::hash<std::shared_ptr<Big> >, std::equal_to<std::shared_ptr<Big> >, std::allocator<std::shared_ptr<Big> > > size 1048576 memory 
+user cpu : 0s 92306us
+sys cpu : 0s 24051us
+max rss : 124616 kb / 121.695 MB
+page reclaims : 31179
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_set<std::unique_ptr<Big, std::default_delete<Big> >, std::hash<std::unique_ptr<Big, std::default_delete<Big> > >, std::equal_to<std::unique_ptr<Big, std::default_delete<Big> > >, std::allocator<std::unique_ptr<Big, std::default_delete<Big> > > > size 1048576 memory 
+user cpu : 0s 83858us
+sys cpu : 0s 35972us
+max rss : 92704 kb / 90.5312 MB
+page reclaims : 23287
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::set<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > size 1048576 memory 
+user cpu : 0s 428502us
+sys cpu : 0s 24092us
+max rss : 67624 kb / 66.0391 MB
+page reclaims : 17382
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+std::set<std::shared_ptr<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::less<std::shared_ptr<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::allocator<std::shared_ptr<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > > size 1048576 memory 
+user cpu : 0s 255796us
+sys cpu : 0s 23968us
+max rss : 99268 kb / 96.9414 MB
+page reclaims : 24882
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::set<std::unique_ptr<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::default_delete<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::less<std::unique_ptr<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::default_delete<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::allocator<std::unique_ptr<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::default_delete<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > > > size 1048576 memory 
+user cpu : 0s 232247us
+sys cpu : 0s 32041us
+max rss : 83424 kb / 81.4688 MB
+page reclaims : 20908
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+std::unordered_set<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > size 1048576 memory 
+user cpu : 0s 235411us
+sys cpu : 0s 19906us
+max rss : 57820 kb / 56.4648 MB
+page reclaims : 14506
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_set<std::shared_ptr<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::shared_ptr<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::equal_to<std::shared_ptr<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::allocator<std::shared_ptr<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > > size 1048576 memory 
+user cpu : 0s 108567us
+sys cpu : 0s 20091us
+max rss : 91872 kb / 89.7188 MB
+page reclaims : 22971
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_set<std::unique_ptr<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::default_delete<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::hash<std::unique_ptr<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::default_delete<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::equal_to<std::unique_ptr<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::default_delete<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::allocator<std::unique_ptr<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::default_delete<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > > > size 1048576 memory 
+user cpu : 0s 104111us
+sys cpu : 0s 16018us
+max rss : 58872 kb / 57.4922 MB
+page reclaims : 14763
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+

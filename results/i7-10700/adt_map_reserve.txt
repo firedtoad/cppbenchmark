@@ -1,4 +1,4 @@
-2023-04-05T08:40:54-04:00
+2023-06-04T20:19:50-04:00
 Running ./bin/adt_map_reserve
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,80 +6,80 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 2.75, 3.13, 3.08
+Load Average: 4.27, 4.35, 3.64
 -------------------------------------------------------------------------------------------------------
 Benchmark                                                             Time             CPU   Iterations
 -------------------------------------------------------------------------------------------------------
-BM_reserve<std::unordered_map<int, int>>/1024                     43001 ns        43000 ns        16317
-BM_reserve<std::unordered_map<int, int>>/4096                    198634 ns       198634 ns         3470
-BM_reserve<std::unordered_map<int, int>>/32768                  1628713 ns      1628672 ns          465
-BM_reserve<std::unordered_map<int, int>>/262144                11828185 ns     11828287 ns           73
-BM_reserve<std::unordered_map<int, int>>/1048576               53983531 ns     53970677 ns           10
-BM_reserve<ska::unordered_map<int, int>>/1024                     45165 ns        45164 ns        13113
-BM_reserve<ska::unordered_map<int, int>>/4096                    180507 ns       180508 ns         3626
-BM_reserve<ska::unordered_map<int, int>>/32768                  1821145 ns      1821058 ns          424
-BM_reserve<ska::unordered_map<int, int>>/262144                52877677 ns     52877792 ns           12
-BM_reserve<ska::unordered_map<int, int>>/1048576              289058864 ns    288959306 ns            2
-BM_reserve<ska::flat_hash_map<int, int>>/1024                      7940 ns         7940 ns       110242
-BM_reserve<ska::flat_hash_map<int, int>>/4096                     33868 ns        33859 ns        21204
-BM_reserve<ska::flat_hash_map<int, int>>/32768                   360101 ns       360103 ns         2001
-BM_reserve<ska::flat_hash_map<int, int>>/262144                 3722977 ns      3722674 ns          141
-BM_reserve<ska::flat_hash_map<int, int>>/1048576               43537639 ns     43538471 ns           13
-BM_reserve<ska::bytell_hash_map<int, int>>/1024                    9457 ns         9454 ns        67028
-BM_reserve<ska::bytell_hash_map<int, int>>/4096                   37847 ns        37846 ns        17957
-BM_reserve<ska::bytell_hash_map<int, int>>/32768                 472257 ns       472170 ns         1554
-BM_reserve<ska::bytell_hash_map<int, int>>/262144               4463577 ns      4462904 ns          117
-BM_reserve<ska::bytell_hash_map<int, int>>/1048576             41107329 ns     41099063 ns           16
-BM_reserve<phmap::flat_hash_map<int, int>>/1024                    6558 ns         6558 ns       118362
-BM_reserve<phmap::flat_hash_map<int, int>>/4096                   30073 ns        30073 ns        25257
-BM_reserve<phmap::flat_hash_map<int, int>>/32768                 275072 ns       275061 ns         2740
-BM_reserve<phmap::flat_hash_map<int, int>>/262144               2823352 ns      2823322 ns          239
-BM_reserve<phmap::flat_hash_map<int, int>>/1048576             15926133 ns     15925195 ns           45
-BM_reserve<robin_hood::unordered_flat_map<int, int>>/1024          8838 ns         8838 ns        85290
-BM_reserve<robin_hood::unordered_flat_map<int, int>>/4096         43322 ns        43319 ns        15510
-BM_reserve<robin_hood::unordered_flat_map<int, int>>/32768       480483 ns       480482 ns         1343
-BM_reserve<robin_hood::unordered_flat_map<int, int>>/262144     4602301 ns      4601384 ns          138
-BM_reserve<robin_hood::unordered_flat_map<int, int>>/1048576   26251596 ns     26252051 ns           28
-BM_reserve<spp::sparse_hash_map<int, int>>/1024                   36513 ns        36505 ns        19093
-BM_reserve<spp::sparse_hash_map<int, int>>/4096                  149607 ns       149610 ns         4161
-BM_reserve<spp::sparse_hash_map<int, int>>/32768                1299062 ns      1299076 ns          552
-BM_reserve<spp::sparse_hash_map<int, int>>/262144              13222860 ns     13222100 ns           58
-BM_reserve<spp::sparse_hash_map<int, int>>/1048576             64945293 ns     64946403 ns           11
-BM_reserve<tsl::bhopscotch_map<int, int>>/1024                    12450 ns        12447 ns        55483
-BM_reserve<tsl::bhopscotch_map<int, int>>/4096                    53044 ns        53045 ns        11619
-BM_reserve<tsl::bhopscotch_map<int, int>>/32768                  409512 ns       409445 ns         1733
-BM_reserve<tsl::bhopscotch_map<int, int>>/262144                3707640 ns      3707666 ns          196
-BM_reserve<tsl::bhopscotch_map<int, int>>/1048576              21087812 ns     21070329 ns           36
-BM_reserve<tsl::hopscotch_map<int, int>>/1024                     18749 ns        18750 ns        33688
-BM_reserve<tsl::hopscotch_map<int, int>>/4096                     60649 ns        60638 ns        11620
-BM_reserve<tsl::hopscotch_map<int, int>>/32768                   505109 ns       505095 ns         1357
-BM_reserve<tsl::hopscotch_map<int, int>>/262144                 4014046 ns      4014118 ns          162
-BM_reserve<tsl::hopscotch_map<int, int>>/1048576               20815530 ns     20814257 ns           31
-BM_reserve<tsl::robin_map<int, int>>/1024                         10936 ns        10936 ns        69674
-BM_reserve<tsl::robin_map<int, int>>/4096                         38673 ns        38672 ns        17055
-BM_reserve<tsl::robin_map<int, int>>/32768                       389827 ns       389831 ns         1708
-BM_reserve<tsl::robin_map<int, int>>/262144                     2904100 ns      2903873 ns          234
-BM_reserve<tsl::robin_map<int, int>>/1048576                   12526174 ns     12526201 ns           62
-BM_reserve<tsl::sparse_map<int, int>>/1024                        19368 ns        19361 ns        30856
-BM_reserve<tsl::sparse_map<int, int>>/4096                        88941 ns        88942 ns         9959
-BM_reserve<tsl::sparse_map<int, int>>/32768                      780310 ns       780127 ns          983
-BM_reserve<tsl::sparse_map<int, int>>/262144                    5667136 ns      5667238 ns           98
-BM_reserve<tsl::sparse_map<int, int>>/1048576                  27246671 ns     27241843 ns           38
-BM_reserve<llvm::DenseMap<int, int>>/1024                          6185 ns         6186 ns       115311
-BM_reserve<llvm::DenseMap<int, int>>/4096                         24063 ns        24057 ns        28199
-BM_reserve<llvm::DenseMap<int, int>>/32768                       261386 ns       261386 ns         2682
-BM_reserve<llvm::DenseMap<int, int>>/262144                     1880707 ns      1880179 ns          369
-BM_reserve<llvm::DenseMap<int, int>>/1048576                   23376812 ns     23376836 ns           29
-BM_reserve<llvm::MapVector<int, int>>/1024                         9366 ns         9364 ns        90161
-BM_reserve<llvm::MapVector<int, int>>/4096                        38386 ns        38386 ns        17460
-BM_reserve<llvm::MapVector<int, int>>/32768                      415955 ns       415864 ns         1943
-BM_reserve<llvm::MapVector<int, int>>/262144                    3789796 ns      3789812 ns          182
-BM_reserve<llvm::MapVector<int, int>>/1048576                  34324877 ns     34322627 ns           22
-BM_reserveIndex<llvm::IndexedMap<int>>/1                           21.3 ns         21.3 ns     28313290
-BM_reserveIndex<llvm::IndexedMap<int>>/8                           21.7 ns         21.7 ns     37755183
-BM_reserveIndex<llvm::IndexedMap<int>>/64                          27.1 ns         27.1 ns     26914358
-BM_reserveIndex<llvm::IndexedMap<int>>/512                         96.9 ns         96.9 ns      7688717
-BM_reserveIndex<llvm::IndexedMap<int>>/4096                         476 ns          476 ns      1652895
-BM_reserveIndex<llvm::IndexedMap<int>>/32768                       4989 ns         4990 ns       141529
-BM_reserveIndex<llvm::IndexedMap<int>>/262144                     50756 ns        50757 ns        13918
-BM_reserveIndex<llvm::IndexedMap<int>>/1048576                   186692 ns       186686 ns         3223
+BM_reserve<std::unordered_map<int, int>>/1024                     44628 ns        44628 ns        14003
+BM_reserve<std::unordered_map<int, int>>/4096                    213823 ns       213810 ns         3194
+BM_reserve<std::unordered_map<int, int>>/32768                  1625185 ns      1625137 ns          454
+BM_reserve<std::unordered_map<int, int>>/262144                13201871 ns     13201343 ns           50
+BM_reserve<std::unordered_map<int, int>>/1048576               52218101 ns     52219142 ns           13
+BM_reserve<ska::unordered_map<int, int>>/1024                     50940 ns        50939 ns        10000
+BM_reserve<ska::unordered_map<int, int>>/4096                    202658 ns       202646 ns         3975
+BM_reserve<ska::unordered_map<int, int>>/32768                  2189590 ns      2189597 ns          325
+BM_reserve<ska::unordered_map<int, int>>/262144                66297419 ns     66292700 ns           11
+BM_reserve<ska::unordered_map<int, int>>/1048576              367028090 ns    367029854 ns            2
+BM_reserve<ska::flat_hash_map<int, int>>/1024                     10273 ns        10273 ns        72595
+BM_reserve<ska::flat_hash_map<int, int>>/4096                     41246 ns        41246 ns        17483
+BM_reserve<ska::flat_hash_map<int, int>>/32768                   452549 ns       452530 ns         1748
+BM_reserve<ska::flat_hash_map<int, int>>/262144                 8203100 ns      8203134 ns           81
+BM_reserve<ska::flat_hash_map<int, int>>/1048576               55277848 ns     55278961 ns           11
+BM_reserve<ska::bytell_hash_map<int, int>>/1024                   11154 ns        11154 ns        66231
+BM_reserve<ska::bytell_hash_map<int, int>>/4096                   54491 ns        54489 ns        15144
+BM_reserve<ska::bytell_hash_map<int, int>>/32768                 512612 ns       512575 ns         1315
+BM_reserve<ska::bytell_hash_map<int, int>>/262144              10475693 ns     10474870 ns          135
+BM_reserve<ska::bytell_hash_map<int, int>>/1048576             77964699 ns     77966164 ns            9
+BM_reserve<phmap::flat_hash_map<int, int>>/1024                   10823 ns        10823 ns        59169
+BM_reserve<phmap::flat_hash_map<int, int>>/4096                   47764 ns        47763 ns        15968
+BM_reserve<phmap::flat_hash_map<int, int>>/32768                 480095 ns       480099 ns         1391
+BM_reserve<phmap::flat_hash_map<int, int>>/262144               5274885 ns      5274261 ns          100
+BM_reserve<phmap::flat_hash_map<int, int>>/1048576             29982366 ns     29982116 ns           23
+BM_reserve<robin_hood::unordered_flat_map<int, int>>/1024         10000 ns         9999 ns        72267
+BM_reserve<robin_hood::unordered_flat_map<int, int>>/4096         46780 ns        46781 ns        12118
+BM_reserve<robin_hood::unordered_flat_map<int, int>>/32768       491432 ns       491405 ns         1500
+BM_reserve<robin_hood::unordered_flat_map<int, int>>/262144     5206621 ns      5206464 ns          134
+BM_reserve<robin_hood::unordered_flat_map<int, int>>/1048576   33136526 ns     33137111 ns           22
+BM_reserve<spp::sparse_hash_map<int, int>>/1024                   52707 ns        52705 ns        13567
+BM_reserve<spp::sparse_hash_map<int, int>>/4096                  244218 ns       244215 ns         3262
+BM_reserve<spp::sparse_hash_map<int, int>>/32768                1929818 ns      1929667 ns          379
+BM_reserve<spp::sparse_hash_map<int, int>>/262144              21581535 ns     21581472 ns           29
+BM_reserve<spp::sparse_hash_map<int, int>>/1048576            102413420 ns    102408066 ns            7
+BM_reserve<tsl::bhopscotch_map<int, int>>/1024                    16991 ns        16991 ns        45609
+BM_reserve<tsl::bhopscotch_map<int, int>>/4096                    60061 ns        60055 ns        11957
+BM_reserve<tsl::bhopscotch_map<int, int>>/32768                  511643 ns       511578 ns         1289
+BM_reserve<tsl::bhopscotch_map<int, int>>/262144                4304614 ns      4304403 ns          169
+BM_reserve<tsl::bhopscotch_map<int, int>>/1048576              22229680 ns     22230061 ns           30
+BM_reserve<tsl::hopscotch_map<int, int>>/1024                     15085 ns        15085 ns        48757
+BM_reserve<tsl::hopscotch_map<int, int>>/4096                     59993 ns        59984 ns         8998
+BM_reserve<tsl::hopscotch_map<int, int>>/32768                   531253 ns       531253 ns         1251
+BM_reserve<tsl::hopscotch_map<int, int>>/262144                 4535832 ns      4535551 ns          160
+BM_reserve<tsl::hopscotch_map<int, int>>/1048576               21344874 ns     21344361 ns           32
+BM_reserve<tsl::robin_map<int, int>>/1024                          9783 ns         9782 ns        79143
+BM_reserve<tsl::robin_map<int, int>>/4096                         41821 ns        41821 ns        15862
+BM_reserve<tsl::robin_map<int, int>>/32768                       356107 ns       356090 ns         1822
+BM_reserve<tsl::robin_map<int, int>>/262144                     3214248 ns      3214241 ns          212
+BM_reserve<tsl::robin_map<int, int>>/1048576                   15321880 ns     15320184 ns           44
+BM_reserve<tsl::sparse_map<int, int>>/1024                        22185 ns        22185 ns        31893
+BM_reserve<tsl::sparse_map<int, int>>/4096                        94963 ns        94960 ns         9088
+BM_reserve<tsl::sparse_map<int, int>>/32768                      765674 ns       765679 ns          970
+BM_reserve<tsl::sparse_map<int, int>>/262144                    5370502 ns      5370595 ns          131
+BM_reserve<tsl::sparse_map<int, int>>/1048576                  19596743 ns     19596621 ns           31
+BM_reserve<llvm::DenseMap<int, int>>/1024                          7218 ns         7218 ns        91437
+BM_reserve<llvm::DenseMap<int, int>>/4096                         27785 ns        27784 ns        27365
+BM_reserve<llvm::DenseMap<int, int>>/32768                       267862 ns       267864 ns         2496
+BM_reserve<llvm::DenseMap<int, int>>/262144                     2396803 ns      2396611 ns          327
+BM_reserve<llvm::DenseMap<int, int>>/1048576                   24800319 ns     24800014 ns           27
+BM_reserve<llvm::MapVector<int, int>>/1024                        11835 ns        11835 ns        54027
+BM_reserve<llvm::MapVector<int, int>>/4096                        43521 ns        43521 ns        14588
+BM_reserve<llvm::MapVector<int, int>>/32768                      455164 ns       455144 ns         1719
+BM_reserve<llvm::MapVector<int, int>>/262144                    3205526 ns      3205415 ns          223
+BM_reserve<llvm::MapVector<int, int>>/1048576                  35440704 ns     35439798 ns           20
+BM_reserveIndex<llvm::IndexedMap<int>>/1                           18.5 ns         18.5 ns     34433118
+BM_reserveIndex<llvm::IndexedMap<int>>/8                           22.2 ns         22.2 ns     27676143
+BM_reserveIndex<llvm::IndexedMap<int>>/64                          24.6 ns         24.6 ns     31587437
+BM_reserveIndex<llvm::IndexedMap<int>>/512                          104 ns          104 ns      7866474
+BM_reserveIndex<llvm::IndexedMap<int>>/4096                         548 ns          548 ns      1000000
+BM_reserveIndex<llvm::IndexedMap<int>>/32768                       4893 ns         4893 ns       148887
+BM_reserveIndex<llvm::IndexedMap<int>>/262144                     60882 ns        60881 ns        10708
+BM_reserveIndex<llvm::IndexedMap<int>>/1048576                   192967 ns       192966 ns         4043

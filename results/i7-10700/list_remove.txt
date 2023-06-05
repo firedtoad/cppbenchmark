@@ -1,4 +1,4 @@
-67892023-04-05T08:44:31-04:00
+67892023-06-04T20:12:33-04:00
 Running ./bin/list_remove
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,56 +6,56 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.21, 3.68, 3.31
+Load Average: 4.29, 4.03, 3.10
 -------------------------------------------------------------------------
 Benchmark                               Time             CPU   Iterations
 -------------------------------------------------------------------------
-BenchListRemove/1                     192 ns          194 ns      3523827
-BenchListRemove/8                     403 ns          405 ns      1701654
-BenchListRemove/64                   2439 ns         2439 ns       250860
-BenchListRemove/512                 73225 ns        73258 ns         9277
-BenchListRemove/4096             16995928 ns     16983145 ns           46
-BenchListRemove/32768          1155158118 ns   1155118886 ns            1
-BenchListRemove/65536          9992632616 ns   9989632583 ns            1
-BenchForwardListRemove/1              189 ns          190 ns      3706751
-BenchForwardListRemove/8              248 ns          247 ns      3004299
-BenchForwardListRemove/64             807 ns          805 ns       892450
-BenchForwardListRemove/512           5039 ns         5040 ns       149660
-BenchForwardListRemove/4096         39887 ns        39884 ns        17185
-BenchForwardListRemove/32768       309828 ns       309843 ns         2296
-BenchForwardListRemove/65536       638348 ns       637681 ns          981
-BenchDequeRemove/1                    228 ns          229 ns      3517902
-BenchDequeRemove/8                    442 ns          445 ns      1670069
-BenchDequeRemove/64                  2290 ns         2297 ns       299501
-BenchDequeRemove/512                24366 ns        24390 ns        30358
-BenchDequeRemove/4096              507358 ns       507714 ns         1000
-BenchDequeRemove/32768           24209330 ns     24191319 ns           29
-BenchDequeRemove/65536           93404973 ns     93396146 ns            7
-BenchVectorRemove/1                   182 ns          180 ns      3976818
-BenchVectorRemove/8                   198 ns          199 ns      3493922
-BenchVectorRemove/64                  304 ns          304 ns      2329044
-BenchVectorRemove/512                1217 ns         1214 ns       515388
-BenchVectorRemove/4096               7924 ns         7897 ns        82699
-BenchVectorRemove/32768             59908 ns        59788 ns        12609
-BenchVectorRemove/65536            113646 ns       113401 ns         6079
-BenchBUListRemove/1                   193 ns          190 ns      3804475
-BenchBUListRemove/8                   232 ns          228 ns      3271891
-BenchBUListRemove/64                  442 ns          438 ns      1513864
-BenchBUListRemove/512                2057 ns         2055 ns       343841
-BenchBUListRemove/4096              15269 ns        15265 ns        45961
-BenchBUListRemove/32768            120167 ns       120180 ns         5846
-BenchBUListRemove/65536            241893 ns       241730 ns         2897
-BenchIntrusiveListRemove/1            205 ns          207 ns      3733432
-BenchIntrusiveListRemove/8            336 ns          338 ns      2002728
-BenchIntrusiveListRemove/64          2179 ns         2199 ns       348284
-BenchIntrusiveListRemove/512        65536 ns        65585 ns         9801
-BenchIntrusiveListRemove/4096     5129358 ns      5129849 ns          130
-BenchIntrusiveListRemove/32768  438928263 ns    438629348 ns            2
-BenchIntrusiveListRemove/65536 1821998677 ns   1821934601 ns            1
-BenchPlfListRemove/1                  223 ns          220 ns      3156553
-BenchPlfListRemove/8                  391 ns          388 ns      1848148
-BenchPlfListRemove/64                3015 ns         3014 ns       226216
-BenchPlfListRemove/512              79750 ns        79801 ns         9523
-BenchPlfListRemove/4096           8075370 ns      8069411 ns           93
-BenchPlfListRemove/32768        778362176 ns    778327911 ns            1
-BenchPlfListRemove/65536       2751462054 ns   2750268474 ns            1
+BenchListRemove/1                     209 ns          209 ns      3345732
+BenchListRemove/8                     442 ns          444 ns      1625425
+BenchListRemove/64                   2834 ns         2840 ns       232521
+BenchListRemove/512                 75195 ns        75236 ns         8966
+BenchListRemove/4096             14560838 ns     14561436 ns           55
+BenchListRemove/32768          1159843929 ns   1159843086 ns            1
+BenchListRemove/65536          1.0231e+10 ns   1.0230e+10 ns            1
+BenchForwardListRemove/1              193 ns          194 ns      3736116
+BenchForwardListRemove/8              278 ns          281 ns      2722127
+BenchForwardListRemove/64             796 ns          799 ns       988297
+BenchForwardListRemove/512           5815 ns         5820 ns       100000
+BenchForwardListRemove/4096         43258 ns        43267 ns        20590
+BenchForwardListRemove/32768       334612 ns       334596 ns         2107
+BenchForwardListRemove/65536       744680 ns       744698 ns          945
+BenchDequeRemove/1                    227 ns          228 ns      3154289
+BenchDequeRemove/8                    483 ns          486 ns      1644625
+BenchDequeRemove/64                  2165 ns         2169 ns       269168
+BenchDequeRemove/512                25098 ns        25125 ns        29472
+BenchDequeRemove/4096              514309 ns       514483 ns         1000
+BenchDequeRemove/32768           23414586 ns     23415214 ns           30
+BenchDequeRemove/65536           91084632 ns     91084282 ns            8
+BenchVectorRemove/1                   217 ns          218 ns      3672772
+BenchVectorRemove/8                   225 ns          228 ns      2835639
+BenchVectorRemove/64                  334 ns          334 ns      2127393
+BenchVectorRemove/512                1249 ns         1250 ns       590787
+BenchVectorRemove/4096               8219 ns         8208 ns        78904
+BenchVectorRemove/32768             67648 ns        67584 ns         9809
+BenchVectorRemove/65536            126911 ns       126832 ns         6089
+BenchBUListRemove/1                   206 ns          207 ns      3592373
+BenchBUListRemove/8                   219 ns          220 ns      3274208
+BenchBUListRemove/64                  455 ns          455 ns      1552914
+BenchBUListRemove/512                2134 ns         2136 ns       330306
+BenchBUListRemove/4096              15998 ns        16005 ns        43950
+BenchBUListRemove/32768            130710 ns       130706 ns         5864
+BenchBUListRemove/65536            261423 ns       261427 ns         2675
+BenchIntrusiveListRemove/1            204 ns          206 ns      3053450
+BenchIntrusiveListRemove/8            359 ns          360 ns      2011829
+BenchIntrusiveListRemove/64          1911 ns         1916 ns       387176
+BenchIntrusiveListRemove/512        64705 ns        64740 ns        12293
+BenchIntrusiveListRemove/4096     5370439 ns      5371138 ns          125
+BenchIntrusiveListRemove/32768  465705419 ns    465684967 ns            2
+BenchIntrusiveListRemove/65536 1802266564 ns   1802257543 ns            1
+BenchPlfListRemove/1                  216 ns          217 ns      3050963
+BenchPlfListRemove/8                  410 ns          411 ns      1690274
+BenchPlfListRemove/64                3365 ns         3372 ns       221430
+BenchPlfListRemove/512              76072 ns        76113 ns         8970
+BenchPlfListRemove/4096           7665599 ns      7666253 ns           89
+BenchPlfListRemove/32768        663396709 ns    663403579 ns            1
+BenchPlfListRemove/65536       2673494850 ns   2673514001 ns            1

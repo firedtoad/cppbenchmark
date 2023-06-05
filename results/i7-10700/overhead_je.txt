@@ -1,18 +1,18 @@
 2220primary
 vector of u8 1048576
-user cpu : 0s 1us
+user cpu : 0s 0us
 sys cpu : 0s 0us
 max rss : 792 kb / 0.773438 MB
-page reclaims : 262
+page reclaims : 259
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 vector of u64 1048576
-user cpu : 0s 9us
-sys cpu : 0s 0us
-max rss : 10248 kb / 10.0078 MB
-page reclaims : 6
+user cpu : 0s 0us
+sys cpu : 0s 2794us
+max rss : 8192 kb / 8 MB
+page reclaims : 48
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0

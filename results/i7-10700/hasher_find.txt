@@ -1,4 +1,4 @@
-2023-04-05T08:50:59-04:00
+2023-06-04T20:03:26-04:00
 Running ./bin/hasher_find
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,38 +6,38 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.45, 4.23, 3.70
+Load Average: 3.17, 1.91, 1.95
 --------------------------------------------------------------------------------------------------------------------------------
 Benchmark                                                                                      Time             CPU   Iterations
 --------------------------------------------------------------------------------------------------------------------------------
-BenchUnOrderMapString<std::unordered_map<std::string, int>>                                  321 ns          321 ns      2051451
-BenchUnOrderMapString<std::unordered_map<std::string, int,Hasher>>                           364 ns          364 ns      1853765
-BenchUnOrderMapStringLoadFactor<std::unordered_map<std::string, int>>                        352 ns          352 ns      1802161
-BenchUnOrderMapStringLoadFactor<std::unordered_map<std::string, int,Hasher>>                 332 ns          332 ns      1781952
-BenchUnOrderMapString<ska::unordered_map<std::string, int>>                                  369 ns          369 ns      2500178
-BenchUnOrderMapString<ska::unordered_map<std::string, int,Hasher>>                           305 ns          305 ns      2035155
-BenchUnOrderMapString<ska::flat_hash_map<std::string, int>>                                  297 ns          297 ns      2151996
-BenchUnOrderMapString<ska::flat_hash_map<std::string, int,Hasher>>                           260 ns          260 ns      2826033
-BenchUnOrderMapString<ska::bytell_hash_map<std::string, int>>                                261 ns          261 ns      3043335
-BenchUnOrderMapString<ska::bytell_hash_map<std::string, int,Hasher>>                         296 ns          296 ns      2205376
-BenchUnOrderMapString<phmap::flat_hash_map<std::string, int>>                                220 ns          220 ns      3208128
-BenchUnOrderMapString<phmap::flat_hash_map<std::string, int,Hasher>>                         225 ns          225 ns      3182558
-BenchUnOrderMapString<absl::flat_hash_map<std::string, int>>                                 209 ns          209 ns      3564347
-BenchUnOrderMapString<absl::flat_hash_map<std::string, int, absl::Hash<std::string>>>        272 ns          272 ns      2681821
-BenchUnOrderMapString<absl::flat_hash_map<std::string, int,Hasher>>                          302 ns          302 ns      2473074
-BenchUnOrderMapString<robin_hood::unordered_flat_map<std::string, int>>                      326 ns          326 ns      2637102
-BenchUnOrderMapString<robin_hood::unordered_flat_map<std::string, int,Hasher>>               245 ns          245 ns      2513983
-BenchUnOrderMapString<spp::sparse_hash_map<std::string, int>>                                299 ns          299 ns      2412884
-BenchUnOrderMapString<spp::sparse_hash_map<std::string, int,Hasher>>                         307 ns          307 ns      2094332
-BenchUnOrderMapString<tsl::bhopscotch_map<std::string, int>>                                 270 ns          271 ns      2731902
-BenchUnOrderMapString<tsl::bhopscotch_map<std::string, int,Hasher>>                          253 ns          253 ns      2433765
-BenchUnOrderMapString<tsl::hopscotch_map<std::string, int>>                                  274 ns          274 ns      2579115
-BenchUnOrderMapString<tsl::hopscotch_map<std::string, int,Hasher>>                           251 ns          251 ns      2450949
-BenchUnOrderMapString<tsl::robin_map<std::string, int>>                                      252 ns          252 ns      3024816
-BenchUnOrderMapString<tsl::robin_map<std::string, int,Hasher>>                               286 ns          286 ns      2688774
-BenchUnOrderMapString<tsl::sparse_map<std::string, int>>                                     278 ns          278 ns      2109181
-BenchUnOrderMapString<tsl::sparse_map<std::string, int,Hasher>>                              262 ns          262 ns      2658039
-BenchCharKeyMap<tsl::htrie_map<char, int>>                                                   231 ns          231 ns      2776582
-BenchCharKeyMap<tsl::htrie_map<char, int,HasherStr>>                                         217 ns          217 ns      3222894
-BenchCharKeyMap<tsl::array_map<char, int>>                                                   129 ns          129 ns      5175131
-BenchCharKeyMap<tsl::array_map<char, int,HasherStr>>                                         127 ns          127 ns      6053519
+BenchUnOrderMapString<std::unordered_map<std::string, int>>                                  356 ns          356 ns      2336197
+BenchUnOrderMapString<std::unordered_map<std::string, int,Hasher>>                           481 ns          481 ns      1194891
+BenchUnOrderMapStringLoadFactor<std::unordered_map<std::string, int>>                        348 ns          348 ns      1567369
+BenchUnOrderMapStringLoadFactor<std::unordered_map<std::string, int,Hasher>>                 273 ns          273 ns      2479566
+BenchUnOrderMapString<ska::unordered_map<std::string, int>>                                  242 ns          242 ns      2711828
+BenchUnOrderMapString<ska::unordered_map<std::string, int,Hasher>>                           423 ns          423 ns      2963826
+BenchUnOrderMapString<ska::flat_hash_map<std::string, int>>                                  353 ns          353 ns      2018000
+BenchUnOrderMapString<ska::flat_hash_map<std::string, int,Hasher>>                           288 ns          288 ns      2386935
+BenchUnOrderMapString<ska::bytell_hash_map<std::string, int>>                                277 ns          277 ns      3152217
+BenchUnOrderMapString<ska::bytell_hash_map<std::string, int,Hasher>>                         318 ns          318 ns      2189194
+BenchUnOrderMapString<phmap::flat_hash_map<std::string, int>>                                194 ns          194 ns      3435248
+BenchUnOrderMapString<phmap::flat_hash_map<std::string, int,Hasher>>                         292 ns          292 ns      2620041
+BenchUnOrderMapString<absl::flat_hash_map<std::string, int>>                                 173 ns          173 ns      4267555
+BenchUnOrderMapString<absl::flat_hash_map<std::string, int, absl::Hash<std::string>>>        286 ns          286 ns      3114997
+BenchUnOrderMapString<absl::flat_hash_map<std::string, int,Hasher>>                          323 ns          323 ns      2111489
+BenchUnOrderMapString<robin_hood::unordered_flat_map<std::string, int>>                      310 ns          310 ns      2298540
+BenchUnOrderMapString<robin_hood::unordered_flat_map<std::string, int,Hasher>>               277 ns          277 ns      2602991
+BenchUnOrderMapString<spp::sparse_hash_map<std::string, int>>                                331 ns          331 ns      2392767
+BenchUnOrderMapString<spp::sparse_hash_map<std::string, int,Hasher>>                         383 ns          383 ns      1924886
+BenchUnOrderMapString<tsl::bhopscotch_map<std::string, int>>                                 391 ns          391 ns      2003493
+BenchUnOrderMapString<tsl::bhopscotch_map<std::string, int,Hasher>>                          345 ns          345 ns      2080872
+BenchUnOrderMapString<tsl::hopscotch_map<std::string, int>>                                  330 ns          330 ns      1912599
+BenchUnOrderMapString<tsl::hopscotch_map<std::string, int,Hasher>>                           377 ns          377 ns      2001467
+BenchUnOrderMapString<tsl::robin_map<std::string, int>>                                      423 ns          423 ns      1829126
+BenchUnOrderMapString<tsl::robin_map<std::string, int,Hasher>>                               369 ns          369 ns      1993395
+BenchUnOrderMapString<tsl::sparse_map<std::string, int>>                                     371 ns          371 ns      1960495
+BenchUnOrderMapString<tsl::sparse_map<std::string, int,Hasher>>                              395 ns          395 ns      2334076
+BenchCharKeyMap<tsl::htrie_map<char, int>>                                                   279 ns          279 ns      2876309
+BenchCharKeyMap<tsl::htrie_map<char, int,HasherStr>>                                         268 ns          268 ns      2021911
+BenchCharKeyMap<tsl::array_map<char, int>>                                                   164 ns          164 ns      4409614
+BenchCharKeyMap<tsl::array_map<char, int,HasherStr>>                                         144 ns          144 ns      4140158
