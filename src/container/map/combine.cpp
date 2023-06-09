@@ -18,6 +18,7 @@
 #include <parallel_hashmap/phmap.h>
 #include <sstream>
 #include <unordered_map>
+#include "tsl/ordered_map.h"
 
 static inline uint64_t xor_shift96()
 { /* A George Marsaglia generator, period 2^96-1 */
@@ -92,6 +93,12 @@ BENCHMARK_TEMPLATE(BenchTwiceMapInt, std::unordered_map<uint32_t, std::unordered
 
 BENCHMARK_TEMPLATE(BenchCombineMapInt, phmap::flat_hash_map<uint64_t, uint64_t>);
 BENCHMARK_TEMPLATE(BenchTwiceMapInt, phmap::flat_hash_map<uint32_t, phmap::flat_hash_map<uint32_t, uint32_t>>);
+
+BENCHMARK_TEMPLATE(BenchCombineMapInt, tsl::ordered_map<uint64_t, uint64_t>);
+BENCHMARK_TEMPLATE(BenchTwiceMapInt, tsl::ordered_map<uint32_t, tsl::ordered_map<uint32_t, uint32_t>>);
+
+BENCHMARK_TEMPLATE(BenchCombineMapInt, tsl::vector_map<uint64_t, uint64_t>);
+BENCHMARK_TEMPLATE(BenchTwiceMapInt, tsl::vector_map<uint32_t, tsl::vector_map<uint32_t, uint32_t>>);
 
 int main(int argc, char **argv)
 {

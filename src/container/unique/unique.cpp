@@ -20,7 +20,7 @@
 #include <list>
 #include <iostream>
 #include <variant>
-
+#include "tsl/ordered_set.h"
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
     static unsigned long x = 123456789, y = 362436069, z = 521288629;
@@ -111,8 +111,10 @@ BENCHMARK(BM_SortUniqueList)->Range(128, 1 << 20);
 BENCHMARK(BM_SortUniqueVector)->Range(128, 1 << 20);
 BENCHMARK_TEMPLATE(BM_UniqueConstructor, std::set<int>)->Range(128, 1 << 20);
 BENCHMARK_TEMPLATE(BM_UniqueConstructor, std::unordered_set<int>)->Range(128, 1 << 20);
+BENCHMARK_TEMPLATE(BM_UniqueConstructor, tsl::vector_set<int>)->Range(128, 1 << 20);
 BENCHMARK_TEMPLATE(BM_UniqueManually, std::set<int>)->Range(128, 1 << 20);
 BENCHMARK_TEMPLATE(BM_UniqueManually, std::unordered_set<int>)->Range(128, 1 << 20);
+BENCHMARK_TEMPLATE(BM_UniqueManually, tsl::vector_set<int>)->Range(128, 1 << 20);
 
 int main(int argc, char **argv)
 {

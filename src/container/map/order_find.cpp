@@ -65,11 +65,9 @@ template <class M> static void BenchOrderMapInt(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BenchOrderMapInt, std::map<int, int>);
 BENCHMARK_TEMPLATE(BenchOrderMapInt, tsl::ordered_map<int, int>);
+BENCHMARK_TEMPLATE(BenchOrderMapInt, tsl::vector_map<int, int>);
 BENCHMARK_TEMPLATE(BenchOrderMapInt, absl::btree_map<int, int>);
 BENCHMARK_TEMPLATE(BenchOrderMapInt, phmap::btree_map<int, int>);
-BENCHMARK_TEMPLATE(
-    BenchOrderMapInt,
-    tsl::ordered_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int, int>>, std::vector<std::pair<int, int>>>);
 BENCHMARK_TEMPLATE(BenchOrderMapInt, absl::btree_map<int, int>);
 // BENCHMARK_TEMPLATE(BenchOrderMapInt, boost::container::small_flat_map<int, int, 65536>);
 std::vector<std::string> keys(65536);
@@ -91,8 +89,7 @@ template <class M> static void BenchOrderMapString(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BenchOrderMapString, std::map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchOrderMapString, tsl::ordered_map<std::string, int>);
-BENCHMARK_TEMPLATE(BenchOrderMapString, tsl::ordered_map<std::string, int, std::hash<std::string>, std::equal_to<std::string>,
-                                                         std::allocator<std::pair<std::string, int>>, std::vector<std::pair<std::string, int>>>);
+BENCHMARK_TEMPLATE(BenchOrderMapString, tsl::vector_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchOrderMapString, absl::btree_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchOrderMapString, phmap::btree_map<std::string, int>);
 // BENCHMARK_TEMPLATE(BenchOrderMapString, boost::container::small_flat_map<std::string, int, 1024>);
@@ -152,54 +149,6 @@ int main(int argc, char **argv)
         keys[i]  = "12345678901234561234567890123456" + std::to_string(_random());
         ikeys[i] = _random();
     }
-    //    {
-    //        phmap::btree_map<std::string, int> map;
-    //        auto it          = map.emplace("abc", 1);
-    //        it.first->first  = "avc";
-    //        it.first->second = 1;
-    //    }
-    //
-    //    {
-    //        phmap::btree_set<std::string> map;
-    //        auto it          = map.emplace("abc");
-    //        it.first="123";
-    //    }
-    //
-    //    {
-    //        std::map<std::string, int> map;
-    //        auto it          = map.emplace("abc", 1);
-    //        it.first->first  = "avc";
-    //        it.first->second = 1;
-    //    }
-    {
-        std::unordered_set<std::string> map;
-        auto it = map.emplace("abc");
-        //            it.first="abc";
-    }
-
-    {
-        tsl::sparse_map<int, int> map;
-        auto it          = map.emplace(1, 1);
-//        it.first->first  = 2;
-        it.first->second = 1;
-    }
-
-    {
-        tsl::ordered_map<std::string, int> map;
-        auto it = map.emplace("abc", 1);
-        //        it.first->first="abc";
-        it.first->second = 1;
-    }
-    {
-        tsl::ordered_set<std::string> map;
-        auto it = map.emplace("abc");
-    }
-    //    {
-    //        spp::sparse_hash_map<int, int> map;
-    //        auto it          = map.emplace(1, 1);
-    //        it.first->first=1;
-    //        it.first->second=1;
-    //    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

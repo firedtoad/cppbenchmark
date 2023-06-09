@@ -24,6 +24,7 @@
 #include "tsl/htrie_map.h"
 #include "tsl/robin_map.h"
 #include "tsl/sparse_map.h"
+#include "tsl/ordered_map.h"
 #include "unordered_map.hpp"
 #include <absl/container/flat_hash_map.h>
 #include <benchmark/benchmark.h>
@@ -84,6 +85,8 @@ BENCHMARK_TEMPLATE(BenchUnOrderMapInt, tsl::hopscotch_map<int, int>);
 // BENCHMARK_TEMPLATE(BenchUnOrderMapInt,tsl::htrie_map<int,int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, tsl::robin_map<int, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapInt, tsl::sparse_map<int, int>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapInt, tsl::ordered_map<int, int>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapInt, tsl::vector_map<int, int>);
 
 template <class M> static void BenchUnOrderMapString(benchmark::State &state)
 {
@@ -147,6 +150,8 @@ BENCHMARK_TEMPLATE(BenchUnOrderMapString, tsl::bhopscotch_map<std::string, int>)
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, tsl::hopscotch_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, tsl::robin_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, tsl::sparse_map<std::string, int>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapString, tsl::ordered_map<std::string, int>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapString, tsl::vector_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchCharKeyMap, tsl::htrie_map<char, int>);
 BENCHMARK_TEMPLATE(BenchCharKeyMap, tsl::array_map<char, int>);
 

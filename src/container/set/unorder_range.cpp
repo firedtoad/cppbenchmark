@@ -92,6 +92,7 @@ BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, robin_hood::unordered_flat_set<int>)
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, spp::sparse_hash_set<int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, tsl::bhopscotch_set<int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, tsl::ordered_set<int>);
+BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, tsl::vector_set<int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, tsl::hopscotch_set<int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, tsl::robin_set<int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetInt, tsl::sparse_set<int>);
@@ -164,6 +165,7 @@ BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, absl::flat_hash_set<std::string>)
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, robin_hood::unordered_flat_set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, spp::sparse_hash_set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, tsl::ordered_set<std::string>);
+BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, tsl::vector_set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, tsl::bhopscotch_set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, tsl::hopscotch_set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderSetString, tsl::robin_set<std::string>);

@@ -22,6 +22,7 @@
 #include "tsl/bhopscotch_map.h"
 #include "tsl/hopscotch_map.h"
 #include "tsl/htrie_map.h"
+#include "tsl/ordered_map.h"
 #include "tsl/robin_map.h"
 #include "tsl/sparse_map.h"
 #include "unordered_map.hpp"
@@ -66,10 +67,10 @@ template <class M> static void BenchUnOrderMapString(benchmark::State &state)
     for (auto _ : state)
     {
         auto kIndex = _random() % 65536;
-        auto it      = m.find(keys[kIndex].c_str());
+        auto it     = m.find(keys[kIndex].c_str());
         if (it != m.end())
         {
-            auto r=it->second;
+            auto r = it->second;
             benchmark::DoNotOptimize(r);
         }
     }
@@ -156,6 +157,10 @@ BENCHMARK_TEMPLATE(BenchUnOrderMapString, tsl::robin_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapStringSmart, tsl::robin_map<std::string, std::shared_ptr<int>>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, tsl::sparse_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapStringSmart, tsl::sparse_map<std::string, std::shared_ptr<int>>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapString, tsl::ordered_map<std::string, int>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapStringSmart, tsl::ordered_map<std::string, std::shared_ptr<int>>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapString, tsl::vector_map<std::string, int>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapStringSmart, tsl::vector_map<std::string, std::shared_ptr<int>>);
 BENCHMARK_TEMPLATE(BenchCharKeyMap, tsl::htrie_map<char, int>);
 BENCHMARK_TEMPLATE(BenchCharKeyMapSmart, tsl::htrie_map<char, std::shared_ptr<int>>);
 BENCHMARK_TEMPLATE(BenchCharKeyMap, tsl::array_map<char, int>);

@@ -26,7 +26,7 @@ template <class T> struct is_shared_ptr<std::shared_ptr<T>> : std::true_type
 
 template <class M, size_t N, bool reserve = true> void BM_MemoryMap()
 {
-    rusage rusage;
+    static rusage rusage;
     FillRSS(rusage);
     static M m;
     if constexpr (reserve)
@@ -43,8 +43,7 @@ template <class M, size_t N, bool reserve = true> void BM_MemoryMap()
 
 template <class M, size_t N, bool reserve = true> void BM_MemoryStringMap()
 {
-
-    rusage rusage;
+    static rusage rusage;
     FillRSS(rusage);
     static M m;
     if constexpr (reserve)
@@ -62,8 +61,7 @@ template <class M, size_t N, bool reserve = true> void BM_MemoryStringMap()
 
 template <class M, size_t N, bool reserve = true> void BM_MemoryStringMapNoSSO()
 {
-
-    rusage rusage;
+    static rusage rusage;
     FillRSS(rusage);
     static M m;
     if constexpr (reserve)
@@ -81,7 +79,7 @@ template <class M, size_t N, bool reserve = true> void BM_MemoryStringMapNoSSO()
 
 template <class M, size_t N, bool reserve = true> void BM_MemoryIntSet()
 {
-    rusage rusage;
+    static rusage rusage;
     FillRSS(rusage);
     static M m;
     if constexpr (reserve)
@@ -98,7 +96,7 @@ template <class M, size_t N, bool reserve = true> void BM_MemoryIntSet()
 
 template <class M, size_t N, bool reserve = true> void BM_MemoryStringSet()
 {
-    rusage rusage;
+    static rusage rusage;
     FillRSS(rusage);
     static M m;
     if constexpr (reserve)

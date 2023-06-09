@@ -15,7 +15,9 @@
 
 #include "flat_hash_map.hpp"
 #include "parallel_hashmap/phmap.h"
+#include "tsl/ordered_map.h"
 #include "unordered_map.hpp"
+#include "utils/symbol.h"
 #include <absl/container/btree_map.h>
 #include <absl/container/btree_set.h>
 #include <absl/container/flat_hash_map.h>
@@ -27,8 +29,6 @@
 #include <iostream>
 #include <unordered_map>
 #include <unordered_set>
-#include "utils/symbol.h"
-
 
 template <typename... T> void PrintNode(T &&...t)
 {
@@ -92,6 +92,13 @@ BENCHMARK_TEMPLATE(BM_decay_map, phmap::flat_hash_map<int, int, Hasher>);
 
 BENCHMARK_TEMPLATE(BM_unmap, absl::flat_hash_map<int, int>);
 BENCHMARK_TEMPLATE(BM_decay_map, absl::flat_hash_map<int, int, Hasher>);
+
+BENCHMARK_TEMPLATE(BM_unmap, tsl::ordered_map<int, int>);
+BENCHMARK_TEMPLATE(BM_decay_map, tsl::ordered_map<int, int, Hasher>);
+
+BENCHMARK_TEMPLATE(BM_unmap, tsl::vector_map<int, int>);
+BENCHMARK_TEMPLATE(BM_decay_map, tsl::vector_map<int, int, Hasher>);
+
 #include "utils/rss.h"
 
 static size_t memAlloc;

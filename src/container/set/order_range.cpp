@@ -61,6 +61,7 @@ template <class M> static void BenchRangeOrderSetInt(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BenchRangeOrderSetInt, std::set<int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderSetInt, tsl::ordered_set<int>);
+BENCHMARK_TEMPLATE(BenchRangeOrderSetInt, tsl::vector_set<int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderSetInt, absl::btree_set<int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderSetInt, phmap::btree_set<int>);
 std::vector<std::string> keys(65536);
@@ -85,6 +86,7 @@ template <class M> static void BenchRangeOrderSetString(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BenchRangeOrderSetString, std::set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeOrderSetString, tsl::ordered_set<std::string>);
+BENCHMARK_TEMPLATE(BenchRangeOrderSetString, tsl::vector_set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeOrderSetString, absl::btree_set<std::string>);
 BENCHMARK_TEMPLATE(BenchRangeOrderSetString, phmap::btree_set<std::string>);
 

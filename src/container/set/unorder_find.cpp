@@ -94,6 +94,7 @@ BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::hopscotch_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::robin_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::sparse_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::ordered_set<int>);
+BENCHMARK_TEMPLATE(BenchUnOrderSetInt, tsl::vector_set<int>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetInt, MapList<int>);
 
 std::vector<std::string> keys(65536);
@@ -141,6 +142,7 @@ BENCHMARK_TEMPLATE(BenchUnOrderSetString, tsl::hopscotch_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, tsl::robin_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, tsl::sparse_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, tsl::ordered_set<std::string>);
+BENCHMARK_TEMPLATE(BenchUnOrderSetString, tsl::vector_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, MapList<std::string>);
 BENCHMARK_TEMPLATE(BenchCharKeySet, tsl::htrie_set<char>);
 BENCHMARK_TEMPLATE(BenchCharKeySet, tsl::array_set<char>);

@@ -79,7 +79,9 @@ template <class S> static void BenchEraseUnOrderSetInt(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BenchEraseOrderSetInt, std::set<int>);
 BENCHMARK_TEMPLATE(BenchEraseOrderSetInt, tsl::ordered_set<int>);
+BENCHMARK_TEMPLATE(BenchEraseOrderSetInt, tsl::vector_set<int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderSetInt, tsl::ordered_set<int>);
+BENCHMARK_TEMPLATE(BenchEraseUnOrderSetInt, tsl::vector_set<int>);
 BENCHMARK_TEMPLATE(BenchEraseOrderSetInt, absl::btree_set<int>);
 BENCHMARK_TEMPLATE(BenchEraseOrderSetInt, phmap::btree_set<int>);
 std::vector<std::string> keys(65536);
@@ -120,7 +122,9 @@ template <class S> static void BenchEraseUnorderSetString(benchmark::State &stat
 }
 BENCHMARK_TEMPLATE(BenchEraseOrderSetString, std::set<std::string>);
 BENCHMARK_TEMPLATE(BenchEraseOrderSetString, tsl::ordered_set<std::string>);
+BENCHMARK_TEMPLATE(BenchEraseOrderSetString, tsl::vector_set<std::string>);
 BENCHMARK_TEMPLATE(BenchEraseUnorderSetString, tsl::ordered_set<std::string>);
+BENCHMARK_TEMPLATE(BenchEraseUnorderSetString, tsl::vector_set<std::string>);
 BENCHMARK_TEMPLATE(BenchEraseOrderSetString, absl::btree_set<std::string>);
 BENCHMARK_TEMPLATE(BenchEraseOrderSetString, phmap::btree_set<std::string>);
 

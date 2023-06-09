@@ -955,6 +955,9 @@ class ordered_set
     ht m_ht;
 };
 
+template<class Key>
+using vector_set = tsl::ordered_set<Key, std::hash<Key>, std::equal_to<Key>, std::allocator<Key>, std::vector<Key>>;
+
 } // end namespace tsl
 
 #endif

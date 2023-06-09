@@ -221,7 +221,7 @@ BENCHMARK_TEMPLATE(BenchStringFind, folly::fbstring)->Range(128, 1 << 16);
 
 int main(int argc, char **argv)
 {
-    std::cout << std::is_trivially_copyable_v<std::pair<std::string, Pod>> << '\n';
+//    std::cout << std::is_trivially_copyable_v<std::pair<std::string, Pod>> << '\n';
 //    BM_MemoryStringMap<sorted_vector_map<std::string, uint64_t>, 1 << 20>();
 //    BM_MemoryStringMap<folly::sorted_vector_map<std::string, uint64_t>, 1 << 20>();
     BM_MemoryStringMap<std::map<std::string, uint64_t>, 1 << 20, false>();
@@ -236,14 +236,20 @@ int main(int argc, char **argv)
     BM_MemoryStringMapNoSSO<tsl::sparse_pg_map<std::string, uint64_t>, 1 << 20>();
     BM_MemoryStringMap<tsl::ordered_map<std::string, uint64_t>, 1 << 20, false>();
     BM_MemoryStringMapNoSSO<tsl::ordered_map<std::string, uint64_t>, 1 << 20, false>();
+    BM_MemoryStringMap<tsl::vector_map<std::string, uint64_t>, 1 << 20, false>();
+    BM_MemoryStringMapNoSSO<tsl::vector_map<std::string, uint64_t>, 1 << 20, false>();
     BM_MemoryStringMap<tsl::ordered_map<std::string, uint64_t>, 1 << 20>();
     BM_MemoryStringMapNoSSO<tsl::ordered_map<std::string, uint64_t>, 1 << 20>();
-//    BM_MemoryStringMap<boost::container::flat_map<std::string, uint64_t>, 1 << 20>();
-//    BM_MemoryStringMap<eastl::vector_map<std::string, uint64_t>, 1 << 20>();
+    BM_MemoryStringMap<tsl::vector_map<std::string, uint64_t>, 1 << 20>();
+    BM_MemoryStringMapNoSSO<tsl::vector_map<std::string, uint64_t>, 1 << 20>();
+////    BM_MemoryStringMap<boost::container::flat_map<std::string, uint64_t>, 1 << 20>();
+////    BM_MemoryStringMap<eastl::vector_map<std::string, uint64_t>, 1 << 20>();
     BM_MemoryStringMap<folly::F14FastMap<std::string, uint64_t>, 1 << 20>();
     BM_MemoryStringMapNoSSO<folly::F14FastMap<std::string, uint64_t>, 1 << 20>();
     BM_MemoryStringMap<folly::F14ValueMap<std::string, uint64_t>, 1 << 20>();
     BM_MemoryStringMapNoSSO<folly::F14ValueMap<std::string, uint64_t>, 1 << 20>();
+
+
 
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();

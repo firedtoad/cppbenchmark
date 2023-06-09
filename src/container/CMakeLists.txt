@@ -13,6 +13,7 @@ add_executable(list_range list/range.cpp)
 add_executable(list_splice list/splice.cpp)
 
 add_executable(map_find_hetero map/find_hetero.cpp)
+add_executable(map_bound_order map/order_bound.cpp)
 add_executable(map_find_order map/order_find.cpp)
 add_executable(map_erase_order map/order_erase.cpp)
 add_executable(map_range_order map/order_range.cpp)

@@ -1129,6 +1129,9 @@ class ordered_map
     ht m_ht;
 };
 
+template <class Key, class T>
+using vector_map = tsl::ordered_map<Key, T, std::hash<Key>, std::equal_to<Key>, std::allocator<std::pair<Key, T>>, std::vector<std::pair<Key, T>>>;
+
 } // end namespace tsl
 
 #endif

@@ -62,6 +62,7 @@ template <class M> static void BenchEraseOrderMapInt(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BenchEraseOrderMapInt, std::map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseOrderMapInt, tsl::ordered_map<int, int>);
+BENCHMARK_TEMPLATE(BenchEraseOrderMapInt, tsl::vector_map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseOrderMapInt, absl::btree_map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseOrderMapInt, phmap::btree_map<int, int>);
 std::vector<std::string> keys(65536);
@@ -87,6 +88,7 @@ template <class M> static void BenchEraseOrderMapString(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BenchEraseOrderMapString, std::map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchEraseOrderMapString, tsl::ordered_map<std::string, int>);
+BENCHMARK_TEMPLATE(BenchEraseOrderMapString, tsl::vector_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchEraseOrderMapString, absl::btree_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchEraseOrderMapString, phmap::btree_map<std::string, int>);
 

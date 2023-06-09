@@ -85,6 +85,8 @@ BENCHMARK_TEMPLATE(BenchRangeUnOrderMapInt, tsl::bhopscotch_map<int, int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderMapInt, tsl::hopscotch_map<int, int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderMapInt, tsl::robin_map<int, int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderMapInt, tsl::sparse_map<int, int>);
+BENCHMARK_TEMPLATE(BenchRangeUnOrderMapInt, tsl::ordered_map<int, int>);
+BENCHMARK_TEMPLATE(BenchRangeUnOrderMapInt, tsl::vector_map<int, int>);
 
 static void BenchRangeFlatMapInt(benchmark::State &state)
 {
@@ -157,6 +159,8 @@ BENCHMARK_TEMPLATE(BenchRangeUnOrderMapString, tsl::bhopscotch_map<std::string, 
 BENCHMARK_TEMPLATE(BenchRangeUnOrderMapString, tsl::hopscotch_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderMapString, tsl::robin_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchRangeUnOrderMapString, tsl::sparse_map<std::string, int>);
+BENCHMARK_TEMPLATE(BenchRangeUnOrderMapString, tsl::ordered_map<std::string, int>);
+BENCHMARK_TEMPLATE(BenchRangeUnOrderMapString, tsl::vector_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchRangeCharKeyMap, tsl::htrie_map<char, int>);
 BENCHMARK_TEMPLATE(BenchRangeCharKeyMap, tsl::array_map<char, int>);
 

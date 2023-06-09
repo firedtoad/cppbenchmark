@@ -60,9 +60,11 @@ template <class M> static void BM_reserve(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BM_insert, std::unordered_set<int>);
 BENCHMARK_TEMPLATE(BM_insert, tsl::ordered_set<int>);
+BENCHMARK_TEMPLATE(BM_insert, tsl::vector_set<int>);
 BENCHMARK_TEMPLATE(BM_insert, tsl::sparse_set<int>);
 BENCHMARK_TEMPLATE(BM_reserve, std::unordered_set<int>);
 BENCHMARK_TEMPLATE(BM_reserve, tsl::ordered_set<int>);
+BENCHMARK_TEMPLATE(BM_reserve, tsl::vector_set<int>);
 BENCHMARK_TEMPLATE(BM_reserve, tsl::sparse_set<int>);
 #include <boost/multi_index/hashed_index.hpp>
 #include <boost/multi_index/identity.hpp>
@@ -95,6 +97,7 @@ int main(int argc, char **argv)
     BM_MemoryIntSet<tsl::robin_set<int>, 1 << 20>();
     BM_MemoryIntSet<tsl::sparse_set<int>, 1 << 20>();
     BM_MemoryIntSet<tsl::ordered_set<int>, 1 << 20>();
+    BM_MemoryIntSet<tsl::vector_set<int>, 1 << 20>();
     BM_MemoryIntSet<std::set<int>, 1 << 20,false>();
     BM_MemoryIntSet<MapList<int>, 1 << 20,false>();
     BM_MemoryIntSet<phmap::btree_set<int>, 1 << 20,false>();
@@ -116,6 +119,7 @@ int main(int argc, char **argv)
     BM_MemoryStringSet<tsl::sparse_set<std::string>, 1 << 20>();
     BM_MemoryStringSet<tsl::sparse_pg_set<std::string>, 1 << 20>();
     BM_MemoryStringSet<tsl::ordered_set<std::string>, 1 << 20>();
+    BM_MemoryStringSet<tsl::vector_set<std::string>, 1 << 20>();
 
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();

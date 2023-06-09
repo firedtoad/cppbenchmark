@@ -738,6 +738,69 @@ void c_fill_n(C& c, Size n, T&& value)
                 std::forward<T>(value));
 }
 
+// c_assign()
+// Container-based version c1={c2.begin(),c2.end()}
+// construct container from other compatible container
+template <typename C, typename C1>
+void c_assign(C& c1, C1&& c2) {
+    c1 = {container_algorithm_internal::c_begin(c2),
+          container_algorithm_internal::c_end(c2)};
+}
+
+// c_assign_n()
+// Container-based version c1={c2.begin(),c2.begin()+n}
+// construct container from other compatible container
+template <typename C, typename C1, typename Size>
+void c_assign_n(C& c1, C1&& c2, Size n) {
+    c1 = {container_algorithm_internal::c_begin(c2),
+          container_algorithm_internal::c_begin(c2) + n};
+}
+
+// c_map_assign()
+// construct container from other compatible container
+// copy elements
+template <typename C, typename C1, bool RESERVE = true>
+void c_assign_map(C& c1, C1&& c2) {
+    if constexpr (RESERVE) {
+        c1.reserve(c2.size());
+    }
+    c_for_each(c2, [&c1](auto&& it) { c1[it.first] = it.second; });
+}
+
+// c_map_assign_n()
+// construct container from other compatible container
+// copy elements
+template <typename C, typename C1, typename Size, bool RESERVE = true>
+void c_assign_map_n(C& c1, C1&& c2, Size n) {
+    if constexpr (RESERVE) {
+        c1.reserve(n);
+    }
+    c_for_each_n(c2, n, [&c1](auto&& it) { c1[it.first] = it.second; });
+}
+
+// c_map_move()
+// construct container from other compatible container
+// move elements
+template <typename C, typename C1, bool RESERVE = true>
+void c_move_map(C& c1, C1&& c2) {
+    if constexpr (RESERVE) {
+        c1.reserve(c2.size());
+    }
+    c_for_each(c2, [&c1](auto&& it) { c1[it.first] = std::move(it.second); });
+}
+
+// c_map_move_n()
+// construct container from other compatible container
+// move elements
+template <typename C, typename C1, typename Size, bool RESERVE = true>
+void c_move_map_n(C& c1, C1&& c2, Size n) {
+    if constexpr (RESERVE) {
+        c1.reserve(n);
+    }
+    c_for_each_n(c2, n,
+                 [&c1](auto&& it) { c1[it.first] = std::move(it.second); });
+}
+
 // c_generate()
 //
 // Container-based version of the <algorithm> `std::generate()` function to
