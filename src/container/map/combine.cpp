@@ -91,6 +91,9 @@ BENCHMARK_TEMPLATE(BenchTwiceMapInt, std::map<uint32_t, std::map<uint32_t, uint3
 BENCHMARK_TEMPLATE(BenchCombineMapInt, std::unordered_map<uint64_t, uint64_t>);
 BENCHMARK_TEMPLATE(BenchTwiceMapInt, std::unordered_map<uint32_t, std::unordered_map<uint32_t, uint32_t>>);
 
+BENCHMARK_TEMPLATE(BenchCombineMapInt, phmap::node_hash_map<uint64_t, uint64_t>);
+BENCHMARK_TEMPLATE(BenchTwiceMapInt, phmap::node_hash_map<uint32_t, phmap::node_hash_map<uint32_t, uint32_t>>);
+
 BENCHMARK_TEMPLATE(BenchCombineMapInt, phmap::flat_hash_map<uint64_t, uint64_t>);
 BENCHMARK_TEMPLATE(BenchTwiceMapInt, phmap::flat_hash_map<uint32_t, phmap::flat_hash_map<uint32_t, uint32_t>>);
 

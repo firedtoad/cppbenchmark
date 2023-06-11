@@ -1,3 +1,3 @@
-add_executable(vsdo vsdo.cpp)
-target_link_options(vsdo PRIVATE -static -Wl,-Bdynamic)
-target_compile_options(vsdo PRIVATE -static)
+add_executable(vdso vdso.cpp)
+#target_link_options(vdso PRIVATE -static -Wl,-Bdynamic)
+#target_compile_options(vdso PRIVATE -static)

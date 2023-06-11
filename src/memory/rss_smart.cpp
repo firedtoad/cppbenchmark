@@ -14,7 +14,6 @@
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
 #include "utils/memory.h"
-#include "utils/rss.h"
 #include <deque>
 #include <iostream>
 #include <list>
@@ -25,11 +24,15 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+
 struct Small
 {
     uint64_t m_data{};
     Small() noexcept = default;
-    Small(uint64_t i) noexcept {}
+    Small(uint64_t i) noexcept
+    {
+        m_data = i;
+    }
     bool operator<(const Small &o) const
     {
         return m_data < o.m_data;
@@ -81,78 +84,74 @@ constexpr static int SIZE = 1 << 20;
 int main(int argc, char *argv[])
 {
 
-    BM_MemoryLinear<std::list<Small>, SIZE>();
-    BM_MemoryLinear<std::list<std::shared_ptr<Small>>, SIZE>();
-    BM_MemoryLinear<std::list<std::unique_ptr<Small>>, SIZE>();
-    BM_MemoryLinear<std::list<Big>, SIZE>();
-    BM_MemoryLinear<std::list<std::shared_ptr<Big>>, SIZE>();
-    BM_MemoryLinear<std::list<std::unique_ptr<Big>>, SIZE>();
+    RSSMemoryLinear<std::list<Small>, SIZE,false>();
+    RSSMemoryLinear<std::list<std::shared_ptr<Small>>, SIZE,false>();
+    RSSMemoryLinear<std::list<std::unique_ptr<Small>>, SIZE,false>();
+    RSSMemoryLinear<std::list<Big>, SIZE,false>();
+    RSSMemoryLinear<std::list<std::shared_ptr<Big>>, SIZE,false>();
+    RSSMemoryLinear<std::list<std::unique_ptr<Big>>, SIZE,false>();
 
-    BM_MemoryLinear<std::deque<Small>, SIZE>();
-    BM_MemoryLinear<std::deque<std::shared_ptr<Small>>, SIZE>();
-    BM_MemoryLinear<std::deque<std::unique_ptr<Small>>, SIZE>();
-    BM_MemoryLinear<std::deque<Big>, SIZE>();
-    BM_MemoryLinear<std::deque<std::shared_ptr<Big>>, SIZE>();
-    BM_MemoryLinear<std::deque<std::unique_ptr<Big>>, SIZE>();
+    RSSMemoryLinear<std::deque<Small>, SIZE,false>();
+    RSSMemoryLinear<std::deque<std::shared_ptr<Small>>, SIZE,false>();
+    RSSMemoryLinear<std::deque<std::unique_ptr<Small>>, SIZE,false>();
+    RSSMemoryLinear<std::deque<Big>, SIZE,false>();
+    RSSMemoryLinear<std::deque<std::shared_ptr<Big>>, SIZE,false>();
+    RSSMemoryLinear<std::deque<std::unique_ptr<Big>>, SIZE,false>();
 
-    BM_MemoryLinear<std::vector<Small>, SIZE, true>();
-    BM_MemoryLinear<std::vector<std::shared_ptr<Small>>, SIZE, true>();
-    BM_MemoryLinear<std::vector<std::unique_ptr<Small>>, SIZE, true>();
-    BM_MemoryLinear<std::vector<Big>, SIZE, true>();
-    BM_MemoryLinear<std::vector<std::shared_ptr<Big>>, SIZE, true>();
-    BM_MemoryLinear<std::vector<std::unique_ptr<Big>>, SIZE, true>();
+    RSSMemoryLinear<std::vector<Small>, SIZE, true>();
+    RSSMemoryLinear<std::vector<std::shared_ptr<Small>>, SIZE, true>();
+    RSSMemoryLinear<std::vector<std::unique_ptr<Small>>, SIZE, true>();
+    RSSMemoryLinear<std::vector<Big>, SIZE, true>();
+    RSSMemoryLinear<std::vector<std::shared_ptr<Big>>, SIZE, true>();
+    RSSMemoryLinear<std::vector<std::unique_ptr<Big>>, SIZE, true>();
 
-    BM_MemoryMapInt<std::map<int, Small>, SIZE>();
-    BM_MemoryMapInt<std::map<int, std::shared_ptr<Small>>,SIZE>();
-    BM_MemoryMapInt<std::map<int, std::unique_ptr<Small>>,SIZE>();
+    RSSMemoryMapInt<std::map<int, Small>, SIZE,false>();
+    RSSMemoryMapInt<std::map<int, std::shared_ptr<Small>>, SIZE,false>();
+    RSSMemoryMapInt<std::map<int, std::unique_ptr<Small>>, SIZE,false>();
 
-    BM_MemoryMapInt<std::map<int, Big>,SIZE>();
-    BM_MemoryMapInt<std::map<int, std::shared_ptr<Big>>,SIZE>();
-    BM_MemoryMapInt<std::map<int, std::unique_ptr<Big>>,SIZE>();
+    RSSMemoryMapInt<std::map<int, Big>, SIZE,false>();
+    RSSMemoryMapInt<std::map<int, std::shared_ptr<Big>>, SIZE,false>();
+    RSSMemoryMapInt<std::map<int, std::unique_ptr<Big>>, SIZE,false>();
 
-    BM_MemoryMapInt<std::unordered_map<int, Small>,SIZE, true>();
-    BM_MemoryMapInt<std::unordered_map<int, std::shared_ptr<Small>>,SIZE, true>();
-    BM_MemoryMapInt<std::unordered_map<int, std::unique_ptr<Small>>,SIZE, true>();
+    RSSMemoryMapInt<std::unordered_map<int, Small>, SIZE, true>();
+    RSSMemoryMapInt<std::unordered_map<int, std::shared_ptr<Small>>, SIZE, true>();
+    RSSMemoryMapInt<std::unordered_map<int, std::unique_ptr<Small>>, SIZE, true>();
 
-    BM_MemoryMapInt<std::unordered_map<int, Big>,SIZE, true>();
-    BM_MemoryMapInt<std::unordered_map<int, std::shared_ptr<Big>>,SIZE, true>();
-    BM_MemoryMapInt<std::unordered_map<int, std::unique_ptr<Big>>,SIZE, true>();
+    RSSMemoryMapInt<std::unordered_map<int, Big>, SIZE, true>();
+    RSSMemoryMapInt<std::unordered_map<int, std::shared_ptr<Big>>, SIZE, true>();
+    RSSMemoryMapInt<std::unordered_map<int, std::unique_ptr<Big>>, SIZE, true>();
 
-    BM_MemoryMapString<std::map<std::string, Small>,SIZE>();
-    BM_MemoryMapString<std::map<std::string, std::shared_ptr<Small>>,SIZE>();
-    BM_MemoryMapString<std::map<std::string, std::unique_ptr<Small>>,SIZE>();
+    RSSMemoryMapString<std::map<std::string, Small>, SIZE,false>();
+    RSSMemoryMapString<std::map<std::string, std::shared_ptr<Small>>, SIZE,false>();
+    RSSMemoryMapString<std::map<std::string, std::unique_ptr<Small>>, SIZE,false>();
 
-    BM_MemoryMapString<std::map<std::string, Big>,SIZE>();
-    BM_MemoryMapString<std::map<std::string, std::shared_ptr<Big>>,SIZE>();
-    BM_MemoryMapString<std::map<std::string, std::unique_ptr<Big>>,SIZE>();
+    RSSMemoryMapString<std::map<std::string, Big>, SIZE,false>();
+    RSSMemoryMapString<std::map<std::string, std::shared_ptr<Big>>, SIZE,false>();
+    RSSMemoryMapString<std::map<std::string, std::unique_ptr<Big>>, SIZE,false>();
 
-    BM_MemoryMapString<std::unordered_map<std::string, Small>, true>();
-    BM_MemoryMapString<std::unordered_map<std::string, std::shared_ptr<Small>>, true>();
-    BM_MemoryMapString<std::unordered_map<std::string, std::unique_ptr<Small>>, true>();
+    RSSMemoryMapString<std::unordered_map<std::string, Small>, SIZE, true>();
+    RSSMemoryMapString<std::unordered_map<std::string, std::shared_ptr<Small>>, SIZE, true>();
+    RSSMemoryMapString<std::unordered_map<std::string, std::unique_ptr<Small>>, SIZE, true>();
 
-    BM_MemoryMapString<std::unordered_map<std::string, Big>, true>();
-    BM_MemoryMapString<std::unordered_map<std::string, std::shared_ptr<Big>>, true>();
-    BM_MemoryMapString<std::unordered_map<std::string, std::unique_ptr<Big>>, true>();
+    RSSMemoryMapString<std::unordered_map<std::string, Big>, SIZE, true>();
+    RSSMemoryMapString<std::unordered_map<std::string, std::shared_ptr<Big>>, SIZE, true>();
+    RSSMemoryMapString<std::unordered_map<std::string, std::unique_ptr<Big>>, SIZE, true>();
 
-    BM_MemorySetInt<std::set<Small>, SIZE>();
-    BM_MemorySetInt<std::set<std::shared_ptr<Small>>, SIZE>();
-    BM_MemorySetInt<std::set<std::unique_ptr<Small>>, SIZE>();
-    BM_MemorySetInt<std::set<Big>, SIZE>();
-    BM_MemorySetInt<std::set<std::shared_ptr<Big>>, SIZE>();
-    BM_MemorySetInt<std::set<std::unique_ptr<Big>>, SIZE>();
+    RSSMemorySet<std::set<Small>, SIZE,false>();
+    RSSMemorySet<std::set<std::shared_ptr<Small>>, SIZE,false>();
+    RSSMemorySet<std::set<std::unique_ptr<Small>>, SIZE,false>();
+    RSSMemorySet<std::set<Big>, SIZE,false>();
+    RSSMemorySet<std::set<std::shared_ptr<Big>>, SIZE,false>();
+    RSSMemorySet<std::set<std::unique_ptr<Big>>, SIZE,false>();
 
-    BM_MemorySetInt<std::unordered_set<Small>, SIZE, true>();
-    BM_MemorySetInt<std::unordered_set<std::shared_ptr<Small>>, SIZE, true>();
-    BM_MemorySetInt<std::unordered_set<std::unique_ptr<Small>>, SIZE, true>();
-    BM_MemorySetInt<std::unordered_set<Big>, SIZE, true>();
-    BM_MemorySetInt<std::unordered_set<std::shared_ptr<Big>>, SIZE, true>();
-    BM_MemorySetInt<std::unordered_set<std::unique_ptr<Big>>, SIZE, true>();
+    RSSMemorySet<std::unordered_set<Small>, SIZE, true>();
+    RSSMemorySet<std::unordered_set<std::shared_ptr<Small>>, SIZE, true>();
+    RSSMemorySet<std::unordered_set<std::unique_ptr<Small>>, SIZE, true>();
+    RSSMemorySet<std::unordered_set<Big>, SIZE, true>();
+    RSSMemorySet<std::unordered_set<std::shared_ptr<Big>>, SIZE, true>();
+    RSSMemorySet<std::unordered_set<std::unique_ptr<Big>>, SIZE, true>();
 
-    BM_MemorySetString<std::set<std::string>, SIZE>();
-    BM_MemorySetString<std::set<std::shared_ptr<std::string>>, SIZE>();
-    BM_MemorySetString<std::set<std::unique_ptr<std::string>>, SIZE>();
-
-    BM_MemorySetString<std::unordered_set<std::string>, SIZE, true>();
-    BM_MemorySetString<std::unordered_set<std::shared_ptr<std::string>>, SIZE, true>();
-    BM_MemorySetString<std::unordered_set<std::unique_ptr<std::string>>, SIZE, true>();
+    RSSMemorySetString<std::set<std::string>, SIZE,false>();
+    RSSMemorySetString<std::unordered_set<std::string>, SIZE, true>();
+    return 0;
 }

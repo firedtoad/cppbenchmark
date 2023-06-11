@@ -141,6 +141,8 @@ BENCHMARK_TEMPLATE(BenchUnOrderMapString, ska::flat_hash_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapStringSmart, ska::flat_hash_map<std::string, std::shared_ptr<int>>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, ska::bytell_hash_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapStringSmart, ska::bytell_hash_map<std::string, std::shared_ptr<int>>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapString, phmap::node_hash_map<std::string, int>);
+BENCHMARK_TEMPLATE(BenchUnOrderMapStringSmart, phmap::node_hash_map<std::string, std::shared_ptr<int>>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, phmap::flat_hash_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapStringSmart, phmap::flat_hash_map<std::string, std::shared_ptr<int>>);
 BENCHMARK_TEMPLATE(BenchUnOrderMapString, absl::flat_hash_map<std::string, int>);

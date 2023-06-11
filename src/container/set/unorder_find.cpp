@@ -133,6 +133,7 @@ BENCHMARK_TEMPLATE(BenchUnOrderSetString, std::unordered_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, ska::unordered_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, ska::flat_hash_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, ska::bytell_hash_set<std::string>);
+BENCHMARK_TEMPLATE(BenchUnOrderSetString, phmap::node_hash_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, phmap::flat_hash_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, absl::flat_hash_set<std::string>);
 BENCHMARK_TEMPLATE(BenchUnOrderSetString, robin_hood::unordered_flat_set<std::string>);

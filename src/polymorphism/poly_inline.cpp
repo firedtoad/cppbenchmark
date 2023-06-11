@@ -19,11 +19,10 @@
 class Base
 {
   public:
-    virtual ~Base() {}
     virtual uint64_t v_func() = 0;
 };
 
-class Derived : public Base
+class Derived final : public Base
 {
   protected:
     uint64_t y;
@@ -52,13 +51,13 @@ static void BenchPureCall(benchmark::State &state)
             benchmark::DoNotOptimize(sum);
         }
     }
-    delete p;
 }
 
 static void BenchVirtualCall(benchmark::State &state)
 {
     auto count = state.range(0);
-    Base *p    = new Derived{};
+    Derived *d    = new Derived{};
+    Base *p=d;
     auto sum   = 0;
     for (auto _ : state)
     {
@@ -68,7 +67,7 @@ static void BenchVirtualCall(benchmark::State &state)
             benchmark::DoNotOptimize(sum);
         }
     }
-    delete p;
+    delete d;
 }
 
 BENCHMARK(BenchPureCall)->Range(1024, 1024);
@@ -76,7 +75,6 @@ BENCHMARK(BenchVirtualCall)->Range(1024, 1024);
 
 int main(int argc, char **argv)
 {
-
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

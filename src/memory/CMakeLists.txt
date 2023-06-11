@@ -6,6 +6,7 @@ add_executable(rss_tc rss_tc.cpp)
 add_executable(rss_je rss_je.cpp)
 
 add_executable(memory_copy copy.cpp)
+add_executable(logic_smart logic_smart.cpp)
 add_executable(page page.cpp)
 add_executable(size_allocator size_allocator.cpp)
 target_compile_options(size_allocator PRIVATE -fsized-deallocation)
@@ -17,6 +18,8 @@ add_executable(overhead_je overhead_je.cpp)
 add_executable(rss_smart rss_smart.cpp)
 add_executable(rss_smart_tc rss_smart.cpp)
 add_executable(rss_smart_je rss_smart.cpp)
+
+
 
 target_link_libraries(overhead_tc PRIVATE tcmalloc)
 target_compile_definitions(overhead_je PRIVATE JE_MALLOC)

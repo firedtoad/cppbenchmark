@@ -19,6 +19,8 @@
 #include "tsl/ordered_set.h"
 #include "tsl/robin_map.h"
 #include "tsl/robin_set.h"
+#include "utils/alloc.h"
+#include "utils/symbol.h"
 #include <deque>
 #include <iostream>
 #include <list>
@@ -28,12 +30,11 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-#include "utils/symbol.h"
 
 static size_t memAlloc;
 static size_t alloc;
 
-template <class T> class my_allocator
+template <class T> class my_allocator : public std::allocator<T>
 {
   public:
     typedef size_t size_type;
@@ -108,7 +109,6 @@ struct CC
     char c;
 };
 
-
 template <typename... T> void PrintSize(T &&...t)
 {
     (..., (std::cout << demangle(typeid(t).name()) << " size " << sizeof(t) << '\n'));
@@ -117,17 +117,34 @@ template <typename... T> void PrintSize(T &&...t)
 int main(int argc, char **argv)
 {
 
+    auto p=std::make_shared<int>(1);
+
     PrintSize(std::_List_node<char>{});
     PrintSize(std::_List_node<uint64_t>{});
+    PrintSize(std::_List_node<std::shared_ptr<char>>{});
+    PrintSize(std::_List_node<std::shared_ptr<uint64_t>>{});
     PrintSize(std::_Rb_tree_node<std::pair<char, char>>{});
-    PrintSize(std::_Rb_tree_node<std::pair<uint64_t, char>>{});
+    PrintSize(std::_Rb_tree_node<std::pair<int, int>>{});
     PrintSize(std::__detail::_Hash_node<char, false>{});
     PrintSize(std::__detail::_Hash_node<uint64_t, false>{});
+    std::allocator<uint8_t> allocator;
+    PrintSize(std::_Sp_counted_ptr_inplace<uint8_t,std::allocator<uint8_t>,__gnu_cxx::_S_atomic>{allocator});
+
+
     PrintSize(__gnu_cxx::__aligned_buffer<char>{});
     PrintSize(__gnu_cxx::__aligned_buffer<uint64_t>{});
     PrintSize(phmap::flat_hash_set<char>::node_type{});
     PrintSize(phmap::flat_hash_set<uint64_t>::node_type{});
+
     PrintSize(CC{});
+
+    {
+        AllocReport report{"std::vector<uint32_t>"};
+//        printf("hello world");
+//        std::list<uint32_t> v(1024*1024);
+
+//        v.resize(1024*1024);
+    }
     memAlloc = 0;
     alloc    = 0;
     {
@@ -207,24 +224,24 @@ int main(int argc, char **argv)
     memAlloc = 0;
     alloc    = 0;
     {
-//        tsl::robin_map<uint32_t, uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
-//        v.reserve(1024);
-//        for (auto i = 0; i < 1024; i++)
-//        {
-//            v[i] = i;
-//        }
-//        std::cout << "tsl::robin_map cost memory " << memAlloc << " alloc " << alloc << '\n';
+        tsl::robin_map<uint32_t, uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
+        v.reserve(1024);
+        for (auto i = 0; i < 1024; i++)
+        {
+            v[i] = i;
+        }
+        std::cout << "tsl::robin_map cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
     memAlloc = 0;
     alloc    = 0;
     {
-//        tsl::robin_set<uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
-//        v.reserve(1024);
-//        for (auto i = 0; i < 1024; i++)
-//        {
-//            v.insert(i);
-//        }
-//        std::cout << "tsl::robin_set cost memory " << memAlloc << " alloc " << alloc << '\n';
+        tsl::robin_set<uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
+        v.reserve(1024);
+        for (auto i = 0; i < 1024; i++)
+        {
+            v.insert(i);
+        }
+        std::cout << "tsl::robin_set cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
     memAlloc = 0;
     alloc    = 0;
@@ -251,24 +268,24 @@ int main(int argc, char **argv)
     memAlloc = 0;
     alloc    = 0;
     {
-//        tsl::ordered_map<uint32_t, uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<std::pair<uint32_t, uint32_t>>> v;
-//        v.reserve(1024);
-//        for (auto i = 0; i < 1024; i++)
-//        {
-//            v[i] = i;
-//        }
-//        std::cout << "tsl::ordered_map cost memory " << memAlloc << " alloc " << alloc << '\n';
+        tsl::ordered_map<uint32_t, uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<std::pair<uint32_t, uint32_t>>> v;
+        v.reserve(1024);
+        for (auto i = 0; i < 1024; i++)
+        {
+            v[i] = i;
+        }
+        std::cout << "tsl::ordered_map cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
     memAlloc = 0;
     alloc    = 0;
     {
-//        tsl::ordered_set<uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
-//        v.reserve(1024);
-//        for (auto i = 0; i < 1024; i++)
-//        {
-//            v.insert(i);
-//        }
-//        std::cout << "tsl::ordered_set cost memory " << memAlloc << " alloc " << alloc << '\n';
+        tsl::ordered_set<uint32_t, std::hash<uint32_t>, std::equal_to<uint32_t>, my_allocator<uint32_t>> v;
+        v.reserve(1024);
+        for (auto i = 0; i < 1024; i++)
+        {
+            v.insert(i);
+        }
+        std::cout << "tsl::ordered_set cost memory " << memAlloc << " alloc " << alloc << '\n';
     }
     memAlloc = 0;
     alloc    = 0;

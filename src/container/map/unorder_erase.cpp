@@ -77,6 +77,7 @@ BENCHMARK_TEMPLATE(BenchEraseUnOrderMapInt, ska::unordered_map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapInt, ska::flat_hash_map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapInt, ska::bytell_hash_map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapInt, phmap::flat_hash_map<int, int>);
+BENCHMARK_TEMPLATE(BenchEraseUnOrderMapInt, phmap::node_hash_map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapInt, absl::flat_hash_map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapInt, robin_hood::unordered_flat_map<int, int>);
 BENCHMARK_TEMPLATE(BenchEraseUnOrderMapInt, spp::sparse_hash_map<int, int>);

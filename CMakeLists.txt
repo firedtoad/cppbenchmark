@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(bench C CXX)
+project(cpp_benchmark C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 

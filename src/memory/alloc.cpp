@@ -32,7 +32,6 @@ BENCHMARK(BM_AllocSize)->Range(1, 1 << 20);
 
 int main(int argc, char **argv)
 {
-
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

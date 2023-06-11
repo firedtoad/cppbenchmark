@@ -58,14 +58,23 @@ template <class M> static void BM_reserve(benchmark::State &state)
     }
 }
 
+BENCHMARK_TEMPLATE(BM_insert, std::set<int>);
+BENCHMARK_TEMPLATE(BM_insert, phmap::btree_set<int>);
 BENCHMARK_TEMPLATE(BM_insert, std::unordered_set<int>);
+BENCHMARK_TEMPLATE(BM_insert, phmap::node_hash_set<int>);
+BENCHMARK_TEMPLATE(BM_insert, phmap::flat_hash_set<int>);
+BENCHMARK_TEMPLATE(BM_insert, tsl::sparse_set<int>);
 BENCHMARK_TEMPLATE(BM_insert, tsl::ordered_set<int>);
 BENCHMARK_TEMPLATE(BM_insert, tsl::vector_set<int>);
-BENCHMARK_TEMPLATE(BM_insert, tsl::sparse_set<int>);
+
+
 BENCHMARK_TEMPLATE(BM_reserve, std::unordered_set<int>);
+BENCHMARK_TEMPLATE(BM_reserve, phmap::node_hash_set<int>);
+BENCHMARK_TEMPLATE(BM_reserve, phmap::flat_hash_set<int>);
+BENCHMARK_TEMPLATE(BM_reserve, tsl::sparse_set<int>);
 BENCHMARK_TEMPLATE(BM_reserve, tsl::ordered_set<int>);
 BENCHMARK_TEMPLATE(BM_reserve, tsl::vector_set<int>);
-BENCHMARK_TEMPLATE(BM_reserve, tsl::sparse_set<int>);
+
 #include <boost/multi_index/hashed_index.hpp>
 #include <boost/multi_index/identity.hpp>
 #include <boost/multi_index/member.hpp>
@@ -84,42 +93,42 @@ struct Pod{
 
 int main(int argc, char **argv)
 {
-    BM_MemoryIntSet<std::unordered_set<int>, 1 << 20>();
-    BM_MemoryIntSet<ska::unordered_set<int>, 1 << 20>();
-    BM_MemoryIntSet<ska::flat_hash_set<int>, 1 << 20>();
-    BM_MemoryIntSet<ska::bytell_hash_set<int>, 1 << 20>();
-    BM_MemoryIntSet<phmap::flat_hash_set<int>, 1 << 20>();
-    BM_MemoryIntSet<absl::flat_hash_set<int>, 1 << 20>();
-    BM_MemoryIntSet<robin_hood::unordered_flat_set<int>, 1 << 20>();
-    BM_MemoryIntSet<spp::sparse_hash_set<int>, 1 << 20>();
-    BM_MemoryIntSet<tsl::bhopscotch_set<int>, 1 << 20>();
-    BM_MemoryIntSet<tsl::hopscotch_set<int>, 1 << 20>();
-    BM_MemoryIntSet<tsl::robin_set<int>, 1 << 20>();
-    BM_MemoryIntSet<tsl::sparse_set<int>, 1 << 20>();
-    BM_MemoryIntSet<tsl::ordered_set<int>, 1 << 20>();
-    BM_MemoryIntSet<tsl::vector_set<int>, 1 << 20>();
-    BM_MemoryIntSet<std::set<int>, 1 << 20,false>();
-    BM_MemoryIntSet<MapList<int>, 1 << 20,false>();
-    BM_MemoryIntSet<phmap::btree_set<int>, 1 << 20,false>();
+    RSSMemoryIntSet<std::unordered_set<int>, 1 << 20>();
+    RSSMemoryIntSet<ska::unordered_set<int>, 1 << 20>();
+    RSSMemoryIntSet<ska::flat_hash_set<int>, 1 << 20>();
+    RSSMemoryIntSet<ska::bytell_hash_set<int>, 1 << 20>();
+    RSSMemoryIntSet<phmap::flat_hash_set<int>, 1 << 20>();
+    RSSMemoryIntSet<absl::flat_hash_set<int>, 1 << 20>();
+    RSSMemoryIntSet<robin_hood::unordered_flat_set<int>, 1 << 20>();
+    RSSMemoryIntSet<spp::sparse_hash_set<int>, 1 << 20>();
+    RSSMemoryIntSet<tsl::bhopscotch_set<int>, 1 << 20>();
+    RSSMemoryIntSet<tsl::hopscotch_set<int>, 1 << 20>();
+    RSSMemoryIntSet<tsl::robin_set<int>, 1 << 20>();
+    RSSMemoryIntSet<tsl::sparse_set<int>, 1 << 20>();
+    RSSMemoryIntSet<tsl::ordered_set<int>, 1 << 20>();
+    RSSMemoryIntSet<tsl::vector_set<int>, 1 << 20>();
+    RSSMemoryIntSet<std::set<int>, 1 << 20, false>();
+    RSSMemoryIntSet<MapList<int>, 1 << 20, false>();
+    RSSMemoryIntSet<phmap::btree_set<int>, 1 << 20, false>();
 
-    BM_MemoryStringSet<std::set<std::string>, 1 << 20,false>();
-    BM_MemoryStringSet<MapList<std::string>, 1 << 20>();
-    BM_MemoryStringSet<phmap::btree_set<std::string>, 1 << 20,false>();
-    BM_MemoryStringSet<std::unordered_set<std::string>, 1 << 20>();
-    BM_MemoryStringSet<ska::unordered_set<std::string>, 1 << 20>();
-    BM_MemoryStringSet<ska::flat_hash_set<std::string>, 1 << 20>();
-    BM_MemoryStringSet<ska::bytell_hash_set<std::string>, 1 << 20>();
-    BM_MemoryStringSet<phmap::flat_hash_set<std::string>, 1 << 20>();
-    BM_MemoryStringSet<absl::flat_hash_set<std::string>, 1 << 20>();
-    BM_MemoryStringSet<robin_hood::unordered_flat_set<std::string>, 1 << 20>();
-    BM_MemoryStringSet<spp::sparse_hash_set<std::string>, 1 << 20>();
-    BM_MemoryStringSet<tsl::bhopscotch_set<std::string>, 1 << 20>();
-    BM_MemoryStringSet<tsl::hopscotch_set<std::string>, 1 << 20>();
-    BM_MemoryStringSet<tsl::robin_set<std::string>, 1 << 20>();
-    BM_MemoryStringSet<tsl::sparse_set<std::string>, 1 << 20>();
-    BM_MemoryStringSet<tsl::sparse_pg_set<std::string>, 1 << 20>();
-    BM_MemoryStringSet<tsl::ordered_set<std::string>, 1 << 20>();
-    BM_MemoryStringSet<tsl::vector_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<std::set<std::string>, 1 << 20, false>();
+    RSSMemoryStringSet<MapList<std::string>, 1 << 20>();
+    RSSMemoryStringSet<phmap::btree_set<std::string>, 1 << 20, false>();
+    RSSMemoryStringSet<std::unordered_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<ska::unordered_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<ska::flat_hash_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<ska::bytell_hash_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<phmap::flat_hash_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<absl::flat_hash_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<robin_hood::unordered_flat_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<spp::sparse_hash_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<tsl::bhopscotch_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<tsl::hopscotch_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<tsl::robin_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<tsl::sparse_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<tsl::sparse_pg_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<tsl::ordered_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<tsl::vector_set<std::string>, 1 << 20>();
 
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();

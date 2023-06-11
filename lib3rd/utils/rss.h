@@ -15,7 +15,6 @@
 
 #ifndef BENCH_UTILS_H
 #define BENCH_UTILS_H
-#include "symbol.h"
 #include <iostream>
 #include <malloc.h>
 #include <stdint.h>
@@ -56,7 +55,7 @@ inline void FillRSS(rusage &rUsage)
     while (newRss <= rss)
     {
         newRss = getThreadRss(rUsage);
-        p      = (char *)calloc(sz, 4096);
+        p      = (char *)calloc(++sz, 4096);
         DoNotOptimize(p);
     }
 
@@ -79,7 +78,7 @@ inline void PrintUsage(struct rusage &rUsage)
     getrusage(RUSAGE_THREAD, &usage);
     std::cout << "user cpu : " << usage.ru_utime - rUsage.ru_utime << '\n';
     std::cout << "sys cpu : " << usage.ru_stime - rUsage.ru_stime << '\n';
-    std::cout << "max rss : " << (usage.ru_maxrss - rUsage.ru_maxrss) << " kb / " << (usage.ru_maxrss - rUsage.ru_maxrss) / 1024.0 << " MB" << '\n';
+    std::cout << "max rss : " << (usage.ru_maxrss - rUsage.ru_maxrss) << " KB / " << (usage.ru_maxrss - rUsage.ru_maxrss) / 1024.0 << " MB" << '\n';
     std::cout << "page reclaims : " << usage.ru_minflt - rUsage.ru_minflt << '\n';
     std::cout << "page faults : " << usage.ru_majflt - rUsage.ru_majflt << '\n';
     std::cout << "voluntary switches : " << usage.ru_nvcsw - rUsage.ru_nvcsw << '\n';
@@ -87,6 +86,5 @@ inline void PrintUsage(struct rusage &rUsage)
     std::cout << '\n';
     std::cout.flush();
 }
-
 
 #endif // BENCH_UTILS_H

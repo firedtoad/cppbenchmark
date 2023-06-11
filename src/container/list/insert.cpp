@@ -20,6 +20,7 @@
 #include <boost/intrusive/list_hook.hpp>
 #include <deque>
 #include <list>
+#include <forward_list>
 #include <vector>
 
 using mode               = boost::intrusive::link_mode<boost::intrusive::safe_link>;
@@ -43,6 +44,20 @@ static void BenchListInsert(benchmark::State &state)
 }
 
 BENCHMARK(BenchListInsert)->Range(1, 65536);
+
+static void BenchForwardListInsert(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        std::forward_list<SList> v;
+        for (auto i = 0; i < state.range(0); i++)
+        {
+            v.push_front({});
+        }
+    }
+}
+
+BENCHMARK(BenchForwardListInsert)->Range(1, 65536);
 
 static void BenchDequeInsert(benchmark::State &state)
 {

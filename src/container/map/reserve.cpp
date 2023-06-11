@@ -50,6 +50,7 @@ BENCHMARK_TEMPLATE(BM_reserve, std::unordered_map<int, int>)->Range(1 << 10, 1 <
 BENCHMARK_TEMPLATE(BM_reserve, ska::unordered_map<int, int>)->Range(1 << 10, 1 << 20);
 BENCHMARK_TEMPLATE(BM_reserve, ska::flat_hash_map<int, int>)->Range(1 << 10, 1 << 20);
 BENCHMARK_TEMPLATE(BM_reserve, ska::bytell_hash_map<int, int>)->Range(1 << 10, 1 << 20);
+BENCHMARK_TEMPLATE(BM_reserve, phmap::node_hash_map<int, int>)->Range(1 << 10, 1 << 20);
 BENCHMARK_TEMPLATE(BM_reserve, phmap::flat_hash_map<int, int>)->Range(1 << 10, 1 << 20);
 BENCHMARK_TEMPLATE(BM_reserve, absl::flat_hash_map<int, int>)->Range(1 << 10, 1 << 20);
 BENCHMARK_TEMPLATE(BM_reserve, robin_hood::unordered_flat_map<int, int>)->Range(1 << 10, 1 << 20);
@@ -104,24 +105,24 @@ template <class M, size_t N> void BM_MemoryStringPtr()
 int main(int argc, char **argv)
 {
 
-    BM_MemoryMap<std::unordered_map<int, int>, 1 << 20>();
-    BM_MemoryMap<ska::unordered_map<int, int>, 1 << 20>();
-    BM_MemoryMap<ska::flat_hash_map<int, int>, 1 << 20>();
-    BM_MemoryMap<ska::bytell_hash_map<int, int>, 1 << 20>();
-    BM_MemoryMap<phmap::flat_hash_map<int, int>, 1 << 20>();
-    BM_MemoryMap<absl::flat_hash_map<int, int>, 1 << 20>();
-    BM_MemoryMap<robin_hood::unordered_flat_map<int, int>, 1 << 20>();
-    BM_MemoryMap<spp::sparse_hash_map<int, int>, 1 << 20>();
-    BM_MemoryMap<tsl::bhopscotch_map<int, int>, 1 << 20>();
-    BM_MemoryMap<tsl::hopscotch_map<int, int>, 1 << 20>();
-    BM_MemoryMap<tsl::robin_map<int, int>, 1 << 20>();
-    BM_MemoryMap<tsl::sparse_map<int, int>, 1 << 20>();
-    BM_MemoryMap<tsl::ordered_map<int, int>, 1 << 20>();
-    BM_MemoryMap<std::map<int, int>, 1 << 20, false>();
-    BM_MemoryMap<phmap::btree_map<int, int>, 1 << 20, false>();
+    RSSMemoryMap<std::unordered_map<int, int>, 1 << 20>();
+    RSSMemoryMap<ska::unordered_map<int, int>, 1 << 20>();
+    RSSMemoryMap<ska::flat_hash_map<int, int>, 1 << 20>();
+    RSSMemoryMap<ska::bytell_hash_map<int, int>, 1 << 20>();
+    RSSMemoryMap<phmap::flat_hash_map<int, int>, 1 << 20>();
+    RSSMemoryMap<absl::flat_hash_map<int, int>, 1 << 20>();
+    RSSMemoryMap<robin_hood::unordered_flat_map<int, int>, 1 << 20>();
+    RSSMemoryMap<spp::sparse_hash_map<int, int>, 1 << 20>();
+    RSSMemoryMap<tsl::bhopscotch_map<int, int>, 1 << 20>();
+    RSSMemoryMap<tsl::hopscotch_map<int, int>, 1 << 20>();
+    RSSMemoryMap<tsl::robin_map<int, int>, 1 << 20>();
+    RSSMemoryMap<tsl::sparse_map<int, int>, 1 << 20>();
+    RSSMemoryMap<tsl::ordered_map<int, int>, 1 << 20>();
+    RSSMemoryMap<std::map<int, int>, 1 << 20, false>();
+    RSSMemoryMap<phmap::btree_map<int, int>, 1 << 20, false>();
 
-    BM_MemoryStringMap<std::map<std::string, int>, 1 << 20, false>();
-    BM_MemoryStringMap<phmap::btree_map<std::string, int>, 1 << 20, false>();
+    RSSMemoryStringMap<std::map<std::string, int>, 1 << 20, false>();
+    RSSMemoryStringMap<phmap::btree_map<std::string, int>, 1 << 20, false>();
     BM_MemoryStringShared<std::map<std::string, std::shared_ptr<int>>, 1 << 20>();
     BM_MemoryStringShared<phmap::btree_map<std::string, std::shared_ptr<int>>, 1 << 20>();
     BM_MemoryStringShared<tsl::sparse_map<std::string, std::shared_ptr<int>>, 1 << 20>();
@@ -129,21 +130,21 @@ int main(int argc, char **argv)
     BM_MemoryStringUnique<tsl::ordered_map<std::string, std::shared_ptr<int>>, 1 << 20>();
     BM_MemoryStringUnique<tsl::ordered_map<std::string, std::unique_ptr<int>>, 1 << 20>();
     BM_MemoryStringPtr<tsl::sparse_map<std::string, int *>, 1 << 20>();
-    BM_MemoryStringMap<std::unordered_map<std::string, int>, 1 << 20>();
+    RSSMemoryStringMap<std::unordered_map<std::string, int>, 1 << 20>();
     BM_MemoryStringShared<std::unordered_map<std::string, std::shared_ptr<int>>, 1 << 20>();
     BM_MemoryStringUnique<std::unordered_map<std::string, std::unique_ptr<int>>, 1 << 20>();
-    BM_MemoryStringMap<ska::unordered_map<std::string, int>, 1 << 20>();
-    BM_MemoryStringMap<ska::flat_hash_map<std::string, int>, 1 << 20>();
-    BM_MemoryStringMap<ska::bytell_hash_map<std::string, int>, 1 << 20>();
-    BM_MemoryStringMap<phmap::flat_hash_map<std::string, int>, 1 << 20>();
-    BM_MemoryStringMap<absl::flat_hash_map<std::string, int>, 1 << 20>();
-    BM_MemoryStringMap<robin_hood::unordered_flat_map<std::string, int>, 1 << 20>();
-    BM_MemoryStringMap<spp::sparse_hash_map<std::string, int>, 1 << 20>();
-    BM_MemoryStringMap<tsl::bhopscotch_map<std::string, int>, 1 << 20>();
-    BM_MemoryStringMap<tsl::hopscotch_map<std::string, int>, 1 << 20>();
-    BM_MemoryStringMap<tsl::robin_map<std::string, int>, 1 << 20>();
-    BM_MemoryStringMap<tsl::sparse_map<std::string, int>, 1 << 20>();
-    BM_MemoryStringMap<tsl::ordered_map<std::string, int>, 1 << 20>();
+    RSSMemoryStringMap<ska::unordered_map<std::string, int>, 1 << 20>();
+    RSSMemoryStringMap<ska::flat_hash_map<std::string, int>, 1 << 20>();
+    RSSMemoryStringMap<ska::bytell_hash_map<std::string, int>, 1 << 20>();
+    RSSMemoryStringMap<phmap::flat_hash_map<std::string, int>, 1 << 20>();
+    RSSMemoryStringMap<absl::flat_hash_map<std::string, int>, 1 << 20>();
+    RSSMemoryStringMap<robin_hood::unordered_flat_map<std::string, int>, 1 << 20>();
+    RSSMemoryStringMap<spp::sparse_hash_map<std::string, int>, 1 << 20>();
+    RSSMemoryStringMap<tsl::bhopscotch_map<std::string, int>, 1 << 20>();
+    RSSMemoryStringMap<tsl::hopscotch_map<std::string, int>, 1 << 20>();
+    RSSMemoryStringMap<tsl::robin_map<std::string, int>, 1 << 20>();
+    RSSMemoryStringMap<tsl::sparse_map<std::string, int>, 1 << 20>();
+    RSSMemoryStringMap<tsl::ordered_map<std::string, int>, 1 << 20>();
 
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();

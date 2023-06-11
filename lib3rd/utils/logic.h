@@ -1,10 +1,10 @@
 //
-// Created by Administrator on 2023/06/04.
+// Created by Administrator on 2023/06/11.
 //
 
-#ifndef BENCH_LIB3RD_UTILS_MEMORY_H_
-#define BENCH_LIB3RD_UTILS_MEMORY_H_
-#include "rss.h"
+#ifndef CPP_BENCHMARK_LIB3RD_UTILS_LOGIC_H_
+#define CPP_BENCHMARK_LIB3RD_UTILS_LOGIC_H_
+#include "alloc.h"
 #include "symbol.h"
 #include <memory>
 
@@ -24,28 +24,24 @@ template <class T> struct is_shared_ptr<std::shared_ptr<T>> : std::true_type
 {
 };
 
-template <class M, size_t N, bool reserve = true> void RSSMemoryMap()
+template <class M, size_t N, bool reserve = true> void LogicMemoryMap()
 {
-    static rusage rusage;
-    FillRSS(rusage);
-    static M m;
+    AllocReport report{demangle(typeid(M).name())};
+    M m;
     if constexpr (reserve)
     {
         m.reserve(N);
     }
-    std::cout << demangle(typeid(m).name()) << " memory " << '\n';
     for (size_t i = 0; i < N; i++)
     {
         m[i] = i;
     }
-    PrintUsage(rusage);
 }
 
-template <class M, size_t N, bool reserve = true> void RSSMemoryStringMap()
+template <class M, size_t N, bool reserve = true> void LogicMemoryStringMap()
 {
-    static rusage rusage;
-    FillRSS(rusage);
-    static M m;
+    AllocReport report{demangle(typeid(M).name())};
+    M m;
     if constexpr (reserve)
     {
         m.reserve(N);
@@ -55,14 +51,12 @@ template <class M, size_t N, bool reserve = true> void RSSMemoryStringMap()
     {
         m[std::to_string(i)] = i;
     }
-    PrintUsage(rusage);
 }
 
-template <class M, size_t N, bool reserve = true> void RSSMemoryStringMapNoSSO()
+template <class M, size_t N, bool reserve = true> void LogicMemoryStringMapNoSSO()
 {
-    static rusage rusage;
-    FillRSS(rusage);
-    static M m;
+    AllocReport report{demangle(typeid(M).name())};
+    M m;
     if constexpr (reserve)
     {
         m.reserve(N);
@@ -73,14 +67,12 @@ template <class M, size_t N, bool reserve = true> void RSSMemoryStringMapNoSSO()
         auto key          = std::to_string(i) + "123456789012345";
         m[std::move(key)] = i;
     }
-    PrintUsage(rusage);
 }
 
-template <class M, size_t N, bool reserve = true> void RSSMemoryIntSet()
+template <class M, size_t N, bool reserve = true> void LogicMemoryIntSet()
 {
-    static rusage rusage;
-    FillRSS(rusage);
-    static M m;
+    AllocReport report{demangle(typeid(M).name())};
+    M m;
     if constexpr (reserve)
     {
         m.reserve(N);
@@ -90,33 +82,27 @@ template <class M, size_t N, bool reserve = true> void RSSMemoryIntSet()
     {
         m.insert(i);
     }
-    PrintUsage(rusage);
 }
 
-template <class M, size_t N, bool reserve = true> void RSSMemoryStringSet()
+template <class M, size_t N, bool reserve = true> void LogicMemoryStringSet()
 {
-    static rusage rusage;
-    FillRSS(rusage);
-    static M m;
+    AllocReport report{demangle(typeid(M).name())};
+    M m;
     if constexpr (reserve)
     {
         m.reserve(N);
     }
-    std::cout << demangle(typeid(m).name()) << " memory " << '\n';
     for (size_t i = 0; i < N; i++)
     {
         m.insert(std::to_string(i));
     }
-    PrintUsage(rusage);
 }
 
-template <typename C, size_t N, bool reserve = true> void RSSMemoryLinear()
+template <typename C, size_t N, bool reserve = true> void LogicMemoryLinear()
 {
-    static C c;
+    AllocReport report{demangle(typeid(C).name())};
+    C c;
     using value_type = typename C::value_type;
-    static rusage rusage;
-    FillRSS(rusage);
-    std::cout << demangle(typeid(c).name()) << " size " << N << " memory " << '\n';
     if constexpr (reserve)
     {
         c.reserve(N);
@@ -138,17 +124,14 @@ template <typename C, size_t N, bool reserve = true> void RSSMemoryLinear()
             c.emplace_back();
         }
     }
-    PrintUsage(rusage);
 }
 
-template <typename C, size_t N, bool reserve = true> void RSSMemoryMapInt()
+template <typename C, size_t N, bool reserve = true> void LogicMemoryMapInt()
 {
-    static C c;
+    AllocReport report{demangle(typeid(C).name())};
+    C c;
     using value_type  = typename C::value_type;
     using second_type = typename value_type::second_type;
-    static rusage rusage;
-    FillRSS(rusage);
-    std::cout << demangle(typeid(c).name()) << " size " << N << " memory " << '\n';
     if constexpr (reserve)
     {
         c.reserve(N);
@@ -170,17 +153,14 @@ template <typename C, size_t N, bool reserve = true> void RSSMemoryMapInt()
             c.emplace(i, second_type{});
         }
     }
-    PrintUsage(rusage);
 }
 
-template <typename C, size_t N, bool reserve = true> void RSSMemoryMapString()
+template <typename C, size_t N, bool reserve = true> void LogicMemoryMapString()
 {
-    static rusage rusage;
-    FillRSS(rusage);
-    static C c;
+    AllocReport report{demangle(typeid(C).name())};
+    C c;
     using value_type  = typename C::value_type;
     using second_type = typename value_type::second_type;
-    std::cout << demangle(typeid(c).name()) << " size " << N << " memory " << '\n';
     if constexpr (reserve)
     {
         c.reserve(N);
@@ -202,16 +182,13 @@ template <typename C, size_t N, bool reserve = true> void RSSMemoryMapString()
             c.emplace(std::to_string(i), second_type{});
         }
     }
-    PrintUsage(rusage);
 }
 
-template <typename C, size_t N, bool reserve = true> void RSSMemorySet()
+template <typename C, size_t N, bool reserve = true> void LogicMemorySet()
 {
-    static C c;
+    AllocReport report{demangle(typeid(C).name())};
+    C c;
     using value_type = typename C::value_type;
-    static rusage rusage;
-    FillRSS(rusage);
-    std::cout << demangle(typeid(c).name()) << " size " << N << " memory " << '\n';
     if constexpr (reserve)
     {
         c.reserve(N);
@@ -233,16 +210,13 @@ template <typename C, size_t N, bool reserve = true> void RSSMemorySet()
             c.emplace(value_type{i});
         }
     }
-    PrintUsage(rusage);
 }
 
-template <typename C, size_t N, bool reserve = true> void RSSMemorySetString()
+template <typename C, size_t N, bool reserve = true> void LogicMemorySetString()
 {
-    static C c;
+    AllocReport report{demangle(typeid(C).name())};
+    C c;
     using value_type = typename C::value_type;
-    static rusage rusage;
-    FillRSS(rusage);
-    std::cout << demangle(typeid(c).name()) << " size " << N << " memory " << '\n';
     if constexpr (reserve)
     {
         c.reserve(N);
@@ -264,7 +238,6 @@ template <typename C, size_t N, bool reserve = true> void RSSMemorySetString()
             c.emplace(value_type{std::to_string(i)});
         }
     }
-    PrintUsage(rusage);
 }
 
-#endif // BENCH_LIB3RD_UTILS_MEMORY_H_
+#endif // CPP_BENCHMARK_LIB3RD_UTILS_LOGIC_H_
