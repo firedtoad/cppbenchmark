@@ -1,4 +1,4 @@
-2023-06-04T20:08:41-04:00
+2023-06-11T21:41:42+08:00
 Running ./bin/cache_size
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,43 +6,43 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.56, 3.75, 2.77
+Load Average: 4.00, 4.13, 3.55
 ----------------------------------------------------------------
 Benchmark                      Time             CPU   Iterations
 ----------------------------------------------------------------
-BM_CacheLine/32768          1.38 ns         1.38 ns    550806051
-BM_CacheLine/294912         2.33 ns         2.33 ns    289851731
-BM_CacheLine/557056         2.69 ns         2.69 ns    290966626
-BM_CacheLine/819200         2.73 ns         2.73 ns    246488072
-BM_CacheLine/2097152        2.80 ns         2.80 ns    249102095
-BM_CacheLine/4194304        2.98 ns         2.98 ns    231980830
-BM_CacheLine/6291456        3.67 ns         3.67 ns    201387280
-BM_CacheLine/8388608        5.76 ns         5.76 ns    108589893
-BM_CacheLine/10485760       8.67 ns         8.67 ns     74262322
-BM_CacheLine/12582912       11.5 ns         11.5 ns     56911897
-BM_CacheLine/14680064       12.8 ns         12.8 ns     54349159
-BM_CacheLine/16777216       14.1 ns         14.1 ns     50848962
-BM_CacheLine/18874368       15.1 ns         15.1 ns     47363255
-BM_CacheLine/20971520       14.0 ns         14.0 ns     44972519
-BM_CacheLine/23068672       15.9 ns         15.9 ns     42870511
-BM_CacheLine/25165824       16.6 ns         16.6 ns     41661713
-BM_CacheLine/27262976       17.2 ns         17.2 ns     41452498
-BM_CacheLine/29360128       16.9 ns         16.9 ns     41273435
-BM_CacheLine/31457280       14.4 ns         14.4 ns     46592305
-BM_CacheLine/33554432       14.7 ns         14.7 ns     45528376
-BM_CacheLine/35651584       15.8 ns         15.8 ns     46981220
-BM_CacheLine/37748736       17.4 ns         17.4 ns     42457008
-BM_CacheLine/39845888       16.3 ns         16.3 ns     38817539
-BM_CacheLine/41943040       18.4 ns         18.3 ns     40983683
-BM_CacheLine/44040192       17.2 ns         17.2 ns     35133513
-BM_CacheLine/46137344       18.4 ns         18.4 ns     41677523
-BM_CacheLine/48234496       17.1 ns         17.1 ns     39904580
-BM_CacheLine/50331648       17.5 ns         17.5 ns     40333028
-BM_CacheLine/52428800       16.9 ns         16.9 ns     39837306
-BM_CacheLine/54525952       18.4 ns         18.4 ns     34592739
-BM_CacheLine/56623104       19.9 ns         19.9 ns     35812001
-BM_CacheLine/58720256       20.8 ns         20.8 ns     35158110
-BM_CacheLine/60817408       21.1 ns         21.1 ns     38285152
-BM_CacheLine/62914560       22.4 ns         22.4 ns     32312595
-BM_CacheLine/65011712       18.9 ns         18.9 ns     36328525
-BM_CacheLine/67108864       17.3 ns         17.3 ns     37553464
+BM_CacheLine/32768          1.03 ns         1.04 ns    749589442
+BM_CacheLine/294912         1.82 ns         1.83 ns    390290763
+BM_CacheLine/557056         2.01 ns         2.02 ns    322785855
+BM_CacheLine/819200         2.39 ns         2.39 ns    301858672
+BM_CacheLine/2097152        2.50 ns         2.50 ns    263080248
+BM_CacheLine/4194304        3.07 ns         3.08 ns    196252951
+BM_CacheLine/6291456        3.93 ns         3.92 ns    188946576
+BM_CacheLine/8388608        9.00 ns         8.98 ns    103926389
+BM_CacheLine/10485760       11.6 ns         11.6 ns     76875055
+BM_CacheLine/12582912       10.2 ns         10.2 ns     62361495
+BM_CacheLine/14680064       13.5 ns         13.5 ns     45488497
+BM_CacheLine/16777216       17.3 ns         17.2 ns     44312319
+BM_CacheLine/18874368       16.1 ns         16.0 ns     42447847
+BM_CacheLine/20971520       17.3 ns         17.2 ns     39148255
+BM_CacheLine/23068672       17.8 ns         17.7 ns     43048924
+BM_CacheLine/25165824       18.3 ns         18.1 ns     40867376
+BM_CacheLine/27262976       17.1 ns         17.0 ns     37133561
+BM_CacheLine/29360128       19.0 ns         18.9 ns     39908336
+BM_CacheLine/31457280       15.6 ns         15.5 ns     45072598
+BM_CacheLine/33554432       16.1 ns         16.4 ns     41335438
+BM_CacheLine/35651584       22.7 ns         22.9 ns     30669922
+BM_CacheLine/37748736       14.5 ns         14.6 ns     47367324
+BM_CacheLine/39845888       16.9 ns         16.9 ns     43001108
+BM_CacheLine/41943040       17.1 ns         17.1 ns     42115613
+BM_CacheLine/44040192       16.9 ns         16.8 ns     44248796
+BM_CacheLine/46137344       16.8 ns         16.7 ns     42214872
+BM_CacheLine/48234496       16.3 ns         16.2 ns     45063499
+BM_CacheLine/50331648       17.8 ns         17.6 ns     39926525
+BM_CacheLine/52428800       15.8 ns         15.7 ns     40921488
+BM_CacheLine/54525952       17.5 ns         17.4 ns     36969360
+BM_CacheLine/56623104       25.5 ns         26.1 ns     25706381
+BM_CacheLine/58720256       28.3 ns         28.6 ns     23747551
+BM_CacheLine/60817408       28.9 ns         29.1 ns     23854630
+BM_CacheLine/62914560       27.6 ns         27.5 ns     25516783
+BM_CacheLine/65011712       27.7 ns         27.6 ns     23147590
+BM_CacheLine/67108864       28.8 ns         28.7 ns     25001721

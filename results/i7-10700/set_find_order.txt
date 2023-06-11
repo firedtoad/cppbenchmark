@@ -1,4 +1,4 @@
-2023-06-04T20:04:34-04:00
+2023-06-11T21:37:36+08:00
 Running ./bin/set_find_order
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,19 +6,21 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.72, 2.57, 2.18
+Load Average: 4.01, 4.30, 3.40
 --------------------------------------------------------------------------------------------------
 Benchmark                                                        Time             CPU   Iterations
 --------------------------------------------------------------------------------------------------
-BenchOrderSetInt<std::set<int>>                                209 ns          209 ns      4342879
-BenchOrderSetInt<std::set<int, std::less<>>>                   240 ns          240 ns      4429100
-BenchOrderSetInt<tsl::ordered_set<int>>                       12.7 ns         12.7 ns     72970970
-BenchOrderSetInt<absl::btree_set<int>>                        63.6 ns         63.6 ns     11280322
-BenchOrderSetInt<phmap::btree_set<int>>                       67.7 ns         67.7 ns     11638666
-BenchOrderSetInt<MapList<int>>                                10.5 ns         10.5 ns     93508357
-BenchOrderSetString<std::set<std::string>>                     979 ns          979 ns       677600
-BenchOrderSetString<std::set<std::string, std::less<>>>       1173 ns         1173 ns       561489
-BenchOrderSetString<tsl::ordered_set<std::string>>             335 ns          335 ns      2265716
-BenchOrderSetString<absl::btree_set<std::string>>              685 ns          685 ns      1018678
-BenchOrderSetString<phmap::btree_set<std::string>>             564 ns          564 ns      1268806
-BenchOrderSetString<MapList<std::string>>                      265 ns          265 ns      2218705
+BenchOrderSetInt<std::set<int>>                                135 ns          134 ns      5244322
+BenchOrderSetInt<std::set<int, std::less<>>>                   151 ns          151 ns      3418017
+BenchOrderSetInt<tsl::ordered_set<int>>                       8.98 ns         8.95 ns     80311837
+BenchOrderSetInt<tsl::vector_set<int>>                        5.84 ns         5.81 ns    123823671
+BenchOrderSetInt<absl::btree_set<int>>                        57.4 ns         57.1 ns     10539911
+BenchOrderSetInt<phmap::btree_set<int>>                       56.5 ns         56.3 ns     13018176
+BenchOrderSetInt<MapList<int>>                                6.89 ns         6.86 ns    103700740
+BenchOrderSetString<std::set<std::string>>                    1114 ns         1109 ns       572824
+BenchOrderSetString<std::set<std::string, std::less<>>>       1103 ns         1097 ns       641654
+BenchOrderSetString<tsl::ordered_set<std::string>>             237 ns          236 ns      3416503
+BenchOrderSetString<tsl::vector_set<std::string>>              206 ns          205 ns      3250198
+BenchOrderSetString<absl::btree_set<std::string>>              654 ns          650 ns      1172659
+BenchOrderSetString<phmap::btree_set<std::string>>             623 ns          619 ns      1177260
+BenchOrderSetString<MapList<std::string>>                      223 ns          222 ns      3117998

@@ -1,4 +1,4 @@
-2023-06-04T20:21:24-04:00
+2023-06-11T21:46:03+08:00
 Running ./bin/logging_lockfree
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,17 +6,17 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.22, 4.31, 3.70
+Load Average: 5.03, 4.39, 3.80
 -------------------------------------------------------------------
 Benchmark                         Time             CPU   Iterations
 -------------------------------------------------------------------
-BM_SpdLog                       304 ns          303 ns      2305260
-BM_SpdLog/threads:1             335 ns          335 ns      2494180
-BM_SpdLog/threads:2             646 ns         1124 ns       665608
-BM_SpdLog/threads:4             663 ns         1784 ns       350280
-BM_SpdLog/threads:8             423 ns         1546 ns       632440
-BM_SpdLogAsync                  331 ns          331 ns      2682994
-BM_SpdLogAsync/threads:1        347 ns          347 ns      2253987
-BM_SpdLogAsync/threads:2        194 ns          388 ns      1926580
-BM_SpdLogAsync/threads:4        131 ns          523 ns      1309912
-BM_SpdLogAsync/threads:8       97.1 ns          528 ns      1316720
+BM_SpdLog                       814 ns          484 ns      1152619
+BM_SpdLog/threads:1             548 ns          460 ns      1502754
+BM_SpdLog/threads:2             497 ns          509 ns      1334080
+BM_SpdLog/threads:4             499 ns          614 ns      1186312
+BM_SpdLog/threads:8             496 ns          581 ns      1048224
+BM_SpdLogAsync                  441 ns          379 ns      1843387
+BM_SpdLogAsync/threads:1        358 ns          354 ns      1774677
+BM_SpdLogAsync/threads:2        308 ns          403 ns      1866314
+BM_SpdLogAsync/threads:4        253 ns          480 ns      1520756
+BM_SpdLogAsync/threads:8        160 ns          632 ns      1270976

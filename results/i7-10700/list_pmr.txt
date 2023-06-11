@@ -1,4 +1,4 @@
-2023-06-04T20:12:29-04:00
+2023-06-11T21:39:36+08:00
 Running ./bin/list_pmr
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,49 +6,49 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.32, 4.03, 3.10
+Load Average: 4.02, 4.21, 3.48
 -------------------------------------------------------------------------------------------------------------------------
 Benchmark                                                                               Time             CPU   Iterations
 -------------------------------------------------------------------------------------------------------------------------
-BenchListInsert<std::list<int>>/1                                                    17.5 ns         17.5 ns     48612752
-BenchListInsert<std::list<int>>/8                                                     134 ns          134 ns      3951717
-BenchListInsert<std::list<int>>/64                                                   1330 ns         1330 ns       617740
-BenchListInsert<std::list<int>>/512                                                  9557 ns         9556 ns        67203
-BenchListInsert<std::list<int>>/4096                                                78795 ns        78795 ns         9042
-BenchListInsert<std::list<int>>/32768                                              586901 ns       586910 ns         1076
-BenchListInsert<std::list<int>>/65536                                             1225567 ns      1225557 ns          731
-BenchListInsert<std::list<int,my_allocator<std::_List_node<int>,65536>>>/1           5.08 ns         5.08 ns    135687104
-BenchListInsert<std::list<int,my_allocator<std::_List_node<int>,65536>>>/8           37.2 ns         37.2 ns     19023245
-BenchListInsert<std::list<int,my_allocator<std::_List_node<int>,65536>>>/64           276 ns          276 ns      2359543
-BenchListInsert<std::list<int,my_allocator<std::_List_node<int>,65536>>>/512         2006 ns         2006 ns       374819
-BenchListInsert<std::list<int,my_allocator<std::_List_node<int>,65536>>>/4096       18279 ns        18278 ns        32371
-BenchListInsert<std::list<int,my_allocator<std::_List_node<int>,65536>>>/32768     162172 ns       162170 ns         3806
-BenchListInsert<std::list<int,my_allocator<std::_List_node<int>,65536>>>/65536     325728 ns       325729 ns         1985
-BenchPmrListInsert<std::pmr::list<int>>/1                                            15.4 ns         15.4 ns     50420112
-BenchPmrListInsert<std::pmr::list<int>>/8                                            71.8 ns         71.8 ns     10434711
-BenchPmrListInsert<std::pmr::list<int>>/64                                            564 ns          564 ns      1393473
-BenchPmrListInsert<std::pmr::list<int>>/512                                          4414 ns         4414 ns       148752
-BenchPmrListInsert<std::pmr::list<int>>/4096                                        33639 ns        33639 ns        20084
-BenchPmrListInsert<std::pmr::list<int>>/32768                                      307430 ns       307418 ns         2236
-BenchPmrListInsert<std::pmr::list<int>>/65536                                      504131 ns       504096 ns         1377
-BenchListRange<std::list<int>>/1                                                    0.945 ns        0.945 ns    674823392
-BenchListRange<std::list<int>>/8                                                     4.21 ns         4.21 ns    176044037
-BenchListRange<std::list<int>>/64                                                    83.9 ns         83.9 ns     10865130
-BenchListRange<std::list<int>>/512                                                    488 ns          488 ns      1410741
-BenchListRange<std::list<int>>/4096                                                 10854 ns        10854 ns        64843
-BenchListRange<std::list<int>>/32768                                                76001 ns        76002 ns         8594
-BenchListRange<std::list<int>>/65536                                               171424 ns       171428 ns         3818
-BenchListRange<std::list<int,my_allocator<std::_List_node<int>,65536>>>/1           0.791 ns        0.791 ns    775762734
-BenchListRange<std::list<int,my_allocator<std::_List_node<int>,65536>>>/8            3.47 ns         3.46 ns    200132129
-BenchListRange<std::list<int,my_allocator<std::_List_node<int>,65536>>>/64           67.1 ns         67.1 ns     10912935
-BenchListRange<std::list<int,my_allocator<std::_List_node<int>,65536>>>/512           489 ns          489 ns      1433209
-BenchListRange<std::list<int,my_allocator<std::_List_node<int>,65536>>>/4096         4627 ns         4626 ns       152489
-BenchListRange<std::list<int,my_allocator<std::_List_node<int>,65536>>>/32768       40429 ns        40429 ns        17478
-BenchListRange<std::list<int,my_allocator<std::_List_node<int>,65536>>>/65536       79883 ns        79881 ns         8907
-BenchPmrListRange<std::pmr::list<int>>/1                                            0.906 ns        0.906 ns    677856699
-BenchPmrListRange<std::pmr::list<int>>/8                                             3.83 ns         3.83 ns    190613128
-BenchPmrListRange<std::pmr::list<int>>/64                                            65.1 ns         65.1 ns     11204108
-BenchPmrListRange<std::pmr::list<int>>/512                                            480 ns          480 ns      1477817
-BenchPmrListRange<std::pmr::list<int>>/4096                                          4535 ns         4535 ns       154616
-BenchPmrListRange<std::pmr::list<int>>/32768                                        40403 ns        40404 ns        17391
-BenchPmrListRange<std::pmr::list<int>>/65536                                        80265 ns        80266 ns         8432
+BenchListInsert<std::list<int>>/1                                                    12.3 ns         12.3 ns     53347832
+BenchListInsert<std::list<int>>/8                                                     112 ns          113 ns      6890733
+BenchListInsert<std::list<int>>/64                                                    925 ns          927 ns       677808
+BenchListInsert<std::list<int>>/512                                                  7832 ns         7836 ns        94903
+BenchListInsert<std::list<int>>/4096                                                61168 ns        61162 ns        10916
+BenchListInsert<std::list<int>>/32768                                              504072 ns       503896 ns         1000
+BenchListInsert<std::list<int>>/65536                                             1067595 ns      1066329 ns          653
+BenchListInsert<std::list<int,my_allocator<std::_List_node<int>,65536>>>/1           3.21 ns         3.20 ns    218854776
+BenchListInsert<std::list<int,my_allocator<std::_List_node<int>,65536>>>/8           29.8 ns         29.8 ns     26766716
+BenchListInsert<std::list<int,my_allocator<std::_List_node<int>,65536>>>/64           231 ns          230 ns      3073914
+BenchListInsert<std::list<int,my_allocator<std::_List_node<int>,65536>>>/512         1970 ns         1963 ns       326213
+BenchListInsert<std::list<int,my_allocator<std::_List_node<int>,65536>>>/4096       15632 ns        15570 ns        43679
+BenchListInsert<std::list<int,my_allocator<std::_List_node<int>,65536>>>/32768     138374 ns       137791 ns         5052
+BenchListInsert<std::list<int,my_allocator<std::_List_node<int>,65536>>>/65536     281869 ns       280552 ns         2237
+BenchPmrListInsert<std::pmr::list<int>>/1                                            12.1 ns         12.0 ns     52605684
+BenchPmrListInsert<std::pmr::list<int>>/8                                            56.9 ns         56.7 ns     13725511
+BenchPmrListInsert<std::pmr::list<int>>/64                                            438 ns          435 ns      1487749
+BenchPmrListInsert<std::pmr::list<int>>/512                                          3897 ns         3875 ns       217403
+BenchPmrListInsert<std::pmr::list<int>>/4096                                        27229 ns        27071 ns        26760
+BenchPmrListInsert<std::pmr::list<int>>/32768                                      222349 ns       221039 ns         3523
+BenchPmrListInsert<std::pmr::list<int>>/65536                                      431543 ns       428931 ns         1423
+BenchListRange<std::list<int>>/1                                                    0.650 ns        0.646 ns   1000000000
+BenchListRange<std::list<int>>/8                                                     2.96 ns         2.94 ns    244323986
+BenchListRange<std::list<int>>/64                                                    68.3 ns         67.9 ns     10596462
+BenchListRange<std::list<int>>/512                                                    475 ns          472 ns      1480421
+BenchListRange<std::list<int>>/4096                                                  7480 ns         7432 ns        96393
+BenchListRange<std::list<int>>/32768                                                77027 ns        76521 ns        10149
+BenchListRange<std::list<int>>/65536                                               149851 ns       149244 ns         4823
+BenchListRange<std::list<int,my_allocator<std::_List_node<int>,65536>>>/1           0.696 ns        0.711 ns   1000000000
+BenchListRange<std::list<int,my_allocator<std::_List_node<int>,65536>>>/8            3.24 ns         3.29 ns    211321719
+BenchListRange<std::list<int,my_allocator<std::_List_node<int>,65536>>>/64           68.2 ns         69.2 ns     10137352
+BenchListRange<std::list<int,my_allocator<std::_List_node<int>,65536>>>/512           516 ns          522 ns      1374263
+BenchListRange<std::list<int,my_allocator<std::_List_node<int>,65536>>>/4096         4876 ns         4932 ns       135446
+BenchListRange<std::list<int,my_allocator<std::_List_node<int>,65536>>>/32768       42611 ns        42980 ns        15848
+BenchListRange<std::list<int,my_allocator<std::_List_node<int>,65536>>>/65536       85830 ns        86463 ns         7598
+BenchPmrListRange<std::pmr::list<int>>/1                                            0.644 ns        0.648 ns   1000000000
+BenchPmrListRange<std::pmr::list<int>>/8                                             2.77 ns         2.78 ns    214375964
+BenchPmrListRange<std::pmr::list<int>>/64                                            62.4 ns         62.6 ns     11117418
+BenchPmrListRange<std::pmr::list<int>>/512                                            487 ns          488 ns      1412353
+BenchPmrListRange<std::pmr::list<int>>/4096                                          4691 ns         4693 ns       145731
+BenchPmrListRange<std::pmr::list<int>>/32768                                        42704 ns        42680 ns        17167
+BenchPmrListRange<std::pmr::list<int>>/65536                                        85725 ns        85614 ns         7987

@@ -1,4 +1,4 @@
-2023-06-04T20:20:07-04:00
+2023-06-11T21:40:05+08:00
 Running ./bin/map_find_hetero
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,13 +6,13 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.28, 4.35, 3.65
+Load Average: 4.01, 4.19, 3.50
 ------------------------------------------------------------------------------------------------------------
 Benchmark                                                                  Time             CPU   Iterations
 ------------------------------------------------------------------------------------------------------------
-BenchStringLess                                                         49.7 ns         49.7 ns     21654283
-BenchStringCompare                                                      48.2 ns         48.2 ns     10856214
-BenchOrderMapStringSSO<std::map<std::string, int>>                      1240 ns         1240 ns       468712
-BenchOrderMapStringSSO<std::map<std::string, int, std::less<>>>         1537 ns         1537 ns       512608
-BenchOrderMapStringNoSSO<std::map<std::string, int>>                    1240 ns         1240 ns       451587
-BenchOrderMapStringNoSSO<std::map<std::string, int, std::less<>>>       1324 ns         1324 ns       587669
+BenchStringLess                                                         15.2 ns         15.4 ns     46765104
+BenchStringCompare                                                      24.5 ns         24.7 ns     27191341
+BenchOrderMapStringSSO<std::map<std::string, int>>                      1115 ns         1121 ns       589675
+BenchOrderMapStringSSO<std::map<std::string, int, std::less<>>>          988 ns          992 ns       690782
+BenchOrderMapStringNoSSO<std::map<std::string, int>>                     987 ns          988 ns       702517
+BenchOrderMapStringNoSSO<std::map<std::string, int, std::less<>>>       1097 ns         1098 ns       671098

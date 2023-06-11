@@ -1,4 +1,4 @@
-2023-06-04T20:07:07-04:00
+2023-06-11T21:43:40+08:00
 Running ./bin/openssl_rc5_aes
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,14 +6,14 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 5.69, 3.57, 2.60
+Load Average: 4.07, 4.11, 3.62
 -----------------------------------------------------------
 Benchmark                 Time             CPU   Iterations
 -----------------------------------------------------------
-BM_OPEN_RC4            26.4 ns         26.2 ns     30366678
-BM_OPEN_RC4_ONCE        489 ns          489 ns      1437121
-BM_RC4_EVP             27.5 ns         27.5 ns     29141398
-BM_OPEN_RC5            23.9 ns         23.9 ns     29678653
-BM_RC5_EVP             65.0 ns         64.9 ns      9349250
-BM_AES                  108 ns          108 ns      5746196
-BM_AES_EVP             12.9 ns         12.9 ns     46573975
+BM_OPEN_RC4            23.8 ns         23.7 ns     32099778
+BM_OPEN_RC4_ONCE        568 ns          564 ns      1231980
+BM_RC4_EVP             23.7 ns         23.6 ns     26812045
+BM_OPEN_RC5            25.9 ns         25.7 ns     27257789
+BM_RC5_EVP             65.6 ns         65.2 ns     11083318
+BM_AES                 99.1 ns         98.5 ns      7255614
+BM_AES_EVP             12.1 ns         12.0 ns     59340041

@@ -1,4 +1,4 @@
-2023-06-04T20:02:30-04:00
+2023-06-11T21:39:36+08:00
 Running ./bin/fiber_brpc
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,9 +6,9 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 0.35, 1.31, 1.77
+Load Average: 4.02, 4.21, 3.48
 ----------------------------------------------------------
 Benchmark                Time             CPU   Iterations
 ----------------------------------------------------------
-BenchBackground      10456 ns        10402 ns        78912
-BenchUrgent           9349 ns         9237 ns        83060
+BenchBackground       6871 ns         6863 ns        85974
+BenchUrgent           6229 ns         6237 ns       102227

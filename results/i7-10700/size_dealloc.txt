@@ -1,4 +1,4 @@
-2023-06-04T20:03:55-04:00
+2023-06-11T21:43:34+08:00
 Running ./bin/size_dealloc
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,23 +6,23 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 3.58, 2.12, 2.02
+Load Average: 4.08, 4.12, 3.62
 -----------------------------------------------------------------
 Benchmark                       Time             CPU   Iterations
 -----------------------------------------------------------------
-BM_Delete/1                  8.07 ns         8.06 ns     83181025
-BM_Delete/8                  62.0 ns         62.0 ns     10486398
-BM_Delete/64                  477 ns          477 ns      1385879
-BM_Delete/512                3964 ns         3964 ns       177579
-BM_Delete/4096              33547 ns        33547 ns        22023
-BM_Delete/32768            294389 ns       294391 ns         2278
-BM_Delete/262144         18827405 ns     18827467 ns           34
-BM_Delete/1048576        78975908 ns     78976284 ns            9
-BM_DeleteSized/1             8.46 ns         8.46 ns     69810460
-BM_DeleteSized/8             70.6 ns         70.6 ns     11333260
-BM_DeleteSized/64             529 ns          529 ns      1250747
-BM_DeleteSized/512           4446 ns         4446 ns       188008
-BM_DeleteSized/4096         32198 ns        32197 ns        22340
-BM_DeleteSized/32768       327798 ns       327800 ns         2337
-BM_DeleteSized/262144    19498922 ns     19498577 ns           36
-BM_DeleteSized/1048576   81217507 ns     81218734 ns            8
+BM_Delete/1                  8.02 ns         7.99 ns     69515144
+BM_Delete/8                  65.3 ns         65.0 ns     10000000
+BM_Delete/64                  391 ns          389 ns      1469720
+BM_Delete/512                3825 ns         3804 ns       222420
+BM_Delete/4096              28776 ns        28613 ns        27492
+BM_Delete/32768            214631 ns       213399 ns         3235
+BM_Delete/262144         19852482 ns     19735616 ns           40
+BM_Delete/1048576        73897388 ns     73453269 ns            9
+BM_DeleteSized/1             7.04 ns         6.99 ns     98957140
+BM_DeleteSized/8             60.2 ns         59.8 ns     12427988
+BM_DeleteSized/64             414 ns          411 ns      1588907
+BM_DeleteSized/512           3374 ns         3353 ns       213436
+BM_DeleteSized/4096         31016 ns        30816 ns        25906
+BM_DeleteSized/32768       245912 ns       251249 ns         2435
+BM_DeleteSized/262144    22155586 ns     22576952 ns           34
+BM_DeleteSized/1048576   79997483 ns     81321536 ns           10

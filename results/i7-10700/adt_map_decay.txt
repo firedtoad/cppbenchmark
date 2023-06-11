@@ -18,7 +18,7 @@ llvm::detail::DenseMapPair<unsigned short, unsigned short> size 4
 llvm::detail::DenseMapPair<unsigned int, unsigned int> size 8
 llvm::detail::DenseMapPair<unsigned long, unsigned long> size 16
 
-2023-06-04T20:03:23-04:00
+2023-06-11T21:28:46+08:00
 Running ./bin/adt_map_decay
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -26,11 +26,11 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 3.10, 1.87, 1.94
+Load Average: 2.16, 3.25, 2.22
 ------------------------------------------------------------
 Benchmark                  Time             CPU   Iterations
 ------------------------------------------------------------
-BM_unmap               38127 ns        38127 ns        18669
-BM_decay_map       133273198 ns    133273271 ns            5
-BM_DenseMap            14042 ns        14042 ns        45167
-BM_Decay_DenseMap   72156241 ns     72155636 ns           10
+BM_unmap               27358 ns        27237 ns        26134
+BM_decay_map       106967178 ns    106468915 ns            6
+BM_DenseMap            10686 ns        10634 ns        64989
+BM_Decay_DenseMap   55053967 ns     54767903 ns           13

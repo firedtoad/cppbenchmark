@@ -1,4 +1,4 @@
-2023-06-04T20:18:54-04:00
+2023-06-11T21:39:42+08:00
 Running ./bin/string_format
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,21 +6,21 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.22, 4.36, 3.59
+Load Average: 4.02, 4.21, 3.48
 ------------------------------------------------------------------------------------------------
 Benchmark                                                      Time             CPU   Iterations
 ------------------------------------------------------------------------------------------------
-BenchStreamStringFormat<std::stringstream, uint64_t>         560 ns          560 ns      1000000
-BenchStreamStringFormat<std::ostringstream, uint64_t>        396 ns          396 ns      1597183
-BenchStreamStringFormatF<std::stringstream, float>          1017 ns         1017 ns       749070
-BenchStreamStringFormatF<std::ostringstream, float>          885 ns          885 ns       870685
-BenchSnprintf<uint64_t>                                      108 ns          108 ns      7176548
-BenchSnprintfFloat<float>                                    910 ns          910 ns       760395
-BenchStdToCharsInt<uint64_t>                                25.7 ns         25.7 ns     24652855
-BenchStdToCharsFloat<float>                                 33.1 ns         33.1 ns     22038834
-BenchBoostStringFormat<std::string>                          534 ns          534 ns      1370680
-BenchBoostStringFormatf<std::string>                         493 ns          493 ns      1456044
-BenchFmtStrFormat<uint64_t>                                 52.1 ns         52.1 ns     12479147
-BenchFmtStrFormatFloat<float>                               61.5 ns         61.5 ns     10396000
-BenchAbStrFormat<uint64_t>                                  75.7 ns         75.7 ns      8623798
-BenchAbStrFormatF<float>                                     103 ns          103 ns      6308796
+BenchStreamStringFormat<std::stringstream, uint64_t>         386 ns          385 ns      1841319
+BenchStreamStringFormat<std::ostringstream, uint64_t>        311 ns          310 ns      2660089
+BenchStreamStringFormatF<std::stringstream, float>           840 ns          837 ns       724179
+BenchStreamStringFormatF<std::ostringstream, float>          725 ns          722 ns      1036269
+BenchSnprintf<uint64_t>                                     83.1 ns         82.8 ns      8491058
+BenchSnprintfFloat<float>                                    797 ns          793 ns       919811
+BenchStdToCharsInt<uint64_t>                                17.5 ns         17.4 ns     41513902
+BenchStdToCharsFloat<float>                                 26.8 ns         26.6 ns     25971770
+BenchBoostStringFormat<std::string>                          481 ns          478 ns      1503246
+BenchBoostStringFormatf<std::string>                         408 ns          406 ns      1661506
+BenchFmtStrFormat<uint64_t>                                 44.7 ns         44.4 ns     16203541
+BenchFmtStrFormatFloat<float>                               53.9 ns         53.6 ns     10000000
+BenchAbStrFormat<uint64_t>                                  61.8 ns         61.4 ns     10127249
+BenchAbStrFormatF<float>                                    90.4 ns         89.9 ns      8618774

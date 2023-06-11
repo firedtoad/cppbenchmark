@@ -1,4 +1,4 @@
-2023-06-04T20:05:52-04:00
+2023-06-11T21:40:30+08:00
 Running ./bin/map_pmr_order
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,37 +6,37 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.46, 2.99, 2.36
+Load Average: 4.01, 4.17, 3.51
 -----------------------------------------------------------------------------------------
 Benchmark                                               Time             CPU   Iterations
 -----------------------------------------------------------------------------------------
-BM_Insert<std::map<int, int>>/1024                  77288 ns        77215 ns        10046
-BM_Insert<std::map<int, int>>/4096                 374542 ns       374516 ns         2020
-BM_Insert<std::map<int, int>>/32768               5024978 ns      5022587 ns          100
-BM_Insert<std::map<int, int>>/262144             52706225 ns     52702401 ns           15
-BM_Insert<std::map<int, int>>/1048576           237010972 ns    236727271 ns            3
-BM_PMR_Insert<std::pmr::map<int, int>>/1024         68595 ns        68591 ns        12786
-BM_PMR_Insert<std::pmr::map<int, int>>/4096        317846 ns       317478 ns         2321
-BM_PMR_Insert<std::pmr::map<int, int>>/32768      4166363 ns      4166058 ns          170
-BM_PMR_Insert<std::pmr::map<int, int>>/262144    48559807 ns     48512051 ns           14
-BM_PMR_Insert<std::pmr::map<int, int>>/1048576  283731924 ns    283669295 ns            2
-BM_Range<std::map<int, int>>/1024                    4014 ns         4011 ns       180551
-BM_Range<std::map<int, int>>/4096                   17155 ns        17150 ns        41088
-BM_Range<std::map<int, int>>/32768                 180795 ns       180646 ns         3557
-BM_Range<std::map<int, int>>/262144               4132105 ns      4130927 ns          192
-BM_Range<std::map<int, int>>/1048576             14467940 ns     14466546 ns           37
-BM_PMR_Range<std::pmr::map<int, int>>/1024           3115 ns         3112 ns       222446
-BM_PMR_Range<std::pmr::map<int, int>>/4096          16384 ns        16383 ns        48649
-BM_PMR_Range<std::pmr::map<int, int>>/32768        147862 ns       147733 ns         4770
-BM_PMR_Range<std::pmr::map<int, int>>/262144      3008722 ns      3008337 ns          201
-BM_PMR_Range<std::pmr::map<int, int>>/1048576    10828430 ns     10826931 ns           63
-BM_Find<std::map<int, int>>/1024                     41.7 ns         41.7 ns     14560944
-BM_Find<std::map<int, int>>/4096                     63.8 ns         63.8 ns     12516693
-BM_Find<std::map<int, int>>/32768                     139 ns          139 ns      5109518
-BM_Find<std::map<int, int>>/262144                    477 ns          477 ns      1137997
-BM_Find<std::map<int, int>>/1048576                   706 ns          705 ns       888716
-BM_PMR_Find<std::pmr::map<int, int>>/1024            46.0 ns         46.0 ns     17578763
-BM_PMR_Find<std::pmr::map<int, int>>/4096            53.2 ns         53.2 ns     13682322
-BM_PMR_Find<std::pmr::map<int, int>>/32768            149 ns          149 ns      5618355
-BM_PMR_Find<std::pmr::map<int, int>>/262144           410 ns          410 ns      1761520
-BM_PMR_Find<std::pmr::map<int, int>>/1048576          770 ns          770 ns      1138461
+BM_Insert<std::map<int, int>>/1024                  62300 ns        61857 ns        11769
+BM_Insert<std::map<int, int>>/4096                 306654 ns       304684 ns         2288
+BM_Insert<std::map<int, int>>/32768               3860964 ns      3836045 ns          201
+BM_Insert<std::map<int, int>>/262144             48820801 ns     49608147 ns           13
+BM_Insert<std::map<int, int>>/1048576           232430012 ns    236627974 ns            3
+BM_PMR_Insert<std::pmr::map<int, int>>/1024         53220 ns        54152 ns        10000
+BM_PMR_Insert<std::pmr::map<int, int>>/4096        261603 ns       265330 ns         2554
+BM_PMR_Insert<std::pmr::map<int, int>>/32768      3382802 ns      3421980 ns          209
+BM_PMR_Insert<std::pmr::map<int, int>>/262144    46669479 ns     47027097 ns           16
+BM_PMR_Insert<std::pmr::map<int, int>>/1048576  294289511 ns    296160257 ns            3
+BM_Range<std::map<int, int>>/1024                    4318 ns         4333 ns       175374
+BM_Range<std::map<int, int>>/4096                   18174 ns        18225 ns        36065
+BM_Range<std::map<int, int>>/32768                 207403 ns       207595 ns         3537
+BM_Range<std::map<int, int>>/262144               4117531 ns      4118781 ns          175
+BM_Range<std::map<int, int>>/1048576             17502844 ns     17483687 ns           36
+BM_PMR_Range<std::pmr::map<int, int>>/1024           3498 ns         3488 ns       196691
+BM_PMR_Range<std::pmr::map<int, int>>/4096          14604 ns        14568 ns        47998
+BM_PMR_Range<std::pmr::map<int, int>>/32768        154905 ns       154299 ns         4769
+BM_PMR_Range<std::pmr::map<int, int>>/262144      3689284 ns      3675789 ns          189
+BM_PMR_Range<std::pmr::map<int, int>>/1048576    12375594 ns     12322509 ns           60
+BM_Find<std::map<int, int>>/1024                     43.5 ns         43.3 ns     13929911
+BM_Find<std::map<int, int>>/4096                     56.7 ns         56.4 ns      9889345
+BM_Find<std::map<int, int>>/32768                     106 ns          106 ns      5239953
+BM_Find<std::map<int, int>>/262144                    486 ns          483 ns      1468372
+BM_Find<std::map<int, int>>/1048576                   945 ns          938 ns       615654
+BM_PMR_Find<std::pmr::map<int, int>>/1024            36.6 ns         37.3 ns     18104350
+BM_PMR_Find<std::pmr::map<int, int>>/4096            50.6 ns         51.5 ns     10000000
+BM_PMR_Find<std::pmr::map<int, int>>/32768            106 ns          108 ns      6916768
+BM_PMR_Find<std::pmr::map<int, int>>/262144           433 ns          437 ns      1643435
+BM_PMR_Find<std::pmr::map<int, int>>/1048576          721 ns          722 ns      1097201

@@ -1,6 +1,6 @@
 16
 8
-2023-06-04T20:11:30-04:00
+2023-06-11T21:43:54+08:00
 Running ./bin/function_lambda
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -8,12 +8,12 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.32, 3.97, 3.02
+Load Average: 4.06, 4.11, 3.63
 -----------------------------------------------------------
 Benchmark                 Time             CPU   Iterations
 -----------------------------------------------------------
-BM_array               4.21 ns         4.21 ns    172688428
-BM_function            4.80 ns         4.79 ns    161439073
-BM_FunctionStack       2.53 ns         2.53 ns    312854998
-BM_FunctionHeap        17.3 ns         17.3 ns     42323539
-BM_Lambda             0.267 ns        0.267 ns   1000000000
+BM_array               3.11 ns         3.12 ns    218440385
+BM_function            4.03 ns         4.04 ns    209308749
+BM_FunctionStack       2.31 ns         2.32 ns    315460224
+BM_FunctionHeap        11.7 ns         11.7 ns     55574061
+BM_Lambda             0.241 ns        0.241 ns   1000000000

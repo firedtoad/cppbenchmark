@@ -1,0 +1,22 @@
+2023-06-11T21:30:53+08:00
+Running ./bin/map_bound_order
+Run on (8 X 2904 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 8.08, 5.09, 3.01
+-----------------------------------------------------------------------------------------------------
+Benchmark                                                           Time             CPU   Iterations
+-----------------------------------------------------------------------------------------------------
+BenchOrderMapInt<std::map<int, int>>                             26.2 ns         26.8 ns     26441594
+BenchOrderMapIntStd<tsl::ordered_map<int, int>>                  26.5 ns         27.0 ns     26252196
+BenchOrderMapInt<absl::btree_map<int, int>>                      31.3 ns         31.7 ns     21888296
+BenchOrderMapInt<phmap::btree_map<int, int>>                     29.8 ns         30.1 ns     23316761
+BenchOrderMapIntStd<tsl::vector_map<int, int>>                   14.6 ns         14.7 ns     48496083
+BenchOrderMapString<std::map<std::string, int>>                   139 ns          140 ns      4943242
+BenchOrderMapStringStd<tsl::ordered_map<std::string, int>>       85.2 ns         85.7 ns      8707428
+BenchOrderMapStringStd<tsl::vector_map<std::string, int>>        60.7 ns         61.0 ns     12596273
+BenchOrderMapString<absl::btree_map<std::string, int>>            141 ns          141 ns      5078322
+BenchOrderMapString<phmap::btree_map<std::string, int>>           140 ns          140 ns      5403235

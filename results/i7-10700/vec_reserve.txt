@@ -1,4 +1,4 @@
-2023-06-04T20:02:30-04:00
+2023-06-11T21:28:50+08:00
 Running ./bin/vec_reserve
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,9 +6,9 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 0.35, 1.31, 1.77
+Load Average: 2.31, 3.27, 2.23
 -----------------------------------------------------
 Benchmark           Time             CPU   Iterations
 -----------------------------------------------------
-BM_insert         739 ns          738 ns      1140536
-BM_reserve        474 ns          474 ns      1826575
+BM_insert         701 ns          698 ns      1101221
+BM_reserve        346 ns          344 ns      2089345

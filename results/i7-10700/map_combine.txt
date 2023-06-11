@@ -1,4 +1,4 @@
-2023-06-04T20:02:30-04:00
+2023-06-11T21:40:16+08:00
 Running ./bin/map_combine
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,13 +6,19 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 0.35, 1.31, 1.77
+Load Average: 4.01, 4.18, 3.50
 -------------------------------------------------------------------------------------------------------------------------------------
 Benchmark                                                                                           Time             CPU   Iterations
 -------------------------------------------------------------------------------------------------------------------------------------
-BenchCombineMapInt<std::map<uint64_t, uint64_t>>                                                  131 ns          131 ns      7106100
-BenchTwiceMapInt<std::map<uint32_t, std::map<uint32_t, uint32_t>>>                                357 ns          357 ns      2071530
-BenchCombineMapInt<std::unordered_map<uint64_t, uint64_t>>                                       33.6 ns         33.6 ns     21584759
-BenchTwiceMapInt<std::unordered_map<uint32_t, std::unordered_map<uint32_t, uint32_t>>>           98.4 ns         98.4 ns      9055707
-BenchCombineMapInt<phmap::flat_hash_map<uint64_t, uint64_t>>                                     14.3 ns         14.3 ns     49344048
-BenchTwiceMapInt<phmap::flat_hash_map<uint32_t, phmap::flat_hash_map<uint32_t, uint32_t>>>       48.6 ns         48.6 ns     14724167
+BenchCombineMapInt<std::map<uint64_t, uint64_t>>                                                  110 ns          110 ns      6340753
+BenchTwiceMapInt<std::map<uint32_t, std::map<uint32_t, uint32_t>>>                                268 ns          267 ns      2332804
+BenchCombineMapInt<std::unordered_map<uint64_t, uint64_t>>                                       25.3 ns         25.2 ns     29342355
+BenchTwiceMapInt<std::unordered_map<uint32_t, std::unordered_map<uint32_t, uint32_t>>>           77.8 ns         77.4 ns     10029931
+BenchCombineMapInt<phmap::node_hash_map<uint64_t, uint64_t>>                                     12.8 ns         12.7 ns     58263749
+BenchTwiceMapInt<phmap::node_hash_map<uint32_t, phmap::node_hash_map<uint32_t, uint32_t>>>       40.8 ns         40.6 ns     15889183
+BenchCombineMapInt<phmap::flat_hash_map<uint64_t, uint64_t>>                                     11.0 ns         11.0 ns     79851867
+BenchTwiceMapInt<phmap::flat_hash_map<uint32_t, phmap::flat_hash_map<uint32_t, uint32_t>>>       52.7 ns         52.5 ns     10000000
+BenchCombineMapInt<tsl::ordered_map<uint64_t, uint64_t>>                                         26.7 ns         26.5 ns     25047945
+BenchTwiceMapInt<tsl::ordered_map<uint32_t, tsl::ordered_map<uint32_t, uint32_t>>>                192 ns          191 ns      3687309
+BenchCombineMapInt<tsl::vector_map<uint64_t, uint64_t>>                                          16.7 ns         16.6 ns     41368556
+BenchTwiceMapInt<tsl::vector_map<uint32_t, tsl::vector_map<uint32_t, uint32_t>>>                 61.0 ns         60.6 ns     10382521

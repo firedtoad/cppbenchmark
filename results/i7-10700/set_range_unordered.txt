@@ -1,4 +1,4 @@
-2023-06-04T20:11:35-04:00
+2023-06-11T21:38:55+08:00
 Running ./bin/set_range_unordered
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,38 +6,41 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.29, 3.98, 3.03
+Load Average: 4.05, 4.24, 3.46
 ------------------------------------------------------------------------------------------------------------------
 Benchmark                                                                        Time             CPU   Iterations
 ------------------------------------------------------------------------------------------------------------------
-BenchRangeUnOrderSetInt<std::unordered_set<int>>                            118991 ns       118889 ns         5986
-BenchRangeUnOrderSetInt<ska::unordered_set<int>>                            162382 ns       162367 ns         4034
-BenchRangeUnOrderSetInt<ska::flat_hash_set<int>>                             94828 ns        94737 ns         7215
-BenchRangeUnOrderSetInt<ska::bytell_hash_set<int>>                          337105 ns       337069 ns         2175
-BenchRangeUnOrderSetInt<phmap::flat_hash_set<int>>                          240204 ns       240010 ns         2916
-BenchRangeUnOrderSetInt<absl::flat_hash_set<int>>                           235713 ns       235695 ns         2967
-BenchRangeUnOrderSetInt<robin_hood::unordered_flat_set<int>>                166226 ns       166216 ns         4201
-BenchRangeUnOrderSetInt<spp::sparse_hash_set<int>>                           77896 ns        77896 ns         9729
-BenchRangeUnOrderSetInt<tsl::bhopscotch_set<int>>                           145557 ns       145543 ns         4676
-BenchRangeUnOrderSetInt<tsl::ordered_set<int>>                               30805 ns        30804 ns        22208
-BenchRangeUnOrderSetInt<tsl::hopscotch_set<int>>                            145819 ns       145795 ns         4528
-BenchRangeUnOrderSetInt<tsl::robin_set<int>>                                 98447 ns        98371 ns         7558
-BenchRangeUnOrderSetInt<tsl::sparse_set<int>>                                60873 ns        60868 ns        10588
-BenchRangeUnOrderSetInt<MapList<int>>                                       221640 ns       221455 ns         3135
-BenchRangeUnOrderSetString<std::unordered_set<std::string>>                 895471 ns       895406 ns          983
-BenchRangeUnOrderSetString<ska::unordered_set<std::string>>                1842290 ns      1840621 ns          396
-BenchRangeUnOrderSetString<ska::flat_hash_set<std::string>>                 846990 ns       846964 ns          715
-BenchRangeUnOrderSetString<ska::bytell_hash_set<std::string>>              1094877 ns      1094827 ns          732
-BenchRangeUnOrderSetString<phmap::flat_hash_set<std::string>>              1054997 ns      1054265 ns          866
-BenchRangeUnOrderSetString<absl::flat_hash_set<std::string>>                992731 ns       992640 ns          717
-BenchRangeUnOrderSetString<robin_hood::unordered_flat_set<std::string>>     857786 ns       857015 ns          770
-BenchRangeUnOrderSetString<spp::sparse_hash_set<std::string>>               826360 ns       826294 ns          805
-BenchRangeUnOrderSetString<tsl::ordered_set<std::string>>                   477467 ns       477124 ns         1749
-BenchRangeUnOrderSetString<tsl::bhopscotch_set<std::string>>               1192360 ns      1192275 ns          515
-BenchRangeUnOrderSetString<tsl::hopscotch_set<std::string>>                1313281 ns      1312047 ns          552
-BenchRangeUnOrderSetString<tsl::robin_set<std::string>>                    1262759 ns      1262594 ns          433
-BenchRangeUnOrderSetString<tsl::sparse_set<std::string>>                    789166 ns       789094 ns          857
-BenchRangeUnOrderSetString<MapList<std::string>>                           1343203 ns      1343190 ns          482
-BenchRangeUnOrderSetStringMulti<MapList<std::string>>                       520936 ns       520902 ns         1000
-BenchRangeCharKeySet<tsl::htrie_set<char>>                                10586643 ns     10576760 ns           64
-BenchRangeCharKeySet<tsl::array_set<char>>                                 1614919 ns      1614841 ns          483
+BenchRangeUnOrderSetInt<std::unordered_set<int>>                            142264 ns       141369 ns         5050
+BenchRangeUnOrderSetInt<ska::unordered_set<int>>                            138299 ns       137988 ns         4781
+BenchRangeUnOrderSetInt<ska::flat_hash_set<int>>                             99789 ns       101841 ns         6989
+BenchRangeUnOrderSetInt<ska::bytell_hash_set<int>>                          175029 ns       178009 ns         4164
+BenchRangeUnOrderSetInt<phmap::flat_hash_set<int>>                          249337 ns       252836 ns         2809
+BenchRangeUnOrderSetInt<absl::flat_hash_set<int>>                           230338 ns       232951 ns         2958
+BenchRangeUnOrderSetInt<robin_hood::unordered_flat_set<int>>                168122 ns       169678 ns         3957
+BenchRangeUnOrderSetInt<spp::sparse_hash_set<int>>                           63958 ns        64467 ns        10723
+BenchRangeUnOrderSetInt<tsl::bhopscotch_set<int>>                           109572 ns       110285 ns         6358
+BenchRangeUnOrderSetInt<tsl::ordered_set<int>>                               25995 ns        26121 ns        28592
+BenchRangeUnOrderSetInt<tsl::vector_set<int>>                                20749 ns        20820 ns        34560
+BenchRangeUnOrderSetInt<tsl::hopscotch_set<int>>                            115985 ns       116271 ns         6034
+BenchRangeUnOrderSetInt<tsl::robin_set<int>>                                 80879 ns        80981 ns         9179
+BenchRangeUnOrderSetInt<tsl::sparse_set<int>>                                42456 ns        42469 ns        16258
+BenchRangeUnOrderSetInt<MapList<int>>                                       250111 ns       249950 ns         2674
+BenchRangeUnOrderSetString<std::unordered_set<std::string>>                1390975 ns      1388712 ns          476
+BenchRangeUnOrderSetString<ska::unordered_set<std::string>>                3786270 ns      3778127 ns          203
+BenchRangeUnOrderSetString<ska::flat_hash_set<std::string>>                1450492 ns      1446643 ns          496
+BenchRangeUnOrderSetString<ska::bytell_hash_set<std::string>>              1362130 ns      1357649 ns          500
+BenchRangeUnOrderSetString<phmap::node_hash_set<std::string>>              2007712 ns      2000395 ns          317
+BenchRangeUnOrderSetString<phmap::flat_hash_set<std::string>>               712207 ns       709360 ns          773
+BenchRangeUnOrderSetString<absl::flat_hash_set<std::string>>                745284 ns       742183 ns          937
+BenchRangeUnOrderSetString<robin_hood::unordered_flat_set<std::string>>    1064203 ns      1059380 ns         1263
+BenchRangeUnOrderSetString<spp::sparse_hash_set<std::string>>              5469269 ns      5441339 ns          506
+BenchRangeUnOrderSetString<tsl::ordered_set<std::string>>                   817664 ns       813169 ns          949
+BenchRangeUnOrderSetString<tsl::vector_set<std::string>>                    977988 ns       972492 ns          710
+BenchRangeUnOrderSetString<tsl::bhopscotch_set<std::string>>               1399763 ns      1391707 ns          701
+BenchRangeUnOrderSetString<tsl::hopscotch_set<std::string>>                4355209 ns      4329406 ns          175
+BenchRangeUnOrderSetString<tsl::robin_set<std::string>>                    1185163 ns      1178005 ns          671
+BenchRangeUnOrderSetString<tsl::sparse_set<std::string>>                    733148 ns       728641 ns         1023
+BenchRangeUnOrderSetString<MapList<std::string>>                           4625046 ns      4596133 ns          146
+BenchRangeUnOrderSetStringMulti<MapList<std::string>>                      1509089 ns      1499500 ns          500
+BenchRangeCharKeySet<tsl::htrie_set<char>>                                 9739888 ns      9876341 ns           70
+BenchRangeCharKeySet<tsl::array_set<char>>                                 2048145 ns      2087447 ns          371

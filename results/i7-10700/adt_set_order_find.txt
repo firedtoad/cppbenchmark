@@ -1,4 +1,4 @@
-2023-06-04T20:02:39-04:00
+2023-06-11T21:31:11+08:00
 Running ./bin/adt_set_order_find
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,14 +6,14 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 0.64, 1.35, 1.78
+Load Average: 6.92, 5.02, 3.04
 ---------------------------------------------------------------------------------------------
 Benchmark                                                   Time             CPU   Iterations
 ---------------------------------------------------------------------------------------------
-BenchOrderSetInt<std::set<int>>                           140 ns          140 ns      3630350
-BenchOrderSetInt<tsl::ordered_set<int>>                  12.3 ns         12.3 ns     46656747
-BenchOrderSetInt<absl::btree_set<int>>                   61.2 ns         61.2 ns     10084507
-BenchImmutableSetInt                                      110 ns          110 ns      6430739
-BenchOrderSetString<std::set<std::string>>                344 ns          344 ns      1854918
-BenchOrderSetString<tsl::ordered_set<std::string>>       58.9 ns         58.9 ns     11981738
-BenchOrderSetString<absl::btree_set<std::string>>         306 ns          306 ns      2464164
+BenchOrderSetInt<std::set<int>>                           237 ns          236 ns      4086252
+BenchOrderSetInt<tsl::ordered_set<int>>                  11.4 ns         11.4 ns     77163791
+BenchOrderSetInt<absl::btree_set<int>>                   70.8 ns         70.5 ns      8687192
+BenchImmutableSetInt                                      249 ns          247 ns      3893246
+BenchOrderSetString<std::set<std::string>>               1128 ns         1122 ns       699031
+BenchOrderSetString<tsl::ordered_set<std::string>>       83.1 ns         82.6 ns      9403888
+BenchOrderSetString<absl::btree_set<std::string>>         398 ns          395 ns      1920206

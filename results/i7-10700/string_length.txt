@@ -1,4 +1,4 @@
-2023-06-04T20:19:51-04:00
+2023-06-11T21:36:50+08:00
 Running ./bin/string_length
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,25 +6,25 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.27, 4.35, 3.64
+Load Average: 4.02, 4.35, 3.37
 ----------------------------------------------------------------
 Benchmark                      Time             CPU   Iterations
 ----------------------------------------------------------------
-BenchNaiveStrlen/1          1.20 ns         1.20 ns    572378205
-BenchNaiveStrlen/8          4.14 ns         4.14 ns    180410069
-BenchNaiveStrlen/64         32.6 ns         32.6 ns     22937392
-BenchNaiveStrlen/512         106 ns          106 ns      6368110
-BenchNaiveStrlen/4096        103 ns          103 ns      7579016
-BenchNaiveStrlen/8192        111 ns          111 ns      6855068
-BenchSysStrlen/1            2.18 ns         2.18 ns    322601023
-BenchSysStrlen/8            1.99 ns         1.99 ns    382311636
-BenchSysStrlen/64           3.20 ns         3.20 ns    203178328
-BenchSysStrlen/512          6.02 ns         6.02 ns     99560962
-BenchSysStrlen/4096         5.75 ns         5.75 ns     98456355
-BenchSysStrlen/8192         5.05 ns         5.05 ns    130948607
-BenchWrapStrLen/1           1.76 ns         1.76 ns    389624231
-BenchWrapStrLen/8           1.85 ns         1.84 ns    373604219
-BenchWrapStrLen/64          3.16 ns         3.16 ns    227303239
-BenchWrapStrLen/512         6.03 ns         6.03 ns    119881864
-BenchWrapStrLen/4096        5.94 ns         5.93 ns    126757766
-BenchWrapStrLen/8192        6.48 ns         6.47 ns    101265131
+BenchNaiveStrlen/1         0.757 ns        0.767 ns    919251129
+BenchNaiveStrlen/8          2.62 ns         2.65 ns    268350228
+BenchNaiveStrlen/64         24.0 ns         24.2 ns     29172545
+BenchNaiveStrlen/512        75.3 ns         75.9 ns      8150496
+BenchNaiveStrlen/4096       77.1 ns         77.6 ns      9010510
+BenchNaiveStrlen/8192       78.2 ns         78.6 ns      8967960
+BenchSysStrlen/1            1.43 ns         1.43 ns    482188202
+BenchSysStrlen/8            1.51 ns         1.51 ns    486409790
+BenchSysStrlen/64           2.30 ns         2.30 ns    326611534
+BenchSysStrlen/512          3.92 ns         3.92 ns    163409246
+BenchSysStrlen/4096         4.28 ns         4.28 ns    172279906
+BenchSysStrlen/8192         3.91 ns         3.91 ns    175324317
+BenchWrapStrLen/1           1.43 ns         1.42 ns    488412068
+BenchWrapStrLen/8           1.53 ns         1.52 ns    425393182
+BenchWrapStrLen/64          2.24 ns         2.24 ns    304076821
+BenchWrapStrLen/512         3.94 ns         3.93 ns    170297818
+BenchWrapStrLen/4096        3.93 ns         3.92 ns    180232326
+BenchWrapStrLen/8192        4.00 ns         3.98 ns    183363462

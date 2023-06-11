@@ -1,4 +1,4 @@
-2023-06-04T20:19:42-04:00
+2023-06-11T21:38:49+08:00
 Running ./bin/adt_map_unordered_range
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,37 +6,37 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.22, 4.34, 3.63
+Load Average: 4.05, 4.25, 3.45
 -----------------------------------------------------------------------------------------------------------------------
 Benchmark                                                                             Time             CPU   Iterations
 -----------------------------------------------------------------------------------------------------------------------
-BenchRangeUnOrderMapInt<std::unordered_map<int, int>>                            128352 ns       128347 ns         5319
-BenchRangeUnOrderMapInt<ska::unordered_map<int, int>>                            171263 ns       171247 ns         4745
-BenchRangeUnOrderMapInt<ska::flat_hash_map<int, int>>                            108681 ns       108681 ns         6193
-BenchRangeUnOrderMapInt<ska::bytell_hash_map<int, int>>                          183980 ns       183962 ns         3703
-BenchRangeUnOrderMapInt<phmap::flat_hash_map<int, int>>                          256455 ns       256460 ns         2800
-BenchRangeUnOrderMapInt<robin_hood::unordered_flat_map<int, int>>                184147 ns       184122 ns         4012
-BenchRangeUnOrderMapInt<spp::sparse_hash_map<int, int>>                           82032 ns        82027 ns         8670
-BenchRangeUnOrderMapInt<tsl::bhopscotch_map<int, int>>                           147445 ns       147437 ns         5221
-BenchRangeUnOrderMapInt<tsl::hopscotch_map<int, int>>                            139906 ns       139897 ns         4846
-BenchRangeUnOrderMapInt<tsl::robin_map<int, int>>                                120172 ns       120174 ns         7452
-BenchRangeUnOrderMapInt<tsl::sparse_map<int, int>>                                65035 ns        65028 ns        12449
-BenchRangeUnOrderMapInt<llvm::DenseMap<int, int>>                                105397 ns       105399 ns         6235
-BenchRangeUnOrderMapInt<llvm::MapVector<int, int>>                                20097 ns        20093 ns        34542
-BenchRangeIndexedMap<llvm::IndexedMap<int>>                                       20758 ns        20756 ns        32683
-BenchRangeUnOrderMapString<std::unordered_map<std::string, int>>                 550582 ns       550509 ns         1381
-BenchRangeUnOrderMapString<ska::unordered_map<std::string, int>>                 649239 ns       649147 ns         1258
-BenchRangeUnOrderMapString<ska::flat_hash_map<std::string, int>>                 527549 ns       527537 ns         1332
-BenchRangeUnOrderMapString<ska::bytell_hash_map<std::string, int>>               704972 ns       704857 ns          989
-BenchRangeUnOrderMapString<phmap::flat_hash_map<std::string, int>>               324110 ns       324115 ns         2284
-BenchRangeUnOrderMapString<robin_hood::unordered_flat_map<std::string, int>>     193839 ns       193807 ns         3607
-BenchRangeUnOrderMapString<spp::sparse_hash_map<std::string, int>>               149268 ns       149270 ns         4234
-BenchRangeUnOrderMapString<tsl::bhopscotch_map<std::string, int>>                669624 ns       669561 ns          981
-BenchRangeUnOrderMapString<tsl::hopscotch_map<std::string, int>>                 692725 ns       692697 ns         1133
-BenchRangeUnOrderMapString<tsl::robin_map<std::string, int>>                     613140 ns       613108 ns         1059
-BenchRangeUnOrderMapString<tsl::sparse_map<std::string, int>>                    101484 ns       101477 ns         6718
-BenchRangeUnOrderMapString<llvm::DenseMap<llvm::StringRef, int>>                 512039 ns       512049 ns         1332
-BenchRangeUnOrderMapString<llvm::MapVector<llvm::StringRef, int>>                 28314 ns        28311 ns        22368
-BenchRangeCharKeyMap<tsl::htrie_map<char, int>>                                  636588 ns       636569 ns         1009
-BenchRangeCharKeyMap<tsl::array_map<char, int>>                                  487704 ns       487631 ns         1289
-BenchRangeIndexedMapString<llvm::IndexedMap<std::string>>                         43331 ns        43329 ns        16229
+BenchRangeUnOrderMapInt<std::unordered_map<int, int>>                            124008 ns       123170 ns         5777
+BenchRangeUnOrderMapInt<ska::unordered_map<int, int>>                            132005 ns       131230 ns         4739
+BenchRangeUnOrderMapInt<ska::flat_hash_map<int, int>>                             94087 ns        93524 ns         7166
+BenchRangeUnOrderMapInt<ska::bytell_hash_map<int, int>>                          165809 ns       164659 ns         4256
+BenchRangeUnOrderMapInt<phmap::flat_hash_map<int, int>>                          272847 ns       271172 ns         2606
+BenchRangeUnOrderMapInt<robin_hood::unordered_flat_map<int, int>>                181320 ns       180002 ns         3961
+BenchRangeUnOrderMapInt<spp::sparse_hash_map<int, int>>                           66016 ns        65601 ns         9849
+BenchRangeUnOrderMapInt<tsl::bhopscotch_map<int, int>>                           132760 ns       131804 ns         5782
+BenchRangeUnOrderMapInt<tsl::hopscotch_map<int, int>>                            130575 ns       131452 ns         5059
+BenchRangeUnOrderMapInt<tsl::robin_map<int, int>>                                 83591 ns        85043 ns         8094
+BenchRangeUnOrderMapInt<tsl::sparse_map<int, int>>                                42548 ns        43134 ns        16897
+BenchRangeUnOrderMapInt<llvm::DenseMap<int, int>>                                 66442 ns        67225 ns        10206
+BenchRangeUnOrderMapInt<llvm::MapVector<int, int>>                                15014 ns        15163 ns        44857
+BenchRangeIndexedMap<llvm::IndexedMap<int>>                                       16914 ns        17048 ns        41839
+BenchRangeUnOrderMapString<std::unordered_map<std::string, int>>                 493931 ns       496706 ns         1424
+BenchRangeUnOrderMapString<ska::unordered_map<std::string, int>>                 531241 ns       533619 ns         1334
+BenchRangeUnOrderMapString<ska::flat_hash_map<std::string, int>>                 467385 ns       468626 ns         1550
+BenchRangeUnOrderMapString<ska::bytell_hash_map<std::string, int>>               601101 ns       602146 ns         1174
+BenchRangeUnOrderMapString<phmap::flat_hash_map<std::string, int>>               265459 ns       265646 ns         2552
+BenchRangeUnOrderMapString<robin_hood::unordered_flat_map<std::string, int>>     185234 ns       185159 ns         3986
+BenchRangeUnOrderMapString<spp::sparse_hash_map<std::string, int>>               118800 ns       118699 ns         6024
+BenchRangeUnOrderMapString<tsl::bhopscotch_map<std::string, int>>                556429 ns       555546 ns         1241
+BenchRangeUnOrderMapString<tsl::hopscotch_map<std::string, int>>                 593792 ns       592567 ns         1163
+BenchRangeUnOrderMapString<tsl::robin_map<std::string, int>>                     589826 ns       588324 ns         1138
+BenchRangeUnOrderMapString<tsl::sparse_map<std::string, int>>                     90764 ns        90474 ns         7807
+BenchRangeUnOrderMapString<llvm::DenseMap<llvm::StringRef, int>>                 481632 ns       479899 ns         1443
+BenchRangeUnOrderMapString<llvm::MapVector<llvm::StringRef, int>>                 24069 ns        23972 ns        28917
+BenchRangeCharKeyMap<tsl::htrie_map<char, int>>                                  523862 ns       521637 ns         1395
+BenchRangeCharKeyMap<tsl::array_map<char, int>>                                  466483 ns       464299 ns         1455
+BenchRangeIndexedMapString<llvm::IndexedMap<std::string>>                         39646 ns        39442 ns        18251

@@ -10,9 +10,9 @@ involuntary switches : 0
 
 vector of u64 1048576
 user cpu : 0s 0us
-sys cpu : 0s 2794us
-max rss : 8192 kb / 8 MB
-page reclaims : 48
+sys cpu : 0s 2388us
+max rss : 8456 kb / 8.25781 MB
+page reclaims : 101
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0

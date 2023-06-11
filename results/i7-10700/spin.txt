@@ -1,4 +1,4 @@
-2023-06-04T20:13:58-04:00
+2023-06-11T21:30:27+08:00
 Running ./bin/spin
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,32 +6,32 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.26, 4.09, 3.21
+Load Average: 8.21, 4.82, 2.87
 -----------------------------------------------------------------------------------------------------------------------
 Benchmark                                                                             Time             CPU   Iterations
 -----------------------------------------------------------------------------------------------------------------------
-benchmark_mutex_lock_unlock<boost::detail::spinlock>/threads:1                     6.44 ns         6.44 ns    108189492
-benchmark_mutex_lock_unlock<boost::detail::spinlock>/threads:2                     6.31 ns         6.43 ns    107913838
-benchmark_mutex_lock_unlock<boost::detail::spinlock>/threads:4                     6.11 ns         6.28 ns    111864596
-benchmark_mutex_lock_unlock<boost::detail::spinlock>/threads:8                     5.31 ns         7.55 ns     88660440
-benchmark_mutex_lock_unlock<boost::detail::spinlock>/threads:16                    5.52 ns         7.60 ns     91502848
-benchmark_mutex_lock_unlock<std::mutex>/threads:1                                  12.7 ns         12.7 ns     53150491
-benchmark_mutex_lock_unlock<std::mutex>/threads:2                                  47.6 ns         94.1 ns      7439794
-benchmark_mutex_lock_unlock<std::mutex>/threads:4                                  28.5 ns         88.7 ns      7631352
-benchmark_mutex_lock_unlock<std::mutex>/threads:8                                  31.4 ns          128 ns      5502200
-benchmark_mutex_lock_unlock<std::mutex>/threads:16                                 44.2 ns          237 ns      3052416
-benchmark_mutex_lock_unlock<boost::fibers::detail::spinlock_ttas>/threads:1        6.85 ns         6.84 ns     96725872
-benchmark_mutex_lock_unlock<boost::fibers::detail::spinlock_ttas>/threads:2        23.4 ns         46.8 ns     20000000
-benchmark_mutex_lock_unlock<boost::fibers::detail::spinlock_ttas>/threads:4        15.5 ns         61.8 ns     13251684
-benchmark_mutex_lock_unlock<boost::fibers::detail::spinlock_ttas>/threads:8        30.2 ns          175 ns      5733840
-benchmark_mutex_lock_unlock<boost::fibers::detail::spinlock_ttas>/threads:16       31.9 ns          209 ns      5341264
-benchmark_kernel_Lock_Unlock<absl::base_internal::SpinLock>/threads:1              13.8 ns         13.8 ns     50826946
-benchmark_kernel_Lock_Unlock<absl::base_internal::SpinLock>/threads:2              54.4 ns          109 ns      5356314
-benchmark_kernel_Lock_Unlock<absl::base_internal::SpinLock>/threads:4              56.4 ns          203 ns      3485456
-benchmark_kernel_Lock_Unlock<absl::base_internal::SpinLock>/threads:8              50.2 ns          224 ns      3134256
-benchmark_kernel_Lock_Unlock<absl::base_internal::SpinLock>/threads:16             62.1 ns          318 ns      2326560
-benchmark_cooperative_lock_unlock<absl::base_internal::SpinLock>/threads:1         14.5 ns         14.5 ns     48206506
-benchmark_cooperative_lock_unlock<absl::base_internal::SpinLock>/threads:2         58.9 ns          117 ns      6720656
-benchmark_cooperative_lock_unlock<absl::base_internal::SpinLock>/threads:4         55.3 ns          199 ns      3618648
-benchmark_cooperative_lock_unlock<absl::base_internal::SpinLock>/threads:8         50.1 ns          223 ns      3217248
-benchmark_cooperative_lock_unlock<absl::base_internal::SpinLock>/threads:16        61.5 ns          355 ns      1600000
+benchmark_mutex_lock_unlock<boost::detail::spinlock>/threads:1                     6.92 ns         6.99 ns     91122130
+benchmark_mutex_lock_unlock<boost::detail::spinlock>/threads:2                     7.60 ns         7.73 ns    102429124
+benchmark_mutex_lock_unlock<boost::detail::spinlock>/threads:4                     6.18 ns         6.69 ns    102435104
+benchmark_mutex_lock_unlock<boost::detail::spinlock>/threads:8                     6.21 ns         7.53 ns     95171448
+benchmark_mutex_lock_unlock<boost::detail::spinlock>/threads:16                    6.87 ns         8.17 ns     90625584
+benchmark_mutex_lock_unlock<std::mutex>/threads:1                                  13.1 ns         13.2 ns     44426614
+benchmark_mutex_lock_unlock<std::mutex>/threads:2                                  56.2 ns          112 ns      7865414
+benchmark_mutex_lock_unlock<std::mutex>/threads:4                                  26.1 ns         80.5 ns      6833052
+benchmark_mutex_lock_unlock<std::mutex>/threads:8                                  33.4 ns          107 ns      8000000
+benchmark_mutex_lock_unlock<std::mutex>/threads:16                                 50.6 ns          221 ns      3990720
+benchmark_mutex_lock_unlock<boost::fibers::detail::spinlock_ttas>/threads:1        9.69 ns         8.69 ns     80144204
+benchmark_mutex_lock_unlock<boost::fibers::detail::spinlock_ttas>/threads:2        24.2 ns         48.5 ns     10429058
+benchmark_mutex_lock_unlock<boost::fibers::detail::spinlock_ttas>/threads:4        37.2 ns          149 ns      5302544
+benchmark_mutex_lock_unlock<boost::fibers::detail::spinlock_ttas>/threads:8        34.0 ns          186 ns      4589824
+benchmark_mutex_lock_unlock<boost::fibers::detail::spinlock_ttas>/threads:16       25.2 ns          177 ns      3666624
+benchmark_kernel_Lock_Unlock<absl::base_internal::SpinLock>/threads:1              14.6 ns         14.6 ns     48820433
+benchmark_kernel_Lock_Unlock<absl::base_internal::SpinLock>/threads:2              56.4 ns          111 ns      6281348
+benchmark_kernel_Lock_Unlock<absl::base_internal::SpinLock>/threads:4              56.4 ns          201 ns      3606600
+benchmark_kernel_Lock_Unlock<absl::base_internal::SpinLock>/threads:8              56.3 ns          253 ns      2861376
+benchmark_kernel_Lock_Unlock<absl::base_internal::SpinLock>/threads:16             75.3 ns          379 ns      2117504
+benchmark_cooperative_lock_unlock<absl::base_internal::SpinLock>/threads:1         14.6 ns         14.6 ns     45007892
+benchmark_cooperative_lock_unlock<absl::base_internal::SpinLock>/threads:2         64.6 ns          127 ns      6052294
+benchmark_cooperative_lock_unlock<absl::base_internal::SpinLock>/threads:4         57.3 ns          205 ns      3522364
+benchmark_cooperative_lock_unlock<absl::base_internal::SpinLock>/threads:8         58.1 ns          264 ns      2758064
+benchmark_cooperative_lock_unlock<absl::base_internal::SpinLock>/threads:16        75.8 ns          386 ns      2224528

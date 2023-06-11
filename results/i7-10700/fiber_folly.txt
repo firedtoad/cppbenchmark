@@ -1,4 +1,4 @@
-2023-06-04T20:13:44-04:00
+2023-06-11T21:37:08+08:00
 Running ./bin/fiber_folly
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,9 +6,9 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.34, 4.10, 3.20
+Load Average: 4.02, 4.34, 3.38
 ----------------------------------------------------------------
 Benchmark                      Time             CPU   Iterations
 ----------------------------------------------------------------
-BenchFiberCreatePost        1720 ns         1719 ns       436246
-BenchFiberCreateEager        222 ns          222 ns      3355025
+BenchFiberCreatePost        1590 ns         1583 ns       428976
+BenchFiberCreateEager        188 ns          187 ns      3616980

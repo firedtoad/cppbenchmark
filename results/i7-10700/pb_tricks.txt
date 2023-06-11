@@ -1,34 +1,34 @@
 131072
 131072
-user cpu : 0s 10804us
-sys cpu : 0s 15692us
-max rss : 33792 kb / 33 MB
-page reclaims : 8459
+user cpu : 0s 8485us
+sys cpu : 0s 16062us
+max rss : 33792 KB / 33 MB
+page reclaims : 8485
 page faults : 0
 voluntary switches : 0
-involuntary switches : 1
+involuntary switches : 0
 
 0
 131072
-user cpu : 0s 19792us
-sys cpu : 0s 9316us
-max rss : 33792 kb / 33 MB
-page reclaims : 8455
+user cpu : 0s 19836us
+sys cpu : 0s 4033us
+max rss : 33528 KB / 32.7422 MB
+page reclaims : 8415
 page faults : 0
 voluntary switches : 0
-involuntary switches : 2
+involuntary switches : 0
 
 0
 131072
-user cpu : 0s 7211us
-sys cpu : 0s 758us
-max rss : 2112 kb / 2.0625 MB
-page reclaims : 560
+user cpu : 0s 3585us
+sys cpu : 0s 0us
+max rss : 2376 KB / 2.32031 MB
+page reclaims : 635
 page faults : 0
 voluntary switches : 0
-involuntary switches : 1
+involuntary switches : 0
 
-2023-06-04T20:17:45-04:00
+2023-06-11T21:44:58+08:00
 Running ./bin/pb_tricks
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -36,47 +36,47 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.45, 4.41, 3.55
+Load Average: 4.44, 4.22, 3.70
 -----------------------------------------------------------------------
 Benchmark                             Time             CPU   Iterations
 -----------------------------------------------------------------------
-BenchCopy/1                        68.3 ns         68.2 ns     11539009
-BenchCopy/8                         464 ns          463 ns      1725516
-BenchCopy/64                       3972 ns         3969 ns       174508
-BenchCopy/512                     43118 ns        43087 ns        16095
-BenchCopy/1024                    66560 ns        66519 ns        12014
-BenchCopyArena/1                   67.9 ns         67.9 ns      9038349
-BenchCopyArena/8                    421 ns          421 ns      1784439
-BenchCopyArena/64                  3553 ns         3551 ns       193472
-BenchCopyArena/512                33651 ns        33633 ns        20308
-BenchCopyArena/1024               66555 ns        66517 ns        10747
-BenchCopyArenaDifferent/1          65.5 ns         65.5 ns      8581010
-BenchCopyArenaDifferent/8           502 ns          501 ns      1000000
-BenchCopyArenaDifferent/64         3711 ns         3709 ns       221100
-BenchCopyArenaDifferent/512       32305 ns        32284 ns        24328
-BenchCopyArenaDifferent/1024      69212 ns        69157 ns        12375
-BenchSwap/1                        4.53 ns         4.53 ns    157948863
-BenchSwap/8                        4.70 ns         4.69 ns    142623304
-BenchSwap/64                       4.79 ns         4.78 ns    139530402
-BenchSwap/512                      4.67 ns         4.67 ns    145099841
-BenchSwap/1024                     5.01 ns         5.00 ns    100000000
-BenchSwapArena/1                   4.33 ns         4.32 ns    154783839
-BenchSwapArena/8                   4.80 ns         4.80 ns    155253021
-BenchSwapArena/64                  4.62 ns         4.61 ns    132884962
-BenchSwapArena/512                 5.29 ns         5.28 ns    100000000
-BenchSwapArena/1024                5.22 ns         5.22 ns    130847170
-BenchSwapArenaDifferent/1           292 ns          292 ns      1996133
-BenchSwapArenaDifferent/8          1355 ns         1354 ns       592582
-BenchSwapArenaDifferent/64        10022 ns        10014 ns        63135
-BenchSwapArenaDifferent/512       73312 ns        73255 ns        11501
-BenchSwapArenaDifferent/1024     171644 ns       171508 ns         4318
-BenchAddAllocate/1                 11.4 ns         11.4 ns     57568322
-BenchAddAllocate/8                 51.2 ns         51.2 ns     10000000
-BenchAddAllocate/64                 324 ns          324 ns      1969825
-BenchAddAllocate/512               3019 ns         3017 ns       233985
-BenchAddAllocate/1024              8601 ns         8593 ns        85362
-BenchAddAllocateArena/1            10.8 ns         10.8 ns     53486451
-BenchAddAllocateArena/8            52.9 ns         52.9 ns     15409306
-BenchAddAllocateArena/64            304 ns          304 ns      2567360
-BenchAddAllocateArena/512          2611 ns         2610 ns       284720
-BenchAddAllocateArena/1024         6819 ns         6813 ns        91538
+BenchCopy/1                        53.0 ns         53.1 ns     10000000
+BenchCopy/8                         331 ns          332 ns      1788012
+BenchCopy/64                       2876 ns         2879 ns       240324
+BenchCopy/512                     31377 ns        31399 ns        19126
+BenchCopy/1024                    52069 ns        52077 ns        10000
+BenchCopyArena/1                   49.5 ns         49.4 ns     13938250
+BenchCopyArena/8                    326 ns          326 ns      1998699
+BenchCopyArena/64                  2627 ns         2619 ns       272142
+BenchCopyArena/512                24861 ns        24795 ns        26578
+BenchCopyArena/1024               53657 ns        53502 ns        10000
+BenchCopyArenaDifferent/1          56.0 ns         55.8 ns     10273627
+BenchCopyArenaDifferent/8           340 ns          338 ns      1981694
+BenchCopyArenaDifferent/64         2804 ns         2791 ns       247173
+BenchCopyArenaDifferent/512       26292 ns        26176 ns        28975
+BenchCopyArenaDifferent/1024      48766 ns        48541 ns        14127
+BenchSwap/1                        4.07 ns         4.05 ns    168650968
+BenchSwap/8                        4.05 ns         4.03 ns    161008705
+BenchSwap/64                       4.32 ns         4.30 ns    171101417
+BenchSwap/512                      4.06 ns         4.04 ns    173803685
+BenchSwap/1024                     4.04 ns         4.02 ns    166021982
+BenchSwapArena/1                   4.37 ns         4.34 ns    175237058
+BenchSwapArena/8                   5.09 ns         5.05 ns    129286508
+BenchSwapArena/64                  3.89 ns         3.87 ns    176577526
+BenchSwapArena/512                 3.89 ns         3.87 ns    166821284
+BenchSwapArena/1024                3.99 ns         3.97 ns    184098386
+BenchSwapArenaDifferent/1           218 ns          218 ns      2981428
+BenchSwapArenaDifferent/8           997 ns         1017 ns       647685
+BenchSwapArenaDifferent/64         7300 ns         7419 ns        95106
+BenchSwapArenaDifferent/512       54391 ns        55154 ns        11562
+BenchSwapArenaDifferent/1024     121782 ns       123106 ns         6298
+BenchAddAllocate/1                 8.70 ns         8.78 ns     77716377
+BenchAddAllocate/8                 35.1 ns         35.3 ns     22908672
+BenchAddAllocate/64                 218 ns          219 ns      2969179
+BenchAddAllocate/512               2002 ns         2010 ns       275489
+BenchAddAllocate/1024              5413 ns         5432 ns       136318
+BenchAddAllocateArena/1            9.82 ns         9.85 ns     88915398
+BenchAddAllocateArena/8            47.9 ns         47.9 ns     15399738
+BenchAddAllocateArena/64            292 ns          291 ns      2632939
+BenchAddAllocateArena/512          2992 ns         2989 ns       244960
+BenchAddAllocateArena/1024         9363 ns         9347 ns        83533

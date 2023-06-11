@@ -1,4 +1,4 @@
-2023-06-04T20:11:55-04:00
+2023-06-11T21:39:19+08:00
 Running ./bin/03b_branchless
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,8 +6,8 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.28, 3.99, 3.05
+Load Average: 4.03, 4.23, 3.47
 --------------------------------------------------------------------------------
 Benchmark                      Time             CPU   Iterations UserCounters...
 --------------------------------------------------------------------------------
-BM_branchless/4194304    7632019 ns      7624082 ns           89 items_per_second=550.139M/s
+BM_branchless/4194304    6904067 ns      6865523 ns           95 items_per_second=610.923M/s

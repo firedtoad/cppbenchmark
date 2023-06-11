@@ -1,4 +1,4 @@
-2023-06-04T20:11:58-04:00
+2023-06-11T21:43:46+08:00
 Running ./bin/rapid_boost
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,23 +6,23 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.28, 3.99, 3.05
+Load Average: 4.06, 4.11, 3.62
 -----------------------------------------------------------------
 Benchmark                       Time             CPU   Iterations
 -----------------------------------------------------------------
-BenchYYJson/1               100.0 ns         99.8 ns      5859625
-BenchYYJson/8                 429 ns          429 ns      1646498
-BenchYYJson/64               2965 ns         2963 ns       274385
-BenchYYJson/128              5989 ns         5978 ns       100000
-BenchRapid/1                  172 ns          172 ns      5128326
-BenchRapid/8                  700 ns          699 ns      1086762
-BenchRapid/64                4806 ns         4799 ns       128818
-BenchRapid/128               9044 ns         9034 ns        76538
-BenchRapidReserve/1           213 ns          213 ns      4352765
-BenchRapidReserve/8           668 ns          667 ns       929390
-BenchRapidReserve/64         5576 ns         5569 ns       100000
-BenchRapidReserve/128       10878 ns        10861 ns        78924
-BenchRapidDocument/1          283 ns          283 ns      3011477
-BenchRapidDocument/8         1157 ns         1156 ns       642842
-BenchRapidDocument/64        7583 ns         7572 ns       113241
-BenchRapidDocument/128      13640 ns        13623 ns        53083
+BenchYYJson/1                85.9 ns         85.5 ns      8921205
+BenchYYJson/8                 495 ns          506 ns      1000000
+BenchYYJson/64               3297 ns         3360 ns       250914
+BenchYYJson/128              5733 ns         5827 ns       128060
+BenchRapid/1                  136 ns          138 ns      4702019
+BenchRapid/8                  639 ns          647 ns       960895
+BenchRapid/64                4422 ns         4464 ns       177741
+BenchRapid/128              10161 ns        10243 ns        50063
+BenchRapidReserve/1           159 ns          160 ns      4358653
+BenchRapidReserve/8           617 ns          620 ns      1318569
+BenchRapidReserve/64         4332 ns         4346 ns       152609
+BenchRapidReserve/128        9049 ns         9069 ns        81293
+BenchRapidDocument/1          234 ns          234 ns      2962638
+BenchRapidDocument/8          913 ns          914 ns       803071
+BenchRapidDocument/64        5715 ns         5712 ns       128648
+BenchRapidDocument/128      10607 ns        10598 ns        69605

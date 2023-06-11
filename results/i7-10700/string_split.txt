@@ -1,4 +1,4 @@
-2023-06-04T20:03:13-04:00
+2023-06-11T21:38:18+08:00
 Running ./bin/string_split
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,27 +6,27 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 2.27, 1.68, 1.88
+Load Average: 4.00, 4.26, 3.42
 ---------------------------------------------------------------------------
 Benchmark                                 Time             CPU   Iterations
 ---------------------------------------------------------------------------
-BenchStringSplit/threads:1              435 ns          435 ns      1588850
-BenchStringSplit/threads:2              195 ns          389 ns      2140584
-BenchStringSplit/threads:4             99.4 ns          397 ns      1866496
-BenchStringSplit/threads:8             63.2 ns          380 ns      2168224
-BenchStringSplitStream/threads:1        670 ns          670 ns      1272963
-BenchStringSplitStream/threads:2        299 ns          598 ns      1268230
-BenchStringSplitStream/threads:4        140 ns          560 ns      1283840
-BenchStringSplitStream/threads:8       85.2 ns          504 ns      1226248
-BenchBoostSplit/threads:1               934 ns          934 ns       747951
-BenchBoostSplit/threads:2               526 ns         1050 ns       723468
-BenchBoostSplit/threads:4               242 ns          969 ns       699680
-BenchBoostSplit/threads:8               182 ns         1075 ns       768096
-BenchABSplit/threads:1                  292 ns          292 ns      2335830
-BenchABSplit/threads:2                  142 ns          285 ns      2000000
-BenchABSplit/threads:4                 70.0 ns          280 ns      2914240
-BenchABSplit/threads:8                 48.9 ns          284 ns      2692016
-BenchPBSplit/threads:1                  356 ns          356 ns      1983580
-BenchPBSplit/threads:2                  185 ns          371 ns      2098662
-BenchPBSplit/threads:4                 89.8 ns          359 ns      2226544
-BenchPBSplit/threads:8                 56.8 ns          332 ns      2175856
+BenchStringSplit/threads:1              299 ns          297 ns      2427112
+BenchStringSplit/threads:2              170 ns          338 ns      2375310
+BenchStringSplit/threads:4              105 ns          416 ns      1794956
+BenchStringSplit/threads:8             73.5 ns          435 ns      1551784
+BenchStringSplitStream/threads:1        457 ns          454 ns      1522958
+BenchStringSplitStream/threads:2        245 ns          487 ns      1501452
+BenchStringSplitStream/threads:4        162 ns          645 ns      1024864
+BenchStringSplitStream/threads:8        119 ns          691 ns      1076840
+BenchBoostSplit/threads:1               784 ns          779 ns       910717
+BenchBoostSplit/threads:2               405 ns          804 ns       877584
+BenchBoostSplit/threads:4               261 ns         1038 ns       531760
+BenchBoostSplit/threads:8               193 ns         1096 ns       613272
+BenchABSplit/threads:1                  210 ns          210 ns      3239327
+BenchABSplit/threads:2                  121 ns          248 ns      2463574
+BenchABSplit/threads:4                 69.2 ns          283 ns      2421688
+BenchABSplit/threads:8                 54.9 ns          335 ns      2096352
+BenchPBSplit/threads:1                  285 ns          290 ns      2464550
+BenchPBSplit/threads:2                  152 ns          309 ns      2472976
+BenchPBSplit/threads:4                 81.6 ns          331 ns      1899480
+BenchPBSplit/threads:8                 67.6 ns          394 ns      1876264

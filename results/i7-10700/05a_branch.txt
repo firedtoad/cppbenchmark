@@ -1,4 +1,4 @@
-2023-06-04T20:08:39-04:00
+2023-06-11T21:39:25+08:00
 Running ./bin/05a_branch
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,8 +6,8 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.56, 3.75, 2.77
+Load Average: 4.03, 4.22, 3.48
 ----------------------------------------------------------------------------
 Benchmark                  Time             CPU   Iterations UserCounters...
 ----------------------------------------------------------------------------
-BM_branch/4194304   18344991 ns     18344070 ns           40 items_per_second=228.646M/s
+BM_branch/4194304   17289127 ns     17179208 ns           43 items_per_second=244.15M/s

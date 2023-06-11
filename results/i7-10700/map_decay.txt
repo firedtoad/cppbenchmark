@@ -72,7 +72,7 @@ std::_Node_handle<unsigned short, std::pair<unsigned short const, unsigned short
 std::_Node_handle<unsigned int, std::pair<unsigned int const, unsigned int>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned int const, unsigned int>, false> > > size 24
 std::_Node_handle<unsigned long, std::pair<unsigned long const, unsigned long>, std::allocator<std::__detail::_Hash_node<std::pair<unsigned long const, unsigned long>, false> > > size 24
 
-2023-06-04T20:04:43-04:00
+2023-06-11T21:36:09+08:00
 Running ./bin/map_decay
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -80,16 +80,20 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.61, 2.62, 2.20
+Load Average: 4.05, 4.41, 3.34
 -----------------------------------------------------------------------------------------------
 Benchmark                                                     Time             CPU   Iterations
 -----------------------------------------------------------------------------------------------
-BM_unmap<std::unordered_map<int, int>>                   580309 ns       580282 ns         1000
-BM_decay_map<std::unordered_map<int, int, Hasher>>    140030407 ns    140028443 ns            5
-BM_unmap<ska::unordered_map<int, int>>                   575033 ns       575048 ns          966
-BM_decay_map<ska::unordered_map<int, int, Hasher>>     75212875 ns     75210666 ns            9
-BM_unmap<ska::flat_hash_map<int, int>>                   426369 ns       426375 ns         1698
-BM_unmap<phmap::flat_hash_map<int, int>>                 202812 ns       202803 ns         3060
-BM_decay_map<phmap::flat_hash_map<int, int, Hasher>>   56510206 ns     56510847 ns           10
-BM_unmap<absl::flat_hash_map<int, int>>                  204471 ns       204458 ns         3660
-BM_decay_map<absl::flat_hash_map<int, int, Hasher>>    56215934 ns     56217416 ns           10
+BM_unmap<std::unordered_map<int, int>>                   406872 ns       404474 ns         1750
+BM_decay_map<std::unordered_map<int, int, Hasher>>    110507912 ns    109843888 ns            6
+BM_unmap<ska::unordered_map<int, int>>                   478618 ns       475709 ns         1448
+BM_decay_map<ska::unordered_map<int, int, Hasher>>     76050814 ns     75583835 ns            9
+BM_unmap<ska::flat_hash_map<int, int>>                   215306 ns       213970 ns         3577
+BM_unmap<phmap::flat_hash_map<int, int>>                 143211 ns       142212 ns         5562
+BM_decay_map<phmap::flat_hash_map<int, int, Hasher>>   40919873 ns     41783942 ns           17
+BM_unmap<absl::flat_hash_map<int, int>>                  150473 ns       153027 ns         4874
+BM_decay_map<absl::flat_hash_map<int, int, Hasher>>    40154086 ns     40731944 ns           17
+BM_unmap<tsl::ordered_map<int, int>>                     135256 ns       136728 ns         4621
+BM_decay_map<tsl::ordered_map<int, int, Hasher>>      105496554 ns    106600562 ns            6
+BM_unmap<tsl::vector_map<int, int>>                       98403 ns        99210 ns         7553
+BM_decay_map<tsl::vector_map<int, int, Hasher>>        73413551 ns     73959532 ns           10

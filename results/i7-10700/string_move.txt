@@ -1,4 +1,4 @@
-2023-06-04T20:11:09-04:00
+2023-06-11T21:39:24+08:00
 Running ./bin/string_move
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,21 +6,21 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.25, 3.93, 2.98
+Load Average: 4.03, 4.22, 3.48
 -------------------------------------------------------------------
 Benchmark                         Time             CPU   Iterations
 -------------------------------------------------------------------
-BenchStringMove<LogCopy>       89.9 ns         89.9 ns      7760833
-BenchStringMove<LogMove>       50.7 ns         50.7 ns     13103605
-BenchCopy                      58.4 ns         58.4 ns     13920048
-BenchRvo                       34.9 ns         34.9 ns     19329090
-BenchUnmapCopy/1               71.2 ns         71.2 ns     10095402
-BenchUnmapCopy/8               79.8 ns         79.8 ns      7766475
-BenchUnmapCopy/64               104 ns          104 ns      6065336
-BenchUnmapCopy/512              135 ns          135 ns      4500126
-BenchUnmapCopy/1024             152 ns          152 ns      5489144
-BenchUnmapRvo/1                73.8 ns         73.8 ns      7590043
-BenchUnmapRvo/8                81.9 ns         81.9 ns      9932311
-BenchUnmapRvo/64                101 ns          101 ns      8181449
-BenchUnmapRvo/512               117 ns          117 ns      4799566
-BenchUnmapRvo/1024             99.5 ns         99.5 ns      6497042
+BenchStringMove<LogCopy>       78.5 ns         78.0 ns      9153518
+BenchStringMove<LogMove>       46.0 ns         45.8 ns     15777184
+BenchCopy                      55.1 ns         54.7 ns     13224977
+BenchRvo                       28.2 ns         28.0 ns     24985198
+BenchUnmapCopy/1               62.5 ns         63.1 ns     11027276
+BenchUnmapCopy/8               71.7 ns         73.2 ns      9410268
+BenchUnmapCopy/64               124 ns          126 ns      6476302
+BenchUnmapCopy/512              134 ns          136 ns      5756105
+BenchUnmapCopy/1024             139 ns          141 ns      4788651
+BenchUnmapRvo/1                63.6 ns         64.2 ns     12007365
+BenchUnmapRvo/8                71.7 ns         72.3 ns      9650036
+BenchUnmapRvo/64               91.9 ns         92.6 ns      8214141
+BenchUnmapRvo/512               102 ns          103 ns      8390471
+BenchUnmapRvo/1024             95.9 ns         96.3 ns      6946521

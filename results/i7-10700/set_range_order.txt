@@ -1,4 +1,4 @@
-2023-06-04T20:04:52-04:00
+2023-06-11T21:36:48+08:00
 Running ./bin/set_range_order
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -6,15 +6,17 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.60, 2.68, 2.22
+Load Average: 4.02, 4.36, 3.36
 --------------------------------------------------------------------------------------------------
 Benchmark                                                        Time             CPU   Iterations
 --------------------------------------------------------------------------------------------------
-BenchRangeOrderSetInt<std::set<int>>                        356044 ns       356037 ns         1839
-BenchRangeOrderSetInt<tsl::ordered_set<int>>                 30986 ns        30986 ns        19793
-BenchRangeOrderSetInt<absl::btree_set<int>>                  67535 ns        67534 ns         9192
-BenchRangeOrderSetInt<phmap::btree_set<int>>                 79589 ns        79585 ns        10085
-BenchRangeOrderSetString<std::set<std::string>>            4045563 ns      4045573 ns          203
-BenchRangeOrderSetString<tsl::ordered_set<std::string>>     505418 ns       505401 ns         1297
-BenchRangeOrderSetString<absl::btree_set<std::string>>     1149532 ns      1149547 ns          642
-BenchRangeOrderSetString<phmap::btree_set<std::string>>    1380073 ns      1380036 ns          517
+BenchRangeOrderSetInt<std::set<int>>                        316208 ns       322693 ns         1921
+BenchRangeOrderSetInt<tsl::ordered_set<int>>                 26112 ns        26562 ns        27930
+BenchRangeOrderSetInt<tsl::vector_set<int>>                  19800 ns        20087 ns        34751
+BenchRangeOrderSetInt<absl::btree_set<int>>                  48796 ns        49333 ns        14339
+BenchRangeOrderSetInt<phmap::btree_set<int>>                 59073 ns        59650 ns         8906
+BenchRangeOrderSetString<std::set<std::string>>            5106643 ns      5141529 ns          133
+BenchRangeOrderSetString<tsl::ordered_set<std::string>>     401061 ns       403399 ns         1810
+BenchRangeOrderSetString<tsl::vector_set<std::string>>      321522 ns       322853 ns         2153
+BenchRangeOrderSetString<absl::btree_set<std::string>>      969306 ns       972261 ns          517
+BenchRangeOrderSetString<phmap::btree_set<std::string>>     995045 ns       996072 ns          750

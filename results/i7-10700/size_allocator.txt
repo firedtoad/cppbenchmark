@@ -1,7 +1,7 @@
-0x2060eb0
+0x4d6eb0
 void operator delete(void *, size_t) size 1
 static void *S::operator new[](size_t) size 18
-0x2060eb8
+0x4d6eb8
 static void S::operator delete[](void *, size_t) size 18
 10
 void operator delete(void *, size_t) size 8
@@ -13,5 +13,5 @@ void operator delete(void *, size_t) size 256
 void operator delete(void *, size_t) size 512
 void operator delete(void *, size_t) size 1024
 void operator delete(void *, size_t) size 2048
-0x2065f40 : 0x2063f00 diff 8256 sz 322
+0x4dbf40 : 0x4d9f00 diff 8256 sz 322
 void operator delete(void *, size_t) size 4096

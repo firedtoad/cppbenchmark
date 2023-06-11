@@ -1,7 +1,7 @@
 user cpu : 0s 0us
 sys cpu : 0s 0us
 max rss : 1056 kb / 1.03125 MB
-page reclaims : 278
+page reclaims : 276
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
@@ -9,7 +9,7 @@ involuntary switches : 0
 user cpu : 0s 0us
 sys cpu : 0s 0us
 max rss : 1320 kb / 1.28906 MB
-page reclaims : 336
+page reclaims : 335
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0

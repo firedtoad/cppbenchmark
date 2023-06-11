@@ -1,28 +1,28 @@
-user cpu : 0s 14716us
-sys cpu : 0s 0us
-max rss : 34040 kb / 33.2422 MB
-page reclaims : 8898
+user cpu : 0s 7023us
+sys cpu : 0s 18042us
+max rss : 34092 KB / 33.293 MB
+page reclaims : 8901
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
-user cpu : 0s 11894us
-sys cpu : 0s 3987us
-max rss : 34320 kb / 33.5156 MB
-page reclaims : 8590
+user cpu : 0s 15285us
+sys cpu : 0s 11798us
+max rss : 34320 KB / 33.5156 MB
+page reclaims : 8621
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+user cpu : 0s 11846us
+sys cpu : 0s 8116us
+max rss : 30096 KB / 29.3906 MB
+page reclaims : 7552
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
-user cpu : 0s 0us
-sys cpu : 0s 14273us
-max rss : 30096 kb / 29.3906 MB
-page reclaims : 7530
-page faults : 0
-voluntary switches : 0
-involuntary switches : 0
-
-2023-06-04T20:17:47-04:00
+2023-06-11T21:45:37+08:00
 Running ./bin/pb_reserve
 Run on (8 X 2904 MHz CPU s)
 CPU Caches:
@@ -30,35 +30,35 @@ CPU Caches:
   L1 Instruction 32 KiB (x8)
   L2 Unified 256 KiB (x8)
   L3 Unified 16384 KiB (x1)
-Load Average: 4.45, 4.41, 3.55
+Load Average: 4.44, 4.24, 3.73
 ------------------------------------------------------------------
 Benchmark                        Time             CPU   Iterations
 ------------------------------------------------------------------
-BenchAdd/1                     243 ns          243 ns      3879572
-BenchAdd/8                    1567 ns         1567 ns       368729
-BenchAdd/64                  13336 ns        13337 ns        46643
-BenchAdd/512                156252 ns       156104 ns         4189
-BenchAdd/4096              1961843 ns      1961647 ns          347
-BenchAdd/32768            22349844 ns     22326217 ns           31
-BenchAdd/65536            43908704 ns     43907776 ns           15
-BenchAddArena/1                119 ns          118 ns      4620354
-BenchAddArena/8                821 ns          821 ns       738330
-BenchAddArena/64              4453 ns         4448 ns       147693
-BenchAddArena/512            31994 ns        31994 ns        23963
-BenchAddArena/4096          741671 ns       741623 ns          848
-BenchAddArena/32768        8690958 ns      8681373 ns           98
-BenchAddArena/65536       17205185 ns     17205501 ns           40
-BenchReserve/1                 229 ns          229 ns      4109820
-BenchReserve/8                1669 ns         1669 ns       354561
-BenchReserve/64              14062 ns        14051 ns        57593
-BenchReserve/512            173552 ns       173541 ns         4149
-BenchReserve/4096          2037631 ns      2035702 ns          354
-BenchReserve/32768        23189200 ns     23187569 ns           32
-BenchReserve/65536        46180374 ns     46139564 ns           15
-BenchReserveArena/1            125 ns          125 ns      4554771
-BenchReserveArena/8            714 ns          713 ns       941285
-BenchReserveArena/64          5178 ns         5172 ns       100000
-BenchReserveArena/512        33835 ns        33836 ns        18128
-BenchReserveArena/4096      319767 ns       319523 ns         2679
-BenchReserveArena/32768    8057221 ns      8057270 ns           96
-BenchReserveArena/65536   14107437 ns     14089879 ns           43
+BenchAdd/1                     196 ns          196 ns      3561438
+BenchAdd/8                    1778 ns         1771 ns       592929
+BenchAdd/64                  13936 ns        13890 ns        39771
+BenchAdd/512                180327 ns       179660 ns         4007
+BenchAdd/4096              2347479 ns      2338266 ns          280
+BenchAdd/32768            27442700 ns     27323092 ns           21
+BenchAdd/65536            64687178 ns     64329978 ns           11
+BenchAddArena/1                153 ns          152 ns      3593227
+BenchAddArena/8               1008 ns         1003 ns       607106
+BenchAddArena/64              3903 ns         3883 ns       173894
+BenchAddArena/512            31013 ns        30820 ns        23217
+BenchAddArena/4096         1411336 ns      1403188 ns          906
+BenchAddArena/32768       12927746 ns     12831813 ns           48
+BenchAddArena/65536       24625186 ns     24477317 ns           28
+BenchReserve/1                 274 ns          273 ns      2698127
+BenchReserve/8                3117 ns         3098 ns       209275
+BenchReserve/64              20766 ns        20613 ns        32345
+BenchReserve/512            205313 ns       203990 ns         3097
+BenchReserve/4096          3522808 ns      3493973 ns          201
+BenchReserve/32768        31729398 ns     32357074 ns           25
+BenchReserve/65536        97792206 ns     98403641 ns            8
+BenchReserveArena/1            240 ns          244 ns      2491107
+BenchReserveArena/8           1239 ns         1255 ns       596072
+BenchReserveArena/64          5387 ns         5441 ns       118448
+BenchReserveArena/512        51297 ns        51773 ns        10000
+BenchReserveArena/4096      534755 ns       539169 ns         1000
+BenchReserveArena/32768   12772606 ns     12291035 ns           50
+BenchReserveArena/65536   27304998 ns     23754408 ns           24
