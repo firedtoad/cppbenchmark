@@ -13,7 +13,7 @@ import gdb.printing
 
 def counter():
     i = 0
-    while(True):
+    while (True):
         yield str(i)
         i += 1
 

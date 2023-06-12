@@ -20,11 +20,27 @@
 #include <unordered_map>
 #include <utility>
 
-const auto &AddTag(const std::string_view &strTag)
+const auto &AddTag(const std::string_view strTag)
 {
     static std::vector<std::string> vecTags;
     vecTags.clear();
     vecTags.push_back(strTag.data());
+    return strTag;
+}
+
+const auto &AddTagRef(const std::string_view &strTag)
+{
+    static std::vector<std::string> vecTags;
+    vecTags.clear();
+    vecTags.push_back(strTag.data());
+    return strTag;
+}
+
+const char* AddTag(const char* strTag)
+{
+    static std::vector<std::string> vecTags;
+    vecTags.clear();
+    vecTags.push_back(strTag);
     return strTag;
 }
 
@@ -36,9 +52,9 @@ std::string &AddTag(std::string &&strTag)
     return strTag;
 }
 
-static void BenchAddConst(benchmark::State &state)
+static void BenchAddConstVal(benchmark::State &state)
 {
-    std::string tag = "123456789012345";
+    std::string tag = "1234567890123456";
     for (auto _ : state)
     {
         auto r=AddTag(tag);
@@ -46,14 +62,26 @@ static void BenchAddConst(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchAddConst);
+BENCHMARK(BenchAddConstVal);
+
+static void BenchAddConstRef(benchmark::State &state)
+{
+    std::string tag = "1234567890123456";
+    for (auto _ : state)
+    {
+        auto r=AddTagRef(tag);
+        benchmark::DoNotOptimize(r);
+    }
+}
+
+BENCHMARK(BenchAddConstRef);
 
 static void BenchAddRaw(benchmark::State &state)
 {
-    std::string_view strTag = "123456789012345";
+    std::string_view strTag = "1234567890123456";
     for (auto _ : state)
     {
-        auto r=AddTag(strTag);
+        auto r=AddTag(strTag.data());
         benchmark::DoNotOptimize(r);
     }
 }
@@ -62,7 +90,7 @@ BENCHMARK(BenchAddRaw);
 
 static void BenchAddRValue(benchmark::State &state)
 {
-    auto f = []() { return std::string{"123456789012345"}; };
+    auto f = []() { return std::string{"1234567890123456"}; };
     for (auto _ : state)
     {
         benchmark::DoNotOptimize(AddTag(f()));

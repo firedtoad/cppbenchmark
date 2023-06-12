@@ -589,12 +589,7 @@ namespace
 #ifdef PHMAP_HAVE_EXCEPTIONS
 #define PHMAP_THROW_IMPL(e) throw e
 #else
-#define PHMAP_THROW_IMPL(e)                                                                                                                          \
-    do                                                                                                                                               \
-    {                                                                                                                                                \
-        (void)(e);                                                                                                                                   \
-        std::abort();                                                                                                                                \
-    } while (0)
+#define PHMAP_THROW_IMPL(...) std::abort()
 #endif
 } // namespace
 
@@ -4866,27 +4861,27 @@ template <> class LockableImpl<phmap::NullMutex> : public phmap::NullMutex
 
 struct AbslMutex : protected absl::Mutex
 {
-    void lock()
+    void lock() ABSL_EXCLUSIVE_LOCK_FUNCTION()
     {
         this->Lock();
     }
-    void unlock()
+    void unlock() ABSL_UNLOCK_FUNCTION()
     {
         this->Unlock();
     }
-    void try_lock()
+    void try_lock() ABSL_EXCLUSIVE_TRYLOCK_FUNCTION(true)
     {
         this->TryLock();
     }
-    void lock_shared()
+    void lock_shared() ABSL_SHARED_LOCK_FUNCTION()
     {
         this->ReaderLock();
     }
-    void unlock_shared()
+    void unlock_shared() ABSL_UNLOCK_FUNCTION()
     {
         this->ReaderUnlock();
     }
-    void try_lock_shared()
+    void try_lock_shared() ABSL_SHARED_TRYLOCK_FUNCTION(true)
     {
         this->ReaderTryLock();
     }
@@ -4912,7 +4907,6 @@ template <> class LockableImpl<absl::Mutex> : public AbslMutex
 // --------------------------------------------------------------------------
 #ifdef BOOST_THREAD_SHARED_MUTEX_HPP
 
-#if 1
 // ---------------------------------------------------------------------------
 template <> class LockableImpl<boost::shared_mutex> : public boost::shared_mutex
 {
@@ -4926,20 +4920,6 @@ template <> class LockableImpl<boost::shared_mutex> : public boost::shared_mutex
     using UniqueLocks     = typename Base::WriteLocks;
     using UpgradeToUnique = typename Base::DoNothing; // we already have unique ownership
 };
-#else
-// ---------------------------------------------------------------------------
-template <> class LockableImpl<boost::upgrade_mutex> : public boost::upgrade_mutex
-{
-  public:
-    using mutex_type      = boost::upgrade_mutex;
-    using SharedLock      = boost::shared_lock<mutex_type>;
-    using UpgradeLock     = boost::upgrade_lock<mutex_type>;
-    using UniqueLock      = boost::unique_lock<mutex_type>;
-    using SharedLocks     = typename Base::ReadLocks;
-    using UniqueLocks     = typename Base::WriteLocks;
-    using UpgradeToUnique = boost::upgrade_to_unique_lock<mutex_type>;
-};
-#endif
 
 #endif // BOOST_THREAD_SHARED_MUTEX_HPP
 
