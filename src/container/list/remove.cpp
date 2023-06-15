@@ -73,12 +73,14 @@ static void BenchListRemove(benchmark::State &state)
 }
 
 BENCHMARK(BenchListRemove)->Range(1, 65536);
+
 static void BenchForwardListRemove(benchmark::State &state)
 {
     for (auto _ : state)
     {
         state.PauseTiming();
         std::forward_list<SList> v;
+        auto sz = state.range(0);
         for (auto i = 0; i < state.range(0); i++)
         {
             v.push_front({});
@@ -87,7 +89,16 @@ static void BenchForwardListRemove(benchmark::State &state)
         while (!v.empty())
         {
             benchmark::DoNotOptimize(v.front());
-            v.pop_front();
+            auto idx      = sz > 1 ? _random() % --sz : 0;
+            const auto it = std::next(v.begin(), idx);
+            if (idx == 0)
+            {
+                v.erase_after(v.before_begin());
+            }
+            else
+            {
+                v.erase_after(it);
+            }
         }
     }
 }

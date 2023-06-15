@@ -102,6 +102,7 @@ template <typename V> static void BenchInsert(benchmark::State &state)
 BENCHMARK_TEMPLATE(BenchInsert, std::map<std::string, uint32_t>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchInsert, phmap::btree_map<std::string, uint32_t>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchInsert, std::unordered_map<std::string, uint32_t>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchInsert, phmap::node_hash_map<std::string, uint32_t>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchInsert, phmap::flat_hash_map<std::string, uint32_t>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchInsert, tsl::sparse_map<std::string, uint32_t>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchInsert, tsl::ordered_map<std::string, uint32_t>)->Range(1, 1 << 16);
@@ -132,8 +133,10 @@ template <typename V> static void BenchFind(benchmark::State &state)
 // BENCHMARK_TEMPLATE(BenchFind, folly::sorted_vector_map<std::string, Pod>)->Range(1, 1 << 16);
 // BENCHMARK_TEMPLATE(BenchFind, folly::heap_vector_map<std::string, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchFind, std::map<std::string, Pod>)->Range(1, 1 << 16);
-BENCHMARK_TEMPLATE(BenchFind, phmap::flat_hash_map<std::string, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchFind, phmap::btree_map<std::string, Pod>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchFind, std::unordered_map<std::string, Pod>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchFind, phmap::flat_hash_map<std::string, Pod>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchFind, phmap::node_hash_map<std::string, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchFind, tsl::sparse_map<std::string, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchFind, tsl::ordered_map<std::string, Pod>)->Range(1, 1 << 16);
 // BENCHMARK_TEMPLATE(BenchFind, boost::container::flat_map<std::string, Pod>)->Range(1, 1 << 16);
@@ -165,8 +168,10 @@ template <typename V> static void BenchRange(benchmark::State &state)
 // BENCHMARK_TEMPLATE(BenchRange, folly::sorted_vector_map<std::string, Pod>)->Range(1, 1 << 16);
 // BENCHMARK_TEMPLATE(BenchRange, folly::heap_vector_map<std::string, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchRange, std::map<std::string, Pod>)->Range(1, 1 << 16);
-BENCHMARK_TEMPLATE(BenchRange, phmap::flat_hash_map<std::string, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchRange, phmap::btree_map<std::string, Pod>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchRange, std::unordered_map<std::string, Pod>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchRange, phmap::node_hash_map<std::string, Pod>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchRange, phmap::flat_hash_map<std::string, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchRange, tsl::sparse_map<std::string, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchRange, tsl::ordered_map<std::string, Pod>)->Range(1, 1 << 16);
 // BENCHMARK_TEMPLATE(BenchRange, boost::container::flat_map<std::string, Pod>)->Range(1, 1 << 16);
@@ -196,8 +201,10 @@ template <typename V> static void BenchErase(benchmark::State &state)
 // BENCHMARK_TEMPLATE(BenchErase, folly::sorted_vector_map<std::string, Pod>)->Range(1, 1 << 16);
 // BENCHMARK_TEMPLATE(BenchErase, folly::heap_vector_map<std::string, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchErase, std::map<std::string, Pod>)->Range(1, 1 << 16);
-BENCHMARK_TEMPLATE(BenchErase, phmap::flat_hash_map<std::string, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchErase, phmap::btree_map<std::string, Pod>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchErase, std::unordered_map<std::string, Pod>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchErase, phmap::node_hash_map<std::string, Pod>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchErase, phmap::flat_hash_map<std::string, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchErase, tsl::sparse_map<std::string, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchErase, tsl::ordered_map<std::string, Pod>)->Range(1, 1 << 16);
 // BENCHMARK_TEMPLATE(BenchErase, boost::container::flat_map<std::string, Pod>)->Range(1, 1 << 16);
@@ -230,8 +237,14 @@ int main(int argc, char **argv)
     //    BM_MemoryStringMap<folly::sorted_vector_map<std::string, uint64_t>, 1 << 20>();
     RSSMemoryStringMap<std::map<std::string, uint64_t>, 1 << 20, false>();
     RSSMemoryStringMapNoSSO<std::map<std::string, uint64_t>, 1 << 20, false>();
+    RSSMemoryStringMap<phmap::btree_map<std::string, uint64_t>, 1 << 20, false>();
+    RSSMemoryStringMapNoSSO<phmap::btree_map<std::string, uint64_t>, 1 << 20, false>();
     RSSMemoryStringMap<std::unordered_map<std::string, uint64_t>, 1 << 20>();
     RSSMemoryStringMapNoSSO<std::unordered_map<std::string, uint64_t>, 1 << 20>();
+    RSSMemoryStringMap<phmap::node_hash_map<std::string, uint64_t>, 1 << 20>();
+    RSSMemoryStringMapNoSSO<phmap::node_hash_map<std::string, uint64_t>, 1 << 20>();
+    RSSMemoryStringMap<phmap::flat_hash_map<std::string, uint64_t>, 1 << 20>();
+    RSSMemoryStringMapNoSSO<phmap::flat_hash_map<std::string, uint64_t>, 1 << 20>();
     RSSMemoryStringMap<tsl::sparse_map<std::string, uint64_t>, 1 << 20, false>();
     RSSMemoryStringMapNoSSO<tsl::sparse_map<std::string, uint64_t>, 1 << 20, false>();
     RSSMemoryStringMap<tsl::sparse_map<std::string, uint64_t>, 1 << 20>();

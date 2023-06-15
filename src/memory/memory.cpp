@@ -138,13 +138,7 @@ int main(int argc, char **argv)
 
     PrintSize(CC{});
 
-    {
-        AllocReport report{"std::vector<uint32_t>"};
-//        printf("hello world");
-//        std::list<uint32_t> v(1024*1024);
 
-//        v.resize(1024*1024);
-    }
     memAlloc = 0;
     alloc    = 0;
     {

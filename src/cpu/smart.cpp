@@ -14,6 +14,7 @@
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
 #include <benchmark/benchmark.h>
+#include <deque>
 #include <memory>
 #include <unordered_map>
 static void BenchPtr(benchmark::State &state)
@@ -29,7 +30,7 @@ static void BenchPtr(benchmark::State &state)
 }
 BENCHMARK(BenchPtr);
 
-static void BenchUMapShared(benchmark::State &state)
+static void BenchShared(benchmark::State &state)
 {
 
     auto p = std::make_shared<int>();
@@ -42,7 +43,7 @@ static void BenchUMapShared(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchUMapShared);
+BENCHMARK(BenchShared);
 
 void passVal(std::shared_ptr<int> p) { benchmark::DoNotOptimize(p); }
 void passRef(std::shared_ptr<int> &r) { benchmark::DoNotOptimize(r); }

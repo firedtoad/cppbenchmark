@@ -126,6 +126,34 @@ template <typename C, size_t N, bool reserve = true> void LogicMemoryLinear()
     }
 }
 
+template <typename C, size_t N, bool reserve = false> void LogicMemoryForward()
+{
+    AllocReport report{demangle(typeid(C).name())};
+    C c;
+    using value_type = typename C::value_type;
+    if constexpr (reserve)
+    {
+        c.reserve(N);
+    }
+    for (size_t i = 0; i < N; i++)
+    {
+        if constexpr (is_unique_ptr<value_type>::value)
+        {
+            using T = typename value_type::element_type;
+            c.push_front(std::make_unique<T>());
+        }
+        else if constexpr (is_shared_ptr<value_type>::value)
+        {
+            using T = typename value_type::element_type;
+            c.push_front(std::make_shared<T>());
+        }
+        else
+        {
+            c.push_front({});
+        }
+    }
+}
+
 template <typename C, size_t N, bool reserve = true> void LogicMemoryMapInt()
 {
     AllocReport report{demangle(typeid(C).name())};

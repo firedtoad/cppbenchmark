@@ -88,9 +88,10 @@ BENCHMARK_TEMPLATE(BenchInsert, sorted_vector_map<uint32_t, uint32_t>)->Range(1,
 BENCHMARK_TEMPLATE(BenchInsert, folly::sorted_vector_map<uint32_t, uint32_t>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchInsert, folly::heap_vector_map<uint32_t, uint32_t>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchInsert, std::map<uint32_t, uint32_t>)->Range(1, 1 << 16);
-BENCHMARK_TEMPLATE(BenchInsert, phmap::flat_hash_map<uint32_t, uint32_t>)->Range(1, 1 << 16);
-BENCHMARK_TEMPLATE(BenchInsert, std::unordered_map<uint32_t, uint32_t>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchInsert, phmap::btree_map<uint32_t, uint32_t>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchInsert, std::unordered_map<uint32_t, uint32_t>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchInsert, phmap::node_hash_map<uint32_t, uint32_t>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchInsert, phmap::flat_hash_map<uint32_t, uint32_t>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchInsert, tsl::sparse_map<uint32_t, uint32_t>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchInsert, tsl::ordered_map<uint32_t, uint32_t>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchInsert, tsl::vector_map<uint32_t, uint32_t>)->Range(1, 1 << 16);
@@ -119,6 +120,7 @@ BENCHMARK_TEMPLATE(BenchFind, folly::heap_vector_map<uint64_t, Pod>)->Range(1, 1
 BENCHMARK_TEMPLATE(BenchFind, std::map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchFind, phmap::btree_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchFind, std::unordered_map<uint64_t, Pod>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchFind, phmap::node_hash_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchFind, phmap::flat_hash_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchFind, tsl::sparse_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchFind, tsl::ordered_map<uint64_t, Pod>)->Range(1, 1 << 16);
@@ -152,6 +154,7 @@ BENCHMARK_TEMPLATE(BenchRange, folly::heap_vector_map<uint64_t, Pod>)->Range(1, 
 BENCHMARK_TEMPLATE(BenchRange, std::map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchRange, phmap::btree_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchRange, std::unordered_map<uint64_t, Pod>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchRange, phmap::node_hash_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchRange, phmap::flat_hash_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchRange, tsl::sparse_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchRange, tsl::ordered_map<uint64_t, Pod>)->Range(1, 1 << 16);
@@ -179,34 +182,69 @@ template <typename V> static void BenchErase(benchmark::State &state)
     }
 }
 
+template <typename V> static void BenchEraseUnOrder(benchmark::State &state)
+{
+    V v;
+    for (auto i = 0; i < state.range(0); i++)
+    {
+        auto r = _random() % 65536;
+        v[r]   = r;
+    }
+    for (auto _ : state)
+    {
+        auto r  = _random() % 65536;
+        auto it = v.unordered_erase(r);
+        if (it > 0)
+        {
+            v[r] = r;
+        }
+    }
+}
+
 BENCHMARK_TEMPLATE(BenchErase, sorted_vector_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchErase, folly::sorted_vector_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchErase, folly::heap_vector_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchErase, std::map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchErase, phmap::btree_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchErase, std::unordered_map<uint64_t, Pod>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchErase, phmap::node_hash_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchErase, phmap::flat_hash_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchErase, tsl::sparse_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchErase, tsl::ordered_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchErase, tsl::vector_map<uint64_t, Pod>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchEraseUnOrder, tsl::ordered_map<uint64_t, Pod>)->Range(1, 1 << 16);
+BENCHMARK_TEMPLATE(BenchEraseUnOrder, tsl::vector_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchErase, boost::container::flat_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchErase, eastl::vector_map<uint64_t, Pod>)->Range(1, 1 << 16);
 BENCHMARK_TEMPLATE(BenchErase, folly::F14FastMap<uint64_t, Pod>)->Range(1, 1 << 16);
 
 struct Data
 {
-    int x;
+//    int x;
+    uint64_t d[4];
 };
 
 int main(int argc, char **argv)
 {
+    {
+        static rusage rusage;
+        FillRSS(rusage);
+        tsl::vector_map<uint64_t, uint64_t> m;
+        std::cout << demangle(typeid(m).name()) << " memory " << '\n';
+        for (size_t i = 0; i < 1 << 10; i++)
+        {
+            m[i] = {};
+        }
+        PrintUsage(rusage);
+    }
     std::cout << std::is_trivially_copyable_v<std::pair<uint64_t, Pod>> << '\n';
     RSSMemoryMap<sorted_vector_map<uint64_t, uint64_t>, 1 << 20>();
     RSSMemoryMap<folly::sorted_vector_map<uint64_t, uint64_t>, 1 << 20>();
     RSSMemoryMap<std::map<uint64_t, uint64_t>, 1 << 20, false>();
-    RSSMemoryMap<phmap::flat_hash_map<uint64_t, uint64_t>, 1 << 20>();
     RSSMemoryMap<phmap::btree_map<uint64_t, uint64_t>, 1 << 20, false>();
     RSSMemoryMap<std::unordered_map<uint64_t, uint64_t>, 1 << 20>();
+    RSSMemoryMap<phmap::node_hash_map<uint64_t, uint64_t>, 1 << 20>();
+    RSSMemoryMap<phmap::flat_hash_map<uint64_t, uint64_t>, 1 << 20>();
     RSSMemoryMap<tsl::sparse_map<uint64_t, uint64_t>, 1 << 20>();
     RSSMemoryMap<tsl::ordered_map<uint64_t, uint64_t>, 1 << 20>();
     RSSMemoryMap<tsl::vector_map<uint64_t, uint64_t>, 1 << 20>();

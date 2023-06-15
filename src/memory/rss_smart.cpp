@@ -15,6 +15,7 @@
 
 #include "utils/memory.h"
 #include <deque>
+#include <forward_list>
 #include <iostream>
 #include <list>
 #include <map>
@@ -90,6 +91,13 @@ int main(int argc, char *argv[])
     RSSMemoryLinear<std::list<Big>, SIZE,false>();
     RSSMemoryLinear<std::list<std::shared_ptr<Big>>, SIZE,false>();
     RSSMemoryLinear<std::list<std::unique_ptr<Big>>, SIZE,false>();
+
+    RSSMemoryForward<std::forward_list<Small>, SIZE,false>();
+    RSSMemoryForward<std::forward_list<std::shared_ptr<Small>>, SIZE,false>();
+    RSSMemoryForward<std::forward_list<std::unique_ptr<Small>>, SIZE,false>();
+    RSSMemoryForward<std::forward_list<Big>, SIZE,false>();
+    RSSMemoryForward<std::forward_list<std::shared_ptr<Big>>, SIZE,false>();
+    RSSMemoryForward<std::forward_list<std::unique_ptr<Big>>, SIZE,false>();
 
     RSSMemoryLinear<std::deque<Small>, SIZE,false>();
     RSSMemoryLinear<std::deque<std::shared_ptr<Small>>, SIZE,false>();

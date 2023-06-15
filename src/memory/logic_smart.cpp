@@ -15,6 +15,7 @@
 
 #include "utils/logic.h"
 #include <deque>
+#include <forward_list>
 #include <iostream>
 #include <list>
 #include <map>
@@ -89,6 +90,13 @@ int main(int argc, char *argv[])
     LogicMemoryLinear<std::list<Big>, SIZE, false>();
     LogicMemoryLinear<std::list<std::shared_ptr<Big>>, SIZE, false>();
     LogicMemoryLinear<std::list<std::unique_ptr<Big>>, SIZE, false>();
+
+    LogicMemoryForward<std::forward_list<Small>, SIZE, false>();
+    LogicMemoryForward<std::forward_list<std::shared_ptr<Small>>, SIZE, false>();
+    LogicMemoryForward<std::forward_list<std::unique_ptr<Small>>, SIZE, false>();
+    LogicMemoryForward<std::forward_list<Big>, SIZE, false>();
+    LogicMemoryForward<std::forward_list<std::shared_ptr<Big>>, SIZE, false>();
+    LogicMemoryForward<std::forward_list<std::unique_ptr<Big>>, SIZE, false>();
 
     LogicMemoryLinear<std::deque<Small>, SIZE, false>();
     LogicMemoryLinear<std::deque<std::shared_ptr<Small>>, SIZE, false>();

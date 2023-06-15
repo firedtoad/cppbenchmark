@@ -130,6 +130,26 @@ int main(int argc, char **argv)
     RSSMemoryStringSet<tsl::ordered_set<std::string>, 1 << 20>();
     RSSMemoryStringSet<tsl::vector_set<std::string>, 1 << 20>();
 
+
+    RSSMemoryIntSet<std::set<uint64_t>, 1 << 20, false>();
+    RSSMemoryIntSet<phmap::btree_set<uint64_t>, 1 << 20, false>();
+    RSSMemoryIntSet<std::unordered_set<uint64_t>, 1 << 20, false>();
+    RSSMemoryIntSet<phmap::node_hash_set<uint64_t>, 1 << 20>();
+    RSSMemoryIntSet<phmap::flat_hash_set<uint64_t>, 1 << 20>();
+    RSSMemoryIntSet<tsl::sparse_set<uint64_t>, 1 << 20>();
+    RSSMemoryIntSet<tsl::ordered_set<uint64_t>, 1 << 20>();
+    RSSMemoryIntSet<tsl::vector_set<uint64_t>, 1 << 20>();
+
+    RSSMemoryStringSet<std::set<std::string>, 1 << 20, false>();
+    RSSMemoryStringSet<phmap::btree_set<std::string>, 1 << 20, false>();
+    RSSMemoryStringSet<std::unordered_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<phmap::node_hash_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<phmap::flat_hash_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<tsl::sparse_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<tsl::ordered_set<std::string>, 1 << 20>();
+    RSSMemoryStringSet<tsl::vector_set<std::string>, 1 << 20>();
+
+
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

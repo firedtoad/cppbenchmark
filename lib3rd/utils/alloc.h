@@ -31,9 +31,15 @@ static size_t memalign_count = 0;
 static size_t valloc_count   = 0;
 static size_t pvalloc_count  = 0;
 
-static bool size_alloc = false;
+static bool size_alloc     = false;
+static bool report_started = false;
 
-static std::unordered_map<void *, uint32_t> ptr_size;
+std::unordered_map<void *, uint32_t>& GetSizeMap()
+{
+    static std::unordered_map<void *, uint32_t> ptr_size;
+    return ptr_size;
+}
+
 struct AllocReport
 {
     AllocReport()
@@ -71,7 +77,7 @@ struct AllocReport
         std::cout << "pvalloc_count  : " << pvalloc_count << '\n';
         std::cout << '\n';
         size_alloc = true;
-        ptr_size   = {};
+        GetSizeMap()   = {};
     }
     std::string message_;
 };
@@ -82,7 +88,7 @@ namespace std
 void cache_size(size_t __size, void *p)
 {
     size_alloc  = true;
-    ptr_size[p] = __size;
+    GetSizeMap()[p] = __size;
     size_alloc  = false;
 }
 
@@ -121,8 +127,8 @@ void *hook_realloc(void *__ptr, size_t __size)
     {
         return p;
     }
-    total_alloc += __size - ptr_size[__ptr];
-    current_used += __size - ptr_size[__ptr];
+    total_alloc += __size - GetSizeMap()[__ptr];
+    current_used += __size - GetSizeMap()[__ptr];
     realloc_count++;
     cache_size(__size, p);
     return p;
@@ -135,8 +141,8 @@ void *hook_reallocarray(void *__ptr, size_t __nmemb, size_t __size)
     {
         return p;
     }
-    current_used += (__nmemb * __size) - ptr_size[__ptr];
-    total_alloc += (__nmemb * __size) - ptr_size[__ptr];
+    current_used += (__nmemb * __size) - GetSizeMap()[__ptr];
+    total_alloc += (__nmemb * __size) - GetSizeMap()[__ptr];
     cache_size(__size * __nmemb, p);
     return p;
 }
@@ -148,8 +154,8 @@ void hook_free(void *__ptr)
     {
         return;
     }
-    total_freed += ptr_size[__ptr];
-    current_used -= ptr_size[__ptr];
+    total_freed += GetSizeMap()[__ptr];
+    current_used -= GetSizeMap()[__ptr];
     free_count++;
 }
 
@@ -180,7 +186,6 @@ void *hook_valloc(size_t __size)
     return p;
 }
 
-void cache_size(size_t __size, const void *p);
 void *hook_pvalloc(size_t __size)
 {
     auto p = pvalloc(__size);
