@@ -1,61 +1,61 @@
-2023-06-01T20:30:03+08:00
+2023-06-16T17:37:33+08:00
 Running ./bin/list_splice
-Run on (16 X 3417.6 MHz CPU s)
+Run on (16 X 3417.59 MHz CPU s)
 CPU Caches:
   L1 Data 48 KiB (x16)
   L1 Instruction 32 KiB (x16)
   L2 Unified 2048 KiB (x16)
   L3 Unified 30720 KiB (x1)
-Load Average: 16.34, 14.67, 13.08
+Load Average: 4.00, 3.32, 2.03
 -------------------------------------------------------------------------
 Benchmark                               Time             CPU   Iterations
 -------------------------------------------------------------------------
-BenchListSplice/1                    1.93 ns         1.93 ns    326353971
-BenchListSplice/8                    1.89 ns         1.89 ns    305881557
-BenchListSplice/64                   2.06 ns         2.06 ns    368332368
-BenchListSplice/512                  1.97 ns         1.97 ns    377565117
-BenchListSplice/4096                 1.91 ns         1.91 ns    358174531
-BenchListSplice/32768                1.95 ns         1.95 ns    339041285
-BenchListSplice/65536                2.11 ns         2.11 ns    349377078
-BenchListSwap/1                      3.10 ns         3.10 ns    259303499
-BenchListSwap/8                      3.22 ns         3.22 ns    223345017
-BenchListSwap/64                     3.15 ns         3.15 ns    202944268
-BenchListSwap/512                    3.21 ns         3.21 ns    207892276
-BenchListSwap/4096                   3.26 ns         3.26 ns    200539033
-BenchListSwap/32768                  3.01 ns         3.01 ns    207920061
-BenchListSwap/65536                  3.01 ns         3.01 ns    224471321
-BenchDequeSwap/1                     5.02 ns         5.02 ns    100000000
-BenchDequeSwap/8                     4.90 ns         4.90 ns    148380396
-BenchDequeSwap/64                    5.30 ns         5.22 ns    100000000
-BenchDequeSwap/512                   4.87 ns         4.87 ns    133221351
-BenchDequeSwap/4096                  5.37 ns         5.37 ns    143625675
-BenchDequeSwap/32768                 5.20 ns         5.20 ns    149163244
-BenchDequeSwap/65536                 5.02 ns         5.02 ns    130775091
-BenchIntrusiveListSplice/1           1.22 ns         1.22 ns    676368732
-BenchIntrusiveListSplice/8           1.77 ns         1.77 ns    475875405
-BenchIntrusiveListSplice/64          37.0 ns         37.0 ns     19114850
-BenchIntrusiveListSplice/512          290 ns          290 ns      2443336
-BenchIntrusiveListSplice/4096        2451 ns         2450 ns       315523
-BenchIntrusiveListSplice/32768      19777 ns        19774 ns        37722
-BenchIntrusiveListSplice/65536      39014 ns        39003 ns        17436
-BenchIntrusiveListSwap/1             7.21 ns         7.21 ns    106143683
-BenchIntrusiveListSwap/8             9.88 ns         9.88 ns     71034276
-BenchIntrusiveListSwap/64            43.0 ns         43.0 ns     16720506
-BenchIntrusiveListSwap/512            290 ns          290 ns      2428029
-BenchIntrusiveListSwap/4096          2339 ns         2339 ns       307267
-BenchIntrusiveListSwap/32768        19255 ns        19250 ns        35753
-BenchIntrusiveListSwap/65536        39911 ns        39906 ns        17680
-BenchPlfListSplice/1                 5.47 ns         5.47 ns    100000000
-BenchPlfListSplice/8                 5.50 ns         5.50 ns    116138361
-BenchPlfListSplice/64                5.30 ns         5.30 ns    100000000
-BenchPlfListSplice/512               5.54 ns         5.54 ns    142810848
-BenchPlfListSplice/4096              5.10 ns         5.10 ns    113263702
-BenchPlfListSplice/32768             5.21 ns         5.21 ns    136719896
-BenchPlfListSplice/65536             5.42 ns         5.42 ns    129096790
-BenchPlfListSwap/1                   12.7 ns         12.7 ns     52917041
-BenchPlfListSwap/8                   13.1 ns         13.1 ns     55773446
-BenchPlfListSwap/64                  11.8 ns         11.8 ns     50560060
-BenchPlfListSwap/512                 11.9 ns         11.9 ns     49684657
-BenchPlfListSwap/4096                12.5 ns         12.5 ns     48379140
-BenchPlfListSwap/32768               11.5 ns         11.5 ns     59634619
-BenchPlfListSwap/65536               12.9 ns         12.9 ns     51186099
+BenchListSplice/1                    1.57 ns         1.57 ns    449842497
+BenchListSplice/8                    1.55 ns         1.55 ns    442243861
+BenchListSplice/64                   1.54 ns         1.54 ns    456283040
+BenchListSplice/512                  1.55 ns         1.55 ns    456330724
+BenchListSplice/4096                 1.53 ns         1.53 ns    457206817
+BenchListSplice/32768                1.54 ns         1.54 ns    458916241
+BenchListSplice/65536                1.55 ns         1.55 ns    453671351
+BenchListSwap/1                      2.58 ns         2.58 ns    273582145
+BenchListSwap/8                      2.58 ns         2.58 ns    271229609
+BenchListSwap/64                     2.56 ns         2.56 ns    272809456
+BenchListSwap/512                    2.59 ns         2.59 ns    269211089
+BenchListSwap/4096                   2.63 ns         2.63 ns    262096681
+BenchListSwap/32768                  2.63 ns         2.63 ns    266608729
+BenchListSwap/65536                  2.61 ns         2.61 ns    263641275
+BenchDequeSwap/1                     4.11 ns         4.11 ns    171554165
+BenchDequeSwap/8                     4.18 ns         4.18 ns    169674900
+BenchDequeSwap/64                    4.11 ns         4.11 ns    172683613
+BenchDequeSwap/512                   4.16 ns         4.16 ns    170645051
+BenchDequeSwap/4096                  4.05 ns         4.05 ns    169584175
+BenchDequeSwap/32768                 4.05 ns         4.05 ns    172176136
+BenchDequeSwap/65536                 4.17 ns         4.17 ns    167056480
+BenchIntrusiveListSplice/1          0.866 ns        0.866 ns    811105264
+BenchIntrusiveListSplice/8           1.22 ns         1.22 ns    551874400
+BenchIntrusiveListSplice/64          32.3 ns         32.3 ns     20362986
+BenchIntrusiveListSplice/512          255 ns          255 ns      2802558
+BenchIntrusiveListSplice/4096        2162 ns         2162 ns       317326
+BenchIntrusiveListSplice/32768      19229 ns        19228 ns        37451
+BenchIntrusiveListSplice/65536      40004 ns        40004 ns        20403
+BenchIntrusiveListSwap/1             5.96 ns         5.96 ns    117681449
+BenchIntrusiveListSwap/8             8.72 ns         8.72 ns     80658679
+BenchIntrusiveListSwap/64            36.6 ns         36.6 ns     19133202
+BenchIntrusiveListSwap/512            252 ns          252 ns      2788367
+BenchIntrusiveListSwap/4096          2087 ns         2087 ns       295792
+BenchIntrusiveListSwap/32768        17816 ns        17816 ns        41711
+BenchIntrusiveListSwap/65536        36640 ns        36639 ns        19224
+BenchPlfListSplice/1                 4.50 ns         4.50 ns    155613733
+BenchPlfListSplice/8                 4.70 ns         4.70 ns    148842180
+BenchPlfListSplice/64                4.68 ns         4.68 ns    149901141
+BenchPlfListSplice/512               4.67 ns         4.67 ns    150181649
+BenchPlfListSplice/4096              4.73 ns         4.73 ns    149038734
+BenchPlfListSplice/32768             4.72 ns         4.72 ns    148380042
+BenchPlfListSplice/65536             4.68 ns         4.68 ns    148782583
+BenchPlfListSwap/1                   10.2 ns         10.2 ns     68160317
+BenchPlfListSwap/8                   10.4 ns         10.4 ns     66587792
+BenchPlfListSwap/64                  10.4 ns         10.4 ns     67050703
+BenchPlfListSwap/512                 10.5 ns         10.5 ns     67258866
+BenchPlfListSwap/4096                10.4 ns         10.4 ns     67621590
+BenchPlfListSwap/32768               10.4 ns         10.4 ns     66644435
+BenchPlfListSwap/65536               10.4 ns         10.4 ns     66799169

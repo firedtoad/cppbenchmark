@@ -1,19 +1,19 @@
-2023-06-01T20:27:24+08:00
+2023-06-16T17:31:32+08:00
 Running ./bin/reorder
-Run on (16 X 3417.6 MHz CPU s)
+Run on (16 X 3417.59 MHz CPU s)
 CPU Caches:
   L1 Data 48 KiB (x16)
   L1 Instruction 32 KiB (x16)
   L2 Unified 2048 KiB (x16)
   L3 Unified 30720 KiB (x1)
-Load Average: 13.58, 12.58, 12.19
+Load Average: 1.81, 1.38, 0.98
 -------------------------------------------------------------------------------------------------
 Benchmark                                                       Time             CPU   Iterations
 -------------------------------------------------------------------------------------------------
-BM_Reorder/1048576                                        7603599 ns      7603444 ns           73
-BM_NoReorder<Order<std::memory_order_relaxed>>/1048576    7893322 ns      7887318 ns          105
-BM_NoReorder<Order<std::memory_order_consume>>/1048576    8567934 ns      8546418 ns           83
-BM_NoReorder<Order<std::memory_order_acquire>>/1048576    8165978 ns      8165949 ns           87
-BM_NoReorder<Order<std::memory_order_release>>/1048576    7229974 ns      7229913 ns          104
-BM_NoReorder<Order<std::memory_order_acq_rel>>/1048576    8534115 ns      8534037 ns           85
-BM_NoReorder<Order<std::memory_order_seq_cst>>/1048576   22469466 ns     22309806 ns           32
+BM_Reorder/1048576                                        6578148 ns      6577276 ns          117
+BM_NoReorder<Order<std::memory_order_relaxed>>/1048576    5909930 ns      5909895 ns          118
+BM_NoReorder<Order<std::memory_order_consume>>/1048576    6952675 ns      6952521 ns          101
+BM_NoReorder<Order<std::memory_order_acquire>>/1048576    7193057 ns      7192912 ns          101
+BM_NoReorder<Order<std::memory_order_release>>/1048576    6805346 ns      6805225 ns          118
+BM_NoReorder<Order<std::memory_order_acq_rel>>/1048576    6892997 ns      6892833 ns           91
+BM_NoReorder<Order<std::memory_order_seq_cst>>/1048576   16635203 ns     16635008 ns           42

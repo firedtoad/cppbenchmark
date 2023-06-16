@@ -1,52 +1,52 @@
-2023-06-01T20:31:39+08:00
+2023-06-16T17:41:22+08:00
 Running ./bin/mpmc
-Run on (16 X 3417.6 MHz CPU s)
+Run on (16 X 3417.59 MHz CPU s)
 CPU Caches:
   L1 Data 48 KiB (x16)
   L1 Instruction 32 KiB (x16)
   L2 Unified 2048 KiB (x16)
   L3 Unified 30720 KiB (x1)
-Load Average: 16.92, 15.38, 13.50
+Load Average: 4.01, 3.71, 2.48
 ---------------------------------------------------------------
 Benchmark                     Time             CPU   Iterations
 ---------------------------------------------------------------
-Boost_Mpmc/threads:1       36.8 ns         36.8 ns     19099995
-Boost_Mpmc/threads:2        114 ns          227 ns      2214428
-Boost_Mpmc/threads:3        158 ns          462 ns      3000000
-Boost_Mpmc/threads:4        170 ns          681 ns      1074976
-Boost_Mpmc/threads:5        183 ns          908 ns      2436820
-Boost_Mpmc/threads:6        165 ns          910 ns       756390
-Boost_Mpmc/threads:7        197 ns         1371 ns       626850
-Boost_Mpmc/threads:8        188 ns         1339 ns       823600
-MPMCQueue/threads:1        24.4 ns         24.4 ns     28527963
-MPMCQueue/threads:2         112 ns          224 ns     20000000
-MPMCQueue/threads:3         166 ns          496 ns      1550307
-MPMCQueue/threads:4         185 ns          739 ns       801704
-MPMCQueue/threads:5         228 ns         1136 ns       500000
-MPMCQueue/threads:6         486 ns         2553 ns       600000
-MPMCQueue/threads:7         312 ns         2019 ns       963459
-MPMCQueue/threads:8         388 ns         3038 ns       971024
-CCQueue/threads:1          28.0 ns         28.0 ns     25411515
-CCQueue/threads:2          46.9 ns         93.8 ns      8606262
-CCQueue/threads:3          55.4 ns          166 ns      4165650
-CCQueue/threads:4          71.7 ns          285 ns      4371196
-CCQueue/threads:5          73.1 ns          365 ns      2234845
-CCQueue/threads:6          62.0 ns          311 ns      1999788
-CCQueue/threads:7          58.2 ns          397 ns      3158540
-CCQueue/threads:8          63.3 ns          474 ns      1950904
-VYQueue/threads:1          11.0 ns         11.0 ns     67229710
-VYQueue/threads:2          51.3 ns          103 ns     15238622
-VYQueue/threads:3          87.1 ns          261 ns      2277363
-VYQueue/threads:4           113 ns          451 ns      1827024
-VYQueue/threads:5           125 ns          615 ns      2496210
-VYQueue/threads:6           110 ns          647 ns       925788
-VYQueue/threads:7           108 ns          736 ns       700000
-VYQueue/threads:8           115 ns          876 ns       800000
-TBBQueue/threads:1         44.6 ns         44.6 ns     15362312
-TBBQueue/threads:2          145 ns          290 ns      3447780
-TBBQueue/threads:3          147 ns          442 ns      1844739
-TBBQueue/threads:4          129 ns          517 ns      1221852
-TBBQueue/threads:5          153 ns          759 ns       837405
-TBBQueue/threads:6          314 ns         1827 ns       351696
-TBBQueue/threads:7          221 ns         1542 ns       700000
-TBBQueue/threads:8          414 ns         2841 ns       911152
+Boost_Mpmc/threads:1       30.0 ns         30.0 ns     23385547
+Boost_Mpmc/threads:2        140 ns          280 ns      2698088
+Boost_Mpmc/threads:3        150 ns          450 ns      1599156
+Boost_Mpmc/threads:4        154 ns          616 ns      1084284
+Boost_Mpmc/threads:5        171 ns          854 ns       833250
+Boost_Mpmc/threads:6        208 ns         1247 ns       600000
+Boost_Mpmc/threads:7        163 ns         1142 ns       743869
+Boost_Mpmc/threads:8        144 ns         1148 ns       968656
+MPMCQueue/threads:1        21.0 ns         21.0 ns     33897816
+MPMCQueue/threads:2        66.1 ns          132 ns      5194368
+MPMCQueue/threads:3        78.0 ns          234 ns      3088686
+MPMCQueue/threads:4        78.1 ns          312 ns      2128128
+MPMCQueue/threads:5         170 ns          848 ns      1787870
+MPMCQueue/threads:6         202 ns         1212 ns       600000
+MPMCQueue/threads:7        3410 ns        23484 ns        70000
+MPMCQueue/threads:8       82974 ns       663710 ns          800
+CCQueue/threads:1          22.4 ns         22.4 ns     31399808
+CCQueue/threads:2          62.5 ns          125 ns      5858244
+CCQueue/threads:3          67.7 ns          203 ns      3454629
+CCQueue/threads:4          67.9 ns          272 ns      2565716
+CCQueue/threads:5          66.2 ns          331 ns      2161075
+CCQueue/threads:6          57.5 ns          345 ns      2147592
+CCQueue/threads:7          59.8 ns          419 ns      1898414
+CCQueue/threads:8           109 ns          868 ns       800000
+VYQueue/threads:1          8.86 ns         8.86 ns     79320246
+VYQueue/threads:2          75.0 ns          150 ns      4811476
+VYQueue/threads:3           107 ns          320 ns      3009048
+VYQueue/threads:4           126 ns          505 ns      1439520
+VYQueue/threads:5           126 ns          629 ns      1296930
+VYQueue/threads:6           122 ns          732 ns       913992
+VYQueue/threads:7           101 ns          710 ns      1141140
+VYQueue/threads:8           116 ns          931 ns       966224
+TBBQueue/threads:1         36.5 ns         36.5 ns     17837811
+TBBQueue/threads:2          129 ns          258 ns      2731452
+TBBQueue/threads:3          123 ns          370 ns      1967028
+TBBQueue/threads:4          124 ns          496 ns      1437152
+TBBQueue/threads:5          130 ns          652 ns      1099985
+TBBQueue/threads:6          165 ns          992 ns       600000
+TBBQueue/threads:7          387 ns         2709 ns       670719
+TBBQueue/threads:8         1134 ns         9054 ns       965360

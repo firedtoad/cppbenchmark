@@ -1,0 +1,505 @@
+std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned long> > > memory 
+user cpu : 0s 233667us
+sys cpu : 0s 32133us
+max rss : 81840 KB / 79.9219 MB
+page reclaims : 20506
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned long> > > memory 
+user cpu : 0s 292797us
+sys cpu : 0s 56775us
+max rss : 130944 KB / 127.875 MB
+page reclaims : 32795
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+phmap::btree_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, phmap::Less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned long> > > memory 
+user cpu : 0s 101617us
+sys cpu : 0s 13891us
+max rss : 49368 KB / 48.2109 MB
+page reclaims : 12405
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+phmap::btree_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, phmap::Less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned long> > > memory 
+user cpu : 0s 92410us
+sys cpu : 0s 66709us
+max rss : 98472 KB / 96.1641 MB
+page reclaims : 24673
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned long> > > memory 
+user cpu : 0s 192167us
+sys cpu : 0s 23582us
+max rss : 73716 KB / 71.9883 MB
+page reclaims : 16948
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned long> > > memory 
+user cpu : 0s 220933us
+sys cpu : 0s 63271us
+max rss : 122820 KB / 119.941 MB
+page reclaims : 29210
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+phmap::node_hash_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, phmap::priv::StringHashEqT<char>::Hash, phmap::priv::StringHashEqT<char>::Eq, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned long> > > memory 
+user cpu : 0s 49649us
+sys cpu : 0s 42569us
+max rss : 67568 KB / 65.9844 MB
+page reclaims : 12820
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+phmap::node_hash_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, phmap::priv::StringHashEqT<char>::Hash, phmap::priv::StringHashEqT<char>::Eq, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned long> > > memory 
+user cpu : 0s 121173us
+sys cpu : 0s 42373us
+max rss : 116672 KB / 113.938 MB
+page reclaims : 25130
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+phmap::flat_hash_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, phmap::priv::StringHashEqT<char>::Hash, phmap::priv::StringHashEqT<char>::Eq, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned long> > > memory 
+user cpu : 0s 39831us
+sys cpu : 0s 5404us
+max rss : 83872 KB / 81.9062 MB
+page reclaims : 585
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+phmap::flat_hash_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, phmap::priv::StringHashEqT<char>::Hash, phmap::priv::StringHashEqT<char>::Eq, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned long> > > memory 
+user cpu : 0s 58016us
+sys cpu : 0s 46795us
+max rss : 132976 KB / 129.859 MB
+page reclaims : 12863
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+tsl::sparse_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> >, tsl::sh::power_of_two_growth_policy<2ul>, (tsl::sh::exception_safety)0, (tsl::sh::sparsity)1> memory 
+user cpu : 0s 185732us
+sys cpu : 0s 24280us
+max rss : 48196 KB / 47.0664 MB
+page reclaims : 12326
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+tsl::sparse_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> >, tsl::sh::power_of_two_growth_policy<2ul>, (tsl::sh::exception_safety)0, (tsl::sh::sparsity)1> memory 
+user cpu : 0s 285061us
+sys cpu : 0s 50546us
+max rss : 93984 KB / 91.7812 MB
+page reclaims : 23529
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+tsl::sparse_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> >, tsl::sh::power_of_two_growth_policy<2ul>, (tsl::sh::exception_safety)0, (tsl::sh::sparsity)1> memory 
+user cpu : 0s 128614us
+sys cpu : 0s 54873us
+max rss : 46464 KB / 45.375 MB
+page reclaims : 11630
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+tsl::sparse_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> >, tsl::sh::power_of_two_growth_policy<2ul>, (tsl::sh::exception_safety)0, (tsl::sh::sparsity)1> memory 
+user cpu : 0s 197072us
+sys cpu : 0s 55366us
+max rss : 92136 KB / 89.9766 MB
+page reclaims : 23072
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+tsl::sparse_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> >, tsl::sh::prime_growth_policy, (tsl::sh::exception_safety)0, (tsl::sh::sparsity)1> memory 
+user cpu : 0s 142090us
+sys cpu : 0s 26523us
+max rss : 50424 KB / 49.2422 MB
+page reclaims : 12662
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+tsl::sparse_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> >, tsl::sh::prime_growth_policy, (tsl::sh::exception_safety)0, (tsl::sh::sparsity)1> memory 
+user cpu : 0s 219388us
+sys cpu : 0s 24445us
+max rss : 92928 KB / 90.75 MB
+page reclaims : 23245
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+tsl::ordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> >, std::deque<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> > >, unsigned int> memory 
+user cpu : 0s 58236us
+sys cpu : 0s 26739us
+max rss : 58420 KB / 57.0508 MB
+page reclaims : 12874
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+tsl::ordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> >, std::deque<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> > >, unsigned int> memory 
+user cpu : 0s 84157us
+sys cpu : 0s 34559us
+max rss : 108020 KB / 105.488 MB
+page reclaims : 21425
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+tsl::ordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> >, std::vector<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> > >, unsigned int> memory 
+user cpu : 0s 65248us
+sys cpu : 0s 23842us
+max rss : 73764 KB / 72.0352 MB
+page reclaims : 4694
+page faults : 0
+voluntary switches : 0
+involuntary switches : 2
+
+tsl::ordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> >, std::vector<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> > >, unsigned int> memory 
+user cpu : 0s 79428us
+sys cpu : 0s 32012us
+max rss : 115280 KB / 112.578 MB
+page reclaims : 6314
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+tsl::ordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> >, std::deque<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> > >, unsigned int> memory 
+user cpu : 0s 57670us
+sys cpu : 0s 18998us
+max rss : 59716 KB / 58.3164 MB
+page reclaims : 11341
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+tsl::ordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> >, std::deque<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> > >, unsigned int> memory 
+user cpu : 0s 91200us
+sys cpu : 0s 58965us
+max rss : 108556 KB / 106.012 MB
+page reclaims : 23579
+page faults : 0
+voluntary switches : 0
+involuntary switches : 1
+
+tsl::ordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> >, std::vector<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> > >, unsigned int> memory 
+user cpu : 0s 64977us
+sys cpu : 0s 10026us
+max rss : 57368 KB / 56.0234 MB
+page reclaims : 1066
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+tsl::ordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> >, std::vector<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> > >, unsigned int> memory 
+user cpu : 0s 94459us
+sys cpu : 0s 31250us
+max rss : 106472 KB / 103.977 MB
+page reclaims : 13354
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+folly::F14FastMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, folly::HeterogeneousAccessHash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, folly::HeterogeneousAccessEqualTo<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned long> > > memory 
+user cpu : 0s 35464us
+sys cpu : 0s 1445us
+max rss : 49124 KB / 47.9727 MB
+page reclaims : 580
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+folly::F14FastMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, folly::HeterogeneousAccessHash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, folly::HeterogeneousAccessEqualTo<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned long> > > memory 
+user cpu : 0s 66356us
+sys cpu : 0s 40581us
+max rss : 98228 KB / 95.9258 MB
+page reclaims : 12848
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+folly::F14ValueMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, folly::HeterogeneousAccessHash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, folly::HeterogeneousAccessEqualTo<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned long> > > memory 
+user cpu : 0s 60261us
+sys cpu : 0s 17109us
+max rss : 73652 KB / 71.9258 MB
+page reclaims : 581
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+folly::F14ValueMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, folly::HeterogeneousAccessHash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, folly::HeterogeneousAccessEqualTo<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned long> > > memory 
+user cpu : 0s 142055us
+sys cpu : 0s 58775us
+max rss : 122756 KB / 119.879 MB
+page reclaims : 12854
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+2023-06-16T17:48:39+08:00
+Running ./bin/folly_sorted_string
+Run on (16 X 3417.59 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 2048 KiB (x16)
+  L3 Unified 30720 KiB (x1)
+Load Average: 4.19, 4.04, 3.12
+---------------------------------------------------------------------------------------------------------
+Benchmark                                                               Time             CPU   Iterations
+---------------------------------------------------------------------------------------------------------
+BenchInsert<std::map<std::string, uint32_t>>/1                       24.4 ns         24.4 ns     29158167
+BenchInsert<std::map<std::string, uint32_t>>/8                        301 ns          301 ns      2294368
+BenchInsert<std::map<std::string, uint32_t>>/64                      3419 ns         3419 ns       204501
+BenchInsert<std::map<std::string, uint32_t>>/512                    51798 ns        51796 ns        13387
+BenchInsert<std::map<std::string, uint32_t>>/4096                  774082 ns       774039 ns          894
+BenchInsert<std::map<std::string, uint32_t>>/32768               11935337 ns     11933874 ns           54
+BenchInsert<std::map<std::string, uint32_t>>/65536               33483277 ns     33480385 ns           21
+BenchInsert<phmap::btree_map<std::string, uint32_t>>/1               20.7 ns         20.7 ns     34071620
+BenchInsert<phmap::btree_map<std::string, uint32_t>>/8                235 ns          235 ns      2857692
+BenchInsert<phmap::btree_map<std::string, uint32_t>>/64              2499 ns         2499 ns       283861
+BenchInsert<phmap::btree_map<std::string, uint32_t>>/512            45255 ns        45253 ns        15368
+BenchInsert<phmap::btree_map<std::string, uint32_t>>/4096          646460 ns       646418 ns         1082
+BenchInsert<phmap::btree_map<std::string, uint32_t>>/32768        7713532 ns      7713215 ns           91
+BenchInsert<phmap::btree_map<std::string, uint32_t>>/65536       19765591 ns     19765239 ns           35
+BenchInsert<std::unordered_map<std::string, uint32_t>>/1             39.2 ns         39.2 ns     17640898
+BenchInsert<std::unordered_map<std::string, uint32_t>>/8              230 ns          230 ns      3048433
+BenchInsert<std::unordered_map<std::string, uint32_t>>/64            2229 ns         2229 ns       288091
+BenchInsert<std::unordered_map<std::string, uint32_t>>/512          31707 ns        31704 ns        22220
+BenchInsert<std::unordered_map<std::string, uint32_t>>/4096        290848 ns       290848 ns         2387
+BenchInsert<std::unordered_map<std::string, uint32_t>>/32768      2912822 ns      2912764 ns          239
+BenchInsert<std::unordered_map<std::string, uint32_t>>/65536      6903746 ns      6903526 ns          101
+BenchInsert<phmap::node_hash_map<std::string, uint32_t>>/1           34.1 ns         34.1 ns     20605938
+BenchInsert<phmap::node_hash_map<std::string, uint32_t>>/8            324 ns          324 ns      2125336
+BenchInsert<phmap::node_hash_map<std::string, uint32_t>>/64          2564 ns         2564 ns       271163
+BenchInsert<phmap::node_hash_map<std::string, uint32_t>>/512        33985 ns        33985 ns        21213
+BenchInsert<phmap::node_hash_map<std::string, uint32_t>>/4096      303281 ns       303272 ns         2326
+BenchInsert<phmap::node_hash_map<std::string, uint32_t>>/32768    2967236 ns      2967110 ns          237
+BenchInsert<phmap::node_hash_map<std::string, uint32_t>>/65536    6925989 ns      6925770 ns          107
+BenchInsert<phmap::flat_hash_map<std::string, uint32_t>>/1           28.2 ns         28.2 ns     24791015
+BenchInsert<phmap::flat_hash_map<std::string, uint32_t>>/8            365 ns          365 ns      2521070
+BenchInsert<phmap::flat_hash_map<std::string, uint32_t>>/64          3128 ns         3128 ns       226065
+BenchInsert<phmap::flat_hash_map<std::string, uint32_t>>/512        26211 ns        26208 ns        26272
+BenchInsert<phmap::flat_hash_map<std::string, uint32_t>>/4096      246526 ns       246449 ns         2847
+BenchInsert<phmap::flat_hash_map<std::string, uint32_t>>/32768    2306231 ns      2306107 ns          306
+BenchInsert<phmap::flat_hash_map<std::string, uint32_t>>/65536    5227495 ns      5227497 ns          130
+BenchInsert<tsl::sparse_map<std::string, uint32_t>>/1                52.0 ns         52.0 ns     13370055
+BenchInsert<tsl::sparse_map<std::string, uint32_t>>/8                 391 ns          391 ns      1776019
+BenchInsert<tsl::sparse_map<std::string, uint32_t>>/64               4290 ns         4290 ns       153664
+BenchInsert<tsl::sparse_map<std::string, uint32_t>>/512             50853 ns        50850 ns        13560
+BenchInsert<tsl::sparse_map<std::string, uint32_t>>/4096           494624 ns       494624 ns         1412
+BenchInsert<tsl::sparse_map<std::string, uint32_t>>/32768         4260794 ns      4260748 ns          163
+BenchInsert<tsl::sparse_map<std::string, uint32_t>>/65536         9322630 ns      9322582 ns           75
+BenchInsert<tsl::ordered_map<std::string, uint32_t>>/1               45.2 ns         45.2 ns     15052598
+BenchInsert<tsl::ordered_map<std::string, uint32_t>>/8                242 ns          242 ns      2775266
+BenchInsert<tsl::ordered_map<std::string, uint32_t>>/64              1647 ns         1647 ns       448399
+BenchInsert<tsl::ordered_map<std::string, uint32_t>>/512            20844 ns        20844 ns        33224
+BenchInsert<tsl::ordered_map<std::string, uint32_t>>/4096          205472 ns       205470 ns         3427
+BenchInsert<tsl::ordered_map<std::string, uint32_t>>/32768        1805388 ns      1805347 ns          393
+BenchInsert<tsl::ordered_map<std::string, uint32_t>>/65536        3765989 ns      3765924 ns          189
+BenchInsert<tsl::vector_map<std::string, uint32_t>>/1                34.1 ns         34.1 ns     20636896
+BenchInsert<tsl::vector_map<std::string, uint32_t>>/8                 256 ns          256 ns      2746977
+BenchInsert<tsl::vector_map<std::string, uint32_t>>/64               1849 ns         1849 ns       372283
+BenchInsert<tsl::vector_map<std::string, uint32_t>>/512             15293 ns        15292 ns        45766
+BenchInsert<tsl::vector_map<std::string, uint32_t>>/4096           186187 ns       186181 ns         3766
+BenchInsert<tsl::vector_map<std::string, uint32_t>>/32768         1714474 ns      1714290 ns          398
+BenchInsert<tsl::vector_map<std::string, uint32_t>>/65536         3545927 ns      3545849 ns          197
+BenchInsert<folly::F14FastMap<std::string, uint32_t>>/1              26.7 ns         26.7 ns     26165256
+BenchInsert<folly::F14FastMap<std::string, uint32_t>>/8               192 ns          192 ns      3648779
+BenchInsert<folly::F14FastMap<std::string, uint32_t>>/64             2239 ns         2239 ns       308825
+BenchInsert<folly::F14FastMap<std::string, uint32_t>>/512           20095 ns        20094 ns        34751
+BenchInsert<folly::F14FastMap<std::string, uint32_t>>/4096         181943 ns       181908 ns         3898
+BenchInsert<folly::F14FastMap<std::string, uint32_t>>/32768       1639933 ns      1639853 ns          400
+BenchInsert<folly::F14FastMap<std::string, uint32_t>>/65536       3597109 ns      3596870 ns          199
+BenchFind<std::map<std::string, Pod>>/1                              5.26 ns         5.26 ns    133293317
+BenchFind<std::map<std::string, Pod>>/8                              29.6 ns         29.6 ns     31925025
+BenchFind<std::map<std::string, Pod>>/64                             50.7 ns         50.7 ns     13609923
+BenchFind<std::map<std::string, Pod>>/512                            95.6 ns         95.6 ns      7541339
+BenchFind<std::map<std::string, Pod>>/4096                            171 ns          171 ns      4084366
+BenchFind<std::map<std::string, Pod>>/32768                           348 ns          348 ns      2104508
+BenchFind<std::map<std::string, Pod>>/65536                           580 ns          580 ns      1000000
+BenchFind<phmap::btree_map<std::string, Pod>>/1                      3.19 ns         3.19 ns    217383593
+BenchFind<phmap::btree_map<std::string, Pod>>/8                      24.1 ns         24.1 ns     30338728
+BenchFind<phmap::btree_map<std::string, Pod>>/64                     45.6 ns         45.6 ns     15195620
+BenchFind<phmap::btree_map<std::string, Pod>>/512                    77.1 ns         77.1 ns      9159466
+BenchFind<phmap::btree_map<std::string, Pod>>/4096                    126 ns          126 ns      5537613
+BenchFind<phmap::btree_map<std::string, Pod>>/32768                   214 ns          214 ns      3254143
+BenchFind<phmap::btree_map<std::string, Pod>>/65536                   303 ns          303 ns      2282246
+BenchFind<std::unordered_map<std::string, Pod>>/1                    3.07 ns         3.07 ns    227124932
+BenchFind<std::unordered_map<std::string, Pod>>/8                    18.1 ns         18.1 ns     38840857
+BenchFind<std::unordered_map<std::string, Pod>>/64                   16.7 ns         16.7 ns     36960538
+BenchFind<std::unordered_map<std::string, Pod>>/512                  25.9 ns         25.9 ns     27835444
+BenchFind<std::unordered_map<std::string, Pod>>/4096                 27.2 ns         27.2 ns     24975183
+BenchFind<std::unordered_map<std::string, Pod>>/32768                44.3 ns         44.3 ns     14823343
+BenchFind<std::unordered_map<std::string, Pod>>/65536                89.4 ns         89.4 ns     11824980
+BenchFind<phmap::flat_hash_map<std::string, Pod>>/1                  12.0 ns         12.0 ns     56106634
+BenchFind<phmap::flat_hash_map<std::string, Pod>>/8                  13.8 ns         13.8 ns     50948295
+BenchFind<phmap::flat_hash_map<std::string, Pod>>/64                 15.1 ns         15.1 ns     48749639
+BenchFind<phmap::flat_hash_map<std::string, Pod>>/512                16.8 ns         16.8 ns     41276433
+BenchFind<phmap::flat_hash_map<std::string, Pod>>/4096               19.7 ns         19.7 ns     35385930
+BenchFind<phmap::flat_hash_map<std::string, Pod>>/32768              50.7 ns         50.7 ns     20437092
+BenchFind<phmap::flat_hash_map<std::string, Pod>>/65536              52.2 ns         52.2 ns     10000000
+BenchFind<phmap::node_hash_map<std::string, Pod>>/1                  11.7 ns         11.7 ns     60232816
+BenchFind<phmap::node_hash_map<std::string, Pod>>/8                  13.6 ns         13.6 ns     49486767
+BenchFind<phmap::node_hash_map<std::string, Pod>>/64                 14.2 ns         14.2 ns     49242018
+BenchFind<phmap::node_hash_map<std::string, Pod>>/512                17.0 ns         17.0 ns     41727860
+BenchFind<phmap::node_hash_map<std::string, Pod>>/4096               19.4 ns         19.4 ns     36028937
+BenchFind<phmap::node_hash_map<std::string, Pod>>/32768              34.2 ns         34.2 ns     20143278
+BenchFind<phmap::node_hash_map<std::string, Pod>>/65536              50.2 ns         50.2 ns     10000000
+BenchFind<tsl::sparse_map<std::string, Pod>>/1                       11.0 ns         11.0 ns     63351736
+BenchFind<tsl::sparse_map<std::string, Pod>>/8                       17.4 ns         17.4 ns     39989678
+BenchFind<tsl::sparse_map<std::string, Pod>>/64                      19.0 ns         19.0 ns     34173877
+BenchFind<tsl::sparse_map<std::string, Pod>>/512                     20.6 ns         20.6 ns     33429056
+BenchFind<tsl::sparse_map<std::string, Pod>>/4096                    24.5 ns         24.5 ns     27952642
+BenchFind<tsl::sparse_map<std::string, Pod>>/32768                   37.3 ns         37.3 ns     18900409
+BenchFind<tsl::sparse_map<std::string, Pod>>/65536                   52.4 ns         52.4 ns     10000000
+BenchFind<tsl::ordered_map<std::string, Pod>>/1                      11.5 ns         11.5 ns     59559670
+BenchFind<tsl::ordered_map<std::string, Pod>>/8                      13.2 ns         13.2 ns     38075851
+BenchFind<tsl::ordered_map<std::string, Pod>>/64                     22.5 ns         22.4 ns     32195214
+BenchFind<tsl::ordered_map<std::string, Pod>>/512                    23.1 ns         23.1 ns     29897383
+BenchFind<tsl::ordered_map<std::string, Pod>>/4096                   27.0 ns         27.0 ns     26215013
+BenchFind<tsl::ordered_map<std::string, Pod>>/32768                  41.4 ns         41.4 ns     16683930
+BenchFind<tsl::ordered_map<std::string, Pod>>/65536                  64.5 ns         64.5 ns     11693918
+BenchFind<folly::F14FastMap<std::string, Pod>>/1                     11.1 ns         11.1 ns     64064053
+BenchFind<folly::F14FastMap<std::string, Pod>>/8                     12.3 ns         12.3 ns     50545310
+BenchFind<folly::F14FastMap<std::string, Pod>>/64                    14.4 ns         14.4 ns     50596431
+BenchFind<folly::F14FastMap<std::string, Pod>>/512                   17.0 ns         17.0 ns     41619127
+BenchFind<folly::F14FastMap<std::string, Pod>>/4096                  19.6 ns         19.6 ns     35644513
+BenchFind<folly::F14FastMap<std::string, Pod>>/32768                 32.9 ns         32.9 ns     20684839
+BenchFind<folly::F14FastMap<std::string, Pod>>/65536                 47.2 ns         47.2 ns     14541717
+BenchRange<std::map<std::string, Pod>>/1                            0.863 ns        0.863 ns    816833587
+BenchRange<std::map<std::string, Pod>>/8                             14.6 ns         14.6 ns     50311827
+BenchRange<std::map<std::string, Pod>>/64                             120 ns          120 ns      6000194
+BenchRange<std::map<std::string, Pod>>/512                           1156 ns         1156 ns       612369
+BenchRange<std::map<std::string, Pod>>/4096                         19572 ns        19571 ns        36120
+BenchRange<std::map<std::string, Pod>>/32768                       378854 ns       378815 ns         1808
+BenchRange<std::map<std::string, Pod>>/65536                      1949748 ns      1949585 ns          636
+BenchRange<phmap::btree_map<std::string, Pod>>/1                    0.766 ns        0.766 ns    912416228
+BenchRange<phmap::btree_map<std::string, Pod>>/8                     4.06 ns         4.06 ns    173866892
+BenchRange<phmap::btree_map<std::string, Pod>>/64                    41.7 ns         41.7 ns     16579034
+BenchRange<phmap::btree_map<std::string, Pod>>/512                    421 ns          421 ns      1752470
+BenchRange<phmap::btree_map<std::string, Pod>>/4096                  5884 ns         5884 ns       118802
+BenchRange<phmap::btree_map<std::string, Pod>>/32768               104769 ns       104769 ns         6925
+BenchRange<phmap::btree_map<std::string, Pod>>/65536               296679 ns       296659 ns         2375
+BenchRange<std::unordered_map<std::string, Pod>>/1                  0.215 ns        0.215 ns   1000000000
+BenchRange<std::unordered_map<std::string, Pod>>/8                   1.58 ns         1.58 ns    424342062
+BenchRange<std::unordered_map<std::string, Pod>>/64                  43.9 ns         43.9 ns     16786308
+BenchRange<std::unordered_map<std::string, Pod>>/512                 1026 ns         1026 ns       702030
+BenchRange<std::unordered_map<std::string, Pod>>/4096               14260 ns        14260 ns        48587
+BenchRange<std::unordered_map<std::string, Pod>>/32768             312745 ns       312723 ns         2033
+BenchRange<std::unordered_map<std::string, Pod>>/65536             741824 ns       741762 ns          872
+BenchRange<phmap::node_hash_map<std::string, Pod>>/1                0.478 ns        0.478 ns   1000000000
+BenchRange<phmap::node_hash_map<std::string, Pod>>/8                 6.14 ns         6.14 ns    105203137
+BenchRange<phmap::node_hash_map<std::string, Pod>>/64                65.1 ns         65.1 ns      9264172
+BenchRange<phmap::node_hash_map<std::string, Pod>>/512                666 ns          666 ns      1143798
+BenchRange<phmap::node_hash_map<std::string, Pod>>/4096              5315 ns         5314 ns       125863
+BenchRange<phmap::node_hash_map<std::string, Pod>>/32768           103781 ns       103780 ns         6927
+BenchRange<phmap::node_hash_map<std::string, Pod>>/65536           224070 ns       224052 ns         3105
+BenchRange<phmap::flat_hash_map<std::string, Pod>>/1                0.480 ns        0.480 ns   1000000000
+BenchRange<phmap::flat_hash_map<std::string, Pod>>/8                 6.35 ns         6.35 ns    100000000
+BenchRange<phmap::flat_hash_map<std::string, Pod>>/64                81.7 ns         81.7 ns     10306645
+BenchRange<phmap::flat_hash_map<std::string, Pod>>/512                666 ns          666 ns      1074339
+BenchRange<phmap::flat_hash_map<std::string, Pod>>/4096              5596 ns         5596 ns       129631
+BenchRange<phmap::flat_hash_map<std::string, Pod>>/32768           101882 ns       101877 ns         6711
+BenchRange<phmap::flat_hash_map<std::string, Pod>>/65536           222842 ns       222832 ns         3245
+BenchRange<tsl::sparse_map<std::string, Pod>>/1                     0.959 ns        0.959 ns    727872850
+BenchRange<tsl::sparse_map<std::string, Pod>>/8                      2.97 ns         2.97 ns    234318464
+BenchRange<tsl::sparse_map<std::string, Pod>>/64                     37.6 ns         37.6 ns     25160344
+BenchRange<tsl::sparse_map<std::string, Pod>>/512                     234 ns          234 ns      2811224
+BenchRange<tsl::sparse_map<std::string, Pod>>/4096                   2406 ns         2406 ns       301210
+BenchRange<tsl::sparse_map<std::string, Pod>>/32768                 21253 ns        21254 ns        32011
+BenchRange<tsl::sparse_map<std::string, Pod>>/65536                 52850 ns        52846 ns        12383
+BenchRange<tsl::ordered_map<std::string, Pod>>/1                    0.337 ns        0.337 ns   1000000000
+BenchRange<tsl::ordered_map<std::string, Pod>>/8                     3.15 ns         3.15 ns    222617129
+BenchRange<tsl::ordered_map<std::string, Pod>>/64                    16.2 ns         16.2 ns     42242967
+BenchRange<tsl::ordered_map<std::string, Pod>>/512                    108 ns          108 ns      6511620
+BenchRange<tsl::ordered_map<std::string, Pod>>/4096                   857 ns          857 ns       801236
+BenchRange<tsl::ordered_map<std::string, Pod>>/32768                11334 ns        11334 ns        58406
+BenchRange<tsl::ordered_map<std::string, Pod>>/65536                72846 ns        72843 ns         9551
+BenchRange<folly::F14FastMap<std::string, Pod>>/1                   0.311 ns        0.311 ns   1000000000
+BenchRange<folly::F14FastMap<std::string, Pod>>/8                    2.28 ns         2.28 ns    311731275
+BenchRange<folly::F14FastMap<std::string, Pod>>/64                   19.2 ns         19.2 ns     35632852
+BenchRange<folly::F14FastMap<std::string, Pod>>/512                   107 ns          107 ns      6579559
+BenchRange<folly::F14FastMap<std::string, Pod>>/4096                  802 ns          802 ns       878704
+BenchRange<folly::F14FastMap<std::string, Pod>>/32768                6661 ns         6660 ns       103378
+BenchRange<folly::F14FastMap<std::string, Pod>>/65536               25205 ns        25204 ns        27940
+BenchErase<std::map<std::string, Pod>>/1                             28.9 ns         28.9 ns     24235753
+BenchErase<std::map<std::string, Pod>>/8                             84.2 ns         84.2 ns      8334724
+BenchErase<std::map<std::string, Pod>>/64                             164 ns          164 ns      4359635
+BenchErase<std::map<std::string, Pod>>/512                            233 ns          233 ns      2977977
+BenchErase<std::map<std::string, Pod>>/4096                           325 ns          325 ns      2153743
+BenchErase<std::map<std::string, Pod>>/32768                          496 ns          496 ns      1392253
+BenchErase<std::map<std::string, Pod>>/65536                          676 ns          676 ns      1128288
+BenchErase<phmap::btree_map<std::string, Pod>>/1                     25.2 ns         25.2 ns     27896622
+BenchErase<phmap::btree_map<std::string, Pod>>/8                     58.0 ns         58.0 ns     12079690
+BenchErase<phmap::btree_map<std::string, Pod>>/64                     110 ns          110 ns      6465833
+BenchErase<phmap::btree_map<std::string, Pod>>/512                    181 ns          181 ns      3908069
+BenchErase<phmap::btree_map<std::string, Pod>>/4096                   261 ns          261 ns      2693400
+BenchErase<phmap::btree_map<std::string, Pod>>/32768                  382 ns          382 ns      1832435
+BenchErase<phmap::btree_map<std::string, Pod>>/65536                  498 ns          498 ns      1409937
+BenchErase<std::unordered_map<std::string, Pod>>/1                   27.8 ns         27.8 ns     25051178
+BenchErase<std::unordered_map<std::string, Pod>>/8                   54.5 ns         54.5 ns     14348680
+BenchErase<std::unordered_map<std::string, Pod>>/64                  48.2 ns         48.2 ns     13540995
+BenchErase<std::unordered_map<std::string, Pod>>/512                 67.3 ns         67.3 ns     11083383
+BenchErase<std::unordered_map<std::string, Pod>>/4096                73.0 ns         73.0 ns      9667802
+BenchErase<std::unordered_map<std::string, Pod>>/32768                125 ns          125 ns      5830831
+BenchErase<std::unordered_map<std::string, Pod>>/65536                189 ns          189 ns      4064683
+BenchErase<phmap::node_hash_map<std::string, Pod>>/1                 41.8 ns         41.8 ns     17551894
+BenchErase<phmap::node_hash_map<std::string, Pod>>/8                 43.3 ns         43.3 ns     16019750
+BenchErase<phmap::node_hash_map<std::string, Pod>>/64                43.4 ns         43.4 ns     15776759
+BenchErase<phmap::node_hash_map<std::string, Pod>>/512               55.2 ns         55.2 ns     10000000
+BenchErase<phmap::node_hash_map<std::string, Pod>>/4096              59.9 ns         59.9 ns     11502695
+BenchErase<phmap::node_hash_map<std::string, Pod>>/32768             95.7 ns         95.7 ns      7018183
+BenchErase<phmap::node_hash_map<std::string, Pod>>/65536              139 ns          139 ns      5016627
+BenchErase<phmap::flat_hash_map<std::string, Pod>>/1                 33.2 ns         33.2 ns     20668145
+BenchErase<phmap::flat_hash_map<std::string, Pod>>/8                 36.7 ns         36.7 ns     18806781
+BenchErase<phmap::flat_hash_map<std::string, Pod>>/64                35.7 ns         35.7 ns     19805127
+BenchErase<phmap::flat_hash_map<std::string, Pod>>/512               42.9 ns         42.9 ns     16213331
+BenchErase<phmap::flat_hash_map<std::string, Pod>>/4096              52.2 ns         52.2 ns     13371743
+BenchErase<phmap::flat_hash_map<std::string, Pod>>/32768             90.5 ns         90.5 ns      7197247
+BenchErase<phmap::flat_hash_map<std::string, Pod>>/65536              146 ns          146 ns      4801732
+BenchErase<tsl::sparse_map<std::string, Pod>>/1                      63.8 ns         63.8 ns     10869451
+BenchErase<tsl::sparse_map<std::string, Pod>>/8                      56.1 ns         56.1 ns     12306381
+BenchErase<tsl::sparse_map<std::string, Pod>>/64                     93.0 ns         93.0 ns      7584604
+BenchErase<tsl::sparse_map<std::string, Pod>>/512                     109 ns          109 ns      6291121
+BenchErase<tsl::sparse_map<std::string, Pod>>/4096                    124 ns          124 ns      5637109
+BenchErase<tsl::sparse_map<std::string, Pod>>/32768                   167 ns          167 ns      3348324
+BenchErase<tsl::sparse_map<std::string, Pod>>/65536                   211 ns          211 ns      2901377
+BenchErase<tsl::ordered_map<std::string, Pod>>/1                     36.4 ns         36.4 ns     19906219
+BenchErase<tsl::ordered_map<std::string, Pod>>/8                     82.0 ns         82.0 ns      8507576
+BenchErase<tsl::ordered_map<std::string, Pod>>/64                     284 ns          284 ns      2479647
+BenchErase<tsl::ordered_map<std::string, Pod>>/512                   1328 ns         1328 ns       524735
+BenchErase<tsl::ordered_map<std::string, Pod>>/4096                 15258 ns        15258 ns        45700
+BenchErase<tsl::ordered_map<std::string, Pod>>/32768               146921 ns       146913 ns         4802
+BenchErase<tsl::ordered_map<std::string, Pod>>/65536               291918 ns       291908 ns         2436
+BenchErase<folly::F14FastMap<std::string, Pod>>/1                    30.8 ns         30.8 ns     22766909
+BenchErase<folly::F14FastMap<std::string, Pod>>/8                    42.2 ns         42.2 ns     16762303
+BenchErase<folly::F14FastMap<std::string, Pod>>/64                   46.9 ns         46.9 ns     15242994
+BenchErase<folly::F14FastMap<std::string, Pod>>/512                  54.8 ns         54.8 ns     12528697
+BenchErase<folly::F14FastMap<std::string, Pod>>/4096                 63.3 ns         63.3 ns     11130124
+BenchErase<folly::F14FastMap<std::string, Pod>>/32768                 102 ns          102 ns      6837528
+BenchErase<folly::F14FastMap<std::string, Pod>>/65536                 190 ns          190 ns      5176993
+BenchStringFind<std::string>/128                                      983 ns          983 ns       671070
+BenchStringFind<std::string>/512                                     4177 ns         4176 ns       132163
+BenchStringFind<std::string>/4096                                   35649 ns        35646 ns        16480
+BenchStringFind<std::string>/32768                                 293046 ns       293025 ns         2433
+BenchStringFind<std::string>/65536                                 595194 ns       595181 ns         1166
+BenchStringFind<folly::fbstring>/128                                  485 ns          485 ns      1242091
+BenchStringFind<folly::fbstring>/512                                 3242 ns         3242 ns       369026
+BenchStringFind<folly::fbstring>/4096                               54341 ns        54340 ns        10430
+BenchStringFind<folly::fbstring>/32768                             369291 ns       369265 ns         1932
+BenchStringFind<folly::fbstring>/65536                             722822 ns       722823 ns          939

@@ -1,229 +1,229 @@
-user cpu : 0s 84315us
-sys cpu : 0s 180732us
-max rss : 90048 kb / 87.9375 MB
-page reclaims : 27219
-page faults : 0
-voluntary switches : 4
-involuntary switches : 20
-
-user cpu : 0s 313us
-sys cpu : 0s 19605us
-max rss : 16368 kb / 15.9844 MB
-page reclaims : 4112
+user cpu : 0s 96325us
+sys cpu : 0s 71914us
+max rss : 91252 KB / 89.1133 MB
+page reclaims : 23939
 page faults : 0
 voluntary switches : 0
 involuntary switches : 1
 
-user cpu : 0s 0us
-sys cpu : 0s 17233us
-max rss : 17688 kb / 17.2734 MB
-page reclaims : 4451
-page faults : 0
-voluntary switches : 0
-involuntary switches : 1
-
-user cpu : 0s 0us
-sys cpu : 0s 18566us
-max rss : 33528 kb / 32.7422 MB
-page reclaims : 8413
+user cpu : 0s 8141us
+sys cpu : 0s 7572us
+max rss : 17240 KB / 16.8359 MB
+page reclaims : 768
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
-2023-06-01T20:30:53+08:00
+user cpu : 0s 15610us
+sys cpu : 0s 0us
+max rss : 18216 KB / 17.7891 MB
+page reclaims : 4539
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+user cpu : 0s 14267us
+sys cpu : 0s 1633us
+max rss : 34108 KB / 33.3086 MB
+page reclaims : 4939
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
+
+2023-06-16T17:40:21+08:00
 Running ./bin/boost_multi_index_map
-Run on (16 X 3417.6 MHz CPU s)
+Run on (16 X 3417.59 MHz CPU s)
 CPU Caches:
   L1 Data 48 KiB (x16)
   L1 Instruction 32 KiB (x16)
   L2 Unified 2048 KiB (x16)
   L3 Unified 30720 KiB (x1)
-Load Average: 17.22, 15.17, 13.34
+Load Average: 4.04, 3.65, 2.38
 -------------------------------------------------------------------------------------------------------------------
 Benchmark                                                                         Time             CPU   Iterations
 -------------------------------------------------------------------------------------------------------------------
-BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/1                           13.1 ns         13.1 ns     59528887
-BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/8                            158 ns          158 ns      4467747
-BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/64                          2046 ns         2046 ns       343000
-BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/512                        24497 ns        24497 ns        26692
-BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/1024                       62880 ns        62879 ns        12690
-BenchInsert<std::map<uint32_t, uint32_t>>/1                                    17.0 ns         17.0 ns     43126993
-BenchInsert<std::map<uint32_t, uint32_t>>/8                                     226 ns          226 ns      3086719
-BenchInsert<std::map<uint32_t, uint32_t>>/64                                   3934 ns         3933 ns       204921
-BenchInsert<std::map<uint32_t, uint32_t>>/512                                 37831 ns        37826 ns        17471
-BenchInsert<std::map<uint32_t, uint32_t>>/1024                                76573 ns        76573 ns         8533
-BenchInsert<std::unordered_map<uint32_t, uint32_t>>/1                          33.2 ns         33.1 ns     22149954
-BenchInsert<std::unordered_map<uint32_t, uint32_t>>/8                           154 ns          154 ns      4092431
-BenchInsert<std::unordered_map<uint32_t, uint32_t>>/64                         2118 ns         2118 ns       321588
-BenchInsert<std::unordered_map<uint32_t, uint32_t>>/512                       21984 ns        21983 ns        32453
-BenchInsert<std::unordered_map<uint32_t, uint32_t>>/1024                      46075 ns        46074 ns        12561
-BenchInsert<tsl::sparse_map<uint32_t, uint32_t>>/1                             39.8 ns         39.8 ns     17287107
-BenchInsert<tsl::sparse_map<uint32_t, uint32_t>>/8                              344 ns          344 ns      1809514
-BenchInsert<tsl::sparse_map<uint32_t, uint32_t>>/64                            2803 ns         2798 ns       233100
-BenchInsert<tsl::sparse_map<uint32_t, uint32_t>>/512                          21359 ns        21359 ns        30297
-BenchInsert<tsl::sparse_map<uint32_t, uint32_t>>/1024                         46219 ns        46218 ns        14439
-BenchInsert<tsl::ordered_map<uint32_t, uint32_t>>/1                            38.0 ns         38.0 ns     16814878
-BenchInsert<tsl::ordered_map<uint32_t, uint32_t>>/8                             253 ns          253 ns      2745281
-BenchInsert<tsl::ordered_map<uint32_t, uint32_t>>/64                           2074 ns         2074 ns       305931
-BenchInsert<tsl::ordered_map<uint32_t, uint32_t>>/512                         16125 ns        16125 ns        42270
-BenchInsert<tsl::ordered_map<uint32_t, uint32_t>>/1024                        30038 ns        30038 ns        20756
-BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/1                  13.1 ns         13.1 ns     43227211
-BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/8                   215 ns          215 ns      3422328
-BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/64                 2224 ns         2224 ns       327870
-BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/512               28677 ns        28676 ns        27376
-BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/1024              65664 ns        65663 ns        11762
-BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/1                           15.3 ns         15.3 ns     53853186
-BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/8                            167 ns          167 ns      4744395
-BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/64                          2494 ns         2494 ns       272620
-BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/512                        30997 ns        30996 ns        22619
-BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/1024                       67979 ns        67978 ns        10765
-BenchInsertMulti<MultiContainer<std::pair<uint32_t, uint32_t>>>/1              45.4 ns         45.4 ns     12736988
-BenchInsertMulti<MultiContainer<std::pair<uint32_t, uint32_t>>>/8               312 ns          312 ns      2161106
-BenchInsertMulti<MultiContainer<std::pair<uint32_t, uint32_t>>>/64             4896 ns         4896 ns       149076
-BenchInsertMulti<MultiContainer<std::pair<uint32_t, uint32_t>>>/512           60025 ns        60026 ns        12647
-BenchInsertMulti<MultiContainer<std::pair<uint32_t, uint32_t>>>/1024         127612 ns       127610 ns         5177
-BenchInsertMulti<MultiHashContainer<std::pair<uint32_t, uint32_t>>>/1          29.9 ns         29.9 ns     19485226
-BenchInsertMulti<MultiHashContainer<std::pair<uint32_t, uint32_t>>>/8           130 ns          130 ns      5495793
-BenchInsertMulti<MultiHashContainer<std::pair<uint32_t, uint32_t>>>/64         1883 ns         1883 ns       380046
-BenchInsertMulti<MultiHashContainer<std::pair<uint32_t, uint32_t>>>/512       25493 ns        25492 ns        31059
-BenchInsertMulti<MultiHashContainer<std::pair<uint32_t, uint32_t>>>/1024      53215 ns        53216 ns        10000
-BenchFind<sorted_vector_map<uint64_t, Pod>>/1                                  5.46 ns         5.46 ns    121398617
-BenchFind<sorted_vector_map<uint64_t, Pod>>/8                                  11.8 ns         11.8 ns     78964997
-BenchFind<sorted_vector_map<uint64_t, Pod>>/64                                 21.2 ns         21.2 ns     32841991
-BenchFind<sorted_vector_map<uint64_t, Pod>>/512                                33.7 ns         33.7 ns     20995890
-BenchFind<sorted_vector_map<uint64_t, Pod>>/1024                               41.8 ns         41.8 ns     15245171
-BenchFind<std::map<uint64_t, Pod>>/1                                           3.56 ns         3.56 ns    165042956
-BenchFind<std::map<uint64_t, Pod>>/8                                           10.3 ns         10.3 ns     54462646
-BenchFind<std::map<uint64_t, Pod>>/64                                          10.1 ns         10.1 ns     56533346
-BenchFind<std::map<uint64_t, Pod>>/512                                         20.5 ns         20.5 ns     36693108
-BenchFind<std::map<uint64_t, Pod>>/1024                                        27.2 ns         27.2 ns     24547320
-BenchFind<std::unordered_map<uint64_t, Pod>>/1                                 3.89 ns         3.89 ns    203496534
-BenchFind<std::unordered_map<uint64_t, Pod>>/8                                 11.7 ns         11.7 ns     57987020
-BenchFind<std::unordered_map<uint64_t, Pod>>/64                                8.40 ns         8.40 ns     86081086
-BenchFind<std::unordered_map<uint64_t, Pod>>/512                               12.0 ns         12.0 ns     53805765
-BenchFind<std::unordered_map<uint64_t, Pod>>/1024                              12.2 ns         12.2 ns     66834427
-BenchFind<tsl::sparse_map<uint32_t, Pod>>/1                                    8.14 ns         8.14 ns    102879769
-BenchFind<tsl::sparse_map<uint32_t, Pod>>/8                                    7.92 ns         7.92 ns     73338185
-BenchFind<tsl::sparse_map<uint32_t, Pod>>/64                                   10.2 ns         10.2 ns     66128144
-BenchFind<tsl::sparse_map<uint32_t, Pod>>/512                                  11.0 ns         11.0 ns     64050715
-BenchFind<tsl::sparse_map<uint32_t, Pod>>/1024                                 11.6 ns         11.6 ns     55255788
-BenchFind<tsl::ordered_map<uint32_t, Pod>>/1                                   4.77 ns         4.77 ns    149174032
-BenchFind<tsl::ordered_map<uint32_t, Pod>>/8                                   9.39 ns         9.39 ns     85827109
-BenchFind<tsl::ordered_map<uint32_t, Pod>>/64                                  11.0 ns         11.0 ns     46951149
-BenchFind<tsl::ordered_map<uint32_t, Pod>>/512                                 13.7 ns         11.9 ns     54959244
-BenchFind<tsl::ordered_map<uint32_t, Pod>>/1024                                12.2 ns         12.2 ns     69175392
-BenchFind<eastl::vector_map<uint32_t, Pod>>/1                                  4.87 ns         4.87 ns    157906253
-BenchFind<eastl::vector_map<uint32_t, Pod>>/8                                  11.5 ns         11.5 ns     63720590
-BenchFind<eastl::vector_map<uint32_t, Pod>>/64                                 23.8 ns         23.8 ns     31629359
-BenchFind<eastl::vector_map<uint32_t, Pod>>/512                                37.5 ns         37.5 ns     18282855
-BenchFind<eastl::vector_map<uint32_t, Pod>>/1024                               41.7 ns         41.7 ns     17681889
-BenchFind<boost::container::flat_map<uint64_t, Pod>>/1                         2.65 ns         2.65 ns    384305563
-BenchFind<boost::container::flat_map<uint64_t, Pod>>/8                         11.5 ns         11.5 ns     65669949
-BenchFind<boost::container::flat_map<uint64_t, Pod>>/64                        25.3 ns         25.3 ns     32665599
-BenchFind<boost::container::flat_map<uint64_t, Pod>>/512                       37.6 ns         37.6 ns     17323713
-BenchFind<boost::container::flat_map<uint64_t, Pod>>/1024                      41.8 ns         41.8 ns     16998708
-BenchFindMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/1                  4.25 ns         4.25 ns    220906734
-BenchFindMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/8                  12.4 ns         12.4 ns     52453544
-BenchFindMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/64                 21.9 ns         21.9 ns     33070655
-BenchFindMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/512                36.3 ns         36.3 ns     17909011
-BenchFindMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/1024               48.8 ns         48.8 ns     16186457
-BenchFindMultiHash<MultiHashContainer<std::pair<uint32_t, Pod>>>/1             2.65 ns         2.65 ns    296812000
-BenchFindMultiHash<MultiHashContainer<std::pair<uint32_t, Pod>>>/8             3.82 ns         3.82 ns    173618109
-BenchFindMultiHash<MultiHashContainer<std::pair<uint32_t, Pod>>>/64            8.92 ns         8.92 ns     85248405
-BenchFindMultiHash<MultiHashContainer<std::pair<uint32_t, Pod>>>/512           8.94 ns         8.94 ns     86272426
-BenchFindMultiHash<MultiHashContainer<std::pair<uint32_t, Pod>>>/1024          9.27 ns         9.27 ns     76380976
-BenchRange<sorted_vector_map<uint32_t, Pod>>/1                                0.463 ns        0.463 ns   1000000000
-BenchRange<sorted_vector_map<uint32_t, Pod>>/8                                 1.83 ns         1.83 ns    395882819
-BenchRange<sorted_vector_map<uint32_t, Pod>>/64                                8.38 ns         8.38 ns     97677841
-BenchRange<sorted_vector_map<uint32_t, Pod>>/512                               55.2 ns         55.2 ns     10000000
-BenchRange<sorted_vector_map<uint32_t, Pod>>/1024                               105 ns          105 ns      6459750
-BenchRange<std::map<uint32_t, Pod>>/1                                          1.07 ns         1.07 ns    551413451
-BenchRange<std::map<uint32_t, Pod>>/8                                          19.1 ns         19.1 ns     44470949
-BenchRange<std::map<uint32_t, Pod>>/64                                          147 ns          147 ns      5143250
-BenchRange<std::map<uint32_t, Pod>>/512                                        1351 ns         1351 ns       524189
-BenchRange<std::map<uint32_t, Pod>>/1024                                       4507 ns         4507 ns       156781
-BenchRange<std::unordered_map<uint32_t, Pod>>/1                               0.294 ns        0.294 ns   1000000000
-BenchRange<std::unordered_map<uint32_t, Pod>>/8                                1.88 ns         1.88 ns    340785658
-BenchRange<std::unordered_map<uint32_t, Pod>>/64                               61.7 ns         61.7 ns     11499071
-BenchRange<std::unordered_map<uint32_t, Pod>>/512                               621 ns          621 ns      1230596
-BenchRange<std::unordered_map<uint32_t, Pod>>/1024                             1230 ns         1230 ns       502267
-BenchRange<tsl::sparse_map<uint32_t, Pod>>/1                                   1.20 ns         1.20 ns    651578528
-BenchRange<tsl::sparse_map<uint32_t, Pod>>/8                                   4.52 ns         4.52 ns    159169206
-BenchRange<tsl::sparse_map<uint32_t, Pod>>/64                                  46.3 ns         46.3 ns     12757659
-BenchRange<tsl::sparse_map<uint32_t, Pod>>/512                                  246 ns          246 ns      2383558
-BenchRange<tsl::sparse_map<uint32_t, Pod>>/1024                                 529 ns          529 ns      1179194
-BenchRange<tsl::ordered_map<uint32_t, Pod>>/1                                 0.459 ns        0.459 ns   1000000000
-BenchRange<tsl::ordered_map<uint32_t, Pod>>/8                                  4.30 ns         4.30 ns    167289863
-BenchRange<tsl::ordered_map<uint32_t, Pod>>/64                                 26.8 ns         26.8 ns     26621397
-BenchRange<tsl::ordered_map<uint32_t, Pod>>/512                                 237 ns          237 ns      2944188
-BenchRange<tsl::ordered_map<uint32_t, Pod>>/1024                                499 ns          499 ns      1509458
-BenchRange<boost::container::flat_map<uint32_t, Pod>>/1                       0.465 ns        0.465 ns   1000000000
-BenchRange<boost::container::flat_map<uint32_t, Pod>>/8                        1.80 ns         1.80 ns    339114376
-BenchRange<boost::container::flat_map<uint32_t, Pod>>/64                       8.40 ns         8.40 ns     82310681
-BenchRange<boost::container::flat_map<uint32_t, Pod>>/512                      48.3 ns         48.3 ns     13356047
-BenchRange<boost::container::flat_map<uint32_t, Pod>>/1024                      104 ns          104 ns      6373656
-BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/1                0.952 ns        0.952 ns    672526092
-BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/8                 8.55 ns         8.55 ns     99850821
-BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/64                 147 ns          147 ns      4850712
-BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/512               1655 ns         1655 ns       412494
-BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/1024              4962 ns         4962 ns       142151
-BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 1>/1                0.445 ns        0.445 ns   1000000000
-BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 1>/8                 3.50 ns         3.50 ns    209792705
-BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 1>/64                77.5 ns         77.5 ns      9714620
-BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 1>/512               1443 ns         1443 ns       488479
-BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 1>/1024              2855 ns         2855 ns       258763
-BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 2>/1                0.475 ns        0.475 ns   1000000000
-BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 2>/8                 5.29 ns         5.29 ns    126825322
-BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 2>/64                 139 ns          139 ns      4915882
-BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 2>/512               2123 ns         2123 ns       354082
-BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 2>/1024              4314 ns         4314 ns       167008
-BenchRangeMulti<MultiHashContainer<std::pair<uint32_t, Pod>>, 0>/1            0.564 ns        0.564 ns   1000000000
-BenchRangeMulti<MultiHashContainer<std::pair<uint32_t, Pod>>, 0>/8             7.55 ns         7.55 ns     95106909
-BenchRangeMulti<MultiHashContainer<std::pair<uint32_t, Pod>>, 0>/64             184 ns          184 ns      3631583
-BenchRangeMulti<MultiHashContainer<std::pair<uint32_t, Pod>>, 0>/512           1766 ns         1766 ns       415540
-BenchRangeMulti<MultiHashContainer<std::pair<uint32_t, Pod>>, 0>/1024          5088 ns         5088 ns       100000
-BenchRange<eastl::vector_map<uint32_t, Pod>>/1                                0.456 ns        0.456 ns   1000000000
-BenchRange<eastl::vector_map<uint32_t, Pod>>/8                                 2.12 ns         2.12 ns    409837124
-BenchRange<eastl::vector_map<uint32_t, Pod>>/64                                8.83 ns         8.83 ns     92913890
-BenchRange<eastl::vector_map<uint32_t, Pod>>/512                               59.7 ns         59.7 ns     13614669
-BenchRange<eastl::vector_map<uint32_t, Pod>>/1024                              95.0 ns         95.0 ns      7502390
-BenchErase<sorted_vector_map<uint64_t, Pod>>/1                                 5.74 ns         5.74 ns    115725653
-BenchErase<sorted_vector_map<uint64_t, Pod>>/8                                 9.87 ns         9.87 ns     71352873
-BenchErase<sorted_vector_map<uint64_t, Pod>>/64                                19.6 ns         19.6 ns     33159941
-BenchErase<sorted_vector_map<uint64_t, Pod>>/512                               34.6 ns         34.6 ns     19651645
-BenchErase<sorted_vector_map<uint64_t, Pod>>/1024                              43.4 ns         43.4 ns     16138978
-BenchErase<std::map<uint64_t, Pod>>/1                                          5.99 ns         5.99 ns    182724237
-BenchErase<std::map<uint64_t, Pod>>/8                                          13.2 ns         13.2 ns     55951803
-BenchErase<std::map<uint64_t, Pod>>/64                                         22.8 ns         22.8 ns     31866674
-BenchErase<std::map<uint64_t, Pod>>/512                                        39.5 ns         39.5 ns     18288612
-BenchErase<std::map<uint64_t, Pod>>/1024                                       45.7 ns         45.7 ns     13938486
-BenchErase<std::unordered_map<uint64_t, Pod>>/1                                3.59 ns         3.59 ns    208673878
-BenchErase<std::unordered_map<uint64_t, Pod>>/8                                10.8 ns         10.8 ns     78064663
-BenchErase<std::unordered_map<uint64_t, Pod>>/64                               8.85 ns         8.85 ns     82016378
-BenchErase<std::unordered_map<uint64_t, Pod>>/512                              13.0 ns         13.0 ns     56204840
-BenchErase<std::unordered_map<uint64_t, Pod>>/1024                             13.1 ns         13.1 ns     51839293
-BenchErase<tsl::sparse_map<uint32_t, Pod>>/1                                   6.55 ns         6.55 ns    116841838
-BenchErase<tsl::sparse_map<uint32_t, Pod>>/8                                   8.53 ns         8.53 ns     76540159
-BenchErase<tsl::sparse_map<uint32_t, Pod>>/64                                  10.8 ns         10.8 ns     73172068
-BenchErase<tsl::sparse_map<uint32_t, Pod>>/512                                 11.0 ns         11.0 ns     63762317
-BenchErase<tsl::sparse_map<uint32_t, Pod>>/1024                                11.1 ns         11.1 ns     65183878
-BenchErase<tsl::ordered_map<uint32_t, Pod>>/1                                  7.10 ns         7.10 ns     74244914
-BenchErase<tsl::ordered_map<uint32_t, Pod>>/8                                  10.6 ns         10.6 ns     73538105
-BenchErase<tsl::ordered_map<uint32_t, Pod>>/64                                 11.5 ns         11.5 ns     61719476
-BenchErase<tsl::ordered_map<uint32_t, Pod>>/512                                17.3 ns         17.2 ns     42653792
-BenchErase<tsl::ordered_map<uint32_t, Pod>>/1024                               25.9 ns         25.9 ns     23922565
-BenchErase<boost::container::flat_map<uint64_t, Pod>>/1                        4.67 ns         4.67 ns    175872028
-BenchErase<boost::container::flat_map<uint64_t, Pod>>/8                        12.0 ns         12.0 ns     63761165
-BenchErase<boost::container::flat_map<uint64_t, Pod>>/64                       21.2 ns         21.2 ns     30313291
-BenchErase<boost::container::flat_map<uint64_t, Pod>>/512                      38.3 ns         38.3 ns     20249931
-BenchErase<boost::container::flat_map<uint64_t, Pod>>/1024                     48.7 ns         48.7 ns     14776587
-BenchEraseMulti<MultiContainer<std::pair<uint32_t, Pod>>>/1                    4.05 ns         4.05 ns    150151338
-BenchEraseMulti<MultiContainer<std::pair<uint32_t, Pod>>>/8                    11.8 ns         11.8 ns     62244370
-BenchEraseMulti<MultiContainer<std::pair<uint32_t, Pod>>>/64                   23.0 ns         23.0 ns     31310117
-BenchEraseMulti<MultiContainer<std::pair<uint32_t, Pod>>>/512                  42.1 ns         42.1 ns     16898738
-BenchEraseMulti<MultiContainer<std::pair<uint32_t, Pod>>>/1024                 59.4 ns         59.4 ns     10668750
-BenchErase<eastl::vector_map<uint32_t, Pod>>/1                                 5.83 ns         5.83 ns    177329519
-BenchErase<eastl::vector_map<uint32_t, Pod>>/8                                 11.2 ns         11.2 ns     59619884
-BenchErase<eastl::vector_map<uint32_t, Pod>>/64                                22.8 ns         22.8 ns     27810666
-BenchErase<eastl::vector_map<uint32_t, Pod>>/512                               39.5 ns         39.5 ns     17314696
-BenchErase<eastl::vector_map<uint32_t, Pod>>/1024                              48.1 ns         48.1 ns     13937513
+BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/1                           9.91 ns         9.91 ns     70441849
+BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/8                            123 ns          123 ns      5689187
+BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/64                          1708 ns         1708 ns       407132
+BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/512                        20995 ns        20995 ns        33282
+BenchInsert<sorted_vector_map<uint32_t, uint32_t>>/1024                       49711 ns        49711 ns        14118
+BenchInsert<std::map<uint32_t, uint32_t>>/1                                    12.8 ns         12.8 ns     54909385
+BenchInsert<std::map<uint32_t, uint32_t>>/8                                     192 ns          192 ns      3697765
+BenchInsert<std::map<uint32_t, uint32_t>>/64                                   2893 ns         2893 ns       243399
+BenchInsert<std::map<uint32_t, uint32_t>>/512                                 28505 ns        28505 ns        24204
+BenchInsert<std::map<uint32_t, uint32_t>>/1024                                60016 ns        60016 ns        11679
+BenchInsert<std::unordered_map<uint32_t, uint32_t>>/1                          24.0 ns         24.0 ns     29163979
+BenchInsert<std::unordered_map<uint32_t, uint32_t>>/8                           130 ns          130 ns      5447365
+BenchInsert<std::unordered_map<uint32_t, uint32_t>>/64                         1677 ns         1677 ns       416731
+BenchInsert<std::unordered_map<uint32_t, uint32_t>>/512                       16789 ns        16789 ns        41745
+BenchInsert<std::unordered_map<uint32_t, uint32_t>>/1024                      34601 ns        34601 ns        20307
+BenchInsert<tsl::sparse_map<uint32_t, uint32_t>>/1                             30.6 ns         30.6 ns     22948169
+BenchInsert<tsl::sparse_map<uint32_t, uint32_t>>/8                              273 ns          273 ns      2592673
+BenchInsert<tsl::sparse_map<uint32_t, uint32_t>>/64                            2393 ns         2393 ns       292020
+BenchInsert<tsl::sparse_map<uint32_t, uint32_t>>/512                          18532 ns        18532 ns        37986
+BenchInsert<tsl::sparse_map<uint32_t, uint32_t>>/1024                         37820 ns        37820 ns        18501
+BenchInsert<tsl::ordered_map<uint32_t, uint32_t>>/1                            28.5 ns         28.5 ns     24539792
+BenchInsert<tsl::ordered_map<uint32_t, uint32_t>>/8                             200 ns          200 ns      3503218
+BenchInsert<tsl::ordered_map<uint32_t, uint32_t>>/64                           1588 ns         1588 ns       441057
+BenchInsert<tsl::ordered_map<uint32_t, uint32_t>>/512                         12914 ns        12914 ns        54538
+BenchInsert<tsl::ordered_map<uint32_t, uint32_t>>/1024                        26067 ns        26067 ns        26866
+BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/1                  10.9 ns         10.9 ns     66113080
+BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/8                   163 ns          163 ns      4377751
+BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/64                 1865 ns         1865 ns       376974
+BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/512               21940 ns        21940 ns        32235
+BenchInsert<boost::container::flat_map<uint32_t, uint32_t>>/1024              51407 ns        51407 ns        13674
+BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/1                           11.0 ns         11.0 ns     64155218
+BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/8                            132 ns          132 ns      5309966
+BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/64                          2071 ns         2071 ns       339832
+BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/512                        23426 ns        23427 ns        29824
+BenchInsert<eastl::vector_map<uint32_t, uint32_t>>/1024                       54021 ns        54021 ns        12938
+BenchInsertMulti<MultiContainer<std::pair<uint32_t, uint32_t>>>/1              35.3 ns         35.3 ns     19975248
+BenchInsertMulti<MultiContainer<std::pair<uint32_t, uint32_t>>>/8               250 ns          250 ns      2808925
+BenchInsertMulti<MultiContainer<std::pair<uint32_t, uint32_t>>>/64             3876 ns         3876 ns       180817
+BenchInsertMulti<MultiContainer<std::pair<uint32_t, uint32_t>>>/512           44886 ns        44886 ns        15604
+BenchInsertMulti<MultiContainer<std::pair<uint32_t, uint32_t>>>/1024          97242 ns        97242 ns         7195
+BenchInsertMulti<MultiHashContainer<std::pair<uint32_t, uint32_t>>>/1          24.2 ns         24.2 ns     28693923
+BenchInsertMulti<MultiHashContainer<std::pair<uint32_t, uint32_t>>>/8           109 ns          109 ns      6452927
+BenchInsertMulti<MultiHashContainer<std::pair<uint32_t, uint32_t>>>/64         1402 ns         1402 ns       501264
+BenchInsertMulti<MultiHashContainer<std::pair<uint32_t, uint32_t>>>/512       18920 ns        18919 ns        37199
+BenchInsertMulti<MultiHashContainer<std::pair<uint32_t, uint32_t>>>/1024      39233 ns        39233 ns        17751
+BenchFind<sorted_vector_map<uint64_t, Pod>>/1                                  3.87 ns         3.87 ns    282047775
+BenchFind<sorted_vector_map<uint64_t, Pod>>/8                                  9.81 ns         9.81 ns     81306623
+BenchFind<sorted_vector_map<uint64_t, Pod>>/64                                 17.4 ns         17.4 ns     42398808
+BenchFind<sorted_vector_map<uint64_t, Pod>>/512                                27.9 ns         27.9 ns     24688912
+BenchFind<sorted_vector_map<uint64_t, Pod>>/1024                               33.0 ns         33.0 ns     21091341
+BenchFind<std::map<uint64_t, Pod>>/1                                           1.98 ns         1.98 ns    298502735
+BenchFind<std::map<uint64_t, Pod>>/8                                           7.91 ns         7.91 ns    161902682
+BenchFind<std::map<uint64_t, Pod>>/64                                          12.6 ns         12.6 ns     54617690
+BenchFind<std::map<uint64_t, Pod>>/512                                         18.2 ns         18.2 ns     36874942
+BenchFind<std::map<uint64_t, Pod>>/1024                                        20.2 ns         20.2 ns     34910560
+BenchFind<std::unordered_map<uint64_t, Pod>>/1                                 2.38 ns         2.38 ns    299240302
+BenchFind<std::unordered_map<uint64_t, Pod>>/8                                 8.58 ns         8.58 ns     77161473
+BenchFind<std::unordered_map<uint64_t, Pod>>/64                                6.74 ns         6.74 ns    102963398
+BenchFind<std::unordered_map<uint64_t, Pod>>/512                               9.96 ns         9.96 ns     74854543
+BenchFind<std::unordered_map<uint64_t, Pod>>/1024                              10.2 ns         10.2 ns     71403644
+BenchFind<tsl::sparse_map<uint32_t, Pod>>/1                                    5.39 ns         5.39 ns    130774456
+BenchFind<tsl::sparse_map<uint32_t, Pod>>/8                                    7.79 ns         7.79 ns     84757988
+BenchFind<tsl::sparse_map<uint32_t, Pod>>/64                                   8.60 ns         8.60 ns     81638173
+BenchFind<tsl::sparse_map<uint32_t, Pod>>/512                                  8.82 ns         8.82 ns     79010467
+BenchFind<tsl::sparse_map<uint32_t, Pod>>/1024                                 8.75 ns         8.75 ns     78897756
+BenchFind<tsl::ordered_map<uint32_t, Pod>>/1                                   3.76 ns         3.76 ns    192159657
+BenchFind<tsl::ordered_map<uint32_t, Pod>>/8                                   9.99 ns         9.99 ns     88705889
+BenchFind<tsl::ordered_map<uint32_t, Pod>>/64                                  9.29 ns         9.29 ns     81816284
+BenchFind<tsl::ordered_map<uint32_t, Pod>>/512                                 9.29 ns         9.29 ns     75879241
+BenchFind<tsl::ordered_map<uint32_t, Pod>>/1024                                11.1 ns         11.1 ns     75411444
+BenchFind<eastl::vector_map<uint32_t, Pod>>/1                                  3.73 ns         3.73 ns    202061299
+BenchFind<eastl::vector_map<uint32_t, Pod>>/8                                  9.54 ns         9.54 ns     93431390
+BenchFind<eastl::vector_map<uint32_t, Pod>>/64                                 21.8 ns         21.8 ns     38137839
+BenchFind<eastl::vector_map<uint32_t, Pod>>/512                                31.1 ns         31.1 ns     22199035
+BenchFind<eastl::vector_map<uint32_t, Pod>>/1024                               41.5 ns         41.5 ns     19513880
+BenchFind<boost::container::flat_map<uint64_t, Pod>>/1                         3.79 ns         3.79 ns    210426620
+BenchFind<boost::container::flat_map<uint64_t, Pod>>/8                         8.37 ns         8.37 ns     72771515
+BenchFind<boost::container::flat_map<uint64_t, Pod>>/64                        19.5 ns         19.5 ns     38782147
+BenchFind<boost::container::flat_map<uint64_t, Pod>>/512                       50.1 ns         50.1 ns     10000000
+BenchFind<boost::container::flat_map<uint64_t, Pod>>/1024                      38.6 ns         38.6 ns     14063755
+BenchFindMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/1                  2.76 ns         2.76 ns    413122703
+BenchFindMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/8                  8.95 ns         8.95 ns     67479645
+BenchFindMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/64                 19.5 ns         19.5 ns     35124956
+BenchFindMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/512                32.3 ns         32.3 ns     21455460
+BenchFindMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/1024               38.6 ns         38.6 ns     16560436
+BenchFindMultiHash<MultiHashContainer<std::pair<uint32_t, Pod>>>/1             1.86 ns         1.86 ns    375676289
+BenchFindMultiHash<MultiHashContainer<std::pair<uint32_t, Pod>>>/8             2.97 ns         2.97 ns    236282635
+BenchFindMultiHash<MultiHashContainer<std::pair<uint32_t, Pod>>>/64            7.02 ns         7.02 ns     99485522
+BenchFindMultiHash<MultiHashContainer<std::pair<uint32_t, Pod>>>/512           6.85 ns         6.85 ns    105296398
+BenchFindMultiHash<MultiHashContainer<std::pair<uint32_t, Pod>>>/1024          7.73 ns         7.73 ns     93426149
+BenchRange<sorted_vector_map<uint32_t, Pod>>/1                                0.392 ns        0.392 ns   1000000000
+BenchRange<sorted_vector_map<uint32_t, Pod>>/8                                 1.74 ns         1.74 ns    349100913
+BenchRange<sorted_vector_map<uint32_t, Pod>>/64                                9.38 ns         9.37 ns    101899586
+BenchRange<sorted_vector_map<uint32_t, Pod>>/512                               75.2 ns         75.2 ns     10000000
+BenchRange<sorted_vector_map<uint32_t, Pod>>/1024                              87.6 ns         87.6 ns      5758907
+BenchRange<std::map<uint32_t, Pod>>/1                                         0.874 ns        0.874 ns    812072963
+BenchRange<std::map<uint32_t, Pod>>/8                                          18.8 ns         18.8 ns     50607593
+BenchRange<std::map<uint32_t, Pod>>/64                                          136 ns          136 ns      5060177
+BenchRange<std::map<uint32_t, Pod>>/512                                        1183 ns         1183 ns       595845
+BenchRange<std::map<uint32_t, Pod>>/1024                                       4140 ns         4114 ns       174133
+BenchRange<std::unordered_map<uint32_t, Pod>>/1                               0.215 ns        0.215 ns   1000000000
+BenchRange<std::unordered_map<uint32_t, Pod>>/8                                1.61 ns         1.61 ns    444300189
+BenchRange<std::unordered_map<uint32_t, Pod>>/64                               51.3 ns         51.3 ns     10000000
+BenchRange<std::unordered_map<uint32_t, Pod>>/512                               495 ns          495 ns      1414108
+BenchRange<std::unordered_map<uint32_t, Pod>>/1024                             1216 ns         1216 ns       599719
+BenchRange<tsl::sparse_map<uint32_t, Pod>>/1                                   1.42 ns         1.42 ns    562222262
+BenchRange<tsl::sparse_map<uint32_t, Pod>>/8                                   2.88 ns         2.88 ns    243753492
+BenchRange<tsl::sparse_map<uint32_t, Pod>>/64                                  40.5 ns         40.5 ns     16909390
+BenchRange<tsl::sparse_map<uint32_t, Pod>>/512                                  307 ns          307 ns      2267632
+BenchRange<tsl::sparse_map<uint32_t, Pod>>/1024                                 577 ns          577 ns      1144260
+BenchRange<tsl::ordered_map<uint32_t, Pod>>/1                                 0.340 ns        0.340 ns   1000000000
+BenchRange<tsl::ordered_map<uint32_t, Pod>>/8                                  3.09 ns         3.09 ns    229944818
+BenchRange<tsl::ordered_map<uint32_t, Pod>>/64                                 14.7 ns         14.7 ns     47803511
+BenchRange<tsl::ordered_map<uint32_t, Pod>>/512                                 121 ns          121 ns      5748411
+BenchRange<tsl::ordered_map<uint32_t, Pod>>/1024                                243 ns          243 ns      3071835
+BenchRange<boost::container::flat_map<uint32_t, Pod>>/1                       0.392 ns        0.392 ns   1000000000
+BenchRange<boost::container::flat_map<uint32_t, Pod>>/8                        1.54 ns         1.54 ns    442909974
+BenchRange<boost::container::flat_map<uint32_t, Pod>>/64                       6.36 ns         6.36 ns    110487010
+BenchRange<boost::container::flat_map<uint32_t, Pod>>/512                      44.3 ns         44.3 ns     15853268
+BenchRange<boost::container::flat_map<uint32_t, Pod>>/1024                     81.6 ns         81.6 ns      8692529
+BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/1                0.848 ns        0.848 ns    935747149
+BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/8                 7.88 ns         7.88 ns     83850998
+BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/64                 126 ns          126 ns      5608452
+BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/512               1422 ns         1422 ns       478128
+BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 0>/1024              4311 ns         4311 ns       161705
+BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 1>/1                0.313 ns        0.313 ns   1000000000
+BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 1>/8                 2.79 ns         2.79 ns    250032869
+BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 1>/64                64.3 ns         64.2 ns     10800568
+BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 1>/512               1215 ns         1215 ns       593288
+BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 1>/1024              2463 ns         2463 ns       252646
+BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 2>/1                0.372 ns        0.372 ns   1000000000
+BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 2>/8                 4.20 ns         4.20 ns    165370761
+BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 2>/64                 132 ns          132 ns      6089456
+BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 2>/512               1745 ns         1745 ns       388792
+BenchRangeMulti<MultiContainer<std::pair<uint32_t, Pod>>, 2>/1024              3875 ns         3875 ns       192656
+BenchRangeMulti<MultiHashContainer<std::pair<uint32_t, Pod>>, 0>/1            0.456 ns        0.456 ns   1000000000
+BenchRangeMulti<MultiHashContainer<std::pair<uint32_t, Pod>>, 0>/8             6.08 ns         6.08 ns    114417600
+BenchRangeMulti<MultiHashContainer<std::pair<uint32_t, Pod>>, 0>/64             142 ns          142 ns      4827467
+BenchRangeMulti<MultiHashContainer<std::pair<uint32_t, Pod>>, 0>/512           1513 ns         1513 ns       452800
+BenchRangeMulti<MultiHashContainer<std::pair<uint32_t, Pod>>, 0>/1024          4172 ns         4172 ns       168478
+BenchRange<eastl::vector_map<uint32_t, Pod>>/1                                0.382 ns        0.382 ns   1000000000
+BenchRange<eastl::vector_map<uint32_t, Pod>>/8                                 1.54 ns         1.54 ns    456336590
+BenchRange<eastl::vector_map<uint32_t, Pod>>/64                                6.49 ns         6.49 ns    108451984
+BenchRange<eastl::vector_map<uint32_t, Pod>>/512                               44.1 ns         44.1 ns     15831582
+BenchRange<eastl::vector_map<uint32_t, Pod>>/1024                              87.4 ns         87.4 ns      8001414
+BenchErase<sorted_vector_map<uint64_t, Pod>>/1                                 4.85 ns         4.85 ns    429611747
+BenchErase<sorted_vector_map<uint64_t, Pod>>/8                                 9.47 ns         9.47 ns     72484626
+BenchErase<sorted_vector_map<uint64_t, Pod>>/64                                17.5 ns         17.5 ns     39924160
+BenchErase<sorted_vector_map<uint64_t, Pod>>/512                               29.5 ns         29.5 ns     24289110
+BenchErase<sorted_vector_map<uint64_t, Pod>>/1024                              36.1 ns         36.1 ns     19789915
+BenchErase<std::map<uint64_t, Pod>>/1                                          4.75 ns         4.75 ns    258765405
+BenchErase<std::map<uint64_t, Pod>>/8                                          10.7 ns         10.7 ns     76405189
+BenchErase<std::map<uint64_t, Pod>>/64                                         19.3 ns         19.3 ns     37339028
+BenchErase<std::map<uint64_t, Pod>>/512                                        34.0 ns         34.0 ns     20409435
+BenchErase<std::map<uint64_t, Pod>>/1024                                       39.6 ns         39.6 ns     17342948
+BenchErase<std::unordered_map<uint64_t, Pod>>/1                                2.85 ns         2.85 ns    244159497
+BenchErase<std::unordered_map<uint64_t, Pod>>/8                                7.71 ns         7.71 ns     91358514
+BenchErase<std::unordered_map<uint64_t, Pod>>/64                               7.31 ns         7.31 ns     93943064
+BenchErase<std::unordered_map<uint64_t, Pod>>/512                              10.3 ns         10.3 ns     64183701
+BenchErase<std::unordered_map<uint64_t, Pod>>/1024                             11.0 ns         11.0 ns     66901871
+BenchErase<tsl::sparse_map<uint32_t, Pod>>/1                                   5.22 ns         5.22 ns    134585489
+BenchErase<tsl::sparse_map<uint32_t, Pod>>/8                                   7.27 ns         7.27 ns     89227728
+BenchErase<tsl::sparse_map<uint32_t, Pod>>/64                                  8.54 ns         8.54 ns     86951198
+BenchErase<tsl::sparse_map<uint32_t, Pod>>/512                                 9.16 ns         9.16 ns     77691674
+BenchErase<tsl::sparse_map<uint32_t, Pod>>/1024                                9.36 ns         9.36 ns     75599603
+BenchErase<tsl::ordered_map<uint32_t, Pod>>/1                                  6.17 ns         6.17 ns    121727186
+BenchErase<tsl::ordered_map<uint32_t, Pod>>/8                                  8.19 ns         8.19 ns     84859999
+BenchErase<tsl::ordered_map<uint32_t, Pod>>/64                                 8.82 ns         8.82 ns     77772663
+BenchErase<tsl::ordered_map<uint32_t, Pod>>/512                                16.8 ns         16.8 ns     42129914
+BenchErase<tsl::ordered_map<uint32_t, Pod>>/1024                               39.9 ns         39.9 ns     17785323
+BenchErase<boost::container::flat_map<uint64_t, Pod>>/1                        4.22 ns         4.22 ns    266428162
+BenchErase<boost::container::flat_map<uint64_t, Pod>>/8                        9.47 ns         9.47 ns     71984466
+BenchErase<boost::container::flat_map<uint64_t, Pod>>/64                       19.3 ns         19.3 ns     35989613
+BenchErase<boost::container::flat_map<uint64_t, Pod>>/512                      30.7 ns         30.7 ns     22756469
+BenchErase<boost::container::flat_map<uint64_t, Pod>>/1024                     37.3 ns         37.3 ns     18623054
+BenchEraseMulti<MultiContainer<std::pair<uint32_t, Pod>>>/1                    4.56 ns         4.56 ns    330321230
+BenchEraseMulti<MultiContainer<std::pair<uint32_t, Pod>>>/8                    9.85 ns         9.85 ns     74154225
+BenchEraseMulti<MultiContainer<std::pair<uint32_t, Pod>>>/64                   19.2 ns         19.2 ns     37730695
+BenchEraseMulti<MultiContainer<std::pair<uint32_t, Pod>>>/512                  34.4 ns         34.4 ns     20221223
+BenchEraseMulti<MultiContainer<std::pair<uint32_t, Pod>>>/1024                 53.6 ns         53.6 ns     13930121
+BenchErase<eastl::vector_map<uint32_t, Pod>>/1                                 2.16 ns         2.16 ns    275713336
+BenchErase<eastl::vector_map<uint32_t, Pod>>/8                                 8.92 ns         8.92 ns     81377494
+BenchErase<eastl::vector_map<uint32_t, Pod>>/64                                18.9 ns         18.9 ns     35654643
+BenchErase<eastl::vector_map<uint32_t, Pod>>/512                               31.8 ns         31.8 ns     21913098
+BenchErase<eastl::vector_map<uint32_t, Pod>>/1024                              39.6 ns         39.6 ns     17541559

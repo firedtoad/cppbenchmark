@@ -1,42 +1,42 @@
-2023-06-01T20:33:21+08:00
+2023-06-16T17:44:04+08:00
 Running ./bin/set_pmr_unordered
-Run on (16 X 3417.6 MHz CPU s)
+Run on (16 X 3417.59 MHz CPU s)
 CPU Caches:
   L1 Data 48 KiB (x16)
   L1 Instruction 32 KiB (x16)
   L2 Unified 2048 KiB (x16)
   L3 Unified 30720 KiB (x1)
-Load Average: 17.40, 16.30, 14.04
+Load Average: 4.08, 3.94, 2.77
 -----------------------------------------------------------------------------------------------
 Benchmark                                                     Time             CPU   Iterations
 -----------------------------------------------------------------------------------------------
-BM_reserve<std::unordered_set<int>>/1024                  23426 ns        23426 ns        27000
-BM_reserve<std::unordered_set<int>>/4096                  91278 ns        91275 ns         7583
-BM_reserve<std::unordered_set<int>>/32768                753997 ns       743462 ns         1083
-BM_reserve<std::unordered_set<int>>/262144              6719432 ns      6719319 ns          112
-BM_reserve<std::unordered_set<int>>/1048576            27584889 ns     27584370 ns           25
-BM_PMR_reserve<std::pmr::unordered_set<int>>/1024         11763 ns        11762 ns        47298
-BM_PMR_reserve<std::pmr::unordered_set<int>>/4096         45730 ns        45729 ns        14106
-BM_PMR_reserve<std::pmr::unordered_set<int>>/32768       380456 ns       380447 ns         1720
-BM_PMR_reserve<std::pmr::unordered_set<int>>/262144     3294331 ns      3294305 ns          248
-BM_PMR_reserve<std::pmr::unordered_set<int>>/1048576   14297080 ns     14296640 ns           47
-BM_Range<std::unordered_set<int>>/1024                     1140 ns         1140 ns       626714
-BM_Range<std::unordered_set<int>>/4096                     4413 ns         4413 ns       156530
-BM_Range<std::unordered_set<int>>/32768                   38499 ns        38497 ns        17957
-BM_Range<std::unordered_set<int>>/262144                 368768 ns       368762 ns         1877
-BM_Range<std::unordered_set<int>>/1048576               3449888 ns      3449870 ns          204
-BM_PMR_Range<std::pmr::unordered_set<int>>/1024            1171 ns         1170 ns       612713
-BM_PMR_Range<std::pmr::unordered_set<int>>/4096            4783 ns         4783 ns       141171
-BM_PMR_Range<std::pmr::unordered_set<int>>/32768          37728 ns        37729 ns        19035
-BM_PMR_Range<std::pmr::unordered_set<int>>/262144        298007 ns       298007 ns         2235
-BM_PMR_Range<std::pmr::unordered_set<int>>/1048576      1629775 ns      1629773 ns          386
-BM_Find<std::unordered_set<int>>/1024                      15.9 ns         15.9 ns     39950489
-BM_Find<std::unordered_set<int>>/4096                      19.2 ns         19.2 ns     38542199
-BM_Find<std::unordered_set<int>>/32768                     21.4 ns         21.4 ns     32420453
-BM_Find<std::unordered_set<int>>/262144                    48.0 ns         48.0 ns     13697793
-BM_Find<std::unordered_set<int>>/1048576                   80.2 ns         80.2 ns      8361082
-BM_PMR_Find<std::pmr::unordered_set<int>>/1024             15.9 ns         15.9 ns     43351799
-BM_PMR_Find<std::pmr::unordered_set<int>>/4096             17.9 ns         17.9 ns     37320048
-BM_PMR_Find<std::pmr::unordered_set<int>>/32768            20.0 ns         20.0 ns     34700775
-BM_PMR_Find<std::pmr::unordered_set<int>>/262144           30.1 ns         30.1 ns     19794956
-BM_PMR_Find<std::pmr::unordered_set<int>>/1048576          57.2 ns         57.2 ns     13005765
+BM_reserve<std::unordered_set<int>>/1024                  17963 ns        17963 ns        39284
+BM_reserve<std::unordered_set<int>>/4096                  71726 ns        71725 ns         9653
+BM_reserve<std::unordered_set<int>>/32768                579690 ns       579681 ns         1210
+BM_reserve<std::unordered_set<int>>/262144              4842091 ns      4842021 ns          137
+BM_reserve<std::unordered_set<int>>/1048576            23639318 ns     23639141 ns           29
+BM_PMR_reserve<std::pmr::unordered_set<int>>/1024          9394 ns         9392 ns        73890
+BM_PMR_reserve<std::pmr::unordered_set<int>>/4096         37864 ns        37856 ns        18493
+BM_PMR_reserve<std::pmr::unordered_set<int>>/32768       309164 ns       309153 ns         2214
+BM_PMR_reserve<std::pmr::unordered_set<int>>/262144     2550673 ns      2550539 ns          272
+BM_PMR_reserve<std::pmr::unordered_set<int>>/1048576   10960421 ns     10960184 ns           65
+BM_Range<std::unordered_set<int>>/1024                      987 ns          987 ns       701375
+BM_Range<std::unordered_set<int>>/4096                     4779 ns         4779 ns       157988
+BM_Range<std::unordered_set<int>>/32768                   35318 ns        35318 ns        19591
+BM_Range<std::unordered_set<int>>/262144                 312531 ns       312525 ns         2112
+BM_Range<std::unordered_set<int>>/1048576               2945666 ns      2945601 ns          268
+BM_PMR_Range<std::pmr::unordered_set<int>>/1024             986 ns          986 ns       708509
+BM_PMR_Range<std::pmr::unordered_set<int>>/4096            4688 ns         4688 ns       149544
+BM_PMR_Range<std::pmr::unordered_set<int>>/32768          33595 ns        33595 ns        19158
+BM_PMR_Range<std::pmr::unordered_set<int>>/262144        291315 ns       291315 ns         2311
+BM_PMR_Range<std::pmr::unordered_set<int>>/1048576      1229880 ns      1229835 ns          575
+BM_Find<std::unordered_set<int>>/1024                      13.1 ns         13.1 ns     53508022
+BM_Find<std::unordered_set<int>>/4096                      16.5 ns         16.5 ns     45937292
+BM_Find<std::unordered_set<int>>/32768                     17.9 ns         17.9 ns     38586657
+BM_Find<std::unordered_set<int>>/262144                    34.8 ns         34.8 ns     20718322
+BM_Find<std::unordered_set<int>>/1048576                   72.1 ns         72.1 ns      9740034
+BM_PMR_Find<std::pmr::unordered_set<int>>/1024             13.2 ns         13.2 ns     53149605
+BM_PMR_Find<std::pmr::unordered_set<int>>/4096             14.8 ns         14.8 ns     48244757
+BM_PMR_Find<std::pmr::unordered_set<int>>/32768            17.4 ns         17.4 ns     40163129
+BM_PMR_Find<std::pmr::unordered_set<int>>/262144           26.5 ns         26.5 ns     27080987
+BM_PMR_Find<std::pmr::unordered_set<int>>/1048576          59.8 ns         59.8 ns     12944016

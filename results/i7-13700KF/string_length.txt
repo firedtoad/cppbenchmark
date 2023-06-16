@@ -1,30 +1,30 @@
-2023-06-01T20:33:52+08:00
+2023-06-16T17:45:02+08:00
 Running ./bin/string_length
-Run on (16 X 3417.6 MHz CPU s)
+Run on (16 X 3417.59 MHz CPU s)
 CPU Caches:
   L1 Data 48 KiB (x16)
   L1 Instruction 32 KiB (x16)
   L2 Unified 2048 KiB (x16)
   L3 Unified 30720 KiB (x1)
-Load Average: 18.69, 16.72, 14.25
+Load Average: 4.03, 3.95, 2.85
 ----------------------------------------------------------------
 Benchmark                      Time             CPU   Iterations
 ----------------------------------------------------------------
-BenchNaiveStrlen/1         0.717 ns        0.717 ns    984203769
-BenchNaiveStrlen/8          2.46 ns         2.46 ns    284187248
-BenchNaiveStrlen/64         17.9 ns         17.9 ns     36621456
-BenchNaiveStrlen/512        71.1 ns         71.1 ns     10309256
-BenchNaiveStrlen/4096       70.5 ns         70.5 ns     10995291
-BenchNaiveStrlen/8192       70.3 ns         70.3 ns     10936438
-BenchSysStrlen/1            1.00 ns         1.00 ns    674276909
-BenchSysStrlen/8           0.897 ns        0.897 ns    613061841
-BenchSysStrlen/64           1.58 ns         1.58 ns    448337029
-BenchSysStrlen/512          2.74 ns         2.74 ns    252120712
-BenchSysStrlen/4096         2.65 ns         2.65 ns    231668975
-BenchSysStrlen/8192         2.80 ns         2.80 ns    231629621
-BenchWrapStrLen/1          0.921 ns        0.921 ns    750857694
-BenchWrapStrLen/8          0.993 ns        0.993 ns    746265999
-BenchWrapStrLen/64          1.36 ns         1.36 ns    585186326
-BenchWrapStrLen/512         2.94 ns         2.94 ns    276889660
-BenchWrapStrLen/4096        2.86 ns         2.86 ns    265587078
-BenchWrapStrLen/8192        2.90 ns         2.90 ns    270836189
+BenchNaiveStrlen/1         0.574 ns        0.574 ns   1000000000
+BenchNaiveStrlen/8          2.06 ns         2.06 ns    332036495
+BenchNaiveStrlen/64         14.9 ns         14.9 ns     45546742
+BenchNaiveStrlen/512        56.4 ns         56.4 ns     12557031
+BenchNaiveStrlen/4096       56.2 ns         56.2 ns     12426046
+BenchNaiveStrlen/8192       56.8 ns         56.8 ns     12343507
+BenchSysStrlen/1           0.846 ns        0.846 ns    860019556
+BenchSysStrlen/8           0.828 ns        0.828 ns    882949303
+BenchSysStrlen/64           1.05 ns         1.05 ns    658266082
+BenchSysStrlen/512          2.27 ns         2.27 ns    313301024
+BenchSysStrlen/4096         2.27 ns         2.27 ns    304776393
+BenchSysStrlen/8192         2.26 ns         2.26 ns    308691198
+BenchWrapStrLen/1          0.766 ns        0.766 ns    917697710
+BenchWrapStrLen/8          0.765 ns        0.765 ns    918742996
+BenchWrapStrLen/64          1.12 ns         1.12 ns    661241414
+BenchWrapStrLen/512         2.25 ns         2.25 ns    310793817
+BenchWrapStrLen/4096        2.26 ns         2.26 ns    304952320
+BenchWrapStrLen/8192        2.26 ns         2.26 ns    309041540

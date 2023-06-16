@@ -1,19 +1,19 @@
-2023-06-01T20:35:53+08:00
+2023-06-16T17:49:45+08:00
 Running ./bin/smart_ptr
-Run on (16 X 3417.6 MHz CPU s)
+Run on (16 X 3417.59 MHz CPU s)
 CPU Caches:
   L1 Data 48 KiB (x16)
   L1 Instruction 32 KiB (x16)
   L2 Unified 2048 KiB (x16)
   L3 Unified 30720 KiB (x1)
-Load Average: 20.89, 17.80, 14.93
+Load Average: 4.06, 4.03, 3.18
 ----------------------------------------------------------
 Benchmark                Time             CPU   Iterations
 ----------------------------------------------------------
-BenchPtr             0.249 ns        0.249 ns   1000000000
-BenchUMapShared      0.272 ns        0.272 ns   1000000000
-BenchPassVal          4.54 ns         4.54 ns    144983978
-BenchPassRef         0.218 ns        0.218 ns   1000000000
-BenchPassValS        0.408 ns        0.408 ns   1000000000
-BenchPassRefS        0.344 ns        0.344 ns   1000000000
-BenchPassAtomic       10.0 ns         9.98 ns     62567768
+BenchPtr             0.191 ns        0.191 ns   1000000000
+BenchShared          0.191 ns        0.191 ns   1000000000
+BenchPassVal          4.10 ns         4.10 ns    169614893
+BenchPassRef         0.191 ns        0.191 ns   1000000000
+BenchPassValS        0.306 ns        0.306 ns   1000000000
+BenchPassRefS        0.281 ns        0.281 ns   1000000000
+BenchPassAtomic       7.08 ns         7.08 ns     99537626

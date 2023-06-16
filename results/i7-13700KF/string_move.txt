@@ -1,26 +1,26 @@
-2023-06-01T20:32:38+08:00
+2023-06-16T17:43:14+08:00
 Running ./bin/string_move
-Run on (16 X 3417.6 MHz CPU s)
+Run on (16 X 3417.59 MHz CPU s)
 CPU Caches:
   L1 Data 48 KiB (x16)
   L1 Instruction 32 KiB (x16)
   L2 Unified 2048 KiB (x16)
   L3 Unified 30720 KiB (x1)
-Load Average: 18.91, 16.33, 13.95
+Load Average: 4.18, 3.93, 2.70
 -------------------------------------------------------------------
 Benchmark                         Time             CPU   Iterations
 -------------------------------------------------------------------
-BenchStringMove<LogCopy>       51.5 ns         51.5 ns     10000000
-BenchStringMove<LogMove>       30.1 ns         30.1 ns     21590663
-BenchCopy                      34.4 ns         34.4 ns     17585179
-BenchRvo                       19.5 ns         19.5 ns     28412055
-BenchUnmapCopy/1               39.5 ns         39.5 ns     15294211
-BenchUnmapCopy/8               45.3 ns         45.3 ns     15845969
-BenchUnmapCopy/64              78.5 ns         78.5 ns      9607767
-BenchUnmapCopy/512             81.6 ns         81.6 ns      8950995
-BenchUnmapCopy/1024            92.9 ns         92.9 ns      7772608
-BenchUnmapRvo/1                43.8 ns         43.8 ns     17802600
-BenchUnmapRvo/8                39.4 ns         39.4 ns     17797739
-BenchUnmapRvo/64               55.0 ns         55.0 ns     13999297
-BenchUnmapRvo/512              58.4 ns         58.4 ns     11934706
-BenchUnmapRvo/1024             61.2 ns         61.2 ns     12782023
+BenchStringMove<LogCopy>       42.3 ns         42.3 ns     16168518
+BenchStringMove<LogMove>       24.5 ns         24.5 ns     28384544
+BenchCopy                      29.3 ns         29.3 ns     24493480
+BenchRvo                       16.6 ns         16.6 ns     41667321
+BenchUnmapCopy/1               31.4 ns         31.4 ns     22244884
+BenchUnmapCopy/8               35.9 ns         35.9 ns     19387945
+BenchUnmapCopy/64              59.6 ns         59.6 ns     11858637
+BenchUnmapCopy/512             65.5 ns         65.5 ns     10626661
+BenchUnmapCopy/1024            70.1 ns         70.1 ns     10044040
+BenchUnmapRvo/1                34.9 ns         34.9 ns     19531797
+BenchUnmapRvo/8                35.2 ns         35.2 ns     20461350
+BenchUnmapRvo/64               45.7 ns         45.7 ns     15606875
+BenchUnmapRvo/512              45.2 ns         45.2 ns     15207039
+BenchUnmapRvo/1024             46.4 ns         46.4 ns     15124511

@@ -1,0 +1,744 @@
+std::__cxx11::list<Small, std::allocator<Small> > logic allocate report
+total_alloc    : 25165824 / 24576 KB / 24 MB
+total_freed    : 25165824 / 24576 KB / 24 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048576
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048576
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::__cxx11::list<std::shared_ptr<Small>, std::allocator<std::shared_ptr<Small> > > logic allocate report
+total_alloc    : 58720256 / 57344 KB / 56 MB
+total_freed    : 58720256 / 57344 KB / 56 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::__cxx11::list<std::unique_ptr<Small, std::default_delete<Small> >, std::allocator<std::unique_ptr<Small, std::default_delete<Small> > > > logic allocate report
+total_alloc    : 33554432 / 32768 KB / 32 MB
+total_freed    : 33554432 / 32768 KB / 32 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::__cxx11::list<Big, std::allocator<Big> > logic allocate report
+total_alloc    : 83886080 / 81920 KB / 80 MB
+total_freed    : 83886080 / 81920 KB / 80 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048576
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048576
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::__cxx11::list<std::shared_ptr<Big>, std::allocator<std::shared_ptr<Big> > > logic allocate report
+total_alloc    : 117440512 / 114688 KB / 112 MB
+total_freed    : 117440512 / 114688 KB / 112 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::__cxx11::list<std::unique_ptr<Big, std::default_delete<Big> >, std::allocator<std::unique_ptr<Big, std::default_delete<Big> > > > logic allocate report
+total_alloc    : 92274688 / 90112 KB / 88 MB
+total_freed    : 92274688 / 90112 KB / 88 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::forward_list<Small, std::allocator<Small> > logic allocate report
+total_alloc    : 16777216 / 16384 KB / 16 MB
+total_freed    : 16777216 / 16384 KB / 16 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048576
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048576
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::forward_list<std::shared_ptr<Small>, std::allocator<std::shared_ptr<Small> > > logic allocate report
+total_alloc    : 50331648 / 49152 KB / 48 MB
+total_freed    : 50331648 / 49152 KB / 48 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::forward_list<std::unique_ptr<Small, std::default_delete<Small> >, std::allocator<std::unique_ptr<Small, std::default_delete<Small> > > > logic allocate report
+total_alloc    : 25165824 / 24576 KB / 24 MB
+total_freed    : 25165824 / 24576 KB / 24 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::forward_list<Big, std::allocator<Big> > logic allocate report
+total_alloc    : 75497472 / 73728 KB / 72 MB
+total_freed    : 75497472 / 73728 KB / 72 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048576
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048576
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::forward_list<std::shared_ptr<Big>, std::allocator<std::shared_ptr<Big> > > logic allocate report
+total_alloc    : 109051904 / 106496 KB / 104 MB
+total_freed    : 109051904 / 106496 KB / 104 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::forward_list<std::unique_ptr<Big, std::default_delete<Big> >, std::allocator<std::unique_ptr<Big, std::default_delete<Big> > > > logic allocate report
+total_alloc    : 83886080 / 81920 KB / 80 MB
+total_freed    : 83886080 / 81920 KB / 80 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::deque<Small, std::allocator<Small> > logic allocate report
+total_alloc    : 9044192 / 8832 KB / 8 MB
+total_freed    : 9044192 / 8832 KB / 8 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 16398
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 16398
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::deque<std::shared_ptr<Small>, std::allocator<std::shared_ptr<Small> > > logic allocate report
+total_alloc    : 43253968 / 42240 KB / 41 MB
+total_freed    : 43253968 / 42240 KB / 41 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1081359
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1081359
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::deque<std::unique_ptr<Small, std::default_delete<Small> >, std::allocator<std::unique_ptr<Small, std::default_delete<Small> > > > logic allocate report
+total_alloc    : 17432800 / 17024 KB / 16 MB
+total_freed    : 17432800 / 17024 KB / 16 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1064974
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1064974
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::deque<Big, std::allocator<Big> > logic allocate report
+total_alloc    : 72351920 / 70656 KB / 69 MB
+total_freed    : 72351920 / 70656 KB / 69 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 131089
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 131089
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::deque<std::shared_ptr<Big>, std::allocator<std::shared_ptr<Big> > > logic allocate report
+total_alloc    : 101974224 / 99584 KB / 97 MB
+total_freed    : 101974224 / 99584 KB / 97 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1081359
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1081359
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::deque<std::unique_ptr<Big, std::default_delete<Big> >, std::allocator<std::unique_ptr<Big, std::default_delete<Big> > > > logic allocate report
+total_alloc    : 76153056 / 74368 KB / 72 MB
+total_freed    : 76153056 / 74368 KB / 72 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1064974
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1064974
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::vector<Small, std::allocator<Small> > logic allocate report
+total_alloc    : 8388608 / 8192 KB / 8 MB
+total_freed    : 8388608 / 8192 KB / 8 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::vector<std::shared_ptr<Small>, std::allocator<std::shared_ptr<Small> > > logic allocate report
+total_alloc    : 41943040 / 40960 KB / 40 MB
+total_freed    : 41943040 / 40960 KB / 40 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048577
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048577
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::vector<std::unique_ptr<Small, std::default_delete<Small> >, std::allocator<std::unique_ptr<Small, std::default_delete<Small> > > > logic allocate report
+total_alloc    : 16777216 / 16384 KB / 16 MB
+total_freed    : 16777216 / 16384 KB / 16 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048577
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048577
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::vector<Big, std::allocator<Big> > logic allocate report
+total_alloc    : 67108864 / 65536 KB / 64 MB
+total_freed    : 67108864 / 65536 KB / 64 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::vector<std::shared_ptr<Big>, std::allocator<std::shared_ptr<Big> > > logic allocate report
+total_alloc    : 100663296 / 98304 KB / 96 MB
+total_freed    : 100663296 / 98304 KB / 96 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048577
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048577
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::vector<std::unique_ptr<Big, std::default_delete<Big> >, std::allocator<std::unique_ptr<Big, std::default_delete<Big> > > > logic allocate report
+total_alloc    : 75497472 / 73728 KB / 72 MB
+total_freed    : 75497472 / 73728 KB / 72 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048577
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048577
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::map<int, Small, std::less<int>, std::allocator<std::pair<int const, Small> > > logic allocate report
+total_alloc    : 50331648 / 49152 KB / 48 MB
+total_freed    : 50331648 / 49152 KB / 48 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048576
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048576
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::map<int, std::shared_ptr<Small>, std::less<int>, std::allocator<std::pair<int const, std::shared_ptr<Small> > > > logic allocate report
+total_alloc    : 83886080 / 81920 KB / 80 MB
+total_freed    : 83886080 / 81920 KB / 80 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::map<int, std::unique_ptr<Small, std::default_delete<Small> >, std::less<int>, std::allocator<std::pair<int const, std::unique_ptr<Small, std::default_delete<Small> > > > > logic allocate report
+total_alloc    : 58720256 / 57344 KB / 56 MB
+total_freed    : 58720256 / 57344 KB / 56 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::map<int, Big, std::less<int>, std::allocator<std::pair<int const, Big> > > logic allocate report
+total_alloc    : 109051904 / 106496 KB / 104 MB
+total_freed    : 109051904 / 106496 KB / 104 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048576
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048576
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::map<int, std::shared_ptr<Big>, std::less<int>, std::allocator<std::pair<int const, std::shared_ptr<Big> > > > logic allocate report
+total_alloc    : 142606336 / 139264 KB / 136 MB
+total_freed    : 142606336 / 139264 KB / 136 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::map<int, std::unique_ptr<Big, std::default_delete<Big> >, std::less<int>, std::allocator<std::pair<int const, std::unique_ptr<Big, std::default_delete<Big> > > > > logic allocate report
+total_alloc    : 117440512 / 114688 KB / 112 MB
+total_freed    : 117440512 / 114688 KB / 112 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_map<int, Small, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int const, Small> > > logic allocate report
+total_alloc    : 33616408 / 32828 KB / 32 MB
+total_freed    : 33616408 / 32828 KB / 32 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048577
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048577
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_map<int, std::shared_ptr<Small>, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int const, std::shared_ptr<Small> > > > logic allocate report
+total_alloc    : 67170840 / 65596 KB / 64 MB
+total_freed    : 67170840 / 65596 KB / 64 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097153
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097153
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_map<int, std::unique_ptr<Small, std::default_delete<Small> >, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int const, std::unique_ptr<Small, std::default_delete<Small> > > > > logic allocate report
+total_alloc    : 42005016 / 41020 KB / 40 MB
+total_freed    : 42005016 / 41020 KB / 40 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097153
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097153
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_map<int, Big, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int const, Big> > > logic allocate report
+total_alloc    : 92336664 / 90172 KB / 88 MB
+total_freed    : 92336664 / 90172 KB / 88 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048577
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048577
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_map<int, std::shared_ptr<Big>, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int const, std::shared_ptr<Big> > > > logic allocate report
+total_alloc    : 125891096 / 122940 KB / 120 MB
+total_freed    : 125891096 / 122940 KB / 120 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097153
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097153
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_map<int, std::unique_ptr<Big, std::default_delete<Big> >, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int const, std::unique_ptr<Big, std::default_delete<Big> > > > > logic allocate report
+total_alloc    : 100725272 / 98364 KB / 96 MB
+total_freed    : 100725272 / 98364 KB / 96 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097153
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097153
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Small, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Small> > > logic allocate report
+total_alloc    : 75497472 / 73728 KB / 72 MB
+total_freed    : 75497472 / 73728 KB / 72 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048576
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048576
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<Small>, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::shared_ptr<Small> > > > logic allocate report
+total_alloc    : 109051904 / 106496 KB / 104 MB
+total_freed    : 109051904 / 106496 KB / 104 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::unique_ptr<Small, std::default_delete<Small> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::unique_ptr<Small, std::default_delete<Small> > > > > logic allocate report
+total_alloc    : 83886080 / 81920 KB / 80 MB
+total_freed    : 83886080 / 81920 KB / 80 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Big, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Big> > > logic allocate report
+total_alloc    : 134217728 / 131072 KB / 128 MB
+total_freed    : 134217728 / 131072 KB / 128 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048576
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048576
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<Big>, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::shared_ptr<Big> > > > logic allocate report
+total_alloc    : 167772160 / 163840 KB / 160 MB
+total_freed    : 167772160 / 163840 KB / 160 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::unique_ptr<Big, std::default_delete<Big> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::unique_ptr<Big, std::default_delete<Big> > > > > logic allocate report
+total_alloc    : 142606336 / 139264 KB / 136 MB
+total_freed    : 142606336 / 139264 KB / 136 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Small, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Small> > > logic allocate report
+total_alloc    : 67170840 / 65596 KB / 64 MB
+total_freed    : 67170840 / 65596 KB / 64 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048577
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048577
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<Small>, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::shared_ptr<Small> > > > logic allocate report
+total_alloc    : 100725272 / 98364 KB / 96 MB
+total_freed    : 100725272 / 98364 KB / 96 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097153
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097153
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::unique_ptr<Small, std::default_delete<Small> >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::unique_ptr<Small, std::default_delete<Small> > > > > logic allocate report
+total_alloc    : 75559448 / 73788 KB / 72 MB
+total_freed    : 75559448 / 73788 KB / 72 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097153
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097153
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Big, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Big> > > logic allocate report
+total_alloc    : 125891096 / 122940 KB / 120 MB
+total_freed    : 125891096 / 122940 KB / 120 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048577
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048577
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<Big>, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::shared_ptr<Big> > > > logic allocate report
+total_alloc    : 159445528 / 155708 KB / 152 MB
+total_freed    : 159445528 / 155708 KB / 152 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097153
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097153
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::unique_ptr<Big, std::default_delete<Big> >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::unique_ptr<Big, std::default_delete<Big> > > > > logic allocate report
+total_alloc    : 134279704 / 131132 KB / 128 MB
+total_freed    : 134279704 / 131132 KB / 128 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097153
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097153
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::set<Small, std::less<Small>, std::allocator<Small> > logic allocate report
+total_alloc    : 41943040 / 40960 KB / 40 MB
+total_freed    : 41943040 / 40960 KB / 40 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048576
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048576
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::set<std::shared_ptr<Small>, std::less<std::shared_ptr<Small> >, std::allocator<std::shared_ptr<Small> > > logic allocate report
+total_alloc    : 75497472 / 73728 KB / 72 MB
+total_freed    : 75497472 / 73728 KB / 72 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::set<std::unique_ptr<Small, std::default_delete<Small> >, std::less<std::unique_ptr<Small, std::default_delete<Small> > >, std::allocator<std::unique_ptr<Small, std::default_delete<Small> > > > logic allocate report
+total_alloc    : 50331648 / 49152 KB / 48 MB
+total_freed    : 50331648 / 49152 KB / 48 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::set<Big, std::less<Big>, std::allocator<Big> > logic allocate report
+total_alloc    : 100663296 / 98304 KB / 96 MB
+total_freed    : 100663296 / 98304 KB / 96 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048576
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048576
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::set<std::shared_ptr<Big>, std::less<std::shared_ptr<Big> >, std::allocator<std::shared_ptr<Big> > > logic allocate report
+total_alloc    : 134217728 / 131072 KB / 128 MB
+total_freed    : 134217728 / 131072 KB / 128 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::set<std::unique_ptr<Big, std::default_delete<Big> >, std::less<std::unique_ptr<Big, std::default_delete<Big> > >, std::allocator<std::unique_ptr<Big, std::default_delete<Big> > > > logic allocate report
+total_alloc    : 109051904 / 106496 KB / 104 MB
+total_freed    : 109051904 / 106496 KB / 104 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097152
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097152
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_set<Small, std::hash<Small>, std::equal_to<Small>, std::allocator<Small> > logic allocate report
+total_alloc    : 33616408 / 32828 KB / 32 MB
+total_freed    : 33616408 / 32828 KB / 32 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048577
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048577
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_set<std::shared_ptr<Small>, std::hash<std::shared_ptr<Small> >, std::equal_to<std::shared_ptr<Small> >, std::allocator<std::shared_ptr<Small> > > logic allocate report
+total_alloc    : 58782232 / 57404 KB / 56 MB
+total_freed    : 58782232 / 57404 KB / 56 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097153
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097153
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_set<std::unique_ptr<Small, std::default_delete<Small> >, std::hash<std::unique_ptr<Small, std::default_delete<Small> > >, std::equal_to<std::unique_ptr<Small, std::default_delete<Small> > >, std::allocator<std::unique_ptr<Small, std::default_delete<Small> > > > logic allocate report
+total_alloc    : 33616408 / 32828 KB / 32 MB
+total_freed    : 33616408 / 32828 KB / 32 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097153
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097153
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_set<Big, std::hash<Big>, std::equal_to<Big>, std::allocator<Big> > logic allocate report
+total_alloc    : 92336664 / 90172 KB / 88 MB
+total_freed    : 92336664 / 90172 KB / 88 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048577
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048577
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_set<std::shared_ptr<Big>, std::hash<std::shared_ptr<Big> >, std::equal_to<std::shared_ptr<Big> >, std::allocator<std::shared_ptr<Big> > > logic allocate report
+total_alloc    : 117502488 / 114748 KB / 112 MB
+total_freed    : 117502488 / 114748 KB / 112 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097153
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097153
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_set<std::unique_ptr<Big, std::default_delete<Big> >, std::hash<std::unique_ptr<Big, std::default_delete<Big> > >, std::equal_to<std::unique_ptr<Big, std::default_delete<Big> > >, std::allocator<std::unique_ptr<Big, std::default_delete<Big> > > > logic allocate report
+total_alloc    : 92336664 / 90172 KB / 88 MB
+total_freed    : 92336664 / 90172 KB / 88 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 2097153
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 2097153
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::set<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > logic allocate report
+total_alloc    : 67108864 / 65536 KB / 64 MB
+total_freed    : 67108864 / 65536 KB / 64 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048576
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048576
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+
+std::unordered_set<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > logic allocate report
+total_alloc    : 58782232 / 57404 KB / 56 MB
+total_freed    : 58782232 / 57404 KB / 56 MB
+current_used   : 0 / 0 KB / 0 MB
+malloc_count   : 1048577
+calloc_count   : 0
+realloc_count  : 0
+free_count     : 1048577
+memalign_count : 0
+valloc_count   : 0
+pvalloc_count  : 0
+

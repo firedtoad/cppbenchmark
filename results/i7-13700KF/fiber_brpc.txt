@@ -1,14 +1,15 @@
-2023-06-01T20:35:17+08:00
+2023-06-16T17:47:37+08:00
 Running ./bin/fiber_brpc
-Run on (16 X 3417.6 MHz CPU s)
+Run on (16 X 3417.59 MHz CPU s)
 CPU Caches:
   L1 Data 48 KiB (x16)
   L1 Instruction 32 KiB (x16)
   L2 Unified 2048 KiB (x16)
   L3 Unified 30720 KiB (x1)
-Load Average: 17.87, 16.97, 14.56
+Load Average: 4.01, 3.99, 3.04
+E0616 17:47:37.293845 196730 /root/soft/brpc/src/bthread/task_group.cpp:678] _remote_rq is full, capacity=2048
 ----------------------------------------------------------
 Benchmark                Time             CPU   Iterations
 ----------------------------------------------------------
-BenchBackground       1507 ns         1481 ns       436961
-BenchUrgent           1637 ns         1603 ns       313036
+BenchBackground       3637 ns         3630 ns       233756
+BenchUrgent           2219 ns         2197 ns       291981

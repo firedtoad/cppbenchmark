@@ -1,428 +1,190 @@
 std::unordered_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int const, int> > > memory 
-user cpu : 0s 23397us
-sys cpu : 0s 8165us
-max rss : 44052 kb / 43.0195 MB
-page reclaims : 10173
+user cpu : 0s 4737us
+sys cpu : 0s 19963us
+max rss : 41080 KB / 40.1172 MB
+page reclaims : 8749
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 ska::unordered_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int, int> > > memory 
-user cpu : 0s 46701us
-sys cpu : 0s 18984us
-max rss : 40912 kb / 39.9531 MB
-page reclaims : 8223
+user cpu : 0s 85014us
+sys cpu : 0s 24182us
+max rss : 40980 KB / 40.0195 MB
+page reclaims : 8716
 page faults : 0
 voluntary switches : 0
-involuntary switches : 1
+involuntary switches : 0
 
 ska::flat_hash_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int, int> > > memory 
-user cpu : 0s 23970us
-sys cpu : 0s 20412us
-max rss : 48936 kb / 47.7891 MB
-page reclaims : 3095
+user cpu : 0s 26124us
+sys cpu : 0s 10070us
+max rss : 24640 KB / 24.0625 MB
+page reclaims : 557
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 ska::bytell_hash_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int, int> > > memory 
-user cpu : 0s 12839us
-sys cpu : 0s 1690us
-max rss : 36868 kb / 36.0039 MB
-page reclaims : 2607
+user cpu : 0s 47518us
+sys cpu : 0s 12088us
+max rss : 18496 KB / 18.0625 MB
+page reclaims : 554
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 phmap::flat_hash_map<int, int, phmap::Hash<int>, phmap::EqualTo<int>, std::allocator<std::pair<int const, int> > > memory 
-user cpu : 0s 23542us
-sys cpu : 0s 3839us
-max rss : 37104 kb / 36.2344 MB
-page reclaims : 2121
+user cpu : 0s 43913us
+sys cpu : 0s 1051us
+max rss : 18496 KB / 18.0625 MB
+page reclaims : 554
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 absl::debian3::flat_hash_map<int, int, absl::debian3::hash_internal::Hash<int>, std::equal_to<int>, std::allocator<std::pair<int const, int> > > memory 
-user cpu : 0s 25680us
-sys cpu : 0s 1780us
-max rss : 36868 kb / 36.0039 MB
-page reclaims : 2589
+user cpu : 0s 14257us
+sys cpu : 0s 4722us
+max rss : 18496 KB / 18.0625 MB
+page reclaims : 545
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 robin_hood::detail::Table<true, 80ul, int, int, robin_hood::hash<int, void>, std::equal_to<int> > memory 
-user cpu : 0s 40664us
-sys cpu : 0s 22533us
-max rss : 36868 kb / 36.0039 MB
-page reclaims : 4181
+user cpu : 0s 24937us
+sys cpu : 0s 499us
+max rss : 18488 KB / 18.0547 MB
+page reclaims : 1068
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 spp::sparse_hash_map<int, int, spp::spp_hash<int>, std::equal_to<int>, spp::libc_allocator<std::pair<int const, int> > > memory 
-user cpu : 0s 124435us
-sys cpu : 0s 1042us
-max rss : 12408 kb / 12.1172 MB
-page reclaims : 3141
+user cpu : 0s 26036us
+sys cpu : 0s 20605us
+max rss : 13924 KB / 13.5977 MB
+page reclaims : 3015
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 tsl::bhopscotch_map<int, int, std::hash<int>, std::equal_to<int>, std::less<int>, std::allocator<std::pair<int const, int> >, 62u, false, tsl::hh::power_of_two_growth_policy<2ul> > memory 
-user cpu : 0s 17495us
-sys cpu : 0s 30484us
-max rss : 65552 kb / 64.0156 MB
-page reclaims : 3110
+user cpu : 0s 8871us
+sys cpu : 0s 7096us
+max rss : 32772 KB / 32.0039 MB
+page reclaims : 537
 page faults : 0
-voluntary switches : 3
+voluntary switches : 0
 involuntary switches : 0
 
 tsl::hopscotch_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int, int> >, 62u, false, tsl::hh::power_of_two_growth_policy<2ul> > memory 
-user cpu : 0s 22833us
-sys cpu : 0s 19309us
-max rss : 65552 kb / 64.0156 MB
-page reclaims : 3136
+user cpu : 0s 9784us
+sys cpu : 0s 7522us
+max rss : 32772 KB / 32.0039 MB
+page reclaims : 540
 page faults : 0
-voluntary switches : 1
+voluntary switches : 0
 involuntary switches : 0
 
 tsl::robin_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int, int> >, false, tsl::rh::power_of_two_growth_policy<2ul> > memory 
-user cpu : 0s 15469us
-sys cpu : 0s 24374us
-max rss : 49072 kb / 47.9219 MB
-page reclaims : 4146
+user cpu : 0s 7992us
+sys cpu : 0s 6906us
+max rss : 24596 KB / 24.0195 MB
+page reclaims : 536
 page faults : 0
 voluntary switches : 0
-involuntary switches : 1
+involuntary switches : 0
 
 tsl::sparse_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int, int> >, tsl::sh::power_of_two_growth_policy<2ul>, (tsl::sh::exception_safety)0, (tsl::sh::sparsity)1> memory 
-user cpu : 0s 25515us
-sys cpu : 0s 12027us
-max rss : 8976 kb / 8.76562 MB
-page reclaims : 2291
+user cpu : 0s 12236us
+sys cpu : 0s 3699us
+max rss : 9504 KB / 9.28125 MB
+page reclaims : 2380
 page faults : 0
-voluntary switches : 5
+voluntary switches : 0
 involuntary switches : 0
 
 tsl::ordered_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int, int> >, std::deque<std::pair<int, int>, std::allocator<std::pair<int, int> > >, unsigned int> memory 
-user cpu : 0s 18407us
-sys cpu : 0s 17028us
-max rss : 32780 kb / 32.0117 MB
-page reclaims : 2581
+user cpu : 0s 2794us
+sys cpu : 0s 16853us
+max rss : 24936 KB / 24.3516 MB
+page reclaims : 2708
 page faults : 0
 voluntary switches : 0
-involuntary switches : 1
+involuntary switches : 0
 
 std::map<int, int, std::less<int>, std::allocator<std::pair<int const, int> > > memory 
-user cpu : 0s 162072us
-sys cpu : 0s 28023us
-max rss : 48572 kb / 47.4336 MB
-page reclaims : 12196
+user cpu : 0s 110074us
+sys cpu : 0s 22370us
+max rss : 48312 KB / 47.1797 MB
+page reclaims : 12134
 page faults : 0
-voluntary switches : 3
-involuntary switches : 1
+voluntary switches : 0
+involuntary switches : 0
 
 phmap::btree_map<int, int, phmap::Less<int>, std::allocator<std::pair<int const, int> > > memory 
-user cpu : 0s 39094us
-sys cpu : 0s 4401us
-max rss : 8972 kb / 8.76172 MB
-page reclaims : 2304
-page faults : 1
-voluntary switches : 0
-involuntary switches : 1
-
-std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > > memory 
-user cpu : 0s 306717us
-sys cpu : 0s 55121us
-max rss : 81312 kb / 79.4062 MB
-page reclaims : 20392
+user cpu : 0s 38624us
+sys cpu : 0s 6983us
+max rss : 9504 KB / 9.28125 MB
+page reclaims : 2391
 page faults : 0
 voluntary switches : 0
-involuntary switches : 2
+involuntary switches : 0
+
+std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > > memory 
+user cpu : 0s 243008us
+sys cpu : 0s 36014us
+max rss : 81840 KB / 79.9219 MB
+page reclaims : 20492
+page faults : 0
+voluntary switches : 0
+involuntary switches : 0
 
 phmap::btree_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, phmap::Less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > > memory 
-user cpu : 0s 119042us
-sys cpu : 0s 27924us
-max rss : 49164 kb / 48.0117 MB
-page reclaims : 12296
+user cpu : 0s 97703us
+sys cpu : 0s 25261us
+max rss : 49368 KB / 48.2109 MB
+page reclaims : 12383
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
 
 std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<int>, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::shared_ptr<int> > > > memory 
-user cpu : 0s 303629us
-sys cpu : 0s 54115us
-max rss : 130680 kb / 127.617 MB
-page reclaims : 32679
+user cpu : 0s 260527us
+sys cpu : 0s 52080us
+max rss : 130680 KB / 127.617 MB
+page reclaims : 32722
 page faults : 0
 voluntary switches : 0
-involuntary switches : 1
+involuntary switches : 0
 
 phmap::btree_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<int>, phmap::Less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::shared_ptr<int> > > > memory 
-user cpu : 0s 151899us
-sys cpu : 0s 28156us
-max rss : 92664 kb / 90.4922 MB
-page reclaims : 23201
+user cpu : 0s 102598us
+sys cpu : 0s 51076us
+max rss : 93780 KB / 91.582 MB
+page reclaims : 23424
 page faults : 0
 voluntary switches : 0
-involuntary switches : 2
+involuntary switches : 1
 
 tsl::sparse_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<int>, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<int> > >, tsl::sh::power_of_two_growth_policy<2ul>, (tsl::sh::exception_safety)0, (tsl::sh::sparsity)1> memory 
-user cpu : 0s 313689us
-sys cpu : 0s 38433us
-max rss : 94512 kb / 92.2969 MB
-page reclaims : 23668
+user cpu : 0s 436321us
+sys cpu : 0s 53388us
+max rss : 94216 KB / 92.0078 MB
+page reclaims : 23799
 page faults : 0
 voluntary switches : 0
-involuntary switches : 1
+involuntary switches : 0
 
 tsl::sparse_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::unique_ptr<int, std::default_delete<int> >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::unique_ptr<int, std::default_delete<int> > > >, tsl::sh::power_of_two_growth_policy<2ul>, (tsl::sh::exception_safety)0, (tsl::sh::sparsity)1> memory 
-user cpu : 0s 275582us
-sys cpu : 0s 25770us
-max rss : 83952 kb / 81.9844 MB
-page reclaims : 21020
-page faults : 0
-voluntary switches : 0
-involuntary switches : 2
-
-tsl::ordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<int>, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<int> > >, std::deque<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<int> >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<int> > > >, unsigned int> memory 
-user cpu : 0s 105769us
-sys cpu : 0s 31089us
-max rss : 132768 kb / 129.656 MB
-page reclaims : 27103
-page faults : 0
-voluntary switches : 0
-involuntary switches : 0
-
-tsl::ordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::unique_ptr<int, std::default_delete<int> >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::unique_ptr<int, std::default_delete<int> > > >, std::deque<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::unique_ptr<int, std::default_delete<int> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::unique_ptr<int, std::default_delete<int> > > > >, unsigned int> memory 
-user cpu : 0s 75830us
-sys cpu : 0s 32314us
-max rss : 91388 kb / 89.2461 MB
-page reclaims : 17272
-page faults : 0
-voluntary switches : 0
-involuntary switches : 0
-
-tsl::sparse_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int*, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int*> >, tsl::sh::power_of_two_growth_policy<2ul>, (tsl::sh::exception_safety)0, (tsl::sh::sparsity)1> memory 
-user cpu : 0s 221546us
-sys cpu : 0s 34658us
-max rss : 51676 kb / 50.4648 MB
-page reclaims : 12466
-page faults : 0
-voluntary switches : 0
-involuntary switches : 0
-
-std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > > memory 
-user cpu : 0s 271007us
-sys cpu : 0s 44042us
-max rss : 76084 kb / 74.3008 MB
-page reclaims : 15465
-page faults : 0
-voluntary switches : 0
-involuntary switches : 2
-
-std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<int>, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::shared_ptr<int> > > > memory 
-user cpu : 0s 378174us
-sys cpu : 0s 30652us
-max rss : 125256 kb / 122.32 MB
-page reclaims : 28281
+user cpu : 0s 402595us
+sys cpu : 0s 33613us
+max rss : 77616 KB / 75.7969 MB
+page reclaims : 19433
 page faults : 0
 voluntary switches : 0
 involuntary switches : 1
 
-std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::unique_ptr<int, std::default_delete<int> >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::unique_ptr<int, std::default_delete<int> > > > > memory 
-user cpu : 0s 434643us
-sys cpu : 0s 7552us
-max rss : 108752 kb / 106.203 MB
-page reclaims : 23164
-page faults : 0
-voluntary switches : 0
-involuntary switches : 2
-
-ska::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> > > memory 
-user cpu : 0s 242936us
-sys cpu : 0s 47883us
-max rss : 72856 kb / 71.1484 MB
-page reclaims : 16229
-page faults : 0
-voluntary switches : 0
-involuntary switches : 1
-
-ska::flat_hash_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> > > memory 
-user cpu : 0s 132068us
-sys cpu : 0s 103792us
-max rss : 147540 kb / 144.082 MB
-page reclaims : 31290
-page faults : 0
-voluntary switches : 0
-involuntary switches : 1
-
-ska::bytell_hash_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> > > memory 
-user cpu : 0s 161802us
-sys cpu : 0s 88397us
-max rss : 167888 kb / 163.953 MB
-page reclaims : 37908
-page faults : 0
-voluntary switches : 2
-involuntary switches : 0
-
-phmap::flat_hash_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, phmap::priv::StringHashEqT<char>::Hash, phmap::priv::StringHashEqT<char>::Eq, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > > memory 
-user cpu : 0s 42870us
-sys cpu : 0s 71227us
-max rss : 167940 kb / 164.004 MB
-page reclaims : 34328
-page faults : 0
-voluntary switches : 0
-involuntary switches : 0
-
-absl::debian3::flat_hash_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, absl::debian3::container_internal::StringHash, absl::debian3::container_internal::StringEq, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > > memory 
-user cpu : 0s 84116us
-sys cpu : 0s 84056us
-max rss : 167880 kb / 163.945 MB
-page reclaims : 35879
-page faults : 0
-voluntary switches : 0
-involuntary switches : 0
-
-robin_hood::detail::Table<true, 80ul, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, robin_hood::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > memory 
-user cpu : 0s 60779us
-sys cpu : 0s 119270us
-max rss : 168116 kb / 164.176 MB
-page reclaims : 41580
-page faults : 0
-voluntary switches : 0
-involuntary switches : 0
-
-spp::sparse_hash_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, spp::spp_hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, spp::libc_allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > > memory 
-user cpu : 0s 239713us
-sys cpu : 0s 88569us
-max rss : 46464 kb / 45.375 MB
-page reclaims : 11681
-page faults : 0
-voluntary switches : 0
-involuntary switches : 0
-
-tsl::bhopscotch_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, 62u, false, tsl::hh::power_of_two_growth_policy<2ul> > memory 
-user cpu : 0s 186560us
-sys cpu : 0s 95818us
-max rss : 147536 kb / 144.078 MB
-page reclaims : 48154
-page faults : 0
-voluntary switches : 0
-involuntary switches : 2
-
-tsl::hopscotch_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> >, 62u, false, tsl::hh::power_of_two_growth_policy<2ul> > memory 
-user cpu : 0s 404880us
-sys cpu : 0s 25328us
-max rss : 147464 kb / 144.008 MB
-page reclaims : 12897
-page faults : 0
-voluntary switches : 0
-involuntary switches : 0
-
-tsl::robin_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> >, false, tsl::rh::power_of_two_growth_policy<2ul> > memory 
-user cpu : 0s 130441us
-sys cpu : 0s 44566us
-max rss : 147460 kb / 144.004 MB
-page reclaims : 7774
-page faults : 0
-voluntary switches : 0
-involuntary switches : 0
-
-tsl::sparse_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> >, tsl::sh::power_of_two_growth_policy<2ul>, (tsl::sh::exception_safety)0, (tsl::sh::sparsity)1> memory 
-user cpu : 0s 228818us
-sys cpu : 0s 32668us
-max rss : 47520 kb / 46.4062 MB
-page reclaims : 11885
-page faults : 0
-voluntary switches : 0
-involuntary switches : 2
-
-tsl::ordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> >, std::deque<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> > >, unsigned int> memory 
-user cpu : 0s 63347us
-sys cpu : 0s 26854us
-max rss : 58388 kb / 57.0195 MB
-page reclaims : 8990
-page faults : 0
-voluntary switches : 0
-involuntary switches : 0
-
-2023-06-01T20:30:39+08:00
-Running ./bin/map_reserve
-Run on (16 X 3417.6 MHz CPU s)
-CPU Caches:
-  L1 Data 48 KiB (x16)
-  L1 Instruction 32 KiB (x16)
-  L2 Unified 2048 KiB (x16)
-  L3 Unified 30720 KiB (x1)
-Load Average: 17.10, 15.05, 13.27
--------------------------------------------------------------------------------------------------------
-Benchmark                                                             Time             CPU   Iterations
--------------------------------------------------------------------------------------------------------
-BM_reserve<std::unordered_map<int, int>>/1024                     26914 ns        26914 ns        23690
-BM_reserve<std::unordered_map<int, int>>/4096                    106121 ns       106121 ns         7710
-BM_reserve<std::unordered_map<int, int>>/32768                   727885 ns       727888 ns          786
-BM_reserve<std::unordered_map<int, int>>/262144                 7013668 ns      7005497 ns          116
-BM_reserve<std::unordered_map<int, int>>/1048576               29917897 ns     29918006 ns           24
-BM_reserve<ska::unordered_map<int, int>>/1024                     41815 ns        41814 ns        27451
-BM_reserve<ska::unordered_map<int, int>>/4096                     99788 ns        99788 ns         6045
-BM_reserve<ska::unordered_map<int, int>>/32768                   901335 ns       901339 ns          618
-BM_reserve<ska::unordered_map<int, int>>/262144                14041974 ns     14042059 ns           53
-BM_reserve<ska::unordered_map<int, int>>/1048576              238883198 ns    238877229 ns            3
-BM_reserve<ska::flat_hash_map<int, int>>/1024                      4884 ns         4884 ns       148696
-BM_reserve<ska::flat_hash_map<int, int>>/4096                     19307 ns        19306 ns        32607
-BM_reserve<ska::flat_hash_map<int, int>>/32768                   199407 ns       199407 ns         5254
-BM_reserve<ska::flat_hash_map<int, int>>/262144                 1777859 ns      1777852 ns          444
-BM_reserve<ska::flat_hash_map<int, int>>/1048576               38180139 ns     38180355 ns           19
-BM_reserve<ska::bytell_hash_map<int, int>>/1024                    5483 ns         5480 ns       100000
-BM_reserve<ska::bytell_hash_map<int, int>>/4096                   21285 ns        21275 ns        28989
-BM_reserve<ska::bytell_hash_map<int, int>>/32768                 196491 ns       196385 ns         3923
-BM_reserve<ska::bytell_hash_map<int, int>>/262144               2109049 ns      2108241 ns          385
-BM_reserve<ska::bytell_hash_map<int, int>>/1048576             20890653 ns     20882123 ns           32
-BM_reserve<phmap::flat_hash_map<int, int>>/1024                    5061 ns         5060 ns       105393
-BM_reserve<phmap::flat_hash_map<int, int>>/4096                   23757 ns        23738 ns        37935
-BM_reserve<phmap::flat_hash_map<int, int>>/32768                 356794 ns       356250 ns         2006
-BM_reserve<phmap::flat_hash_map<int, int>>/262144               5751547 ns      5746913 ns          102
-BM_reserve<phmap::flat_hash_map<int, int>>/1048576             46672623 ns     46635448 ns           11
-BM_reserve<absl::flat_hash_map<int, int>>/1024                     6326 ns         6323 ns       137807
-BM_reserve<absl::flat_hash_map<int, int>>/4096                    20170 ns        20148 ns        30795
-BM_reserve<absl::flat_hash_map<int, int>>/32768                  184672 ns       184603 ns         3309
-BM_reserve<absl::flat_hash_map<int, int>>/262144                2138670 ns      2137487 ns          403
-BM_reserve<absl::flat_hash_map<int, int>>/1048576              18308928 ns     18294543 ns           29
-BM_reserve<robin_hood::unordered_flat_map<int, int>>/1024          5002 ns         5000 ns       153058
-BM_reserve<robin_hood::unordered_flat_map<int, int>>/4096         23688 ns        23671 ns        34362
-BM_reserve<robin_hood::unordered_flat_map<int, int>>/32768       310342 ns       310234 ns         2381
-BM_reserve<robin_hood::unordered_flat_map<int, int>>/262144     2708730 ns      2706816 ns          280
-BM_reserve<robin_hood::unordered_flat_map<int, int>>/1048576   28783386 ns     28724053 ns           26
-BM_reserve<spp::sparse_hash_map<int, int>>/1024                   29857 ns        29777 ns        28838
-BM_reserve<spp::sparse_hash_map<int, int>>/4096                  122555 ns       122482 ns         5653
-BM_reserve<spp::sparse_hash_map<int, int>>/32768                1042273 ns      1041720 ns          626
-BM_reserve<spp::sparse_hash_map<int, int>>/262144               9446640 ns      9440884 ns           63
-BM_reserve<spp::sparse_hash_map<int, int>>/1048576             53370857 ns     53337469 ns           11
-BM_reserve<tsl::ordered_map<int, int>>/1024                        7913 ns         7910 ns       101560
-BM_reserve<tsl::ordered_map<int, int>>/4096                       28757 ns        28746 ns        26179
-BM_reserve<tsl::ordered_map<int, int>>/32768                     250833 ns       250714 ns         2829
-BM_reserve<tsl::ordered_map<int, int>>/262144                   2214140 ns      2212699 ns          364
-BM_reserve<tsl::ordered_map<int, int>>/1048576                 11497865 ns     11472470 ns           65
-BM_reserve<tsl::bhopscotch_map<int, int>>/1024                     5960 ns         5956 ns       129412
-BM_reserve<tsl::bhopscotch_map<int, int>>/4096                    26409 ns        26386 ns        24713
-BM_reserve<tsl::bhopscotch_map<int, int>>/32768                  177923 ns       177853 ns         3357
-BM_reserve<tsl::bhopscotch_map<int, int>>/262144                1997562 ns      1992362 ns          456
-BM_reserve<tsl::bhopscotch_map<int, int>>/1048576              11504035 ns     11490936 ns           51
-BM_reserve<tsl::hopscotch_map<int, int>>/1024                      6624 ns         6551 ns       110625
-BM_reserve<tsl::hopscotch_map<int, int>>/4096                     28533 ns        28513 ns        24893
-BM_reserve<tsl::hopscotch_map<int, int>>/32768                   241677 ns       241532 ns         3505
-BM_reserve<tsl::hopscotch_map<int, int>>/262144                 2142087 ns      2140086 ns          367
-BM_reserve<tsl::hopscotch_map<int, int>>/1048576               15611956 ns     15588342 ns           49
-BM_reserve<tsl::robin_map<int, int>>/1024                          5644 ns         5641 ns       100000
-BM_reserve<tsl::robin_map<int, int>>/4096                         19383 ns        19371 ns        33124
-BM_reserve<tsl::robin_map<int, int>>/32768                       158462 ns       156034 ns         3761
-BM_reserve<tsl::robin_map<int, int>>/262144                     1265597 ns      1264931 ns          451
-BM_reserve<tsl::robin_map<int, int>>/1048576                   10972641 ns     10962517 ns           84
-BM_reserve<tsl::sparse_map<int, int>>/1024                        10289 ns        10283 ns        59163
-BM_reserve<tsl::sparse_map<int, int>>/4096                        40861 ns        40842 ns        16738
-BM_reserve<tsl::sparse_map<int, int>>/32768                      362994 ns       362813 ns         2047
-BM_reserve<tsl::sparse_map<int, int>>/262144                    2712818 ns      2711794 ns          280
-BM_reserve<tsl::sparse_map<int, int>>/1048576                  11878676 ns     11871582 ns           75
+corrupted size vs. prev_size

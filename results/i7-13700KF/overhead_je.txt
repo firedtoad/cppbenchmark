@@ -2,8 +2,8 @@
 vector of u8 1048576
 user cpu : 0s 0us
 sys cpu : 0s 0us
-max rss : 792 kb / 0.773438 MB
-page reclaims : 259
+max rss : 832 KB / 0.8125 MB
+page reclaims : 263
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0
@@ -11,8 +11,8 @@ involuntary switches : 0
 vector of u64 1048576
 user cpu : 0s 0us
 sys cpu : 0s 0us
-max rss : 8192 kb / 8 MB
-page reclaims : 20
+max rss : 8224 KB / 8.03125 MB
+page reclaims : 59
 page faults : 0
 voluntary switches : 0
 involuntary switches : 0

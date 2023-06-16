@@ -1,13 +1,13 @@
-2023-06-01T20:35:41+08:00
+2023-06-16T17:48:21+08:00
 Running ./bin/01c_branch_predicted
-Run on (16 X 3417.6 MHz CPU s)
+Run on (16 X 3417.59 MHz CPU s)
 CPU Caches:
   L1 Data 48 KiB (x16)
   L1 Instruction 32 KiB (x16)
   L2 Unified 2048 KiB (x16)
   L3 Unified 30720 KiB (x1)
-Load Average: 21.14, 17.75, 14.88
+Load Average: 4.25, 4.04, 3.11
 ------------------------------------------------------------------------------------
 Benchmark                          Time             CPU   Iterations UserCounters...
 ------------------------------------------------------------------------------------
-BM_branch_predict/4194304    4183053 ns      4181729 ns          172 items_per_second=1003.01M/s
+BM_branch_predict/4194304    4453966 ns      4453885 ns          179 items_per_second=941.718M/s

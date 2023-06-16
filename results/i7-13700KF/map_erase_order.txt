@@ -1,20 +1,22 @@
-2023-06-01T20:35:56+08:00
+2023-06-16T17:49:50+08:00
 Running ./bin/map_erase_order
-Run on (16 X 3417.6 MHz CPU s)
+Run on (16 X 3417.59 MHz CPU s)
 CPU Caches:
   L1 Data 48 KiB (x16)
   L1 Instruction 32 KiB (x16)
   L2 Unified 2048 KiB (x16)
   L3 Unified 30720 KiB (x1)
-Load Average: 20.98, 17.87, 14.97
+Load Average: 4.06, 4.03, 3.19
 -------------------------------------------------------------------------------------------------------
 Benchmark                                                             Time             CPU   Iterations
 -------------------------------------------------------------------------------------------------------
-BenchEraseOrderMapInt<std::map<int, int>>                           213 ns          213 ns      3189227
-BenchEraseOrderMapInt<tsl::ordered_map<int, int>>                 33715 ns        33715 ns        21349
-BenchEraseOrderMapInt<absl::btree_map<int, int>>                    132 ns          132 ns      5402607
-BenchEraseOrderMapInt<phmap::btree_map<int, int>>                   135 ns          135 ns      5293921
-BenchEraseOrderMapString<std::map<std::string, int>>               1063 ns         1063 ns       705717
-BenchEraseOrderMapString<tsl::ordered_map<std::string, int>>     783433 ns       783421 ns          806
-BenchEraseOrderMapString<absl::btree_map<std::string, int>>         653 ns          653 ns      1102831
-BenchEraseOrderMapString<phmap::btree_map<std::string, int>>        574 ns          574 ns       938468
+BenchEraseOrderMapInt<std::map<int, int>>                           179 ns          179 ns      3954165
+BenchEraseOrderMapInt<tsl::ordered_map<int, int>>                 58777 ns        58777 ns        13196
+BenchEraseOrderMapInt<tsl::vector_map<int, int>>                  54995 ns        54991 ns        10000
+BenchEraseOrderMapInt<absl::btree_map<int, int>>                    126 ns          126 ns      5558037
+BenchEraseOrderMapInt<phmap::btree_map<int, int>>                   122 ns          122 ns      5831004
+BenchEraseOrderMapString<std::map<std::string, int>>                759 ns          759 ns       978630
+BenchEraseOrderMapString<tsl::ordered_map<std::string, int>>     316582 ns       316578 ns         2426
+BenchEraseOrderMapString<tsl::vector_map<std::string, int>>      308624 ns       308619 ns         2362
+BenchEraseOrderMapString<absl::btree_map<std::string, int>>         570 ns          570 ns      1289131
+BenchEraseOrderMapString<phmap::btree_map<std::string, int>>        655 ns          655 ns      1137814

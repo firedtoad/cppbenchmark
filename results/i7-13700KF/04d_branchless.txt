@@ -1,13 +1,13 @@
-2023-06-01T20:35:55+08:00
+2023-06-16T17:49:49+08:00
 Running ./bin/04d_branchless
-Run on (16 X 3417.6 MHz CPU s)
+Run on (16 X 3417.59 MHz CPU s)
 CPU Caches:
   L1 Data 48 KiB (x16)
   L1 Instruction 32 KiB (x16)
   L2 Unified 2048 KiB (x16)
   L3 Unified 30720 KiB (x1)
-Load Average: 20.98, 17.87, 14.97
+Load Average: 4.06, 4.03, 3.19
 --------------------------------------------------------------------------------
 Benchmark                      Time             CPU   Iterations UserCounters...
 --------------------------------------------------------------------------------
-BM_branchless/4194304    4660647 ns      4659576 ns          156 items_per_second=900.147M/s
+BM_branchless/4194304    3848004 ns      3848007 ns          189 items_per_second=1089.99M/s
