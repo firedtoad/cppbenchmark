@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 {
     rusage usage{};
     FillRSS(usage);
-    auto sz = size_t(1) << 20;
+    auto sz = size_t(1) << 32;
     auto p  = (char *)sbrk(sz);
     for (size_t i = 0; i < sz / 4096; i++)
     {
