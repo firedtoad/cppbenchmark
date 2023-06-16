@@ -15,6 +15,7 @@
 
 #ifndef BENCH_UTILS_H
 #define BENCH_UTILS_H
+#include <cstring>
 #include <iostream>
 #include <malloc.h>
 #include <stdint.h>
@@ -24,7 +25,7 @@
 #include <sys/time.h>
 #include <vector>
 
-template <class Tp> inline __attribute__((always_inline)) void DoNotOptimize(Tp &value)
+template <class Tp> inline __attribute__((always_inline)) void DoNotOptimize(Tp &&value)
 {
 #if defined(__clang__)
     asm volatile("" : "+r,m"(value) : : "memory");
@@ -52,10 +53,17 @@ inline void FillRSS(rusage &rUsage)
     uint64_t newRss = 0;
     int sz          = 1;
     auto p          = (char *)calloc(1, 4096);
+
     while (newRss <= rss)
     {
         newRss = getThreadRss(rUsage);
         p      = (char *)calloc(++sz, 4096);
+        auto s      = (char *)((uintptr_t)p & (-4096));
+        while(s<(p+sz*4096))
+        {
+            *s='0';
+            s+=4096;
+        }
         DoNotOptimize(p);
     }
 
