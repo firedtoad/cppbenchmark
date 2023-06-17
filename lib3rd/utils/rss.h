@@ -58,11 +58,11 @@ inline void FillRSS(rusage &rUsage)
     {
         newRss = getThreadRss(rUsage);
         p      = (char *)calloc(++sz, 4096);
-        auto s      = (char *)((uintptr_t)p & (-4096));
-        while(s<(p+sz*4096))
+        auto s = (char *)((uintptr_t)p & (-4096));
+        while (s < (p + sz * 4096))
         {
-            *s='0';
-            s+=4096;
+            *s = '0';
+            s += 4096;
         }
         DoNotOptimize(p);
     }
@@ -84,12 +84,14 @@ inline void PrintUsage(struct rusage &rUsage)
 {
     rusage usage{};
     getrusage(RUSAGE_THREAD, &usage);
-    std::cout << "user cpu : " << usage.ru_utime - rUsage.ru_utime << '\n';
-    std::cout << "sys cpu : " << usage.ru_stime - rUsage.ru_stime << '\n';
-    std::cout << "max rss : " << (usage.ru_maxrss - rUsage.ru_maxrss) << " KB / " << (usage.ru_maxrss - rUsage.ru_maxrss) / 1024.0 << " MB" << '\n';
-    std::cout << "page reclaims : " << usage.ru_minflt - rUsage.ru_minflt << '\n';
-    std::cout << "page faults : " << usage.ru_majflt - rUsage.ru_majflt << '\n';
-    std::cout << "voluntary switches : " << usage.ru_nvcsw - rUsage.ru_nvcsw << '\n';
+    std::cout << "user cpu             : " << usage.ru_utime - rUsage.ru_utime << '\n';
+    std::cout << "sys cpu              : " << usage.ru_stime - rUsage.ru_stime << '\n';
+    std::cout << "max rss              : " << (usage.ru_maxrss - rUsage.ru_maxrss) << " KB / " << (usage.ru_maxrss - rUsage.ru_maxrss) / 1024.0
+              << " MB" << '\n';
+    std::cout << "page reclaims        : " << usage.ru_minflt - rUsage.ru_minflt << '\n';
+    std::cout << "page faults          : " << usage.ru_majflt - rUsage.ru_majflt << '\n';
+    std::cout << "swapped out          : " << usage.ru_nswap - rUsage.ru_nswap << '\n';
+    std::cout << "voluntary switches   : " << usage.ru_nvcsw - rUsage.ru_nvcsw << '\n';
     std::cout << "involuntary switches : " << usage.ru_nivcsw - rUsage.ru_nivcsw << '\n';
     std::cout << '\n';
     std::cout.flush();

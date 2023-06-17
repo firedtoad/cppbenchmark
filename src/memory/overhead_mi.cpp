@@ -13,48 +13,11 @@
 // limitations under the License.
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
-#include "utils/rss.h"
-#include <deque>
 #include <iostream>
-#include <jemalloc/jemalloc.h>
-#include <list>
-#include <map>
-#include <set>
-#include <stdint.h>
-#include <string>
-#include <sys/resource.h>
-#include <sys/time.h>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
+#include <mimalloc/mimalloc-override.h>
 
-const int SIZE = 1024 * 1024;
 int main(int argc, char **argv)
 {
-    EPERM;
-    char *buff;
-    size_t l{20};
-    int r = mallctl("opt.dss", &buff, &l, nullptr, 0);
-    std::cout << r << l << buff << '\n';
-    {
-        //        malloc_stats_print([](void *p, const char *s){
-        //            std::cout<<p<<":"<<s<<'\n';
-        //        }, nullptr,"Jgmdablx");
-    }
-
-    rusage usage{};
-    FillRSS(usage);
-    std::vector<uint8_t> vecu8;
-    vecu8.resize(SIZE);
-    std::cout << "vector of u8 " << SIZE << '\n';
-    PrintUsage(usage);
-
-    FillRSS(usage);
-    std::vector<uint64_t> vec;
-    vec.resize(SIZE);
-    std::cout << "vector of u64 " << SIZE << '\n';
-    PrintUsage(usage);
-
     auto sz = 0;
     do
     {

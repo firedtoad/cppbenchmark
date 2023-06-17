@@ -30,9 +30,7 @@
 
 #include "flat_hash_map.hpp"
 #include "parallel_hashmap/phmap.h"
-#include <malloc.h>
 #include "utils/rss.h"
-
 
 const int SIZE = 1024 * 1024;
 int main(int argc, char *argv[])

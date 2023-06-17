@@ -83,7 +83,6 @@ constexpr static int SIZE = 1 << 20;
 
 int main(int argc, char *argv[])
 {
-
     LogicMemoryLinear<std::list<Small>, SIZE, false>();
     LogicMemoryLinear<std::list<std::shared_ptr<Small>>, SIZE, false>();
     LogicMemoryLinear<std::list<std::unique_ptr<Small>>, SIZE, false>();

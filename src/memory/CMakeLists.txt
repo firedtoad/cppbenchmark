@@ -4,7 +4,7 @@ add_executable(node node.cpp)
 add_executable(rss rss.cpp)
 add_executable(rss_tc rss_tc.cpp)
 add_executable(rss_je rss_je.cpp)
-
+add_executable(rss_mi rss_mi.cpp)
 
 add_executable(memory_copy copy.cpp)
 add_executable(logic_smart logic_smart.cpp)
@@ -15,22 +15,25 @@ target_compile_options(size_allocator PRIVATE -fsized-deallocation)
 add_executable(overhead overhead.cpp)
 add_executable(overhead_tc overhead_tc.cpp)
 add_executable(overhead_je overhead_je.cpp)
+add_executable(overhead_mi overhead_mi.cpp)
 
 add_executable(rss_smart rss_smart.cpp)
 add_executable(rss_smart_tc rss_smart.cpp)
 add_executable(rss_smart_je rss_smart.cpp)
-
-
+add_executable(rss_smart_mi rss_smart.cpp)
+add_executable(smart_leak smart_leak.cpp)
 
 target_link_libraries(overhead_tc PRIVATE tcmalloc)
 target_compile_definitions(overhead_je PRIVATE JE_MALLOC)
 target_link_libraries(overhead_je PRIVATE jemalloc dl)
-
+target_link_libraries(overhead_mi PRIVATE mimalloc dl)
 
 target_link_libraries(rss_tc PRIVATE tcmalloc dl)
 target_link_libraries(rss_je PRIVATE jemalloc dl)
+target_link_libraries(rss_mi PRIVATE mimalloc dl)
 target_compile_definitions(rss_je PRIVATE JE_MALLOC)
 
 target_link_libraries(rss_smart_tc PRIVATE tcmalloc dl)
 target_link_libraries(rss_smart_je PRIVATE jemalloc dl)
+target_link_libraries(rss_smart_mi PRIVATE mimalloc dl)
 target_compile_definitions(rss_smart_je PRIVATE JE_MALLOC)

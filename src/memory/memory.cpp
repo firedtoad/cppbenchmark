@@ -117,7 +117,7 @@ template <typename... T> void PrintSize(T &&...t)
 int main(int argc, char **argv)
 {
 
-    auto p=std::make_shared<int>(1);
+    auto p = std::make_shared<int>(1);
 
     PrintSize(std::_List_node<char>{});
     PrintSize(std::_List_node<uint64_t>{});
@@ -128,8 +128,7 @@ int main(int argc, char **argv)
     PrintSize(std::__detail::_Hash_node<char, false>{});
     PrintSize(std::__detail::_Hash_node<uint64_t, false>{});
     std::allocator<uint8_t> allocator;
-    PrintSize(std::_Sp_counted_ptr_inplace<uint8_t,std::allocator<uint8_t>,__gnu_cxx::_S_atomic>{allocator});
-
+    PrintSize(std::_Sp_counted_ptr_inplace<uint8_t, std::allocator<uint8_t>, __gnu_cxx::_S_atomic>{allocator});
 
     PrintSize(__gnu_cxx::__aligned_buffer<char>{});
     PrintSize(__gnu_cxx::__aligned_buffer<uint64_t>{});
@@ -137,7 +136,6 @@ int main(int argc, char **argv)
     PrintSize(phmap::flat_hash_set<uint64_t>::node_type{});
 
     PrintSize(CC{});
-
 
     memAlloc = 0;
     alloc    = 0;

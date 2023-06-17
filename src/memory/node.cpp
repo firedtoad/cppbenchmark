@@ -13,6 +13,7 @@
 // limitations under the License.
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
+#include "utils/symbol.h"
 #include <deque>
 #include <iostream>
 #include <list>
@@ -22,7 +23,6 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-#include "utils/symbol.h"
 
 template <typename... T> void PrintVector(T &&...t)
 {

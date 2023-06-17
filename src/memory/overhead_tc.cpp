@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <malloc.h>
+extern "C" size_t malloc_size(char *p);
 int main(int argc, char **argv)
 {
     auto sz = 0;
@@ -28,7 +29,7 @@ int main(int argc, char **argv)
         need = sz;
         sz   = malloc_usable_size(p);
         std::cout << "need " << need << " real " << sz << " over head " << sz - need << '\n';
-    } while (sz <= 1024);
+    } while (sz <= 1 << 25);
 
     return 0;
 }

@@ -85,26 +85,26 @@ constexpr static int SIZE = 1 << 20;
 int main(int argc, char *argv[])
 {
 
-    RSSMemoryLinear<std::list<Small>, SIZE,false>();
-    RSSMemoryLinear<std::list<std::shared_ptr<Small>>, SIZE,false>();
-    RSSMemoryLinear<std::list<std::unique_ptr<Small>>, SIZE,false>();
-    RSSMemoryLinear<std::list<Big>, SIZE,false>();
-    RSSMemoryLinear<std::list<std::shared_ptr<Big>>, SIZE,false>();
-    RSSMemoryLinear<std::list<std::unique_ptr<Big>>, SIZE,false>();
+    RSSMemoryLinear<std::list<Small>, SIZE, false>();
+    RSSMemoryLinear<std::list<std::shared_ptr<Small>>, SIZE, false>();
+    RSSMemoryLinear<std::list<std::unique_ptr<Small>>, SIZE, false>();
+    RSSMemoryLinear<std::list<Big>, SIZE, false>();
+    RSSMemoryLinear<std::list<std::shared_ptr<Big>>, SIZE, false>();
+    RSSMemoryLinear<std::list<std::unique_ptr<Big>>, SIZE, false>();
 
-    RSSMemoryForward<std::forward_list<Small>, SIZE,false>();
-    RSSMemoryForward<std::forward_list<std::shared_ptr<Small>>, SIZE,false>();
-    RSSMemoryForward<std::forward_list<std::unique_ptr<Small>>, SIZE,false>();
-    RSSMemoryForward<std::forward_list<Big>, SIZE,false>();
-    RSSMemoryForward<std::forward_list<std::shared_ptr<Big>>, SIZE,false>();
-    RSSMemoryForward<std::forward_list<std::unique_ptr<Big>>, SIZE,false>();
+    RSSMemoryForward<std::forward_list<Small>, SIZE, false>();
+    RSSMemoryForward<std::forward_list<std::shared_ptr<Small>>, SIZE, false>();
+    RSSMemoryForward<std::forward_list<std::unique_ptr<Small>>, SIZE, false>();
+    RSSMemoryForward<std::forward_list<Big>, SIZE, false>();
+    RSSMemoryForward<std::forward_list<std::shared_ptr<Big>>, SIZE, false>();
+    RSSMemoryForward<std::forward_list<std::unique_ptr<Big>>, SIZE, false>();
 
-    RSSMemoryLinear<std::deque<Small>, SIZE,false>();
-    RSSMemoryLinear<std::deque<std::shared_ptr<Small>>, SIZE,false>();
-    RSSMemoryLinear<std::deque<std::unique_ptr<Small>>, SIZE,false>();
-    RSSMemoryLinear<std::deque<Big>, SIZE,false>();
-    RSSMemoryLinear<std::deque<std::shared_ptr<Big>>, SIZE,false>();
-    RSSMemoryLinear<std::deque<std::unique_ptr<Big>>, SIZE,false>();
+    RSSMemoryLinear<std::deque<Small>, SIZE, false>();
+    RSSMemoryLinear<std::deque<std::shared_ptr<Small>>, SIZE, false>();
+    RSSMemoryLinear<std::deque<std::unique_ptr<Small>>, SIZE, false>();
+    RSSMemoryLinear<std::deque<Big>, SIZE, false>();
+    RSSMemoryLinear<std::deque<std::shared_ptr<Big>>, SIZE, false>();
+    RSSMemoryLinear<std::deque<std::unique_ptr<Big>>, SIZE, false>();
 
     RSSMemoryLinear<std::vector<Small>, SIZE, true>();
     RSSMemoryLinear<std::vector<std::shared_ptr<Small>>, SIZE, true>();
@@ -113,13 +113,13 @@ int main(int argc, char *argv[])
     RSSMemoryLinear<std::vector<std::shared_ptr<Big>>, SIZE, true>();
     RSSMemoryLinear<std::vector<std::unique_ptr<Big>>, SIZE, true>();
 
-    RSSMemoryMapInt<std::map<int, Small>, SIZE,false>();
-    RSSMemoryMapInt<std::map<int, std::shared_ptr<Small>>, SIZE,false>();
-    RSSMemoryMapInt<std::map<int, std::unique_ptr<Small>>, SIZE,false>();
+    RSSMemoryMapInt<std::map<int, Small>, SIZE, false>();
+    RSSMemoryMapInt<std::map<int, std::shared_ptr<Small>>, SIZE, false>();
+    RSSMemoryMapInt<std::map<int, std::unique_ptr<Small>>, SIZE, false>();
 
-    RSSMemoryMapInt<std::map<int, Big>, SIZE,false>();
-    RSSMemoryMapInt<std::map<int, std::shared_ptr<Big>>, SIZE,false>();
-    RSSMemoryMapInt<std::map<int, std::unique_ptr<Big>>, SIZE,false>();
+    RSSMemoryMapInt<std::map<int, Big>, SIZE, false>();
+    RSSMemoryMapInt<std::map<int, std::shared_ptr<Big>>, SIZE, false>();
+    RSSMemoryMapInt<std::map<int, std::unique_ptr<Big>>, SIZE, false>();
 
     RSSMemoryMapInt<std::unordered_map<int, Small>, SIZE, true>();
     RSSMemoryMapInt<std::unordered_map<int, std::shared_ptr<Small>>, SIZE, true>();
@@ -129,13 +129,13 @@ int main(int argc, char *argv[])
     RSSMemoryMapInt<std::unordered_map<int, std::shared_ptr<Big>>, SIZE, true>();
     RSSMemoryMapInt<std::unordered_map<int, std::unique_ptr<Big>>, SIZE, true>();
 
-    RSSMemoryMapString<std::map<std::string, Small>, SIZE,false>();
-    RSSMemoryMapString<std::map<std::string, std::shared_ptr<Small>>, SIZE,false>();
-    RSSMemoryMapString<std::map<std::string, std::unique_ptr<Small>>, SIZE,false>();
+    RSSMemoryMapString<std::map<std::string, Small>, SIZE, false>();
+    RSSMemoryMapString<std::map<std::string, std::shared_ptr<Small>>, SIZE, false>();
+    RSSMemoryMapString<std::map<std::string, std::unique_ptr<Small>>, SIZE, false>();
 
-    RSSMemoryMapString<std::map<std::string, Big>, SIZE,false>();
-    RSSMemoryMapString<std::map<std::string, std::shared_ptr<Big>>, SIZE,false>();
-    RSSMemoryMapString<std::map<std::string, std::unique_ptr<Big>>, SIZE,false>();
+    RSSMemoryMapString<std::map<std::string, Big>, SIZE, false>();
+    RSSMemoryMapString<std::map<std::string, std::shared_ptr<Big>>, SIZE, false>();
+    RSSMemoryMapString<std::map<std::string, std::unique_ptr<Big>>, SIZE, false>();
 
     RSSMemoryMapString<std::unordered_map<std::string, Small>, SIZE, true>();
     RSSMemoryMapString<std::unordered_map<std::string, std::shared_ptr<Small>>, SIZE, true>();
@@ -145,12 +145,12 @@ int main(int argc, char *argv[])
     RSSMemoryMapString<std::unordered_map<std::string, std::shared_ptr<Big>>, SIZE, true>();
     RSSMemoryMapString<std::unordered_map<std::string, std::unique_ptr<Big>>, SIZE, true>();
 
-    RSSMemorySet<std::set<Small>, SIZE,false>();
-    RSSMemorySet<std::set<std::shared_ptr<Small>>, SIZE,false>();
-    RSSMemorySet<std::set<std::unique_ptr<Small>>, SIZE,false>();
-    RSSMemorySet<std::set<Big>, SIZE,false>();
-    RSSMemorySet<std::set<std::shared_ptr<Big>>, SIZE,false>();
-    RSSMemorySet<std::set<std::unique_ptr<Big>>, SIZE,false>();
+    RSSMemorySet<std::set<Small>, SIZE, false>();
+    RSSMemorySet<std::set<std::shared_ptr<Small>>, SIZE, false>();
+    RSSMemorySet<std::set<std::unique_ptr<Small>>, SIZE, false>();
+    RSSMemorySet<std::set<Big>, SIZE, false>();
+    RSSMemorySet<std::set<std::shared_ptr<Big>>, SIZE, false>();
+    RSSMemorySet<std::set<std::unique_ptr<Big>>, SIZE, false>();
 
     RSSMemorySet<std::unordered_set<Small>, SIZE, true>();
     RSSMemorySet<std::unordered_set<std::shared_ptr<Small>>, SIZE, true>();
@@ -159,7 +159,7 @@ int main(int argc, char *argv[])
     RSSMemorySet<std::unordered_set<std::shared_ptr<Big>>, SIZE, true>();
     RSSMemorySet<std::unordered_set<std::unique_ptr<Big>>, SIZE, true>();
 
-    RSSMemorySetString<std::set<std::string>, SIZE,false>();
+    RSSMemorySetString<std::set<std::string>, SIZE, false>();
     RSSMemorySetString<std::unordered_set<std::string>, SIZE, true>();
     return 0;
 }
