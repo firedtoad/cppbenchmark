@@ -43,5 +43,5 @@ int main(int argc, char *argv[])
     llvm::Twine t2 = s4;
     llvm::Twine t3 = t1 + t2;
     PrintUsage(usage);
-    DoNotOptimize(t3.str());
+    DoNotOptimize(t3);
 }

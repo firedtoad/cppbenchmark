@@ -21,11 +21,12 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string>
+#include <string.h>
 #include <sys/resource.h>
 #include <sys/time.h>
 #include <vector>
 
-template <class Tp> inline __attribute__((always_inline)) void DoNotOptimize(Tp &&value)
+template <class Tp> inline __attribute__((always_inline)) void DoNotOptimize(Tp &value)
 {
 #if defined(__clang__)
     asm volatile("" : "+r,m"(value) : : "memory");
