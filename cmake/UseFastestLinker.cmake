@@ -51,6 +51,13 @@ function(use_fastest_linker)
     return()
   endif()
 
+  check_linker(mold)
+  if(HAVE_LD_MOLD)
+    link_libraries("-fuse-ld=mold")
+    message(STATUS "Using mold linker")
+    return()
+  endif()
+
   check_linker(gold)
   if(HAVE_LD_GOLD)
     link_libraries("-fuse-ld=gold")
