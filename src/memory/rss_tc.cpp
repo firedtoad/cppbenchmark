@@ -36,6 +36,9 @@
 const int SIZE = 1024 * 1024;
 int main(int argc, char *argv[])
 {
+    std::string out;
+    MallocExtension::instance()->GetHeapSample(&out);
+    std::cout<<out<<'\n';
     {
         rusage usage{};
         FillRSS(usage);

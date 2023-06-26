@@ -20,8 +20,8 @@
 #include <malloc.h>
 #include <stdint.h>
 #include <stdlib.h>
-#include <string>
 #include <string.h>
+#include <string>
 #include <sys/resource.h>
 #include <sys/time.h>
 #include <vector>
@@ -59,12 +59,8 @@ inline void FillRSS(rusage &rUsage)
     {
         newRss = getThreadRss(rUsage);
         p      = (char *)calloc(++sz, 4096);
-        auto s = (char *)((uintptr_t)p & (-4096));
-        while (s < (p + sz * 4096))
-        {
-            *s = '0';
-            s += 4096;
-        }
+       
+        memset(p, 0, sz * 4096);
         DoNotOptimize(p);
     }
 

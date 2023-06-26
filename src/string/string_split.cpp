@@ -54,15 +54,15 @@ static void BenchStringSplit(benchmark::State &state)
 {
     std::string tag = "1,2,3,4,5,6,7,8,9,0,1,2,3,4,6,1,2,3,4,56,7,8,9,09,12";
     int r           = 0;
-    std::vector<std::string> vec;
+
     for (auto _ : state)
     {
+        std::vector<std::string> vec;
         StringSplit(tag, ",", vec);
         for (auto &i : vec)
         {
             r += i.size();
         }
-        vec.clear();
     }
     benchmark::DoNotOptimize(r);
 }
@@ -73,15 +73,15 @@ static void BenchStringSplitStream(benchmark::State &state)
 {
     std::string tag = "1,2,3,4,5,6,7,8,9,0,1,2,3,4,6,1,2,3,4,56,7,8,9,09,12";
     int r           = 0;
-    std::vector<std::string> vec;
+
     for (auto _ : state)
     {
+        std::vector<std::string> vec;
         StringSplitStream(tag, ',', vec);
         for (auto &i : vec)
         {
             r += i.size();
         }
-        vec.clear();
     }
     benchmark::DoNotOptimize(r);
 }
@@ -92,15 +92,14 @@ static void BenchBoostSplit(benchmark::State &state)
 {
     std::string tag = "1,2,3,4,5,6,7,8,9,0,1,2,3,4,6,1,2,3,4,56,7,8,9,09,12";
     int r           = 0;
-    std::vector<std::string> vec;
     for (auto _ : state)
     {
+        std::vector<std::string> vec;
         boost::split(vec, tag, [](char c) { return c = ','; });
         for (auto &i : vec)
         {
             r += i.size();
         }
-        vec.clear();
     }
     benchmark::DoNotOptimize(r);
 }
@@ -128,15 +127,14 @@ static void BenchPBSplit(benchmark::State &state)
 {
     std::string tag = "1,2,3,4,5,6,7,8,9,0,1,2,3,4,6,1,2,3,4,56,7,8,9,09,12";
     int r           = 0;
-    std::vector<std::string> vec;
     for (auto _ : state)
     {
+        std::vector<std::string> vec;
         google::protobuf::SplitStringAllowEmpty(tag, ",", &vec);
         for (auto &i : vec)
         {
             r += i.size();
         }
-        vec.clear();
     }
     benchmark::DoNotOptimize(r);
 }
