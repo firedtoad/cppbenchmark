@@ -16,6 +16,7 @@
 #include "report.pb.h"
 #include "utils/rss.h"
 #include <benchmark/benchmark.h>
+#include <experimental/unordered_map>
 #include <vector>
 
 static void BenchAdd(benchmark::State &state)
@@ -49,6 +50,25 @@ static void BenchAddArena(benchmark::State &state)
 }
 BENCHMARK(BenchAddArena)->Range(1, 65536);
 
+static void BenchAddArenaOptions(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        google::protobuf::ArenaOptions options;
+        options.start_block_size = 4096;
+        options.max_block_size   = 1024 * 1024;
+        google::protobuf::Arena arena(options);
+        pb_report::Ground &report = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(&arena);
+        for (auto i = 0; i < state.range(0); i++)
+        {
+            report.add_attackerform()->add_units();
+            report.add_defenderform()->add_units();
+        }
+        benchmark::DoNotOptimize(report);
+    }
+}
+BENCHMARK(BenchAddArenaOptions)->Range(1, 65536);
+
 static void BenchReserve(benchmark::State &state)
 {
 
@@ -56,7 +76,7 @@ static void BenchReserve(benchmark::State &state)
     {
         pb_report::Ground report;
         report.mutable_attackerform()->Reserve(state.range(0));
-        report.mutable_attackerform()->Reserve(state.range(0));
+        report.mutable_defenderform()->Reserve(state.range(0));
         for (auto i = 0; i < state.range(0); i++)
         {
             report.add_attackerform()->add_units();
@@ -75,7 +95,7 @@ static void BenchReserveArena(benchmark::State &state)
         google::protobuf::Arena arena;
         pb_report::Ground &report = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(&arena);
         report.mutable_attackerform()->Reserve(state.range(0));
-        report.mutable_attackerform()->Reserve(state.range(0));
+        report.mutable_defenderform()->Reserve(state.range(0));
         for (auto i = 0; i < state.range(0); i++)
         {
             report.add_attackerform()->add_units();
@@ -104,7 +124,7 @@ int main(int argc, char **argv)
 
     pb_report::Ground report1;
     report1.mutable_attackerform()->Reserve(SIZE);
-    report1.mutable_attackerform()->Reserve(SIZE);
+    report1.mutable_defenderform()->Reserve(SIZE);
     for (auto i = 0; i < SIZE; i++)
     {
         report1.add_attackerform()->add_units();
@@ -114,18 +134,30 @@ int main(int argc, char **argv)
     PrintUsage(rUsage);
     {
         FillRSS(rUsage);
-        google::protobuf::Arena arena;
+        char buff[1024 * 1024 * 4];
+        google::protobuf::ArenaOptions options;
+        options.start_block_size = 4096;
+        options.max_block_size   = 1024 * 1024;
+        google::protobuf::Arena arena(options);
         pb_report::Ground &report = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(&arena);
         report.mutable_attackerform()->Reserve(SIZE);
-        report.mutable_attackerform()->Reserve(SIZE);
-        for (auto i = 0; i < SIZE; i++)
-        {
-            report.add_attackerform()->add_units();
-            report.add_defenderform()->add_units();
-        }
+        report.mutable_defenderform()->Reserve(SIZE);
+        //        for (auto i = 0; i < SIZE; i++)
+        //        {
+        //            report.add_attackerform()->add_units();
+        //            report.add_defenderform()->add_units();
+        //        }
+        std::cout << arena.SpaceUsed() << ":" << arena.SpaceAllocated() << '\n';
         PrintUsage(rUsage);
     }
-
+    std::unordered_map<int, int> mp = {
+        {1, 2},
+        {2, 2},
+        {3, 2},
+    };
+    std::experimental::erase_if(mp, [](auto &&it) {
+                                    return true;
+                                });
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

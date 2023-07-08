@@ -15,7 +15,6 @@
 
 #include <iostream>
 #include <malloc.h>
-extern "C" size_t malloc_size(char *p);
 int main(int argc, char **argv)
 {
     auto sz = 0;

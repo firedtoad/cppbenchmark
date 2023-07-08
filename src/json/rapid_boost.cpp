@@ -14,11 +14,14 @@
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
 #define RAPIDJSON_SSE42
+
 #include "rapidjson/document.h"
 #include "rapidjson/stringbuffer.h"
 #include "rapidjson/writer.h"
 #include "yyjson.h"
 #include <benchmark/benchmark.h>
+#include "sonic/sonic.h"
+
 //#include <boost/json/src.hpp>
 #include <iostream>
 #include <sstream>
@@ -69,6 +72,29 @@ static void BenchYYJson(benchmark::State &state)
 
 BENCHMARK(BenchYYJson)->Range(1, 128);
 
+static void BenchSonic(benchmark::State &state)
+{
+    std::string res;
+    for (auto _ : state)
+    {
+        sonic_json::WriteBuffer  wb;
+        sonic_json::Document doc;
+        using NodeType = sonic_json::Node;
+        using Allocator = typename NodeType::AllocatorType;
+        sonic_json::Node node;
+        Allocator alloc;
+        doc.SetObject();
+        for (auto i = 0; i < state.range(0); i++)
+        {
+            NodeType node_type("",alloc);
+            node_type.SetInt64(i);
+            doc.AddMember(std::to_string(i + _random()), std::move(node_type), alloc);
+        }
+        doc.Serialize(wb);
+        benchmark::DoNotOptimize(wb);
+    }
+}
+
 static void BenchRapid(benchmark::State &state)
 {
     std::string res;
@@ -112,7 +138,7 @@ static void BenchRapidDocument(benchmark::State &state)
     {
         rapidjson::Document doc;
         doc.SetObject();
-        doc.MemberReserve(state.range(0), doc.GetAllocator());
+//        doc.MemberReserve(state.range(0), doc.GetAllocator());
         std::vector<std::string> k_vec;
         k_vec.resize(state.range(0));
         for (auto i = 0; i < state.range(0); i++)
@@ -127,6 +153,7 @@ static void BenchRapidDocument(benchmark::State &state)
     }
 }
 
+BENCHMARK(BenchSonic)->Range(1, 128);
 BENCHMARK(BenchRapid)->Range(1, 128);
 BENCHMARK(BenchRapidReserve)->Range(1, 128);
 BENCHMARK(BenchRapidDocument)->Range(1, 128);
@@ -145,7 +172,7 @@ BENCHMARK(BenchRapidDocument)->Range(1, 128);
 //        oss.str("");
 //    }
 //}
-
+//
 //BENCHMARK(BenchBoostJson)->Range(1, 128);
 int main(int argc, char **argv)
 {
