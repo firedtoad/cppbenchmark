@@ -16,6 +16,11 @@
 #include "report.pb.h"
 #include "utils/rss.h"
 #include <benchmark/benchmark.h>
+#include <experimental/unordered_map>
+#include <map>
+#include <set>
+#include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 static void BenchCopy(benchmark::State &state)
@@ -26,18 +31,18 @@ static void BenchCopy(benchmark::State &state)
         report.add_attackerform()->add_units();
         report.add_defenderform()->add_units();
     }
-    pb_report::Ground report1;
     for (auto _ : state)
     {
-        report1 = report;
+        pb_report::Ground report1 = report;
         benchmark::DoNotOptimize(report1);
     }
 }
 
- BENCHMARK(BenchCopy)->Range(1, 1024);
+BENCHMARK(BenchCopy)->Range(1, 1024);
 
 static void BenchCopyArena(benchmark::State &state)
 {
+
     google::protobuf::Arena arena;
     pb_report::Ground &report = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(&arena);
     for (auto i = 0; i < state.range(0); i++)
@@ -45,34 +50,35 @@ static void BenchCopyArena(benchmark::State &state)
         report.add_attackerform()->add_units();
         report.add_defenderform()->add_units();
     }
-    pb_report::Ground &report1 = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(report.GetArena());
     for (auto _ : state)
     {
-        report1 = report;
+        pb_report::Ground &report1 = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(report.GetArena());
+        report1                    = report;
         benchmark::DoNotOptimize(report1);
     }
 }
 
- BENCHMARK(BenchCopyArena)->Range(1, 1024);
+BENCHMARK(BenchCopyArena)->Range(1, 1024);
 
- static void BenchCopyArenaDifferent(benchmark::State &state)
- {
-     google::protobuf::Arena arena;
-     pb_report::Ground &report = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(&arena);
-     for (auto i = 0; i < state.range(0); i++)
-     {
-         report.add_attackerform()->add_units();
-         report.add_defenderform()->add_units();
-     }
-     pb_report::Ground report1;
-     for (auto _ : state)
-     {
-         report1 = report;
-         benchmark::DoNotOptimize(report1);
-     }
- }
+static void BenchCopyArenaDifferent(benchmark::State &state)
+{
+    google::protobuf::Arena arena;
+    google::protobuf::Arena arena1;
+    pb_report::Ground &report = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(&arena);
+    for (auto i = 0; i < state.range(0); i++)
+    {
+        report.add_attackerform()->add_units();
+        report.add_defenderform()->add_units();
+    }
+    for (auto _ : state)
+    {
+        pb_report::Ground &report1 = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(&arena1);
+        report1                    = report;
+        benchmark::DoNotOptimize(report1);
+    }
+}
 
- BENCHMARK(BenchCopyArenaDifferent)->Range(1, 1024);
+BENCHMARK(BenchCopyArenaDifferent)->Range(1, 1024);
 
 static void BenchSwap(benchmark::State &state)
 {
@@ -114,15 +120,17 @@ BENCHMARK(BenchSwapArena)->Range(1, 1024);
 static void BenchSwapArenaDifferent(benchmark::State &state)
 {
     google::protobuf::Arena arena;
+    google::protobuf::Arena arena1;
     pb_report::Ground &report = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(&arena);
     for (auto i = 0; i < state.range(0); i++)
     {
         report.add_attackerform()->add_units();
         report.add_defenderform()->add_units();
     }
-    pb_report::Ground report1;
+    pb_report::Ground &report1 = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(&arena1);
     for (auto _ : state)
     {
+
         report1.Swap(&report);
         benchmark::DoNotOptimize(report1);
     }
@@ -138,9 +146,11 @@ static void BenchAddAllocate(benchmark::State &state)
         report.add_attackerform()->add_units();
         report.add_defenderform()->add_units();
     }
-    pb_report::Ground report1;
+
     for (auto _ : state)
     {
+        pb_report::Ground report1;
+
         for (auto i = 0; i < state.range(0); i++)
         {
             report1.mutable_attackerform()->AddAllocated(report.mutable_attackerform(i));
@@ -152,7 +162,7 @@ static void BenchAddAllocate(benchmark::State &state)
         report1.Clear();
     }
 }
- BENCHMARK(BenchAddAllocate)->Range(1, 1024);
+BENCHMARK(BenchAddAllocate)->Range(1, 1024);
 
 static void BenchAddAllocateArena(benchmark::State &state)
 {
@@ -163,9 +173,10 @@ static void BenchAddAllocateArena(benchmark::State &state)
         report.add_attackerform()->add_units();
         report.add_defenderform()->add_units();
     }
-    pb_report::Ground &report1 = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(report.GetArena());
+
     for (auto _ : state)
     {
+        pb_report::Ground &report1 = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(report.GetArena());
         for (auto i = 0; i < state.range(0); i++)
         {
             report1.mutable_attackerform()->AddAllocated(report.mutable_attackerform(i));
@@ -178,7 +189,7 @@ static void BenchAddAllocateArena(benchmark::State &state)
     }
 }
 
- BENCHMARK(BenchAddAllocateArena)->Range(1, 1024);
+BENCHMARK(BenchAddAllocateArena)->Range(1, 1024);
 
 const int SIZE = 65536;
 int main(int argc, char **argv)
@@ -224,7 +235,6 @@ int main(int argc, char **argv)
         std::cout << report.attackerform_size() + report.defenderform_size() << '\n';
         PrintUsage(rUsage);
     }
-
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

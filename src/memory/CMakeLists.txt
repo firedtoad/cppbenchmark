@@ -24,6 +24,7 @@ add_executable(rss_smart_mi rss_smart.cpp)
 add_executable(smart_leak smart_leak.cpp)
 
 target_link_libraries(overhead_tc PRIVATE tcmalloc)
+target_link_libraries(alloc PRIVATE tcmalloc)
 target_compile_definitions(overhead_je PRIVATE JE_MALLOC)
 target_link_libraries(overhead_je PRIVATE jemalloc dl)
 target_link_libraries(overhead_mi PRIVATE mimalloc dl)
