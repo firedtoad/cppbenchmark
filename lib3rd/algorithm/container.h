@@ -849,8 +849,8 @@ container_algorithm_internal::ContainerDifferenceType<const M> c_erase_nodes_if(
 // `std::erase_if()` function
 
 template <bool LinearBased = false, typename M, typename Pred>
-container_algorithm_internal::ContainerDifferenceType<const M> c_erase_elements_if(
-    M&& c, Pred&& pred) {
+container_algorithm_internal::ContainerDifferenceType<const M>
+c_erase_elements_if(M&& c, Pred&& pred) {
   typename std::remove_reference_t<M>::size_type init_size = c.size();
   for (auto it = c.begin(); it != c.end();) {
     if (pred(*it)) {
@@ -1984,4 +1984,4 @@ inline uint64_t combineIndex(uint16_t key1, uint16_t key2, uint16_t key3,
          uint64_t(key3) << LSHIFT_UINT16 | key4;
 }
 
-#endif  // ABSL_ALGORITHM_CONTAINER_H_
+#endif  // ALGORITHM_CONTAINER_H_

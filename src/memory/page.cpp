@@ -108,7 +108,7 @@ int main(int argc, char **argv)
     ret = GetStatM();
     PrintStatM(ret);
     auto r = madvise(old_p, sz, MADV_DONTNEED);
-    std::cout << r << strerror(errno) << '\n';
+    std::cout << r << ' ' << strerror(errno) << '\n';
     PrintUsage(usage);
     ret = GetStatM();
     PrintStatM(ret);
