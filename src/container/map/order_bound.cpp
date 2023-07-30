@@ -46,18 +46,18 @@ static inline uint64_t _random()
 {
     return xor_shift96();
 }
-std::vector<uint64_t> ikeys(1024);
+std::vector<uint64_t> ikeys(8192);
 template <class M> static void BenchOrderMapIntStd(benchmark::State &state)
 {
     M m;
 
-    for (auto i = 0; i < 1024; i++)
+    for (auto i = 0; i < 8192; i++)
     {
         m[ikeys[i]] = i;
     }
     for (auto _ : state)
     {
-        int idx = ikeys[_random() % 1024];
+        int idx = ikeys[_random() % 8192];
         auto it = std::upper_bound(m.begin(), m.end(), idx, [](auto &val, auto &&it) { return val < it.first; });
         benchmark::DoNotOptimize(it);
     }
@@ -66,14 +66,13 @@ template <class M> static void BenchOrderMapIntStd(benchmark::State &state)
 template <class M> static void BenchOrderMapInt(benchmark::State &state)
 {
     M m;
-
-    for (auto i = 0; i < 1024; i++)
+    for (auto i = 0; i < 8192; i++)
     {
         m[ikeys[i]] = i;
     }
     for (auto _ : state)
     {
-        int idx = ikeys[_random() % 1024];
+        int idx = ikeys[_random() % 8192];
         auto it = m.upper_bound(idx);
         benchmark::DoNotOptimize(it);
     }
@@ -81,22 +80,22 @@ template <class M> static void BenchOrderMapInt(benchmark::State &state)
 }
 
 BENCHMARK_TEMPLATE(BenchOrderMapInt, std::map<int, int>);
-BENCHMARK_TEMPLATE(BenchOrderMapIntStd, tsl::ordered_map<int, int>);
 BENCHMARK_TEMPLATE(BenchOrderMapInt, absl::btree_map<int, int>);
 BENCHMARK_TEMPLATE(BenchOrderMapInt, phmap::btree_map<int, int>);
+BENCHMARK_TEMPLATE(BenchOrderMapIntStd, tsl::ordered_map<int, int>);
 BENCHMARK_TEMPLATE(BenchOrderMapIntStd, tsl::vector_map<int, int>);
 // BENCHMARK_TEMPLATE(BenchOrderMapInt, boost::container::small_flat_map<int, int, 1024>);
-std::vector<std::string> keys(1024);
+std::vector<std::string> keys(8192);
 template <class M> static void BenchOrderMapStringStd(benchmark::State &state)
 {
     M m;
-    for (auto i = 0; i < 1024; i++)
+    for (auto i = 0; i < 8192; i++)
     {
         m[keys[i]] = i;
     }
     for (auto _ : state)
     {
-        auto kIndex = _random() % 1024;
+        auto kIndex = _random() % 8192;
         auto it     = std::upper_bound(m.begin(), m.end(), keys[kIndex], [](auto &val, auto &&it) { return val < it.first; });
         benchmark::DoNotOptimize(it);
     }
@@ -105,13 +104,13 @@ template <class M> static void BenchOrderMapStringStd(benchmark::State &state)
 template <class M> static void BenchOrderMapString(benchmark::State &state)
 {
     M m;
-    for (auto i = 0; i < 1024; i++)
+    for (auto i = 0; i < 8192; i++)
     {
         m[keys[i]] = i;
     }
     for (auto _ : state)
     {
-        auto kIndex = _random() % 1024;
+        auto kIndex = _random() % 8192;
         auto it     = m.upper_bound(keys[kIndex]);
         benchmark::DoNotOptimize(it);
     }
@@ -125,10 +124,10 @@ BENCHMARK_TEMPLATE(BenchOrderMapString, phmap::btree_map<std::string, int>);
 
 int main(int argc, char **argv)
 {
-    for (auto i = 0; i < 1024; i++)
+    for (auto i = 0; i < 8192; i++)
     {
         keys[i]  = "12345678901234561234567890123456" + std::to_string(_random());
-        ikeys[i] = _random() % 1024;
+        ikeys[i] = _random() % 8192;
     }
 
     std::vector<std::string> vs={

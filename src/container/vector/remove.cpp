@@ -13,6 +13,7 @@
 // limitations under the License.
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
+#include "algorithm/container.h"
 #include <benchmark/benchmark.h>
 #include <iostream>
 #include <list>
@@ -89,6 +90,33 @@ static void BM_swap_pop(benchmark::State &state)
     }
 }
 
+static void BM_erase_iter_swap_last(benchmark::State &state)
+{
+    std::vector<std::string> vec;
+    init(vec);
+    for (auto _ : state)
+    {
+        auto idx   = random_() % vec.size();
+        auto start = std::next(vec.begin(), idx);
+        auto val   = *start;
+        c_erase_iter_swap_last(vec,start);
+        vec.push_back(val);
+    }
+}
+
+static void BM_erase_swap_last(benchmark::State &state)
+{
+    std::vector<std::string> vec;
+    init(vec);
+    for (auto _ : state)
+    {
+        auto idx   = random_() % vec.size();
+        auto val   =vec[idx];
+        c_erase_swap_last(vec,val);
+        vec.push_back(val);
+    }
+}
+
 static void BM_list(benchmark::State &state)
 {
     std::list<std::string> vec;
@@ -105,6 +133,8 @@ static void BM_list(benchmark::State &state)
 
 BENCHMARK(BM_erase);
 BENCHMARK(BM_swap_pop);
+BENCHMARK(BM_erase_iter_swap_last);
+BENCHMARK(BM_erase_swap_last);
 BENCHMARK(BM_list);
 
 int main(int argc, char **argv)

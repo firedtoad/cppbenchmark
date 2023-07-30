@@ -42,6 +42,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <climits>
 #include <iterator>
 #include <numeric>
 #include <type_traits>
@@ -704,7 +705,7 @@ void c_assign_n(C& c1, C1&& c2, Size n) {
 // c_map_assign()
 // construct container from other compatible container
 // copy elements
-template <typename C, typename C1, bool RESERVE = true>
+template <bool RESERVE = true, typename C, typename C1>
 void c_assign_map(C& c1, C1&& c2) {
   if constexpr (RESERVE) {
     c1.reserve(c2.size());
@@ -715,7 +716,7 @@ void c_assign_map(C& c1, C1&& c2) {
 // c_map_assign_n()
 // construct container from other compatible container
 // copy elements
-template <typename C, typename C1, typename Size, bool RESERVE = true>
+template <bool RESERVE = true, typename C, typename C1, typename Size>
 void c_assign_map_n(C& c1, C1&& c2, Size n) {
   if constexpr (RESERVE) {
     c1.reserve(n);
@@ -726,7 +727,7 @@ void c_assign_map_n(C& c1, C1&& c2, Size n) {
 // c_map_move()
 // construct container from other compatible container
 // move elements
-template <typename C, typename C1, bool RESERVE = true>
+template <bool RESERVE = true, typename C, typename C1>
 void c_move_map(C& c1, C1&& c2) {
   if constexpr (RESERVE) {
     c1.reserve(c2.size());
@@ -737,7 +738,7 @@ void c_move_map(C& c1, C1&& c2) {
 // c_map_move_n()
 // construct container from other compatible container
 // move elements
-template <typename C, typename C1, typename Size, bool RESERVE = true>
+template <bool RESERVE = true, typename C, typename C1, typename Size>
 void c_move_map_n(C& c1, C1&& c2, Size n) {
   if constexpr (RESERVE) {
     c1.reserve(n);
@@ -823,11 +824,62 @@ container_algorithm_internal::ContainerDifferenceType<const C> c_erase_if(
   return num;
 }
 
+// c_erase_swap_last()
+//
+// Container-based version of vector/deque swap last idiom
+
+template <typename C, typename T>
+container_algorithm_internal::ContainerDifferenceType<const C>
+c_erase_swap_last(C&& c, T&& value) {
+  auto it = c_find(std::forward<C>(c), std::forward<T>(value));
+  if (it != c.end()) {
+    std::swap(*it, c.back());
+    c.pop_back();
+    return 1;
+  }
+  return 0;
+}
+
+// c_erase_swap_last()
+//
+// Container-based version of vector/deque swap last idiom iterator version
+
+template <typename C, typename Iter>
+container_algorithm_internal::ContainerDifferenceType<const C>
+c_erase_iter_swap_last(C&& c, Iter&& iter) {
+  if (iter != c.end()) {
+    std::swap(*iter, c.back());
+    c.pop_back();
+    return 1;
+  }
+  return 0;
+}
+
+// c_erase_swap_last_if()
+//
+// Container-based version of vector/deque swap last if idiom
+
+template <typename C, typename Pred>
+container_algorithm_internal::ContainerDifferenceType<const C>
+c_erase_swap_last_if(C&& c, Pred&& pred) {
+  auto last = c.rbegin();
+  for (auto it = c.begin(); it != c.end() && it != last.base();) {
+    if (pred(*it) && it != last.base()) {
+      std::swap(*it, *last++);
+      continue;
+    }
+    ++it;
+  }
+  auto num = std::distance(c.end(), last.base());
+  c.erase(last.base(), c.end());
+  return num;
+}
+
 // c_erase_nodes_if()
 //
 // Node-Based Map/Set Like Container-based version of the c++20 <algorithm>
 // std::map/set,std::multi_map/multi_set,std::unordered_map/set,std::unordered_multi_map/multi_set
-// `std::erase_if()` function
+// `std::erase_nodes_if()` function
 
 template <typename M, typename Pred>
 container_algorithm_internal::ContainerDifferenceType<const M> c_erase_nodes_if(
@@ -1960,10 +2012,10 @@ OutputIt c_partial_sum(const InputSequence& input, OutputIt output_first,
                           output_first, std::forward<BinaryOp>(op));
 }
 
-constexpr uint32_t LSHIFT_UINT16 = sizeof(uint16_t) * __CHAR_BIT__;
-constexpr uint32_t LSHIFT_UINT32 = sizeof(uint32_t) * __CHAR_BIT__;
+constexpr uint32_t LSHIFT_UINT16 = sizeof(uint16_t) * CHAR_BIT;
+constexpr uint32_t LSHIFT_UINT32 = sizeof(uint32_t) * CHAR_BIT;
 constexpr uint32_t LSHIFT_UINT48 =
-    (sizeof(uint32_t) + sizeof(uint16_t)) * __CHAR_BIT__;
+    (sizeof(uint32_t) + sizeof(uint16_t)) * CHAR_BIT;
 
 inline uint64_t combineIndex(uint32_t key1, uint32_t key2) {
   return uint64_t(key1) << LSHIFT_UINT32 | key2;

@@ -50,20 +50,20 @@ template <class T> struct is_shared_ptr<std::shared_ptr<T>> : std::true_type
 {
 };
 
-template <typename T> struct CopyableUniquePtr
+template <typename T> struct Wrapper
 {
-    CopyableUniquePtr() {}
-    CopyableUniquePtr(const T &v)
+    Wrapper() {}
+    Wrapper(const T &v)
     {
         val.reset(new T{v});
     }
-    CopyableUniquePtr(const CopyableUniquePtr &rhs)
+    Wrapper(const Wrapper &rhs)
     {
         val = std::make_unique<T>(*rhs.val.get());
     }
-    CopyableUniquePtr(CopyableUniquePtr &&rhs)                 = default;
-    CopyableUniquePtr &operator=(const CopyableUniquePtr &rhs) = default;
-    CopyableUniquePtr &operator=(CopyableUniquePtr &&rhs)      = default;
+    Wrapper(Wrapper &&rhs)                 = default;
+    Wrapper &operator=(const Wrapper &rhs) = default;
+    Wrapper &operator=(Wrapper &&rhs)      = default;
 
     operator T &()
     {
@@ -139,7 +139,7 @@ static void BM_CopyableUniquePtrInt(benchmark::State &state)
 {
     for (auto _ : state)
     {
-        std::variant<int,CopyableUniquePtr<std::string>> va;
+        std::variant<int, Wrapper<std::string>> va;
         va = state.threads();
         benchmark::DoNotOptimize(va);
     }
@@ -149,7 +149,7 @@ static void BM_CopyableUniquePtrString(benchmark::State &state)
 {
     for (auto _ : state)
     {
-        std::variant<int,CopyableUniquePtr<std::string>> va;
+        std::variant<int, Wrapper<std::string>> va;
         va = s;
         benchmark::DoNotOptimize(va);
     }
@@ -159,7 +159,7 @@ BENCHMARK_TEMPLATE(BM_Variant, std::string);
 BENCHMARK_TEMPLATE(BM_Variant, std::unique_ptr<std::string>);
 BENCHMARK_TEMPLATE(BM_Variant, std::shared_ptr<std::string>);
 BENCHMARK_TEMPLATE(BM_Variant, std::optional<std::string>);
-BENCHMARK_TEMPLATE(BM_Variant, CopyableUniquePtr<std::string>);
+BENCHMARK_TEMPLATE(BM_Variant, Wrapper<std::string>);
 
 BENCHMARK_TEMPLATE(BM_Variant, int64_t);
 BENCHMARK(BM_Any);
@@ -172,7 +172,7 @@ int main(int argc, char **argv)
 {
     {
 
-        std::variant<int, double, CopyableUniquePtr<std::string>> vau;
+        std::variant<int, double, Wrapper<std::string>> vau;
         //        auto b=vau;
         std::variant<int, double, std::shared_ptr<std::string>> vas;
         std::variant<int, double, std::string, bool> va;
@@ -190,14 +190,14 @@ int main(int argc, char **argv)
         std::vector<std::variant<int, double, std::string, bool>> vec(1024 * 1024);
         PrintUsage(rUsage);
         FillRSS(rUsage);
-        std::vector<std::variant<int, double, CopyableUniquePtr<std::string>, bool>> vec1(1024 * 1024);
-        static_assert(std::is_constructible_v<const std::variant<int, double, CopyableUniquePtr<std::string>, bool>>);
+        std::vector<std::variant<int, double, Wrapper<std::string>, bool>> vec1(1024 * 1024);
+        static_assert(std::is_constructible_v<const std::variant<int, double, Wrapper<std::string>, bool>>);
         //        auto vec2 = vec1;
         PrintUsage(rUsage);
     }
     {
-        CopyableUniquePtr<std::string> ca(s);
-        CopyableUniquePtr<std::string> cd;
+        Wrapper<std::string> ca(s);
+        Wrapper<std::string> cd;
         auto cb = ca;
         auto cx = std::move(ca);
         std::cout << (std::string)ca << '\n' << (std::string)cb << '\n' << (std::string)cd << '\n' << (std::string)cx << '\n';
