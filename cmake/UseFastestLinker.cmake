@@ -37,21 +37,28 @@ function(use_fastest_linker)
   # prefer an lld that matches the clang version
   if(CMAKE_C_COMPILER_ID STREQUAL "Clang" AND CMAKE_C_COMPILER_VERSION MATCHES "^([0-9]*)\\.")
     check_linker(lld-${CMAKE_MATCH_1})
+
     if(HAVE_LD_LLD-${CMAKE_MATCH_1})
       link_libraries("-fuse-ld=lld-${CMAKE_MATCH_1}")
+      SET(CMAKE_AR "${CMAKE_CXX_COMPILER_AR}" PARENT_SCOPE)
+      SET(CMAKE_RANLIB "${CMAKE_CXX_COMPILER_RANLIB}" PARENT_SCOPE)
       message(STATUS "Using lld-${CMAKE_MATCH_1} linker")
       return()
     endif()
   endif()
 
   check_linker(lld)
+
   if(HAVE_LD_LLD)
     link_libraries("-fuse-ld=lld")
+    SET(CMAKE_AR "llvm-ar" PARENT_SCOPE)
+    SET(CMAKE_RANLIB "llvm-ranlib" PARENT_SCOPE)
     message(STATUS "Using lld linker")
     return()
   endif()
 
   check_linker(mold)
+
   if(HAVE_LD_MOLD)
     link_libraries("-fuse-ld=mold")
     message(STATUS "Using mold linker")
@@ -59,6 +66,7 @@ function(use_fastest_linker)
   endif()
 
   check_linker(gold)
+
   if(HAVE_LD_GOLD)
     link_libraries("-fuse-ld=gold")
     message(STATUS "Using gold linker")
@@ -69,6 +77,10 @@ function(use_fastest_linker)
 endfunction()
 
 option(USE_FASTER_LINKER "Use the lld or gold linker instead of the default for faster linking" TRUE)
+
 if(USE_FASTER_LINKER)
   use_fastest_linker()
 endif()
+
+message(STATUS "Using ${CMAKE_AR} archiver")
+message(STATUS "Using ${CMAKE_RANLIB} ranlib")
