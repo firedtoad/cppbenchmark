@@ -26,6 +26,8 @@ extern "C"
 }
 #elif defined(__MACH__)
 #include <mach/mach.h>
+#elif defined(__MVS__)
+#include <zos-semaphore.h>
 #elif defined(__unix__)
 #include <semaphore.h>
 
@@ -171,9 +173,9 @@ class Semaphore
         }
     }
 };
-#elif defined(__unix__)
+#elif defined(__unix__) || defined(__MVS__)
 //---------------------------------------------------------
-// Semaphore (POSIX, Linux)
+// Semaphore (POSIX, Linux, zOS)
 //---------------------------------------------------------
 class Semaphore
 {

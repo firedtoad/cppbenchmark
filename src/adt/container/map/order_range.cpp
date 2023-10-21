@@ -40,9 +40,7 @@ template <class M> static void BenchRangeOrderMapInt(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, std::map<int, int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, tsl::ordered_map<int, int>);
-BENCHMARK_TEMPLATE(
-    BenchRangeOrderMapInt,
-    tsl::ordered_map<int, int, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int, int>>, std::vector<std::pair<int, int>>>);
+BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, tsl::vector_map<int, int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderMapInt, absl::btree_map<int, int>);
 
 static void BenchRangeImmutableMapInt(benchmark::State &state)
@@ -91,6 +89,7 @@ template <class M> static void BenchRangeOrderMapString(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BenchRangeOrderMapString, std::map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderMapString, tsl::ordered_map<std::string, int>);
+BENCHMARK_TEMPLATE(BenchRangeOrderMapString, tsl::vector_map<std::string, int>);
 BENCHMARK_TEMPLATE(BenchRangeOrderMapString, absl::btree_map<std::string, int>);
 
 int main(int argc, char **argv)

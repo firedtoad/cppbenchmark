@@ -128,7 +128,8 @@ static inline thread_id_t thread_id()
 }
 } // namespace details
 } // namespace moodycamel
-#elif defined(__arm__) || defined(_M_ARM) || defined(__aarch64__) || (defined(__APPLE__) && TARGET_OS_IPHONE) || defined(MOODYCAMEL_NO_THREAD_LOCAL)
+#elif defined(__arm__) || defined(_M_ARM) || defined(__aarch64__) || (defined(__APPLE__) && TARGET_OS_IPHONE) || defined(__MVS__) ||                 \
+    defined(MOODYCAMEL_NO_THREAD_LOCAL)
 namespace moodycamel
 {
 namespace details
@@ -279,7 +280,7 @@ inline thread_id_t thread_id()
 // Finally, iOS/ARM doesn't have support for it either, and g++/ARM allows it to compile but it's unconfirmed to actually work
 #if (!defined(_MSC_VER) || _MSC_VER >= 1900) && (!defined(__MINGW32__) && !defined(__MINGW64__) || !defined(__WINPTHREADS_VERSION)) &&               \
     (!defined(__GNUC__) || __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 8)) && (!defined(__APPLE__) || !TARGET_OS_IPHONE) &&                  \
-    !defined(__arm__) && !defined(_M_ARM) && !defined(__aarch64__)
+    !defined(__arm__) && !defined(_M_ARM) && !defined(__aarch64__) && !defined(__MVS__)
 // Assume `thread_local` is fully supported in all other C++11 compilers/platforms
 #define MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED // tentatively enabled for now; years ago several users report having problems with it on
 #endif
@@ -612,16 +613,12 @@ static inline size_t hash_thread_id(thread_id_t id)
 
 template <typename T> static inline bool circular_less_than(T a, T b)
 {
-#ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable : 4554)
-#endif
     static_assert(std::is_integral<T>::value && !std::numeric_limits<T>::is_signed,
                   "circular_less_than is intended to be used only with unsigned integer types");
-    return static_cast<T>(a - b) > static_cast<T>(static_cast<T>(1) << static_cast<T>(sizeof(T) * CHAR_BIT - 1));
-#ifdef _MSC_VER
-#pragma warning(pop)
-#endif
+    return static_cast<T>(a - b) > static_cast<T>(static_cast<T>(1) << (static_cast<T>(sizeof(T) * CHAR_BIT - 1)));
+    // Note: extra parens around rhs of operator<< is MSVC bug:
+    // https://developercommunity2.visualstudio.com/t/C4554-triggers-when-both-lhs-and-rhs-is/10034931
+    //       silencing the bug requires #pragma warning(disable: 4554) around the calling code and has no effect when done here.
 }
 
 template <typename U> static inline char *align_for(char *ptr)
@@ -2302,8 +2299,9 @@ template <typename T, typename Traits = ConcurrentQueueDefaultTraits> class Conc
                     // block size (in order to get a correct signed block count offset in all cases):
                     auto headBase       = localBlockIndex->entries[localBlockIndexHead].base;
                     auto blockBaseIndex = index & ~static_cast<index_t>(BLOCK_SIZE - 1);
-                    auto offset = static_cast<size_t>(static_cast<typename std::make_signed<index_t>::type>(blockBaseIndex - headBase) / BLOCK_SIZE);
-                    auto block  = localBlockIndex->entries[(localBlockIndexHead + offset) & (localBlockIndex->size - 1)].block;
+                    auto offset         = static_cast<size_t>(static_cast<typename std::make_signed<index_t>::type>(blockBaseIndex - headBase) /
+                                                      static_cast<typename std::make_signed<index_t>::type>(BLOCK_SIZE));
+                    auto block          = localBlockIndex->entries[(localBlockIndexHead + offset) & (localBlockIndex->size - 1)].block;
 
                     // Dequeue
                     auto &el = *((*block)[index]);
@@ -2610,8 +2608,8 @@ template <typename T, typename Traits = ConcurrentQueueDefaultTraits> class Conc
 
                     auto headBase            = localBlockIndex->entries[localBlockIndexHead].base;
                     auto firstBlockBaseIndex = firstIndex & ~static_cast<index_t>(BLOCK_SIZE - 1);
-                    auto offset =
-                        static_cast<size_t>(static_cast<typename std::make_signed<index_t>::type>(firstBlockBaseIndex - headBase) / BLOCK_SIZE);
+                    auto offset     = static_cast<size_t>(static_cast<typename std::make_signed<index_t>::type>(firstBlockBaseIndex - headBase) /
+                                                      static_cast<typename std::make_signed<index_t>::type>(BLOCK_SIZE));
                     auto indexIndex = (localBlockIndexHead + offset) & (localBlockIndex->size - 1);
 
                     // Iterate the blocks and dequeue
@@ -3390,7 +3388,8 @@ template <typename T, typename Traits = ConcurrentQueueDefaultTraits> class Conc
             assert(tailBase != INVALID_BLOCK_BASE);
             // Note: Must use division instead of shift because the index may wrap around, causing a negative
             // offset, whose negativity we want to preserve
-            auto offset = static_cast<size_t>(static_cast<typename std::make_signed<index_t>::type>(index - tailBase) / BLOCK_SIZE);
+            auto offset = static_cast<size_t>(static_cast<typename std::make_signed<index_t>::type>(index - tailBase) /
+                                              static_cast<typename std::make_signed<index_t>::type>(BLOCK_SIZE));
             size_t idx  = (tail + offset) & (localBlockIndex->capacity - 1);
             assert(localBlockIndex->index[idx]->key.load(std::memory_order_relaxed) == index &&
                    localBlockIndex->index[idx]->value.load(std::memory_order_relaxed) != nullptr);
@@ -3903,7 +3902,7 @@ template <typename T, typename Traits = ConcurrentQueueDefaultTraits> class Conc
             auto index = hashedId;
             while (true)
             { // Not an infinite loop because at least one slot is free in the hash table
-                index &= hash->capacity - 1;
+                index &= hash->capacity - 1u;
 
                 auto probedKey = hash->entries[index].key.load(std::memory_order_relaxed);
                 if (probedKey == id)
@@ -3919,7 +3918,7 @@ template <typename T, typename Traits = ConcurrentQueueDefaultTraits> class Conc
                         index = hashedId;
                         while (true)
                         {
-                            index &= mainHash->capacity - 1;
+                            index &= mainHash->capacity - 1u;
                             auto empty = details::invalid_thread_id;
 #ifdef MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED
                             auto reusable = details::invalid_thread_id2;
@@ -3963,7 +3962,7 @@ template <typename T, typename Traits = ConcurrentQueueDefaultTraits> class Conc
                 mainHash = implicitProducerHash.load(std::memory_order_acquire);
                 if (newCount >= (mainHash->capacity >> 1))
                 {
-                    auto newCapacity = mainHash->capacity << 1;
+                    size_t newCapacity = mainHash->capacity << 1;
                     while (newCount >= (newCapacity >> 1))
                     {
                         newCapacity <<= 1;
@@ -4019,7 +4018,7 @@ template <typename T, typename Traits = ConcurrentQueueDefaultTraits> class Conc
                 auto index = hashedId;
                 while (true)
                 {
-                    index &= mainHash->capacity - 1;
+                    index &= mainHash->capacity - 1u;
                     auto empty = details::invalid_thread_id;
 #ifdef MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED
                     auto reusable = details::invalid_thread_id2;
@@ -4067,7 +4066,7 @@ template <typename T, typename Traits = ConcurrentQueueDefaultTraits> class Conc
             auto index = hashedId;
             do
             {
-                index &= hash->capacity - 1;
+                index &= hash->capacity - 1u;
                 probedKey = id;
                 if (hash->entries[index].key.compare_exchange_strong(probedKey, details::invalid_thread_id2, std::memory_order_seq_cst,
                                                                      std::memory_order_relaxed))

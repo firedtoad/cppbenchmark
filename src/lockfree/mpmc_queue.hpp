@@ -12,7 +12,6 @@
 #include <atomic>
 #include <utility>
 #include <iostream>
-#include <spdlog/fmt/fmt.h>
 
 template<typename T>
 class mpmc_bounded_queue

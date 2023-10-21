@@ -10,7 +10,7 @@
 #include "concurrentqueue.h"
 #include "blockingconcurrentqueue.h"
 
-#include "mpmp_queue.hpp"
+#include "mpmc_queue.hpp"
 
 #include <chrono>
 #include <memory>
@@ -43,7 +43,7 @@ struct async_msg : log_msg_buffer
     async_msg() = default;
     ~async_msg() = default;
 
-    // should only be moved in or out of the queue..
+    // should only be moved in or out of the queue
     async_msg(const async_msg &) = delete;
 
 // support for vs2013 move
@@ -171,8 +171,8 @@ class thread_pool
 public:
     using item_type = async_msg;
     //using q_type = details::mpmc_blocking_queue<item_type>;
-    //using q_type = ConcurrentQueueAdapter<item_type>;
-    using q_type = MPMCQueueAdapter<item_type>;
+    using q_type = ConcurrentQueueAdapter<item_type>;
+//    using q_type = MPMCQueueAdapter<item_type>;
 
     thread_pool(size_t q_max_items, size_t threads_n, std::function<void()> on_thread_start);
     thread_pool(size_t q_max_items, size_t threads_n);

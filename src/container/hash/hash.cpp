@@ -26,7 +26,7 @@
 #include <benchmark/benchmark.h>
 #include <string>
 #include <vector>
-constexpr int N = 100;
+constexpr int N = 1024;
 
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
@@ -55,16 +55,16 @@ void init(std::vector<std::string> &v1)
     v1.resize(N);
     for (auto i = 0; i < N; i++)
     {
-        v1[i] = "12345678901234561234567890123456" + std::to_string(random_());
+        v1[i] = std::to_string(random_())+std::to_string(random_()) + std::to_string(random_());
     }
 }
 
 static void BM_StdHash(benchmark::State &state)
 {
-    auto idx = random_() % vec.size();
     for (auto _ : state)
     {
-        auto r=std::_Hash_impl{}.hash(vec[idx]);
+        auto idx = random_() % vec.size();
+        auto r=std::_Hash_impl::hash(vec[idx]);
         benchmark::DoNotOptimize(r);
     }
 }
@@ -73,10 +73,10 @@ BENCHMARK(BM_StdHash);
 
 static void BM_StdHashFnv(benchmark::State &state)
 {
-    auto idx = random_() % vec.size();
     for (auto _ : state)
     {
-        auto r=std::_Fnv_hash_impl{}.hash(vec[idx]);
+        auto idx = random_() % vec.size();
+        auto r=std::_Fnv_hash_impl::hash(vec[idx]);
         benchmark::DoNotOptimize(r);
     }
 }
@@ -85,9 +85,9 @@ BENCHMARK(BM_StdHashFnv);
 
 static void BM_CityHash(benchmark::State &state)
 {
-    auto idx = random_() % vec.size();
     for (auto _ : state)
     {
+        auto idx = random_() % vec.size();
         auto r = CityHash64(vec[idx].c_str(), vec[idx].size());
         benchmark::DoNotOptimize(r);
     }
@@ -97,9 +97,9 @@ BENCHMARK(BM_CityHash);
 
 static void BM_Murmur(benchmark::State &state)
 {
-    auto idx = random_() % vec.size();
     for (auto _ : state)
     {
+        auto idx = random_() % vec.size();
         auto out = 0;
         butil::MurmurHash3_x86_32(vec[idx].c_str(), vec[idx].size(), 0, &out);
         benchmark::DoNotOptimize(out);
@@ -110,9 +110,9 @@ BENCHMARK(BM_Murmur);
 
 static void BM_WyHash(benchmark::State &state)
 {
-    auto idx = random_() % vec.size();
     for (auto _ : state)
     {
+        auto idx = random_() % vec.size();
         auto r = wyhash(vec[idx].c_str(), vec[idx].size(), 0, _wyp);
         benchmark::DoNotOptimize(r);
     }
@@ -122,11 +122,9 @@ BENCHMARK(BM_WyHash);
 
 static void BM_XXHash(benchmark::State &state)
 {
-
-
-    auto idx = random_() % vec.size();
     for (auto _ : state)
     {
+        auto idx = random_() % vec.size();
         auto r = XXH64(vec[idx].c_str(), vec[idx].size(), 0);
         benchmark::DoNotOptimize(r);
     }
@@ -136,10 +134,9 @@ BENCHMARK(BM_XXHash);
 
 static void BM_AbseilHash(benchmark::State &state)
 {
-
-    auto idx = random_() % vec.size();
     for (auto _ : state)
     {
+        auto idx = random_() % vec.size();
         auto r = absl::Hash<std::string>{}(vec[idx]);
         benchmark::DoNotOptimize(r);
     }
@@ -149,9 +146,9 @@ BENCHMARK(BM_AbseilHash);
 
 static void BM_DefaultHash(benchmark::State &state)
 {
-    auto idx = random_() % vec.size();
     for (auto _ : state)
     {
+        auto idx = random_() % vec.size();
         auto r = butil::DefaultHasher<std::string>{}(vec[idx]);
         benchmark::DoNotOptimize(r);
     }
@@ -228,7 +225,7 @@ int main(int argc, char **argv)
     init(vec);
     for (auto i = 0; i < 65536; i++)
     {
-        keys[i] = "12345678901234561234567890123456"+std::to_string(random_());
+        keys[i] = std::to_string(random_())+std::to_string(random_());
     }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();

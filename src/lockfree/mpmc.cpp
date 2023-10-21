@@ -15,20 +15,20 @@
 
 #include "MPMCQueue.h"
 #include "concurrentqueue.h"
+#include "mpmc_queue.hpp"
 #include <benchmark/benchmark.h>
 #include <boost/lockfree/queue.hpp>
 #include <cds/intrusive/vyukov_mpmc_cycle_queue.h>
 #include <tbb/concurrent_queue.h>
-#include <thread>
 
 struct S
 {
     char c[128]{};
 };
 
-static void Boost_Mpmc(benchmark::State &state)
+static void Boost_LockFree_queue(benchmark::State &state)
 {
-    static boost::lockfree::queue<S, boost::lockfree::capacity<1024>> mpmc;
+    static boost::lockfree::queue<S, boost::lockfree::capacity<65534>> mpmc;
     for (auto _ : state)
     {
         S s;
@@ -39,11 +39,11 @@ static void Boost_Mpmc(benchmark::State &state)
     }
 }
 
-BENCHMARK(Boost_Mpmc)->DenseThreadRange(1, 8);
+BENCHMARK(Boost_LockFree_queue)->DenseThreadRange(1, 8);
 
-static void MPMCQueue(benchmark::State &state)
+static void Rigtorp_MPMCQueue(benchmark::State &state)
 {
-    static rigtorp::MPMCQueue<S> rmpmc(100000);
+    static rigtorp::MPMCQueue<S> rmpmc(1<<20);
     for (auto _ : state)
     {
         S s;
@@ -54,11 +54,26 @@ static void MPMCQueue(benchmark::State &state)
     }
 }
 
-BENCHMARK(MPMCQueue)->DenseThreadRange(1, 8);
+BENCHMARK(Rigtorp_MPMCQueue)->DenseThreadRange(1, 8);
 
-static void CCQueue(benchmark::State &state)
+static void _1024Cores_MPMCQueue(benchmark::State &state)
 {
-    static moodycamel::ConcurrentQueue<S> ccQueue(100000);
+    static mpmc_bounded_queue<S> mpmc(1<<20);
+    for (auto _ : state)
+    {
+        S s;
+        mpmc.enqueue(s);
+        auto q=mpmc.dequeue(s);
+        benchmark::DoNotOptimize(q);
+        benchmark::DoNotOptimize(s);
+    }
+}
+
+BENCHMARK(_1024Cores_MPMCQueue)->DenseThreadRange(1, 8);
+
+static void moodycamel_ConcurrentQueue(benchmark::State &state)
+{
+    static moodycamel::ConcurrentQueue<S> ccQueue(1<<20);
     for (auto _ : state)
     {
         S s;
@@ -69,11 +84,11 @@ static void CCQueue(benchmark::State &state)
     }
 }
 
-BENCHMARK(CCQueue)->DenseThreadRange(1, 8);
+BENCHMARK(moodycamel_ConcurrentQueue)->DenseThreadRange(1, 8);
 
-static void VYQueue(benchmark::State &state)
+static void cds_VYQueue(benchmark::State &state)
 {
-    static cds::intrusive::VyukovMPMCCycleQueue<S> vyQueue(100000);
+    static cds::intrusive::VyukovMPMCCycleQueue<S> vyQueue(1<<20);
     for (auto _ : state)
     {
         S s;
@@ -83,12 +98,12 @@ static void VYQueue(benchmark::State &state)
     }
 }
 
-BENCHMARK(VYQueue)->DenseThreadRange(1, 8);
+BENCHMARK(cds_VYQueue)->DenseThreadRange(1, 8);
 
 static void TBBQueue(benchmark::State &state)
 {
     static tbb::concurrent_bounded_queue<S> tbbQueue;
-    tbbQueue.set_capacity(100000);
+    tbbQueue.set_capacity(1<<20);
     for (auto _ : state)
     {
         S s;

@@ -13,7 +13,6 @@
 // limitations under the License.
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
-
 #include "absl/container/btree_map.h"
 #include "absl/container/node_hash_map.h"
 #include "parallel_hashmap/btree.h"
@@ -21,10 +20,11 @@
 #include "tsl/ordered_map.h"
 #include "tsl/ordered_set.h"
 #include "tsl/sparse_map.h"
+#include <algorithm/container.h>
 #include <benchmark/benchmark.h>
 #include <iostream>
 #include <map>
-#include <algorithm/container.h>
+#include <queue>
 static inline uint64_t xor_shift96()
 { /* A George Marsaglia generator, period 2^96-1 */
     static uint64_t x = 123456789, y = 362436069, z = 521288629;
@@ -148,5 +148,7 @@ int main(int argc, char **argv)
     absl::c_move(ds,std::inserter(ss,ss.end()));
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
+    std::deque<int> q;
+    q.front();
     return 0;
 }

@@ -14,17 +14,21 @@
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
 #include "plf_list.h"
+#include "tsl/ordered_map.h"
 #include <benchmark/benchmark.h>
 #include <boost/intrusive/list.hpp>
 #include <boost/intrusive/list_hook.hpp>
 #include <deque>
+#include <iostream>
 #include <list>
+#include <unordered_map>
 
 using mode               = boost::intrusive::link_mode<boost::intrusive::auto_unlink>;
 using constant_time_size = boost::intrusive::constant_time_size<false>;
 
 struct SList : public boost::intrusive::list_base_hook<mode>
 {
+    int x;
 };
 
 template <typename V> void Splice(V &&v1, V &&v2)
@@ -171,9 +175,79 @@ static void BenchPlfListSwap(benchmark::State &state)
 
 BENCHMARK(BenchPlfListSwap)->Range(1, 65536);
 
+struct WFGUID
+{
+    int64_t nData64;
+    int64_t nHead64;
+    inline bool operator==(const WFGUID& id) const
+    {
+        return (this->nData64 == id.nData64) && (this->nHead64 == id.nHead64);
+    }
+
+    inline bool operator!=(const WFGUID& id) const
+    {
+        return (this->nData64 != id.nData64) || (this->nHead64 != id.nHead64);
+    }
+
+};
+
+namespace std
+{
+    template <> class hash<WFGUID>
+    {
+      public:
+        inline size_t operator()(const WFGUID &xGUID) const
+        {
+            return /*hash<WFINT64>{}(xGUID.nHead64) * 31 + */ hash<int64_t>{}(xGUID.nData64);
+        }
+    };
+}
+using KeyT = std::pair<WFGUID , std::string>;
+
+
+struct WFPairHash
+{
+    template<class T1, class T2>
+    std::size_t operator()(const std::pair<T1, T2> &p) const
+    {
+        return std::hash<T1>()(p.first) * 31 + std::hash<T2>()(p.second);
+    }
+};
+
+struct ListData : public boost::intrusive::list_base_hook<mode>
+{
+    ListData(const std::pair<WFGUID , std::string>& _xKey, const uint64_t _nTimeOut, const uint64_t _nTimeOutCount)
+        : xKey(_xKey),
+          nTimeOut(_nTimeOut),
+          nTimeOutCount(_nTimeOutCount)
+    {
+    }
+
+    ListData() = default;
+
+    std::pair<WFGUID , std::string> xKey;                      // key
+    uint64_t nTimeOut;                 // 到期时间
+    uint64_t nTimeOutCount; // 到期次数
+};
+
 int main(int argc, char **argv)
 {
-    benchmark::Initialize(&argc, argv);
-    benchmark::RunSpecifiedBenchmarks();
+    using MapT = tsl::vector_map<KeyT, std::unique_ptr<ListData>, WFPairHash>;
+    boost::intrusive::list<ListData, constant_time_size> vt;
+    MapT mapData;
+    for(auto i=0;i<10;i++)
+    {
+        KeyT key{WFGUID{i},""};
+        mapData[key]=std::make_unique<ListData>();
+        vt.push_back( *mapData[key]);
+        vt.back().nTimeOut=i;
+    }
+
+    for(auto &&it:vt)
+    {
+        std::cout<<it.nTimeOut<<'\n';
+    }
+//    benchmark::Initialize(&argc, argv);
+//    benchmark::RunSpecifiedBenchmarks();
     return 0;
 }

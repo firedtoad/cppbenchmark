@@ -14,9 +14,13 @@
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
 #include "report.pb.h"
+#include "tsl/array-hash/array_map.h"
 #include "utils/rss.h"
 #include <benchmark/benchmark.h>
+#include <boost/pool/object_pool.hpp>
+#include <boost/pool/pool_alloc.hpp>
 #include <experimental/unordered_map>
+#include <parallel_hashmap/phmap.h>
 #include <vector>
 
 static void BenchAdd(benchmark::State &state)
@@ -107,6 +111,26 @@ static void BenchReserveArena(benchmark::State &state)
 
 BENCHMARK(BenchReserveArena)->Range(1, 65536);
 
+struct StrPtrHash
+{
+    size_t operator()(const std::string *key) const
+    {
+        return std::hash<std::string>{}(*key);
+    }
+};
+
+struct StrPtrEqual
+{
+    bool operator()(const std::string *self, const std::string *other) const
+    {
+        if (self != nullptr && other != nullptr)
+        {
+            return *self == *other;
+        }
+        return false;
+    }
+};
+
 const int SIZE = 65536;
 int main(int argc, char **argv)
 {
@@ -155,9 +179,74 @@ int main(int argc, char **argv)
         {2, 2},
         {3, 2},
     };
-    std::experimental::erase_if(mp, [](auto &&it) {
-                                    return true;
-                                });
+    std::experimental::erase_if(mp, [](auto &&it) { return true; });
+
+    {
+        FillRSS(rUsage);
+        google::protobuf::Arena arena;
+        google::protobuf::RepeatedPtrField<int> data(&arena);
+        data.Reserve(1000000);
+        for (auto i = 0; i < 1000000; i++)
+        {
+            *data.Add() = i;
+        }
+        PrintUsage(rUsage);
+    }
+
+    {
+        FillRSS(rUsage);
+        google::protobuf::Arena arena;
+        google::protobuf::RepeatedField<int> data(&arena);
+        data.Reserve(1000000);
+        for (auto i = 0; i < 1000000; i++)
+        {
+            data.Add(i);
+        }
+        PrintUsage(rUsage);
+    }
+
+    {
+        FillRSS(rUsage);
+        boost::object_pool<std::string> pool;
+        for (auto i = 0; i < 150000; i++)
+        {
+            auto sz = (i % 32) + 16;
+//            auto p  = pool.allocate();
+            auto p=pool.construct();
+            p->resize(sz);
+//            auto p = new char[sz]();
+//            memset(p, 0, sz);
+//            auto p = new std::string(sz, '1');
+            DoNotOptimize(p);
+        }
+        PrintUsage(rUsage);
+    }
+
+    //    {
+    //        WFMsg::ObjectRecordInt xMsg;
+    //        for (auto i = 0; i < 10000; i++)
+    //        {
+    //            auto &xAdd = *xMsg.add_record_list();
+    //            xAdd.set_row(i);
+    //            xAdd.set_col(i);
+    //            xAdd.set_data(i);
+    //        }
+    //        std::cout << xMsg.SerializeAsString().size() << '\n';
+    //    }
+    //
+    //    {
+    //        WFMsg::ObjectRecordIntPacked xMsg;
+    //        auto &xList = *xMsg.mutable_record_list();
+    //        for (auto i = 0; i < 10000; i++)
+    //        {
+    //
+    //            xList.add_row(i);
+    //            xList.add_col(i);
+    //            xList.add_data(i);
+    //        }
+    //        std::cout << xMsg.SerializeAsString().size() << '\n';
+    //    }
+
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;
