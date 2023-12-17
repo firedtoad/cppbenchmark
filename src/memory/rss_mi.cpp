@@ -26,7 +26,7 @@
 #include <unordered_set>
 #include <vector>
 
-#include "flat_hash_map.hpp"
+#include "flat_hash_map/flat_hash_map.hpp"
 #include "parallel_hashmap/phmap.h"
 #include "utils/rss.h"
 

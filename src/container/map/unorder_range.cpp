@@ -14,10 +14,10 @@
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
 #include "butil/containers/flat_map.h"
-#include "bytell_hash_map.hpp"
-#include "flat_hash_map.hpp"
+#include "flat_hash_map/bytell_hash_map.hpp"
+#include "flat_hash_map/flat_hash_map.hpp"
 #include "parallel_hashmap/phmap.h"
-#include "robin_hood.h"
+#include "robin_hood/robin_hood.h"
 #include "sparsepp/spp.h"
 #include "tsl/array-hash/array_map.h"
 #include "tsl/bhopscotch_map.h"
@@ -26,7 +26,7 @@
 #include "tsl/robin_map.h"
 #include "tsl/sparse_map.h"
 #include "tsl/ordered_map.h"
-#include "unordered_map.hpp"
+#include "flat_hash_map/unordered_map.hpp"
 #include <absl/container/flat_hash_map.h>
 #include <benchmark/benchmark.h>
 #include <iostream>

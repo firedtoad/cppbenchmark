@@ -13,7 +13,7 @@
 // limitations under the License.
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
-#include "flat_hash_map.hpp"
+#include "flat_hash_map/flat_hash_map.hpp"
 #include "parallel_hashmap/phmap.h"
 #include "tsl/ordered_map.h"
 #include "tsl/ordered_set.h"

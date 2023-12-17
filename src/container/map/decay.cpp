@@ -13,10 +13,10 @@
 // limitations under the License.
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
-#include "flat_hash_map.hpp"
+#include "flat_hash_map/flat_hash_map.hpp"
 #include "parallel_hashmap/phmap.h"
 #include "tsl/ordered_map.h"
-#include "unordered_map.hpp"
+#include "flat_hash_map/unordered_map.hpp"
 #include "utils/symbol.h"
 #include <absl/container/btree_map.h>
 #include <absl/container/btree_set.h>

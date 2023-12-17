@@ -13,8 +13,11 @@
 // limitations under the License.
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
+#include "algorithm/container.h"
 #include "report.pb.h"
 #include "tsl/array-hash/array_map.h"
+#include "tsl/ordered_map.h"
+#include "tsl/ordered_set.h"
 #include "utils/rss.h"
 #include <benchmark/benchmark.h>
 #include <boost/pool/object_pool.hpp>
@@ -211,12 +214,12 @@ int main(int argc, char **argv)
         for (auto i = 0; i < 150000; i++)
         {
             auto sz = (i % 32) + 16;
-//            auto p  = pool.allocate();
-            auto p=pool.construct();
+            //            auto p  = pool.allocate();
+            auto p = pool.construct();
             p->resize(sz);
-//            auto p = new char[sz]();
-//            memset(p, 0, sz);
-//            auto p = new std::string(sz, '1');
+            //            auto p = new char[sz]();
+            //            memset(p, 0, sz);
+            //            auto p = new std::string(sz, '1');
             DoNotOptimize(p);
         }
         PrintUsage(rUsage);
@@ -246,8 +249,98 @@ int main(int argc, char **argv)
     //        }
     //        std::cout << xMsg.SerializeAsString().size() << '\n';
     //    }
+    std::set<std::shared_ptr<pb_report::Ground>> sint;
 
-    benchmark::Initialize(&argc, argv);
-    benchmark::RunSpecifiedBenchmarks();
+    for (auto i = 0; i < 10; i++)
+    {
+        auto p = std::make_shared<pb_report::Ground>();
+        p->mutable_attackerform()->Reserve(i);
+        sint.insert(p);
+    }
+
+    for (auto it : sint)
+    {
+        std::cout << it->mutable_attackerform()->Capacity() << '\n';
+    }
+
+    tsl::vector_set<int> vs;
+    vs.insert(7);
+    vs.insert(4);
+    vs.insert(2);
+    vs.insert(5);
+    for (auto it : vs)
+    {
+        std::cout << it << '\n';
+    }
+    tsl::vector_map<int, std::weak_ptr<int>> set_weak;
+    {
+        auto p      = std::make_shared<int>();
+        set_weak[1] = p;
+        tsl::vector_map<int, std::shared_ptr<int>> set_shared;
+        set_shared[1] = p;
+    }
+
+    auto it = set_weak.find(1);
+    if (it != set_weak.end())
+    {
+        auto p = it->second.lock();
+        if (p)
+        {
+            std::cout << p << '\n';
+        }
+    }
+
+    std::deque<int> d1;
+    d1.emplace_back(10);
+    d1.emplace_back(20);
+    std::deque<int> d2;
+    d2.emplace_back(100);
+    d2.emplace_back(200);
+
+    {
+        auto d3 = d1;
+        auto d4 = d2;
+        d3.insert(d3.begin(), d4.begin(), d4.end());
+        d4.clear();
+        c_copy(d3, std::ostream_iterator<int>(std::cout, " "));
+        std::cout << '\n';
+        c_copy(d4, std::ostream_iterator<int>(std::cout, " "));
+        std::cout << '\n';
+    }
+
+    {
+        auto d3 = d1;
+        auto d4 = d2;
+        c_move(d4, std::front_inserter(d3));
+        c_copy(d3, std::ostream_iterator<int>(std::cout, " "));
+        std::cout << '\n';
+        c_copy(d4, std::ostream_iterator<int>(std::cout, " "));
+        std::cout << '\n';
+    }
+
+    {
+        auto d3 = d1;
+        auto d4 = d2;
+        c_move(d4, std::back_inserter(d3));
+
+        c_copy(d3, std::ostream_iterator<int>(std::cout, " "));
+        std::cout << '\n';
+        c_copy(d4, std::ostream_iterator<int>(std::cout, " "));
+        std::cout << '\n';
+    }
+    {
+        struct Test
+        {
+            ~Test()
+            {
+                std::cout << __PRETTY_FUNCTION__ << '\n';
+            }
+        };
+        google::protobuf::Arena xArena;
+        auto pTest = google::protobuf::Arena::Create<Test>(&xArena);
+//        delete pTest;
+    }
+    //    benchmark::Initialize(&argc, argv);
+    //    benchmark::RunSpecifiedBenchmarks();
     return 0;
 }

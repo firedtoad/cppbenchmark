@@ -57,12 +57,17 @@ static void BenchListInsert(benchmark::State &state)
 
 BENCHMARK(BenchListInsert)->Range(1, 65536);
 
+struct BUNode : public SList, public  butil::LinkNode<BUNode>
+{
+    int x{};
+};
+
 static void BenchBUListInsert(benchmark::State &state)
 {
     for (auto _ : state)
     {
-        butil::LinkedList<SList> v;
-        std::vector<butil::LinkNode<SList>> vs;
+        butil::LinkedList<BUNode> v;
+        std::vector<BUNode> vs;
         vs.resize(state.range(0));
         for (auto i = 0; i < state.range(0); i++)
         {

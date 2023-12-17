@@ -26,11 +26,7 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 include_directories(
         /usr/local/include
         ${CMAKE_CURRENT_SOURCE_DIR}/lib3rd/
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib3rd/flat_hash_map
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib3rd/llvm
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib3rd/parallel_hashmap
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib3rd/sparsepp
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib3rd/robin_hood
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib3rd/openssl
 )
 
 link_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib3rd/libs /usr/local/lib)

@@ -13,10 +13,10 @@
 // limitations under the License.
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
-#include "bytell_hash_map.hpp"
-#include "flat_hash_map.hpp"
+#include "flat_hash_map/bytell_hash_map.hpp"
+#include "flat_hash_map/flat_hash_map.hpp"
 #include "parallel_hashmap/phmap.h"
-#include "robin_hood.h"
+#include "robin_hood/robin_hood.h"
 #include "sparsepp/spp.h"
 #include "tsl/array-hash/array_set.h"
 #include "tsl/bhopscotch_set.h"
@@ -24,7 +24,7 @@
 #include "tsl/htrie_set.h"
 #include "tsl/robin_set.h"
 #include "tsl/sparse_set.h"
-#include "unordered_map.hpp"
+#include "flat_hash_map/unordered_map.hpp"
 #include <benchmark/benchmark.h>
 #include <iostream>
 #include <unordered_set>

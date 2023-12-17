@@ -14,8 +14,8 @@
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
 #include "container/FastVector.h"
-#include "bytell_hash_map.hpp"
-#include "flat_hash_map.hpp"
+#include "flat_hash_map/bytell_hash_map.hpp"
+#include "flat_hash_map/flat_hash_map.hpp"
 #include "parallel_hashmap/phmap.h"
 #include "tsl/robin_set.h"
 #include <benchmark/benchmark.h>
