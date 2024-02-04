@@ -16,7 +16,10 @@
 #include "report.pb.h"
 #include "utils/rss.h"
 #include <benchmark/benchmark.h>
+#include <deque>
 #include <experimental/unordered_map>
+#include <forward_list>
+#include <list>
 #include <map>
 #include <set>
 #include <unordered_map>
@@ -191,6 +194,12 @@ static void BenchAddAllocateArena(benchmark::State &state)
 
 BENCHMARK(BenchAddAllocateArena)->Range(1, 1024);
 
+template <typename SourceContainerType, typename T = typename SourceContainerType::value_type::first_type>
+std::pair<bool, T> RandomByAddedRate(const SourceContainerType &vecSource)
+{
+    return {true, T{}};
+}
+
 const int SIZE = 65536;
 int main(int argc, char **argv)
 {
@@ -235,7 +244,43 @@ int main(int argc, char **argv)
         std::cout << report.attackerform_size() + report.defenderform_size() << '\n';
         PrintUsage(rUsage);
     }
-    benchmark::Initialize(&argc, argv);
-    benchmark::RunSpecifiedBenchmarks();
+    {
+
+        google::protobuf::ArenaOptions options;
+        options.start_block_size = 8192;
+        options.max_block_size   = 8192;
+        google::protobuf::Arena xArena(options);
+        pb_report::Ground &report1 = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(&xArena);
+        report1.mutable_attackerform()->Reserve(SIZE);
+        report1.mutable_defenderform()->Reserve(SIZE);
+        for (auto i = 0; i < SIZE; i++)
+        {
+            report1.mutable_attackerform()->Add();
+            report1.mutable_defenderform()->Add();
+        }
+        std::cout << xArena.SpaceAllocated() << ' ' << xArena.SpaceUsed() << '\n';
+        auto strData = report1.SerializeAsString();
+        {
+            google::protobuf::ArenaOptions options;
+            options.start_block_size = 8192;
+            options.max_block_size   = 8192;
+            google::protobuf::Arena xArena(options);
+
+            pb_report::Ground &report2 = *google::protobuf::Arena::CreateMessage<pb_report::Ground>(&xArena);
+            report2.mutable_attackerform()->Reserve(report1.attackerform_size());
+            report2.mutable_defenderform()->Reserve(report1.defenderform_size());
+            report2.ParseFromString(strData);
+            std::cout << xArena.SpaceAllocated() << ' ' << xArena.SpaceUsed() << '\n';
+            std::cout << report2.attackerform().size() << ' ' << report2.attackerform().Capacity() << '\n';
+        }
+    }
+
+    //    std::cout<<sizeof(std::list<int>)<<'\n';
+    //    std::cout<<sizeof(std::deque<int>)<<'\n';
+    //    std::cout<<sizeof(std::vector<int>)<<'\n';
+    //    std::cout<<sizeof(std::forward_list<int>)<<'\n';
+
+    //        benchmark::Initialize(&argc, argv);
+    //        benchmark::RunSpecifiedBenchmarks();
     return 0;
 }

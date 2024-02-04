@@ -18,6 +18,7 @@
 #include <benchmark/benchmark.h>
 #include <boost/intrusive/list.hpp>
 #include <boost/intrusive/list_hook.hpp>
+#include <iostream>
 #include <list>
 #include <llvm/ADT/FoldingSet.h>
 #include <llvm/ADT/ImmutableList.h>
@@ -57,7 +58,7 @@ static void BenchListInsert(benchmark::State &state)
 
 BENCHMARK(BenchListInsert)->Range(1, 65536);
 
-struct BUNode : public SList, public  butil::LinkNode<BUNode>
+struct BUNode : public SList, public butil::LinkNode<BUNode>
 {
     int x{};
 };
@@ -161,6 +162,21 @@ BENCHMARK(BenchAdtImmutableList)->Range(1, 65536);
 
 int main(int argc, char **argv)
 {
+
+    butil::LinkedList<BUNode> v;
+    std::vector<BUNode> vs;
+    vs.resize(10, {});
+    for (auto i = 0; i < 10; i++)
+    {
+        vs[i].x = i;
+        v.Append(&vs[i]);
+    }
+
+
+    for (auto it : v)
+    {
+        std::cout << it.value()->x << '\n';
+    }
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

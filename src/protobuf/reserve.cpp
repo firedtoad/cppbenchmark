@@ -26,6 +26,23 @@
 #include <parallel_hashmap/phmap.h>
 #include <vector>
 
+static void BenchPHMAP(benchmark::State &state)
+{
+    srand(time(nullptr));
+    static phmap::parallel_flat_hash_map_m<int, int> mp;
+    for (auto _ : state)
+    {
+        //           auto r=mp.try_emplace_l(1,[&](auto & it){
+        //                        it.second=10;
+        //                    });
+        auto r = mp.try_emplace( random(), 1);
+
+        benchmark::DoNotOptimize(r);
+    }
+}
+
+BENCHMARK(BenchPHMAP)->ThreadRange(1, 4);
+
 static void BenchAdd(benchmark::State &state)
 {
     for (auto _ : state)
@@ -39,7 +56,7 @@ static void BenchAdd(benchmark::State &state)
         benchmark::DoNotOptimize(report);
     }
 }
-BENCHMARK(BenchAdd)->Range(1, 65536);
+// BENCHMARK(BenchAdd)->Range(1, 65536);
 
 static void BenchAddArena(benchmark::State &state)
 {
@@ -55,7 +72,7 @@ static void BenchAddArena(benchmark::State &state)
         benchmark::DoNotOptimize(report);
     }
 }
-BENCHMARK(BenchAddArena)->Range(1, 65536);
+// BENCHMARK(BenchAddArena)->Range(1, 65536);
 
 static void BenchAddArenaOptions(benchmark::State &state)
 {
@@ -74,7 +91,7 @@ static void BenchAddArenaOptions(benchmark::State &state)
         benchmark::DoNotOptimize(report);
     }
 }
-BENCHMARK(BenchAddArenaOptions)->Range(1, 65536);
+// BENCHMARK(BenchAddArenaOptions)->Range(1, 65536);
 
 static void BenchReserve(benchmark::State &state)
 {
@@ -93,7 +110,7 @@ static void BenchReserve(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchReserve)->Range(1, 65536);
+// BENCHMARK(BenchReserve)->Range(1, 65536);
 
 static void BenchReserveArena(benchmark::State &state)
 {
@@ -112,7 +129,7 @@ static void BenchReserveArena(benchmark::State &state)
     }
 }
 
-BENCHMARK(BenchReserveArena)->Range(1, 65536);
+// BENCHMARK(BenchReserveArena)->Range(1, 65536);
 
 struct StrPtrHash
 {
@@ -137,6 +154,7 @@ struct StrPtrEqual
 const int SIZE = 65536;
 int main(int argc, char **argv)
 {
+
     rusage rUsage;
     FillRSS(rUsage);
     pb_report::Ground report;
@@ -337,10 +355,12 @@ int main(int argc, char **argv)
             }
         };
         google::protobuf::Arena xArena;
-        auto pTest = google::protobuf::Arena::Create<Test>(&xArena);
-//        delete pTest;
+
+
+        //        delete pTest;
     }
-    //    benchmark::Initialize(&argc, argv);
-    //    benchmark::RunSpecifiedBenchmarks();
+
+    benchmark::Initialize(&argc, argv);
+    benchmark::RunSpecifiedBenchmarks();
     return 0;
 }

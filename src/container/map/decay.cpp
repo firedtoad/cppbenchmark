@@ -14,9 +14,10 @@
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
 #include "flat_hash_map/flat_hash_map.hpp"
-#include "parallel_hashmap/phmap.h"
-#include "tsl/ordered_map.h"
 #include "flat_hash_map/unordered_map.hpp"
+#include "parallel_hashmap/phmap.h"
+#include "parallel_hashmap/btree.h"
+#include "tsl/ordered_map.h"
 #include "utils/symbol.h"
 #include <absl/container/btree_map.h>
 #include <absl/container/btree_set.h>
@@ -32,19 +33,20 @@
 
 template <typename... T> void PrintNode(T &&...t)
 {
-    (..., (std::cout << demangle(typeid(typename T::node_type).name()) << " size " << sizeof(typename T::node_type) << '\n'));
+    (..., (std::cout << demangle(typeid(t).name())  <<" size= "<< sizeof(t) << " " << demangle(typeid(typename T::node_type).name()) << " size "
+                     << sizeof(typename T::node_type) << '\n'));
     std::cout << '\n';
 }
 
 template <typename... T> void PrintContainer(T &&...t)
 {
-    (..., (std::cout << demangle(typeid(t).name()) << " size " << sizeof(typename T::value_type) << '\n'));
+    (..., (std::cout << demangle(typeid(t).name())  <<" size= "<< sizeof(t) << " " << demangle(typeid(t).name()) << " size " << sizeof(typename T::value_type) << '\n'));
     std::cout << '\n';
 }
 
 template <typename... T> void PrintList(T &&...t)
 {
-    (..., (std::cout << demangle(typeid(t).name()) << " size " << sizeof(t) << '\n'));
+    (..., (std::cout <<demangle(typeid(t).name()) <<" size= " << sizeof(t) << " " << demangle(typeid(t).name()) << " size " << sizeof(t) << '\n'));
     std::cout << '\n';
 }
 struct Hasher
@@ -181,8 +183,8 @@ int main(int argc, char **argv)
     std::cout << sizeof(SS<char, uint64_t>) << '\n';
     std::cout << std::is_trivially_copy_constructible_v<SS<int, char>> << '\n';
     std::cout << sizeof(phmap::priv::hash_policy_traits<phmap::priv::FlatHashSetPolicy<unsigned char>, void>) << '\n';
-    rusage rusage;
-    FillRSS(rusage);
+
+    PrintNode(std::set<uint8_t>{}, std::set<uint16_t>{}, std::set<uint32_t>{}, std::set<uint64_t>{});
     PrintNode(absl::btree_set<uint8_t>{}, absl::btree_set<uint16_t>{}, absl::btree_set<uint32_t>{}, absl::btree_set<uint64_t>{});
 
     absl::btree_set<uint32_t, std::less<>, my_allocator<uint32_t>> bset;
@@ -190,6 +192,8 @@ int main(int argc, char **argv)
     {
         bset.insert(i);
     }
+
+    PrintNode(phmap::btree_set<uint8_t>{}, phmap::btree_set<uint16_t>{}, phmap::btree_set<uint32_t>{}, phmap::btree_set<uint64_t>{});
 
     PrintNode(phmap::flat_hash_set<uint8_t>{}, phmap::flat_hash_set<uint16_t>{}, phmap::flat_hash_set<uint32_t>{}, phmap::flat_hash_set<uint64_t>{});
 

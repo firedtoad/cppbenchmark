@@ -13,10 +13,15 @@
 // limitations under the License.
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
+#include "parallel_hashmap/phmap.h"
 #include <benchmark/benchmark.h>
-#include <set>
 #include <memory_resource>
 #include <numeric>
+#include <set>
+#include <unordered_map>
+#include <unordered_set>
+#include <tsl/sparse_map.h>
+#include <utils/rss.h>
 
 static unsigned long xorshf96()
 { /* A George Marsaglia generator, period 2^96-1 */
@@ -144,9 +149,42 @@ template <class M> static void BM_PMR_Find(benchmark::State &state)
 
 BENCHMARK_TEMPLATE(BM_Find, std::set<int>)->Range(1 << 10, 1 << 20);
 BENCHMARK_TEMPLATE(BM_PMR_Find, std::pmr::set<int>)->Range(1 << 10, 1 << 20);
-
+const auto N=1<<20;
 int main(int argc, char **argv)
 {
+
+    rusage rUsage{};
+    {
+        FillRSS(rUsage);
+        std::unordered_map<int,int> s;
+        for(auto i=0;i<N;i++)
+        {
+            s.emplace(i,i);
+        }
+        PrintUsage(rUsage);
+    }
+
+    {
+        FillRSS(rUsage);
+        std::pmr::monotonic_buffer_resource pool;
+        std::pmr::unordered_map<int,int> s(&pool);
+        for(auto i=0;i<N;i++)
+        {
+            s.emplace(i,i);
+        }
+        PrintUsage(rUsage);
+    }
+
+    {
+        FillRSS(rUsage);
+        tsl::sparse_map<int,int> s;
+        for(auto i=0;i<N;i++)
+        {
+            s.emplace(i,i);
+        }
+        PrintUsage(rUsage);
+    }
+
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

@@ -19,7 +19,7 @@
 #include <setjmp.h>
 thread_local jmp_buf buf{};
 thread_local sigset_t _sigset;
-void sigsegv(int)
+void sigsegv(int, siginfo_t *, void *)
 {
     sigprocmask(SIG_UNBLOCK, &_sigset, NULL);
     longjmp(buf, 1);
@@ -114,7 +114,7 @@ int main(int argc, char **argv)
     {
     };
     act.sa_flags   = SA_SIGINFO;
-    act.sa_handler = sigsegv;
+    act.sa_sigaction = sigsegv;
     sigemptyset(&act.sa_mask);
     sigaddset(&act.sa_mask, SIGSEGV);
     sigaddset(&act.sa_mask, SIGFPE);

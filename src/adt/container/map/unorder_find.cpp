@@ -30,6 +30,7 @@
 
 #include <iostream>
 #include <llvm/ADT/DenseMap.h>
+#include <llvm/ADT/SparseSet.h>
 #include <llvm/ADT/IndexedMap.h>
 #include <llvm/ADT/MapVector.h>
 #include <llvm/ADT/StringMap.h>

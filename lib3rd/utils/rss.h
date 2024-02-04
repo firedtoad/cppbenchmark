@@ -53,7 +53,7 @@ inline void FillRSS(rusage &rUsage)
     auto rss        = getThreadRss(rUsage);
     uint64_t newRss = 0;
     int sz          = 1;
-    auto p          = (char *)calloc(1, 4096);
+    thread_local auto *p          = (char *)calloc(1, 4096);
 
     while (newRss <= rss)
     {

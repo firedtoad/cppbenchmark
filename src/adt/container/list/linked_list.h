@@ -77,6 +77,8 @@
 //    needs to glue on the "next" and "previous" pointers using
 //    some internal node type.
 
+#include <cstddef>
+#include <iterator>
 namespace butil
 {
 
@@ -163,6 +165,86 @@ template <typename T> class LinkNode
     LinkNode<T> *next_;
 };
 
+template<class T>
+class LinkedListIterator
+{
+  public:
+    using NodeType = LinkNode<T>;
+    using iterator_category = std::bidirectional_iterator_tag;
+    using value_type = NodeType;
+    using difference_type = ptrdiff_t;
+    using distance_type = ptrdiff_t;
+    using pointer = T *;
+    using const_pointer = const T *;
+    using reference = T &;
+    using const_reference = const T &;
+
+    LinkedListIterator()
+        : ptr_(nullptr)
+    {
+    }
+
+    explicit LinkedListIterator(NodeType *pNode)
+        : ptr_(pNode)
+    {
+    }
+
+    LinkedListIterator &operator=(const_pointer const &xRight)
+    {
+        ptr_ = pointer(xRight);
+        return *this;
+    }
+
+    reference operator*()
+    {
+        return *ptr_->value();
+    }
+
+    pointer operator->()
+    {
+        return ptr_->value();
+    }
+
+    LinkedListIterator &operator++()
+    {
+        ptr_ = ptr_->next();
+        return (*this);
+    }
+
+    LinkedListIterator operator++(int)
+    {
+        LinkedListIterator tmp = *this;
+        ++*this;
+        return (tmp);
+    }
+
+    LinkedListIterator &operator--()
+    {
+        ptr_ = ptr_->prev();
+        return (*this);
+    }
+
+    LinkedListIterator operator--(int)
+    {
+        LinkedListIterator tmp = *this;
+        --*this;
+        return (tmp);
+    }
+
+    bool operator!=(const LinkedListIterator &xRight) const
+    {
+        return ptr_ != xRight.ptr_;
+    }
+
+    bool operator==(const LinkedListIterator &xRight) const
+    {
+        return ptr_ == xRight.ptr_;
+    }
+
+  protected:
+    NodeType *ptr_; // pointer to node
+};
+
 template <typename T> class LinkedList
 {
   public:
@@ -190,6 +272,16 @@ template <typename T> class LinkedList
     const LinkNode<T> *end() const
     {
         return &root_;
+    }
+
+    LinkedListIterator<T> begin()
+    {
+        return LinkedListIterator<T>(head());
+    }
+
+    LinkedListIterator<T> end()
+    {
+        return LinkedListIterator<T>(&root_);
     }
 
     bool empty() const

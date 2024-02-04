@@ -31,7 +31,29 @@ segvcatch::handler handler_fpe = 0;
 
 void default_segv()
 {
-    throw std::runtime_error("Segmentation fault");
+//    throw std::runtime_error("Segmentation fault");
+
+
+    asm(
+        "pushq   %%r12\n"
+        "\tmovl    $4, %%edi\n"
+        "\tpushq   %%rbp\n"
+        "\tpushq   %%rax\n"
+        "\tcall    __cxa_allocate_exception@PLT\n"
+        "\tmovq    %%rax, %%rbp\n"
+        "\tmovl    $1, (%%rax)\n"
+        "\txorl    %%edx, %%edx\n"
+        "\tleaq    _ZTIi(%%rip), %%rsi\n"
+        "\tmovq    %%rax, %%rdi\n"
+        "\tcall    __cxa_throw@PLT\n"
+        "\tmovq    %%rax, %%r12\n"
+        "\tmovq    %%rbp, %%rdi\n"
+        "\tcall    __cxa_free_exception@PLT\n"
+        "\tmovq    %%r12, %%rdi\n"
+        "\tcall    _Unwind_Resume@PLT\n"::
+    );
+
+
 }
 
 void default_fpe()

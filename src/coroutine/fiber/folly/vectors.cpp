@@ -15,12 +15,12 @@
 
 #include <benchmark/benchmark.h>
 #include <iostream>
-#include <llvm/ADT/SmallVector.h>
-#include <llvm/ADT/DenseSet.h>
 #include <absl/container/inlined_vector.h>
 #include <boost/container/small_vector.hpp>
-//#include <container/vector.hpp>
 #include <container/SmallVector.h>
+#include <folly/FBVector.h>
+#include <folly/small_vector.h>
+
 #include <list>
 #include <numeric>
 #include <vector>
@@ -38,9 +38,10 @@ template <typename V> static void BenchInsert(benchmark::State &state)
 }
 
 BENCHMARK_TEMPLATE(BenchInsert, std::vector<int>)->Range(128, 1024);
-BENCHMARK_TEMPLATE(BenchInsert, llvm::SmallVector<int, 1024>)->Range(128, 1024);
+BENCHMARK_TEMPLATE(BenchInsert, folly::fbvector<int>)->Range(128, 1024);
 BENCHMARK_TEMPLATE(BenchInsert, absl::InlinedVector<int, 1024>)->Range(128, 1024);
 BENCHMARK_TEMPLATE(BenchInsert, llvm_vecsmall::SmallVector<int, 1024>)->Range(128, 1024);
+BENCHMARK_TEMPLATE(BenchInsert, folly::small_vector<int, 1024>)->Range(128, 1024);
 
 template <typename V> static void BenchReserve(benchmark::State &state)
 {
@@ -56,9 +57,10 @@ template <typename V> static void BenchReserve(benchmark::State &state)
 }
 
 BENCHMARK_TEMPLATE(BenchReserve, std::vector<int>)->Range(128, 1024);
-BENCHMARK_TEMPLATE(BenchReserve, llvm::SmallVector<int, 1024>)->Range(128, 1024);
+BENCHMARK_TEMPLATE(BenchReserve, folly::fbvector<int>)->Range(128, 1024);
 BENCHMARK_TEMPLATE(BenchReserve, absl::InlinedVector<int, 1024>)->Range(128, 1024);
 BENCHMARK_TEMPLATE(BenchReserve, llvm_vecsmall::SmallVector<int, 1024>)->Range(128, 1024);
+BENCHMARK_TEMPLATE(BenchReserve, folly::small_vector<int, 1024>)->Range(128, 1024);
 
 template <typename V> static void BenchAccumulate(benchmark::State &state)
 {
@@ -76,28 +78,30 @@ template <typename V> static void BenchAccumulate(benchmark::State &state)
 }
 
 BENCHMARK_TEMPLATE(BenchAccumulate, std::vector<int>)->Range(128, 1024);
-BENCHMARK_TEMPLATE(BenchAccumulate, llvm::SmallVector<int, 1024>)->Range(128, 1024);
+BENCHMARK_TEMPLATE(BenchAccumulate, folly::fbvector<int>)->Range(128, 1024);
 BENCHMARK_TEMPLATE(BenchAccumulate, absl::InlinedVector<int, 1024>)->Range(128, 1024);
 BENCHMARK_TEMPLATE(BenchAccumulate, llvm_vecsmall::SmallVector<int, 1024>)->Range(128, 1024);
+BENCHMARK_TEMPLATE(BenchAccumulate, folly::small_vector<int, 1024>)->Range(128, 1024);
 
 
 int main(int argc, char **argv)
 {
     std::cout << std::numeric_limits<double>::max_digits10 << '\n';
     std::cout<<sizeof(std::pair<std::vector<std::string>::value_type,int64_t>)<<'\n';
-    llvm::SmallVector<std::pair<std::vector<std::string>::value_type,int64_t>, 1024> v;
+//    {
+//        llvm_vecsmall::SmallVector<int, 1024> v;
+//        for (auto i = 0; i < 1024; i++)
+//        {
+//            v.push_back({});
+//        }
+//    }
 
-    for (auto i = 0; i < 1024; i++)
     {
-        v.push_back({});
-    }
-    {
-        llvm_vecsmall::SmallVector<int, 1024> v;
+        folly::fbvector<int> v;
         for (auto i = 0; i < 1024; i++)
         {
             v.push_back({});
         }
-
     }
 
     benchmark::Initialize(&argc, argv);
