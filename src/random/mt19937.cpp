@@ -25,8 +25,11 @@ template <typename G> static void BenchEngine(benchmark::State &state)
     static G mt{std::random_device{}()};
     for (auto _ : state)
     {
-        auto r=mt();
-        benchmark::DoNotOptimize(r);
+        for(auto i=0;i<1000;i++)
+        {
+            auto r=mt();
+            benchmark::DoNotOptimize(r);
+        }
     }
 }
 
@@ -53,8 +56,10 @@ static void BenchSFMT(benchmark::State &state)
     //    }
     for (auto _ : state)
     {
-        auto r=sfmt_genrand_uint64(&_state);
-        benchmark::DoNotOptimize(r);
+        for(auto i=0;i<1000;i++){
+            auto r=sfmt_genrand_uint64(&_state);
+            benchmark::DoNotOptimize(r);
+        }
     }
 }
 

@@ -114,7 +114,7 @@ thread_local jmp_buf buf{};
 int first = 1;
 void sigsegv(int signo, siginfo_t *info, void *context)
 {
-    //    auto uctx = (ucontext_t *)context;
+        auto uctx = (ucontext_t *)context;
     //    siglongjmp(buf, 1);
     //    ;
 
@@ -127,11 +127,15 @@ void sigsegv(int signo, siginfo_t *info, void *context)
         std::cerr << info->si_addr << ' ' << addr << '\n';
         mmap(addr, sysconf(_SC_PAGE_SIZE), PROT_READ | PROT_WRITE | PROT_EXEC, MAP_PRIVATE | MAP_FIXED | MAP_ANONYMOUS, -1, 0);
         first = 0;
+//        uctx->uc_mcontext.gregs[REG_RIP]+=4;
         return;
     }
-    exit(0);
+//    uctx->uc_mcontext.gregs[REG_RIP]+=4;
+//    exit(0);
 }
 
+char *pChar=0;
+// echo 0 > /proc/sys/vm/mmap_min_addr
 int main(int argc, char **argv)
 {
     //    struct sigaction act
@@ -168,7 +172,7 @@ int main(int argc, char **argv)
     // void *p = mmap(0, sysconf(_SC_PAGE_SIZE), PROT_READ | PROT_WRITE|PROT_EXEC, MAP_PRIVATE | MAP_FIXED | MAP_ANONYMOUS, -1, 0);
     // std::cout << p << ' ' << strerror(errno) << '\n' << '\n';
     // sleep(10000000);
-    char *pChar=0;
+
     *pChar = 'a';
     std::cout << *pChar << '\n';
     PrintMMap();

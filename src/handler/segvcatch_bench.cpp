@@ -15,21 +15,35 @@
 
 #include "segvcatch/segvcatch.h"
 #include <benchmark/benchmark.h>
+//#include <csetjmp>
+#include "pg_siglongjmp.h"
 
 int *p = nullptr;
 int *d = new int{0};
+thread_local pg_sigjmp_buf buf{};
+
+ void handleSegV()
+{
+    pg_siglongjmp(&buf);
+}
+
+void handleFpe()
+{
+    pg_siglongjmp(&buf);
+}
+
 static void BM_SegvCatch(benchmark::State &state)
 {
     for (auto _ : state)
     {
-        try
+       if( pg_sigsetjmp(&buf,1)==0)
         {
             *p = 10;
             benchmark::DoNotOptimize(p);
         }
-        catch (std::exception &e)
+        else
         {
-
+            benchmark::DoNotOptimize(buf);
         }
     }
 }
@@ -38,8 +52,8 @@ BENCHMARK(BM_SegvCatch);
 
 int main(int argc, char **argv)
 {
-    segvcatch::init_segv();
-    segvcatch::init_fpe();
+    segvcatch::init_segv(handleSegV);
+    segvcatch::init_fpe(handleFpe);
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;
