@@ -13,45 +13,43 @@
 // limitations under the License.
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
-// #include <sys/time.h>
-// #include <chrono>
-// #include <iostream>
-// int main(int argc, char **argv)
-//{
-//     auto begin=std::chrono::steady_clock::now();
-//     auto v=0;
-//     for(auto i=0;i<1000000;i++)
-//     {
-//         timeval tv;
-//         v=gettimeofday(&tv, nullptr);
-//     }
-//     auto end=std::chrono::steady_clock::now();
-//     std::cout<<std::chrono::duration_cast<std::chrono::milliseconds>((end-begin)).count()<<"ms\n";
-//     return v;
-// }
-
+#include <benchmark/benchmark.h>
 #include <chrono>
-#include <iostream>
-#include <sys/time.h>
+#include <sys/syscall.h>
+#include <unistd.h>
 
-template <class Tp> inline __attribute__((always_inline)) void DoNotOptimize(Tp &value)
+static void BenchVdsoTime(benchmark::State &state)
 {
-#if defined(__clang__)
-    asm volatile("" : "+r,m"(value) : : "memory");
-#else
-    asm volatile("" : "+m,r"(value) : : "memory");
-#endif
+    for (auto _ : state)
+    {
+        for (auto i = 0; i < state.range(0); i++)
+        {
+            auto n = time(nullptr);
+            benchmark::DoNotOptimize(n);
+        }
+    }
 }
+
+BENCHMARK(BenchVdsoTime)->Range(1, 1);
+
+static void BenchSyscallTime(benchmark::State &state)
+{
+    for (auto _ : state)
+    {
+        for (auto i = 0; i < state.range(0); i++)
+        {
+            time_t tm{};
+            auto n = syscall(SYS_time,&tm);
+            benchmark::DoNotOptimize(n);
+        }
+    }
+}
+
+BENCHMARK(BenchSyscallTime)->Range(1, 1);
+
 int main(int argc, char **argv)
 {
-    auto begin = std::chrono::steady_clock::now();
-    auto v     = 0;
-    for (auto i = 0; i < 1000000; i++)
-    {
-        auto val = std::chrono::steady_clock::now();
-        DoNotOptimize(val);
-    }
-    auto end = std::chrono::steady_clock::now();
-    std::cout << std::chrono::duration_cast<std::chrono::milliseconds>((end - begin)).count() << "ms\n";
-    return v;
+    benchmark::Initialize(&argc, argv);
+    benchmark::RunSpecifiedBenchmarks();
+    return 0;
 }

@@ -22,16 +22,27 @@ template <size_t wait> static void BenchEpollWait(benchmark::State &state)
 {
     int efd = epoll_create1(EPOLL_CLOEXEC);
     epoll_event events[1024];
-    int fd = open("/proc/stat", 0);
-    epoll_event evt;
-    evt.events = EPOLLIN;
-    epoll_ctl(efd, EPOLL_CTL_ADD, fd, &evt);
+    std::vector<int> fds;
+    for (auto i = 0; i < 1; i++)
+    {
+        int fd = open("/proc/stat", O_CLOEXEC);
+        epoll_event evt;
+        evt.events  = EPOLLIN;
+        evt.data.fd = fd;
+        epoll_ctl(efd, EPOLL_CTL_ADD, fd, &evt);
+        fds.emplace_back(fd);
+    }
     for (auto _ : state)
     {
         int r = epoll_wait(efd, events, 1024, wait);
         benchmark::DoNotOptimize(r);
     }
-    close(fd);
+
+    for (auto &&it: fds)
+    {
+        close(it);
+    }
+
     close(efd);
 }
 BENCHMARK_TEMPLATE(BenchEpollWait, 1);

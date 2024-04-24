@@ -25,14 +25,14 @@ template <size_t N> static void BenchReadWrite(benchmark::State &state)
 {
     int fd[2];
     socketpair(AF_UNIX, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC, 0, fd);
-    char rBuff[256];
-    char wBuff[256];
+    char rBuff[N];
+    char wBuff[N];
     for (auto _ : state)
     {
         for (size_t i = 0; i < N; i++)
         {
-            int w = write(fd[0], wBuff, 256);
-            int r = read(fd[1], rBuff, 256);
+            int w = write(fd[0], wBuff, N);
+            int r = read(fd[1], rBuff, N);
             benchmark::DoNotOptimize(w);
             benchmark::DoNotOptimize(r);
         }
@@ -41,8 +41,8 @@ template <size_t N> static void BenchReadWrite(benchmark::State &state)
     close(fd[1]);
 }
 
-BENCHMARK_TEMPLATE(BenchReadWrite, 128);
-BENCHMARK_TEMPLATE(BenchReadWrite, 256);
+BENCHMARK_TEMPLATE(BenchReadWrite, 16);
+BENCHMARK_TEMPLATE(BenchReadWrite, 16);
 
 template <size_t N> static void BenchReadWriteV(benchmark::State &state)
 {
@@ -50,8 +50,8 @@ template <size_t N> static void BenchReadWriteV(benchmark::State &state)
     socketpair(AF_UNIX, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC, 0, fd);
     struct iovec rVec[N];
     struct iovec wVec[N];
-    std::vector<std::array<char, 256>> rVecBuff(N);
-    std::vector<std::array<char, 256>> wVecBuff(N);
+    std::vector<std::array<char, N>> rVecBuff(N);
+    std::vector<std::array<char, N>> wVecBuff(N);
     for (size_t i = 0; i < N; i++)
     {
         rVec[i].iov_base = rVecBuff[i].data();
@@ -72,8 +72,8 @@ template <size_t N> static void BenchReadWriteV(benchmark::State &state)
     close(fd[1]);
 }
 
-BENCHMARK_TEMPLATE(BenchReadWriteV, 128);
-BENCHMARK_TEMPLATE(BenchReadWriteV, 256);
+BENCHMARK_TEMPLATE(BenchReadWriteV, 1);
+BENCHMARK_TEMPLATE(BenchReadWriteV, 1);
 
 int main(int argc, char **argv)
 {
