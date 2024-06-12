@@ -203,6 +203,9 @@ int main(int argc, char **argv)
     PrintNode(phmap::flat_hash_map<uint8_t, uint8_t>{}, phmap::flat_hash_map<uint16_t, uint16_t>{}, phmap::flat_hash_map<uint32_t, uint32_t>{},
               phmap::flat_hash_map<uint64_t, uint64_t>{});
 
+    PrintContainer(tsl::vector_map<uint8_t, uint64_t>{}, tsl::vector_map<uint16_t, uint64_t>{}, tsl::vector_map<uint32_t, uint64_t>{},
+              tsl::vector_map<uint64_t, uint64_t>{});
+
     PrintNode(absl::btree_map<uint8_t, uint8_t>{}, absl::btree_map<uint16_t, uint16_t>{}, absl::btree_map<uint32_t, uint32_t>{},
               absl::btree_map<uint64_t, uint64_t>{});
 

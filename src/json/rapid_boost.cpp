@@ -175,7 +175,26 @@ BENCHMARK(BenchRapidDocument)->Range(1, 256);
 // BENCHMARK(BenchBoostJson)->Range(1, 128);
 int main(int argc, char **argv)
 {
-    benchmark::Initialize(&argc, argv);
-    benchmark::RunSpecifiedBenchmarks();
+
+    rapidjson::Document  doc;
+    doc.SetObject();
+    {
+        rapidjson::Value xPartners(rapidjson::kObjectType);
+        {
+            xPartners.AddMember("id",1,doc.GetAllocator());
+            xPartners.AddMember("index",1,doc.GetAllocator());
+        }
+        doc.AddMember("abc",xPartners,doc.GetAllocator());
+    }
+
+    rapidjson::StringBuffer xStringBuffer;
+    rapidjson::Writer<rapidjson::StringBuffer> xWriter(xStringBuffer);
+    doc.Accept(xWriter);
+    std::cout<<xStringBuffer.GetString()<<'\n';
+
+
+
+//    benchmark::Initialize(&argc, argv);
+//    benchmark::RunSpecifiedBenchmarks();
     return 0;
 }

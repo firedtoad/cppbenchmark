@@ -20,6 +20,7 @@
 #include <sstream>
 #include <sys/mman.h>
 #include <unistd.h>
+#include <linux/sysctl.h>
 
 const int PAGE_SIZE = sysconf(_SC_PAGESIZE);
 
@@ -75,25 +76,26 @@ int main(int argc, char **argv)
     }
 
     vecFree.emplace_back(Address{start, addrEnd, (addrEnd - start) / 4096 * 4096});
-    uint64_t nAllSize=0;
+    uint64_t nAllSize = 0;
     PrintMMap();
-//    for (auto &&it : vecFree)
-    ////    {
-    ////        std::cout << std::hex << it.start << "<---->" << it.end << " " << it.size << '\n';
-    ////    }
-    ////
-    ////    for (auto &&it : vecFree)
-    ////    {
-    ////        mmap(reinterpret_cast<void *>(it.start), it.size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_FIXED | MAP_ANONYMOUS, -1, 0);
-    ////        std::cout << errno << strerror(errno) << '\n';
-    ////        nAllSize+=it.size;
-    ////    }
+    for (auto &&it : vecFree)
+    {
+        std::cout << std::hex << it.start << "<---->" << it.end << " " << it.size << '\n';
+    }
+
+    for (auto &&it : vecFree)
+    {
+        mmap(reinterpret_cast<void *>(it.start), it.size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_FIXED | MAP_ANONYMOUS, -1, 0);
+        std::cout << errno << strerror(errno) << '\n';
+        nAllSize += it.size;
+    }
 
     double value = 0.12342;
-    value = std::round(value * 100.0) / 100.0;
+    value        = std::round(value * 100.0) / 100.0;
     std::cout << value << std::endl; // prints 0.13
 
-    std::cout << nAllSize << '\n';
+    std::cout<<std::dec << nAllSize/1024/1024/1024/1024 <<"TB" << '\n';
+
     std::cin.get();
 
     return 0;

@@ -13,8 +13,10 @@
 // limitations under the License.
 // Author dietoad@gmail.com && firedtoad@gmail.com
 
+#include "algorithm/container.h"
 #include "container/vector.hpp"
 #include <benchmark/benchmark.h>
+#include <iostream>
 #include <numeric>
 #include <vector>
 
@@ -98,6 +100,42 @@ BENCHMARK_TEMPLATE(BenchAccumulateReverse, llvm::SmallVector<int, 1024>)->Range(
 
 int main(int argc, char **argv)
 {
+
+    std::vector<int> vi = {10, 9, 8, 7, 5, 4, 3, 2, 1};
+
+    auto it = c_upper_bound(vi, 10, [](auto value, auto it) { return value > it; });
+    auto rit=std::make_reverse_iterator(it);
+    while(rit!=vi.rend())
+    {
+        std::cout << *rit << '\n';
+        rit++;
+    }
+    {
+//        1:100;10000:120;50000:140;100000:160;200000:180;300000:200;400000:220;500000:240;555000:260;610000:280;1000000:300
+    std::vector<std::pair<int,int>> vecScore={
+            {1,100},
+            {10000,120},
+            {50000,140},
+            {100000,160},
+            {200000,180},
+            {300000,200},
+            {400000,220},
+            {500000,240},
+            {555000,260},
+            {610000,280},
+            {1000000,300},
+        };
+    auto it = c_lower_bound(vecScore, 200001, []( const std::pair<int, int>& it, int nValue)
+        {
+            return it.first < nValue;
+        });
+    auto dist=std::distance(vecScore.begin(),it);
+    auto nScore=vecScore[dist].second;
+    std::cout<<nScore<<'\n';
+
+    }
+
+
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
     return 0;

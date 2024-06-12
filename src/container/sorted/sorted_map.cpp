@@ -89,6 +89,7 @@ template <typename V> static void BenchRange(benchmark::State &state)
         auto r = _random();
         v[r]   = r;
     }
+
     auto sum = 0;
     for (auto _ : state)
     {

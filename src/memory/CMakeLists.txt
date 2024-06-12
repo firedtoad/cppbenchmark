@@ -29,8 +29,7 @@ add_executable(rss_smart_tc rss_smart.cpp)
 add_executable(rss_smart_je rss_smart.cpp)
 add_executable(rss_smart_mi rss_smart.cpp)
 add_executable(smart_leak smart_leak.cpp)
-
-
+add_executable(virtual_all virtual_all.cpp)
 
 
 target_link_libraries(overhead_tc PRIVATE tcmalloc)
