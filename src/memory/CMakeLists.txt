@@ -6,7 +6,6 @@ add_executable(rss_tc rss_tc.cpp)
 add_executable(rss_je rss_je.cpp)
 add_executable(rss_mi rss_mi.cpp)
 add_executable(zero_page zero_page.cpp)
-add_executable(virtual_all virtual_all.cpp)
 
 add_executable(memory_copy copy.cpp)
 add_executable(memory_fragment fragment.cpp)

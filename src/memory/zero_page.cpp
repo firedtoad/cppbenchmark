@@ -169,7 +169,7 @@ int main(int argc, char **argv)
     sigemptyset(&act.sa_mask);
     sigaddset(&act.sa_mask, SIGSEGV);
     sigaction(SIGSEGV, &act, nullptr);
-    // void *p = mmap(0, sysconf(_SC_PAGE_SIZE), PROT_READ | PROT_WRITE|PROT_EXEC, MAP_PRIVATE | MAP_FIXED | MAP_ANONYMOUS, -1, 0);
+     void *p = mmap(0, sysconf(_SC_PAGE_SIZE), PROT_READ | PROT_WRITE|PROT_EXEC, MAP_PRIVATE | MAP_FIXED | MAP_ANONYMOUS, -1, 0);
     // std::cout << p << ' ' << strerror(errno) << '\n' << '\n';
     // sleep(10000000);
 

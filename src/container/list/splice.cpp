@@ -237,7 +237,7 @@ int main(int argc, char **argv)
     MapT mapData;
     for(auto i=0;i<10;i++)
     {
-        KeyT key{WFGUID{i},""};
+        KeyT key{WFGUID{i,i},""};
         mapData[key]=std::make_unique<ListData>();
         vt.push_back( *mapData[key]);
         vt.back().nTimeOut=i;
@@ -247,7 +247,7 @@ int main(int argc, char **argv)
     {
         std::cout<<it.nTimeOut<<'\n';
     }
-//    benchmark::Initialize(&argc, argv);
-//    benchmark::RunSpecifiedBenchmarks();
+    benchmark::Initialize(&argc, argv);
+    benchmark::RunSpecifiedBenchmarks();
     return 0;
 }

@@ -38,16 +38,16 @@ void worker_thread()
 }
 int main(int argc, char **argv)
 {
-    //    skynet_timer_init();
-    //    std::vector<std::unique_ptr<std::thread>> vecThread;
-    //    vecThread.emplace_back(std::make_unique<std::thread>(thread_timer, nullptr));
-    //    for (auto i = 0; i < 2; i++)
-    //    {
-    //        vecThread.emplace_back(std::make_unique<std::thread>(worker_thread));
-    //    }
-    //    for (auto &it : vecThread)
-    //    {
-    //        it->join();
-    //    }
+        skynet_timer_init();
+        std::vector<std::unique_ptr<std::thread>> vecThread;
+        vecThread.emplace_back(std::make_unique<std::thread>(thread_timer, nullptr));
+        for (auto i = 0; i < 2; i++)
+        {
+            vecThread.emplace_back(std::make_unique<std::thread>(worker_thread));
+        }
+        for (auto &it : vecThread)
+        {
+            it->join();
+        }
     return 0;
 }

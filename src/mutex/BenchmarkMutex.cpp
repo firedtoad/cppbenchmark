@@ -1487,6 +1487,7 @@ template <typename T> void BenchmarkDemingWS(benchmark::State &state)
     done = true;
     sem.release();
     t.join();
+    (void )value;
 }
 
 /*#include <sys/mman.h>
@@ -1605,16 +1606,16 @@ template <typename T, typename State> void BenchmarkShmemq(State &state)
     state.SetItemsProcessed(REPETITIONS * state.iterations());
 }
 
-//RegisterBenchmarkWithAllMutexes(BenchmarkShmemq, ->Apply(CustomBenchmarkArguments));
-//RegisterBenchmarkWithAllMutexes(BenchmarkDemingWS, ->Apply(CustomBenchmarkArguments));
-//RegisterBenchmarkWithAllMutexes(BenchmarkThroughputMultipleMutex, ->Apply(CustomBenchmarkArguments));
-//RegisterBenchmarkWithAllMutexes(BenchmarkThroughput, ->Apply(CustomBenchmarkArguments));
-//RegisterBenchmarkWithAllMutexes(BenchmarkContendedMutex, ->Apply(CustomBenchmarkArguments));
-//RegisterBenchmarkWithAllMutexes(BenchmarkLongestIdle, ->Apply(CustomBenchmarkArguments));
-//RegisterBenchmarkWithAllMutexes(BenchmarkLongestWait, ->Apply(CustomBenchmarkArguments));
-//RegisterBenchmarkWithAllMutexes(BenchmarkContendedMutexMoreWork, ->Apply(CustomBenchmarkArguments));
-//RegisterBenchmarkWithAllMutexes(BenchmarkContendedMutexMoreIdle, ->Apply(CustomBenchmarkArguments));
-
+RegisterBenchmarkWithAllMutexes(BenchmarkShmemq, ->Apply(CustomBenchmarkArguments));
+RegisterBenchmarkWithAllMutexes(BenchmarkDemingWS, ->Apply(CustomBenchmarkArguments));
+RegisterBenchmarkWithAllMutexes(BenchmarkThroughputMultipleMutex, ->Apply(CustomBenchmarkArguments));
+RegisterBenchmarkWithAllMutexes(BenchmarkThroughput, ->Apply(CustomBenchmarkArguments));
+RegisterBenchmarkWithAllMutexes(BenchmarkContendedMutex, ->Apply(CustomBenchmarkArguments));
+RegisterBenchmarkWithAllMutexes(BenchmarkLongestIdle, ->Apply(CustomBenchmarkArguments));
+RegisterBenchmarkWithAllMutexes(BenchmarkLongestWait, ->Apply(CustomBenchmarkArguments));
+RegisterBenchmarkWithAllMutexes(BenchmarkContendedMutexMoreWork, ->Apply(CustomBenchmarkArguments));
+RegisterBenchmarkWithAllMutexes(BenchmarkContendedMutexMoreIdle, ->Apply(CustomBenchmarkArguments));
+//
 void benchmark_yield(benchmark::State &state)
 {
     while (state.KeepRunning())

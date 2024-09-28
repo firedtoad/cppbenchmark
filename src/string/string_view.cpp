@@ -20,7 +20,7 @@
 #include <unordered_map>
 #include <utility>
 
-const auto &AddTag(const std::string_view strTag)
+const auto AddTag(const std::string_view strTag)
 {
     static std::vector<std::string> vecTags;
     vecTags.clear();

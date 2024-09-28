@@ -121,7 +121,7 @@ int main(int argc, char **argv)
 //    FillRSS(rUsage);
     AllocReport report{"MemoryAlloc"};
     std::make_shared<int>();
-    for(auto i=0;i<vec.size();i++)
+    for(size_t i=0;i<vec.size();i++)
     {
 //        vec[i]= std::allocate_shared<int,boost::fast_pool_allocator<int>>(alloc,i);
 //        vec[i].reset(pool.newElement(),[&pool](BigData* p){pool.deleteElement(p);});

@@ -57,7 +57,7 @@ std::vector<std::string> vec;
 void init(std::vector<std::string> &v1)
 {
     v1.resize(N);
-    for (auto i = 0; i < N; i++)
+    for (size_t i = 0; i < N; i++)
     {
         v1[i] = std::to_string(random_()) + std::to_string(random_()) + std::to_string(random_());
     }
@@ -179,7 +179,7 @@ template <class M> static void BenchUnOrderMapString(benchmark::State &state)
     M m;
     m.reserve(keys.size());
 
-    for (auto i = 0; i < keys.size(); i++)
+    for (size_t i = 0; i < keys.size(); i++)
     {
         m[keys[i]] = i;
     }
@@ -211,7 +211,7 @@ template <class M> static void BenchFlatMapString(benchmark::State &state)
 {
     M m;
     m.init(keys.size());
-    for (auto i = 0; i < keys.size(); i++)
+    for (size_t i = 0; i < keys.size(); i++)
     {
         m[keys[i]] = i;
     }
@@ -231,7 +231,7 @@ int main(int argc, char **argv)
 {
     //    init(vec);
     keys.resize(1024);
-    for (auto i = 0; i < 1024; i++)
+    for (size_t i = 0; i < 1024; i++)
     {
         keys[i] = std::to_string(random_()) + std::to_string(random_());
     }

@@ -56,7 +56,7 @@ static void BenchAdd(benchmark::State &state)
         benchmark::DoNotOptimize(report);
     }
 }
-// BENCHMARK(BenchAdd)->Range(1, 65536);
+ BENCHMARK(BenchAdd)->Range(1, 65536);
 
 static void BenchAddArena(benchmark::State &state)
 {
@@ -72,7 +72,7 @@ static void BenchAddArena(benchmark::State &state)
         benchmark::DoNotOptimize(report);
     }
 }
-// BENCHMARK(BenchAddArena)->Range(1, 65536);
+ BENCHMARK(BenchAddArena)->Range(1, 65536);
 
 static void BenchAddArenaOptions(benchmark::State &state)
 {
@@ -91,7 +91,7 @@ static void BenchAddArenaOptions(benchmark::State &state)
         benchmark::DoNotOptimize(report);
     }
 }
-// BENCHMARK(BenchAddArenaOptions)->Range(1, 65536);
+ BENCHMARK(BenchAddArenaOptions)->Range(1, 65536);
 
 static void BenchReserve(benchmark::State &state)
 {
@@ -110,7 +110,7 @@ static void BenchReserve(benchmark::State &state)
     }
 }
 
-// BENCHMARK(BenchReserve)->Range(1, 65536);
+ BENCHMARK(BenchReserve)->Range(1, 65536);
 
 static void BenchReserveArena(benchmark::State &state)
 {
@@ -129,7 +129,7 @@ static void BenchReserveArena(benchmark::State &state)
     }
 }
 
-// BENCHMARK(BenchReserveArena)->Range(1, 65536);
+ BENCHMARK(BenchReserveArena)->Range(1, 65536);
 
 struct StrPtrHash
 {

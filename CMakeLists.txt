@@ -13,7 +13,7 @@ include(UseFastestLinker)
 include(Ccache)
 
 link_libraries(benchmark pthread)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-omit-frame-pointer -Wall -pedantic -Wextra -march=native  -Wno-unused-parameter -Wno-nested-anon-types -Wno-unused-const-variable -Wno-unused-variable -Wno-ignored-qualifiers -fdiagnostics-color=auto ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-omit-frame-pointer -Wall -pedantic -Wextra -march=native -Wno-c++20-designator -Wno-deprecated-builtins -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-nested-anon-types -Wno-unused-const-variable -Wno-unused-variable -Wno-ignored-qualifiers -fdiagnostics-color=auto ")
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 #    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -fsanitize=address -fno-omit-frame-pointer")

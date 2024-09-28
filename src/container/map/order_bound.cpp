@@ -148,7 +148,5 @@ int main(int argc, char **argv)
     absl::c_move(ds,std::inserter(ss,ss.end()));
     benchmark::Initialize(&argc, argv);
     benchmark::RunSpecifiedBenchmarks();
-    std::deque<int> q;
-    q.front();
     return 0;
 }

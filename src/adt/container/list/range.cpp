@@ -95,7 +95,7 @@ static void BenchBUListRange(benchmark::State &state)
     int r = 0;
     for (auto _ : state)
     {
-        for (auto it = v.head(); it != v.end(); it = it->next())
+        for (auto it = v.head(); it != v.tail(); it = it->next())
         {
             r++;
         }

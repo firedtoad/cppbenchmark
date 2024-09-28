@@ -70,9 +70,9 @@ struct WFGUID
 
 struct Point3D
 {
-    float x; // x×ø±ê
-    float y; // y×ø±ê
-    float z; // z×ø±ê
+    float x; // xåæ ‡
+    float y; // yåæ ‡
+    float z; // zåæ ‡
     bool operator==(const Point3D &o) const
     {
         return std::memcmp(this, &o, sizeof(*this));
@@ -505,7 +505,7 @@ class WFMapEx
 
     TD Suit(T &name)
     {
-        // ²»ÄÜÊ¹ÓÃµü´úÆ÷ÄÇÌ×£¬ÒòÎª»á´òÂÒµü´úÆ÷Ë³Ğò
+        // ä¸èƒ½ä½¿ç”¨è¿­ä»£å™¨é‚£å¥—ï¼Œå› ä¸ºä¼šæ‰“ä¹±è¿­ä»£å™¨é¡ºåº
         if (Count() <= 0)
         {
             return nullptr;
@@ -603,7 +603,7 @@ int main(int argc, char **argv)
     using VariantMap =
         std::variant<std::unordered_map<uint64_t, std::set<int>>, std::unordered_map<float, std::set<int>>, std::unordered_map<double, std::set<int>>,
                      std::unordered_map<std::string, std::set<int>>, std::unordered_map<WFGUID, std::set<int>>,
-                     std::unordered_map<Point3D, std::set<int>>>; // ´¢´æÒ»ÁĞµÄË÷ÒıµÄÊı¾İ½á¹¹
+                     std::unordered_map<Point3D, std::set<int>>>; // å‚¨å­˜ä¸€åˆ—çš„ç´¢å¼•çš„æ•°æ®ç»“æ„
 
     std::cout << sizeof(phmap::flat_hash_map<Point3D, phmap::flat_hash_set<int>>) << '\n';
     std::cout << sizeof(tsl::sparse_map<Point3D, tsl::sparse_set<int>>) << '\n';
